@@ -52,6 +52,7 @@ MonoBehaviour:
   Who: {fileID: 0}
   Hitbox: {fileID: 2524095723970103520}
   Size: 0.5
+  SR: {fileID: 1376856763321729984}
 --- !u!95 &8557504186364581760
 Animator:
   serializedVersion: 7

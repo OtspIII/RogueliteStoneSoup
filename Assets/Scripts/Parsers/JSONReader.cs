@@ -19,6 +19,7 @@ public class LevelJSON
     public string Author;
     public CharacterStats Player;
     public List<CharacterStats> NPCs;
+    public List<WeaponStats> Weapons;
 }
 
 [System.Serializable]
@@ -29,7 +30,18 @@ public class CharacterStats
     public float HP;
     public string Body;
     public string Weapon;
-    // public string DefaultAction;
+    public string DefaultAction;
+    public string Art;
+}
+
+[System.Serializable]
+public class WeaponStats
+{
+    public string Name;
+    public float Damage;
+    public string Body;
+    public string DefaultAttack;
+    public string Art;
 }
 
 [System.Serializable]

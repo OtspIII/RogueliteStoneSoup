@@ -77,12 +77,17 @@ public class AttackAction : ActionScript
         Anim = anim;
     }
 
+    public virtual float GetDamage()
+    {
+        return Who.CurrentWeapon.Damage * Damage;
+    }
+
     public override void HitBegin(ActorController hit, HurtboxController box)
     {
         base.HitBegin(hit, box);
         if (AlreadyHit.Contains(hit)) return;
         AlreadyHit.Add(hit);
-        hit.TakeDamage(Damage);
+        hit.TakeDamage(GetDamage());
         hit.DoAction(Actions.Stun,new Infos().Add(FloatI.Amt,0.5f).Add(FloatI.Priority,3));
         hit.TakeKnockback(Who.transform.position,Knockback);
     }

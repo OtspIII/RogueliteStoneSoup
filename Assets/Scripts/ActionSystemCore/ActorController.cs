@@ -18,6 +18,7 @@ public class ActorController : MonoBehaviour
     public Vector3 StartSpot;
     public string DebugTxt;
     public CharacterStats Stats;
+    public WeaponStats CurrentWeapon;
     public bool IsPlayer = false;
     
     public ActorController Target;
@@ -86,11 +87,12 @@ public class ActorController : MonoBehaviour
         {
             DefaultAction = Actions.Patrol;
         }
-
+        CurrentWeapon = God.Library.GetWeapon(stats.Weapon);
+        if(!string.IsNullOrEmpty(stats.DefaultAction)) DefaultAction = Enum.Parse<Actions>(stats.DefaultAction);
         Body = Instantiate(God.Library.GetBody(stats.Body), transform);
         Body.Setup(this);
         Body.Anim.Rebind();
-        // DefaultAction = Enum.Parse<Actions>(json.DefaultAction);
+        
     }
 
     public virtual void DoAction(ActionScript a, Infos i=null)

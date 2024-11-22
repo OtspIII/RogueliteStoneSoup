@@ -5,7 +5,8 @@
         "Speed": 5,
         "HP": 3,
         "Body": "Humanoid",
-        "Weapon": "Sword"
+        "Weapon": "Axe",
+        "Art": "Smile"
     },
     "NPCs": [
         {
@@ -21,6 +22,27 @@
             "HP": 1,
             "Body": "Lunger",
             "Weapon": "Trample"
+        }
+    ],
+    "Weapons":[
+        {
+            "Name":"Sword",
+            "Damage":1,
+            "Body":"Sword",
+            "DefaultAttack": "Swing"
+        },
+        {
+            "Name":"Axe",
+            "Damage":1,
+            "Body":"Sword",
+            "Art":"Axe",
+            "DefaultAttack": "Swing"
+        },
+        {
+            "Name":"Trample",
+            "Damage":1,
+            "Body":"Trample",
+            "DefaultAttack": "Lunge"
         }
     ]
 }

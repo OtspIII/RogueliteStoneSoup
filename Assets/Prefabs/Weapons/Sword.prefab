@@ -137,6 +137,14 @@ MonoBehaviour:
   Who: {fileID: 0}
   Hurtbox: {fileID: 2237754900943357312}
   Size: 1
+  DefaultAttack: 101
+  Stats:
+    Name: 
+    Damage: 0
+    Body: 
+    DefaultAttack: 
+    Art: 
+  SR: {fileID: 8856627187823716672}
 --- !u!95 &2919236836789323057
 Animator:
   serializedVersion: 7
