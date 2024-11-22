@@ -6,7 +6,7 @@ using UnityEngine;
 public class ActorController : MonoBehaviour
 {
     public ActionScript CurrentAction;
-    public ActionScript DefaultAction;
+    public Actions DefaultAction;
     public Vector2 DesiredMove;
     public Vector2 Knockback;
     [HideInInspector]
@@ -17,7 +17,8 @@ public class ActorController : MonoBehaviour
     public float HP;
     public float MaxHP = 0;
     public Vector3 StartSpot;
-    public string Debug;
+    public string DebugTxt;
+    public CharacterJSON JSON;
 
     public void Awake()
     {
@@ -62,14 +63,32 @@ public class ActorController : MonoBehaviour
         
     }
 
-    public virtual void DoAction(ActionScript a=null, float priority=1)
+    public virtual void Imprint(CharacterJSON json)
     {
-        if (CurrentAction != null && CurrentAction.Priority >= priority) return;
-        CurrentAction = a ?? DefaultAction;
+        JSON = json;
+        gameObject.name = json.Name;
+        Speed = json.Speed;
+        HP = json.HP;
+        MaxHP = json.HP;
+        // DefaultAction = Enum.Parse<Actions>(json.DefaultAction);
+    }
+
+    public virtual void DoAction(ActionScript a, Infos i=null)
+    {
+        float prio = i != null ? i.Get(FloatI.Priority, 1) : 1;
+        if (CurrentAction != null && CurrentAction.Priority >= prio) return;
+        if (a == null) Debug.Log("ERROR: NULL ACTION / " + this);
+        CurrentAction = a;
         if (CurrentAction != null)
         {
             CurrentAction.Begin();
         }
+    }
+    
+    public virtual void DoAction(Actions a=Actions.None, Infos i=null)
+    {
+        ActionScript act = ActionParser.GetAction(a == Actions.None ? DefaultAction : a,this);
+        DoAction(act,i);
     }
 
     public void MoveTowards(ActorController targ,float thresh=0)
@@ -164,7 +183,12 @@ public class ActorController : MonoBehaviour
 
     public virtual ActionScript DefaultAttackAction()
     {
-        return new SwingAction(this);
+        return GetAction(Actions.Swing);
+    }
+
+    public virtual ActionScript GetAction(Actions a)
+    {
+        return ActionParser.GetAction(a,this);
     }
 
     public bool IsFacing(ActorController targ,float thresh=45)

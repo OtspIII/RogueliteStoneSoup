@@ -2,128 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ActionScript
-{
-    public ActorController Who;
-    public float MoveMult = 0;
-    public bool HaltMomentum = true;
-    public Coroutine Coro;
-    public float Priority = 1;
-    public string Anim="";
-    public float Duration;
-    public float Timer;
-    public bool CanRotate = false;
-    public int Phase;
-
-    protected void BeIdleAction()
-    {
-        Priority = 0;
-        MoveMult = 1;
-        CanRotate = true;
-    }
-    
-    public void Run()
-    {
-        OnRun();
-        HandleMove();
-        if (Duration > 0)
-        {
-            Timer+=Time.deltaTime;
-            if(Timer >= Duration)
-                End();
-        }
-    }
-
-    public virtual void OnRun()
-    {
-        
-    }
-
-    public virtual void Reset()
-    {
-        Timer = 0;
-    }
-    
-    public virtual void HandleMove()
-    {
-        if (Who.RB == null) return;
-        Who.RB.velocity = (MoveMult * Who.Speed * Who.DesiredMove.normalized) + Who.Knockback;
-    }
-
-    public virtual void Begin()
-    {
-        Reset();
-        if(HaltMomentum && Who.RB != null) Who.RB.velocity = Vector2.zero;
-        Coro = Who.StartCoroutine(Script());
-        if (Anim != "")
-        {
-            Who.Anim.Play(Anim);
-            foreach(AnimationClip c in Who.Anim.runtimeAnimatorController.animationClips)
-                if (c.name == Anim)
-                    Duration = c.length * Who.Anim.speed;
-            
-        }
-        else
-            Who.Anim.Play(Who.DefaultAnim);
-        ChangePhase(0);
-    }
-    
-    public virtual void End()
-    {
-        Who.CurrentAction = null;
-        Who.DoAction(NextAction());
-        if (Coro != null)
-        {
-            Who.StopCoroutine(Coro);
-            Coro = null;
-        }
-    }
-
-    public virtual IEnumerator Script()
-    {
-        yield return null;
-    }
-
-    public virtual ActionScript NextAction()
-    {
-        return Who.DefaultAction;
-    }
-
-    public virtual void ChangePhase(int newPhase)
-    {
-        Phase = newPhase;
-    }
-
-    public virtual void HitBegin(ActorController hit, HurtboxController box)
-    {
-        
-    }
-    
-    public virtual void HitEnd(ActorController hit, HurtboxController box)
-    {
-        
-    }
-
-    public float Perc()
-    {
-        if (Duration <= 0) return 0;
-        return Timer / Duration;
-    }
-}
-
 public class IdleAction : ActionScript
 {
     public IdleAction(ActorController who)
     {
+        Type = Actions.Idle;
         Who = who;
         BeIdleAction();
     }
 }
 
-public class SpinAction : ActionScript
+public class StunAction : ActionScript
 {   
-    public SpinAction(ActorController who, float dur=1)
+    public StunAction(ActorController who, float dur=1)
     {
+        Type = Actions.Stun;
         Who = who;
         Duration = dur;
     }
@@ -155,6 +48,7 @@ public class ChaseAction : ActionScript
     
     public ChaseAction(ActorController who)
     {
+        Type = Actions.Chase;
         Who = who;
         Mon = (MonsterController)Who;
         BeIdleAction();
@@ -192,7 +86,7 @@ public class AttackAction : ActionScript
         if (AlreadyHit.Contains(hit)) return;
         AlreadyHit.Add(hit);
         hit.TakeDamage(Damage);
-        hit.DoAction(new SpinAction(hit,0.5f),3);
+        hit.DoAction(Actions.Stun,new Infos().Add(FloatI.Amt,0.5f).Add(FloatI.Priority,3));
         hit.TakeKnockback(Who.transform.position,Knockback);
     }
 }
@@ -201,6 +95,7 @@ public class SwingAction : AttackAction
 {
     public SwingAction(ActorController who)
     {
+        Type = Actions.Swing;
         Who = who;
         Anim = "Swing";
     }
@@ -234,6 +129,7 @@ public class LungeAction : AttackAction
     
     public LungeAction(ActorController who, float pow=10)
     {
+        Type = Actions.Lunge;
         Who = who;
         Anim = "Lunge";
         MoveMult = 0;
@@ -262,6 +158,7 @@ public class PatrolAction : ActionScript
     
     public PatrolAction(ActorController who)
     {
+        Type = Actions.Patrol;
         Who = who;
         Mon = (MonsterController)Who;
         BeIdleAction();
@@ -284,7 +181,7 @@ public class PatrolAction : ActionScript
                 dir, Mon.VisionRange, LayerMask.GetMask("Wall"));
             if (hit.collider == null)
             {
-                Mon.DoAction(new ChaseAction(Mon));
+                Mon.DoAction(Actions.Chase);
                 return;
             }
         }
@@ -310,7 +207,7 @@ public class PatrolAction : ActionScript
     void NewTarget()
     {
         Target = Who.StartSpot + new Vector3(Random.Range(-5f, 5f), Random.Range(-5f, 5f));
-        Who.Debug = Target.ToString();
+        Who.DebugTxt = Target.ToString();
     }
 
 }

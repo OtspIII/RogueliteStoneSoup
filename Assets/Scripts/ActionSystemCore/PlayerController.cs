@@ -10,8 +10,9 @@ public class PlayerController : ActorController
     {
         base.OnAwake();
         Speed = 5;
-        DefaultAction = new IdleAction(this);
+        DefaultAction = Actions.Idle;
         Cam = Camera.main;
+        God.Player = this;
     }
 
 
@@ -26,7 +27,7 @@ public class PlayerController : ActorController
         DesiredMove = vel;
         
         if(Input.GetKeyDown(KeyCode.Mouse0))
-            DoAction(new SwingAction(this));
+            DoAction(Actions.Swing);
         
         if(CurrentAction.CanRotate) LookAt(Cam.ScreenToWorldPoint(Input.mousePosition),0.1f);
     }

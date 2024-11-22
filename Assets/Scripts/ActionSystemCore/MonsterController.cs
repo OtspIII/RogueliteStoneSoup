@@ -12,7 +12,7 @@ public class MonsterController : ActorController
     {
         base.OnAwake();
         Speed = 3;
-        DefaultAction = new PatrolAction(this);
+        DefaultAction = Actions.Patrol;
     }
     
     public override void OnStart()

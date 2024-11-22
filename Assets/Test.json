@@ -1,0 +1,11 @@
+{
+    "Author": "Misha",
+    "Player": {
+        "Name": "Player",
+        "Speed": 5,
+        "HP": 3
+    },
+    "NPCs": [
+        
+    ]
+}
