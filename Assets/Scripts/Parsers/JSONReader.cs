@@ -27,6 +27,8 @@ public class CharacterStats
     public string Name;
     public float Speed;
     public float HP;
+    public string Body;
+    public string Weapon;
     // public string DefaultAction;
 }
 

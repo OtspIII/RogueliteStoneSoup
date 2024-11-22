@@ -3,18 +3,24 @@
     "Player": {
         "Name": "Player",
         "Speed": 5,
-        "HP": 3
+        "HP": 3,
+        "Body": "Humanoid",
+        "Weapon": "Sword"
     },
     "NPCs": [
         {
             "Name": "Sword Monster",
             "Speed": 3,
-            "HP": 2
+            "HP": 2,
+            "Body": "Humanoid",
+            "Weapon": "Sword"
         },
         {
             "Name": "Lunger",
             "Speed": 6,
-            "HP": 1
+            "HP": 1,
+            "Body": "Lunger",
+            "Weapon": "Trample"
         }
     ]
 }

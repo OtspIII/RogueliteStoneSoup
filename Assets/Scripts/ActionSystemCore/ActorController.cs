@@ -87,7 +87,7 @@ public class ActorController : MonoBehaviour
             DefaultAction = Actions.Patrol;
         }
 
-        Body = Instantiate(God.Library.BodyPrefab, transform);
+        Body = Instantiate(God.Library.GetBody(stats.Body), transform);
         Body.Setup(this);
         Body.Anim.Rebind();
         // DefaultAction = Enum.Parse<Actions>(json.DefaultAction);
@@ -203,7 +203,7 @@ public class ActorController : MonoBehaviour
 
     public virtual ActionScript DefaultAttackAction()
     {
-        return GetAction(Actions.Swing);
+        return GetAction(Body.Weapon.DefaultAttack);
     }
 
     public virtual ActionScript GetAction(Actions a)
