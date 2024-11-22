@@ -40,4 +40,10 @@ public class HurtboxController : MonoBehaviour
         Who.CurrentAction.HitEnd(hit.Who,this);
     }
     
+    public void SetPlayer(bool isPlayer=true)
+    {
+        if(isPlayer) gameObject.layer = LayerMask.NameToLayer("PHurtbox");
+        else gameObject.layer = LayerMask.NameToLayer("MHurtbox");
+    }
+    
 }

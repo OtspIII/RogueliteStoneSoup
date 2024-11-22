@@ -5,10 +5,12 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public List<SpawnPointController> SpawnPoints;
+    public TextAsset JSON;
 
     private void Awake()
     {
         God.GM = this;
+        God.JSON = JSONReader.ParseJSON(JSON.text);
     }
 
     void Start()

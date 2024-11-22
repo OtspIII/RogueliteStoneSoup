@@ -5,9 +5,6 @@ public class SpawnPointController : MonoBehaviour
 {
     public SpawnTypes Type;
 
-    public PlayerController PlayerPrefab;
-    public ActorController MonsterPrefab;
-
     private void Awake()
     {
         God.GM.AddSpawn(this);
@@ -17,11 +14,12 @@ public class SpawnPointController : MonoBehaviour
     {
         if (Type == SpawnTypes.Player)
         {
-            Instantiate(PlayerPrefab, transform.position, transform.rotation);
+            Instantiate(God.Library.ActorPrefab, transform.position, transform.rotation).Imprint(God.JSON.Player,true);
         }
         else if (Type == SpawnTypes.Monster)
         {
-            Instantiate(PlayerPrefab, transform.position, transform.rotation);
+            CharacterStats who = God.JSON.NPCs.Random();
+            Instantiate(God.Library.ActorPrefab, transform.position, transform.rotation).Imprint(who);
         }
         Destroy(gameObject);
     }

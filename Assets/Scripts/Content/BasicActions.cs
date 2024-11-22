@@ -44,24 +44,21 @@ public class StunAction : ActionScript
 
 public class ChaseAction : ActionScript
 {
-    public MonsterController Mon;
-    
     public ChaseAction(ActorController who)
     {
         Type = Actions.Chase;
         Who = who;
-        Mon = (MonsterController)Who;
         BeIdleAction();
     }
 
     public override void OnRun()
     {
         base.OnRun();
-        Mon.MoveTowards(Mon.Target,Mon.AttackRange);
-        Mon.LookAt(Mon.Target,0.5f);
+        Who.MoveTowards(Who.Target,Who.AttackRange);
+        Who.LookAt(Who.Target,0.5f);
         
-        if(Mon.Distance(Mon.Target) <= Mon.AttackRange && Mon.IsFacing(Mon.Target,5))
-            Mon.DoAction(Mon.DefaultAttackAction());
+        if(Who.Distance(Who.Target) <= Who.AttackRange && Who.IsFacing(Who.Target,5))
+            Who.DoAction(Who.DefaultAttackAction());
     }
 
 }
@@ -125,7 +122,6 @@ public class SwingAction : AttackAction
 public class LungeAction : AttackAction
 {
     public float Power;
-    public MonsterController Mon;
     
     public LungeAction(ActorController who, float pow=10)
     {
@@ -135,7 +131,6 @@ public class LungeAction : AttackAction
         MoveMult = 0;
         Power = pow;
         Knockback = 0;
-        Mon = (MonsterController)Who;
     }
 
     public override void OnRun()
@@ -143,7 +138,7 @@ public class LungeAction : AttackAction
         base.OnRun();
         if (Phase == 0)
         {
-            MoveMult = Mon.AttackRange;
+            MoveMult = Who.AttackRange;
             Who.MoveForwards();
         }
         else
@@ -153,14 +148,12 @@ public class LungeAction : AttackAction
 
 public class PatrolAction : ActionScript
 {
-    public MonsterController Mon;
     public Vector3 Target;
     
     public PatrolAction(ActorController who)
     {
         Type = Actions.Patrol;
         Who = who;
-        Mon = (MonsterController)Who;
         BeIdleAction();
     }
 
@@ -173,15 +166,15 @@ public class PatrolAction : ActionScript
     public override void OnRun()
     {
         base.OnRun();
-        if (Mon.Target != null && Vector2.Distance(Mon.Target.transform.position,
-                Who.transform.position) < Mon.VisionRange)
+        if (Who.Target != null && Vector2.Distance(Who.Target.transform.position,
+                Who.transform.position) < Who.VisionRange)
         {
-            Vector2 dir = Mon.Target.transform.position - Mon.transform.position;
-            RaycastHit2D hit = Physics2D.Raycast(Mon.transform.position,
-                dir, Mon.VisionRange, LayerMask.GetMask("Wall"));
+            Vector2 dir = Who.Target.transform.position - Who.transform.position;
+            RaycastHit2D hit = Physics2D.Raycast(Who.transform.position,
+                dir, Who.VisionRange, LayerMask.GetMask("Wall"));
             if (hit.collider == null)
             {
-                Mon.DoAction(Actions.Chase);
+                Who.DoAction(Actions.Chase);
                 return;
             }
         }
@@ -189,17 +182,17 @@ public class PatrolAction : ActionScript
         {
             NewTarget();
         }
-        float turn = Mon.LookAt(Target,0.5f);
+        float turn = Who.LookAt(Target,0.5f);
         if (turn < 5)
         {
-            RaycastHit2D hit = Physics2D.Raycast(Mon.transform.position, Mon.transform.right,
+            RaycastHit2D hit = Physics2D.Raycast(Who.transform.position, Who.transform.right,
                 1, LayerMask.GetMask("Wall"));
             if (hit.collider != null)
             {
                 NewTarget();
                 return;
             }
-            Mon.MoveTowards(Target,0);
+            Who.MoveTowards(Target,0);
         }
         
     }

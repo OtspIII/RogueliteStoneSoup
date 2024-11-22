@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class ActorController : MonoBehaviour
 {
@@ -11,14 +12,17 @@ public class ActorController : MonoBehaviour
     public Vector2 Knockback;
     [HideInInspector]
     public Rigidbody2D RB;
-    public float Speed;
-    public Animator Anim;
+    public BodyController Body;
     public string DefaultAnim = "Idle";
     public float HP;
-    public float MaxHP = 0;
     public Vector3 StartSpot;
     public string DebugTxt;
-    public CharacterJSON JSON;
+    public CharacterStats Stats;
+    public bool IsPlayer = false;
+    
+    public ActorController Target;
+    public float AttackRange = 1.5f;
+    public float VisionRange = 4;
 
     public void Awake()
     {
@@ -38,13 +42,15 @@ public class ActorController : MonoBehaviour
 
     public virtual void OnStart()
     {
-        HP = MaxHP;
+        if (!IsPlayer && Target == null) Target = God.Player;
+        HP = Stats.HP;
         DoAction();
     }
 
     public void Update()
     {
         OnUpdate();
+        if(IsPlayer) PlayerInputs();
         CurrentAction?.Run();
     }
 
@@ -63,13 +69,27 @@ public class ActorController : MonoBehaviour
         
     }
 
-    public virtual void Imprint(CharacterJSON json)
+    public virtual void Imprint(CharacterStats stats,bool player=false)
     {
-        JSON = json;
-        gameObject.name = json.Name;
-        Speed = json.Speed;
-        HP = json.HP;
-        MaxHP = json.HP;
+        Stats = stats;
+        gameObject.name = stats.Name;
+        // Speed = stats.Speed;
+        HP = stats.HP;
+        // MaxHP = stats.HP;
+        if (player)
+        {
+            IsPlayer = true;
+            God.Player = this;
+            DefaultAction = Actions.Idle;
+        }
+        else
+        {
+            DefaultAction = Actions.Patrol;
+        }
+
+        Body = Instantiate(God.Library.BodyPrefab, transform);
+        Body.Setup(this);
+        Body.Anim.Rebind();
         // DefaultAction = Enum.Parse<Actions>(json.DefaultAction);
     }
 
@@ -167,7 +187,7 @@ public class ActorController : MonoBehaviour
 
     public virtual void TakeDamage(float amt)
     {
-        if (MaxHP <= 0) return;
+        if (Stats.HP <= 0) return;
         HP -= amt;
         if (HP <= 0)
         {
@@ -207,5 +227,26 @@ public class ActorController : MonoBehaviour
         float tdir = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
         float rot = transform.rotation.eulerAngles.z;
         return Mathf.Abs(Mathf.DeltaAngle(tdir, rot)) < thresh;
+    }
+
+    public virtual void PlayAnim(string anim)
+    {
+        Body.Anim.Play(anim);
+        // if(Body.Weapon?.Anim != null) Body.Weapon.Anim.Play(anim);
+    }
+    
+    public void PlayerInputs()
+    {
+        Vector2 vel = Vector2.zero;
+        if (Input.GetKey(KeyCode.D)) vel.x = 1;
+        if (Input.GetKey(KeyCode.A)) vel.x = -1;
+        if (Input.GetKey(KeyCode.W)) vel.y = 1;
+        if (Input.GetKey(KeyCode.S)) vel.y = -1;
+        DesiredMove = vel;
+        
+        if(Input.GetKeyDown(KeyCode.Mouse0))
+            DoAction(Actions.Swing);
+        
+        if(CurrentAction.CanRotate) LookAt(God.Cam.Cam.ScreenToWorldPoint(Input.mousePosition),0.1f);
     }
 }

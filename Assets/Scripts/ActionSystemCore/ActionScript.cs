@@ -48,7 +48,7 @@ public class ActionScript
     public virtual void HandleMove()
     {
         if (Who.RB == null) return;
-        Who.RB.linearVelocity = (MoveMult * Who.Speed * Who.DesiredMove.normalized) + Who.Knockback;
+        Who.RB.linearVelocity = (MoveMult * Who.Stats.Speed * Who.DesiredMove.normalized) + Who.Knockback;
     }
 
     public virtual void Begin()
@@ -58,14 +58,14 @@ public class ActionScript
         Coro = Who.StartCoroutine(Script());
         if (Anim != "")
         {
-            Who.Anim.Play(Anim);
-            foreach(AnimationClip c in Who.Anim.runtimeAnimatorController.animationClips)
+            Who.PlayAnim(Anim);
+            foreach(AnimationClip c in Who.Body.Anim.runtimeAnimatorController.animationClips)
                 if (c.name == Anim)
-                    Duration = c.length * Who.Anim.speed;
+                    Duration = c.length * Who.Body.Anim.speed;
             
         }
         else
-            Who.Anim.Play(Who.DefaultAnim);
+            Who.PlayAnim(Who.DefaultAnim);
         ChangePhase(0);
     }
     

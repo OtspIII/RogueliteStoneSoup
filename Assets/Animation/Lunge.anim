@@ -61,7 +61,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_Color.r
-    path: Smile
+    path: Main Sprite
     classID: 212
     script: {fileID: 0}
     flags: 0
@@ -109,7 +109,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_Color.g
-    path: Smile
+    path: Main Sprite
     classID: 212
     script: {fileID: 0}
     flags: 0
@@ -157,7 +157,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_Color.b
-    path: Smile
+    path: Main Sprite
     classID: 212
     script: {fileID: 0}
     flags: 0
@@ -187,7 +187,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_IsActive
-    path: Hurtbox
+    path: Weapon/Hurtbox
     classID: 1
     script: {fileID: 0}
     flags: 0
@@ -217,7 +217,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_Enabled
-    path: 
+    path: Hitbox
     classID: 58
     script: {fileID: 0}
     flags: 0
@@ -230,7 +230,7 @@ AnimationClip:
   m_ClipBindingConstant:
     genericBindings:
     - serializedVersion: 2
-      path: 3276483595
+      path: 823205291
       attribute: 2526845255
       script: {fileID: 0}
       typeID: 212
@@ -239,7 +239,7 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     - serializedVersion: 2
-      path: 3276483595
+      path: 823205291
       attribute: 4215373228
       script: {fileID: 0}
       typeID: 212
@@ -248,7 +248,7 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     - serializedVersion: 2
-      path: 3276483595
+      path: 823205291
       attribute: 2334886179
       script: {fileID: 0}
       typeID: 212
@@ -257,7 +257,7 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     - serializedVersion: 2
-      path: 566259038
+      path: 3854812242
       attribute: 2086281974
       script: {fileID: 0}
       typeID: 1
@@ -266,7 +266,7 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     - serializedVersion: 2
-      path: 0
+      path: 3579746941
       attribute: 3305885265
       script: {fileID: 0}
       typeID: 58
@@ -340,7 +340,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_Color.r
-    path: Smile
+    path: Main Sprite
     classID: 212
     script: {fileID: 0}
     flags: 0
@@ -388,7 +388,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_Color.g
-    path: Smile
+    path: Main Sprite
     classID: 212
     script: {fileID: 0}
     flags: 0
@@ -436,7 +436,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_Color.b
-    path: Smile
+    path: Main Sprite
     classID: 212
     script: {fileID: 0}
     flags: 0
@@ -466,7 +466,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_IsActive
-    path: Hurtbox
+    path: Weapon/Hurtbox
     classID: 1
     script: {fileID: 0}
     flags: 0
@@ -496,7 +496,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_Enabled
-    path: 
+    path: Hitbox
     classID: 58
     script: {fileID: 0}
     flags: 0

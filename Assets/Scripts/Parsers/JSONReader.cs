@@ -17,12 +17,12 @@ public static class JSONReader
 public class LevelJSON
 {
     public string Author;
-    public CharacterJSON Player;
-    public List<CharacterJSON> NPCs;
+    public CharacterStats Player;
+    public List<CharacterStats> NPCs;
 }
 
 [System.Serializable]
-public class CharacterJSON
+public class CharacterStats
 {
     public string Name;
     public float Speed;

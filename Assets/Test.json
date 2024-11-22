@@ -6,6 +6,15 @@
         "HP": 3
     },
     "NPCs": [
-        
+        {
+            "Name": "Sword Monster",
+            "Speed": 3,
+            "HP": 2
+        },
+        {
+            "Name": "Lunger",
+            "Speed": 6,
+            "HP": 1
+        }
     ]
 }
