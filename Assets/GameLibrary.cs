@@ -9,17 +9,31 @@ public class GameLibrary : MonoBehaviour
     public BodyController LungerBodyPrefab;
     public WeaponController SwordPrefab;
     public WeaponController TramplePrefab;
-    public Sprite SmileArt;
-    public Sprite VampArt;
-    public Sprite SpitterArt;
-    public Sprite SwordWArt;
-    public Sprite AxeWArt;
+    // public Sprite SmileArt;
+    // public Sprite VampArt;
+    // public Sprite SpitterArt;
+    // public Sprite SwordWArt;
+    // public Sprite AxeWArt;
 
+    public Dictionary<string, Sprite> CharacterArt = new Dictionary<string, Sprite>();
+    public Dictionary<string, Sprite> WeaponArt = new Dictionary<string, Sprite>();
     public Dictionary<string, WeaponStats> Weapons = new Dictionary<string, WeaponStats>();
 
     private void Awake()
     {
         God.Library = this;
+        // Sprite[] chars = Resources.LoadAll<Sprite>("Characters/");
+        // Debug.Log(chars.Length);
+        foreach (Sprite s in Resources.LoadAll<Sprite>("Characters/"))
+        {
+            CharacterArt.Add(s.name,s);
+            // Debug.Log(s);
+        }
+        foreach (Sprite s in Resources.LoadAll<Sprite>("WeaponArt/"))
+        {
+            WeaponArt.Add(s.name,s);
+            // Debug.Log(s);
+        }
     }
 
     public void Setup()
@@ -67,28 +81,32 @@ public class GameLibrary : MonoBehaviour
     public Sprite GetWeaponArt(string which, Sprite backup=null)
     {
         if (string.IsNullOrEmpty(which)) return backup;
-        switch (which)
-        {
-            case "Sword": return SwordWArt;
-            case "Axe": return AxeWArt;
-            case "Trample": return null;
-        }
+        WeaponArt.TryGetValue(which, out Sprite r);
+        if (r != null) return r;
+        // switch (which)
+        // {
+        //     case "Sword": return SwordWArt;
+        //     case "Axe": return AxeWArt;
+        //     case "Trample": return null;
+        // }
         if (backup != null) return backup;
         Debug.Log("INVALID WEAPON NAME: " + which);
-        return SwordWArt;
+        return null;
     }
     
     public Sprite GetArt(string which,Sprite backup=null)
     {
         if (string.IsNullOrEmpty(which)) return backup;
-        switch (which)
-        {
-            case "Smile": return SmileArt;
-            case "Vamp": return VampArt;
-            case "Spitter": return SpitterArt;
-        }
+        CharacterArt.TryGetValue(which, out Sprite r);
+        if (r != null) return r;
+        // switch (which)
+        // {
+        //     case "Smile": return SmileArt;
+        //     case "Vamp": return VampArt;
+        //     case "Spitter": return SpitterArt;
+        // }
         if (backup != null) return backup;
         Debug.Log("INVALID ART NAME: " + which);
-        return VampArt;
+        return null;
     }
 }

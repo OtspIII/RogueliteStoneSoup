@@ -29,13 +29,14 @@
             "Name":"Sword",
             "Damage":1,
             "Body":"Sword",
+            "Art":"Greataxe",
             "DefaultAttack": "Swing"
         },
         {
             "Name":"Axe",
             "Damage":1,
             "Body":"Sword",
-            "Art":"Axe",
+            "Art":"Fire",
             "DefaultAttack": "Swing"
         },
         {
