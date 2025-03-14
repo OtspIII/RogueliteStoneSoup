@@ -107,6 +107,11 @@ public class ActorController : MonoBehaviour
         }
     }
     
+    public virtual void DoAction(string a, Infos i=null)
+    {
+        DoAction(Enum.Parse<Actions>(a),i);
+    }
+    
     public virtual void DoAction(Actions a=Actions.None, Infos i=null)
     {
         ActionScript act = ActionParser.GetAction(a == Actions.None ? DefaultAction : a,this);
@@ -140,6 +145,22 @@ public class ActorController : MonoBehaviour
         }
         
         DesiredMove = targ - transform.position;
+    }
+
+    public ProjectileController Shoot(string p)
+    {
+        ProjStats stat = God.Library.GetProjectile(p);
+        return Shoot(stat);
+    }
+
+    public ProjectileController Shoot(ProjStats stat)
+    {
+        ProjectileController pref = God.Library.GetProjectilePrefab();
+        Vector3 rot = Body.Weapon.transform.rotation.eulerAngles;
+        rot.z -= 90; //Eventually add accuracy stat?
+        ProjectileController r = Instantiate(pref, Body.Weapon.transform.position, Quaternion.Euler(rot));
+        r.Setup(this,stat);
+        return r;
     }
 
     public void MoveForwards()
@@ -246,8 +267,8 @@ public class ActorController : MonoBehaviour
         if (Input.GetKey(KeyCode.S)) vel.y = -1;
         DesiredMove = vel;
         
-        if(Input.GetKeyDown(KeyCode.Mouse0))
-            DoAction(Actions.Swing);
+        if(Input.GetKey(KeyCode.Mouse0))
+            DoAction(CurrentWeapon.DefaultAttack);
         
         if(CurrentAction.CanRotate) LookAt(God.Cam.Cam.ScreenToWorldPoint(Input.mousePosition),0.1f);
     }

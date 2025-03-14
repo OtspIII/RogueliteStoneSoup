@@ -124,6 +124,27 @@ public class SwingAction : AttackAction
 }
 
 
+public class ShootAction : AttackAction
+{
+    public ShootAction(ActorController who)
+    {
+        Type = Actions.Shoot;
+        Who = who;
+        Duration = 0.2f;
+        CanRotate = true;
+        MoveMult = 0.5f;
+    }
+
+    public override void Begin()
+    {
+        base.Begin();
+        string proj = GetWeapon().Projectile;
+        Who.Shoot(proj);
+    }
+}
+
+
+
 public class LungeAction : AttackAction
 {
     public float Power;

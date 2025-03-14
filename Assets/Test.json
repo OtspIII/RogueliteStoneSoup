@@ -5,7 +5,7 @@
         "Speed": 5,
         "HP": 3,
         "Body": "Humanoid",
-        "Weapon": "Axe",
+        "Weapon": "Bow",
         "Art": "Smile"
     },
     "NPCs": [
@@ -29,14 +29,14 @@
             "Name":"Sword",
             "Damage":1,
             "Body":"Sword",
-            "Art":"Greataxe",
+            "Art":"Sword",
             "DefaultAttack": "Swing"
         },
         {
             "Name":"Axe",
             "Damage":1,
             "Body":"Sword",
-            "Art":"Fire",
+            "Art":"Axe",
             "DefaultAttack": "Swing"
         },
         {
@@ -44,6 +44,23 @@
             "Damage":1,
             "Body":"Trample",
             "DefaultAttack": "Lunge"
+        },
+        {
+            "Name":"Bow",
+            "Damage":1,
+            "Body":"Sword",
+            "Art":"Bow",
+            "DefaultAttack": "Shoot",
+            "Projectile": "Arrow"
+        }
+    ],
+    "Projectiles": [
+        {
+            "Name":"Arrow",
+            "Damage":1,
+            "Body":"Arrow",
+            "Art":"Arrow",
+            "Speed": 10
         }
     ]
 }

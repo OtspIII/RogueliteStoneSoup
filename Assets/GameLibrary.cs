@@ -9,6 +9,7 @@ public class GameLibrary : MonoBehaviour
     public BodyController LungerBodyPrefab;
     public WeaponController SwordPrefab;
     public WeaponController TramplePrefab;
+    public ProjectileController ProjectilePrefab;
     // public Sprite SmileArt;
     // public Sprite VampArt;
     // public Sprite SpitterArt;
@@ -17,7 +18,9 @@ public class GameLibrary : MonoBehaviour
 
     public Dictionary<string, Sprite> CharacterArt = new Dictionary<string, Sprite>();
     public Dictionary<string, Sprite> WeaponArt = new Dictionary<string, Sprite>();
+    public Dictionary<string, Sprite> ProjectileArt = new Dictionary<string, Sprite>();
     public Dictionary<string, WeaponStats> Weapons = new Dictionary<string, WeaponStats>();
+    public Dictionary<string, ProjStats> Projectiles = new Dictionary<string, ProjStats>();
 
     private void Awake()
     {
@@ -34,6 +37,11 @@ public class GameLibrary : MonoBehaviour
             WeaponArt.Add(s.name,s);
             // Debug.Log(s);
         }
+        foreach (Sprite s in Resources.LoadAll<Sprite>("ProjectileArt/"))
+        {
+            ProjectileArt.Add(s.name,s);
+            // Debug.Log(s);
+        }
     }
 
     public void Setup()
@@ -41,6 +49,11 @@ public class GameLibrary : MonoBehaviour
         foreach (WeaponStats w in God.JSON.Weapons)
         {
             Weapons.Add(w.Name,w);
+            // Debug.Log("ADDED: " + w.Name);
+        }
+        foreach (ProjStats w in God.JSON.Projectiles)
+        {
+            Projectiles.Add(w.Name,w);
             // Debug.Log("ADDED: " + w.Name);
         }
     }
@@ -83,14 +96,32 @@ public class GameLibrary : MonoBehaviour
         if (string.IsNullOrEmpty(which)) return backup;
         WeaponArt.TryGetValue(which, out Sprite r);
         if (r != null) return r;
-        // switch (which)
-        // {
-        //     case "Sword": return SwordWArt;
-        //     case "Axe": return AxeWArt;
-        //     case "Trample": return null;
-        // }
+        Debug.Log("BACKUP WEAPON ART: " + which);
         if (backup != null) return backup;
         Debug.Log("INVALID WEAPON NAME: " + which);
+        return null;
+    }
+    
+    public ProjStats GetProjectile(string which)
+    {
+        Projectiles.TryGetValue(which, out ProjStats r);
+        if (r != null) return r;
+        Debug.Log("INVALID PROJECTILE NAME: " + which);
+        return null;
+    }
+    
+    public ProjectileController GetProjectilePrefab()
+    {
+        return ProjectilePrefab;
+    }
+    
+    public Sprite GetProjectileArt(string which, Sprite backup=null)
+    {
+        if (string.IsNullOrEmpty(which)) return backup;
+        ProjectileArt.TryGetValue(which, out Sprite r);
+        if (r != null) return r;
+        if (backup != null) return backup;
+        Debug.Log("INVALID Projectile Art NAME: " + which);
         return null;
     }
     

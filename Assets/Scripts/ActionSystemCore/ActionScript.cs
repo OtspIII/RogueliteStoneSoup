@@ -104,6 +104,11 @@ public class ActionScript
     {
         
     }
+    
+    public virtual WeaponStats GetWeapon()
+    {
+        return Who.CurrentWeapon;
+    }
 
     public float Perc()
     {
