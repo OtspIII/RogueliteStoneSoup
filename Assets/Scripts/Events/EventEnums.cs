@@ -3,12 +3,19 @@ public enum EventTypes{
     None=0000,
     TraitInfo=0001,
     Setup=0002,
+    Update=003,
+    StartAction=0101,
+    SetPhase=0102,
     
     //Common Combat
     Damage=1001,
     Healing=1002,
     Death=1003,
-    ShownHP=1901,
+    
+    //Questions
+    ShownHP=9001,
+    GetCurrentAction=9002,
+    GetDefaultAction=9003,
 }
 
 public enum NumInfo
@@ -28,7 +35,9 @@ public enum StrInfo
 public enum EnumInfo
 {
     None=0,
-    DamageType=1,
+    Action=1001,
+    DefaultAction=1002,
+    DamageType=2001,
 }
 
 public enum BoolInfo

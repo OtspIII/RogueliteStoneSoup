@@ -5,7 +5,8 @@ using UnityEngine;
 public class ActionScript
 {
     public Actions Type;
-    public ActorController Who;
+    public ThingController Who;
+    public TraitInfo Trait;
     public float MoveMult = 0;
     public bool HaltMomentum = true;
     public Coroutine Coro;
@@ -71,7 +72,7 @@ public class ActionScript
     
     public virtual void End()
     {
-        Who.CurrentAction = null;
+        Trait.Action = null;
         Who.DoAction(NextAction());
         if (Coro != null)
         {
@@ -87,7 +88,10 @@ public class ActionScript
 
     public virtual Actions NextAction()
     {
-        return Who.DefaultAction;
+        // EventInfo e = God.E(EventTypes.GetDefaultAction);
+        // Who.TakeEvent(e);
+        // return Who.DefaultAction;
+        return Who.Ask(EventTypes.GetDefaultAction).Get<Actions>(EnumInfo.DefaultAction);
     }
 
     public virtual void ChangePhase(int newPhase)
@@ -95,12 +99,12 @@ public class ActionScript
         Phase = newPhase;
     }
 
-    public virtual void HitBegin(ActorController hit, HurtboxController box)
+    public virtual void HitBegin(ThingController hit, HurtboxController box)
     {
         
     }
     
-    public virtual void HitEnd(ActorController hit, HurtboxController box)
+    public virtual void HitEnd(ThingController hit, HurtboxController box)
     {
         
     }

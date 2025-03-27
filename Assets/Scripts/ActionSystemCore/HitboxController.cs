@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class HitboxController : MonoBehaviour
 {
-    public ActorController Who;
+    public ThingController Who;
     public Collider2D Coll;
 
     void Awake()
     {
-        if (Who == null) Who = gameObject.GetComponentInParent<ActorController>();
+        if (Who == null) Who = gameObject.GetComponentInParent<ThingController>();
     }
 
     public void SetPlayer(bool isPlayer=true)

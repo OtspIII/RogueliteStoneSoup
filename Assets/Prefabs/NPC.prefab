@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3693676359539995746}
-  - component: {fileID: 6040369443139198363}
+  - component: {fileID: 7168331786191300375}
   - component: {fileID: 9048435275976594565}
   m_Layer: 0
   m_Name: NPC
@@ -33,7 +33,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6040369443139198363
+--- !u!114 &7168331786191300375
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -42,24 +42,35 @@ MonoBehaviour:
   m_GameObject: {fileID: 7876912082703492726}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 63d077940f965e943bf01d845324dcfa, type: 3}
+  m_Script: {fileID: 11500000, guid: df7a2707edc7a4f4b95f0724fb447034, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DefaultAction: 0
   DesiredMove: {x: 0, y: 0}
   Knockback: {x: 0, y: 0}
   RB: {fileID: 0}
-  Speed: 0
   Body: {fileID: 0}
   DefaultAnim: Idle
-  HP: 0
-  MaxHP: 0
   StartSpot: {x: 0, y: 0, z: 0}
   DebugTxt: 
-  JSON:
+  Stats:
     Name: 
     Speed: 0
     HP: 0
+    Body: 
+    Weapon: 
+    DefaultAction: 
+    Art: 
+  CurrentWeapon:
+    Name: 
+    Damage: 0
+    Body: 
+    DefaultAttack: 
+    Art: 
+    Projectile: 
+  MidEvent: 0
+  Target: {fileID: 0}
+  AttackRange: 1.5
+  VisionRange: 4
 --- !u!50 &9048435275976594565
 Rigidbody2D:
   serializedVersion: 5

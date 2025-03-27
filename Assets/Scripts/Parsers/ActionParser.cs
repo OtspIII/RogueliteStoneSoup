@@ -3,7 +3,7 @@ using UnityEngine;
 
 public static class ActionParser 
 {
-    public static ActionScript GetAction(Actions act,ActorController who)
+    public static ActionScript GetAction(Actions act,ThingController who)
     {
         switch (act)
         {

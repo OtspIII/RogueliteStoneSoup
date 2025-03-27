@@ -57,3 +57,41 @@ public class HealthTrait : Trait
         }
     }
 }
+
+public class PlayerTrait : Trait
+{
+    public PlayerTrait()
+    {
+        Type = Traits.Player;
+        TakeListen.Add(EventTypes.Setup);
+        TakeListen.Add(EventTypes.Update);
+    }
+
+    public override void TakeEvent(TraitInfo i, EventInfo e)
+    {
+        switch (e.Type)
+        {
+            case EventTypes.Setup:
+            {
+                God.Player = i.Who;
+                break;
+            }
+            case EventTypes.Update:
+            {
+             
+                Vector2 vel = Vector2.zero;
+                if (Input.GetKey(KeyCode.D)) vel.x = 1;
+                if (Input.GetKey(KeyCode.A)) vel.x = -1;
+                if (Input.GetKey(KeyCode.W)) vel.y = 1;
+                if (Input.GetKey(KeyCode.S)) vel.y = -1;
+                i.Who.DesiredMove = vel;
+        
+                if(Input.GetKey(KeyCode.Mouse0))
+                    i.Who.DoAction(i.Who.CurrentWeapon.DefaultAttack);
+        
+                if(i.Who.ActorTrait.Action.CanRotate) i.Who.LookAt(God.Cam.Cam.ScreenToWorldPoint(Input.mousePosition),0.1f);
+                break;
+            }
+        }
+    }
+}

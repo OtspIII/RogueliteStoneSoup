@@ -4,20 +4,22 @@ using UnityEngine;
 
 public class IdleAction : ActionScript
 {
-    public IdleAction(ActorController who)
+    public IdleAction(ThingController who)
     {
         Type = Actions.Idle;
         Who = who;
+        Trait = who.ActorTrait;
         BeIdleAction();
     }
 }
 
 public class StunAction : ActionScript
 {   
-    public StunAction(ActorController who, float dur=1)
+    public StunAction(ThingController who, float dur=1)
     {
         Type = Actions.Stun;
         Who = who;
+        Trait = who.ActorTrait;
         Duration = dur;
     }
 
@@ -44,10 +46,11 @@ public class StunAction : ActionScript
 
 public class ChaseAction : ActionScript
 {
-    public ChaseAction(ActorController who)
+    public ChaseAction(ThingController who)
     {
         Type = Actions.Chase;
         Who = who;
+        Trait = who.ActorTrait;
         BeIdleAction();
     }
 
@@ -67,13 +70,14 @@ public class AttackAction : ActionScript
 {
     public float Damage = 1;
     public float Knockback = 10;
-    public List<ActorController> AlreadyHit = new List<ActorController>();
+    public List<ThingController> AlreadyHit = new List<ThingController>();
 
     public AttackAction(){ }
     
-    public AttackAction(ActorController who, string anim)
+    public AttackAction(ThingController who, string anim)
     {
         Who = who;
+        Trait = who.ActorTrait;
         Anim = anim;
     }
 
@@ -82,7 +86,7 @@ public class AttackAction : ActionScript
         return Who.CurrentWeapon.Damage * Damage;
     }
 
-    public override void HitBegin(ActorController hit, HurtboxController box)
+    public override void HitBegin(ThingController hit, HurtboxController box)
     {
         base.HitBegin(hit, box);
         if (AlreadyHit.Contains(hit)) return;
@@ -96,10 +100,11 @@ public class AttackAction : ActionScript
 
 public class SwingAction : AttackAction
 {
-    public SwingAction(ActorController who)
+    public SwingAction(ThingController who)
     {
         Type = Actions.Swing;
         Who = who;
+        Trait = who.ActorTrait;
         Anim = "Swing";
     }
 
@@ -127,10 +132,11 @@ public class SwingAction : AttackAction
 
 public class ShootAction : AttackAction
 {
-    public ShootAction(ActorController who)
+    public ShootAction(ThingController who)
     {
         Type = Actions.Shoot;
         Who = who;
+        Trait = who.ActorTrait;
         Duration = 0.2f;
         CanRotate = true;
         MoveMult = 0.5f;
@@ -150,10 +156,11 @@ public class LungeAction : AttackAction
 {
     public float Power;
     
-    public LungeAction(ActorController who, float pow=10)
+    public LungeAction(ThingController who, float pow=10)
     {
         Type = Actions.Lunge;
         Who = who;
+        Trait = who.ActorTrait;
         Anim = "Lunge";
         MoveMult = 0;
         Power = pow;
@@ -177,10 +184,11 @@ public class PatrolAction : ActionScript
 {
     public Vector3 Target;
     
-    public PatrolAction(ActorController who)
+    public PatrolAction(ThingController who)
     {
         Type = Actions.Patrol;
         Who = who;
+        Trait = who.ActorTrait;
         BeIdleAction();
     }
 

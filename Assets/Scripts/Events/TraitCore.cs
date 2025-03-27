@@ -6,6 +6,7 @@ public class TraitInfo
     public Traits Type;
     public EventInfo Info;
     public ThingController Who { get { return Get(ActorInfo.Source); }}
+    public ActionScript Action { get { return Info.Action; } set{Info.Action = value;}}
 
     public TraitInfo(Traits t, ThingController who, EventInfo i)
     {
@@ -46,6 +47,8 @@ public static class TraitManager
         if (Setup) return;
         Setup = true;
         TraitDict.Add(Traits.Health,new HealthTrait());
+        TraitDict.Add(Traits.Actor,new ActorTrait());
+        TraitDict.Add(Traits.Player,new PlayerTrait());
     }
     
     public static Trait Get(Traits t)
@@ -99,4 +102,6 @@ public enum Traits
 {
     None=0,
     Health=1,
+    Actor=2,
+    Player=3,
 }

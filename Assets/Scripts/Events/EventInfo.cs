@@ -14,6 +14,7 @@ public class EventInfo
     public List<BoolInfo> Bools = new List<BoolInfo>();
     public Dictionary<ActorInfo, ThingController> Actor = new Dictionary<ActorInfo, ThingController>();
     public Dictionary<VectorInfo, Vector2> Vectors = new Dictionary<VectorInfo, Vector2>();
+    public ActionScript Action;
 
     public EventInfo(EventTypes t)
     {
@@ -44,7 +45,7 @@ public class EventInfo
         if (Numbers.TryGetValue(i, out float r)) return r;
         return 0;
     }
-    public float GetInt(NumInfo i)
+    public int GetInt(NumInfo i)
     {
         if (Numbers.TryGetValue(i, out float r)) return (int)r;
         return 0;
@@ -156,5 +157,12 @@ public class EventInfo
     {
         if (Vectors.TryGetValue(i, out Vector2 r)) return r;
         return Vector2.zero;
+    }
+    
+    //Action
+    public EventInfo Set(ActionScript a)
+    {
+        Action = a;
+        return this;
     }
 }

@@ -5,11 +5,11 @@ using UnityEngine;
 
 public class HurtboxController : MonoBehaviour
 {
-    public ActorController Who;
+    public ThingController Who;
     
     void Awake()
     {
-        if (Who == null) Who = gameObject.GetComponentInParent<ActorController>();
+        if (Who == null) Who = gameObject.GetComponentInParent<ThingController>();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -17,13 +17,13 @@ public class HurtboxController : MonoBehaviour
         if (other.gameObject == Who.gameObject) return;
         HitboxController hit = other.GetComponent<HitboxController>();
         if (hit == null) return;
-        if (Who.CurrentAction == null)
+        if (Who.ActorTrait.Action == null)
         {
             Debug.Log("ERROR: Hurtbox existed while actor wasn't acting");
             return;
         }
 
-        Who.CurrentAction.HitBegin(hit.Who,this);
+        Who.ActorTrait.Action.HitBegin(hit.Who,this);
     }
     
     private void OnTriggerExit2D(Collider2D other)
@@ -31,13 +31,13 @@ public class HurtboxController : MonoBehaviour
         if (other.gameObject == Who.gameObject) return;
         HitboxController hit = other.GetComponent<HitboxController>();
         if (hit == null) return;
-        if (Who.CurrentAction == null)
+        if (Who.ActorTrait.Action == null)
         {
             Debug.Log("ERROR: Hurtbox existed while actor wasn't acting");
             return;
         }
 
-        Who.CurrentAction.HitEnd(hit.Who,this);
+        Who.ActorTrait.Action.HitEnd(hit.Who,this);
     }
     
     public void SetPlayer(bool isPlayer=true)

@@ -6,13 +6,18 @@ public static class God
 {
     public static GameManager GM;
     public static GameLibrary Library;
-    public static ActorController Player;
+    public static ThingController Player;
     public static CameraController Cam;
     public static LevelJSON JSON;
 
-    public static EventInfo E(EventTypes e)
+    public static EventInfo E(EventTypes e=EventTypes.TraitInfo)
     {
         return new EventInfo(e);
+    }
+
+    public static bool IsPlayer(ThingController who)
+    {
+        return Player == who;
     }
     
     /// Returns either true or false. The higher the odds param is, the more likely true.

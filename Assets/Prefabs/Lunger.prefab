@@ -81,6 +81,9 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -163,25 +166,38 @@ MonoBehaviour:
   m_GameObject: {fileID: 3535336754036639223}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f47a02ae4bdaf06458224d64e661a737, type: 3}
+  m_Script: {fileID: 11500000, guid: df7a2707edc7a4f4b95f0724fb447034, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   DesiredMove: {x: 0, y: 0}
   Knockback: {x: 0, y: 0}
   RB: {fileID: 0}
-  Speed: 0
-  Anim: {fileID: 6892247693467971834}
+  Body: {fileID: 0}
   DefaultAnim: Idle
-  HP: 0
-  MaxHP: 1
   StartSpot: {x: 0, y: 0, z: 0}
-  Debug: 
+  DebugTxt: 
+  Stats:
+    Name: 
+    Speed: 0
+    HP: 0
+    Body: 
+    Weapon: 
+    DefaultAction: 
+    Art: 
+  CurrentWeapon:
+    Name: 
+    Damage: 0
+    Body: 
+    DefaultAttack: 
+    Art: 
+    Projectile: 
+  MidEvent: 0
   Target: {fileID: 0}
-  AttackRange: 2.5
-  VisionRange: 5
+  AttackRange: 1.5
+  VisionRange: 4
 --- !u!50 &7824099969845064824
 Rigidbody2D:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -192,8 +208,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -208,7 +224,7 @@ Rigidbody2D:
   m_Constraints: 4
 --- !u!95 &6892247693467971834
 Animator:
-  serializedVersion: 5
+  serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -222,6 +238,7 @@ Animator:
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
@@ -276,6 +293,9 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -356,7 +376,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eaed01afd264d7548bf8a78d42be0f4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Who: {fileID: 6563806204204405437}
+  Who: {fileID: 0}
+  Coll: {fileID: 0}
 --- !u!58 &6790871994552362334
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -365,6 +386,7 @@ CircleCollider2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8889497963895056765}
   m_Enabled: 1
+  serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -388,9 +410,9 @@ CircleCollider2D:
     m_Bits: 4294967295
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_UsedByComposite: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
   m_Radius: 0.2
 --- !u!1001 &7009847063072894154
 PrefabInstance:
@@ -443,7 +465,7 @@ PrefabInstance:
     - target: {fileID: 5662106857641584770, guid: fd4d3051419aee24aac4db8ec6faf43f, type: 3}
       propertyPath: Who
       value: 
-      objectReference: {fileID: 6563806204204405437}
+      objectReference: {fileID: 0}
     - target: {fileID: 7012393278422592376, guid: fd4d3051419aee24aac4db8ec6faf43f, type: 3}
       propertyPath: m_Name
       value: Hurtbox
@@ -474,6 +496,7 @@ CircleCollider2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6469848774297522}
   m_Enabled: 1
+  serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -497,9 +520,9 @@ CircleCollider2D:
     m_Bits: 4294967295
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_UsedByComposite: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
   m_Radius: 0.25
 --- !u!4 &6320923238679658401 stripped
 Transform:

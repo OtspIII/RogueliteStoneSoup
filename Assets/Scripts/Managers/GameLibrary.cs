@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameLibrary : MonoBehaviour
 {
-    public ActorController ActorPrefab;
+    public ThingController ActorPrefab;
     public BodyController HumanoidBodyPrefab;
     public BodyController LungerBodyPrefab;
     public WeaponController SwordPrefab;
