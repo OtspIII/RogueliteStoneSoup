@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-public class ActorController : MonoBehaviour
+public class ActorController : ThingController
 {
     public ActionScript CurrentAction;
     public Actions DefaultAction;
@@ -14,7 +14,7 @@ public class ActorController : MonoBehaviour
     public Rigidbody2D RB;
     public BodyController Body;
     public string DefaultAnim = "Idle";
-    public float HP;
+    // public float HP;
     public Vector3 StartSpot;
     public string DebugTxt;
     public CharacterStats Stats;
@@ -27,12 +27,12 @@ public class ActorController : MonoBehaviour
 
     public void Awake()
     {
-        StartSpot = transform.position;
         OnAwake();
     }
 
-    public virtual void OnAwake()
+    public override void OnAwake()
     {
+        StartSpot = transform.position;
         RB = GetComponent<Rigidbody2D>();
     }
     
@@ -41,10 +41,11 @@ public class ActorController : MonoBehaviour
         OnStart();
     }
 
-    public virtual void OnStart()
+    public override void OnStart()
     {
         if (!IsPlayer && Target == null) Target = God.Player;
-        HP = Stats.HP;
+        TakeEvent(EventTypes.Setup);
+        // HP = Stats.HP;
         DoAction();
     }
 
@@ -65,7 +66,7 @@ public class ActorController : MonoBehaviour
         }
     }
 
-    public virtual void OnUpdate()
+    public override void OnUpdate()
     {
         
     }
@@ -75,7 +76,13 @@ public class ActorController : MonoBehaviour
         Stats = stats;
         gameObject.name = stats.Name;
         // Speed = stats.Speed;
-        HP = stats.HP;
+        if (stats.HP != 0)
+        {
+            AddTrait(Traits.Health,null,false)
+                .Set(NumInfo.Max,stats.HP)
+                .Init();
+        }
+        // HP = stats.HP;
         // MaxHP = stats.HP;
         if (player)
         {
@@ -208,15 +215,15 @@ public class ActorController : MonoBehaviour
         CurrentAction.ChangePhase(n); //the village vet
     }
 
-    public virtual void TakeDamage(float amt)
-    {
-        if (Stats.HP <= 0) return;
-        HP -= amt;
-        if (HP <= 0)
-        {
-            Destroy(gameObject);
-        }
-    }
+    // public virtual void TakeDamage(float amt)
+    // {
+    //     if (Stats.HP <= 0) return;
+    //     HP -= amt;
+    //     if (HP <= 0)
+    //     {
+    //         Destroy(gameObject);
+    //     }
+    // }
 
     public virtual void TakeKnockback(Vector3 from,float amt)
     {

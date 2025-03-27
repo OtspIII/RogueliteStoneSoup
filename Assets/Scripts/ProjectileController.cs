@@ -38,6 +38,7 @@ public class ProjectileController : MonoBehaviour
     
     public virtual void Payload(ActorController a)
     {
-        a.TakeDamage(Stats.Damage);
+        a.TakeEvent(God.E(EventTypes.Damage).Set(NumInfo.Amount,Stats.Damage));
+        // a.TakeDamage(Stats.Damage);
     }
 }

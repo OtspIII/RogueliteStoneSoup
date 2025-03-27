@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+        TraitManager.Init();
         God.GM = this;
         God.JSON = JSONReader.ParseJSON(JSON.text);
     }
@@ -23,7 +24,9 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        if (God.Player != null) HealthTxt.text = "Health: " + God.Player.HP;
+        EventInfo e = God.E(EventTypes.ShownHP);
+        God.Player.TakeEvent(e);
+        if (God.Player != null) HealthTxt.text = "Health: " + e.Get(NumInfo.Amount);
         else HealthTxt.text = "GAME OVER";
     }
 

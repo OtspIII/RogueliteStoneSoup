@@ -9,6 +9,11 @@ public static class God
     public static ActorController Player;
     public static CameraController Cam;
     public static LevelJSON JSON;
+
+    public static EventInfo E(EventTypes e)
+    {
+        return new EventInfo(e);
+    }
     
     /// Returns either true or false. The higher the odds param is, the more likely true.
     public static bool CoinFlip(float odds=0.5f)
