@@ -27,12 +27,20 @@ public class LevelJSON
 public class CharacterStats
 {
     public string Name;
+    public string Body;
+    public string Art;
+    public TraitStats[] Traits;
     public float Speed;
     public float HP;
-    public string Body;
     public string Weapon;
     public string DefaultAction;
-    public string Art;
+}
+
+[System.Serializable]
+public class TraitStats
+{
+    public string Trait;
+    public float Amount;
 }
 
 [System.Serializable]

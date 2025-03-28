@@ -2,25 +2,40 @@
     "Author": "Misha",
     "Player": {
         "Name": "Player",
+        "Body": "Humanoid",
+        "Art": "Smile",
+        "Traits": [
+            { "Trait": "Player" },
+            { "Trait": "Actor" },
+            { "Trait": "Health", "Amount": 3 }
+        ],
         "Speed": 5,
         "HP": 3,
-        "Body": "Humanoid",
-        "Weapon": "Bow",
-        "Art": "Smile"
+        "Weapon": "Bow"
     },
     "NPCs": [
         {
             "Name": "Sword Monster",
+            "Body": "Humanoid",
+            "Traits": [
+                { "Trait": "Player" },
+                { "Trait": "Actor" },
+                { "Trait": "Health", "Amount": 2 }
+            ],
             "Speed": 3,
             "HP": 2,
-            "Body": "Humanoid",
             "Weapon": "Sword"
         },
         {
             "Name": "Lunger",
+            "Body": "Lunger",
+            "Traits": [
+                { "Trait": "Player" },
+                { "Trait": "Actor" },
+                { "Trait": "Health", "Amount": 1 }
+            ],
             "Speed": 6,
             "HP": 1,
-            "Body": "Lunger",
             "Weapon": "Trample"
         }
     ],
