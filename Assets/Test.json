@@ -18,7 +18,6 @@
             "Name": "Sword Monster",
             "Body": "Humanoid",
             "Traits": [
-                { "Trait": "Player" },
                 { "Trait": "Actor" },
                 { "Trait": "Health", "Amount": 2 }
             ],
@@ -30,7 +29,6 @@
             "Name": "Lunger",
             "Body": "Lunger",
             "Traits": [
-                { "Trait": "Player" },
                 { "Trait": "Actor" },
                 { "Trait": "Health", "Amount": 1 }
             ],

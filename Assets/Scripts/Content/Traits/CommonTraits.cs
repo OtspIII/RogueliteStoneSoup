@@ -74,6 +74,7 @@ public class PlayerTrait : Trait
             case EventTypes.Setup:
             {
                 God.Player = i.Who;
+                i.Set(EnumInfo.DefaultAction, (int)Actions.Idle);
                 break;
             }
             case EventTypes.Update:

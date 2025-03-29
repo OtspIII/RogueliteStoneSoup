@@ -14,11 +14,11 @@ public class SpawnPointController : MonoBehaviour
     {
         if (Type == SpawnTypes.Player)
         {
-            Instantiate(God.Library.ActorPrefab, transform.position, transform.rotation).Imprint(God.JSON.Player,true);
+            Instantiate(God.Library.ActorPrefab, transform.position, transform.rotation).Imprint(ThingBuilder.Player);
         }
         else if (Type == SpawnTypes.Monster)
         {
-            CharacterStats who = God.JSON.NPCs.Random();
+            ThingSeed who = ThingBuilder.GetTag("NPC").Random();
             Instantiate(God.Library.ActorPrefab, transform.position, transform.rotation).Imprint(who);
         }
         Destroy(gameObject);

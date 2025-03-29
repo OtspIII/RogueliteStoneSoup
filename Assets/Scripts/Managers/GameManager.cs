@@ -11,8 +11,9 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        TraitManager.Init();
         God.GM = this;
+        TraitManager.Init();
+        ThingBuilder.Init();
         God.JSON = JSONReader.ParseJSON(JSON.text);
     }
 

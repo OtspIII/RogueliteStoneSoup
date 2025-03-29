@@ -22,6 +22,9 @@ public class ActorTrait : Trait
             {
                 if(i.Who != God.Player)
                     i.Who.Target = God.Player;
+                i.Who.ActorTrait = i;
+                if(i.Get<Actions>(EnumInfo.DefaultAction) == Actions.None)
+                    i.Set(EnumInfo.DefaultAction,(int)Actions.Patrol);
                 DoAction(i);
                 break;
             }

@@ -69,6 +69,24 @@ public class ThingController : MonoBehaviour
         }
     }
     
+    public virtual void Imprint(ThingSeed stats)
+    {
+        gameObject.name = stats.Name;
+        //Placeholder
+        Stats = new CharacterStats();
+        Stats.Speed = stats.Speed;
+        Stats.Weapon = stats.Weapon;
+        foreach (Traits t in stats.Traits.Keys)
+        {
+            EventInfo ts = stats.Traits[t];
+            AddTrait(t, ts);
+        }
+        CurrentWeapon = God.Library.GetWeapon(stats.Weapon);
+        Body = Instantiate(God.Library.GetBody(stats.Body), transform);
+        Body.Setup(this);
+        Body.Anim.Rebind();
+    }
+    
     public virtual void Imprint(CharacterStats stats,bool player=false)
     {
         Stats = stats;
