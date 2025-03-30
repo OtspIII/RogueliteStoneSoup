@@ -112,3 +112,37 @@ public class FighterTrait : Trait
         }
     }
 }
+
+public class WeaponTrait : Trait
+{
+    public WeaponTrait()
+    {
+        Type = Traits.Weapon;
+    }
+
+    public override void TakeEvent(TraitInfo i, EventInfo e)
+    {
+        switch (e.Type)
+        {
+            
+        }
+    }
+}
+
+
+public class ProjectileTrait : Trait
+{
+    public ProjectileTrait()
+    {
+        Type = Traits.Projectile;
+    }
+
+    public override void TakeEvent(TraitInfo i, EventInfo e)
+    {
+        switch (e.Type)
+        {
+            
+        }
+    }
+}
+

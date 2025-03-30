@@ -70,5 +70,7 @@ public enum Tags
 {
     None=0,
     Player=1,
-    NPC=2
+    NPC=2,
+    Weapon=3,
+    Projectile=4,
 }

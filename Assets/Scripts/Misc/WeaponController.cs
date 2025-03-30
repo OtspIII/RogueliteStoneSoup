@@ -9,6 +9,7 @@ public class WeaponController : MonoBehaviour
     public float Size = 1;
     public Actions DefaultAttack = Actions.Swing;
     public WeaponStats Stats;
+    public TraitInfo WeaponTrait;
     public SpriteRenderer SR;
     
     public void Setup(ThingController who)
