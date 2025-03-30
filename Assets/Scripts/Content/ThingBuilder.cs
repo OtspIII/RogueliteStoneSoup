@@ -1,33 +1,27 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public static class ThingBuilder
 {
     public static Dictionary<string, ThingSeed> Things = new Dictionary<string, ThingSeed>();
-    public static Dictionary<string, List<string>> Tags = new Dictionary<string, List<string>>();
-    public static ThingSeed Player;
+    public static Dictionary<Tags, List<string>> Tags = new Dictionary<Tags, List<string>>();
+    //public static ThingSeed Player;
     
     public static void Init()
     {
-        Player = Add("Player", "Humanoid", "Smile", "Player")
-            .Trait(Traits.Player)
-            .Trait(Traits.Actor,God.E().Set(EnumInfo.DefaultAction,(int)Actions.Idle))
-            .Trait(Traits.Health,God.E().Set(NumInfo.Max,3));
+        AddChar("Player", "Humanoid", "Smile", 3,global::Tags.Player).Trait(Traits.Player);
         
-        Add("Sword Monster", "Humanoid", "", "NPC")
-            .Trait(Traits.Actor)
-            .Trait(Traits.Health,God.E().Set(NumInfo.Max,2));
+        AddChar("Sword Monster", "Humanoid", "", 2);
         
-        Add("Lunger", "Lunger", "", "NPC")
-            .Trait(Traits.Actor)
-            .Trait(Traits.Health,God.E().Set(NumInfo.Max,1));
+        AddChar("Lunger", "Lunger", "", 1);
     }
 
-    public static ThingSeed Add(string name, string body, string art, params string[] tags)
+    public static ThingSeed Add(string name, string body, string art, params Tags[] tags)
     {
         ThingSeed who = new ThingSeed(name,body,art);
         Things.Add(who.Name,who);
-        foreach (string t in tags)
+        foreach (Tags t in tags)
         {
             if(!Tags.ContainsKey(t)) Tags.Add(t,new List<string>());
             Tags[t].Add(who.Name);
@@ -35,7 +29,17 @@ public static class ThingBuilder
         return who;
     }
 
-    public static List<ThingSeed> GetTag(string tag)
+    public static ThingSeed AddChar(string name, string body, string art, int hp, params Tags[] tags)
+    {
+        List<Tags> t = new List<Tags>();
+        foreach(Tags tag in tags) t.Add(tag);
+        if(t.Count == 0) t.Add(global::Tags.NPC);
+        return Add(name, body, art, t.ToArray())
+            .Trait(Traits.Actor)
+            .Trait(Traits.Health,God.E().Set(hp));
+    }
+
+    public static List<ThingSeed> GetTag(Tags tag)
     {
         if (!Tags.ContainsKey(tag))
         {

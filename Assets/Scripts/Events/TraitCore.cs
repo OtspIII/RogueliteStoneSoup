@@ -1,40 +1,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TraitInfo
+public class TraitInfo : EventInfo
 {
-    public Traits Type;
-    public EventInfo Info;
+    public Traits Trait;
     public ThingController Who { get { return Get(ActorInfo.Source); }}
-    public ActionScript Action { get { return Info.Action; } set{Info.Action = value;}}
 
     public TraitInfo(Traits t, ThingController who, EventInfo i)
     {
-        Type = t;
-        Info = i != null ? i : new EventInfo(EventTypes.TraitInfo);
-        Info.Set(ActorInfo.Source, who);
+        Clone(i);
+        Trait = t;
+        Type = EventTypes.TraitInfo;
+        Set(ActorInfo.Source, who);
     }
 
-    public void Init() { TraitManager.Get(Type).Init(this); }
-    public void ReUp(EventInfo i) { TraitManager.Get(Type).ReUp(this,i); }
-    public void PreEvent(EventInfo e) { TraitManager.Get(Type).PreEvent(this,e); }
-    public void TakeEvent(EventInfo e) { TraitManager.Get(Type).TakeEvent(this,e); }
-
-    public float Get(NumInfo n){ return Info.Get(n);}
-    public string Get(StrInfo n){ return Info.Get(n);}
-    public T Get<T>(EnumInfo n){ return Info.Get<T>(n);}
-    public bool Get(BoolInfo n){ return Info.Get(n);}
-    public ThingController Get(ActorInfo n){ return Info.Get(n);}
-    public Vector2 Get(VectorInfo n){ return Info.Get(n);}
-    
-    public TraitInfo Set(NumInfo n, float v){ Info.Set(n,v);return this;}
-    public TraitInfo Set(StrInfo n, string v){ Info.Set(n,v);return this;}
-    public TraitInfo Set(EnumInfo n, int v){ Info.Set(n,v);return this;}
-    public TraitInfo Set(BoolInfo n, bool v){ Info.Set(n,v);return this;}
-    public TraitInfo Set(ActorInfo n, ThingController v){ Info.Set(n,v);return this;}
-    public TraitInfo Set(VectorInfo n, Vector2 v){ Info.Set(n,v);return this;}
-    
-    public float Change(NumInfo n, float v){ return Info.Change(n,v);}
+    public void Init() { TraitManager.Get(Trait).Init(this); }
+    public void ReUp(EventInfo i) { TraitManager.Get(Trait).ReUp(this,i); }
+    public void PreEvent(EventInfo e) { TraitManager.Get(Trait).PreEvent(this,e); }
+    public void TakeEvent(EventInfo e) { TraitManager.Get(Trait).TakeEvent(this,e); }
 }
 
 public static class TraitManager
@@ -49,6 +32,7 @@ public static class TraitManager
         TraitDict.Add(Traits.Health,new HealthTrait());
         TraitDict.Add(Traits.Actor,new ActorTrait());
         TraitDict.Add(Traits.Player,new PlayerTrait());
+        TraitDict.Add(Traits.Fighter,new FighterTrait());
     }
     
     public static Trait Get(Traits t)
@@ -104,4 +88,5 @@ public enum Traits
     Health=1,
     Actor=2,
     Player=3,
+    Fighter=4,
 }

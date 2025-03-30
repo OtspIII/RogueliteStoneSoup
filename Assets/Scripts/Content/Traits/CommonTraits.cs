@@ -20,20 +20,20 @@ public class HealthTrait : Trait
             case EventTypes.Setup:
             {
                 //Begin the game with max health
-                float hp = i.Get(NumInfo.Max);
+                float hp = i.GetN();
                 if(hp <= 0) Debug.Log("INVALID HEALTH: " + i.Type + " / " + i.Who + " / " + hp);
-                i.Set(NumInfo.Amount,hp);
+                i.Set(NumInfo.Max,hp);
                 break;
             }
             case EventTypes.ShownHP:
             {
-                e.Set(NumInfo.Amount, i.Get(NumInfo.Amount));
+                e.Set(i.GetInt());
                 break;
             }
             case EventTypes.Damage:
             {
                 // Debug.Log("Damage: " + i.Get(NumInfo.Amount) + " / " + e.Get(NumInfo.Amount));
-                float hp = i.Change(NumInfo.Amount,-e.Get(NumInfo.Amount));
+                float hp = i.Change(-e.GetN());
                 if (hp <= 0)
                 {
                     i.Who.TakeEvent(EventTypes.Death);
@@ -42,10 +42,10 @@ public class HealthTrait : Trait
             }
             case EventTypes.Healing:
             {
-                float hp = i.Change(NumInfo.Amount,e.Get(NumInfo.Amount));
+                float hp = i.Change(e.GetN());
                 if (hp > i.Get(NumInfo.Max))
                 {
-                    i.Set(NumInfo.Amount, i.Get(NumInfo.Max));
+                    i.Set(i.Get(NumInfo.Max));
                 }
                 break;
             }
@@ -93,6 +93,22 @@ public class PlayerTrait : Trait
                 if(i.Who.ActorTrait.Action.CanRotate) i.Who.LookAt(God.Cam.Cam.ScreenToWorldPoint(Input.mousePosition),0.1f);
                 break;
             }
+        }
+    }
+}
+
+public class FighterTrait : Trait
+{
+    public FighterTrait()
+    {
+        Type = Traits.Fighter;
+    }
+
+    public override void TakeEvent(TraitInfo i, EventInfo e)
+    {
+        switch (e.Type)
+        {
+            
         }
     }
 }

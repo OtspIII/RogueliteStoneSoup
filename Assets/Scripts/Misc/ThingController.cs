@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class ThingController : MonoBehaviour
 {
-    public Vector2 DesiredMove;
-    public Vector2 Knockback;
+    
     [HideInInspector]
     public Rigidbody2D RB;
     public BodyController Body;
@@ -27,6 +26,8 @@ public class ThingController : MonoBehaviour
     public ThingController Target;
     public float AttackRange = 1.5f;
     public float VisionRange = 4;
+    public Vector2 DesiredMove;
+    public Vector2 Knockback;
     
     public void Awake()
     {
@@ -41,7 +42,7 @@ public class ThingController : MonoBehaviour
     
     public void Start()
     {
-        TakeEvent(EventTypes.Setup);
+        TakeEvent(EventTypes.Start);
         OnStart();
     }
 
@@ -76,49 +77,51 @@ public class ThingController : MonoBehaviour
         Stats = new CharacterStats();
         Stats.Speed = stats.Speed;
         Stats.Weapon = stats.Weapon;
+        Stats.Body = stats.Body;
         foreach (Traits t in stats.Traits.Keys)
         {
             EventInfo ts = stats.Traits[t];
             AddTrait(t, ts);
         }
         CurrentWeapon = God.Library.GetWeapon(stats.Weapon);
+        TakeEvent(EventTypes.Setup);
         Body = Instantiate(God.Library.GetBody(stats.Body), transform);
         Body.Setup(this);
         Body.Anim.Rebind();
     }
-    
-    public virtual void Imprint(CharacterStats stats,bool player=false)
-    {
-        Stats = stats;
-        gameObject.name = stats.Name;
-        // Speed = stats.Speed;
-        if (stats.HP != 0)
-        {
-            AddTrait(Traits.Health,God.E().Set(NumInfo.Max,stats.HP));
-        }
-        // HP = stats.HP;
-        // MaxHP = stats.HP;
-        ActorTrait = AddTrait(Traits.Actor, God.E().Set(EnumInfo.DefaultAction, (int)Actions.Patrol));
-        if (player)
-        {
-            AddTrait(Traits.Player);
-            // IsPlayer = true;
-            God.Player = this;
-            ActorTrait.Set(EnumInfo.DefaultAction, (int)Actions.Idle);
-            // DefaultAction = Actions.Idle;
-        }
-        // else
-        // {
-        //     DefaultAction = Actions.Patrol;
-        // }
-        CurrentWeapon = God.Library.GetWeapon(stats.Weapon);
-        if (!string.IsNullOrEmpty(stats.DefaultAction))
-            ActorTrait.Set(EnumInfo.DefaultAction, (int)Enum.Parse<Actions>(stats.DefaultAction));
-            // DefaultAction = Enum.Parse<Actions>(stats.DefaultAction);
-        Body = Instantiate(God.Library.GetBody(stats.Body), transform);
-        Body.Setup(this);
-        Body.Anim.Rebind();
-    }
+    //
+    // public virtual void Imprint(CharacterStats stats,bool player=false)
+    // {
+    //     Stats = stats;
+    //     gameObject.name = stats.Name;
+    //     // Speed = stats.Speed;
+    //     if (stats.HP != 0)
+    //     {
+    //         AddTrait(Traits.Health,God.E().Set(NumInfo.Max,stats.HP));
+    //     }
+    //     // HP = stats.HP;
+    //     // MaxHP = stats.HP;
+    //     ActorTrait = AddTrait(Traits.Actor, God.E().Set(EnumInfo.DefaultAction, (int)Actions.Patrol));
+    //     if (player)
+    //     {
+    //         AddTrait(Traits.Player);
+    //         // IsPlayer = true;
+    //         God.Player = this;
+    //         ActorTrait.Set(EnumInfo.DefaultAction, (int)Actions.Idle);
+    //         // DefaultAction = Actions.Idle;
+    //     }
+    //     // else
+    //     // {
+    //     //     DefaultAction = Actions.Patrol;
+    //     // }
+    //     CurrentWeapon = God.Library.GetWeapon(stats.Weapon);
+    //     if (!string.IsNullOrEmpty(stats.DefaultAction))
+    //         ActorTrait.Set(EnumInfo.DefaultAction, (int)Enum.Parse<Actions>(stats.DefaultAction));
+    //         // DefaultAction = Enum.Parse<Actions>(stats.DefaultAction);
+    //     Body = Instantiate(God.Library.GetBody(stats.Body), transform);
+    //     Body.Setup(this);
+    //     Body.Anim.Rebind();
+    // }
     
     
     // public TraitInfo AddTrait(Traits t, bool init = true)
@@ -314,9 +317,7 @@ public class ThingController : MonoBehaviour
     
     public void SetPhase(int n)
     {
-        TakeEvent(God.E(EventTypes.SetPhase).Set(NumInfo.Amount,n));
-        // if (CurrentAction == null) return;
-        // CurrentAction.ChangePhase(n); //the village vet
+        TakeEvent(God.E(EventTypes.SetPhase).Set(n));
     }
     
     public virtual void DoAction(ActionScript a, Infos i=null)

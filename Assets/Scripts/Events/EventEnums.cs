@@ -4,6 +4,7 @@ public enum EventTypes{
     TraitInfo=0001,
     Setup=0002,
     Update=003,
+    Start=004,
     StartAction=0101,
     SetPhase=0102,
     
@@ -11,6 +12,7 @@ public enum EventTypes{
     Damage=1001,
     Healing=1002,
     Death=1003,
+    Knockback=1004,
     
     //Questions
     ShownHP=9001,
@@ -24,17 +26,20 @@ public enum NumInfo
     Amount=1,
     Max=2,
     Min=3,
+    Speed=4,
 }
 
 public enum StrInfo
 {
     None=0,
-    Debug=1,
+    Text=1,
+    Debug=2,
 }
 
 public enum EnumInfo
 {
     None=0,
+    Default=1,
     Action=1001,
     DefaultAction=1002,
     DamageType=2001,
@@ -42,18 +47,28 @@ public enum EnumInfo
 
 public enum BoolInfo
 {
-    None=0
+    None=0,
+    Default=1,
 }
 
 public enum ActorInfo
 {
     None=0,
-    Source=1,
-    Target=2,
+    Target=1,
+    Source=2,
 }
 
 public enum VectorInfo
 {
     None=0,
-    Dir=1,
+    Amount=1,
+    Dir=2,
+}
+
+
+public enum Tags
+{
+    None=0,
+    Player=1,
+    NPC=2
 }

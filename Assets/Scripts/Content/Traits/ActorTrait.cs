@@ -7,11 +7,13 @@ public class ActorTrait : Trait
     {
         Type = Traits.Actor;
         TakeListen.Add(EventTypes.Setup);
+        TakeListen.Add(EventTypes.Start);
         TakeListen.Add(EventTypes.Update);
         TakeListen.Add(EventTypes.StartAction);
         TakeListen.Add(EventTypes.SetPhase);
         TakeListen.Add(EventTypes.GetCurrentAction);
         TakeListen.Add(EventTypes.GetDefaultAction);
+        TakeListen.Add(EventTypes.Knockback);
     }
 
     public override void TakeEvent(TraitInfo i, EventInfo e)
@@ -20,11 +22,15 @@ public class ActorTrait : Trait
         {
             case EventTypes.Setup:
             {
-                if(i.Who != God.Player)
-                    i.Who.Target = God.Player;
                 i.Who.ActorTrait = i;
                 if(i.Get<Actions>(EnumInfo.DefaultAction) == Actions.None)
                     i.Set(EnumInfo.DefaultAction,(int)Actions.Patrol);
+                break;
+            }
+            case EventTypes.Start:
+            {
+                if(i.Who != God.Player)
+                    i.Who.Target = God.Player;
                 DoAction(i);
                 break;
             }
@@ -48,7 +54,7 @@ public class ActorTrait : Trait
             case EventTypes.SetPhase:
             {
                 if(i.Action != null)
-                    i.Action.ChangePhase(e.GetInt(NumInfo.Amount));
+                    i.Action.ChangePhase(e.GetInt());
                 break;
             }
             case EventTypes.GetCurrentAction:
@@ -62,6 +68,11 @@ public class ActorTrait : Trait
                 Actions r = i.Get<Actions>(EnumInfo.DefaultAction);
                 if (r != Actions.None)
                     e.Set(EnumInfo.DefaultAction,(int)r);
+                break;
+            }
+            case EventTypes.Knockback:
+            {
+                i.Who.Knockback = e.GetVector();
                 break;
             }
         }
