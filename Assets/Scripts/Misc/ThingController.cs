@@ -13,7 +13,7 @@ public class ThingController : MonoBehaviour
     public Vector3 StartSpot;
     public string DebugTxt;
     public CharacterStats Stats;
-    public WeaponStats CurrentWeapon;
+    public TraitInfo CurrentWeapon;
 
     public TraitInfo ActorTrait;
     public Dictionary<Traits, TraitInfo> Trait = new Dictionary<Traits, TraitInfo>();
@@ -76,18 +76,27 @@ public class ThingController : MonoBehaviour
         //Placeholder
         Stats = new CharacterStats();
         Stats.Speed = stats.Speed;
-        Stats.Weapon = stats.Weapon;
+        //Stats.Weapon = stats.Weapon;
         Stats.Body = stats.Body;
         foreach (Traits t in stats.Traits.Keys)
         {
             EventInfo ts = stats.Traits[t];
             AddTrait(t, ts);
         }
-        CurrentWeapon = God.Library.GetWeapon(stats.Weapon);
+
+        SetWeapon(stats.Weapon);
+        
         TakeEvent(EventTypes.Setup);
         Body = Instantiate(God.Library.GetBody(stats.Body), transform);
         Body.Setup(this);
         Body.Anim.Rebind();
+    }
+
+    public void SetWeapon(string w)
+    {
+        ThingSeed weap = ThingBuilder.Things[w];
+        CurrentWeapon = new TraitInfo(Traits.Weapon,null,weap.Traits[Traits.Weapon]);//God.Library.GetWeapon(stats.Weapon);
+        CurrentWeapon.Seed = weap;
     }
     //
     // public virtual void Imprint(CharacterStats stats,bool player=false)

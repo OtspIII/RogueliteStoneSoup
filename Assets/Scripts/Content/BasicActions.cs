@@ -83,7 +83,7 @@ public class AttackAction : ActionScript
 
     public virtual float GetDamage()
     {
-        return Who.CurrentWeapon.Damage * Damage;
+        return Who.CurrentWeapon.GetN() * Damage;
     }
 
     public override void HitBegin(ThingController hit, HurtboxController box)
@@ -145,7 +145,7 @@ public class ShootAction : AttackAction
     public override void Begin()
     {
         base.Begin();
-        string proj = GetWeapon().Projectile;
+        string proj = GetWeapon().GetString();
         Who.Shoot(proj);
     }
 }

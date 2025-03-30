@@ -10,6 +10,7 @@ public class WeaponController : MonoBehaviour
     public Actions DefaultAttack = Actions.Swing;
     public WeaponStats Stats;
     public TraitInfo WeaponTrait;
+    public ThingSeed Seed;
     public SpriteRenderer SR;
     
     public void Setup(ThingController who)
@@ -26,7 +27,14 @@ public class WeaponController : MonoBehaviour
     {
         Who.SetPhase(n);
     }
-
+    
+    public void Imprint(TraitInfo stats)
+    {
+        WeaponTrait = stats;
+        Seed = WeaponTrait.Seed;
+        SR.sprite = God.Library.GetWeaponArt(Seed.Art,SR.sprite);
+    }
+    
     public void Imprint(WeaponStats stats)
     {
         Stats = stats;

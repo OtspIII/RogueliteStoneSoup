@@ -109,7 +109,7 @@ public class ActionScript
         
     }
     
-    public virtual WeaponStats GetWeapon()
+    public virtual TraitInfo GetWeapon()
     {
         return Who.CurrentWeapon;
     }

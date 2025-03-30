@@ -27,6 +27,8 @@ public enum Actions
     None=0,
     Idle=1,
     Stun=2,
+    DefaultAction=3,
+    DefaultAttack=4,
     
     //Attack Actions
     Swing=101,

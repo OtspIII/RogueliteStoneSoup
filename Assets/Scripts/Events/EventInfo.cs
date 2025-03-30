@@ -15,6 +15,7 @@ public class EventInfo
     public Dictionary<ActorInfo, ThingController> Actors = new Dictionary<ActorInfo, ThingController>();
     public Dictionary<VectorInfo, Vector2> Vectors = new Dictionary<VectorInfo, Vector2>();
     public ActionScript Action;
+    public ThingSeed Seed;
 
     public EventInfo(){ }
     
@@ -36,6 +37,7 @@ public class EventInfo
         foreach(ActorInfo n in i.Actors.Keys) Actors.Add(n,i.Actors[n]);
         foreach(VectorInfo n in i.Vectors.Keys) Vectors.Add(n,i.Vectors[n]);
         Action = i.Action;
+        Seed = i.Seed;
     }
     
     //Numbers
@@ -215,4 +217,10 @@ public class EventInfo
         Action = a;
         return this;
     }
+    public EventInfo Set(ThingSeed a)
+    {
+        Seed = a;
+        return this;
+    }
+    
 }

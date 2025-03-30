@@ -18,6 +18,7 @@ public enum EventTypes{
     ShownHP=9001,
     GetCurrentAction=9002,
     GetDefaultAction=9003,
+    GetDefaultAttack=9004,
 }
 
 public enum NumInfo

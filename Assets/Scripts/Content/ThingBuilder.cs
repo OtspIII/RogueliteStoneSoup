@@ -10,15 +10,15 @@ public static class ThingBuilder
     
     public static void Init()
     {
-        AddChar("Player", "Humanoid", "Smile", 3,Tags.Player).Trait(Traits.Player);
+        AddChar("Player", "Humanoid", "Smile", 3,"Bow",Tags.Player).Trait(Traits.Player);
         
-        AddChar("Sword Monster", "Humanoid", "", 2);
-        AddChar("Lunger", "Lunger", "", 1);
+        AddChar("Sword Monster", "Humanoid", "", 2, "Axe");
+        AddChar("Lunger", "Lunger", "", 1, "Trample");
 
         AddWeapon("Sword", "Sword", "Sword", Actions.Swing, 1);
         AddWeapon("Axe", "Sword", "Axe", Actions.Swing, 1);
         AddWeapon("Trample", "Trample", "", Actions.Lunge, 1);
-        AddWeapon("Bow", "Sword", "Bow", Actions.Shoot, 1);
+        AddWeapon("Bow", "Sword", "Bow", Actions.Shoot, 1,"Arrow");
 
         AddProjectile("Arrow", "Arrow", "Arrow", 1, 10);
     }
@@ -35,23 +35,25 @@ public static class ThingBuilder
         return who;
     }
 
-    public static ThingSeed AddChar(string name, string body, string art, int hp, params Tags[] tags)
+    public static ThingSeed AddChar(string name, string body, string art, int hp, string weapon,params Tags[] tags)
     {
         List<Tags> t = new List<Tags>();
         foreach(Tags tag in tags) t.Add(tag);
         if(t.Count == 0) t.Add(Tags.NPC);
         return Add(name, body, art, t.ToArray())
             .Trait(Traits.Actor)
-            .Trait(Traits.Health,God.E().Set(hp));
+            .Trait(Traits.Health,God.E().Set(hp))
+            .SetWeapon(weapon);
     }
     
-    public static ThingSeed AddWeapon(string name, string body, string art, Actions atk=Actions.Swing, int dmg=1, params Tags[] tags)
+    public static ThingSeed AddWeapon(string name, string body, string art, Actions atk=Actions.Swing, int dmg=1,
+        string projectile="",params Tags[] tags)
     {
         List<Tags> t = new List<Tags>();
         foreach(Tags tag in tags) t.Add(tag);
         if(t.Count == 0) t.Add(Tags.Weapon);
         return Add(name, body, art, t.ToArray())
-            .Trait(Traits.Weapon,God.E().Set(EnumInfo.DefaultAction,(int)atk).Set(dmg));
+            .Trait(Traits.Weapon,God.E().Set(EnumInfo.DefaultAction,(int)atk).Set(dmg).Set(projectile));
     }
     
     public static ThingSeed AddProjectile(string name, string body, string art, int dmg=1,float speed=10, params Tags[] tags)
@@ -98,4 +100,12 @@ public class ThingSeed
         Traits.Add(t,i);
         return this;
     }
+    
+    public ThingSeed SetWeapon(string w)
+    {
+        Weapon = w;
+        return this;
+    }
+
+
 }

@@ -81,6 +81,13 @@ public class Trait
     {
         
     }
+    
+    public EventInfo Ask(TraitInfo i,EventTypes e)
+    {
+        EventInfo r = God.E(e);
+        TakeEvent(i,r);
+        return r;
+    }
 }
 
 

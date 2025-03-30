@@ -93,6 +93,11 @@ public class ActorTrait : Trait
     public virtual void DoAction(TraitInfo t, Actions a=Actions.None, Infos i=null)
     {
         Actions defaultAct = t.Get<Actions>(EnumInfo.DefaultAction);
+        if (a == Actions.DefaultAttack)
+        {
+            EventInfo e =TraitManager.Get(t.Who.CurrentWeapon.Trait).Ask(t.Who.CurrentWeapon, EventTypes.GetDefaultAttack);
+            a = e.Get<Actions>(EnumInfo.DefaultAction);
+        }
         ActionScript act = ActionParser.GetAction(a == Actions.None ? defaultAct : a,t.Who);
         DoAction(t,act,i);
     }

@@ -88,7 +88,7 @@ public class PlayerTrait : Trait
                 i.Who.DesiredMove = vel;
         
                 if(Input.GetKey(KeyCode.Mouse0))
-                    i.Who.DoAction(i.Who.CurrentWeapon.DefaultAttack);
+                    i.Who.DoAction(Actions.DefaultAttack);
         
                 if(i.Who.ActorTrait.Action.CanRotate) i.Who.LookAt(God.Cam.Cam.ScreenToWorldPoint(Input.mousePosition),0.1f);
                 break;
@@ -118,13 +118,18 @@ public class WeaponTrait : Trait
     public WeaponTrait()
     {
         Type = Traits.Weapon;
+        TakeListen.Add(EventTypes.GetDefaultAttack);
     }
-
+    
     public override void TakeEvent(TraitInfo i, EventInfo e)
     {
         switch (e.Type)
         {
-            
+            case EventTypes.GetDefaultAttack:
+            {
+                e.Set(EnumInfo.DefaultAction, (int)i.Get<Actions>(EnumInfo.DefaultAction));
+                break;
+            }
         }
     }
 }

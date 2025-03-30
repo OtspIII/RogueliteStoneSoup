@@ -32,7 +32,7 @@ public class CharacterStats
     public TraitStats[] Traits;
     public float Speed;
     public float HP;
-    public string Weapon;
+    //public string Weapon;
     public string DefaultAction;
 }
 
