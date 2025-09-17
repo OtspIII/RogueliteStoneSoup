@@ -10,11 +10,7 @@ public class GameLibrary : MonoBehaviour
     public WeaponController SwordPrefab;
     public WeaponController TramplePrefab;
     public ProjectileController ProjectilePrefab;
-    // public Sprite SmileArt;
-    // public Sprite VampArt;
-    // public Sprite SpitterArt;
-    // public Sprite SwordWArt;
-    // public Sprite AxeWArt;
+    public RoomScript RoomPrefab;
 
     public Dictionary<string, Sprite> CharacterArt = new Dictionary<string, Sprite>();
     public Dictionary<string, Sprite> WeaponArt = new Dictionary<string, Sprite>();
@@ -139,5 +135,11 @@ public class GameLibrary : MonoBehaviour
         if (backup != null) return backup;
         Debug.Log("INVALID ART NAME: " + which);
         return null;
+    }
+    
+    public RoomScript GetRoom(string which="")
+    {
+        //Should eventually have more than one option
+        return RoomPrefab;
     }
 }

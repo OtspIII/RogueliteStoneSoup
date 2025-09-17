@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public Transform LevelHolder;
     public List<SpawnPointController> SpawnPoints;
     public TextAsset JSON;
     public TextMeshProUGUI HealthTxt;
@@ -33,6 +34,9 @@ public class GameManager : MonoBehaviour
 
     public virtual void BuildLevel()
     {
+        LevelHolder = new GameObject("Level").transform;
+        RoomScript rm = Instantiate(God.Library.GetRoom(), new Vector3(0, 0, 0), Quaternion.identity);
+        rm.Setup(this);
         foreach (SpawnPointController s in SpawnPoints)
         {
             s.Spawn();
