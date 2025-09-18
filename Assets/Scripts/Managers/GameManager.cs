@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public List<SpawnPointController> SpawnPoints;
     public TextAsset JSON;
     public TextMeshProUGUI HealthTxt;
+    public List<RoomScript> Rooms;
 
     private void Awake()
     {
@@ -35,11 +36,17 @@ public class GameManager : MonoBehaviour
     public virtual void BuildLevel()
     {
         LevelHolder = new GameObject("Level").transform;
-        RoomScript rm = Instantiate(God.Library.GetRoom(), new Vector3(0, 0, 0), Quaternion.identity);
-        rm.Setup(this);
-        foreach (SpawnPointController s in SpawnPoints)
+        for(float x = 0;x < 3;x++)
+        for (float y = 0; y < 3; y++)
         {
-            s.Spawn();
+            RoomScript rm = Instantiate(God.Library.GetRoom(), new Vector3(x * God.RoomSize.x, y * God.RoomSize.y, 0), Quaternion.identity);
+            rm.Setup();
+            Rooms.Add(rm);
+        }
+        RoomScript chosen = God.Random(Rooms);
+        foreach (RoomScript rs in Rooms)
+        {
+            rs.Spawn(rs == chosen);
         }
     }
 

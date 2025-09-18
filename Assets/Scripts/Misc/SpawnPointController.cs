@@ -5,11 +5,6 @@ public class SpawnPointController : MonoBehaviour
 {
     public Tags Type;
 
-    private void Awake()
-    {
-        God.GM.AddSpawn(this);
-    }
-
     public void Spawn()
     {
         ThingSeed who = ThingBuilder.GetTag(Type).Random();

@@ -75,6 +75,7 @@ public class PlayerTrait : Trait
             {
                 God.Player = i.Who;
                 i.Set(EnumInfo.DefaultAction, (int)Actions.Idle);
+                God.Cam.Target = i.Who.gameObject;
                 break;
             }
             case EventTypes.Update:

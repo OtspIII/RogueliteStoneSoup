@@ -10,6 +10,8 @@ public static class God
     public static CameraController Cam;
     public static LevelJSON JSON;
 
+    public static Vector2 RoomSize = new Vector2(16, 10);
+
     public static EventInfo E(EventTypes e=EventTypes.TraitInfo)
     {
         return new EventInfo(e);
