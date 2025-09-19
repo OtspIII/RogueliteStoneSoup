@@ -10,7 +10,7 @@ public static class ThingBuilder
     
     public static void Init()
     {
-        AddChar("Player", "Humanoid", "Smile", 3,"Bow",Tags.Player).Trait(Traits.Player);
+        AddChar("Player", "Humanoid", "Smile", 3,"Sword",Tags.Player).Trait(Traits.Player);
         
         AddChar("Sword Monster", "Humanoid", "", 2, "Axe");
         AddChar("Lunger", "Lunger", "", 1, "Trample");

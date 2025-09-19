@@ -109,7 +109,7 @@ public class FighterTrait : Trait
     {
         switch (e.Type)
         {
-            
+            default: return;
         }
     }
 }
@@ -147,7 +147,7 @@ public class ProjectileTrait : Trait
     {
         switch (e.Type)
         {
-            
+            default: return;
         }
     }
 }

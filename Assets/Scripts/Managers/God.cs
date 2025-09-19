@@ -151,6 +151,18 @@ public static class God
         }
         sr.color = targColor;
     }
+
+    public static Vector2Int DirToV(Directions d)
+    {
+        switch (d)
+        {
+            case Directions.Up: return new Vector2Int(0, 1);
+            case Directions.Right: return new Vector2Int(1, 0);
+            case Directions.Down: return new Vector2Int(0, -1);
+            case Directions.Left: return new Vector2Int(-1, 0);
+        }
+        return Vector2Int.zero;
+    }
 }
 
 //For use with GameMaster.Ease()
@@ -161,4 +173,13 @@ public enum Eases
     InOut=2,
     Elastic=3,
     BounceOut=4
+}
+
+public enum Directions
+{
+    None=0,
+    Up=1,
+    Right=2,
+    Down=3,
+    Left=4
 }

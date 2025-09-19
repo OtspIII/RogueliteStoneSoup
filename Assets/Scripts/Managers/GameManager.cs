@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public LevelBuilder Level;
     public Transform LevelHolder;
     public List<SpawnPointController> SpawnPoints;
     public TextAsset JSON;
@@ -36,17 +37,24 @@ public class GameManager : MonoBehaviour
     public virtual void BuildLevel()
     {
         LevelHolder = new GameObject("Level").transform;
-        for(float x = 0;x < 3;x++)
-        for (float y = 0; y < 3; y++)
+        Level = new LevelBuilder();
+        foreach (GeoTile g in Level.AllGeo)
         {
-            RoomScript rm = Instantiate(God.Library.GetRoom(), new Vector3(x * God.RoomSize.x, y * God.RoomSize.y, 0), Quaternion.identity);
-            rm.Setup();
+            RoomScript rm = Instantiate(God.Library.GetRoom(), new Vector3(g.X * God.RoomSize.x, g.Y * God.RoomSize.y, 0), Quaternion.identity);
+            rm.Setup(g);
             Rooms.Add(rm);
         }
-        RoomScript chosen = God.Random(Rooms);
+        // for(float x = 0;x < 3;x++)
+        // for (float y = 0; y < 3; y++)
+        // {
+        //     RoomScript rm = Instantiate(God.Library.GetRoom(), new Vector3(x * God.RoomSize.x, y * God.RoomSize.y, 0), Quaternion.identity);
+        //     rm.Setup();
+        //     Rooms.Add(rm);
+        // }
+        // RoomScript chosen = God.Random(Rooms);
         foreach (RoomScript rs in Rooms)
         {
-            rs.Spawn(rs == chosen);
+            rs.Spawn();
         }
     }
 
