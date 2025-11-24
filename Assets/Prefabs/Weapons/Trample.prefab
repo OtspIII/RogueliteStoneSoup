@@ -176,6 +176,7 @@ MonoBehaviour:
     Body: 
     DefaultAttack: 
     Art: 
+    Projectile: 
   SR: {fileID: 8803563916121277544}
 --- !u!95 &5236599469844525852
 Animator:

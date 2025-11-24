@@ -9,6 +9,7 @@ public static class God
     public static ThingController Player;
     public static CameraController Cam;
     public static LevelJSON JSON;
+    public static List<Directions> Dirs = new List<Directions>() { Directions.Left,Directions.Up,Directions.Right,Directions.Down };
 
     public static Vector2 RoomSize = new Vector2(16, 10);
 
@@ -162,6 +163,18 @@ public static class God
             case Directions.Left: return new Vector2Int(-1, 0);
         }
         return Vector2Int.zero;
+    }
+
+    public static Directions OppositeDir(Directions d)
+    {
+        switch (d)
+        {
+            case Directions.Up: return Directions.Down;
+            case Directions.Right: return Directions.Left;
+            case Directions.Down: return Directions.Up;
+            case Directions.Left: return Directions.Right;
+        }
+        return d;
     }
 }
 
