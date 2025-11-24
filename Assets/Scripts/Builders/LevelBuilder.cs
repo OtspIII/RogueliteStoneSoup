@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class LevelBuilder
 {
-    public Vector2Int Size = new Vector2Int(3, 3);
+    public Vector2Int Size = new Vector2Int(5, 5);
     public Dictionary<int, Dictionary<int, GeoTile>> GeoMap = new Dictionary<int, Dictionary<int, GeoTile>>();
     public List<GeoTile> AllGeo = new List<GeoTile>();
-    public float LinkOdds = 0.5f;
+    public float LinkOdds = 0.1f;
     public GeoTile PlayerSpawn;
     public GeoTile Exit;
 
@@ -96,7 +96,9 @@ public class LevelBuilder
                     Debug.Log("TILE BOTH LINKLESS AND UNCONNECTABLE: " + g);
                     continue;
                 }
-                Directions d = maybe[Random.Range(0,maybe.Count)];
+                //Roll twice and take the smaller to bias towards up/down links
+                int roll = Mathf.Min(Random.Range(0, maybe.Count), Random.Range(0, maybe.Count));
+                Directions d = maybe[roll];
                 GeoTile other = g.Neighbor(d);
                 if (other == null)
                 {
@@ -173,12 +175,10 @@ public class GeoTile
     public List<Directions> PotentialLinks(bool urOnly=true)
     {
         List<Directions> r = new List<Directions>();
-        if(X != Builder.Size.x - 1 && !Links.Contains(Directions.Right)) r.Add(Directions.Right);
         if(Y != Builder.Size.y - 1 && !Links.Contains(Directions.Up)) r.Add(Directions.Up);
-        if (urOnly) return r;
-        if(X != 0 && !Links.Contains(Directions.Left)) r.Add(Directions.Left);
-        if(Y != 0 && !Links.Contains(Directions.Down)) r.Add(Directions.Down);
-        
+        if(!urOnly && Y != 0 && !Links.Contains(Directions.Down)) r.Add(Directions.Down);
+        if(X != Builder.Size.x - 1 && !Links.Contains(Directions.Right)) r.Add(Directions.Right);
+        if(!urOnly && X != 0 && !Links.Contains(Directions.Left)) r.Add(Directions.Left);
         return r;
     }
 
