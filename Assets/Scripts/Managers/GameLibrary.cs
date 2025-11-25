@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class GameLibrary : MonoBehaviour
 {
@@ -10,7 +11,8 @@ public class GameLibrary : MonoBehaviour
     public WeaponController SwordPrefab;
     public WeaponController TramplePrefab;
     public ProjectileController ProjectilePrefab;
-    public List<RoomScript> RoomPrefabs;
+    public List<RoomOption> RoomOptions;
+    public List<ThingOption> ThingOptions;
     public ExitController ExitPrefab;
 
     public Dictionary<string, Sprite> CharacterArt = new Dictionary<string, Sprite>();
@@ -138,13 +140,13 @@ public class GameLibrary : MonoBehaviour
         return null;
     }
     
-    public RoomScript GetRoom(GeoTile g,LevelBuilder b)
+    public RoomOption GetRoom(GeoTile g,LevelBuilder b)
     {
         RoomTags t = RoomTags.Generic;
         if (g.Path == GeoTile.GeoTileTypes.PlayerStart) t = RoomTags.PlayerStart;
         else if (g.Path == GeoTile.GeoTileTypes.Exit) t = RoomTags.Exit;
-        List<RoomScript> opts = new List<RoomScript>();
-        foreach (RoomScript rs in RoomPrefabs)
+        List<RoomOption> opts = new List<RoomOption>();
+        foreach (RoomOption rs in RoomOptions)
         {
             if(rs.Tags.Contains(t)) opts.Add(rs);
         }
@@ -152,6 +154,22 @@ public class GameLibrary : MonoBehaviour
         if (opts.Count == 0)
         {
             Debug.Log("NO VALID ROOMS: " + t + " / " + g + " / + b");
+            return null;
+        }
+        return opts.Random();
+    }
+
+    public ThingOption GetThing(SpawnRequest sr,LevelBuilder b=null)
+    {
+        List<ThingOption> opts = new List<ThingOption>();
+        foreach (ThingOption o in ThingOptions)
+        {
+            if(sr.Judge(o) > 0) opts.Add(o);
+        }
+
+        if (opts.Count == 0)
+        {
+            Debug.Log("NO VALID ROOMS: " + sr + " / " + b);
             return null;
         }
         return opts.Random();

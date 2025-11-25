@@ -753,7 +753,6 @@ MonoBehaviour:
   SpawnerHolder: {fileID: 2353098262368716552}
   DoorHolder: {fileID: 3899709892671216710}
   Spawners: []
-  PlayerSpawn: {fileID: 0}
   Tags: 02000000
 --- !u!1 &4311700611072660845
 GameObject:
@@ -1969,6 +1968,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8540057791775574626, guid: 7296cde674c3b344490b87f150ec75ca, type: 3}
       propertyPath: Type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8540057791775574626, guid: 7296cde674c3b344490b87f150ec75ca, type: 3}
+      propertyPath: ToSpawn.Mandatory.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8540057791775574626, guid: 7296cde674c3b344490b87f150ec75ca, type: 3}
+      propertyPath: 'ToSpawn.Mandatory.Array.data[0]'
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []

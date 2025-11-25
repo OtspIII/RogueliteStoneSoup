@@ -47,9 +47,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4e6a35f2ee40aa46a25e832e60e8fbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LevelHolder: {fileID: 0}
   SpawnPoints: []
   JSON: {fileID: 4900000, guid: 2253075a02a348b42bd54a6a07df149d, type: 3}
   HealthTxt: {fileID: 6799186917877728896}
+  Rooms: []
 --- !u!1 &1505889798978773429
 GameObject:
   m_ObjectHideFlags: 0
@@ -124,7 +126,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
@@ -252,9 +254,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 7377515009577767801}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 105, y: 24}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 105, y: -25}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &618474803861970178
@@ -294,8 +296,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4289374890
+  m_fontColor: {r: 0.66666657, g: 0.66666657, b: 0.66666657, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -320,7 +322,7 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 1
   m_HorizontalAlignment: 1
-  m_VerticalAlignment: 1024
+  m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -406,4 +408,9 @@ MonoBehaviour:
   SwordPrefab: {fileID: 3780936271182354695, guid: f53a1555831eb064588c63345135e94b, type: 3}
   TramplePrefab: {fileID: 1104640380600672599, guid: e078e5fd26f89f14d9d6419765cad93d, type: 3}
   ProjectilePrefab: {fileID: 7921890350347933407, guid: c34100ab0ed4dcc4cb56f4927c61459a, type: 3}
-  RoomPrefab: {fileID: 909659412286494541, guid: ecddd2ab007e7f44996904574c2f91dd, type: 3}
+  RoomPrefabs:
+  - {fileID: 11400000, guid: 42524813ad6b95f46a66e0f7bac80237, type: 2}
+  - {fileID: 11400000, guid: 9620bbf87f8e30e41b0ac9038e4f5b0a, type: 2}
+  - {fileID: 11400000, guid: e35735416e918f44f941bc3af3ca034e, type: 2}
+  - {fileID: 11400000, guid: 92306e7ffdcff194b933ae0e586752b2, type: 2}
+  ExitPrefab: {fileID: 8725534831781302867, guid: 877e7e521441b754980dec42e9e32f90, type: 3}

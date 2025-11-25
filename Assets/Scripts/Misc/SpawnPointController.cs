@@ -4,9 +4,19 @@ using UnityEngine;
 public class SpawnPointController : MonoBehaviour
 {
     public GameTags Type;
+    public SpawnRequest ToSpawn;
 
     public void Spawn()
     {
+        ThingOption chosen = God.Library.GetThing(ToSpawn);
+        if (chosen == null)
+        {
+            Debug.Log(Type);
+            return;
+        }
+        chosen.Spawn(this);
+        Destroy(gameObject);
+        return;
         if (Type == GameTags.Exit)
         {
             Instantiate(God.Library.ExitPrefab, transform.position, transform.rotation);//temp

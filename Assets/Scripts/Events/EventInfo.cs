@@ -23,6 +23,11 @@ public class EventInfo
     {
         Type = t;
     }
+
+    public EventInfo(float n)
+    {
+        Numbers.Add(NumInfo.Amount,n);
+    }
     
     public EventInfo(EventInfo i){ Clone(i); }
 

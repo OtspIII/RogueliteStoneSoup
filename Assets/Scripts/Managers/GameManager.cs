@@ -40,9 +40,10 @@ public class GameManager : MonoBehaviour
         Level = new LevelBuilder();
         foreach (GeoTile g in Level.AllGeo)
         {
-            RoomScript rm = Instantiate(God.Library.GetRoom(g,Level), new Vector3(g.X * God.RoomSize.x, g.Y * God.RoomSize.y, 0), Quaternion.identity);
-            rm.Setup(g);
-            Rooms.Add(rm);
+            RoomOption rm = God.Library.GetRoom(g, Level);
+            RoomScript rs = rm.Build(g,Level);
+            if(rs != null)
+                Rooms.Add(rs);
         }
         // for(float x = 0;x < 3;x++)
         // for (float y = 0; y < 3; y++)

@@ -72,12 +72,13 @@ public class ThingController : MonoBehaviour
     
     public virtual void Imprint(ThingSeed stats)
     {
+        Debug.Log("OBSOLETE< SHOULDN'T BE GETTING CALLED: " + stats);
         gameObject.name = stats.Name;
         //Placeholder
         Stats = new CharacterStats();
         Stats.Speed = stats.Speed;
         //Stats.Weapon = stats.Weapon;
-        Stats.Body = stats.Body;
+        // Stats.Body = stats.Body;
         foreach (Traits t in stats.Traits.Keys)
         {
             EventInfo ts = stats.Traits[t];

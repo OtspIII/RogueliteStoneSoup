@@ -10,10 +10,10 @@ public static class ThingBuilder
     
     public static void Init()
     {
-        AddChar("Player", "Humanoid", "Smile", 3,"Sword",GameTags.Player).Trait(Traits.Player);
-        
-        AddChar("Sword Monster", "Humanoid", "", 2, "Axe");
-        AddChar("Lunger", "Lunger", "", 1, "Trample");
+        // AddChar("Player", "Humanoid", "Smile", 3,"Sword",GameTags.Player).Trait(Traits.Player);
+        //
+        // AddChar("Sword Monster", "Humanoid", "", 2, "Axe");
+        // AddChar("Lunger", "Lunger", "", 1, "Trample");
 
         AddWeapon("Sword", "Sword", "Sword", Actions.Swing, 1);
         AddWeapon("Axe", "Sword", "Axe", Actions.Swing, 1);

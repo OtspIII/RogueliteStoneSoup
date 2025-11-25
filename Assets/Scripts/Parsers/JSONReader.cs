@@ -27,10 +27,10 @@ public class LevelJSON
 public class CharacterStats
 {
     public string Name;
-    public string Body;
+    // public string Body;
     public string Art;
     public TraitStats[] Traits;
-    public float Speed;
+    public float Speed = 5;
     public float HP;
     //public string Weapon;
     public string DefaultAction;
