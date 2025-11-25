@@ -67,11 +67,20 @@ public enum VectorInfo
 }
 
 
-public enum Tags
+public enum GameTags
 {
     None=0,
     Player=1,
     NPC=2,
     Weapon=3,
     Projectile=4,
+    Exit=5,
+}
+
+public enum RoomTags
+{
+    None=0,
+    Generic=1,
+    PlayerStart=2,
+    Exit=3,
 }

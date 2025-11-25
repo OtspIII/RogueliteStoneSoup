@@ -10,7 +10,8 @@ public class GameLibrary : MonoBehaviour
     public WeaponController SwordPrefab;
     public WeaponController TramplePrefab;
     public ProjectileController ProjectilePrefab;
-    public RoomScript RoomPrefab;
+    public List<RoomScript> RoomPrefabs;
+    public ExitController ExitPrefab;
 
     public Dictionary<string, Sprite> CharacterArt = new Dictionary<string, Sprite>();
     public Dictionary<string, Sprite> WeaponArt = new Dictionary<string, Sprite>();
@@ -137,9 +138,22 @@ public class GameLibrary : MonoBehaviour
         return null;
     }
     
-    public RoomScript GetRoom(string which="")
+    public RoomScript GetRoom(GeoTile g,LevelBuilder b)
     {
-        //Should eventually have more than one option
-        return RoomPrefab;
+        RoomTags t = RoomTags.Generic;
+        if (g.Path == GeoTile.GeoTileTypes.PlayerStart) t = RoomTags.PlayerStart;
+        else if (g.Path == GeoTile.GeoTileTypes.Exit) t = RoomTags.Exit;
+        List<RoomScript> opts = new List<RoomScript>();
+        foreach (RoomScript rs in RoomPrefabs)
+        {
+            if(rs.Tags.Contains(t)) opts.Add(rs);
+        }
+
+        if (opts.Count == 0)
+        {
+            Debug.Log("NO VALID ROOMS: " + t + " / " + g + " / + b");
+            return null;
+        }
+        return opts.Random();
     }
 }

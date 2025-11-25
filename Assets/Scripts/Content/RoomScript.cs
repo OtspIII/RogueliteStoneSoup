@@ -7,8 +7,8 @@ public class RoomScript : MonoBehaviour
     public Transform SpawnerHolder;
     public Transform DoorHolder;
     public List<SpawnPointController> Spawners;
-    public SpawnPointController PlayerSpawn;
     public Dictionary<Directions,List<DoorController>> Doors = new Dictionary<Directions, List<DoorController>>();
+    public List<RoomTags> Tags;
     
     public void Setup(GeoTile g)
     {
@@ -22,10 +22,7 @@ public class RoomScript : MonoBehaviour
             if (s != null)
             {
                 God.GM.AddSpawn(s);
-                if (s.Type == Tags.Player)
-                    PlayerSpawn = s;
-                else
-                    Spawners.Add(s);
+                Spawners.Add(s);
             }
         }
         for(int n = 0;n < DoorHolder.childCount;n++)
@@ -58,15 +55,6 @@ public class RoomScript : MonoBehaviour
 
     public void Spawn()
     {
-        if (Geo.Path == GeoTile.GeoTileTypes.PlayerStart)
-        {
-            PlayerSpawn.Spawn();
-            return;
-        }
-        if (Geo.Path == GeoTile.GeoTileTypes.Exit)
-        {
-            Debug.Log("TODO: ADD EXIT TO ROOM " + Geo.X + "."+Geo.Y);
-        }
         foreach(SpawnPointController s in Spawners)
             s.Spawn();
     }

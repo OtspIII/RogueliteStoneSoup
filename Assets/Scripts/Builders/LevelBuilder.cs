@@ -31,8 +31,12 @@ public class LevelBuilder
             if(end == start) end = Random.Range(0, Size.x);
             int x = start;
             //If this is the bottom row, the first place we are is the player spawn
-            PlayerSpawn = GetGeo(x, 0);
-            PlayerSpawn.SetPath(GeoTile.GeoTileTypes.PlayerStart);
+            if (y == 0)
+            {
+                PlayerSpawn = GetGeo(x, 0);
+                PlayerSpawn.SetPath(GeoTile.GeoTileTypes.PlayerStart);
+            }
+
             Debug.Log("Y: " + y + " / X:" + start+"->"+end);
             while(x != end)
             {

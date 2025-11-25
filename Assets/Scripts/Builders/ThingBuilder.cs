@@ -5,12 +5,12 @@ using UnityEngine;
 public static class ThingBuilder
 {
     public static Dictionary<string, ThingSeed> Things = new Dictionary<string, ThingSeed>();
-    public static Dictionary<Tags, List<string>> TagDict = new Dictionary<Tags, List<string>>();
+    public static Dictionary<GameTags, List<string>> TagDict = new Dictionary<GameTags, List<string>>();
     //public static ThingSeed Player;
     
     public static void Init()
     {
-        AddChar("Player", "Humanoid", "Smile", 3,"Sword",Tags.Player).Trait(Traits.Player);
+        AddChar("Player", "Humanoid", "Smile", 3,"Sword",GameTags.Player).Trait(Traits.Player);
         
         AddChar("Sword Monster", "Humanoid", "", 2, "Axe");
         AddChar("Lunger", "Lunger", "", 1, "Trample");
@@ -23,11 +23,11 @@ public static class ThingBuilder
         AddProjectile("Arrow", "Arrow", "Arrow", 1, 10);
     }
 
-    public static ThingSeed Add(string name, string body, string art, params Tags[] tags)
+    public static ThingSeed Add(string name, string body, string art, params GameTags[] tags)
     {
         ThingSeed who = new ThingSeed(name,body,art);
         Things.Add(who.Name,who);
-        foreach (Tags t in tags)
+        foreach (GameTags t in tags)
         {
             if(!TagDict.ContainsKey(t)) TagDict.Add(t,new List<string>());
             TagDict[t].Add(who.Name);
@@ -35,11 +35,11 @@ public static class ThingBuilder
         return who;
     }
 
-    public static ThingSeed AddChar(string name, string body, string art, int hp, string weapon,params Tags[] tags)
+    public static ThingSeed AddChar(string name, string body, string art, int hp, string weapon,params GameTags[] tags)
     {
-        List<Tags> t = new List<Tags>();
-        foreach(Tags tag in tags) t.Add(tag);
-        if(t.Count == 0) t.Add(Tags.NPC);
+        List<GameTags> t = new List<GameTags>();
+        foreach(GameTags tag in tags) t.Add(tag);
+        if(t.Count == 0) t.Add(GameTags.NPC);
         return Add(name, body, art, t.ToArray())
             .Trait(Traits.Actor)
             .Trait(Traits.Health,God.E().Set(hp))
@@ -47,33 +47,33 @@ public static class ThingBuilder
     }
     
     public static ThingSeed AddWeapon(string name, string body, string art, Actions atk=Actions.Swing, int dmg=1,
-        string projectile="",params Tags[] tags)
+        string projectile="",params GameTags[] tags)
     {
-        List<Tags> t = new List<Tags>();
-        foreach(Tags tag in tags) t.Add(tag);
-        if(t.Count == 0) t.Add(Tags.Weapon);
+        List<GameTags> t = new List<GameTags>();
+        foreach(GameTags tag in tags) t.Add(tag);
+        if(t.Count == 0) t.Add(GameTags.Weapon);
         return Add(name, body, art, t.ToArray())
             .Trait(Traits.Weapon,God.E().Set(EnumInfo.DefaultAction,(int)atk).Set(dmg).Set(projectile));
     }
     
-    public static ThingSeed AddProjectile(string name, string body, string art, int dmg=1,float speed=10, params Tags[] tags)
+    public static ThingSeed AddProjectile(string name, string body, string art, int dmg=1,float speed=10, params GameTags[] tags)
     {
-        List<Tags> t = new List<Tags>();
-        foreach(Tags tag in tags) t.Add(tag);
-        if(t.Count == 0) t.Add(Tags.Projectile);
+        List<GameTags> t = new List<GameTags>();
+        foreach(GameTags tag in tags) t.Add(tag);
+        if(t.Count == 0) t.Add(GameTags.Projectile);
         return Add(name, body, art, t.ToArray())
             .Trait(Traits.Projectile,God.E().Set(dmg).Set(NumInfo.Speed,speed));
     }
 
-    public static List<ThingSeed> GetTag(Tags tag)
+    public static List<ThingSeed> GetTag(GameTags gameTag)
     {
-        if (!TagDict.ContainsKey(tag))
+        if (!TagDict.ContainsKey(gameTag))
         {
-            Debug.Log("UNFOUND TAG: " + tag);
+            Debug.Log("UNFOUND TAG: " + gameTag);
             return new List<ThingSeed>();
         }
         List<ThingSeed> r = new List<ThingSeed>();
-        foreach(string t in TagDict[tag])
+        foreach(string t in TagDict[gameTag])
             r.Add(Things[t]);
         return r;
     }

@@ -3,10 +3,17 @@ using UnityEngine;
 
 public class SpawnPointController : MonoBehaviour
 {
-    public Tags Type;
+    public GameTags Type;
 
     public void Spawn()
     {
+        if (Type == GameTags.Exit)
+        {
+            Instantiate(God.Library.ExitPrefab, transform.position, transform.rotation);//temp
+            Destroy(gameObject);
+            return;
+        }
+        
         ThingSeed who = ThingBuilder.GetTag(Type).Random();
         Instantiate(God.Library.ActorPrefab, transform.position, transform.rotation).Imprint(who);
         // if (Type == SpawnTypes.Player)
