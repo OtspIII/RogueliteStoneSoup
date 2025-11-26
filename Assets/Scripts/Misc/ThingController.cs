@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ThingController : MonoBehaviour
 {
-    
+    public string Name;
     [HideInInspector]
     public Rigidbody2D RB;
     public BodyController Body;
@@ -12,7 +12,7 @@ public class ThingController : MonoBehaviour
     
     public Vector3 StartSpot;
     public string DebugTxt;
-    public CharacterStats Stats;
+    // public CharacterStats Stats;
     public TraitInfo CurrentWeapon;
 
     public TraitInfo ActorTrait;
@@ -26,6 +26,7 @@ public class ThingController : MonoBehaviour
     public ThingController Target;
     public float AttackRange = 1.5f;
     public float VisionRange = 4;
+    public float CurrentSpeed; //Set by traits so you don't need to recalc constantly
     public Vector2 DesiredMove;
     public Vector2 Knockback;
     
@@ -70,74 +71,12 @@ public class ThingController : MonoBehaviour
         }
     }
     
-    public virtual void Imprint(ThingSeed stats)
-    {
-        Debug.Log("OBSOLETE< SHOULDN'T BE GETTING CALLED: " + stats);
-        gameObject.name = stats.Name;
-        //Placeholder
-        Stats = new CharacterStats();
-        Stats.Speed = stats.Speed;
-        //Stats.Weapon = stats.Weapon;
-        // Stats.Body = stats.Body;
-        foreach (Traits t in stats.Traits.Keys)
-        {
-            EventInfo ts = stats.Traits[t];
-            AddTrait(t, ts);
-        }
-
-        SetWeapon(stats.Weapon);
-        
-        TakeEvent(EventTypes.Setup);
-        Body = Instantiate(God.Library.GetBody(stats.Body), transform);
-        Body.Setup(this);
-        Body.Anim.Rebind();
-    }
-
     public void SetWeapon(string w)
     {
         ThingSeed weap = ThingBuilder.Things[w];
         CurrentWeapon = new TraitInfo(Traits.Weapon,null,weap.Traits[Traits.Weapon]);//God.Library.GetWeapon(stats.Weapon);
         CurrentWeapon.Seed = weap;
     }
-    //
-    // public virtual void Imprint(CharacterStats stats,bool player=false)
-    // {
-    //     Stats = stats;
-    //     gameObject.name = stats.Name;
-    //     // Speed = stats.Speed;
-    //     if (stats.HP != 0)
-    //     {
-    //         AddTrait(Traits.Health,God.E().Set(NumInfo.Max,stats.HP));
-    //     }
-    //     // HP = stats.HP;
-    //     // MaxHP = stats.HP;
-    //     ActorTrait = AddTrait(Traits.Actor, God.E().Set(EnumInfo.DefaultAction, (int)Actions.Patrol));
-    //     if (player)
-    //     {
-    //         AddTrait(Traits.Player);
-    //         // IsPlayer = true;
-    //         God.Player = this;
-    //         ActorTrait.Set(EnumInfo.DefaultAction, (int)Actions.Idle);
-    //         // DefaultAction = Actions.Idle;
-    //     }
-    //     // else
-    //     // {
-    //     //     DefaultAction = Actions.Patrol;
-    //     // }
-    //     CurrentWeapon = God.Library.GetWeapon(stats.Weapon);
-    //     if (!string.IsNullOrEmpty(stats.DefaultAction))
-    //         ActorTrait.Set(EnumInfo.DefaultAction, (int)Enum.Parse<Actions>(stats.DefaultAction));
-    //         // DefaultAction = Enum.Parse<Actions>(stats.DefaultAction);
-    //     Body = Instantiate(God.Library.GetBody(stats.Body), transform);
-    //     Body.Setup(this);
-    //     Body.Anim.Rebind();
-    // }
-    
-    
-    // public TraitInfo AddTrait(Traits t, bool init = true)
-    // {
-    //     return AddTrait(t, null, init);
-    // }
     
     public TraitInfo AddTrait(Traits t,EventInfo i=null)
     {

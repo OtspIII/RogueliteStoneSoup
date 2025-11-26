@@ -64,23 +64,23 @@ public class EventInfo
         if (!Numbers.TryAdd(i,f)) Numbers[i]=f;
         return this;
     }
-    public float Get(NumInfo i)
+    public float Get(NumInfo i,float def=0)
     {
-        return GetFloat(i);
+        return GetFloat(i,def);
     }
-    public float GetN(NumInfo i=NumInfo.Amount)
+    public float GetN(NumInfo i=NumInfo.Amount,float def=0)
     {
-        return GetFloat(i);
+        return GetFloat(i,def);
     }
-    public float GetFloat(NumInfo i=NumInfo.Amount)
+    public float GetFloat(NumInfo i=NumInfo.Amount,float def=0)
     {
         if (Numbers.TryGetValue(i, out float r)) return r;
-        return 0;
+        return def;
     }
-    public int GetInt(NumInfo i=NumInfo.Amount)
+    public int GetInt(NumInfo i=NumInfo.Amount,int def=0)
     {
         if (Numbers.TryGetValue(i, out float r)) return (int)r;
-        return 0;
+        return def;
     }
     public float Change(float f)
     {

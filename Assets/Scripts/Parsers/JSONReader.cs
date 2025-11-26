@@ -17,24 +17,24 @@ public static class JSONReader
 public class LevelJSON
 {
     public string Author;
-    public CharacterStats Player;
-    public List<CharacterStats> NPCs;
+    // public CharacterStats Player;
+    // public List<CharacterStats> NPCs;
     public List<WeaponStats> Weapons;
     public List<ProjStats> Projectiles;
 }
 
-[System.Serializable]
-public class CharacterStats
-{
-    public string Name;
-    // public string Body;
-    public string Art;
-    public TraitStats[] Traits;
-    public float Speed = 5;
-    public float HP;
-    //public string Weapon;
-    public string DefaultAction;
-}
+// [System.Serializable]
+// public class CharacterStats
+// {
+//     public string Name;
+//     // public string Body;
+//     public string Art;
+//     public TraitStats[] Traits;
+//     public float Speed = 5;
+//     public float HP;
+//     //public string Weapon;
+//     public string DefaultAction;
+// }
 
 [System.Serializable]
 public class TraitStats

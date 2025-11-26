@@ -31,7 +31,7 @@ public class ThingOption : ScriptableObject
         Imprint(r);
         r.TakeEvent(EventTypes.Setup);
         r.Body = Instantiate(God.Library.GetBody(Body), r.transform);
-        r.Body.Setup(r);
+        r.Body.Setup(r,Art);
         r.Body.Anim.Rebind();
         return r;
     }
@@ -39,8 +39,9 @@ public class ThingOption : ScriptableObject
     public virtual void Imprint(ThingController r)
     {
         r.name = Name;
+        r.Name = Name;
         //Placeholder
-        r.Stats = new CharacterStats();
+        // r.Stats = new CharacterStats();
         foreach (TraitBuilder t in Trait)
         {
             EventInfo ts = new EventInfo();

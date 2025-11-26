@@ -9,7 +9,7 @@ public class BodyController : MonoBehaviour
     public float Size = 1;
     public SpriteRenderer SR;
 
-    public void Setup(ThingController who)
+    public void Setup(ThingController who,string art="")
     {
         Who = who;
         transform.localPosition = new Vector3(0, 0, 0);
@@ -17,7 +17,8 @@ public class BodyController : MonoBehaviour
         Weapon = Instantiate(God.Library.GetWeaponPrefab(who.CurrentWeapon.Seed.Body), transform);
         Weapon.Setup(Who);
         if (God.IsPlayer(Who)) Hitbox.SetPlayer(true);
-        SR.sprite = God.Library.GetArt(who.Stats.Art,SR.sprite);
+        if(art != "")
+            SR.sprite = God.Library.GetArt(art,SR.sprite);
     }
 
     public void SetPhase(int n)
