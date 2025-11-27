@@ -14,8 +14,11 @@ public class BodyController : MonoBehaviour
         Who = who;
         transform.localPosition = new Vector3(0, 0, 0);
         transform.localScale = new Vector3(Size,Size,1);
-        Weapon = Instantiate(God.Library.GetWeaponPrefab(who.CurrentWeapon.Seed.Body), transform);
-        Weapon.Setup(Who);
+        if (who.CurrentWeapon != null)
+        {
+            Weapon = Instantiate(God.Library.GetWeaponPrefab(who.CurrentWeapon.Seed.Body), transform);
+            Weapon.Setup(Who);
+        }
         if (God.IsPlayer(Who)) Hitbox.SetPlayer(true);
         if(art != "")
             SR.sprite = God.Library.GetArt(art,SR.sprite);

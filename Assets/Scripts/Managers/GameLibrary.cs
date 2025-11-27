@@ -6,14 +6,14 @@ using UnityEngine.Serialization;
 public class GameLibrary : MonoBehaviour
 {
     public ThingController ActorPrefab;
-    public BodyController HumanoidBodyPrefab;
-    public BodyController LungerBodyPrefab;
+    // public BodyController HumanoidBodyPrefab;
+    // public BodyController LungerBodyPrefab;
     public WeaponController SwordPrefab;
     public WeaponController TramplePrefab;
     public ProjectileController ProjectilePrefab;
-    public List<RoomOption> RoomOptions;
-    public List<ThingOption> ThingOptions;
-    public ExitController ExitPrefab;
+    private List<RoomOption> RoomOptions = new List<RoomOption>();
+    private List<ThingOption> ThingOptions = new List<ThingOption>();
+    // public ExitController ExitPrefab;
 
     public Dictionary<string, Sprite> CharacterArt = new Dictionary<string, Sprite>();
     public Dictionary<string, Sprite> WeaponArt = new Dictionary<string, Sprite>();
@@ -41,6 +41,11 @@ public class GameLibrary : MonoBehaviour
             ProjectileArt.Add(s.name,s);
             // Debug.Log(s);
         }
+
+        foreach (ThingOption o in Resources.LoadAll<ThingOption>("Things/"))
+            ThingOptions.Add(o);
+        foreach (RoomOption o in Resources.LoadAll<RoomOption>("Rooms/"))
+            RoomOptions.Add(o);
     }
 
     public void Setup()
@@ -57,16 +62,16 @@ public class GameLibrary : MonoBehaviour
         }
     }
 
-    public BodyController GetBody(string which)
-    {
-        switch (which)
-        {
-            case "Humanoid": return HumanoidBodyPrefab;
-            case "Lunger": return LungerBodyPrefab;
-        }
-        Debug.Log("INVALID BODY NAME: " + which);
-        return HumanoidBodyPrefab;
-    }
+    // public BodyController GetBody(string which)
+    // {
+    //     switch (which)
+    //     {
+    //         case "Humanoid": return HumanoidBodyPrefab;
+    //         case "Lunger": return LungerBodyPrefab;
+    //     }
+    //     Debug.Log("INVALID BODY NAME: " + which);
+    //     return HumanoidBodyPrefab;
+    // }
 
     public WeaponStats GetWeapon(string which)
     {

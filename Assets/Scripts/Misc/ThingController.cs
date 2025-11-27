@@ -293,5 +293,26 @@ public class ThingController : MonoBehaviour
     {
         return ActionParser.GetAction(a,this);
     }
-    
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        Debug.Log("OTHER: " + other.gameObject.name);
+        HitboxController hb = other.gameObject.GetComponent<HitboxController>();
+        if (hb != null && hb.Who != null)
+        {
+            Debug.Log("COLL: " + hb.Who);
+            TakeEvent(God.E(EventTypes.OnCollide).Set(hb.Who));
+            //Only one because they'll call their own version
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        ThingController tc = other.gameObject.GetComponent<ThingController>();
+        if (tc != null)
+        {
+            TakeEvent(God.E(EventTypes.OnCollide).Set(tc));
+            //Only one because they'll call their own version
+        }
+    }
 }

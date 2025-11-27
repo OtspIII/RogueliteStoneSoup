@@ -9,9 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4270600118909859040}
+  - component: {fileID: 1608029146865540862}
   - component: {fileID: 3636212317097818924}
   - component: {fileID: 3286446092776406688}
-  - component: {fileID: 8725534831781302867}
+  - component: {fileID: 3447270778190227526}
   m_Layer: 8
   m_Name: Exit
   m_TagString: Untagged
@@ -34,6 +35,24 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1608029146865540862
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 974504827503308908}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7592ba79f0fb1544897a50122dda69a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Anim: {fileID: 0}
+  Weapon: {fileID: 0}
+  Who: {fileID: 0}
+  Hitbox: {fileID: 3447270778190227526}
+  Size: 1
+  SR: {fileID: 3636212317097818924}
 --- !u!212 &3636212317097818924
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -135,7 +154,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &8725534831781302867
+--- !u!114 &3447270778190227526
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -144,6 +163,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 974504827503308908}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7e8e67ab7330d44aa9b5cce586ffec2, type: 3}
+  m_Script: {fileID: 11500000, guid: eaed01afd264d7548bf8a78d42be0f4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Who: {fileID: 0}
+  Coll: {fileID: 3286446092776406688}

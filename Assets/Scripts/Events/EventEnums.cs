@@ -14,11 +14,15 @@ public enum EventTypes{
     Death=1003,
     Knockback=1004,
     
+    //Common Actions
+    OnCollide=2001,
+    
     //Questions
     ShownHP=9001,
     GetCurrentAction=9002,
     GetDefaultAction=9003,
     GetDefaultAttack=9004,
+    IsPlayer=9005,
 }
 
 public enum NumInfo

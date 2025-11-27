@@ -9,12 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d79d4debeea8f94883e047a6ec0197a, type: 3}
+  m_Script: {fileID: 11500000, guid: 037523bd7ae983240ad1b7cc3ff106cd, type: 3}
   m_Name: Exit
   m_EditorClassIdentifier: 
   Name: Exit
-  Body: 
+  Body: {fileID: 1608029146865540862, guid: 75a51210b330b7445839dd85d12d2ddd, type: 3}
   Art: 
   Tags: 05000000
-  Trait: []
-  Prefab: {fileID: 974504827503308908, guid: 877e7e521441b754980dec42e9e32f90, type: 3}
+  Trait:
+  - Trait: 7
+    Numbers: []

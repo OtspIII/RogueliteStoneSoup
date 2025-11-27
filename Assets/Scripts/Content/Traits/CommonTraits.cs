@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 
 public class HealthTrait : Trait
@@ -65,6 +66,7 @@ public class PlayerTrait : Trait
         Type = Traits.Player;
         TakeListen.Add(EventTypes.Setup);
         TakeListen.Add(EventTypes.Update);
+        TakeListen.Add(EventTypes.IsPlayer);
     }
 
     public override void TakeEvent(TraitInfo i, EventInfo e)
@@ -80,7 +82,6 @@ public class PlayerTrait : Trait
             }
             case EventTypes.Update:
             {
-             
                 Vector2 vel = Vector2.zero;
                 if (Input.GetKey(KeyCode.D)) vel.x = 1;
                 if (Input.GetKey(KeyCode.A)) vel.x = -1;
@@ -92,6 +93,12 @@ public class PlayerTrait : Trait
                     i.Who.DoAction(Actions.DefaultAttack);
         
                 if(i.Who.ActorTrait.Action.CanRotate) i.Who.LookAt(God.Cam.Cam.ScreenToWorldPoint(Input.mousePosition),0.1f);
+                break;
+            }
+            case EventTypes.IsPlayer:
+            {
+                Debug.Log("ASKED IF PLAYER");
+                i.Set(BoolInfo.Default,true);
                 break;
             }
         }
@@ -147,6 +154,34 @@ public class ProjectileTrait : Trait
     {
         switch (e.Type)
         {
+            default: return;
+        }
+    }
+}
+
+public class ExitTrait : Trait
+{
+    public ExitTrait()
+    {
+        Type = Traits.Exit;
+        TakeListen.Add(EventTypes.OnCollide);
+    }
+
+    public override void TakeEvent(TraitInfo i, EventInfo e)
+    {
+        switch (e.Type)
+        {
+            case EventTypes.OnCollide:
+            {
+                ThingController t = e.GetActor();
+                Debug.Log("COLLIDE: " + t + " / " + t.Ask(EventTypes.IsPlayer).GetBool());
+                if (t.Ask(EventTypes.IsPlayer).GetBool())
+                {
+                    SceneManager.LoadScene("YouWin");
+                }
+
+                return;
+            }
             default: return;
         }
     }

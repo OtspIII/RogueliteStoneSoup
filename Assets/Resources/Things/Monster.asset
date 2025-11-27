@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: Monster
   m_EditorClassIdentifier: Assembly-CSharp::CharacterOption
   Name: Sword Monster
-  Body: Humanoid
+  Body: {fileID: 629948465317790645, guid: acf0e760b28c7b046ad7d511fb87a1d3, type: 3}
   Art: 
   Tags: 02000000
   Trait: []
   HP: 2
+  Speed: 4
   Weapon: Axe

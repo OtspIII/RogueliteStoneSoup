@@ -15,7 +15,7 @@ public class HitboxController : MonoBehaviour
     public void SetPlayer(bool isPlayer=true)
     {
         if(isPlayer) gameObject.layer = LayerMask.NameToLayer("PHitbox");
-        else gameObject.layer = LayerMask.NameToLayer("MHitbox");
+        else if(!Coll.isTrigger) gameObject.layer = LayerMask.NameToLayer("MHitbox");
     }
 
 }

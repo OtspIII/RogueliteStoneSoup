@@ -35,6 +35,7 @@ public static class TraitManager
         TraitDict.Add(Traits.Fighter,new FighterTrait());
         TraitDict.Add(Traits.Weapon,new WeaponTrait());
         TraitDict.Add(Traits.Projectile,new ProjectileTrait());
+        TraitDict.Add(Traits.Exit,new ExitTrait());
     }
     
     public static Trait Get(Traits t)
@@ -100,4 +101,5 @@ public enum Traits
     Fighter=4,
     Weapon=5,
     Projectile=6,
+    Exit=7,
 }

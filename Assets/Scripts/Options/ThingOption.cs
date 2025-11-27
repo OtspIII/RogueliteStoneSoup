@@ -5,7 +5,7 @@ using UnityEngine;
 public class ThingOption : ScriptableObject
 {
     public string Name;
-    public string Body;
+    public BodyController Body;
     public string Art;
     public List<GameTags> Tags;
     public List<TraitBuilder> Trait;
@@ -30,9 +30,10 @@ public class ThingOption : ScriptableObject
         ThingController r = Instantiate(God.Library.ActorPrefab, pos, Quaternion.Euler(0, 0, rot));
         Imprint(r);
         r.TakeEvent(EventTypes.Setup);
-        r.Body = Instantiate(God.Library.GetBody(Body), r.transform);
+        r.Body = Instantiate(Body, r.transform);
         r.Body.Setup(r,Art);
-        r.Body.Anim.Rebind();
+        if(r.Body.Anim != null)
+            r.Body.Anim.Rebind();
         return r;
     }
 
