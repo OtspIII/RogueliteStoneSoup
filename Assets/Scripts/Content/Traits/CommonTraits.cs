@@ -52,7 +52,7 @@ public class HealthTrait : Trait
             }
             case EventTypes.Death:
             {
-                GameObject.Destroy(i.Who.gameObject);
+                GameObject.Destroy(i.Who.Thing.gameObject);
                 break;
             }
         }
@@ -71,13 +71,15 @@ public class PlayerTrait : Trait
 
     public override void TakeEvent(TraitInfo i, EventInfo e)
     {
+        // Debug.Log("TAKE EVENT PLAYER: " + i.Type);
         switch (e.Type)
         {
             case EventTypes.Setup:
             {
+                // Debug.Log("SETUP PLAYER");
                 God.Player = i.Who;
                 i.Set(EnumInfo.DefaultAction, (int)Actions.Idle);
-                God.Cam.Target = i.Who.gameObject;
+                God.Cam.Target = i.Who.Thing.gameObject;
                 break;
             }
             case EventTypes.Update:
@@ -90,9 +92,9 @@ public class PlayerTrait : Trait
                 i.Who.DesiredMove = vel;
         
                 if(Input.GetKey(KeyCode.Mouse0))
-                    i.Who.DoAction(Actions.DefaultAttack);
+                    i.Who.Thing.DoAction(Actions.DefaultAttack);
         
-                if(i.Who.ActorTrait.Action.CanRotate) i.Who.LookAt(God.Cam.Cam.ScreenToWorldPoint(Input.mousePosition),0.1f);
+                if(i.Who.ActorTrait.Action.CanRotate) i.Who.Thing.LookAt(God.Cam.Cam.ScreenToWorldPoint(Input.mousePosition),0.1f);
                 break;
             }
             case EventTypes.IsPlayer:
@@ -121,11 +123,11 @@ public class FighterTrait : Trait
     }
 }
 
-public class WeaponTrait : Trait
+public class HoldableTrait : Trait
 {
-    public WeaponTrait()
+    public HoldableTrait()
     {
-        Type = Traits.Weapon;
+        Type = Traits.Holdable;
         TakeListen.Add(EventTypes.GetDefaultAttack);
     }
     
@@ -148,12 +150,21 @@ public class ProjectileTrait : Trait
     public ProjectileTrait()
     {
         Type = Traits.Projectile;
+        TakeListen.Add(EventTypes.Start);
     }
 
     public override void TakeEvent(TraitInfo i, EventInfo e)
     {
         switch (e.Type)
         {
+            case EventTypes.Start:
+            {
+                ThingController who = i.Who.Thing;
+                float spd = i.Get(NumInfo.Speed,10);
+                who.CurrentSpeed = spd;
+                who.RB.linearVelocity = who.transform.up * spd;
+                break;
+            }
             default: return;
         }
     }
@@ -173,7 +184,7 @@ public class ExitTrait : Trait
         {
             case EventTypes.OnCollide:
             {
-                ThingController t = e.GetActor();
+                ThingInfo t = e.GetActor();
                 Debug.Log("COLLIDE: " + t + " / " + t.Ask(EventTypes.IsPlayer).GetBool());
                 if (t.Ask(EventTypes.IsPlayer).GetBool())
                 {
@@ -186,4 +197,3 @@ public class ExitTrait : Trait
         }
     }
 }
-

@@ -36,12 +36,12 @@ public class LevelJSON
 //     public string DefaultAction;
 // }
 
-[System.Serializable]
-public class TraitStats
-{
-    public string Trait;
-    public float Amount;
-}
+// [System.Serializable]
+// public class TraitStats
+// {
+//     public string Trait;
+//     public float Amount;
+// }
 
 [System.Serializable]
 public class WeaponStats
@@ -64,10 +64,10 @@ public class ProjStats
     public float Speed;
 }
 
-[System.Serializable]
-public class RawInfoJSON
-{
-    public float? Amt;
-    public float? Priority;
-    public string Text;
-}
+// [System.Serializable]
+// public class RawInfoJSON
+// {
+//     public float? Amt;
+//     public float? Priority;
+//     public string Text;
+// }

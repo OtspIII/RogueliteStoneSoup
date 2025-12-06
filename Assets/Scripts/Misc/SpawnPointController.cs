@@ -14,7 +14,9 @@ public class SpawnPointController : MonoBehaviour
             Debug.Log(Type);
             return;
         }
-        chosen.Spawn(this);
+
+        ThingInfo i = chosen.Create();
+        i.Spawn(this);
         Destroy(gameObject);
     }
 }

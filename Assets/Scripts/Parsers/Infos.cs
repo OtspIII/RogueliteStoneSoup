@@ -14,16 +14,16 @@ public class Infos
         
     }
     
-    public Infos(RawInfoJSON raw)
-    {
-        if (raw.Amt.HasValue)
-        {
-            FInfo.Add(FloatI.Amt,raw.Amt.Value);
-            IInfo.Add(IntI.Amt,Mathf.FloorToInt(raw.Amt.Value));
-        }
-        if (raw.Priority.HasValue) FInfo.Add(FloatI.Priority,raw.Priority.Value);
-        if(string.IsNullOrEmpty(raw.Text)) SInfo.Add(StringI.Text,raw.Text);
-    }
+    // public Infos(RawInfoJSON raw)
+    // {
+    //     if (raw.Amt.HasValue)
+    //     {
+    //         FInfo.Add(FloatI.Amt,raw.Amt.Value);
+    //         IInfo.Add(IntI.Amt,Mathf.FloorToInt(raw.Amt.Value));
+    //     }
+    //     if (raw.Priority.HasValue) FInfo.Add(FloatI.Priority,raw.Priority.Value);
+    //     if(string.IsNullOrEmpty(raw.Text)) SInfo.Add(StringI.Text,raw.Text);
+    // }
 
     public Infos Add(IntI a, int b) { IInfo.Add(a,b); return this; }
     public Infos Add(FloatI a, float b) { FInfo.Add(a,b); return this; }

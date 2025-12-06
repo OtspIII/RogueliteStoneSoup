@@ -8,11 +8,12 @@ public class CharacterOption : ThingOption
     public float Speed = 5;
     public string Weapon;
 
-    public override void Imprint(ThingController r)
+    public override ThingInfo Create()
     {
-        base.Imprint(r);
+        ThingInfo r = base.Create();
         r.AddTrait(Traits.Actor,God.E().Set(NumInfo.Speed,Speed));
         r.AddTrait(Traits.Health, new EventInfo(HP));
         r.SetWeapon(Weapon);
+        return r;
     }
 }

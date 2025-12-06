@@ -6,7 +6,7 @@ public static class God
 {
     public static GameManager GM;
     public static GameLibrary Library;
-    public static ThingController Player;
+    public static ThingInfo Player;
     public static CameraController Cam;
     public static LevelJSON JSON;
     public static List<Directions> Dirs = new List<Directions>() { Directions.Left,Directions.Up,Directions.Right,Directions.Down };
@@ -18,9 +18,14 @@ public static class God
         return new EventInfo(e);
     }
 
-    public static bool IsPlayer(ThingController who)
+    public static bool IsPlayer(ThingInfo who)
     {
         return Player == who;
+    }
+    
+    public static bool IsPlayer(ThingController who)
+    {
+        return IsPlayer(who.Info);
     }
     
     /// Returns either true or false. The higher the odds param is, the more likely true.

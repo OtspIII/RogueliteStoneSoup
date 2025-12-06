@@ -4,9 +4,9 @@ using UnityEngine;
 public class TraitInfo : EventInfo
 {
     public Traits Trait;
-    public ThingController Who { get { return Get(ActorInfo.Source); }}
+    public ThingInfo Who { get { return Get(ActorInfo.Source); }}
 
-    public TraitInfo(Traits t, ThingController who, EventInfo i)
+    public TraitInfo(Traits t, ThingInfo who, EventInfo i)
     {
         Clone(i);
         Trait = t;
@@ -33,7 +33,7 @@ public static class TraitManager
         TraitDict.Add(Traits.Actor,new ActorTrait());
         TraitDict.Add(Traits.Player,new PlayerTrait());
         TraitDict.Add(Traits.Fighter,new FighterTrait());
-        TraitDict.Add(Traits.Weapon,new WeaponTrait());
+        TraitDict.Add(Traits.Holdable,new HoldableTrait());
         TraitDict.Add(Traits.Projectile,new ProjectileTrait());
         TraitDict.Add(Traits.Exit,new ExitTrait());
     }
@@ -54,6 +54,7 @@ public class Trait
 
     public void Init(TraitInfo i)
     {
+        // Debug.Log("INIT TRAIT: " + Type + " / " + i.Who.Name);
         foreach (EventTypes e in PreListen)
             i.Who.AddListen(e,Type,true);
         foreach (EventTypes e in TakeListen)
@@ -99,7 +100,7 @@ public enum Traits
     Actor=2,
     Player=3,
     Fighter=4,
-    Weapon=5,
+    Holdable=5,
     Projectile=6,
     Exit=7,
 }

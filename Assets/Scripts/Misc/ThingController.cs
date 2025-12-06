@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ThingController : MonoBehaviour
 {
-    public string Name;
+    public string Name {get {return Info.Name;} set { Info.Name = value;}}
     [HideInInspector]
     public Rigidbody2D RB;
     public BodyController Body;
@@ -12,23 +12,27 @@ public class ThingController : MonoBehaviour
     
     public Vector3 StartSpot;
     public string DebugTxt;
-    // public CharacterStats Stats;
-    public TraitInfo CurrentWeapon;
 
-    public TraitInfo ActorTrait;
-    public Dictionary<Traits, TraitInfo> Trait = new Dictionary<Traits, TraitInfo>();
-    public Dictionary<EventTypes, List<Traits>> PreListen = new Dictionary<EventTypes, List<Traits>>();
-    public Dictionary<EventTypes, List<Traits>> TakeListen = new Dictionary<EventTypes, List<Traits>>();
-    public List<EventInfo> EventQueue = new List<EventInfo>();
-    public bool MidEvent = false;
+    public ThingInfo Info;
+    
+    // public CharacterStats Stats;
+    public TraitInfo CurrentWeapon {get {return Info.CurrentWeapon;} set { Info.CurrentWeapon = value;}}
+
+    
+    // public Dictionary<Traits, TraitInfo> Trait {get {return Info.Trait;} set { Info.Trait = value;}}
+    // public Dictionary<EventTypes, List<Traits>> PreListen {get {return Info.PreListen;} set { Info.PreListen = value;}}
+    // public Dictionary<EventTypes, List<Traits>> TakeListen {get {return Info.TakeListen;} set { Info.TakeListen = value;}}
+    // public List<EventInfo> EventQueue {get {return Info.EventQueue;} set { Info.EventQueue = value;}}
+    // public bool MidEvent {get {return Info.MidEvent;} set { Info.MidEvent = value;}}
     
     //May be moved to traits
-    public ThingController Target;
-    public float AttackRange = 1.5f;
-    public float VisionRange = 4;
-    public float CurrentSpeed; //Set by traits so you don't need to recalc constantly
-    public Vector2 DesiredMove;
-    public Vector2 Knockback;
+    public ThingController Target {get {return Info.Target != null ? Info.Target.Thing : null;} set { Info.Target = (value == null ? null : value.Info);}}
+    public TraitInfo ActorTrait {get {return Info.ActorTrait;} set { Info.ActorTrait = value;}}
+    public float AttackRange {get {return Info.AttackRange;} set { Info.AttackRange = value;}}
+    public float VisionRange  {get {return Info.VisionRange;} set { Info.VisionRange = value;}}
+    public float CurrentSpeed {get {return Info.CurrentSpeed;} set { Info.CurrentSpeed = value;}}
+    public Vector2 DesiredMove {get {return Info.DesiredMove;} set { Info.DesiredMove = value;}}
+    public Vector2 Knockback {get {return Info.Knockback;} set { Info.Knockback = value;}}
     
     public void Awake()
     {
@@ -44,7 +48,6 @@ public class ThingController : MonoBehaviour
     public void Start()
     {
         TakeEvent(EventTypes.Start);
-        OnStart();
     }
 
     public virtual void OnStart()
@@ -53,13 +56,14 @@ public class ThingController : MonoBehaviour
 
     public void Update()
     {
-        OnUpdate();
-    }
-
-    public virtual void OnUpdate()
-    {
+        if (Info.MidEvent)
+        {
+            Debug.Log("Thing Got Stuck Mid-Action: " + Name);
+            Info.MidEvent = false;
+        }
         TakeEvent(EventTypes.Update);
     }
+
     
     private void FixedUpdate()
     {
@@ -71,42 +75,18 @@ public class ThingController : MonoBehaviour
         }
     }
     
-    public void SetWeapon(string w)
-    {
-        ThingSeed weap = ThingBuilder.Things[w];
-        CurrentWeapon = new TraitInfo(Traits.Weapon,null,weap.Traits[Traits.Weapon]);//God.Library.GetWeapon(stats.Weapon);
-        CurrentWeapon.Seed = weap;
-    }
     
-    public TraitInfo AddTrait(Traits t,EventInfo i=null)
-    {
-        TraitInfo r = Get(t);
-        if (r != null)
-        {
-            r.ReUp(i);
-        }
-        else
-        {
-            r = new TraitInfo(t, this, i);
-            Trait.Add(t,r);
-            // if(init) 
-            r.Init();
-        }
-        return r;
-    }
+    // public TraitInfo AddTrait(Traits t,EventInfo i=null)
+    // {
+    //     return Info.AddTrait(t, i);
+    // }
+    //
+    // public TraitInfo Get(Traits t)
+    // {
+    //     return Info.Get(t);
+    // }
 
-    public TraitInfo Get(Traits t)
-    {
-        if (Trait.TryGetValue(t, out TraitInfo r)) return r;
-        return null;
-    }
-
-    public void AddListen(EventTypes e, Traits t,bool pre = false)
-    {
-        Dictionary<EventTypes, List<Traits>> d = pre ? PreListen : TakeListen;
-        if(!d.ContainsKey(e)) d.Add(e,new List<Traits>());
-        if(!d[e].Contains(t)) d[e].Add(t);
-    }
+    
 
     public void TakeEvent(EventTypes e)
     {
@@ -115,39 +95,13 @@ public class ThingController : MonoBehaviour
 
     public EventInfo Ask(EventTypes e)
     {
-        EventInfo r = God.E(e);
-        TakeEvent(r,true);
-        return r;
+        return Info.Ask(e);
     }
     
     public void TakeEvent(EventInfo e,bool instant=false,int safety=999)
     {
-        safety--;
-        if (safety <= 0)
-        {
-            Debug.Log("INFINITE EVENT LOOP: " + e);
-            return;
-        }
-        if (MidEvent && !instant)
-        {
-            EventQueue.Add(e);
-            return;
-        }
-        MidEvent = true;
-        PreListen.TryGetValue(e.Type, out List<Traits> pre);
-        if(pre != null) foreach (Traits t in pre) Get(t).PreEvent(e);
-
-        if (e.Abort) return;
-        
-        TakeListen.TryGetValue(e.Type, out List<Traits> take);
-        if(take != null) foreach (Traits t in take) Get(t).TakeEvent(e);
-        MidEvent = false;
-        if (EventQueue.Count > 0)
-        {
-            EventInfo next = EventQueue[0];
-            EventQueue.RemoveAt(0);
-            TakeEvent(next,false,safety);
-        }
+        // Debug.Log("TAKE EVENT A: " + e.Type);
+        Info.TakeEvent(e,instant,safety);
     }
     
     public void MoveTowards(ThingController targ,float thresh=0)

@@ -100,7 +100,7 @@ public class ActorTrait : Trait
             EventInfo e =TraitManager.Get(t.Who.CurrentWeapon.Trait).Ask(t.Who.CurrentWeapon, EventTypes.GetDefaultAttack);
             a = e.Get<Actions>(EnumInfo.DefaultAction);
         }
-        ActionScript act = ActionParser.GetAction(a == Actions.None ? defaultAct : a,t.Who);
+        ActionScript act = ActionParser.GetAction(a == Actions.None ? defaultAct : a,t.Who.Thing);
         DoAction(t,act,i);
     }
 }

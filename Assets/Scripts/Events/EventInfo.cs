@@ -12,7 +12,7 @@ public class EventInfo
     public Dictionary<StrInfo, string> Texts = new Dictionary<StrInfo, string>();
     public Dictionary<EnumInfo, int> Enums = new Dictionary<EnumInfo, int>();
     public List<BoolInfo> Bools = new List<BoolInfo>();
-    public Dictionary<ActorInfo, ThingController> Actors = new Dictionary<ActorInfo, ThingController>();
+    public Dictionary<ActorInfo, ThingInfo> Actors = new Dictionary<ActorInfo, ThingInfo>();
     public Dictionary<VectorInfo, Vector2> Vectors = new Dictionary<VectorInfo, Vector2>();
     public ActionScript Action;
     public ThingSeed Seed;
@@ -169,26 +169,26 @@ public class EventInfo
     }
     
     //Actor
-    public EventInfo Set(ThingController a)
+    public EventInfo Set(ThingInfo a)
     {
         return SetActor(ActorInfo.Target, a);
     }
-    public EventInfo Set(ActorInfo i, ThingController a)
+    public EventInfo Set(ActorInfo i, ThingInfo a)
     {
         return SetActor(i, a);
     }
-    public EventInfo SetActor(ActorInfo i, ThingController a)
+    public EventInfo SetActor(ActorInfo i, ThingInfo a)
     {
         if (!Actors.TryAdd(i,a)) Actors[i]=a;
         return this;
     }
-    public ThingController Get(ActorInfo i)
+    public ThingInfo Get(ActorInfo i)
     {
         return GetActor(i);
     }
-    public ThingController GetActor(ActorInfo i=ActorInfo.Target)
+    public ThingInfo GetActor(ActorInfo i=ActorInfo.Target)
     {
-        if (Actors.TryGetValue(i, out ThingController r)) return r;
+        if (Actors.TryGetValue(i, out ThingInfo r)) return r;
         return null;
     }
     
