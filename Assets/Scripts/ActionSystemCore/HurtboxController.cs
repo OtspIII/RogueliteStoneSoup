@@ -6,6 +6,7 @@ using UnityEngine;
 public class HurtboxController : MonoBehaviour
 {
     public ThingController Who;
+    public Collider2D Coll;
     
     void Awake()
     {

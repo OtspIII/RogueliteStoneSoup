@@ -28,8 +28,8 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        EventInfo e = God.E(EventTypes.ShownHP);
-        God.Player.TakeEvent(e);
+        EventInfo e = God.Player.Ask(EventTypes.ShownHP);//God.E(EventTypes.ShownHP);
+        // God.Player.TakeEvent(e);
         if (God.Player != null) HealthTxt.text = "Health: " + e.Get(NumInfo.Amount);
         else HealthTxt.text = "GAME OVER";
     }

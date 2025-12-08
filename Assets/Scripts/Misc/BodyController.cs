@@ -3,21 +3,23 @@ using UnityEngine;
 public class BodyController : MonoBehaviour
 {
     public Animator Anim;
-    public WeaponController Weapon;
+    public BodyController Weapon;
     public ThingController Who;
     public HitboxController Hitbox;
+    public HurtboxController Hurtbox;
     public float Size = 1;
     public SpriteRenderer SR;
 
-    public void Setup(ThingController who,string art="")
+    public void Setup(ThingController who,string art="",bool weapon=false)
     {
         Who = who;
         transform.localPosition = new Vector3(0, 0, 0);
         transform.localScale = new Vector3(Size,Size,1);
-        if (who.CurrentWeapon != null)
+        if (!weapon && who.CurrentWeapon != null)
         {
-            Weapon = Instantiate(God.Library.GetWeaponPrefab(who.CurrentWeapon.Seed.Body), transform);
-            Weapon.Setup(Who);
+            Weapon = Instantiate(God.Library.WeaponBody, transform);
+            // Weapon = Instantiate(God.Library.GetWeaponPrefab(who.CurrentWeapon.Seed.Body), transform);
+            Weapon.Setup(Who,"",true);
         }
         if (God.IsPlayer(Who)) Hitbox.SetPlayer(true);
         if(art != "")
@@ -32,5 +34,10 @@ public class BodyController : MonoBehaviour
     public void SetHitbox(bool tf)
     {
         Hitbox.Coll.enabled = tf;
+    }
+    
+    public void SetHurtbox(bool tf)
+    {
+        Hurtbox.Coll.enabled = tf;
     }
 }

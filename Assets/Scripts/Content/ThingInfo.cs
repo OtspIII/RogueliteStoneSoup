@@ -94,9 +94,17 @@ public class ThingInfo
     
     public void SetWeapon(string w)
     {
-        ThingSeed weap = ThingBuilder.Things[w];
-        CurrentWeapon = new TraitInfo(Traits.Holdable,null,weap.Traits[Traits.Holdable]);//God.Library.GetWeapon(stats.Weapon);
-        CurrentWeapon.Seed = weap;
+        ThingInfo weap = God.Library.GetWeapon(w);//ThingBuilder.Things[w]);
+        TraitInfo i = weap.Get(Traits.Holdable);
+        SetWeapon(weap);
+        // CurrentWeapon = new TraitInfo(Traits.Holdable,null,weap.Traits[Traits.Holdable]);//God.Library.GetWeapon(stats.Weapon);
+        // CurrentWeapon.Seed = weap;
+    }
+
+    public void SetWeapon(ThingInfo w)
+    {
+        TraitInfo i = w.Get(Traits.Holdable);
+        CurrentWeapon = i;
     }
     
     public void TakeEvent(EventTypes e)

@@ -240,7 +240,7 @@ public class ThingController : MonoBehaviour
     
     public virtual ActionScript DefaultAttackAction()
     {
-        return GetAction(Body.Weapon.DefaultAttack);
+        return new SwingAction(this); //GetAction(Body.Weapon.DefaultAttack);
     }
 
     public virtual ActionScript GetAction(Actions a)

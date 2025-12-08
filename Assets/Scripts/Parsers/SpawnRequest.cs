@@ -27,4 +27,12 @@ public class SpawnRequest
         }
         return w;
     }
+
+    public override string ToString()
+    {
+        string r = "";
+        foreach (GameTags t in Mandatory) r += t.ToString().ToUpper()+",";
+        foreach (GameTags t in Any) r += t.ToString().ToLower()+",";
+        return "SPAWN REQUEST[" + r + "]";
+    }
 }

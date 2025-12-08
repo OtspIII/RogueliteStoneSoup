@@ -8,6 +8,7 @@ public class GameLibrary : MonoBehaviour
     public ThingController ActorPrefab;
     // public BodyController HumanoidBodyPrefab;
     // public BodyController LungerBodyPrefab;
+    public BodyController WeaponBody;
     public WeaponController SwordPrefab;
     public WeaponController TramplePrefab;
     public ProjectileController ProjectilePrefab;
@@ -73,15 +74,18 @@ public class GameLibrary : MonoBehaviour
     //     return HumanoidBodyPrefab;
     // }
 
-    public WeaponStats GetWeapon(string which)
+    public ThingInfo GetWeapon(string which)
     {
-        Weapons.TryGetValue(which, out WeaponStats r);
-        if (r == null)
-        {
-            Debug.Log("COULD NOT FIND WEAPON: " + which);
-            return null;
-        }
+        ThingInfo r = new ThingInfo();
+        r.AddTrait(Traits.Holdable);
         return r;
+        // Weapons.TryGetValue(which, out WeaponStats r);
+        // if (r == null)
+        // {
+        //     Debug.Log("COULD NOT FIND WEAPON: " + which);
+        //     return null;
+        // }
+        // return r;
     }
     
     public WeaponController GetWeaponPrefab(string which)
