@@ -91,9 +91,10 @@ public class AttackAction : ActionScript
         base.HitBegin(hit, box);
         if (AlreadyHit.Contains(hit)) return;
         AlreadyHit.Add(hit);
+        // Debug.Log("TAKE DAMAGE: " + hit.gameObject);
         hit.TakeEvent(new EventInfo(EventTypes.Damage).Set(NumInfo.Amount,GetDamage()));
         // hit.TakeDamage(GetDamage());
-        hit.DoAction(Actions.Stun,new Infos().Add(FloatI.Amt,0.5f).Add(FloatI.Priority,3));
+        hit.DoAction(Actions.Stun,new Infos().Add(FloatI.Amt,10.5f).Add(FloatI.Priority,3));
         hit.TakeKnockback(Who.transform.position,Knockback);
     }
 }

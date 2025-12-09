@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LevelBuilder
 {
-    public Vector2Int Size = new Vector2Int(1, 2);
+    public Vector2Int Size = new Vector2Int(3, 3);
     public Dictionary<int, Dictionary<int, GeoTile>> GeoMap = new Dictionary<int, Dictionary<int, GeoTile>>();
     public List<GeoTile> AllGeo = new List<GeoTile>();
     public float LinkOdds = 0.1f;

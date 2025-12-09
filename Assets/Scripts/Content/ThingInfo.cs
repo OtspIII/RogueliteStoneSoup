@@ -43,7 +43,19 @@ public class ThingInfo
         return Spawn(pos, 0);
     }
     
-    
+    public virtual ThingController Spawn(Vector3 pos, float rot)
+    {
+        Thing = GameObject.Instantiate(God.Library.ActorPrefab, pos, Quaternion.Euler(0, 0, rot));
+        Thing.Info = this;
+        Thing.gameObject.name = Name;
+        // Debug.Log("SPAWN: " + Name);
+        Thing.TakeEvent(EventTypes.Setup);
+        Thing.Body = GameObject.Instantiate(Type.Body, Thing.transform);
+        Thing.Body.Setup(Thing,Type.Art);
+        if(Thing.Body.Anim != null)
+            Thing.Body.Anim.Rebind();
+        return Thing;
+    }
     
     public TraitInfo AddTrait(Traits t,EventInfo i=null)
     {
@@ -75,18 +87,6 @@ public class ThingInfo
         return Trait.ContainsKey(t);
     }
     
-    public virtual ThingController Spawn(Vector3 pos, float rot)
-    {
-        Thing = GameObject.Instantiate(God.Library.ActorPrefab, pos, Quaternion.Euler(0, 0, rot));
-        Thing.Info = this;
-        // Debug.Log("SPAWN: " + Name);
-        Thing.TakeEvent(EventTypes.Setup);
-        Thing.Body = GameObject.Instantiate(Type.Body, Thing.transform);
-        Thing.Body.Setup(Thing,Type.Art);
-        if(Thing.Body.Anim != null)
-            Thing.Body.Anim.Rebind();
-        return Thing;
-    }
     
     public void AddListen(EventTypes e, Traits t,bool pre = false)
     {
@@ -101,7 +101,6 @@ public class ThingInfo
     {
         ThingInfo weap = God.Library.GetWeapon(w);//ThingBuilder.Things[w]);
         TraitInfo i = weap.Get(Traits.Holdable);
-        i.Set(EnumInfo.DefaultAction, (int)Actions.Swing);
         SetWeapon(weap);
         // CurrentWeapon = new TraitInfo(Traits.Holdable,null,weap.Traits[Traits.Holdable]);//God.Library.GetWeapon(stats.Weapon);
         // CurrentWeapon.Seed = weap;

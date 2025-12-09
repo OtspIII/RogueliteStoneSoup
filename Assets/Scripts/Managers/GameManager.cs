@@ -6,7 +6,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public LevelBuilder Level;
-    public Transform LevelHolder;
+    [HideInInspector] public Transform LevelHolder;
     public List<SpawnPointController> SpawnPoints;
     public TextAsset JSON;
     public TextMeshProUGUI HealthTxt;

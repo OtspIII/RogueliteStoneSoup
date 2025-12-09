@@ -77,7 +77,8 @@ public class GameLibrary : MonoBehaviour
     public ThingInfo GetWeapon(string which)
     {
         ThingInfo r = new ThingInfo();
-        r.AddTrait(Traits.Holdable);
+        EventInfo i = new EventInfo(1).Set(EnumInfo.DefaultAction, (int)Actions.Swing);
+        r.AddTrait(Traits.Holdable,i);
         return r;
         // Weapons.TryGetValue(which, out WeaponStats r);
         // if (r == null)

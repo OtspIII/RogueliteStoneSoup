@@ -33,7 +33,7 @@ public class HealthTrait : Trait
             }
             case EventTypes.Damage:
             {
-                // Debug.Log("Damage: " + i.Get(NumInfo.Amount) + " / " + e.Get(NumInfo.Amount));
+                Debug.Log("Damage: " + i.Get(NumInfo.Amount) + " / " + e.Get(NumInfo.Amount));
                 float hp = i.Change(-e.GetN());
                 if (hp <= 0)
                 {
