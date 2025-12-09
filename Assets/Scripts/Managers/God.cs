@@ -18,15 +18,6 @@ public static class God
         return new EventInfo(e);
     }
 
-    public static bool IsPlayer(ThingInfo who)
-    {
-        return Player == who;
-    }
-    
-    public static bool IsPlayer(ThingController who)
-    {
-        return IsPlayer(who.Info);
-    }
     
     /// Returns either true or false. The higher the odds param is, the more likely true.
     public static bool CoinFlip(float odds=0.5f)

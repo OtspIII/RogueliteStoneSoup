@@ -12,7 +12,7 @@ public class ProjectileController : MonoBehaviour
         Source = source;
         Stats = stat;
         RB.linearVelocity = transform.up * Stats.Speed;
-        SetPlayer(God.IsPlayer(Source));
+        SetPlayer(Source.Info.Has(Traits.Player));
     }
 
     private void OnCollisionEnter2D(Collision2D other)

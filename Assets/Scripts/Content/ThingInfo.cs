@@ -69,6 +69,11 @@ public class ThingInfo
         if (Trait.TryGetValue(t, out TraitInfo r)) return r;
         return null;
     }
+
+    public bool Has(Traits t)
+    {
+        return Trait.ContainsKey(t);
+    }
     
     public virtual ThingController Spawn(Vector3 pos, float rot)
     {
@@ -96,6 +101,7 @@ public class ThingInfo
     {
         ThingInfo weap = God.Library.GetWeapon(w);//ThingBuilder.Things[w]);
         TraitInfo i = weap.Get(Traits.Holdable);
+        i.Set(EnumInfo.DefaultAction, (int)Actions.Swing);
         SetWeapon(weap);
         // CurrentWeapon = new TraitInfo(Traits.Holdable,null,weap.Traits[Traits.Holdable]);//God.Library.GetWeapon(stats.Weapon);
         // CurrentWeapon.Seed = weap;

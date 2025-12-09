@@ -212,10 +212,12 @@ public class ThingController : MonoBehaviour
         return Mathf.Abs(Mathf.DeltaAngle(tdir, rot)) < thresh;
     }
 
-    public virtual void PlayAnim(string anim)
+    public virtual float PlayAnim(string anim)
     {
-        Body.Anim.Play(anim);
-        // if(Body.Weapon?.Anim != null) Body.Weapon.Anim.Play(anim);
+        float r = 0;
+        r = Math.Max(r,Body.PlayAnim(anim));
+        if(Body.Weapon?.Anim != null) r = Math.Max(r,Body.Weapon.PlayAnim(anim));
+        return r;
     }
     
     public void SetPhase(int n)

@@ -59,10 +59,10 @@ public class ActionScript
         Coro = Who.StartCoroutine(Script());
         if (Anim != "")
         {
-            Who.PlayAnim(Anim);
-            foreach(AnimationClip c in Who.Body.Anim.runtimeAnimatorController.animationClips)
-                if (c.name == Anim)
-                    Duration = c.length * Who.Body.Anim.speed;
+            Duration = Who.PlayAnim(Anim);
+            // foreach(AnimationClip c in Who.Body.Anim.runtimeAnimatorController.animationClips)
+            //     if (c.name == Anim)
+            //         Duration = c.length * Who.Body.Anim.speed;
             
         }
         else

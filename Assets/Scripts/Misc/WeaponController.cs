@@ -19,7 +19,7 @@ public class WeaponController : MonoBehaviour
         gameObject.name = "Weapon";
         transform.localPosition = new Vector3(0, 0, 0);
         transform.localScale = new Vector3(Size,Size,1);
-        if (God.IsPlayer(Who)) Hurtbox.SetPlayer(true);
+        if (Who.Info.Has(Traits.Player)) Hurtbox.SetPlayer(true);
         Imprint(Who.CurrentWeapon);
     }
     
