@@ -97,9 +97,10 @@ public class ThingInfo
     }
     
     
-    public void SetWeapon(string w)
+    public void SetWeapon(HoldableOption w)
     {
-        ThingInfo weap = God.Library.GetWeapon(w);//ThingBuilder.Things[w]);
+        ThingInfo weap = w.Create();
+        // ThingInfo weap = God.Library.GetWeapon(w);//ThingBuilder.Things[w]);
         TraitInfo i = weap.Get(Traits.Holdable);
         SetWeapon(weap);
         // CurrentWeapon = new TraitInfo(Traits.Holdable,null,weap.Traits[Traits.Holdable]);//God.Library.GetWeapon(stats.Weapon);
@@ -109,6 +110,7 @@ public class ThingInfo
     public void SetWeapon(ThingInfo w)
     {
         TraitInfo i = w.Get(Traits.Holdable);
+        // Debug.Log("SET WEAPON: " + Name + " / " + w.Name + " / " + i);
         CurrentWeapon = i;
     }
     

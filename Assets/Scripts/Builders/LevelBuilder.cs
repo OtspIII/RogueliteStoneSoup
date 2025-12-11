@@ -37,7 +37,7 @@ public class LevelBuilder
                 PlayerSpawn.SetPath(GeoTile.GeoTileTypes.PlayerStart);
             }
 
-            Debug.Log("Y: " + y + " / X:" + start+"->"+end);
+            God.Log("Y: " + y + " / X:" + start+"->"+end);
             while(x != end)
             {
                 int old = x;
@@ -146,7 +146,7 @@ public class LevelBuilder
                 pend.Add(n);
             }
         }
-        Debug.Log("FLOATERS: " + unc.Count);
+        God.Log("FLOATERS: " + unc.Count);
         return unc;
     }
 

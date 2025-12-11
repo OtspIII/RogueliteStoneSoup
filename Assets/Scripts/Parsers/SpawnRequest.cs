@@ -7,6 +7,14 @@ public class SpawnRequest
     public List<GameTags> Mandatory = new List<GameTags>();
     public List<GameTags> Any = new List<GameTags>();
 
+    public SpawnRequest(params GameTags[] tags)
+    {
+        foreach (GameTags t in tags)
+        {
+            Mandatory.Add(t);
+        }
+    }
+    
     public float Judge(ThingOption o, LevelBuilder b=null)
     {
         float w = 1; //Should actually be calculated eventually

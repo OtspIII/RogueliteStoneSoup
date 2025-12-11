@@ -6,7 +6,7 @@ public class CharacterOption : ThingOption
 {
     public int HP;
     public float Speed = 5;
-    public string Weapon;
+    public HoldableOption Weapon;
 
     public override ThingInfo Create()
     {

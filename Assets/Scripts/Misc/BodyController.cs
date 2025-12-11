@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class BodyController : MonoBehaviour
@@ -11,24 +12,42 @@ public class BodyController : MonoBehaviour
     public float Size = 1;
     public SpriteRenderer SR;
     public Dictionary<string,float> Anims = new Dictionary<string, float>();
+    public string DefaultAnim = "Idle";
 
     public void Setup(ThingController who,string art="",bool weapon=false)
     {
         Who = who;
+        // gameObject.name = Who.Info.Name + " Body";
         transform.localPosition = new Vector3(0, 0, 0);
         transform.localScale = new Vector3(Size,Size,1);
         if (!weapon && who.CurrentWeapon != null)
         {
-            Weapon = Instantiate(God.Library.WeaponBody, transform);
+            // ThingOption w = God.Library.GetThing(GameTags.Weapon);
+            ThingOption w = who.CurrentWeapon.Who.Type;
+            Weapon = Instantiate(w.Body, transform);
             // Weapon = Instantiate(God.Library.GetWeaponPrefab(who.CurrentWeapon.Seed.Body), transform);
-            Weapon.Setup(Who,"",true);
+            Weapon.Setup(Who,w.Art,true);
+            Weapon.gameObject.name = w.Name;
         }
-        if(Who.Info.Has(Traits.Player) && Hitbox != null) Hitbox.SetPlayer(true);
+
+        if (Who.Info.Has(Traits.Player) && Hitbox != null)
+        {
+            if(Hitbox != null)
+                Hitbox.SetPlayer(true);
+            if (Hurtbox != null)
+                Hurtbox.SetPlayer(true);
+        }
         if(art != "")
             SR.sprite = God.Library.GetArt(art,SR.sprite);
         if(Anim != null)
             foreach(AnimationClip c in Anim.runtimeAnimatorController.animationClips)
                 Anims.Add(c.name,c.length);
+        if (!Anims.ContainsKey(DefaultAnim) && Anims.Keys.Count > 0)
+            DefaultAnim = Anims.Keys.ToArray()[0];
+        if (Hurtbox != null)
+        {
+            Hurtbox.SetPlayer(Who.Info.Has(Traits.Player));
+        }
     }
 
     public float PlayAnim(string a)
@@ -39,7 +58,7 @@ public class BodyController : MonoBehaviour
             Anim.Play(a);
             return r * Anim.speed;
         }
-        Anim.Play("Idle");
+        Anim.Play(DefaultAnim);
         return 0;
     }
 

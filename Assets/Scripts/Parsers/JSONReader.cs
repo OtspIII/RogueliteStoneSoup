@@ -19,7 +19,7 @@ public class LevelJSON
     public string Author;
     // public CharacterStats Player;
     // public List<CharacterStats> NPCs;
-    public List<WeaponStats> Weapons;
+    // public List<WeaponStats> Weapons;
     public List<ProjStats> Projectiles;
 }
 
@@ -43,16 +43,16 @@ public class LevelJSON
 //     public float Amount;
 // }
 
-[System.Serializable]
-public class WeaponStats
-{
-    public string Name;
-    public float Damage;
-    public string Body;
-    public string DefaultAttack;
-    public string Art;
-    public string Projectile;
-}
+// [System.Serializable]
+// public class WeaponStats
+// {
+//     public string Name;
+//     public float Damage;
+//     public string Body;
+//     public string DefaultAttack;
+//     public string Art;
+//     public string Projectile;
+// }
 
 [System.Serializable]
 public class ProjStats

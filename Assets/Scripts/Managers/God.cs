@@ -4,6 +4,8 @@ using UnityEngine;
 
 public static class God
 {
+    public static bool DebugText = false;
+    
     public static GameManager GM;
     public static GameLibrary Library;
     public static ThingInfo Player;
@@ -13,6 +15,12 @@ public static class God
 
     public static Vector2 RoomSize = new Vector2(10, 10);
 
+    public static void Log(string txt,bool force=false)
+    {
+        if (!DebugText && !force) return;
+        Debug.Log(txt);
+    }
+    
     public static EventInfo E(EventTypes e=EventTypes.TraitInfo)
     {
         return new EventInfo(e);

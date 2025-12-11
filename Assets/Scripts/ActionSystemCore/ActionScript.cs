@@ -66,7 +66,7 @@ public class ActionScript
             
         }
         else
-            Who.PlayAnim(Who.DefaultAnim);
+            Who.PlayAnim();
         ChangePhase(0);
     }
     

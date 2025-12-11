@@ -9,8 +9,8 @@ public class GameLibrary : MonoBehaviour
     // public BodyController HumanoidBodyPrefab;
     // public BodyController LungerBodyPrefab;
     public BodyController WeaponBody;
-    public WeaponController SwordPrefab;
-    public WeaponController TramplePrefab;
+    // public WeaponController SwordPrefab;
+    // public WeaponController TramplePrefab;
     public ProjectileController ProjectilePrefab;
     private List<RoomOption> RoomOptions = new List<RoomOption>();
     private List<ThingOption> ThingOptions = new List<ThingOption>();
@@ -19,7 +19,7 @@ public class GameLibrary : MonoBehaviour
     public Dictionary<string, Sprite> CharacterArt = new Dictionary<string, Sprite>();
     public Dictionary<string, Sprite> WeaponArt = new Dictionary<string, Sprite>();
     public Dictionary<string, Sprite> ProjectileArt = new Dictionary<string, Sprite>();
-    public Dictionary<string, WeaponStats> Weapons = new Dictionary<string, WeaponStats>();
+    // public Dictionary<string, WeaponStats> Weapons = new Dictionary<string, WeaponStats>();
     public Dictionary<string, ProjStats> Projectiles = new Dictionary<string, ProjStats>();
 
     private void Awake()
@@ -51,11 +51,11 @@ public class GameLibrary : MonoBehaviour
 
     public void Setup()
     {
-        foreach (WeaponStats w in God.JSON.Weapons)
-        {
-            Weapons.Add(w.Name,w);
-            // Debug.Log("ADDED: " + w.Name);
-        }
+        // foreach (WeaponStats w in God.JSON.Weapons)
+        // {
+        //     Weapons.Add(w.Name,w);
+        //     // Debug.Log("ADDED: " + w.Name);
+        // }
         foreach (ProjStats w in God.JSON.Projectiles)
         {
             Projectiles.Add(w.Name,w);
@@ -74,42 +74,42 @@ public class GameLibrary : MonoBehaviour
     //     return HumanoidBodyPrefab;
     // }
 
-    public ThingInfo GetWeapon(string which)
-    {
-        ThingInfo r = new ThingInfo();
-        EventInfo i = new EventInfo(1).Set(EnumInfo.DefaultAction, (int)Actions.Swing);
-        r.AddTrait(Traits.Holdable,i);
-        return r;
-        // Weapons.TryGetValue(which, out WeaponStats r);
-        // if (r == null)
-        // {
-        //     Debug.Log("COULD NOT FIND WEAPON: " + which);
-        //     return null;
-        // }
-        // return r;
-    }
+    // public ThingInfo GetWeapon(string which)
+    // {
+    //     ThingInfo r = new ThingInfo();
+    //     EventInfo i = new EventInfo(1).Set(EnumInfo.DefaultAction, (int)Actions.Swing);
+    //     r.AddTrait(Traits.Holdable,i);
+    //     return r;
+    //     // Weapons.TryGetValue(which, out WeaponStats r);
+    //     // if (r == null)
+    //     // {
+    //     //     Debug.Log("COULD NOT FIND WEAPON: " + which);
+    //     //     return null;
+    //     // }
+    //     // return r;
+    // }
     
-    public WeaponController GetWeaponPrefab(string which)
-    {
-        switch (which)
-        {
-            case "Sword": return SwordPrefab;
-            case "Trample": return TramplePrefab;
-        }
-        Debug.Log("INVALID WEAPON NAME: " + which);
-        return SwordPrefab;
-    }
+    // public WeaponController GetWeaponPrefab(string which)
+    // {
+    //     switch (which)
+    //     {
+    //         case "Sword": return SwordPrefab;
+    //         case "Trample": return TramplePrefab;
+    //     }
+    //     Debug.Log("INVALID WEAPON NAME: " + which);
+    //     return SwordPrefab;
+    // }
     
-    public Sprite GetWeaponArt(string which, Sprite backup=null)
-    {
-        if (string.IsNullOrEmpty(which)) return backup;
-        WeaponArt.TryGetValue(which, out Sprite r);
-        if (r != null) return r;
-        Debug.Log("BACKUP WEAPON ART: " + which);
-        if (backup != null) return backup;
-        Debug.Log("INVALID WEAPON NAME: " + which);
-        return null;
-    }
+    // public Sprite GetWeaponArt(string which, Sprite backup=null)
+    // {
+    //     if (string.IsNullOrEmpty(which)) return backup;
+    //     WeaponArt.TryGetValue(which, out Sprite r);
+    //     if (r != null) return r;
+    //     Debug.Log("BACKUP WEAPON ART: " + which);
+    //     if (backup != null) return backup;
+    //     Debug.Log("INVALID WEAPON NAME: " + which);
+    //     return null;
+    // }
     
     public ProjStats GetProjectile(string which)
     {
@@ -169,12 +169,18 @@ public class GameLibrary : MonoBehaviour
         return opts.Random();
     }
 
+    public ThingOption GetThing(params GameTags[] tags)
+    {
+        return GetThing(new SpawnRequest(tags));
+    }
+    
     public ThingOption GetThing(SpawnRequest sr,LevelBuilder b=null)
     {
         List<ThingOption> opts = new List<ThingOption>();
         foreach (ThingOption o in ThingOptions)
         {
             if(sr.Judge(o) > 0) opts.Add(o);
+            // Debug.Log("THING: " + sr.Judge(o) + " / " + o.Name);
         }
 
         if (opts.Count == 0)

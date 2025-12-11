@@ -8,7 +8,6 @@ public class ThingController : MonoBehaviour
     [HideInInspector]
     public Rigidbody2D RB;
     public BodyController Body;
-    public string DefaultAnim = "Idle";
     
     public Vector3 StartSpot;
     public string DebugTxt;
@@ -212,7 +211,7 @@ public class ThingController : MonoBehaviour
         return Mathf.Abs(Mathf.DeltaAngle(tdir, rot)) < thresh;
     }
 
-    public virtual float PlayAnim(string anim)
+    public virtual float PlayAnim(string anim="")
     {
         float r = 0;
         r = Math.Max(r,Body.PlayAnim(anim));

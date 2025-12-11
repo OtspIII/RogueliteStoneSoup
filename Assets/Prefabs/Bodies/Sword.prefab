@@ -83,9 +83,10 @@ MonoBehaviour:
   Weapon: {fileID: 0}
   Who: {fileID: 0}
   Hitbox: {fileID: 0}
-  Hurtbox: {fileID: 0}
+  Hurtbox: {fileID: 7787363287969375468}
   Size: 1
   SR: {fileID: 1376856763321729984}
+  DefaultAnim: Idle
 --- !u!95 &8557504186364581760
 Animator:
   serializedVersion: 7
@@ -265,6 +266,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3963049963042460523, guid: fd4d3051419aee24aac4db8ec6faf43f, type: 3}
   m_PrefabInstance: {fileID: 2486441739780525166}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7787363287969375468 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5662106857641584770, guid: fd4d3051419aee24aac4db8ec6faf43f, type: 3}
+  m_PrefabInstance: {fileID: 2486441739780525166}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3015073ade2675246bfb39968dc25e2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!61 &8163049734376777321 stripped
 BoxCollider2D:
   m_CorrespondingSourceObject: {fileID: 6037471045136247303, guid: fd4d3051419aee24aac4db8ec6faf43f, type: 3}

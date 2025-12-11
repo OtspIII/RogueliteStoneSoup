@@ -97,7 +97,9 @@ public class ActorTrait : Trait
         Actions defaultAct = t.Get<Actions>(EnumInfo.DefaultAction);
         if (a == Actions.DefaultAttack)
         {
-            EventInfo e =TraitManager.Get(t.Who.CurrentWeapon.Trait).Ask(t.Who.CurrentWeapon, EventTypes.GetDefaultAttack);
+            // Debug.Log(t.Who.Name + ": " + t.Who.CurrentWeapon);
+            // Debug.Log(t.Who.CurrentWeapon.Trait);
+            EventInfo e = TraitManager.Get(t.Who.CurrentWeapon.Trait).Ask(t.Who.CurrentWeapon, EventTypes.GetDefaultAttack);
             a = e.Get<Actions>(EnumInfo.DefaultAction);
         }
         ActionScript act = ActionParser.GetAction(a == Actions.None ? defaultAct : a,t.Who.Thing);
