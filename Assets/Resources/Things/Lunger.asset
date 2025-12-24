@@ -19,4 +19,4 @@ MonoBehaviour:
   Trait: []
   HP: 1
   Speed: 5
-  Weapon: Trample
+  Weapon: {fileID: 11400000, guid: 6ea52f9f0d1d35e48b91b53e436681ad, type: 2}

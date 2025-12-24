@@ -19,4 +19,4 @@ MonoBehaviour:
   Trait: []
   HP: 2
   Speed: 4
-  Weapon: Axe
+  Weapon: {fileID: 11400000, guid: d8535ae3107c2184ab8fc49f1318f904, type: 2}

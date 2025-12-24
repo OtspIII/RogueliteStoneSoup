@@ -15,7 +15,7 @@ MonoBehaviour:
   Name: Sword
   Body: {fileID: 629948465317790645, guid: b4fa405680f33044abe2c4567ecf147f, type: 3}
   Art: 
-  Tags: 
+  Tags: 03000000
   Trait: []
   Damage: 1
   DefaultAttack: 101

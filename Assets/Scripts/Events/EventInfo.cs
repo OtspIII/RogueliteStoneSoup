@@ -13,6 +13,7 @@ public class EventInfo
     public Dictionary<EnumInfo, int> Enums = new Dictionary<EnumInfo, int>();
     public List<BoolInfo> Bools = new List<BoolInfo>();
     public Dictionary<ActorInfo, ThingInfo> Actors = new Dictionary<ActorInfo, ThingInfo>();
+    public Dictionary<OptionInfo, ThingOption> Options = new Dictionary<OptionInfo, ThingOption>();
     public Dictionary<VectorInfo, Vector2> Vectors = new Dictionary<VectorInfo, Vector2>();
     public ActionScript Action;
     public ThingSeed Seed;
@@ -40,6 +41,7 @@ public class EventInfo
         foreach(EnumInfo n in i.Enums.Keys) Enums.Add(n,i.Enums[n]);
         foreach(BoolInfo n in i.Bools) Bools.Add(n);
         foreach(ActorInfo n in i.Actors.Keys) Actors.Add(n,i.Actors[n]);
+        foreach(OptionInfo n in i.Options.Keys) Options.Add(n,i.Options[n]);
         foreach(VectorInfo n in i.Vectors.Keys) Vectors.Add(n,i.Vectors[n]);
         Action = i.Action;
         Seed = i.Seed;
@@ -192,6 +194,30 @@ public class EventInfo
         return null;
     }
     
+    //Option
+    public EventInfo Set(ThingOption a)
+    {
+        return SetOption(OptionInfo.Default, a);
+    }
+    public EventInfo Set(OptionInfo i, ThingOption a)
+    {
+        return SetOption(i, a);
+    }
+    public EventInfo SetOption(OptionInfo i, ThingOption a)
+    {
+        if (!Options.TryAdd(i,a)) Options[i]=a;
+        return this;
+    }
+    public ThingOption Get(OptionInfo i)
+    {
+        return GetOption(i);
+    }
+    public ThingOption GetOption(OptionInfo i=OptionInfo.Default)
+    {
+        if (Options.TryGetValue(i, out ThingOption r)) return r;
+        return null;
+    }
+    
     //Vector
     public EventInfo Set(Vector2 a)
     {
@@ -227,5 +253,25 @@ public class EventInfo
         Seed = a;
         return this;
     }
+    
+    public override string ToString()
+    {
+        return "[EVENT:" + Type + "]("+BuildString()+")";
+    }
+
+    public virtual string BuildString()
+    {
+        string r = "";
+        if (Abort) r += "##ABORT##";
+        foreach (NumInfo l in Numbers.Keys) r = God.AddList(r, l+"<"+Numbers[l].ToString()+">");
+        foreach (StrInfo l in Texts.Keys) r = God.AddList(r, l+"<"+Texts[l].ToString()+">");
+        foreach (EnumInfo l in Enums.Keys) r = God.AddList(r, l+"<"+Enums[l].ToString()+">");
+        foreach (BoolInfo l in Bools) r = God.AddList(r, l.ToString());
+        foreach (ActorInfo l in Actors.Keys) r = God.AddList(r, l+"<"+Actors[l].ToString()+">");
+        foreach (OptionInfo l in Options.Keys) r = God.AddList(r,l+"<"+Options[l].ToString()+">");
+        foreach (VectorInfo l in Vectors.Keys) r = God.AddList(r, l+"<"+Vectors[l].ToString()+">");
+        return r;
+    }
+    
     
 }

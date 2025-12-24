@@ -132,19 +132,20 @@ public class ThingController : MonoBehaviour
         DesiredMove = targ - transform.position;
     }
 
-    public ProjectileController Shoot(string p)
+    public ThingController Shoot(GameTags t =GameTags.Projectile)
     {
-        ProjStats stat = God.Library.GetProjectile(p);
+        ThingOption stat = God.Library.GetThing(t);
         return Shoot(stat);
     }
 
-    public ProjectileController Shoot(ProjStats stat)
+    public ThingController Shoot(ThingOption o)
     {
-        ProjectileController pref = God.Library.GetProjectilePrefab();
-        Vector3 rot = Body.Weapon.transform.rotation.eulerAngles;
-        rot.z -= 90; //Eventually add accuracy stat?
-        ProjectileController r = Instantiate(pref, Body.Weapon.transform.position, Quaternion.Euler(rot));
-        r.Setup(this,stat);
+        ThingInfo i = o.Create();
+        float rot = Body.Weapon.transform.rotation.eulerAngles.z - 90;
+        ThingController r = i.Spawn(Body.Weapon.transform.position,rot);
+        // rot.z -= 90; //Eventually add accuracy stat?
+        // ProjectileController r = Instantiate(pref, Body.Weapon.transform.position, Quaternion.Euler(rot));
+        // r.Setup(this,stat);
         return r;
     }
 

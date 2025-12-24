@@ -8,6 +8,8 @@ public class ProjectileOption : ThingOption
     
     public override ThingInfo Create()
     {
-        return base.Create();
+        ThingInfo r = base.Create();
+        r.AddTrait(Traits.Projectile,God.E().Set(NumInfo.Speed,Speed)).Set(NumInfo.Amount,Damage);
+        return r;
     }
 }

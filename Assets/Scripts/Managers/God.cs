@@ -180,6 +180,13 @@ public static class God
         }
         return d;
     }
+
+    public static string AddList(string r, string add)
+    {
+        if (r != "") r += ", ";
+        r += add;
+        return r;
+    }
 }
 
 //For use with GameMaster.Ease()

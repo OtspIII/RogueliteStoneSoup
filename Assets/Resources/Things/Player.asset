@@ -21,4 +21,4 @@ MonoBehaviour:
     Numbers: []
   HP: 3
   Speed: 5
-  Weapon: Sword
+  Weapon: {fileID: 11400000, guid: e91d848f93989604c8a0b61dc1bb5a77, type: 2}

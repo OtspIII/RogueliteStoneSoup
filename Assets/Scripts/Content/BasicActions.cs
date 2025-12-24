@@ -146,7 +146,9 @@ public class ShootAction : AttackAction
     public override void Begin()
     {
         base.Begin();
-        string proj = GetWeapon().GetString();
+        ThingOption proj = GetWeapon().GetOption();
+        Debug.Log(GetWeapon());
+        Debug.Log(proj);
         Who.Shoot(proj);
     }
 }

@@ -18,6 +18,11 @@ public class TraitInfo : EventInfo
     public void ReUp(EventInfo i) { TraitManager.Get(Trait).ReUp(this,i); }
     public void PreEvent(EventInfo e) { TraitManager.Get(Trait).PreEvent(this,e); }
     public void TakeEvent(EventInfo e) { TraitManager.Get(Trait).TakeEvent(this,e); }
+
+    public override string ToString()
+    {
+        return "[TRAIT:" + Trait + "]("+BuildString()+")";
+    }
 }
 
 public static class TraitManager

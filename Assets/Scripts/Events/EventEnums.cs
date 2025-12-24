@@ -63,6 +63,12 @@ public enum ActorInfo
     Source=2,
 }
 
+public enum OptionInfo
+{
+    None=0,
+    Default=1,
+}
+
 public enum VectorInfo
 {
     None=0,

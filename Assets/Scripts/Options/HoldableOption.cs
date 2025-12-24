@@ -6,7 +6,7 @@ public class HoldableOption : ThingOption
 {
     public float Damage;
     public Actions DefaultAttack = Actions.Swing;
-    public ProjectileOption Projectile;
+    public ThingOption Projectile;
 
     // private void OnValidate()
     // {
@@ -17,7 +17,8 @@ public class HoldableOption : ThingOption
     public override ThingInfo Create()
     {
         ThingInfo r = base.Create();
-        r.AddTrait(Traits.Holdable,God.E().Set(EnumInfo.DefaultAction,(int)DefaultAttack).Set(NumInfo.Amount,Damage));
+        TraitInfo h = r.AddTrait(Traits.Holdable,God.E().Set(EnumInfo.DefaultAction,(int)DefaultAttack).Set(NumInfo.Amount,Damage));
+        if (Projectile != null) h.Set(Projectile); 
         return r;
     }
 }
