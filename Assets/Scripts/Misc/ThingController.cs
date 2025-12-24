@@ -16,7 +16,6 @@ public class ThingController : MonoBehaviour
     
     // public CharacterStats Stats;
     public TraitInfo CurrentWeapon {get {return Info.CurrentWeapon;} set { Info.CurrentWeapon = value;}}
-
     
     // public Dictionary<Traits, TraitInfo> Trait {get {return Info.Trait;} set { Info.Trait = value;}}
     // public Dictionary<EventTypes, List<Traits>> PreListen {get {return Info.PreListen;} set { Info.PreListen = value;}}
@@ -141,6 +140,7 @@ public class ThingController : MonoBehaviour
     public ThingController Shoot(ThingOption o)
     {
         ThingInfo i = o.Create();
+        i.ChildOf = Info;
         float rot = Body.Weapon.transform.rotation.eulerAngles.z - 90;
         ThingController r = i.Spawn(Body.Weapon.transform.position,rot);
         // rot.z -= 90; //Eventually add accuracy stat?
@@ -269,5 +269,10 @@ public class ThingController : MonoBehaviour
             TakeEvent(God.E(EventTypes.OnCollide).Set(tc));
             //Only one because they'll call their own version
         }
+    }
+
+    public bool IsPlayer()
+    {
+        return Info.IsPlayer();
     }
 }

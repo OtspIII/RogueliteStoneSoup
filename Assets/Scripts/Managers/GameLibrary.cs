@@ -11,7 +11,7 @@ public class GameLibrary : MonoBehaviour
     public BodyController WeaponBody;
     // public WeaponController SwordPrefab;
     // public WeaponController TramplePrefab;
-    public ProjectileController ProjectilePrefab;
+    // public ProjectileController ProjectilePrefab;
     private List<RoomOption> RoomOptions = new List<RoomOption>();
     private List<ThingOption> ThingOptions = new List<ThingOption>();
     // public ExitController ExitPrefab;
@@ -20,7 +20,7 @@ public class GameLibrary : MonoBehaviour
     public Dictionary<string, Sprite> WeaponArt = new Dictionary<string, Sprite>();
     public Dictionary<string, Sprite> ProjectileArt = new Dictionary<string, Sprite>();
     // public Dictionary<string, WeaponStats> Weapons = new Dictionary<string, WeaponStats>();
-    public Dictionary<string, ProjStats> Projectiles = new Dictionary<string, ProjStats>();
+    // public Dictionary<string, ProjStats> Projectiles = new Dictionary<string, ProjStats>();
 
     private void Awake()
     {
@@ -56,11 +56,11 @@ public class GameLibrary : MonoBehaviour
         //     Weapons.Add(w.Name,w);
         //     // Debug.Log("ADDED: " + w.Name);
         // }
-        foreach (ProjStats w in God.JSON.Projectiles)
-        {
-            Projectiles.Add(w.Name,w);
-            // Debug.Log("ADDED: " + w.Name);
-        }
+            // foreach (ProjStats w in God.JSON.Projectiles)
+            // {
+            //     Projectiles.Add(w.Name,w);
+            //     // Debug.Log("ADDED: " + w.Name);
+            // }
     }
 
     // public BodyController GetBody(string which)
@@ -111,18 +111,18 @@ public class GameLibrary : MonoBehaviour
     //     return null;
     // }
     
-    public ProjStats GetProjectile(string which)
-    {
-        Projectiles.TryGetValue(which, out ProjStats r);
-        if (r != null) return r;
-        Debug.Log("INVALID PROJECTILE NAME: " + which);
-        return null;
-    }
+    // public ProjStats GetProjectile(string which)
+    // {
+    //     Projectiles.TryGetValue(which, out ProjStats r);
+    //     if (r != null) return r;
+    //     Debug.Log("INVALID PROJECTILE NAME: " + which);
+    //     return null;
+    // }
     
-    public ProjectileController GetProjectilePrefab()
-    {
-        return ProjectilePrefab;
-    }
+    // public ProjectileController GetProjectilePrefab()
+    // {
+    //     return ProjectilePrefab;
+    // }
     
     public Sprite GetProjectileArt(string which, Sprite backup=null)
     {

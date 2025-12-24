@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
     public LevelBuilder Level;
     [HideInInspector] public Transform LevelHolder;
     public List<SpawnPointController> SpawnPoints;
-    public TextAsset JSON;
+    // public TextAsset JSON;
     public TextMeshProUGUI HealthTxt;
     public List<RoomScript> Rooms;
 
@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
         God.GM = this;
         TraitManager.Init();
         ThingBuilder.Init();
-        God.JSON = JSONReader.ParseJSON(JSON.text);
+        // God.JSON = JSONReader.ParseJSON(JSON.text);
     }
 
     void Start()

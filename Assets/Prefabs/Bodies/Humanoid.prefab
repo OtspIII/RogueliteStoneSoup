@@ -51,8 +51,10 @@ MonoBehaviour:
   Weapon: {fileID: 0}
   Who: {fileID: 0}
   Hitbox: {fileID: 2524095723970103520}
+  Hurtbox: {fileID: 0}
   Size: 1
   SR: {fileID: 1376856763321729984}
+  DefaultAnim: Idle
 --- !u!95 &8557504186364581760
 Animator:
   serializedVersion: 7
@@ -208,7 +210,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Who: {fileID: 0}
-  Coll: {fileID: 0}
+  Coll: {fileID: 5634070364969105375}
 --- !u!58 &5634070364969105375
 CircleCollider2D:
   m_ObjectHideFlags: 0

@@ -10,6 +10,7 @@ public class HitboxController : MonoBehaviour
     void Awake()
     {
         if (Who == null) Who = gameObject.GetComponentInParent<ThingController>();
+        if (Coll == null) Coll = GetComponent<Collider2D>();
     }
 
     public void SetPlayer(bool isPlayer=true)

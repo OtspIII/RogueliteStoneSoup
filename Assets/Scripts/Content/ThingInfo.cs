@@ -7,6 +7,7 @@ public class ThingInfo
     public string Name = "";
     public ThingController Thing;
     public ThingOption Type;
+    public ThingInfo ChildOf;
     
     public Dictionary<Traits, TraitInfo> Trait = new Dictionary<Traits, TraitInfo>();
     public Dictionary<EventTypes, List<Traits>> PreListen = new Dictionary<EventTypes, List<Traits>>();
@@ -155,6 +156,16 @@ public class ThingInfo
         EventInfo r = God.E(e);
         TakeEvent(r,true);
         return r;
+    }
+    
+    public bool IsPlayer()
+    {
+        return Has(Traits.Player) || (ChildOf != null && ChildOf.Has(Traits.Player));
+    }
+
+    public void Destruct()
+    {
+        GameObject.Destroy(Thing.gameObject);
     }
 
 }

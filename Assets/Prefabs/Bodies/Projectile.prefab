@@ -206,6 +206,10 @@ PrefabInstance:
       value: Hurtbox
       objectReference: {fileID: 0}
     - target: {fileID: 7012393278422592376, guid: fd4d3051419aee24aac4db8ec6faf43f, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 7012393278422592376, guid: fd4d3051419aee24aac4db8ec6faf43f, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}

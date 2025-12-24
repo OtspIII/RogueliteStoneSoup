@@ -147,8 +147,6 @@ public class ShootAction : AttackAction
     {
         base.Begin();
         ThingOption proj = GetWeapon().GetOption();
-        Debug.Log(GetWeapon());
-        Debug.Log(proj);
         Who.Shoot(proj);
     }
 }

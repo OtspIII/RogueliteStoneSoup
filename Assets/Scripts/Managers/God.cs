@@ -10,7 +10,7 @@ public static class God
     public static GameLibrary Library;
     public static ThingInfo Player;
     public static CameraController Cam;
-    public static LevelJSON JSON;
+    // public static LevelJSON JSON;
     public static List<Directions> Dirs = new List<Directions>() { Directions.Left,Directions.Up,Directions.Right,Directions.Down };
 
     public static Vector2 RoomSize = new Vector2(10, 10);

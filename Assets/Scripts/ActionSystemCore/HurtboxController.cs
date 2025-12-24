@@ -13,32 +13,54 @@ public class HurtboxController : MonoBehaviour
         if (Who == null) Who = gameObject.GetComponentInParent<ThingController>();
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    public void StartHit(ThingController other)
     {
-        if (other.gameObject == Who.gameObject) return;
-        HitboxController hit = other.GetComponent<HitboxController>();
-        if (hit == null) return;
-        if (Who.ActorTrait.Action == null)
+        if (Who.ActorTrait != null)
         {
-            Debug.Log("ERROR: Hurtbox existed while actor wasn't acting");
-            return;
+            if(Who.ActorTrait.Action != null) 
+                Who.ActorTrait.Action.HitBegin(other,this);
         }
+        
+        Who.TakeEvent(God.E(EventTypes.OnHit).Set(other.Info));
+    }
 
-        Who.ActorTrait.Action.HitBegin(hit.Who,this);
+    public void EndHit(ThingController other)
+    {
+        if (Who.ActorTrait != null)
+        {
+            if(Who.ActorTrait.Action != null) 
+                Who.ActorTrait.Action.HitEnd(other,this);
+        }
+        
+    }
+
+    public void StartHitWall()
+    {
+        //Maybe this should be something? I don't think it works though yet
     }
     
-    private void OnTriggerExit2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject == Who.gameObject ) return; //|| (Who.Info.ChildOf != null && other.gameObject == Who.Info.ChildOf.Thing.gameObject)
+        HitboxController hit = other.GetComponent<HitboxController>();
+        Debug.Log("OTE HURTBOX: " + Who + " / " + hit);
+        if (hit) StartHit(hit.Who);
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject == Who.gameObject) return;
-        HitboxController hit = other.GetComponent<HitboxController>();
-        if (hit == null) return;
-        if (Who.ActorTrait.Action == null)
-        {
-            Debug.Log("ERROR: Hurtbox existed while actor wasn't acting");
-            return;
-        }
+        ThingController who = other.gameObject.GetComponent<ThingController>();
+        if (who) StartHit(who);
+        else StartHitWall();
+    }
 
-        Who.ActorTrait.Action.HitEnd(hit.Who,this);
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject == Who.gameObject ) return; //|| (Who.Info.ChildOf != null && other.gameObject == Who.Info.ChildOf.Thing.gameObject)
+        HitboxController hit = other.GetComponent<HitboxController>();
+        if (hit != null) EndHit(hit.Who);
+        
     }
     
     public void SetPlayer(bool isPlayer=true)

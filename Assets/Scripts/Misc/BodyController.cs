@@ -30,13 +30,11 @@ public class BodyController : MonoBehaviour
             Weapon.gameObject.name = w.Name;
         }
 
-        if (Who.Info.Has(Traits.Player) && Hitbox != null)
-        {
-            if(Hitbox != null)
-                Hitbox.SetPlayer(true);
-            if (Hurtbox != null)
-                Hurtbox.SetPlayer(true);
-        }
+        bool pl = Who.IsPlayer();
+        if(Hitbox != null)
+            Hitbox.SetPlayer(pl);
+        if (Hurtbox != null)
+            Hurtbox.SetPlayer(pl);
         if(art != "")
             SR.sprite = God.Library.GetArt(art,SR.sprite);
         if(Anim != null)
@@ -44,10 +42,6 @@ public class BodyController : MonoBehaviour
                 Anims.Add(c.name,c.length);
         if (!Anims.ContainsKey(DefaultAnim) && Anims.Keys.Count > 0)
             DefaultAnim = Anims.Keys.ToArray()[0];
-        if (Hurtbox != null)
-        {
-            Hurtbox.SetPlayer(Who.Info.Has(Traits.Player));
-        }
     }
 
     public float PlayAnim(string a)
