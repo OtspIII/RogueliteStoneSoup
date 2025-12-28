@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class SpawnPointController : MonoBehaviour
 {
-    public GameTags Type;
+    // public GameTags Type;
     public SpawnRequest ToSpawn;
 
     public void Spawn()
@@ -11,7 +11,7 @@ public class SpawnPointController : MonoBehaviour
         ThingOption chosen = God.Library.GetThing(ToSpawn);
         if (chosen == null)
         {
-            Debug.Log(Type);
+            Debug.Log(ToSpawn);
             return;
         }
 

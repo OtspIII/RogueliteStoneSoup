@@ -345,7 +345,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 57dd581e910b13942a4ea26c09697ef0, type: 3}
-  m_Color: {r: 0.2580989, g: 0.3117968, b: 0.31446534, a: 1}
+  m_Color: {r: 0.52178425, g: 0.4574383, b: 0.63522005, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -652,8 +652,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 5980334626541149474}
   - {fileID: 8640998872496016553}
+  - {fileID: 1596129211122135562}
   - {fileID: 9037560990191079598}
   - {fileID: 3612972968917542349}
   - {fileID: 1381297054254365400}
@@ -708,7 +708,7 @@ GameObject:
   - component: {fileID: 6778557914493295020}
   - component: {fileID: 909659412286494541}
   m_Layer: 0
-  m_Name: Player Start
+  m_Name: Centerpiece
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1201,7 +1201,7 @@ Transform:
   - {fileID: 1846842455546216375}
   m_Father: {fileID: 6778557914493295020}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &7222771580786710958
+--- !u!1 &6763563669450118443
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1209,23 +1209,23 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5980334626541149474}
-  - component: {fileID: 6614724970157904622}
-  - component: {fileID: 4909380755399939938}
+  - component: {fileID: 1596129211122135562}
+  - component: {fileID: 2408693905239841235}
+  - component: {fileID: 8089699115878187292}
   m_Layer: 8
-  m_Name: Wall
+  m_Name: Wall (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5980334626541149474
+--- !u!4 &1596129211122135562
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7222771580786710958}
+  m_GameObject: {fileID: 6763563669450118443}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -5, y: -3.5, z: 0}
@@ -1234,13 +1234,13 @@ Transform:
   m_Children: []
   m_Father: {fileID: 5149058323233767643}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &6614724970157904622
+--- !u!212 &2408693905239841235
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7222771580786710958}
+  m_GameObject: {fileID: 6763563669450118443}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -1289,13 +1289,13 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &4909380755399939938
+--- !u!61 &8089699115878187292
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7222771580786710958}
+  m_GameObject: {fileID: 6763563669450118443}
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
@@ -1923,7 +1923,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6699386457139843298, guid: 7296cde674c3b344490b87f150ec75ca, type: 3}
       propertyPath: m_Name
-      value: Player Spawn
+      value: Center Spawn
       objectReference: {fileID: 0}
     - target: {fileID: 8183222637647521681, guid: 7296cde674c3b344490b87f150ec75ca, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1967,7 +1967,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8540057791775574626, guid: 7296cde674c3b344490b87f150ec75ca, type: 3}
       propertyPath: Type
-      value: 1
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8540057791775574626, guid: 7296cde674c3b344490b87f150ec75ca, type: 3}
       propertyPath: ToSpawn.Mandatory.Array.size
@@ -1975,7 +1975,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8540057791775574626, guid: 7296cde674c3b344490b87f150ec75ca, type: 3}
       propertyPath: 'ToSpawn.Mandatory.Array.data[0]'
-      value: 1
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

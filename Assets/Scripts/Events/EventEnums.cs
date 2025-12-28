@@ -86,6 +86,7 @@ public enum GameTags
     Weapon=3,
     Projectile=4,
     Exit=5,
+    Centerpiece=6,
 }
 
 public enum RoomTags

@@ -11,10 +11,10 @@ public class ThingOption : ScriptableObject
     public List<TraitBuilder> Trait;
     
     
-    public bool Valid(SpawnPointController s, LevelBuilder b)
-    {
-        return Tags.Contains(s.Type);
-    }
+    // public bool Valid(SpawnPointController s, LevelBuilder b)
+    // {
+    //     return Tags.Contains(s.Type);
+    // }
 
     
     public virtual ThingInfo Create()

@@ -99,7 +99,6 @@ public class PlayerTrait : Trait
             }
             case EventTypes.IsPlayer:
             {
-                Debug.Log("ASKED IF PLAYER");
                 i.Set(BoolInfo.Default,true);
                 break;
             }
@@ -197,8 +196,7 @@ public class ExitTrait : Trait
             case EventTypes.OnCollide:
             {
                 ThingInfo t = e.GetActor();
-                Debug.Log("COLLIDE: " + t + " / " + t.Ask(EventTypes.IsPlayer).GetBool());
-                if (t.Ask(EventTypes.IsPlayer).GetBool())
+                if (t.IsPlayer())
                 {
                     SceneManager.LoadScene("YouWin");
                 }

@@ -171,6 +171,10 @@ public class EventInfo
     }
     
     //Actor
+    public EventInfo Set(ThingController a)
+    {
+        return SetActor(ActorInfo.Target, a.Info);
+    }
     public EventInfo Set(ThingInfo a)
     {
         return SetActor(ActorInfo.Target, a);
@@ -191,6 +195,7 @@ public class EventInfo
     public ThingInfo GetActor(ActorInfo i=ActorInfo.Target)
     {
         if (Actors.TryGetValue(i, out ThingInfo r)) return r;
+        // if (Actors.TryGetValue(i, out ThingInfo r)) return r;
         return null;
     }
     

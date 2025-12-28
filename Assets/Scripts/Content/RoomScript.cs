@@ -8,7 +8,7 @@ public class RoomScript : MonoBehaviour
     public Transform DoorHolder;
     public List<SpawnPointController> Spawners;
     public Dictionary<Directions,List<DoorController>> Doors = new Dictionary<Directions, List<DoorController>>();
-    public List<RoomTags> Tags;
+    // public List<RoomTags> Tags;
     
     public void Setup(GeoTile g)
     {
