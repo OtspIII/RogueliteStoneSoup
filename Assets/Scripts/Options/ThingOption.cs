@@ -6,7 +6,7 @@ public class ThingOption : ScriptableObject
 {
     public string Name;
     public BodyController Body;
-    public string Art;
+    public Sprite Art;
     public List<GameTags> Tags;
     public List<TraitBuilder> Trait;
     

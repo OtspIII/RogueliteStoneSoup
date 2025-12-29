@@ -41,6 +41,7 @@ public static class TraitManager
         TraitDict.Add(Traits.Holdable,new HoldableTrait());
         TraitDict.Add(Traits.Projectile,new ProjectileTrait());
         TraitDict.Add(Traits.Exit,new ExitTrait());
+        TraitDict.Add(Traits.DamageZone,new DamageZoneTrait());
     }
     
     public static Trait Get(Traits t)
@@ -108,4 +109,5 @@ public enum Traits
     Holdable=5,
     Projectile=6,
     Exit=7,
+    DamageZone=8,
 }

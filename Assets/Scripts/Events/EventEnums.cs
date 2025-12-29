@@ -17,6 +17,7 @@ public enum EventTypes{
     //Common Actions
     OnCollide=2001,
     OnHit=2002,
+    OnInside=2003,
     
     //Questions
     ShownHP=9001,

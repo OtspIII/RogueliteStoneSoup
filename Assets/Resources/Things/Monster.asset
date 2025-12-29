@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CharacterOption
   Name: Sword Monster
   Body: {fileID: 629948465317790645, guid: acf0e760b28c7b046ad7d511fb87a1d3, type: 3}
-  Art: 
+  Art: {fileID: 21300000, guid: b74406849bccde94aacb538cdbb0018e, type: 3}
   Tags: 02000000
   Trait: []
   HP: 2

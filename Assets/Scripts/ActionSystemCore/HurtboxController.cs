@@ -7,10 +7,24 @@ public class HurtboxController : MonoBehaviour
 {
     public ThingController Who;
     public Collider2D Coll;
+    public float Timer = 0;
+    public List<ThingController> Inside;
     
     void Awake()
     {
         if (Who == null) Who = gameObject.GetComponentInParent<ThingController>();
+    }
+
+    private void Update()
+    {
+        if (Inside.Count > 0)
+        {
+            Timer -= Time.deltaTime;
+            if (Timer <= 0)
+            {
+                Who.TakeEvent(God.E(EventTypes.OnInside).Set(this));
+            }
+        }
     }
 
     public void StartHit(ThingController other)
@@ -22,6 +36,8 @@ public class HurtboxController : MonoBehaviour
         }
         
         Who.TakeEvent(God.E(EventTypes.OnHit).Set(other.Info));
+        if(!Inside.Contains(other))
+            Inside.Add(other);
     }
 
     public void EndHit(ThingController other)
@@ -31,7 +47,7 @@ public class HurtboxController : MonoBehaviour
             if(Who.ActorTrait.Action != null) 
                 Who.ActorTrait.Action.HitEnd(other,this);
         }
-        
+        Inside.Remove(other);
     }
 
     public void StartHitWall()
@@ -43,7 +59,7 @@ public class HurtboxController : MonoBehaviour
     {
         if (other.gameObject == Who.gameObject ) return; //|| (Who.Info.ChildOf != null && other.gameObject == Who.Info.ChildOf.Thing.gameObject)
         HitboxController hit = other.GetComponent<HitboxController>();
-        Debug.Log("OTE HURTBOX: " + Who + " / " + hit);
+        // Debug.Log("OTE HURTBOX: " + Who + " / " + hit);
         if (hit) StartHit(hit.Who);
     }
 

@@ -14,7 +14,7 @@ public class BodyController : MonoBehaviour
     public Dictionary<string,float> Anims = new Dictionary<string, float>();
     public string DefaultAnim = "Idle";
 
-    public void Setup(ThingController who,string art="",bool weapon=false)
+    public void Setup(ThingController who,Sprite art=null,bool weapon=false)
     {
         Who = who;
         // gameObject.name = Who.Info.Name + " Body";
@@ -35,8 +35,8 @@ public class BodyController : MonoBehaviour
             Hitbox.SetPlayer(pl);
         if (Hurtbox != null)
             Hurtbox.SetPlayer(pl);
-        if(art != "")
-            SR.sprite = God.Library.GetArt(art,SR.sprite);
+        if(art != null)
+            SR.sprite = art;
         if(Anim != null)
             foreach(AnimationClip c in Anim.runtimeAnimatorController.animationClips)
                 Anims.Add(c.name,c.length);

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Bow
   Body: {fileID: 629948465317790645, guid: b4fa405680f33044abe2c4567ecf147f, type: 3}
-  Art: Bow
+  Art: {fileID: 21300000, guid: cb8312002cf474c4688fa76c7caea0a3, type: 3}
   Tags: 03000000
   Trait: []
   Damage: 1
