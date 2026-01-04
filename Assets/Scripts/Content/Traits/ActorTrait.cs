@@ -24,7 +24,7 @@ public class ActorTrait : Trait
             {
                 i.Who.ActorTrait = i;
                 if(i.Get<Actions>(EnumInfo.DefaultAction) == Actions.None)
-                    i.Set(EnumInfo.DefaultAction,(int)Actions.Patrol);
+                    i.Set(EnumInfo.DefaultAction,(int)Actions.Idle);
                 float spd = i.Get(NumInfo.Speed,5);
                 i.Who.CurrentSpeed = spd;
                 break;
@@ -89,6 +89,7 @@ public class ActorTrait : Trait
         if (t.Action != null)
         {
             t.Action.Begin();
+            t.Who.Thing.DebugTxt = ""+t.Action;
         }
     }
 

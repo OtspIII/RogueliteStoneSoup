@@ -236,7 +236,7 @@ public class PatrolAction : ActionScript
     void NewTarget()
     {
         Target = Who.StartSpot + new Vector3(Random.Range(-5f, 5f), Random.Range(-5f, 5f));
-        Who.DebugTxt = Target.ToString();
+        // Who.DebugTxt = Target.ToString();
     }
 
 }

@@ -185,7 +185,7 @@ public class GameLibrary : MonoBehaviour
 
         if (opts.Count == 0)
         {
-            Debug.Log("NO VALID ROOMS: " + sr + " / " + b);
+            Debug.Log("NO VALID ROOMS: " + sr + " / " + b + " / " + ThingOptions.Count);
             return null;
         }
         return opts.Random();

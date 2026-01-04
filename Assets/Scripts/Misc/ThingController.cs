@@ -29,7 +29,7 @@ public class ThingController : MonoBehaviour
     public float AttackRange {get {return Info.AttackRange;} set { Info.AttackRange = value;}}
     public float VisionRange  {get {return Info.VisionRange;} set { Info.VisionRange = value;}}
     public float CurrentSpeed {get {return Info.CurrentSpeed;} set { Info.CurrentSpeed = value;}}
-    public Vector2 DesiredMove {get {return Info.DesiredMove;} set { Info.DesiredMove = value;}}
+    public Vector2 DesiredMove {get {return Info.DesiredMove;} set { Info.DesiredMove = value;if(IsPlayer())Debug.Log("SET DM: "+value);}}
     public Vector2 Knockback {get {return Info.Knockback;} set { Info.Knockback = value;}}
     
     public void Awake()
@@ -60,6 +60,8 @@ public class ThingController : MonoBehaviour
             Info.MidEvent = false;
         }
         TakeEvent(EventTypes.Update);
+        if(IsPlayer() && RB != null && RB.linearVelocity.magnitude > 0)
+            Debug.Log("MOVE: " + DesiredMove + " / " + Knockback);
     }
 
     
