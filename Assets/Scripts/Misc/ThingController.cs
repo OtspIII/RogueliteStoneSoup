@@ -29,7 +29,7 @@ public class ThingController : MonoBehaviour
     public float AttackRange {get {return Info.AttackRange;} set { Info.AttackRange = value;}}
     public float VisionRange  {get {return Info.VisionRange;} set { Info.VisionRange = value;}}
     public float CurrentSpeed {get {return Info.CurrentSpeed;} set { Info.CurrentSpeed = value;}}
-    public Vector2 DesiredMove {get {return Info.DesiredMove;} set { Info.DesiredMove = value;if(IsPlayer())Debug.Log("SET DM: "+value);}}
+    public Vector2 DesiredMove {get {return Info.DesiredMove;} set { Info.DesiredMove = value;}}
     public Vector2 Knockback {get {return Info.Knockback;} set { Info.Knockback = value;}}
     
     public void Awake()
@@ -60,8 +60,6 @@ public class ThingController : MonoBehaviour
             Info.MidEvent = false;
         }
         TakeEvent(EventTypes.Update);
-        if(IsPlayer() && RB != null && RB.linearVelocity.magnitude > 0)
-            Debug.Log("MOVE: " + DesiredMove + " / " + Knockback);
     }
 
     
@@ -73,6 +71,14 @@ public class ThingController : MonoBehaviour
             if (Knockback.magnitude < 0.1)
                 Knockback = Vector2.zero;
         }
+    }
+
+    public void AddRB()
+    {
+        if (RB != null) return;
+        RB = gameObject.AddComponent<Rigidbody2D>();
+        RB.constraints = RigidbodyConstraints2D.FreezeRotation;
+        RB.gravityScale = 0;
     }
     
     
@@ -218,6 +224,7 @@ public class ThingController : MonoBehaviour
     {
         float r = 0;
         r = Math.Max(r,Body.PlayAnim(anim));
+        Debug.Log("PLAY ANIM: " + anim + " / " + this);
         if(Body.Weapon?.Anim != null) r = Math.Max(r,Body.Weapon.PlayAnim(anim));
         return r;
     }
@@ -244,7 +251,8 @@ public class ThingController : MonoBehaviour
     
     public virtual ActionScript DefaultAttackAction()
     {
-        return new SwingAction(this); //GetAction(Body.Weapon.DefaultAttack);
+        Actions act = CurrentWeapon.Get<Actions>(EnumInfo.DefaultAction);
+        return GetAction(act);
     }
 
     public virtual ActionScript GetAction(Actions a)

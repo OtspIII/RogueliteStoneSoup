@@ -18,6 +18,7 @@ public enum EventTypes{
     OnCollide=2001,
     OnHit=2002,
     OnInside=2003,
+    OnHitWall=2004,
     
     //Questions
     ShownHP=9001,

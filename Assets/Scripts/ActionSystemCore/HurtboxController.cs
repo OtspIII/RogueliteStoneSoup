@@ -52,7 +52,7 @@ public class HurtboxController : MonoBehaviour
 
     public void StartHitWall()
     {
-        //Maybe this should be something? I don't think it works though yet
+        Who.TakeEvent(God.E(EventTypes.OnHitWall).Set());
     }
     
     private void OnTriggerEnter2D(Collider2D other)
@@ -61,6 +61,7 @@ public class HurtboxController : MonoBehaviour
         HitboxController hit = other.GetComponent<HitboxController>();
         // Debug.Log("OTE HURTBOX: " + Who + " / " + hit);
         if (hit) StartHit(hit.Who);
+        else if (!other.isTrigger) StartHitWall();
     }
 
     private void OnCollisionEnter2D(Collision2D other)

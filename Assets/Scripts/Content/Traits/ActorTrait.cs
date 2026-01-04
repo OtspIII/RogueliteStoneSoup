@@ -27,6 +27,7 @@ public class ActorTrait : Trait
                     i.Set(EnumInfo.DefaultAction,(int)Actions.Idle);
                 float spd = i.Get(NumInfo.Speed,5);
                 i.Who.CurrentSpeed = spd;
+                if (spd > 0) i.Who.Thing.AddRB();
                 break;
             }
             case EventTypes.Start:

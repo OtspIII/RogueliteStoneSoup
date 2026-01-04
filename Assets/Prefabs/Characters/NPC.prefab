@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3693676359539995746}
   - component: {fileID: 7168331786191300375}
-  - component: {fileID: 9048435275976594565}
   m_Layer: 0
   m_Name: NPC
   m_TagString: Untagged
@@ -45,56 +44,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df7a2707edc7a4f4b95f0724fb447034, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DesiredMove: {x: 0, y: 0}
-  Knockback: {x: 0, y: 0}
   RB: {fileID: 0}
   Body: {fileID: 0}
-  DefaultAnim: Idle
   StartSpot: {x: 0, y: 0, z: 0}
   DebugTxt: 
-  Stats:
+  Info:
     Name: 
-    Speed: 0
-    HP: 0
-    Body: 
-    Weapon: 
-    DefaultAction: 
-    Art: 
-  CurrentWeapon:
-    Name: 
-    Damage: 0
-    Body: 
-    DefaultAttack: 
-    Art: 
-    Projectile: 
-  MidEvent: 0
-  Target: {fileID: 0}
-  AttackRange: 1.5
-  VisionRange: 4
---- !u!50 &9048435275976594565
-Rigidbody2D:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7876912082703492726}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 4
+    Thing: {fileID: 0}
+    Type: {fileID: 0}
+    MidEvent: 0
+    AttackRange: 1.5
+    VisionRange: 4
+    CurrentSpeed: 0
+    DesiredMove: {x: 0, y: 0}
+    Knockback: {x: 0, y: 0}

@@ -151,6 +151,7 @@ public class ProjectileTrait : Trait
         Type = Traits.Projectile;
         TakeListen.Add(EventTypes.Start);
         TakeListen.Add(EventTypes.OnHit);
+        TakeListen.Add(EventTypes.OnHitWall);
     }
 
     public override void TakeEvent(TraitInfo i, EventInfo e)
@@ -162,6 +163,7 @@ public class ProjectileTrait : Trait
                 ThingController who = i.Who.Thing;
                 float spd = i.Get(NumInfo.Speed,10);
                 who.CurrentSpeed = spd;
+                who.AddRB();
                 who.RB.linearVelocity = who.transform.up * spd;
                 break;
             }
@@ -173,6 +175,11 @@ public class ProjectileTrait : Trait
                 {
                     other.TakeEvent(God.E(EventTypes.Damage).Set(amt));
                 }
+                i.Who.Destruct();
+                break;
+            }
+            case EventTypes.OnHitWall:
+            {
                 i.Who.Destruct();
                 break;
             }

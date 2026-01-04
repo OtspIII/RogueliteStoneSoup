@@ -14,9 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CharacterOption
   Name: Lunger
   Body: {fileID: 629948465317790645, guid: c5227d51ccfec934db9e0058624b573e, type: 3}
-  Art: 
-  Tags: 
+  Art: {fileID: 0}
+  Tags: 02000000
   Trait: []
   HP: 1
   Speed: 5
-  Weapon: {fileID: 11400000, guid: 6ea52f9f0d1d35e48b91b53e436681ad, type: 2}
+  Weapon: {fileID: 11400000, guid: 7d621acb1abd6f14fb8ce00024521ece, type: 2}
+  DefaultAction: 201

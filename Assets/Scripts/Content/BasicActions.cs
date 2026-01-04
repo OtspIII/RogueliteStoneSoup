@@ -166,11 +166,13 @@ public class LungeAction : AttackAction
         MoveMult = 0;
         Power = pow;
         Knockback = 0;
+        Debug.Log("LUNGE! " + Anim);
     }
 
     public override void OnRun()
     {
         base.OnRun();
+        Debug.Log("ANIM: " + Anim);
         if (Phase == 0)
         {
             MoveMult = Who.AttackRange;
