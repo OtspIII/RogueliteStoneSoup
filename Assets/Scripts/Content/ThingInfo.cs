@@ -52,7 +52,7 @@ public class ThingInfo
         // Debug.Log("SPAWN: " + Name);
         Thing.TakeEvent(EventTypes.Setup);
         Thing.Body = GameObject.Instantiate(Type.Body, Thing.transform);
-        Thing.Body.Setup(Thing,Type.Art);
+        Thing.Body.Setup(Thing,Type);
         if(Thing.Body.Anim != null)
             Thing.Body.Anim.Rebind();
         return Thing;

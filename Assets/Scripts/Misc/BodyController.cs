@@ -14,7 +14,7 @@ public class BodyController : MonoBehaviour
     public Dictionary<string,float> Anims = new Dictionary<string, float>();
     public string DefaultAnim = "Idle";
 
-    public void Setup(ThingController who,Sprite art=null,bool weapon=false)
+    public void Setup(ThingController who,ThingOption type=null,bool weapon=false)
     {
         Who = who;
         // gameObject.name = Who.Info.Name + " Body";
@@ -26,7 +26,7 @@ public class BodyController : MonoBehaviour
             ThingOption w = who.CurrentWeapon.Who.Type;
             Weapon = Instantiate(w.Body, transform);
             // Weapon = Instantiate(God.Library.GetWeaponPrefab(who.CurrentWeapon.Seed.Body), transform);
-            Weapon.Setup(Who,w.Art,true);
+            Weapon.Setup(Who,w,true);
             Weapon.gameObject.name = w.Name;
         }
 
@@ -35,8 +35,16 @@ public class BodyController : MonoBehaviour
             Hitbox.SetPlayer(pl);
         if (Hurtbox != null)
             Hurtbox.SetPlayer(pl);
-        if(art != null)
-            SR.sprite = art;
+        if (type != null)
+        {
+            if (SR != null)
+            {
+                if (type.Art != null)
+                    SR.sprite = type.Art;
+                SR.color = type.Color;
+            }
+        }
+
         if(Anim != null)
             foreach(AnimationClip c in Anim.runtimeAnimatorController.animationClips)
                 Anims.Add(c.name,c.length);

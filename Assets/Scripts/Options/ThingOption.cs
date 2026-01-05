@@ -7,15 +7,10 @@ public class ThingOption : ScriptableObject
     public string Name;
     public BodyController Body;
     public Sprite Art;
+    public Color Color = Color.white;
     public List<GameTags> Tags;
     public List<TraitBuilder> Trait;
     
-    
-    // public bool Valid(SpawnPointController s, LevelBuilder b)
-    // {
-    //     return Tags.Contains(s.Type);
-    // }
-
     
     public virtual ThingInfo Create()
     {
@@ -33,18 +28,6 @@ public class ThingOption : ScriptableObject
         return r;
     }
     
-    //
-    // public virtual void Imprint(ThingInfo r)
-    // {
-    //     r.Name = Name;
-    //     foreach (TraitBuilder t in Trait)
-    //     {
-    //         EventInfo ts = new EventInfo();
-    //         foreach(InfoNumber n in t.Numbers)
-    //             ts.Numbers.Add(n.Type,n.Value);
-    //         r.AddTrait(t.Trait, ts);
-    //     }
-    // }
 }
 
 [System.Serializable]
