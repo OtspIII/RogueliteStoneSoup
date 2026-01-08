@@ -31,6 +31,8 @@ public class ThingController : MonoBehaviour
     public float CurrentSpeed {get {return Info.CurrentSpeed;} set { Info.CurrentSpeed = value;}}
     public Vector2 DesiredMove {get {return Info.DesiredMove;} set { Info.DesiredMove = value;}}
     public Vector2 Knockback {get {return Info.Knockback;} set { Info.Knockback = value;}}
+
+    public List<ThingController> Touching;
     
     public void Awake()
     {
@@ -60,6 +62,10 @@ public class ThingController : MonoBehaviour
             Info.MidEvent = false;
         }
         TakeEvent(EventTypes.Update);
+        foreach (ThingController t in Touching)
+        {
+            TakeEvent(God.E(EventTypes.OnTouchInside).Set(t));   
+        }
     }
 
     
@@ -266,8 +272,22 @@ public class ThingController : MonoBehaviour
         if (hb != null && hb.Who != null)
         {
             // Debug.Log("COLL: " + hb.Who);
-            TakeEvent(God.E(EventTypes.OnCollide).Set(hb.Who));
+            TakeEvent(God.E(EventTypes.OnTouch).Set(hb.Who));
+            if(!Touching.Contains(hb.Who)) Touching.Add(hb.Who);
             //Only one because they'll call their own version
+        }
+        else
+        {
+            TakeEvent(God.E(EventTypes.OnTouchWall).Set(transform.position));
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        HitboxController hb = other.gameObject.GetComponent<HitboxController>();
+        if (hb != null)
+        {
+            Touching.Remove(hb.Who);
         }
     }
 
@@ -276,8 +296,22 @@ public class ThingController : MonoBehaviour
         ThingController tc = other.gameObject.GetComponent<ThingController>();
         if (tc != null)
         {
-            TakeEvent(God.E(EventTypes.OnCollide).Set(tc));
+            TakeEvent(God.E(EventTypes.OnTouch).Set(tc));
+            if(!Touching.Contains(tc)) Touching.Add(tc);
             //Only one because they'll call their own version
+        }
+        else
+        {
+            TakeEvent(God.E(EventTypes.OnTouchWall).Set(other.GetContact(0).point));
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D other)
+    {
+        ThingController tc = other.gameObject.GetComponent<ThingController>();
+        if (tc != null)
+        {
+            Touching.Remove(tc);
         }
     }
 

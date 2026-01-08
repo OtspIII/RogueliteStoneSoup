@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: Exit
   m_EditorClassIdentifier: 
   Name: Exit
-  Body: {fileID: 1608029146865540862, guid: 75a51210b330b7445839dd85d12d2ddd, type: 3}
-  Art: 
+  Body: {fileID: 629948465317790645, guid: 37c4754857b78e24995335d45e308e0b, type: 3}
+  Art: {fileID: 0}
+  Color: {r: 0.4203055, g: 1, b: 0, a: 1}
   Tags: 05000000
   Trait:
-  - Trait: 7
+  - Trait: 200
     Numbers: []

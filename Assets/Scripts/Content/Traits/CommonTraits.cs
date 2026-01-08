@@ -59,69 +59,6 @@ public class HealthTrait : Trait
     }
 }
 
-public class PlayerTrait : Trait
-{
-    public PlayerTrait()
-    {
-        Type = Traits.Player;
-        TakeListen.Add(EventTypes.Setup);
-        TakeListen.Add(EventTypes.Update);
-        TakeListen.Add(EventTypes.IsPlayer);
-    }
-
-    public override void TakeEvent(TraitInfo i, EventInfo e)
-    {
-        // Debug.Log("TAKE EVENT PLAYER: " + i.Type);
-        switch (e.Type)
-        {
-            case EventTypes.Setup:
-            {
-                // Debug.Log("SETUP PLAYER");
-                God.Player = i.Who;
-                i.Set(EnumInfo.DefaultAction, (int)Actions.Idle);
-                God.Cam.Target = i.Who.Thing.gameObject;
-                break;
-            }
-            case EventTypes.Update:
-            {
-                Vector2 vel = Vector2.zero;
-                if (Input.GetKey(KeyCode.D)) vel.x = 1;
-                if (Input.GetKey(KeyCode.A)) vel.x = -1;
-                if (Input.GetKey(KeyCode.W)) vel.y = 1;
-                if (Input.GetKey(KeyCode.S)) vel.y = -1;
-                i.Who.DesiredMove = vel;
-        
-                if(Input.GetKey(KeyCode.Mouse0))
-                    i.Who.Thing.DoAction(Actions.DefaultAttack);
-        
-                if(i.Who.ActorTrait.Action.CanRotate) i.Who.Thing.LookAt(God.Cam.Cam.ScreenToWorldPoint(Input.mousePosition),0.1f);
-                break;
-            }
-            case EventTypes.IsPlayer:
-            {
-                i.Set(BoolInfo.Default,true);
-                break;
-            }
-        }
-    }
-}
-
-public class FighterTrait : Trait
-{
-    public FighterTrait()
-    {
-        Type = Traits.Fighter;
-    }
-
-    public override void TakeEvent(TraitInfo i, EventInfo e)
-    {
-        switch (e.Type)
-        {
-            default: return;
-        }
-    }
-}
-
 public class HoldableTrait : Trait
 {
     public HoldableTrait()
@@ -182,65 +119,6 @@ public class ProjectileTrait : Trait
             {
                 i.Who.Destruct();
                 break;
-            }
-            default: return;
-        }
-    }
-}
-
-public class ExitTrait : Trait
-{
-    public ExitTrait()
-    {
-        Type = Traits.Exit;
-        TakeListen.Add(EventTypes.OnCollide);
-    }
-
-    public override void TakeEvent(TraitInfo i, EventInfo e)
-    {
-        switch (e.Type)
-        {
-            case EventTypes.OnCollide:
-            {
-                ThingInfo t = e.GetActor();
-                if (t.IsPlayer())
-                {
-                    SceneManager.LoadScene("YouWin");
-                }
-
-                return;
-            }
-            default: return;
-        }
-    }
-}
-
-public class DamageZoneTrait : Trait
-{
-    public DamageZoneTrait()
-    {
-        Type = Traits.DamageZone;
-        TakeListen.Add(EventTypes.OnInside);
-    }
-
-    public override void TakeEvent(TraitInfo i, EventInfo e)
-    {
-        switch (e.Type)
-        {
-            case EventTypes.OnInside:
-            {
-                float timer = i.Get(NumInfo.Speed,1);
-                float dmg = i.Get(NumInfo.Amount,1);
-
-                // Debug.Log("INSIDE LAVA: " + timer + " / " + dmg);
-                HurtboxController hb = e.Hurtbox;
-                foreach (ThingController tc in hb.Inside)
-                {
-                    ThingInfo t = tc.Info;
-                    t.TakeEvent(God.E(EventTypes.Damage).Set(dmg));
-                }
-                hb.Timer = timer;
-                return;
             }
             default: return;
         }

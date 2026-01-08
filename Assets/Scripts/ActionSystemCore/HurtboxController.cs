@@ -22,7 +22,7 @@ public class HurtboxController : MonoBehaviour
             Timer -= Time.deltaTime;
             if (Timer <= 0)
             {
-                Who.TakeEvent(God.E(EventTypes.OnInside).Set(this));
+                Who.TakeEvent(God.E(EventTypes.OnHitInside).Set(this));
             }
         }
     }
@@ -60,7 +60,17 @@ public class HurtboxController : MonoBehaviour
         if (other.gameObject == Who.gameObject ) return; //|| (Who.Info.ChildOf != null && other.gameObject == Who.Info.ChildOf.Thing.gameObject)
         HitboxController hit = other.GetComponent<HitboxController>();
         // Debug.Log("OTE HURTBOX: " + Who + " / " + hit);
-        if (hit) StartHit(hit.Who);
+        if (hit)
+        {
+            StartHit(hit.Who);
+            return;
+        }
+
+        HurtboxController hurt = other.GetComponent<HurtboxController>();
+        if (hurt != null)
+        {
+            Who.TakeEvent(God.E(EventTypes.OnClash).Set(hurt));
+        }
         else if (!other.isTrigger) StartHitWall();
     }
 
@@ -70,6 +80,7 @@ public class HurtboxController : MonoBehaviour
         ThingController who = other.gameObject.GetComponent<ThingController>();
         if (who) StartHit(who);
         else StartHitWall();
+        //I don't think we need a Hurt on Hurt test because hurtboxes should always be triggers
     }
 
     private void OnTriggerExit2D(Collider2D other)
@@ -80,10 +91,19 @@ public class HurtboxController : MonoBehaviour
         
     }
     
-    public void SetPlayer(bool isPlayer=true)
+    public void SetPlayer()
     {
-        if(isPlayer) gameObject.layer = LayerMask.NameToLayer("PHurtbox");
-        else gameObject.layer = LayerMask.NameToLayer("MHurtbox");
+        gameObject.layer = LayerMask.NameToLayer("PHurtbox");
+        // else gameObject.layer = LayerMask.NameToLayer("MHurtbox");
     }
     
+    private void OnValidate()
+    {
+        if (Coll == null) Coll = GetComponent<Collider2D>();
+        if (transform.parent != null)
+        {
+            BodyController bc = transform.parent.gameObject.GetComponent<BodyController>();
+            if (bc != null) bc.Hurtbox = this;
+        }
+    }
 }

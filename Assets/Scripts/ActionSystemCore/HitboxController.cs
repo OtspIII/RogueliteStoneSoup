@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,10 +14,19 @@ public class HitboxController : MonoBehaviour
         if (Coll == null) Coll = GetComponent<Collider2D>();
     }
 
-    public void SetPlayer(bool isPlayer=true)
+    public void SetPlayer()
     {
-        if(isPlayer) gameObject.layer = LayerMask.NameToLayer("PHitbox");
-        else if(!Coll.isTrigger) gameObject.layer = LayerMask.NameToLayer("MHitbox");
+        gameObject.layer = LayerMask.NameToLayer("PHitbox");
+        // else if(!Coll.isTrigger) gameObject.layer = LayerMask.NameToLayer("MHitbox");
     }
 
+    private void OnValidate()
+    {
+        if (Coll == null) Coll = GetComponent<Collider2D>();
+        if (transform.parent != null)
+        {
+            BodyController bc = transform.parent.gameObject.GetComponent<BodyController>();
+            if (bc != null) bc.Hitbox = this;
+        }
+    }
 }

@@ -31,10 +31,10 @@ public class BodyController : MonoBehaviour
         }
 
         bool pl = Who.IsPlayer();
-        if(Hitbox != null)
-            Hitbox.SetPlayer(pl);
-        if (Hurtbox != null)
-            Hurtbox.SetPlayer(pl);
+        if(pl && Hitbox != null)
+            Hitbox.SetPlayer();
+        if (pl && Hurtbox != null)
+            Hurtbox.SetPlayer();
         if (type != null)
         {
             if (SR != null)

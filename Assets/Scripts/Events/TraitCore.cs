@@ -37,7 +37,6 @@ public static class TraitManager
         TraitDict.Add(Traits.Health,new HealthTrait());
         TraitDict.Add(Traits.Actor,new ActorTrait());
         TraitDict.Add(Traits.Player,new PlayerTrait());
-        TraitDict.Add(Traits.Fighter,new FighterTrait());
         TraitDict.Add(Traits.Holdable,new HoldableTrait());
         TraitDict.Add(Traits.Projectile,new ProjectileTrait());
         TraitDict.Add(Traits.Exit,new ExitTrait());
@@ -101,13 +100,14 @@ public class Trait
 
 public enum Traits
 {
-    None=0,
-    Health=1,
-    Actor=2,
-    Player=3,
-    Fighter=4,
-    Holdable=5,
-    Projectile=6,
-    Exit=7,
-    DamageZone=8,
+    //Basic Traits:  0###
+    None            =0000,
+    Actor           =0001,
+    Health          =0002,
+    Player          =0100,
+    Exit            =0200,
+    DamageZone      =0201,
+    Holdable        =0300,
+    Projectile      =0400,
+    //Misha Traits:  11##
 }

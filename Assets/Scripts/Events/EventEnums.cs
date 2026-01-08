@@ -1,31 +1,36 @@
 public enum EventTypes{
     //Core
-    None=0000,
-    TraitInfo=0001,
-    Setup=0002,
-    Update=003,
-    Start=004,
-    StartAction=0101,
-    SetPhase=0102,
+    None            =0000,
+    TraitInfo       =0001,
+    Setup           =0002,
+    Update          =003,
+    Start           =004,
+    StartAction     =0101,
+    SetPhase        =0102,
     
     //Common Combat
-    Damage=1001,
-    Healing=1002,
-    Death=1003,
-    Knockback=1004,
+    Damage          =1001,
+    Healing         =1002,
+    Death           =1003,
+    Knockback       =1004,
+    // GainTrait       =1100,
+    // LoseTrait       =1101,
     
     //Common Actions
-    OnCollide=2001,
-    OnHit=2002,
-    OnInside=2003,
-    OnHitWall=2004,
+    OnTouch         =2000,  //Touch is Hitbox to Hitbox
+    OnTouchInside   =2003,
+    OnTouchWall     =2004,
+    OnHit           =2010,  //Hit is hurtbox to hitbox
+    OnHitInside     =2003,
+    OnHitWall       =2004,
+    OnClash         =2030,  //Clash is hurtbox to hurtbox
     
     //Questions
-    ShownHP=9001,
+    ShownHP         =9001,
     GetCurrentAction=9002,
     GetDefaultAction=9003,
     GetDefaultAttack=9004,
-    IsPlayer=9005,
+    IsPlayer        =9005,
 }
 
 public enum NumInfo

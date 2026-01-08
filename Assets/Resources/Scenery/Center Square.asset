@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Center Square
   m_EditorClassIdentifier: 
   Name: Center Square
-  Body: {fileID: 629948465317790645, guid: acdd466902c6fe044a9f3b738deceb68, type: 3}
+  Body: {fileID: 629948465317790645, guid: 37c4754857b78e24995335d45e308e0b, type: 3}
   Art: {fileID: 21300000, guid: 57dd581e910b13942a4ea26c09697ef0, type: 3}
+  Color: {r: 0, g: 0, b: 0, a: 1}
   Tags: 06000000
   Trait: []
