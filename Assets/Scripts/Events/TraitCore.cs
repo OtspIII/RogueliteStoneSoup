@@ -38,6 +38,7 @@ public static class TraitManager
         TraitDict.Add(Traits.Actor,new ActorTrait());
         TraitDict.Add(Traits.Player,new PlayerTrait());
         TraitDict.Add(Traits.Holdable,new HoldableTrait());
+        TraitDict.Add(Traits.Pickup,new PickupTrait());
         TraitDict.Add(Traits.Projectile,new ProjectileTrait());
         TraitDict.Add(Traits.Exit,new ExitTrait());
         TraitDict.Add(Traits.DamageZone,new DamageZoneTrait());
@@ -108,6 +109,8 @@ public enum Traits
     Exit            =0200,
     DamageZone      =0201,
     Holdable        =0300,
+    Pickup          =0301,
+    HealPack        =0310,
     Projectile      =0400,
     //Misha Traits:  11##
 }

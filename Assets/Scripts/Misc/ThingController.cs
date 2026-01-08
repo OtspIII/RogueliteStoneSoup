@@ -8,6 +8,7 @@ public class ThingController : MonoBehaviour
     [HideInInspector]
     public Rigidbody2D RB;
     public BodyController Body;
+    public Collider2D NoClip;
     
     public Vector3 StartSpot;
     public string DebugTxt;
@@ -32,7 +33,6 @@ public class ThingController : MonoBehaviour
     public Vector2 DesiredMove {get {return Info.DesiredMove;} set { Info.DesiredMove = value;}}
     public Vector2 Knockback {get {return Info.Knockback;} set { Info.Knockback = value;}}
 
-    public List<ThingController> Touching;
     
     public void Awake()
     {
@@ -62,10 +62,7 @@ public class ThingController : MonoBehaviour
             Info.MidEvent = false;
         }
         TakeEvent(EventTypes.Update);
-        foreach (ThingController t in Touching)
-        {
-            TakeEvent(God.E(EventTypes.OnTouchInside).Set(t));   
-        }
+        
     }
 
     
@@ -230,7 +227,7 @@ public class ThingController : MonoBehaviour
     {
         float r = 0;
         r = Math.Max(r,Body.PlayAnim(anim));
-        Debug.Log("PLAY ANIM: " + anim + " / " + this);
+        // Debug.Log("PLAY ANIM: " + anim + " / " + this);
         if(Body.Weapon?.Anim != null) r = Math.Max(r,Body.Weapon.PlayAnim(anim));
         return r;
     }
@@ -266,54 +263,54 @@ public class ThingController : MonoBehaviour
         return ActionParser.GetAction(a,this);
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        HitboxController hb = other.gameObject.GetComponent<HitboxController>();
-        if (hb != null && hb.Who != null)
-        {
-            // Debug.Log("COLL: " + hb.Who);
-            TakeEvent(God.E(EventTypes.OnTouch).Set(hb.Who));
-            if(!Touching.Contains(hb.Who)) Touching.Add(hb.Who);
-            //Only one because they'll call their own version
-        }
-        else
-        {
-            TakeEvent(God.E(EventTypes.OnTouchWall).Set(transform.position));
-        }
-    }
+    // private void OnTriggerEnter2D(Collider2D other)
+    // {
+    //     HitboxController hb = other.gameObject.GetComponent<HitboxController>();
+    //     if (hb != null && hb.Who != null)
+    //     {
+    //         // Debug.Log("COLL: " + hb.Who);
+    //         TakeEvent(God.E(EventTypes.OnTouch).Set(hb.Who));
+    //         if(!Touching.Contains(hb.Who)) Touching.Add(hb.Who);
+    //         //Only one because they'll call their own version
+    //     }
+    //     else
+    //     {
+    //         TakeEvent(God.E(EventTypes.OnTouchWall).Set(transform.position));
+    //     }
+    // }
+    //
+    // private void OnTriggerExit2D(Collider2D other)
+    // {
+    //     HitboxController hb = other.gameObject.GetComponent<HitboxController>();
+    //     if (hb != null)
+    //     {
+    //         Touching.Remove(hb.Who);
+    //     }
+    // }
 
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        HitboxController hb = other.gameObject.GetComponent<HitboxController>();
-        if (hb != null)
-        {
-            Touching.Remove(hb.Who);
-        }
-    }
-
-    private void OnCollisionEnter2D(Collision2D other)
-    {
-        ThingController tc = other.gameObject.GetComponent<ThingController>();
-        if (tc != null)
-        {
-            TakeEvent(God.E(EventTypes.OnTouch).Set(tc));
-            if(!Touching.Contains(tc)) Touching.Add(tc);
-            //Only one because they'll call their own version
-        }
-        else
-        {
-            TakeEvent(God.E(EventTypes.OnTouchWall).Set(other.GetContact(0).point));
-        }
-    }
-
-    private void OnCollisionExit2D(Collision2D other)
-    {
-        ThingController tc = other.gameObject.GetComponent<ThingController>();
-        if (tc != null)
-        {
-            Touching.Remove(tc);
-        }
-    }
+    // private void OnCollisionEnter2D(Collision2D other)
+    // {
+    //     ThingController tc = other.gameObject.GetComponent<ThingController>();
+    //     if (tc != null)
+    //     {
+    //         TakeEvent(God.E(EventTypes.OnTouch).Set(tc));
+    //         if(!Touching.Contains(tc)) Touching.Add(tc);
+    //         //Only one because they'll call their own version
+    //     }
+    //     else
+    //     {
+    //         TakeEvent(God.E(EventTypes.OnTouchWall).Set(other.GetContact(0).point));
+    //     }
+    // }
+    //
+    // private void OnCollisionExit2D(Collision2D other)
+    // {
+    //     ThingController tc = other.gameObject.GetComponent<ThingController>();
+    //     if (tc != null)
+    //     {
+    //         Touching.Remove(tc);
+    //     }
+    // }
 
     public bool IsPlayer()
     {

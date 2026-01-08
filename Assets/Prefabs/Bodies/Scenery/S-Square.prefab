@@ -65,7 +65,7 @@ GameObject:
   - component: {fileID: 1476628066147491589}
   - component: {fileID: 8163049734376777321}
   - component: {fileID: 6044228520138887051}
-  m_Layer: 11
+  m_Layer: 12
   m_Name: Hitbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -147,6 +147,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Who: {fileID: 0}
   Coll: {fileID: 8163049734376777321}
+  Touching: []
 --- !u!1 &6054114107041684505
 GameObject:
   m_ObjectHideFlags: 0

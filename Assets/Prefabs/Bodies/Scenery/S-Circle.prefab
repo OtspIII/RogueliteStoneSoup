@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7411330706838837334}
   - component: {fileID: 3903241315713755028}
   - component: {fileID: 348278466891955048}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Hitbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -83,6 +83,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Who: {fileID: 0}
   Coll: {fileID: 3903241315713755028}
+  Touching: []
 --- !u!1 &4742179959285484603
 GameObject:
   m_ObjectHideFlags: 0
@@ -93,7 +94,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2994115112403250605}
   - component: {fileID: 629948465317790645}
-  - component: {fileID: 6750782060743672564}
   m_Layer: 0
   m_Name: S-Circle
   m_TagString: Untagged
@@ -138,42 +138,6 @@ MonoBehaviour:
   Size: 1
   SR: {fileID: 1376856763321729984}
   DefaultAnim: Idle
---- !u!58 &6750782060743672564
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4742179959285484603}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_Radius: 0.5
 --- !u!1 &6054114107041684505
 GameObject:
   m_ObjectHideFlags: 0

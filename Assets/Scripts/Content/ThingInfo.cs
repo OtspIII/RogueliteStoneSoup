@@ -168,4 +168,14 @@ public class ThingInfo
         GameObject.Destroy(Thing.gameObject);
     }
 
+    public override string ToString()
+    {
+        string tr = "";
+        foreach (Traits t in Trait.Keys)
+        {
+            if (tr != "") tr += ",";
+            tr += t.ToString();
+        }
+        return Name + "("+ActorTrait?.Action?.ToString()+"/"+CurrentWeapon?.Who.Name+"/"+tr+")";
+    }
 }

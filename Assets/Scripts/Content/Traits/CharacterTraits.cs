@@ -10,6 +10,7 @@ public class PlayerTrait : Trait
         TakeListen.Add(EventTypes.Setup);
         TakeListen.Add(EventTypes.Update);
         TakeListen.Add(EventTypes.IsPlayer);
+        TakeListen.Add(EventTypes.OnTouch);
     }
 
     public override void TakeEvent(TraitInfo i, EventInfo e)
@@ -43,6 +44,13 @@ public class PlayerTrait : Trait
             case EventTypes.IsPlayer:
             {
                 i.Set(BoolInfo.Default,true);
+                break;
+            }
+            case EventTypes.OnTouch:
+            {
+                ThingInfo what = e.GetActor();
+                Debug.Log("PLAYER TOUCHED: " + what);
+                what.TakeEvent(God.E(EventTypes.TryPickup).Set(i.Who));
                 break;
             }
         }

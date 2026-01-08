@@ -24,6 +24,7 @@ public enum EventTypes{
     OnHitInside     =2003,
     OnHitWall       =2004,
     OnClash         =2030,  //Clash is hurtbox to hurtbox
+    TryPickup       =2040,  //Pickup happens when the player bumps into something
     
     //Questions
     ShownHP         =9001,
