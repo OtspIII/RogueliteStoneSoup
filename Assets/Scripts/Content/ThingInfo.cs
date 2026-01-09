@@ -181,6 +181,8 @@ public class ThingInfo
         }
         return Name + "("+ActorTrait?.Action?.ToString()+"/"+CurrentWeapon?.Who.Name+"/"+tr+")";
     }
+
+    
 }
 
 

@@ -21,7 +21,10 @@ public enum EventTypes{
     OnTouchEnd      =2001,
     OnInside        =2002,
     OnTouchWall     =2003,
-    TryPickup       =2040,  //Pickup happens when the player bumps into something
+    Interact        =2040,
+    PlayerTouched   =2041,
+    PlayerLeft      =2042,
+    OnPickup        =2043,
     
     //Questions
     ShownHP         =9001,
@@ -29,6 +32,7 @@ public enum EventTypes{
     GetDefaultAction=9003,
     GetDefaultAttack=9004,
     IsPlayer        =9005,
+    IsInteractive   =9006,
 }
 
 public enum NumInfo

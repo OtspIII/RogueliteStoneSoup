@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -11,6 +12,7 @@ public class PlayerTrait : Trait
         TakeListen.Add(EventTypes.Update);
         TakeListen.Add(EventTypes.IsPlayer);
         TakeListen.Add(EventTypes.OnTouch);
+        TakeListen.Add(EventTypes.OnTouchEnd);
     }
 
     public override void TakeEvent(TraitInfo i, EventInfo e)
@@ -37,6 +39,16 @@ public class PlayerTrait : Trait
         
                 if(Input.GetKey(KeyCode.Mouse0))
                     i.Who.Thing.DoAction(Actions.DefaultAttack);
+
+
+                if (Input.GetKey(KeyCode.E))
+                {
+                    List<ThingController> touching = i.Who.Thing.GetTouching();
+                    foreach (ThingController t in touching)
+                    {
+                        t.TakeEvent(God.E(EventTypes.Interact).Set(i.Who));
+                    }
+                }
         
                 if(i.Who.ActorTrait.Action.CanRotate) i.Who.Thing.LookAt(God.Cam.Cam.ScreenToWorldPoint(Input.mousePosition),0.1f);
                 break;
@@ -50,7 +62,14 @@ public class PlayerTrait : Trait
             {
                 GameCollision col = e.Collision;
                 ThingInfo what = col.Other.Info;
-                what.TakeEvent(God.E(EventTypes.TryPickup).Set(i.Who));
+                what.TakeEvent(God.E(EventTypes.PlayerTouched).Set(i.Who));
+                break;
+            }
+            case EventTypes.OnTouchEnd:
+            {
+                GameCollision col = e.Collision;
+                ThingInfo what = col.Other.Info;
+                what.TakeEvent(God.E(EventTypes.PlayerLeft).Set(i.Who));
                 break;
             }
         }

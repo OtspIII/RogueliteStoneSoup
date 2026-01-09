@@ -8,6 +8,7 @@ public class ThingController : MonoBehaviour
     [HideInInspector]
     public Rigidbody2D RB;
     public BodyController Body;
+    public SpriteRenderer Icon;
     public Collider2D NoClip;
     
     public Vector3 StartSpot;
@@ -338,5 +339,10 @@ public class ThingController : MonoBehaviour
     public void TouchWall(Vector2 where)
     {
         TakeEvent(God.E(EventTypes.OnTouchWall).Set(where));
+    }
+    
+    public List<ThingController> GetTouching(HitboxTypes filter = HitboxTypes.None)
+    {
+        return Body.GetTouching(filter);
     }
 }

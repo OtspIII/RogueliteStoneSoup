@@ -28,16 +28,29 @@ public class PickupTrait : Trait
     public PickupTrait()
     {
         Type = Traits.Pickup;
-        TakeListen.Add(EventTypes.TryPickup);
+        TakeListen.Add(EventTypes.Interact);
+        TakeListen.Add(EventTypes.PlayerTouched);
+        TakeListen.Add(EventTypes.PlayerLeft);
     }
     
     public override void TakeEvent(TraitInfo i, EventInfo e)
     {
         switch (e.Type)
         {
-            case EventTypes.TryPickup:
+            case EventTypes.Interact:
             {
-                Debug.Log("TRY PICKUP: " + i.Who.Name + " / " + e.GetActor()?.Name);
+                i.Who.TakeEvent(God.E(EventTypes.OnPickup).Set(e.GetActor()));
+                i.Who.Destruct();
+                break;
+            }
+            case EventTypes.PlayerTouched:
+            {
+                i.Who.Thing.Icon.gameObject.SetActive(true);
+                break;
+            }
+            case EventTypes.PlayerLeft:
+            {
+                i.Who.Thing.Icon.gameObject.SetActive(false);
                 break;
             }
         }
@@ -49,18 +62,17 @@ public class HealPackTrait : Trait
     public HealPackTrait()
     {
         Type = Traits.HealPack;
-        TakeListen.Add(EventTypes.TryPickup);
+        TakeListen.Add(EventTypes.OnPickup);
     }
     
     public override void TakeEvent(TraitInfo i, EventInfo e)
     {
         switch (e.Type)
         {
-            case EventTypes.TryPickup:
+            case EventTypes.OnPickup:
             {
                 EventInfo heal = God.E(EventTypes.Healing).Set(5);
                 e.GetActor().TakeEvent(heal,true);
-                i.Who.Destruct();
                 break;
             }
         }

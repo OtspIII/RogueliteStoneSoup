@@ -75,4 +75,15 @@ public class BodyController : MonoBehaviour
         if(Hitbox != null)
             Hitbox.SetTeam(t);
     }
+
+    public List<ThingController> GetTouching(HitboxTypes filter=HitboxTypes.None)
+    {
+        List<ThingController> r = new List<ThingController>();
+        if (Hitbox != null && (filter == HitboxTypes.None || Hitbox.Type == filter))
+        {
+            r.AddRange(Hitbox.Touching);
+        }
+        if(Weapon != null) r.AddRange(Weapon.GetTouching(filter));
+        return r;
+    }
 }
