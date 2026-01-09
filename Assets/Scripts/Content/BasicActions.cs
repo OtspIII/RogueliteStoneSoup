@@ -86,9 +86,10 @@ public class AttackAction : ActionScript
         return Who.CurrentWeapon.GetN() * Damage;
     }
 
-    public override void HitBegin(ThingController hit, HurtboxController box)
+    public override void HitBegin(GameCollision col)
     {
-        base.HitBegin(hit, box);
+        base.HitBegin(col);
+        ThingController hit = col.Other;
         if (AlreadyHit.Contains(hit)) return;
         AlreadyHit.Add(hit);
         // Debug.Log("TAKE DAMAGE: " + hit.gameObject);

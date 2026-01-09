@@ -49,8 +49,7 @@ MonoBehaviour:
   Anim: {fileID: 0}
   Weapon: {fileID: 0}
   Who: {fileID: 0}
-  Hitbox: {fileID: 0}
-  Hurtbox: {fileID: 7787363287969375468}
+  Hitbox: {fileID: 7368647709177202226}
   Size: 1
   SR: {fileID: 1376856763321729984}
   DefaultAnim: Idle
@@ -63,7 +62,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1476628066147491589}
-  - component: {fileID: 7787363287969375468}
+  - component: {fileID: 7368647709177202226}
   - component: {fileID: 8163049734376777321}
   m_Layer: 11
   m_Name: Hurtbox
@@ -87,7 +86,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2994115112403250605}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7787363287969375468
+--- !u!114 &7368647709177202226
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -96,13 +95,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 4886576149920327446}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3015073ade2675246bfb39968dc25e2b, type: 3}
+  m_Script: {fileID: 11500000, guid: eaed01afd264d7548bf8a78d42be0f4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Type: 2
   Who: {fileID: 0}
+  Body: {fileID: 629948465317790645}
   Coll: {fileID: 8163049734376777321}
+  Touching: []
   Timer: 0
-  Inside: []
 --- !u!61 &8163049734376777321
 BoxCollider2D:
   m_ObjectHideFlags: 0

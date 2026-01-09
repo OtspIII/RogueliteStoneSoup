@@ -17,6 +17,7 @@ public class ThingController : MonoBehaviour
     
     // public CharacterStats Stats;
     public TraitInfo CurrentWeapon {get {return Info.CurrentWeapon;} set { Info.CurrentWeapon = value;}}
+    public BodyController WeaponBody;
     
     // public Dictionary<Traits, TraitInfo> Trait {get {return Info.Trait;} set { Info.Trait = value;}}
     // public Dictionary<EventTypes, List<Traits>> PreListen {get {return Info.PreListen;} set { Info.PreListen = value;}}
@@ -152,6 +153,7 @@ public class ThingController : MonoBehaviour
     {
         ThingInfo i = o.Create();
         i.ChildOf = Info;
+        i.Team = Info.Team;
         float rot = Body.Weapon.transform.rotation.eulerAngles.z - 90;
         ThingController r = i.Spawn(Body.Weapon.transform.position,rot);
         // rot.z -= 90; //Eventually add accuracy stat?
@@ -315,5 +317,26 @@ public class ThingController : MonoBehaviour
     public bool IsPlayer()
     {
         return Info.IsPlayer();
+    }
+
+    public void SetTeam(GameTeams team)
+    {
+        Body.SetTeam(team);
+        if(WeaponBody != null) WeaponBody.SetTeam(team);
+    }
+
+    public void TouchStart(GameCollision col)
+    {
+        TakeEvent(God.E(EventTypes.OnTouch).Set(col));
+    }
+    
+    public void TouchEnd(GameCollision col)
+    {
+        
+    }
+
+    public void TouchWall(Vector2 where)
+    {
+        TakeEvent(God.E(EventTypes.OnTouchWall).Set(where));
     }
 }

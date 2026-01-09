@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7411330706838837334}
-  - component: {fileID: 3903241315713755028}
   - component: {fileID: 348278466891955048}
+  - component: {fileID: 3903241315713755028}
   m_Layer: 12
   m_Name: Hitbox
   m_TagString: Untagged
@@ -33,6 +33,24 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2994115112403250605}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &348278466891955048
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3952700711557659403}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eaed01afd264d7548bf8a78d42be0f4c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Type: 1
+  Who: {fileID: 0}
+  Body: {fileID: 629948465317790645}
+  Coll: {fileID: 3903241315713755028}
+  Touching: []
+  Timer: 0
 --- !u!58 &3903241315713755028
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -69,21 +87,6 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 0.5
---- !u!114 &348278466891955048
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3952700711557659403}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eaed01afd264d7548bf8a78d42be0f4c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Who: {fileID: 0}
-  Coll: {fileID: 3903241315713755028}
-  Touching: []
 --- !u!1 &4742179959285484603
 GameObject:
   m_ObjectHideFlags: 0
@@ -134,7 +137,6 @@ MonoBehaviour:
   Weapon: {fileID: 0}
   Who: {fileID: 0}
   Hitbox: {fileID: 348278466891955048}
-  Hurtbox: {fileID: 0}
   Size: 1
   SR: {fileID: 1376856763321729984}
   DefaultAnim: Idle

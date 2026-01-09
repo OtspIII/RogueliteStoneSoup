@@ -65,8 +65,8 @@ public class ProjectileTrait : Trait
     {
         Type = Traits.Projectile;
         TakeListen.Add(EventTypes.Start);
-        TakeListen.Add(EventTypes.OnHit);
-        TakeListen.Add(EventTypes.OnHitWall);
+        TakeListen.Add(EventTypes.OnTouch);
+        TakeListen.Add(EventTypes.OnTouchWall);
     }
 
     public override void TakeEvent(TraitInfo i, EventInfo e)
@@ -82,9 +82,11 @@ public class ProjectileTrait : Trait
                 who.RB.linearVelocity = who.transform.up * spd;
                 break;
             }
-            case EventTypes.OnHit:
+            case EventTypes.OnTouch:
             {
-                ThingInfo other = e.GetActor();
+                GameCollision col = e.Collision;
+                if (col.HBOther.Type != HitboxTypes.Body && col.HBOther.Coll.isTrigger) break;
+                ThingInfo other = col.Other.Info;
                 float amt = i.GetN();
                 if (amt > 0)
                 {
@@ -93,7 +95,7 @@ public class ProjectileTrait : Trait
                 i.Who.Destruct();
                 break;
             }
-            case EventTypes.OnHitWall:
+            case EventTypes.OnTouchWall:
             {
                 i.Who.Destruct();
                 break;

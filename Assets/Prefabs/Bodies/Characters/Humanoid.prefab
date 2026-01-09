@@ -51,7 +51,6 @@ MonoBehaviour:
   Weapon: {fileID: 0}
   Who: {fileID: 0}
   Hitbox: {fileID: 2524095723970103520}
-  Hurtbox: {fileID: 0}
   Size: 1
   SR: {fileID: 1376856763321729984}
   DefaultAnim: Idle
@@ -209,8 +208,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eaed01afd264d7548bf8a78d42be0f4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Type: 1
   Who: {fileID: 0}
+  Body: {fileID: 629948465317790645}
   Coll: {fileID: 5634070364969105375}
+  Touching: []
+  Timer: 0
 --- !u!58 &5634070364969105375
 CircleCollider2D:
   m_ObjectHideFlags: 0

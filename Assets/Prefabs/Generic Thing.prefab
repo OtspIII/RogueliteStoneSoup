@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8992199459016718729}
   - component: {fileID: 1555990328838206888}
-  m_Layer: 13
+  m_Layer: 3
   m_Name: NoClip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -67,7 +67,7 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 0.25
+  m_Radius: 0.01
 --- !u!1 &7876912082703492726
 GameObject:
   m_ObjectHideFlags: 0
@@ -122,10 +122,11 @@ MonoBehaviour:
     Name: 
     Thing: {fileID: 0}
     Type: {fileID: 0}
+    Team: 0
     MidEvent: 0
     AttackRange: 1.5
     VisionRange: 4
     CurrentSpeed: 0
     DesiredMove: {x: 0, y: 0}
     Knockback: {x: 0, y: 0}
-  Touching: []
+  WeaponBody: {fileID: 0}

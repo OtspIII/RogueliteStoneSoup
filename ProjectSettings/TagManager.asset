@@ -8,17 +8,17 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - NoClip
   - Water
   - UI
-  - MHurtbox
-  - MHitbox
+  - Player
+  - Enemy
   - Wall
-  - PHurtbox
-  - PHitbox
-  - NHurtbox
-  - NHitbox
-  - NoClip
+  - Neutral
+  - 
+  - 
+  - 
+  - 
   - 
   - 
   - 

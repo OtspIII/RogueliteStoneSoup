@@ -8,6 +8,7 @@ public class ThingInfo
     public ThingController Thing;
     public ThingOption Type;
     public ThingInfo ChildOf;
+    public GameTeams Team;
     
     public Dictionary<Traits, TraitInfo> Trait = new Dictionary<Traits, TraitInfo>();
     public Dictionary<EventTypes, List<Traits>> PreListen = new Dictionary<EventTypes, List<Traits>>();
@@ -55,6 +56,7 @@ public class ThingInfo
         Thing.Body.Setup(Thing,Type);
         if(Thing.Body.Anim != null)
             Thing.Body.Anim.Rebind();
+        Thing.SetTeam(Team);
         return Thing;
     }
     
@@ -110,6 +112,7 @@ public class ThingInfo
 
     public void SetWeapon(ThingInfo w)
     {
+        w.Team = Team;
         TraitInfo i = w.Get(Traits.Holdable);
         // Debug.Log("SET WEAPON: " + Name + " / " + w.Name + " / " + i);
         CurrentWeapon = i;
@@ -178,4 +181,14 @@ public class ThingInfo
         }
         return Name + "("+ActorTrait?.Action?.ToString()+"/"+CurrentWeapon?.Who.Name+"/"+tr+")";
     }
+}
+
+
+///Dictates what objects collide. Things on Players & Enemies teams don't do friendly fire or block movement 
+public enum GameTeams 
+{
+    None=0,
+    Neutral=1,
+    Player=2,
+    Enemy=3,
 }

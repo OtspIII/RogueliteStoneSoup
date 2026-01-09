@@ -22,5 +22,5 @@ MonoBehaviour:
     Numbers: []
   HP: 300
   Speed: 15
-  Weapon: {fileID: 11400000, guid: d8535ae3107c2184ab8fc49f1318f904, type: 2}
+  Weapon: {fileID: 11400000, guid: e91d848f93989604c8a0b61dc1bb5a77, type: 2}
   DefaultAction: 1

@@ -18,12 +18,9 @@ public enum EventTypes{
     
     //Common Actions
     OnTouch         =2000,  //Touch is Hitbox to Hitbox
-    OnTouchInside   =2003,
-    OnTouchWall     =2004,
-    OnHit           =2010,  //Hit is hurtbox to hitbox
-    OnHitInside     =2003,
-    OnHitWall       =2004,
-    OnClash         =2030,  //Clash is hurtbox to hurtbox
+    OnTouchEnd      =2001,
+    OnInside        =2002,
+    OnTouchWall     =2003,
     TryPickup       =2040,  //Pickup happens when the player bumps into something
     
     //Questions
@@ -83,6 +80,14 @@ public enum VectorInfo
     None=0,
     Amount=1,
     Dir=2,
+}
+
+
+public enum HitboxInfo
+{
+    None=0,
+    Theirs=1,
+    Mine=2,
 }
 
 

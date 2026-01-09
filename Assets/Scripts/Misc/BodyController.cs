@@ -8,7 +8,7 @@ public class BodyController : MonoBehaviour
     public BodyController Weapon;
     public ThingController Who;
     public HitboxController Hitbox;
-    public HurtboxController Hurtbox;
+    // public HurtboxController Hurtbox;
     public float Size = 1;
     public SpriteRenderer SR;
     public Dictionary<string,float> Anims = new Dictionary<string, float>();
@@ -28,13 +28,9 @@ public class BodyController : MonoBehaviour
             // Weapon = Instantiate(God.Library.GetWeaponPrefab(who.CurrentWeapon.Seed.Body), transform);
             Weapon.Setup(Who,w,true);
             Weapon.gameObject.name = w.Name;
+            Who.WeaponBody = Weapon;
         }
 
-        bool pl = Who.IsPlayer();
-        if(pl && Hitbox != null)
-            Hitbox.SetPlayer();
-        if (pl && Hurtbox != null)
-            Hurtbox.SetPlayer();
         if (type != null)
         {
             if (SR != null)
@@ -73,9 +69,10 @@ public class BodyController : MonoBehaviour
     {
         Hitbox.Coll.enabled = tf;
     }
-    
-    public void SetHurtbox(bool tf)
+
+    public void SetTeam(GameTeams t)
     {
-        Hurtbox.Coll.enabled = tf;
+        if(Hitbox != null)
+            Hitbox.SetTeam(t);
     }
 }

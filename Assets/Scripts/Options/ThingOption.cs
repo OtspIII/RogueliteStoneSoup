@@ -5,6 +5,7 @@ using UnityEngine;
 public class ThingOption : ScriptableObject
 {
     public string Name;
+    public GameTeams Team = GameTeams.Neutral;
     public BodyController Body;
     public Sprite Art;
     public Color Color = Color.white;
@@ -16,6 +17,7 @@ public class ThingOption : ScriptableObject
     {
         ThingInfo r = new ThingInfo(this);
         r.Name = Name;
+        r.Team = Team;
         foreach (TraitBuilder t in Trait)
         {
             EventInfo ts = new EventInfo();

@@ -48,7 +48,8 @@ public class PlayerTrait : Trait
             }
             case EventTypes.OnTouch:
             {
-                ThingInfo what = e.GetActor();
+                GameCollision col = e.Collision;
+                ThingInfo what = col.Other.Info;
                 Debug.Log("PLAYER TOUCHED: " + what);
                 what.TakeEvent(God.E(EventTypes.TryPickup).Set(i.Who));
                 break;

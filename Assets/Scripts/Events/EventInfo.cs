@@ -17,7 +17,8 @@ public class EventInfo
     public Dictionary<VectorInfo, Vector2> Vectors = new Dictionary<VectorInfo, Vector2>();
     public ActionScript Action;
     public ThingSeed Seed;
-    public HurtboxController Hurtbox;
+    public Dictionary<HitboxInfo, HitboxController> Hitboxes = new Dictionary<HitboxInfo, HitboxController>();
+    public GameCollision Collision;
 
     public EventInfo(){ }
     
@@ -44,9 +45,10 @@ public class EventInfo
         foreach(ActorInfo n in i.Actors.Keys) Actors.Add(n,i.Actors[n]);
         foreach(OptionInfo n in i.Options.Keys) Options.Add(n,i.Options[n]);
         foreach(VectorInfo n in i.Vectors.Keys) Vectors.Add(n,i.Vectors[n]);
+        foreach(HitboxInfo n in i.Hitboxes.Keys) Hitboxes.Add(n,i.Hitboxes[n]);
         Action = i.Action;
         Seed = i.Seed;
-        Hurtbox = i.Hurtbox;
+        Collision = i.Collision;
     }
     
     //Numbers
@@ -260,9 +262,34 @@ public class EventInfo
         Seed = a;
         return this;
     }
-    public EventInfo Set(HurtboxController a)
+    public EventInfo Set(HitboxController a)
     {
-        Hurtbox = a;
+        SetHitbox(HitboxInfo.Theirs, a);
+        return this;
+    }
+    public EventInfo Set(HitboxInfo i,HitboxController a)
+    {
+        SetHitbox(i, a);
+        return this;
+    }
+    public EventInfo SetHitbox(HitboxInfo i, HitboxController a)
+    {
+        if (!Hitboxes.TryAdd(i,a)) Hitboxes[i]=a;
+        return this;
+    }
+    public HitboxController Get(HitboxInfo i)
+    {
+        return GetHitbox(i);
+    }
+    public HitboxController GetHitbox(HitboxInfo i=HitboxInfo.Theirs)
+    {
+        if (Hitboxes.TryGetValue(i, out HitboxController r)) return r;
+        return null;
+    }
+    
+    public EventInfo Set(GameCollision a)
+    {
+        Collision = a;
         return this;
     }
     

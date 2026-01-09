@@ -49,8 +49,7 @@ MonoBehaviour:
   Anim: {fileID: 8557504186364581760}
   Weapon: {fileID: 0}
   Who: {fileID: 0}
-  Hitbox: {fileID: 0}
-  Hurtbox: {fileID: 7787363287969375468}
+  Hitbox: {fileID: 5916617843389702076}
   Size: 1
   SR: {fileID: 0}
   DefaultAnim: Idle
@@ -76,85 +75,57 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!1001 &2486441739780525166
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 2994115112403250605}
-    m_Modifications:
-    - target: {fileID: 3963049963042460523, guid: fd4d3051419aee24aac4db8ec6faf43f, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3963049963042460523, guid: fd4d3051419aee24aac4db8ec6faf43f, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3963049963042460523, guid: fd4d3051419aee24aac4db8ec6faf43f, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3963049963042460523, guid: fd4d3051419aee24aac4db8ec6faf43f, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3963049963042460523, guid: fd4d3051419aee24aac4db8ec6faf43f, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3963049963042460523, guid: fd4d3051419aee24aac4db8ec6faf43f, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3963049963042460523, guid: fd4d3051419aee24aac4db8ec6faf43f, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3963049963042460523, guid: fd4d3051419aee24aac4db8ec6faf43f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3963049963042460523, guid: fd4d3051419aee24aac4db8ec6faf43f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3963049963042460523, guid: fd4d3051419aee24aac4db8ec6faf43f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5662106857641584770, guid: fd4d3051419aee24aac4db8ec6faf43f, type: 3}
-      propertyPath: Coll
-      value: 
-      objectReference: {fileID: 4441348170364775588}
-    - target: {fileID: 7012393278422592376, guid: fd4d3051419aee24aac4db8ec6faf43f, type: 3}
-      propertyPath: m_Name
-      value: Hurtbox
-      objectReference: {fileID: 0}
-    - target: {fileID: 7012393278422592376, guid: fd4d3051419aee24aac4db8ec6faf43f, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 6037471045136247303, guid: fd4d3051419aee24aac4db8ec6faf43f, type: 3}
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7012393278422592376, guid: fd4d3051419aee24aac4db8ec6faf43f, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 4441348170364775588}
-  m_SourcePrefab: {fileID: 100100000, guid: fd4d3051419aee24aac4db8ec6faf43f, type: 3}
---- !u!4 &1476628066147491589 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3963049963042460523, guid: fd4d3051419aee24aac4db8ec6faf43f, type: 3}
-  m_PrefabInstance: {fileID: 2486441739780525166}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &4886576149920327446 stripped
+--- !u!1 &4886576149920327446
 GameObject:
-  m_CorrespondingSourceObject: {fileID: 7012393278422592376, guid: fd4d3051419aee24aac4db8ec6faf43f, type: 3}
-  m_PrefabInstance: {fileID: 2486441739780525166}
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1476628066147491589}
+  - component: {fileID: 5916617843389702076}
+  - component: {fileID: 4441348170364775588}
+  m_Layer: 6
+  m_Name: Hurtbox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1476628066147491589
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4886576149920327446}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2994115112403250605}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5916617843389702076
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4886576149920327446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eaed01afd264d7548bf8a78d42be0f4c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Type: 3
+  Who: {fileID: 0}
+  Body: {fileID: 629948465317790645}
+  Coll: {fileID: 4441348170364775588}
+  Touching: []
+  Timer: 0
 --- !u!58 &4441348170364775588
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -191,14 +162,3 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 0.5
---- !u!114 &7787363287969375468 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5662106857641584770, guid: fd4d3051419aee24aac4db8ec6faf43f, type: 3}
-  m_PrefabInstance: {fileID: 2486441739780525166}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4886576149920327446}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3015073ade2675246bfb39968dc25e2b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

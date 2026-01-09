@@ -99,12 +99,12 @@ public class ActionScript
         Phase = newPhase;
     }
 
-    public virtual void HitBegin(ThingController hit, HurtboxController box)
+    public virtual void HitBegin(GameCollision col)
     {
         
     }
     
-    public virtual void HitEnd(ThingController hit, HurtboxController box)
+    public virtual void HitEnd(GameCollision col)
     {
         
     }

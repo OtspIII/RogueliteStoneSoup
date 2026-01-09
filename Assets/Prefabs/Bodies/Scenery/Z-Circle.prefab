@@ -9,10 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1079053261381916418}
+  - component: {fileID: 6770198507023327989}
   - component: {fileID: 6074392041114582933}
-  - component: {fileID: 5299048263340944000}
   m_Layer: 11
-  m_Name: Hurtbox
+  m_Name: Hitbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -33,6 +33,24 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2994115112403250605}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6770198507023327989
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 415585194421287792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eaed01afd264d7548bf8a78d42be0f4c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Type: 2
+  Who: {fileID: 0}
+  Body: {fileID: 629948465317790645}
+  Coll: {fileID: 6074392041114582933}
+  Touching: []
+  Timer: 0
 --- !u!58 &6074392041114582933
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -69,22 +87,6 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 0.5
---- !u!114 &5299048263340944000
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 415585194421287792}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3015073ade2675246bfb39968dc25e2b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Who: {fileID: 0}
-  Coll: {fileID: 6074392041114582933}
-  Timer: 0
-  Inside: []
 --- !u!1 &4742179959285484603
 GameObject:
   m_ObjectHideFlags: 0
@@ -134,8 +136,7 @@ MonoBehaviour:
   Anim: {fileID: 0}
   Weapon: {fileID: 0}
   Who: {fileID: 0}
-  Hitbox: {fileID: 0}
-  Hurtbox: {fileID: 5299048263340944000}
+  Hitbox: {fileID: 6770198507023327989}
   Size: 1
   SR: {fileID: 1376856763321729984}
   DefaultAnim: Idle
