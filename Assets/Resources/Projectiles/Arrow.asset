@@ -13,9 +13,11 @@ MonoBehaviour:
   m_Name: Arrow
   m_EditorClassIdentifier: 
   Name: Arrow
+  Team: 1
   Body: {fileID: 629948465317790645, guid: 9edb53243ae32704ead177294fe49d22, type: 3}
-  Art: 
-  Tags: 04000000
+  Art: {fileID: 0}
+  Color: {r: 1, g: 1, b: 1, a: 1}
+  Tags: 2c010000
   Trait: []
   Damage: 1
   Speed: 10

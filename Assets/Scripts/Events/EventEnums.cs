@@ -60,6 +60,8 @@ public enum BoolInfo
 {
     None=0,
     Default=1,
+    Abort=2,
+    Success=3,
 }
 
 public enum ActorInfo
@@ -93,19 +95,21 @@ public enum HitboxInfo
 
 public enum GameTags
 {
-    None=0,
-    Player=1,
-    NPC=2,
-    Weapon=3,
-    Projectile=4,
-    Exit=5,
-    Centerpiece=6,
+    None            =0000,
+    Player          =0001,
+    Something       =0002,
+    NPC             =0102,
+    Pickup          =0200,
+    Weapon          =0201,
+    Projectile      =0300,
+    Exit            =0400,
+    Centerpiece     =0400,
 }
 
 public enum RoomTags
 {
-    None=0,
-    Generic=1,
-    PlayerStart=2,
-    Exit=3,
+    None           =0000,
+    Generic        =0001,
+    PlayerStart    =0002,
+    Exit           =0003,
 }

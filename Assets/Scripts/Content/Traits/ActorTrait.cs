@@ -15,6 +15,7 @@ public class ActorTrait : Trait
         TakeListen.Add(EventTypes.GetDefaultAction);
         TakeListen.Add(EventTypes.Knockback);
         TakeListen.Add(EventTypes.OnTouch);
+        TakeListen.Add(EventTypes.OnTouchEnd);
     }
 
     public override void TakeEvent(TraitInfo i, EventInfo e)
@@ -82,6 +83,11 @@ public class ActorTrait : Trait
             case EventTypes.OnTouch:
             {
                 if (i.Action != null) i.Action.HitBegin(e.Collision);
+                break;
+            }
+            case EventTypes.OnTouchEnd:
+            {
+                if (i.Action != null) i.Action.HitEnd(e.Collision);
                 break;
             }
         }

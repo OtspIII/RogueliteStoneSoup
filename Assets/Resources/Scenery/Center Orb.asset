@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: Center Orb
   m_EditorClassIdentifier: 
   Name: Center Orb
+  Team: 1
   Body: {fileID: 629948465317790645, guid: acdd466902c6fe044a9f3b738deceb68, type: 3}
   Art: {fileID: 0}
   Color: {r: 0, g: 0, b: 0, a: 1}
-  Tags: 06000000
+  Tags: 90010000
   Trait: []

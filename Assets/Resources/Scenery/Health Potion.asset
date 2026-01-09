@@ -9,16 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a47d2194617e47469e601e558e7b8b4, type: 3}
-  m_Name: Sword
+  m_Script: {fileID: 11500000, guid: 037523bd7ae983240ad1b7cc3ff106cd, type: 3}
+  m_Name: Health Potion
   m_EditorClassIdentifier: 
-  Name: Sword
+  Name: Health Potion
   Team: 1
-  Body: {fileID: 629948465317790645, guid: b4fa405680f33044abe2c4567ecf147f, type: 3}
+  Body: {fileID: 629948465317790645, guid: 0f8734e4b4d2c3a449506fe0c78c1110, type: 3}
   Art: {fileID: 0}
   Color: {r: 1, g: 1, b: 1, a: 1}
-  Tags: c9000000
+  Tags: c8000000
   Trait: []
-  Damage: 1
-  DefaultAttack: 101
-  Projectile: {fileID: 0}

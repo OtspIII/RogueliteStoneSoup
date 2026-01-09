@@ -39,6 +39,7 @@ public static class TraitManager
         TraitDict.Add(Traits.Player,new PlayerTrait());
         TraitDict.Add(Traits.Holdable,new HoldableTrait());
         TraitDict.Add(Traits.Pickup,new PickupTrait());
+        TraitDict.Add(Traits.HealPack,new HealPackTrait());
         TraitDict.Add(Traits.Projectile,new ProjectileTrait());
         TraitDict.Add(Traits.Exit,new ExitTrait());
         TraitDict.Add(Traits.DamageZone,new DamageZoneTrait());

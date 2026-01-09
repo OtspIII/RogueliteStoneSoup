@@ -36,6 +36,23 @@ public class SpawnRequest
         return w;
     }
 
+    public void Refine()
+    {
+        for (int n = 0; n < Mandatory.Count; n++)
+        {
+            if (Mandatory[n] == GameTags.Something)
+            {
+                Mandatory[n] = God.CoinFlip() ? GameTags.NPC : GameTags.Pickup;
+            }
+        }
+
+        if (Any.Contains(GameTags.Something))
+        {
+            Any.Add(GameTags.NPC);
+            Any.Add(GameTags.Pickup);
+        }
+    }
+
     public override string ToString()
     {
         string r = "";

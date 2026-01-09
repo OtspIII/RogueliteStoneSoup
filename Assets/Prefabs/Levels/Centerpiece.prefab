@@ -1975,7 +1975,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8540057791775574626, guid: 7296cde674c3b344490b87f150ec75ca, type: 3}
       propertyPath: 'ToSpawn.Mandatory.Array.data[0]'
-      value: 6
+      value: 400
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

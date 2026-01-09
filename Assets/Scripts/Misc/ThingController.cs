@@ -332,7 +332,7 @@ public class ThingController : MonoBehaviour
     
     public void TouchEnd(GameCollision col)
     {
-        
+        TakeEvent(God.E(EventTypes.OnTouchEnd).Set(col));
     }
 
     public void TouchWall(Vector2 where)

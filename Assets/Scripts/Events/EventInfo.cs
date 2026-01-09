@@ -7,7 +7,7 @@ using UnityEngine;
 public class EventInfo
 {
     public EventTypes Type;
-    public bool Abort = false;
+    public bool Abort { get { return GetBool(BoolInfo.Abort); } set { SetBool(BoolInfo.Abort, value);} }
     public Dictionary<NumInfo, float> Numbers = new Dictionary<NumInfo, float>();
     public Dictionary<StrInfo, string> Texts = new Dictionary<StrInfo, string>();
     public Dictionary<EnumInfo, int> Enums = new Dictionary<EnumInfo, int>();

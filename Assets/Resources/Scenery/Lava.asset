@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: Lava
   m_EditorClassIdentifier: 
   Name: Lava
+  Team: 1
   Body: {fileID: 629948465317790645, guid: 073ebe890d72bac48bacd0748bd84afc, type: 3}
   Art: {fileID: 0}
   Color: {r: 1, g: 0, b: 0, a: 1}
-  Tags: 06000000
+  Tags: 90010000
   Trait:
   - Trait: 201
     Numbers: []

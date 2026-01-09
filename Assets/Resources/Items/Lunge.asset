@@ -13,9 +13,11 @@ MonoBehaviour:
   m_Name: Lunge
   m_EditorClassIdentifier: 
   Name: Lunge
+  Team: 1
   Body: {fileID: 629948465317790645, guid: 0dbb6610376380d4393be62d6ec50ffc, type: 3}
   Art: {fileID: 0}
-  Tags: 03000000
+  Color: {r: 1, g: 1, b: 1, a: 1}
+  Tags: c9000000
   Trait: []
   Damage: 1
   DefaultAttack: 102

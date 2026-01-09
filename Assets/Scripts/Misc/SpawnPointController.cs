@@ -8,6 +8,7 @@ public class SpawnPointController : MonoBehaviour
 
     public void Spawn()
     {
+        ToSpawn.Refine();
         ThingOption chosen = God.Library.GetThing(ToSpawn);
         if (chosen == null)
         {
