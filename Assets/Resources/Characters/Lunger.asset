@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: 4679cc75b2c8be74e8b047318fa062ea, type: 3}
   m_Name: Lunger
   m_EditorClassIdentifier: Assembly-CSharp::CharacterOption
   Name: Lunger
@@ -20,6 +20,6 @@ MonoBehaviour:
   Tags: 66000000
   Trait: []
   HP: 1
-  Speed: 5
+  Speed: 6
   Weapon: {fileID: 11400000, guid: 7d621acb1abd6f14fb8ce00024521ece, type: 2}
   DefaultAction: 201
