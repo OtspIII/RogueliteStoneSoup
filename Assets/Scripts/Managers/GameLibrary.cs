@@ -6,6 +6,7 @@ using UnityEngine.Serialization;
 public class GameLibrary : MonoBehaviour
 {
     public ThingController ActorPrefab;
+    public BodyController PickupDefaultBody;
     private List<RoomOption> RoomOptions = new List<RoomOption>();
     private List<ThingOption> ThingOptions = new List<ThingOption>();
 

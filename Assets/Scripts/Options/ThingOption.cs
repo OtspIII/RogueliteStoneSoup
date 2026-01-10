@@ -29,6 +29,17 @@ public class ThingOption : ScriptableObject
 
         return r;
     }
+
+    public virtual BodyController GetBody(bool held = false)
+    {
+        return Body;
+    }
+    
+    public virtual Sprite GetArt(bool held = false)
+    {
+        return Art;
+    }
+    
     
 }
 

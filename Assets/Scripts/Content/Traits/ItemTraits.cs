@@ -7,6 +7,7 @@ public class HoldableTrait : Trait
     {
         Type = Traits.Holdable;
         TakeListen.Add(EventTypes.GetDefaultAttack);
+        TakeListen.Add(EventTypes.Interact);
     }
     
     public override void TakeEvent(TraitInfo i, EventInfo e)
@@ -16,6 +17,12 @@ public class HoldableTrait : Trait
             case EventTypes.GetDefaultAttack:
             {
                 e.Set(EnumInfo.DefaultAction, (int)i.Get<Actions>(EnumInfo.DefaultAction));
+                break;
+            }
+            case EventTypes.Interact:
+            {
+                ThingInfo who = e.GetActor();
+                who.SetWeapon(i.Who);
                 break;
             }
         }

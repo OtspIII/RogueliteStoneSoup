@@ -22,21 +22,16 @@ public class BodyController : MonoBehaviour
         transform.localScale = new Vector3(Size,Size,1);
         if (!weapon && who.CurrentWeapon != null)
         {
-            // ThingOption w = God.Library.GetThing(GameTags.Weapon);
-            ThingOption w = who.CurrentWeapon.Who.Type;
-            Weapon = Instantiate(w.Body, transform);
-            // Weapon = Instantiate(God.Library.GetWeaponPrefab(who.CurrentWeapon.Seed.Body), transform);
-            Weapon.Setup(Who,w,true);
-            Weapon.gameObject.name = w.Name;
-            Who.WeaponBody = Weapon;
+            SetWeapon(who.CurrentWeapon);
         }
 
         if (type != null)
         {
             if (SR != null)
             {
-                if (type.Art != null)
-                    SR.sprite = type.Art;
+                Sprite art = type.GetArt(weapon);
+                if (art != null)
+                    SR.sprite = art;
                 SR.color = type.Color;
             }
         }
@@ -46,6 +41,21 @@ public class BodyController : MonoBehaviour
                 Anims.Add(c.name,c.length);
         if (!Anims.ContainsKey(DefaultAnim) && Anims.Keys.Count > 0)
             DefaultAnim = Anims.Keys.ToArray()[0];
+    }
+
+    public void SetWeapon(TraitInfo wpn)
+    {
+        if (Weapon != null)
+        {
+            Destroy(Weapon.gameObject);
+        }
+        // ThingOption w = God.Library.GetThing(GameTags.Weapon);
+        ThingOption w = wpn.Who.Type;
+        Weapon = Instantiate(w.GetBody(true), transform);
+        // Weapon = Instantiate(God.Library.GetWeaponPrefab(who.CurrentWeapon.Seed.Body), transform);
+        Weapon.Setup(Who,w,true);
+        Weapon.gameObject.name = w.Name;
+        Who.WeaponBody = Weapon;
     }
 
     public float PlayAnim(string a)

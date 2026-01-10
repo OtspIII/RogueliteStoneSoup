@@ -212,54 +212,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Game Manager
       objectReference: {fileID: 0}
-    - target: {fileID: 2119955820252328358, guid: 1406ee7445a27a44e8384a3c5752e102, type: 3}
-      propertyPath: WeaponBody
-      value: 
-      objectReference: {fileID: 629948465317790645, guid: b4fa405680f33044abe2c4567ecf147f, type: 3}
-    - target: {fileID: 2119955820252328358, guid: 1406ee7445a27a44e8384a3c5752e102, type: 3}
-      propertyPath: RoomOptions.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 2119955820252328358, guid: 1406ee7445a27a44e8384a3c5752e102, type: 3}
-      propertyPath: ThingOptions.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 2119955820252328358, guid: 1406ee7445a27a44e8384a3c5752e102, type: 3}
-      propertyPath: 'RoomOptions.Array.data[0]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 42524813ad6b95f46a66e0f7bac80237, type: 2}
-    - target: {fileID: 2119955820252328358, guid: 1406ee7445a27a44e8384a3c5752e102, type: 3}
-      propertyPath: 'RoomOptions.Array.data[1]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 9620bbf87f8e30e41b0ac9038e4f5b0a, type: 2}
-    - target: {fileID: 2119955820252328358, guid: 1406ee7445a27a44e8384a3c5752e102, type: 3}
-      propertyPath: 'RoomOptions.Array.data[2]'
-      value: 
-      objectReference: {fileID: 11400000, guid: e35735416e918f44f941bc3af3ca034e, type: 2}
-    - target: {fileID: 2119955820252328358, guid: 1406ee7445a27a44e8384a3c5752e102, type: 3}
-      propertyPath: 'RoomOptions.Array.data[3]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 92306e7ffdcff194b933ae0e586752b2, type: 2}
-    - target: {fileID: 2119955820252328358, guid: 1406ee7445a27a44e8384a3c5752e102, type: 3}
-      propertyPath: 'RoomOptions.Array.data[4]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 92306e7ffdcff194b933ae0e586752b2, type: 2}
-    - target: {fileID: 2119955820252328358, guid: 1406ee7445a27a44e8384a3c5752e102, type: 3}
-      propertyPath: 'ThingOptions.Array.data[0]'
-      value: 
-      objectReference: {fileID: 11400000, guid: a2c87b7cbb90eb44bb0842521e483769, type: 2}
-    - target: {fileID: 2119955820252328358, guid: 1406ee7445a27a44e8384a3c5752e102, type: 3}
-      propertyPath: 'ThingOptions.Array.data[1]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 49d04f8b5b9328f40b13742aff9ad35b, type: 2}
-    - target: {fileID: 2119955820252328358, guid: 1406ee7445a27a44e8384a3c5752e102, type: 3}
-      propertyPath: 'ThingOptions.Array.data[2]'
-      value: 
-      objectReference: {fileID: 11400000, guid: eb20d0fc13425f4468dc434b687907ea, type: 2}
-    - target: {fileID: 2119955820252328358, guid: 1406ee7445a27a44e8384a3c5752e102, type: 3}
-      propertyPath: 'ThingOptions.Array.data[3]'
-      value: 
-      objectReference: {fileID: 11400000, guid: cd3145380e5c2e14694f1303f94400af, type: 2}
     - target: {fileID: 3213306233608880512, guid: 1406ee7445a27a44e8384a3c5752e102, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

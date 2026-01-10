@@ -49,7 +49,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LevelHolder: {fileID: 0}
   SpawnPoints: []
-  JSON: {fileID: 4900000, guid: 2253075a02a348b42bd54a6a07df149d, type: 3}
   HealthTxt: {fileID: 6799186917877728896}
   Rooms: []
 --- !u!1 &1505889798978773429
@@ -403,14 +402,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ActorPrefab: {fileID: 7168331786191300375, guid: c8fbb66690624b049a9e874f3aee606b, type: 3}
-  HumanoidBodyPrefab: {fileID: 629948465317790645, guid: acf0e760b28c7b046ad7d511fb87a1d3, type: 3}
-  LungerBodyPrefab: {fileID: 629948465317790645, guid: c5227d51ccfec934db9e0058624b573e, type: 3}
-  SwordPrefab: {fileID: 3780936271182354695, guid: f53a1555831eb064588c63345135e94b, type: 3}
-  TramplePrefab: {fileID: 1104640380600672599, guid: e078e5fd26f89f14d9d6419765cad93d, type: 3}
-  ProjectilePrefab: {fileID: 7921890350347933407, guid: c34100ab0ed4dcc4cb56f4927c61459a, type: 3}
-  RoomPrefabs:
-  - {fileID: 11400000, guid: 42524813ad6b95f46a66e0f7bac80237, type: 2}
-  - {fileID: 11400000, guid: 9620bbf87f8e30e41b0ac9038e4f5b0a, type: 2}
-  - {fileID: 11400000, guid: e35735416e918f44f941bc3af3ca034e, type: 2}
-  - {fileID: 11400000, guid: 92306e7ffdcff194b933ae0e586752b2, type: 2}
-  ExitPrefab: {fileID: 8725534831781302867, guid: 877e7e521441b754980dec42e9e32f90, type: 3}
+  PickupDefaultBody: {fileID: 629948465317790645, guid: 0f8734e4b4d2c3a449506fe0c78c1110, type: 3}

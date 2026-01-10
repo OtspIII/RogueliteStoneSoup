@@ -53,7 +53,7 @@ public class ThingInfo
         Thing.NameText.text = Name;
         // Debug.Log("SPAWN: " + Name);
         Thing.TakeEvent(EventTypes.Setup);
-        Thing.Body = GameObject.Instantiate(Type.Body, Thing.transform);
+        Thing.Body = GameObject.Instantiate(Type.GetBody(), Thing.transform);
         Thing.Body.Setup(Thing,Type);
         if(Thing.Body.Anim != null)
             Thing.Body.Anim.Rebind();
@@ -117,7 +117,11 @@ public class ThingInfo
         TraitInfo i = w.Get(Traits.Holdable);
         // Debug.Log("SET WEAPON: " + Name + " / " + w.Name + " / " + i);
         CurrentWeapon = i;
-    }
+        if (Thing != null)
+        {
+            Thing.Body.SetWeapon(i);
+        }
+}
     
     public void TakeEvent(EventTypes e)
     {
