@@ -13,6 +13,8 @@ public static class God
     // public static LevelJSON JSON;
     public static List<Directions> Dirs = new List<Directions>() { Directions.Left,Directions.Up,Directions.Right,Directions.Down };
     public static KeyCode InfoKey = KeyCode.LeftShift;
+    public static List<KeyCode> InvKeys = new List<KeyCode>() { KeyCode.Alpha1,KeyCode.Alpha2,KeyCode.Alpha3,
+        KeyCode.Alpha4,KeyCode.Alpha5,KeyCode.Alpha6,KeyCode.Alpha7,KeyCode.Alpha8,KeyCode.Alpha9,KeyCode.Alpha0 };
 
     public static Vector2 RoomSize = new Vector2(10, 10);
 

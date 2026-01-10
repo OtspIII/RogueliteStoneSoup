@@ -13,6 +13,8 @@ public class PlayerTrait : Trait
         TakeListen.Add(EventTypes.IsPlayer);
         TakeListen.Add(EventTypes.OnTouch);
         TakeListen.Add(EventTypes.OnTouchEnd);
+        TakeListen.Add(EventTypes.DidPickup);
+        TakeListen.Add(EventTypes.DidDrop);
     }
 
     public override void TakeEvent(TraitInfo i, EventInfo e)
@@ -26,6 +28,8 @@ public class PlayerTrait : Trait
                 God.Player = i.Who;
                 i.Set(EnumInfo.DefaultAction, (int)Actions.Idle);
                 God.Cam.Target = i.Who.Thing.gameObject;
+                if(i.Who.CurrentWeapon != null)
+                    i.Who.TakeEvent(God.E(EventTypes.DidPickup).Set(i.Who.CurrentWeapon));
                 break;
             }
             case EventTypes.Update:
@@ -36,9 +40,18 @@ public class PlayerTrait : Trait
                 if (Input.GetKey(KeyCode.W)) vel.y = 1;
                 if (Input.GetKey(KeyCode.S)) vel.y = -1;
                 i.Who.DesiredMove = vel;
-        
-                if(Input.GetKey(KeyCode.Mouse0))
-                    i.Who.Thing.DoAction(Actions.DefaultAttack);
+
+                if (Input.GetKeyDown(KeyCode.Mouse0))i.Who.TakeEvent(God.E(EventTypes.UseHeldStart));
+                if (Input.GetKey(KeyCode.Mouse0))i.Who.TakeEvent(God.E(EventTypes.UseHeld));
+                else if (i.Who.CurrentWeapon == null && God.GM.PlayerInventory.Count > 0)
+                {
+                    i.Who.SetWeapon(God.GM.PlayerInventory[God.GM.InventoryIndex-1]);
+                }
+                // {
+                    // i.Who.TakeEvent(God.E(EventTypes.StartAction).SetEnum(EnumInfo.Action,(int)Actions.DefaultAttack));
+                    // i.Who.Thing.DoAction(Actions.DefaultAttack);
+                // }
+                    
 
 
                 if (Input.GetKey(KeyCode.E))
@@ -49,6 +62,18 @@ public class PlayerTrait : Trait
                         t.TakeEvent(God.E(EventTypes.Interact).Set(i.Who));
                     }
                 }
+
+                for (int n = 0; n < God.InvKeys.Count; n++)
+                {
+                    if (Input.GetKeyDown(God.InvKeys[n]) && God.GM.PlayerInventory.Count > n)
+                    {
+                        God.GM.InventoryIndex = n+1;
+                        God.Player.SetWeapon(God.GM.PlayerInventory[n]);
+                        God.GM.UpdateInvText();
+                    }
+                        
+                }
+                if (Input.GetKey(KeyCode.Alpha1)) vel.y = -1;
         
                 if(i.Who.ActorTrait.Action.CanRotate) i.Who.Thing.LookAt(God.Cam.Cam.ScreenToWorldPoint(Input.mousePosition),0.1f);
                 break;
@@ -70,6 +95,16 @@ public class PlayerTrait : Trait
                 GameCollision col = e.Collision;
                 ThingInfo what = col.Other.Info;
                 what.TakeEvent(God.E(EventTypes.PlayerLeft).Set(i.Who));
+                break;
+            }
+            case EventTypes.DidPickup:
+            {
+                God.GM.AddInventory(e.GetActor());
+                break;
+            }
+            case EventTypes.DidDrop:
+            {
+                God.GM.RemoveInventory(e.GetActor());
                 break;
             }
         }

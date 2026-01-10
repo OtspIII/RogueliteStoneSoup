@@ -43,14 +43,14 @@ public class BodyController : MonoBehaviour
             DefaultAnim = Anims.Keys.ToArray()[0];
     }
 
-    public void SetWeapon(TraitInfo wpn)
+    public void SetWeapon(ThingInfo wpn)
     {
         if (Weapon != null)
         {
             Destroy(Weapon.gameObject);
         }
         // ThingOption w = God.Library.GetThing(GameTags.Weapon);
-        ThingOption w = wpn.Who.Type;
+        ThingOption w = wpn.Type;
         Weapon = Instantiate(w.GetBody(true), transform);
         // Weapon = Instantiate(God.Library.GetWeaponPrefab(who.CurrentWeapon.Seed.Body), transform);
         Weapon.Setup(Who,w,true);

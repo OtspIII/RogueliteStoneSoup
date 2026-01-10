@@ -17,8 +17,10 @@ MonoBehaviour:
   Body: {fileID: 629948465317790645, guid: b4fa405680f33044abe2c4567ecf147f, type: 3}
   Art: {fileID: 21300000, guid: d3d765ba086c74e42a193d23578a3284, type: 3}
   Color: {r: 1, g: 1, b: 1, a: 1}
-  Tags: c9000000
+  Tags: c9000000c8000000
   Trait: []
   Damage: 2
   DefaultAttack: 101
   Projectile: {fileID: 0}
+  FloorBody: {fileID: 0}
+  FloorArt: {fileID: 0}

@@ -19,7 +19,7 @@ public class ThingController : MonoBehaviour
     public ThingInfo Info;
     
     // public CharacterStats Stats;
-    public TraitInfo CurrentWeapon {get {return Info.CurrentWeapon;} set { Info.CurrentWeapon = value;}}
+    public ThingInfo CurrentWeapon {get {return Info.CurrentWeapon;} set { Info.CurrentWeapon = value;}}
     public BodyController WeaponBody;
     
     // public Dictionary<Traits, TraitInfo> Trait {get {return Info.Trait;} set { Info.Trait = value;}}
@@ -260,11 +260,11 @@ public class ThingController : MonoBehaviour
         TakeEvent(God.E(EventTypes.StartAction).Set(EnumInfo.Action,(int)a));
     }
     
-    public virtual ActionScript DefaultAttackAction()
-    {
-        Actions act = CurrentWeapon.Get<Actions>(EnumInfo.DefaultAction);
-        return GetAction(act);
-    }
+    // public virtual ActionScript DefaultAttackAction()
+    // {
+    //     Actions act = CurrentWeapon.Get<Actions>(EnumInfo.DefaultAction);
+    //     return GetAction(act);
+    // }
 
     public virtual ActionScript GetAction(Actions a)
     {
@@ -345,5 +345,12 @@ public class ThingController : MonoBehaviour
     public List<ThingController> GetTouching(HitboxTypes filter = HitboxTypes.None)
     {
         return Body.GetTouching(filter);
+    }
+
+    public void DropHeld()
+    {
+        if (WeaponBody == null) return;
+        Destroy(WeaponBody.gameObject);
+        WeaponBody = null;
     }
 }

@@ -61,7 +61,8 @@ public class ChaseAction : ActionScript
         Who.LookAt(Who.Target,0.5f);
         
         if(Who.Distance(Who.Target) <= Who.AttackRange && Who.IsFacing(Who.Target,5))
-            Who.DoAction(Who.DefaultAttackAction());
+            Who.TakeEvent(God.E(EventTypes.StartAction).SetEnum(EnumInfo.Action,(int)Actions.DefaultAttack));
+            // Who.DoAction(Who.DefaultAttackAction());
     }
 
 }
@@ -83,7 +84,7 @@ public class AttackAction : ActionScript
 
     public virtual float GetDamage()
     {
-        return Who.CurrentWeapon.GetN() * Damage;
+        return Who.CurrentWeapon.Ask(EventTypes.GetDamage).GetFloat() * Damage;
     }
 
     public override void HitBegin(GameCollision col)
@@ -147,7 +148,7 @@ public class ShootAction : AttackAction
     public override void Begin()
     {
         base.Begin();
-        ThingOption proj = GetWeapon().GetOption();
+        ThingOption proj = GetWeapon().Ask(EventTypes.GetProjectile).GetOption();
         Who.Shoot(proj);
     }
 }

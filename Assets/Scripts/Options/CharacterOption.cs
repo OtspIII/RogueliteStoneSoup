@@ -6,7 +6,7 @@ public class CharacterOption : ThingOption
 {
     public int HP;
     public float Speed = 5;
-    public HoldableOption Weapon;
+    public ItemOption Weapon;
     public Actions DefaultAction=Actions.Patrol;
 
     public override ThingInfo Create()

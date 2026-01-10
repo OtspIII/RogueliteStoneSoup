@@ -7,6 +7,8 @@ public enum EventTypes{
     Start           =004,
     StartAction     =0101,
     SetPhase        =0102,
+    UseHeld         =0103,
+    UseHeldStart    =0104,
     
     //Common Combat
     Damage          =1001,
@@ -24,7 +26,12 @@ public enum EventTypes{
     Interact        =2040,
     PlayerTouched   =2041,
     PlayerLeft      =2042,
-    OnPickup        =2043,
+    OnPickup        =2043,  //Called on the item being picked up
+    OnDrop          =2044,
+    DidPickup       =2045,  //Called on the thing picking the item up
+    DidDrop         =2046,
+    OnUse           =2047,  //Called when you click while holding
+    OnUseStart      =2048,
     
     //Questions
     ShownHP         =9001,
@@ -33,6 +40,8 @@ public enum EventTypes{
     GetDefaultAttack=9004,
     IsPlayer        =9005,
     IsInteractive   =9006,
+    GetDamage       =9007,
+    GetProjectile   =9008,
 }
 
 public enum NumInfo

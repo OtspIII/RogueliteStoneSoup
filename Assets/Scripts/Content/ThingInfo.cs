@@ -16,7 +16,7 @@ public class ThingInfo
     public List<EventInfo> EventQueue = new List<EventInfo>();
     public bool MidEvent = false;
     
-    public TraitInfo CurrentWeapon;
+    public ThingInfo CurrentWeapon;
 
     public ThingInfo Target;
     public TraitInfo ActorTrait;
@@ -101,11 +101,11 @@ public class ThingInfo
     }
     
     
-    public void SetWeapon(HoldableOption w)
+    public void SetWeapon(ItemOption w)
     {
         ThingInfo weap = w.Create();
         // ThingInfo weap = God.Library.GetWeapon(w);//ThingBuilder.Things[w]);
-        TraitInfo i = weap.Get(Traits.Holdable);
+        TraitInfo i = weap.Get(Traits.Tool);
         SetWeapon(weap);
         // CurrentWeapon = new TraitInfo(Traits.Holdable,null,weap.Traits[Traits.Holdable]);//God.Library.GetWeapon(stats.Weapon);
         // CurrentWeapon.Seed = weap;
@@ -114,12 +114,12 @@ public class ThingInfo
     public void SetWeapon(ThingInfo w)
     {
         w.Team = Team;
-        TraitInfo i = w.Get(Traits.Holdable);
+        TraitInfo i = w.Get(Traits.Tool);
         // Debug.Log("SET WEAPON: " + Name + " / " + w.Name + " / " + i);
-        CurrentWeapon = i;
+        CurrentWeapon = w;
         if (Thing != null)
         {
-            Thing.Body.SetWeapon(i);
+            Thing.Body.SetWeapon(w);
         }
 }
     
@@ -179,7 +179,18 @@ public class ThingInfo
             if (tr != "") tr += ",";
             tr += t.ToString();
         }
-        return Name + "("+ActorTrait?.Action?.ToString()+"/"+CurrentWeapon?.Who.Name+"/"+tr+")";
+        return Name + "("+ActorTrait?.Action?.ToString()+"/"+CurrentWeapon?.Name+"/"+tr+")";
+    }
+
+    public void DropHeld(bool destroy=false)
+    {
+        //todo: spawn a dropped object back on the floor
+        if (Thing != null) Thing.DropHeld();
+        if (CurrentWeapon != null)
+        {
+            God.GM.RemoveInventory(CurrentWeapon);
+            CurrentWeapon = null;
+        }
     }
 
     

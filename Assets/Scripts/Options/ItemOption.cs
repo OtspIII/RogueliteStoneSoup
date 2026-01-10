@@ -1,11 +1,11 @@
 using System;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "HoldableOption", menuName = "Scriptable Objects/HoldableOption")]
-public class HoldableOption : ThingOption
+[CreateAssetMenu(fileName = "HoldableOption", menuName = "Scriptable Objects/ItemOption")]
+public class ItemOption : ThingOption
 {
     public float Damage;
-    public Actions DefaultAttack = Actions.Swing;
+    public Actions DefaultAttack = Actions.None;
     public ThingOption Projectile;
     public BodyController FloorBody;
     public Sprite FloorArt;
@@ -19,9 +19,13 @@ public class HoldableOption : ThingOption
     public override ThingInfo Create()
     {
         ThingInfo r = base.Create();
-        TraitInfo h = r.AddTrait(Traits.Holdable,God.E().Set(EnumInfo.DefaultAction,(int)DefaultAttack).Set(NumInfo.Amount,Damage));
-        r.AddTrait(Traits.Pickup);
-        if (Projectile != null) h.Set(Projectile); 
+        r.AddTrait(Traits.Pickupable);
+        if (DefaultAttack != Actions.None)
+        {
+            TraitInfo h = r.AddTrait(Traits.Tool,
+                God.E().Set(EnumInfo.DefaultAction, (int)DefaultAttack).Set(NumInfo.Amount, Damage));
+            if (Projectile != null) h.Set(Projectile);
+        }
         return r;
     }
 

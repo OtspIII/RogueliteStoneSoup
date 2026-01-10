@@ -10,7 +10,10 @@ public class GameManager : MonoBehaviour
     public List<SpawnPointController> SpawnPoints;
     // public TextAsset JSON;
     public TextMeshProUGUI HealthTxt;
+    public TextMeshProUGUI InvTxt;
     public List<RoomScript> Rooms;
+    public List<ThingInfo> PlayerInventory;
+    public int InventoryIndex = 1;
 
     private void Awake()
     {
@@ -64,5 +67,37 @@ public class GameManager : MonoBehaviour
     public void AddSpawn(SpawnPointController s)
     {
         SpawnPoints.Add(s);
+    }
+
+    public void AddInventory(ThingInfo i)
+    {
+        if (PlayerInventory.Contains(i)) return;
+        PlayerInventory.Add(i);
+        UpdateInvText();
+    }
+
+    public void RemoveInventory(ThingInfo i)
+    {
+        int n = PlayerInventory.IndexOf(i);
+        PlayerInventory.Remove(i);
+        if (InventoryIndex - 1 == n) InventoryIndex--;
+        UpdateInvText();
+    }
+
+    public void UpdateInvText()
+    {
+        string txt = "";
+        int n = 1;
+        foreach (ThingInfo i in PlayerInventory)
+        {
+            if (txt != "") txt += "\n";
+            string l = n + ": " + i.Name;
+            if (n == InventoryIndex) l = "<b>" + l + "</b>";
+            txt += l;
+            if (n == 0) break;
+            n++;
+            if (n > 9) n = 0;
+        }
+        InvTxt.text = txt;
     }
 }

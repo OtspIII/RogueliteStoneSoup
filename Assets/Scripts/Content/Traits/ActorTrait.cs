@@ -16,6 +16,8 @@ public class ActorTrait : Trait
         TakeListen.Add(EventTypes.Knockback);
         TakeListen.Add(EventTypes.OnTouch);
         TakeListen.Add(EventTypes.OnTouchEnd);
+        TakeListen.Add(EventTypes.UseHeld);
+        TakeListen.Add(EventTypes.UseHeldStart);
     }
 
     public override void TakeEvent(TraitInfo i, EventInfo e)
@@ -90,6 +92,16 @@ public class ActorTrait : Trait
                 if (i.Action != null) i.Action.HitEnd(e.Collision);
                 break;
             }
+            case EventTypes.UseHeld:
+            {
+                if(i.Who.CurrentWeapon != null) i.Who.CurrentWeapon.TakeEvent(God.E(EventTypes.OnUse).Set(i.Who));
+                break;
+            }
+            case EventTypes.UseHeldStart:
+            {
+                if(i.Who.CurrentWeapon != null) i.Who.CurrentWeapon.TakeEvent(God.E(EventTypes.OnUseStart).Set(i.Who));
+                break;
+            }
         }
     }
     
@@ -113,7 +125,7 @@ public class ActorTrait : Trait
         {
             // Debug.Log(t.Who.Name + ": " + t.Who.CurrentWeapon);
             // Debug.Log(t.Who.CurrentWeapon.Trait);
-            EventInfo e = TraitManager.Get(t.Who.CurrentWeapon.Trait).Ask(t.Who.CurrentWeapon, EventTypes.GetDefaultAttack);
+            EventInfo e = t.Who.CurrentWeapon.Ask(EventTypes.GetDefaultAttack);
             a = e.Get<Actions>(EnumInfo.DefaultAction);
         }
         ActionScript act = ActionParser.GetAction(a == Actions.None ? defaultAct : a,t.Who.Thing);

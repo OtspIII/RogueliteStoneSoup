@@ -53,7 +53,7 @@ public static class ThingBuilder
         foreach(GameTags tag in tags) t.Add(tag);
         if(t.Count == 0) t.Add(GameTags.Weapon);
         return Add(name, body, art, t.ToArray())
-            .Trait(Traits.Holdable,God.E().Set(EnumInfo.DefaultAction,(int)atk).Set(dmg).Set(projectile));
+            .Trait(Traits.Tool,God.E().Set(EnumInfo.DefaultAction,(int)atk).Set(dmg).Set(projectile));
     }
     
     public static ThingSeed AddProjectile(string name, string body, string art, int dmg=1,float speed=10, params GameTags[] tags)
