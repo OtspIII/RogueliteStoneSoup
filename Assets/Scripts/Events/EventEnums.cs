@@ -106,8 +106,8 @@ public enum GameTags
     Pickup          =0200,
     Weapon          =0201,
     Projectile      =0300,
-    Exit            =0400,
     Centerpiece     =0400,
+    Exit            =0401,
 }
 
 public enum RoomTags

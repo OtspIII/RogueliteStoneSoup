@@ -18,7 +18,7 @@ public class ExitTrait : Trait
             {
                 GameCollision col = e.Collision;
                 ThingInfo t = col.Other.Info;
-                if (t.IsPlayer())
+                if (t.Has(Traits.Player))
                 {
                     SceneManager.LoadScene("YouWin");
                 }

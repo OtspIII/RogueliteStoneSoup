@@ -50,6 +50,7 @@ public class ThingInfo
         Thing = GameObject.Instantiate(God.Library.ActorPrefab, pos, Quaternion.Euler(0, 0, rot));
         Thing.Info = this;
         Thing.gameObject.name = Name;
+        Thing.NameText.text = Name;
         // Debug.Log("SPAWN: " + Name);
         Thing.TakeEvent(EventTypes.Setup);
         Thing.Body = GameObject.Instantiate(Type.Body, Thing.transform);
@@ -161,11 +162,6 @@ public class ThingInfo
         return r;
     }
     
-    public bool IsPlayer()
-    {
-        return Has(Traits.Player) || (ChildOf != null && ChildOf.Has(Traits.Player));
-    }
-
     public void Destruct()
     {
         GameObject.Destroy(Thing.gameObject);

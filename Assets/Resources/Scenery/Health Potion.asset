@@ -18,4 +18,8 @@ MonoBehaviour:
   Art: {fileID: 0}
   Color: {r: 1, g: 1, b: 1, a: 1}
   Tags: c8000000
-  Trait: []
+  Trait:
+  - Trait: 310
+    Numbers: []
+  - Trait: 301
+    Numbers: []

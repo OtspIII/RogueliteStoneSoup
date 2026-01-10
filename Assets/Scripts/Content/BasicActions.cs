@@ -30,7 +30,7 @@ public class StunAction : ActionScript
         while (rot < 360)
         {
             rot += speed * Time.deltaTime;
-            Who.transform.rotation = Quaternion.Euler(0,0,rot);
+            Who.Body.transform.rotation = Quaternion.Euler(0,0,rot);
             yield return null;
         }
         End();
@@ -39,7 +39,7 @@ public class StunAction : ActionScript
     public override void End()
     {
         base.End();
-        Who.transform.rotation = Quaternion.Euler(0,0,0);
+        Who.Body.transform.rotation = Quaternion.Euler(0,0,0);
     }
 }
 
@@ -222,7 +222,7 @@ public class PatrolAction : ActionScript
         float turn = Who.LookAt(Target,0.5f);
         if (turn < 5)
         {
-            RaycastHit2D hit = Physics2D.Raycast(Who.transform.position, Who.transform.right,
+            RaycastHit2D hit = Physics2D.Raycast(Who.transform.position, Who.Body.transform.right,
                 1, LayerMask.GetMask("Wall"));
             if (hit.collider != null)
             {

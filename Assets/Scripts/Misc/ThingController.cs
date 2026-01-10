@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class ThingController : MonoBehaviour
@@ -9,6 +10,7 @@ public class ThingController : MonoBehaviour
     public Rigidbody2D RB;
     public BodyController Body;
     public SpriteRenderer Icon;
+    public TextMeshPro NameText;
     public Collider2D NoClip;
     
     public Vector3 StartSpot;
@@ -49,6 +51,7 @@ public class ThingController : MonoBehaviour
     
     public void Start()
     {
+        NameText.gameObject.SetActive(Input.GetKey(God.InfoKey));
         TakeEvent(EventTypes.Start);
     }
 
@@ -58,6 +61,8 @@ public class ThingController : MonoBehaviour
 
     public void Update()
     {
+        if (Input.GetKeyDown(God.InfoKey)) NameText.gameObject.SetActive(true);
+        if (Input.GetKeyUp(God.InfoKey)) NameText.gameObject.SetActive(false);
         if (Info.MidEvent)
         {
             Debug.Log("Thing Got Stuck Mid-Action: " + Name);
@@ -165,7 +170,7 @@ public class ThingController : MonoBehaviour
 
     public void MoveForwards()
     {
-        DesiredMove = transform.right;
+        DesiredMove = Body.transform.right;
     }
 
     public float Distance(ThingController targ)
@@ -197,8 +202,8 @@ public class ThingController : MonoBehaviour
     {
         Vector3 diff = targ - transform.position;
         float rot_z = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
-        float z = turnTime > 0 ? Mathf.MoveTowardsAngle(transform.rotation.eulerAngles.z, rot_z, (180/turnTime) * Time.deltaTime) : rot_z;
-        transform.rotation = Quaternion.Euler(0,0,z);
+        float z = turnTime > 0 ? Mathf.MoveTowardsAngle(Body.transform.rotation.eulerAngles.z, rot_z, (180/turnTime) * Time.deltaTime) : rot_z;
+        Body.transform.rotation = Quaternion.Euler(0,0,z);
         return Mathf.Abs(Mathf.DeltaAngle(z, rot_z));
     }
     
@@ -222,7 +227,7 @@ public class ThingController : MonoBehaviour
     {
         Vector3 diff = targ - transform.position;
         float tdir = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
-        float rot = transform.rotation.eulerAngles.z;
+        float rot = Body.transform.rotation.eulerAngles.z;
         return Mathf.Abs(Mathf.DeltaAngle(tdir, rot)) < thresh;
     }
 
@@ -315,10 +320,6 @@ public class ThingController : MonoBehaviour
     //     }
     // }
 
-    public bool IsPlayer()
-    {
-        return Info.IsPlayer();
-    }
 
     public void SetTeam(GameTeams team)
     {
