@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 
@@ -14,6 +15,7 @@ public class GameManager : MonoBehaviour
     public List<RoomScript> Rooms;
     public List<ThingInfo> PlayerInventory;
     public int InventoryIndex = 1;
+    public Dictionary<string, string> UIThings = new Dictionary<string, string>();
 
     private void Awake()
     {
@@ -31,12 +33,12 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        if (God.Player != null)
-        {
-            EventInfo e = God.Player.Ask(EventTypes.ShownHP);//God.E(EventTypes.ShownHP);
-            HealthTxt.text = "Health: " + e.Get(NumInfo.Amount);
-        }
-        else HealthTxt.text = "GAME OVER";
+        // if (God.Player != null)
+        // {
+        //     EventInfo e = God.Player.Ask(EventTypes.ShownHP);//God.E(EventTypes.ShownHP);
+        //     HealthTxt.text = "Health: " + e.Get(NumInfo.Amount);
+        // }
+        // else HealthTxt.text = "GAME OVER";
     }
 
     public virtual void BuildLevel()
@@ -99,5 +101,34 @@ public class GameManager : MonoBehaviour
             if (n > 9) n = 0;
         }
         InvTxt.text = txt;
+    }
+
+    public void SetUI(string type,string text,int priority=3)
+    {
+        if (priority > 9 || priority < 1)
+        {
+            Debug.Log("WARNING: Added UI with a non-single-digit priority. May cause visual bugs.\n"+text);
+        }
+        string t = priority + text;
+        if (text == "")
+        {
+            UIThings.Remove(type);
+            return;
+        }
+        if (!UIThings.TryAdd(type, t)) UIThings[type] = t;
+        DrawUI();
+    }
+
+    public void DrawUI()
+    {
+        List<string> uis = UIThings.Values.ToList();
+        uis.Sort();
+        string r = "";
+        foreach (string s in uis)
+        {
+            if (r != "") r += "\n";
+            r += s.Substring(1);
+        }
+        HealthTxt.text = r;
     }
 }

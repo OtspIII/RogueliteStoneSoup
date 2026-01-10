@@ -7,7 +7,7 @@ public class ExitTrait : Trait
     public ExitTrait()
     {
         Type = Traits.Exit;
-        TakeListen.Add(EventTypes.OnTouch);
+        AddListen(EventTypes.OnTouch);
     }
 
     public override void TakeEvent(TraitInfo i, EventInfo e)
@@ -35,7 +35,7 @@ public class DamageZoneTrait : Trait
     public DamageZoneTrait()
     {
         Type = Traits.DamageZone;
-        TakeListen.Add(EventTypes.OnInside);
+        AddListen(EventTypes.OnInside);
     }
 
     public override void TakeEvent(TraitInfo i, EventInfo e)

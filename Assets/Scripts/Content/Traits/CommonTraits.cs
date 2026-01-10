@@ -7,11 +7,11 @@ public class HealthTrait : Trait
     public HealthTrait()
     {
         Type = Traits.Health;
-        TakeListen.Add(EventTypes.Setup);
-        TakeListen.Add(EventTypes.ShownHP);
-        TakeListen.Add(EventTypes.Damage);
-        TakeListen.Add(EventTypes.Healing);
-        TakeListen.Add(EventTypes.Death);
+        AddListen(EventTypes.Setup);
+        AddListen(EventTypes.ShownHP);
+        AddListen(EventTypes.Damage);
+        AddListen(EventTypes.Healing);
+        AddListen(EventTypes.Death);
     }
 
     public override void TakeEvent(TraitInfo i, EventInfo e)
@@ -29,6 +29,7 @@ public class HealthTrait : Trait
             case EventTypes.ShownHP:
             {
                 e.Set(i.GetInt());
+                e.Set(NumInfo.Max,i.GetInt(NumInfo.Max));
                 break;
             }
             case EventTypes.Damage:
@@ -64,9 +65,9 @@ public class ProjectileTrait : Trait
     public ProjectileTrait()
     {
         Type = Traits.Projectile;
-        TakeListen.Add(EventTypes.Start);
-        TakeListen.Add(EventTypes.OnTouch);
-        TakeListen.Add(EventTypes.OnTouchWall);
+        AddListen(EventTypes.Start);
+        AddListen(EventTypes.OnTouch);
+        AddListen(EventTypes.OnTouchWall);
     }
 
     public override void TakeEvent(TraitInfo i, EventInfo e)

@@ -56,15 +56,15 @@ public static class TraitManager
 public class Trait
 {
     public Traits Type;
-    public List<EventTypes> PreListen = new List<EventTypes>();
-    public List<EventTypes> TakeListen = new List<EventTypes>();
+    public Dictionary<EventTypes,float> PreListen = new Dictionary<EventTypes,float>();
+    public Dictionary<EventTypes,float> TakeListen = new Dictionary<EventTypes,float>();
 
     public void Init(TraitInfo i)
     {
         // Debug.Log("INIT TRAIT: " + Type + " / " + i.Who.Name);
-        foreach (EventTypes e in PreListen)
+        foreach (EventTypes e in PreListen.Keys)
             i.Who.AddListen(e,Type,true);
-        foreach (EventTypes e in TakeListen)
+        foreach (EventTypes e in TakeListen.Keys)
             i.Who.AddListen(e,Type,false);
         Setup(i);
     }
@@ -96,6 +96,15 @@ public class Trait
         EventInfo r = God.E(e);
         TakeEvent(i,r);
         return r;
+    }
+
+    public void AddListen(EventTypes e, float prio = 3)
+    {
+        TakeListen.Add(e,prio);
+    }
+    public void AddPreListen(EventTypes e, float prio = 3)
+    {
+        PreListen.Add(e,prio);
     }
 }
 

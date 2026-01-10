@@ -6,18 +6,18 @@ public class ActorTrait : Trait
     public ActorTrait()
     {
         Type = Traits.Actor;
-        TakeListen.Add(EventTypes.Setup);
-        TakeListen.Add(EventTypes.Start);
-        TakeListen.Add(EventTypes.Update);
-        TakeListen.Add(EventTypes.StartAction);
-        TakeListen.Add(EventTypes.SetPhase);
-        TakeListen.Add(EventTypes.GetCurrentAction);
-        TakeListen.Add(EventTypes.GetDefaultAction);
-        TakeListen.Add(EventTypes.Knockback);
-        TakeListen.Add(EventTypes.OnTouch);
-        TakeListen.Add(EventTypes.OnTouchEnd);
-        TakeListen.Add(EventTypes.UseHeld);
-        TakeListen.Add(EventTypes.UseHeldStart);
+        AddListen(EventTypes.Setup);
+        AddListen(EventTypes.Start);
+        AddListen(EventTypes.Update);
+        AddListen(EventTypes.StartAction);
+        AddListen(EventTypes.SetPhase);
+        AddListen(EventTypes.GetCurrentAction);
+        AddListen(EventTypes.GetDefaultAction);
+        AddListen(EventTypes.Knockback);
+        AddListen(EventTypes.OnTouch);
+        AddListen(EventTypes.OnTouchEnd);
+        AddListen(EventTypes.UseHeld);
+        AddListen(EventTypes.UseHeldStart);
     }
 
     public override void TakeEvent(TraitInfo i, EventInfo e)

@@ -26,7 +26,6 @@ public class ThingOption : ScriptableObject
             r.AddTrait(t.Trait, ts);
             // Debug.Log("ADD TRAIT: " + t.Trait + " / " + Name);
         }
-
         return r;
     }
 

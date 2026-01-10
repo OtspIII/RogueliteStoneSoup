@@ -6,10 +6,10 @@ public class ToolTrait : Trait
     public ToolTrait()
     {
         Type = Traits.Tool;
-        TakeListen.Add(EventTypes.GetDefaultAttack);
-        TakeListen.Add(EventTypes.OnUse);
-        TakeListen.Add(EventTypes.GetDamage);
-        TakeListen.Add(EventTypes.GetProjectile);
+        AddListen(EventTypes.GetDefaultAttack);
+        AddListen(EventTypes.OnUse);
+        AddListen(EventTypes.GetDamage);
+        AddListen(EventTypes.GetProjectile);
     }
     
     public override void TakeEvent(TraitInfo i, EventInfo e)
@@ -46,9 +46,9 @@ public class PickupableTrait : Trait
     public PickupableTrait()
     {
         Type = Traits.Pickupable;
-        TakeListen.Add(EventTypes.Interact);
-        TakeListen.Add(EventTypes.PlayerTouched);
-        TakeListen.Add(EventTypes.PlayerLeft);
+        AddListen(EventTypes.Interact);
+        AddListen(EventTypes.PlayerTouched);
+        AddListen(EventTypes.PlayerLeft);
     }
     
     public override void TakeEvent(TraitInfo i, EventInfo e)
@@ -81,7 +81,7 @@ public class HealPackTrait : Trait
     public HealPackTrait()
     {
         Type = Traits.HealPack;
-        TakeListen.Add(EventTypes.OnUseStart);
+        AddListen(EventTypes.OnUseStart);
     }
     
     public override void TakeEvent(TraitInfo i, EventInfo e)

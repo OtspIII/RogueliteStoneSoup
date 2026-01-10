@@ -8,13 +8,15 @@ public class PlayerTrait : Trait
     public PlayerTrait()
     {
         Type = Traits.Player;
-        TakeListen.Add(EventTypes.Setup);
-        TakeListen.Add(EventTypes.Update);
-        TakeListen.Add(EventTypes.IsPlayer);
-        TakeListen.Add(EventTypes.OnTouch);
-        TakeListen.Add(EventTypes.OnTouchEnd);
-        TakeListen.Add(EventTypes.DidPickup);
-        TakeListen.Add(EventTypes.DidDrop);
+        AddListen(EventTypes.Setup,5);
+        AddListen(EventTypes.Update);
+        AddListen(EventTypes.IsPlayer);
+        AddListen(EventTypes.OnTouch);
+        AddListen(EventTypes.OnTouchEnd);
+        AddListen(EventTypes.DidPickup);
+        AddListen(EventTypes.DidDrop);
+        AddListen(EventTypes.Damage,5);
+        AddListen(EventTypes.Death,5);
     }
 
     public override void TakeEvent(TraitInfo i, EventInfo e)
@@ -30,6 +32,8 @@ public class PlayerTrait : Trait
                 God.Cam.Target = i.Who.Thing.gameObject;
                 if(i.Who.CurrentWeapon != null)
                     i.Who.TakeEvent(God.E(EventTypes.DidPickup).Set(i.Who.CurrentWeapon));
+                EventInfo hpi = i.Who.Ask(EventTypes.ShownHP);
+                God.GM.SetUI("Health",hpi.GetInt()+"/"+hpi.GetInt(NumInfo.Max),1);
                 break;
             }
             case EventTypes.Update:
@@ -105,6 +109,17 @@ public class PlayerTrait : Trait
             case EventTypes.DidDrop:
             {
                 God.GM.RemoveInventory(e.GetActor());
+                break;
+            }
+            case EventTypes.Damage:
+            {
+                EventInfo hpi = i.Who.Ask(EventTypes.ShownHP);
+                God.GM.SetUI("Health",hpi.GetInt()+"/"+hpi.GetInt(NumInfo.Max),1);
+                break;
+            }
+            case EventTypes.Death:
+            {
+                God.GM.SetUI("Health","GAME OVER",1);
                 break;
             }
         }

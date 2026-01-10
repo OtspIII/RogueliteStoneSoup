@@ -9,6 +9,7 @@ public class ThingInfo
     public ThingOption Type;
     public ThingInfo ChildOf;
     public GameTeams Team;
+    public bool Setup = false;
     
     public Dictionary<Traits, TraitInfo> Trait = new Dictionary<Traits, TraitInfo>();
     public Dictionary<EventTypes, List<Traits>> PreListen = new Dictionary<EventTypes, List<Traits>>();
@@ -47,6 +48,12 @@ public class ThingInfo
     
     public virtual ThingController Spawn(Vector3 pos, float rot)
     {
+        if (!Setup)
+        {
+            Setup = true;
+            foreach (EventTypes e in PreListen.Keys) SortListen(e,true);
+            foreach (EventTypes e in TakeListen.Keys) SortListen(e,false);
+        }
         Thing = GameObject.Instantiate(God.Library.ActorPrefab, pos, Quaternion.Euler(0, 0, rot));
         Thing.Info = this;
         Thing.gameObject.name = Name;
@@ -98,6 +105,21 @@ public class ThingInfo
         Dictionary<EventTypes, List<Traits>> d = pre ? PreListen : TakeListen;
         if(!d.ContainsKey(e)) d.Add(e,new List<Traits>());
         if(!d[e].Contains(t)) d[e].Add(t);
+        if(Setup) SortListen(e,pre);
+    }
+
+    public void SortListen(EventTypes e, bool pre = false)
+    {
+        List<Traits> l = pre ? PreListen[e] : TakeListen[e];
+        if (l.Count <= 1) return;
+        Dictionary<Traits, float> prio = new Dictionary<Traits, float>();
+        foreach (Traits t in l)
+        {
+            Trait tr = TraitManager.Get(t);
+            float pr = pre ? tr.PreListen[e] : tr.TakeListen[e];
+            prio.Add(t,pr);
+        }
+        l.Sort((a, b) => { return prio[a] > prio[b] ? 1 : -1; });
     }
     
     
@@ -143,7 +165,7 @@ public class ThingInfo
         }
         MidEvent = true;
         PreListen.TryGetValue(e.Type, out List<Traits> pre);
-        if(pre != null) foreach (Traits t in pre) Get(t).PreEvent(e);
+        if(pre != null) {foreach (Traits t in pre) Get(t).PreEvent(e);}
 
         if (e.Abort) return;
         
