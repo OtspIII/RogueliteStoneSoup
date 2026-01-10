@@ -16,6 +16,7 @@ public class PlayerTrait : Trait
         AddListen(EventTypes.DidPickup);
         AddListen(EventTypes.DidDrop);
         AddListen(EventTypes.Damage,5);
+        AddListen(EventTypes.Healing,5);
         AddListen(EventTypes.Death,5);
     }
 
@@ -111,6 +112,7 @@ public class PlayerTrait : Trait
                 God.GM.RemoveInventory(e.GetActor());
                 break;
             }
+            case EventTypes.Healing:
             case EventTypes.Damage:
             {
                 EventInfo hpi = i.Who.Ask(EventTypes.ShownHP);
