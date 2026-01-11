@@ -40,6 +40,7 @@ public static class TraitManager
         TraitDict.Add(Traits.Tool,new ToolTrait());
         TraitDict.Add(Traits.Pickupable,new PickupableTrait());
         TraitDict.Add(Traits.HealPack,new HealPackTrait());
+        TraitDict.Add(Traits.GoldCoins,new GoldCoinsTrait());
         TraitDict.Add(Traits.Projectile,new ProjectileTrait());
         TraitDict.Add(Traits.Exit,new ExitTrait());
         TraitDict.Add(Traits.DamageZone,new DamageZoneTrait());
@@ -118,9 +119,10 @@ public enum Traits
     Player          =0100,
     Exit            =0200,
     DamageZone      =0201,
-    Tool        =0300,
-    Pickupable     =0301,
+    Tool            =0300,
+    Pickupable      =0301,
     HealPack        =0310,
+    GoldCoins       =0311,
     Projectile      =0400,
     //Misha Traits:  11##
 }

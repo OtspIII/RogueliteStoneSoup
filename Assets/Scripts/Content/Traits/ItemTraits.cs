@@ -105,3 +105,25 @@ public class HealPackTrait : Trait
         }
     }
 }
+
+public class GoldCoinsTrait : Trait
+{
+    public GoldCoinsTrait()
+    {
+        Type = Traits.GoldCoins;
+        AddListen(EventTypes.PlayerTouched);
+    }
+    
+    public override void TakeEvent(TraitInfo i, EventInfo e)
+    {
+        switch (e.Type)
+        {
+            case EventTypes.PlayerTouched:
+            {
+                e.GetActor().TakeEvent(God.E(EventTypes.AddScore).Set(i.GetN(NumInfo.Amount,1)).Set(i.Who));
+                i.Who.Destruct();
+                break;
+            }
+        }
+    }
+}

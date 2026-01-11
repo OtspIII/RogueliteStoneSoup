@@ -18,6 +18,8 @@ public class PlayerTrait : Trait
         AddListen(EventTypes.Damage,5);
         AddListen(EventTypes.Healing,5);
         AddListen(EventTypes.Death,5);
+        AddListen(EventTypes.AddScore);
+        AddListen(EventTypes.GetScore);
     }
 
     public override void TakeEvent(TraitInfo i, EventInfo e)
@@ -35,6 +37,7 @@ public class PlayerTrait : Trait
                     i.Who.TakeEvent(God.E(EventTypes.DidPickup).Set(i.Who.CurrentWeapon));
                 EventInfo hpi = i.Who.Ask(EventTypes.ShownHP);
                 God.GM.SetUI("Health",hpi.GetInt()+"/"+hpi.GetInt(NumInfo.Max),1);
+                God.GM.SetUI("Score","Score: "+Mathf.Floor(i.GetN()),2);
                 break;
             }
             case EventTypes.Update:
@@ -122,6 +125,17 @@ public class PlayerTrait : Trait
             case EventTypes.Death:
             {
                 God.GM.SetUI("Health","GAME OVER",1);
+                break;
+            }
+            case EventTypes.AddScore:
+            {
+                float score = Mathf.Floor(i.Change(e.GetN()));
+                God.GM.SetUI("Score","Score: "+score,2);
+                break;
+            }
+            case EventTypes.GetScore:
+            {
+                e.Set(i.GetFloat());
                 break;
             }
         }

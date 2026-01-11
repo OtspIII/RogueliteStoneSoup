@@ -32,6 +32,7 @@ public enum EventTypes{
     DidDrop         =2046,
     OnUse           =2047,  //Called when you click while holding
     OnUseStart      =2048,
+    AddScore        =2149,
     
     //Questions
     ShownHP         =9001,
@@ -42,6 +43,7 @@ public enum EventTypes{
     IsInteractive   =9006,
     GetDamage       =9007,
     GetProjectile   =9008,
+    GetScore        =9009,
 }
 
 public enum NumInfo
