@@ -52,7 +52,7 @@ public class DamageZoneTrait : Trait
                 foreach (ThingController tc in hb.Touching)
                 {
                     ThingInfo t = tc.Info;
-                    t.TakeEvent(God.E(EventTypes.Damage).Set(dmg));
+                    t.TakeEvent(God.E(EventTypes.Damage).Set(dmg).Set(i.Who));
                 }
                 hb.Timer = timer;
                 return;

@@ -9,20 +9,18 @@ public class GameManager : MonoBehaviour
     public LevelBuilder Level;
     [HideInInspector] public Transform LevelHolder;
     public List<SpawnPointController> SpawnPoints;
-    // public TextAsset JSON;
     public TextMeshProUGUI HealthTxt;
     public TextMeshProUGUI InvTxt;
     public List<RoomScript> Rooms;
-    public List<ThingInfo> PlayerInventory;
-    public int InventoryIndex = 1;
-    public Dictionary<string, string> UIThings = new Dictionary<string, string>();
+    [HideInInspector] public List<ThingInfo> PlayerInventory;
+    [HideInInspector] public int InventoryIndex = 1;
+    private Dictionary<string, string> UIThings = new Dictionary<string, string>();
 
     private void Awake()
     {
         God.GM = this;
         TraitManager.Init();
         ThingBuilder.Init();
-        // God.JSON = JSONReader.ParseJSON(JSON.text);
     }
 
     void Start()
@@ -33,12 +31,6 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        // if (God.Player != null)
-        // {
-        //     EventInfo e = God.Player.Ask(EventTypes.ShownHP);//God.E(EventTypes.ShownHP);
-        //     HealthTxt.text = "Health: " + e.Get(NumInfo.Amount);
-        // }
-        // else HealthTxt.text = "GAME OVER";
     }
 
     public virtual void BuildLevel()
@@ -52,14 +44,6 @@ public class GameManager : MonoBehaviour
             if(rs != null)
                 Rooms.Add(rs);
         }
-        // for(float x = 0;x < 3;x++)
-        // for (float y = 0; y < 3; y++)
-        // {
-        //     RoomScript rm = Instantiate(God.Library.GetRoom(), new Vector3(x * God.RoomSize.x, y * God.RoomSize.y, 0), Quaternion.identity);
-        //     rm.Setup();
-        //     Rooms.Add(rm);
-        // }
-        // RoomScript chosen = God.Random(Rooms);
         foreach (RoomScript rs in Rooms)
         {
             rs.Spawn();

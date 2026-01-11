@@ -38,7 +38,7 @@ public class HealthTrait : Trait
                 float hp = i.Change(-e.GetN());
                 if (hp <= 0)
                 {
-                    i.Who.TakeEvent(EventTypes.Death);
+                    i.Who.TakeEvent(God.E(EventTypes.Death).Set(e.GetActor()));
                 }
                 break;
             }
@@ -53,7 +53,7 @@ public class HealthTrait : Trait
             }
             case EventTypes.Death:
             {
-                GameObject.Destroy(i.Who.Thing.gameObject);
+                i.Who.Destruct(e.GetActor());
                 break;
             }
         }
@@ -91,7 +91,7 @@ public class ProjectileTrait : Trait
                 float amt = i.GetN();
                 if (amt > 0)
                 {
-                    other.TakeEvent(God.E(EventTypes.Damage).Set(amt));
+                    other.TakeEvent(God.E(EventTypes.Damage).Set(amt).Set(i.Who?.GetOwner()));
                 }
                 i.Who.Destruct();
                 break;
@@ -102,6 +102,30 @@ public class ProjectileTrait : Trait
                 break;
             }
             default: return;
+        }
+    }
+}
+
+public class DropTrait : Trait
+{
+    public DropTrait()
+    {
+        Type = Traits.Drop;
+        AddListen(EventTypes.OnDestroy);
+    }
+
+    public override void TakeEvent(TraitInfo i, EventInfo e)
+    {
+        switch (e.Type)
+        {
+            case EventTypes.OnDestroy:
+            {
+                ThingOption o = i.GetOption();
+                ThingInfo exp = o.Create();
+                exp.ChildOf = i.Who;
+                exp.Spawn(i.Who.Thing.transform.position);
+                break;
+            }
         }
     }
 }

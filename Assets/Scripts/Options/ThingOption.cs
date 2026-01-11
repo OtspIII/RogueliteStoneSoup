@@ -23,6 +23,8 @@ public class ThingOption : ScriptableObject
             EventInfo ts = new EventInfo();
             foreach(InfoNumber n in t.Numbers)
                 ts.Numbers.Add(n.Type,n.Value);
+            foreach(InfoOption n in t.Prefabs)
+                ts.Options.Add(n.Type,n.Value);
             r.AddTrait(t.Trait, ts);
             // Debug.Log("ADD TRAIT: " + t.Trait + " / " + Name);
         }
@@ -47,11 +49,19 @@ public class TraitBuilder
 {
     public Traits Trait;
     public List<InfoNumber> Numbers;
+    public List<InfoOption> Prefabs;
 }
 
 [System.Serializable]
 public class InfoNumber
 {
-    public NumInfo Type;
+    public NumInfo Type=NumInfo.Amount;
     public float Value;
+}
+
+[System.Serializable]
+public class InfoOption
+{
+    public OptionInfo Type=OptionInfo.Default;
+    public ThingOption Value;
 }

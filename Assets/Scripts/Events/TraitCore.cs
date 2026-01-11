@@ -44,6 +44,7 @@ public static class TraitManager
         TraitDict.Add(Traits.Projectile,new ProjectileTrait());
         TraitDict.Add(Traits.Exit,new ExitTrait());
         TraitDict.Add(Traits.DamageZone,new DamageZoneTrait());
+        TraitDict.Add(Traits.Drop,new DropTrait());
     }
     
     public static Trait Get(Traits t)
@@ -116,6 +117,7 @@ public enum Traits
     None            =0000,
     Actor           =0001,
     Health          =0002,
+    Drop            =0003,
     Player          =0100,
     Exit            =0200,
     DamageZone      =0201,

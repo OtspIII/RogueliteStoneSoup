@@ -23,6 +23,7 @@ public enum EventTypes{
     OnTouchEnd      =2001,
     OnInside        =2002,
     OnTouchWall     =2003,
+    OnDestroy       =2010,
     Interact        =2040,
     PlayerTouched   =2041,
     PlayerLeft      =2042,
@@ -57,6 +58,7 @@ public enum NumInfo
     Min=3,
     Speed=4,
     Distance=5,
+    PassToChild=6,      //For when a trait spawns an object that needs a number
 }
 
 public enum StrInfo

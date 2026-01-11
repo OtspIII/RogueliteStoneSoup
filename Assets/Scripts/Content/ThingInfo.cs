@@ -204,8 +204,9 @@ public class ThingInfo
         return e;
     }
     
-    public void Destruct()
+    public void Destruct(ThingInfo source=null)
     {
+        TakeEvent(God.E(EventTypes.OnDestroy).Set(source));
         GameObject.Destroy(Thing.gameObject);
     }
 
@@ -229,6 +230,19 @@ public class ThingInfo
             God.GM.RemoveInventory(CurrentWeapon);
             CurrentWeapon = null;
         }
+    }
+
+    public ThingInfo GetOwner(bool selfOk=true,bool ultimate = true) //if ultimate is false just return immediate parent
+    {
+        ThingInfo r = selfOk ? this : ChildOf;
+        int safety = 99;
+        while (safety > 0 && r.ChildOf != null)
+        {
+            safety--;
+            r = r.ChildOf;
+            if (!ultimate) return r;
+        }
+        return r;
     }
 
     
