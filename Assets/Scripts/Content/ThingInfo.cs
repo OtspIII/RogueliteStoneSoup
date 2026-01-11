@@ -143,6 +143,7 @@ public class ThingInfo
         {
             Thing.Body.SetWeapon(w);
         }
+        w.TakeEvent(God.E(EventTypes.OnHoldStart).Set(this));
 }
     
     public void TakeEvent(EventTypes e)
@@ -180,12 +181,27 @@ public class ThingInfo
             TakeEvent(next,false,safety);
         }
     }
-    
-    public EventInfo Ask(EventTypes e)
+
+    public EventInfo Ask(EventTypes e, bool wpn = false)
     {
         EventInfo r = God.E(e);
-        TakeEvent(r,true);
-        return r;
+        return Ask(r, wpn);
+    }
+    
+    public EventInfo Ask(EventInfo e,bool wpn=false,int safety=99)
+    {
+        safety--;
+        if (safety <= 0)
+        {
+            Debug.Log("INFINITE ASK LOOP: " + e);
+            return e;
+        }
+        TakeEvent(e,true);
+        if (wpn && CurrentWeapon != null)
+        {
+            CurrentWeapon.Ask(e, wpn, safety);
+        }
+        return e;
     }
     
     public void Destruct()

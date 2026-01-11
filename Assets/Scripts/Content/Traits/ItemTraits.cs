@@ -10,6 +10,8 @@ public class ToolTrait : Trait
         AddListen(EventTypes.OnUse);
         AddListen(EventTypes.GetDamage);
         AddListen(EventTypes.GetProjectile);
+        AddListen(EventTypes.OnHoldStart);
+        AddListen(EventTypes.GetActSpeed);
     }
     
     public override void TakeEvent(TraitInfo i, EventInfo e)
@@ -34,6 +36,18 @@ public class ToolTrait : Trait
             case EventTypes.GetProjectile:
             {
                 e.Set(i.GetOption());
+                break;
+            }
+            case EventTypes.OnHoldStart:
+            {
+                e.GetActor().AttackRange = i.Get(NumInfo.Distance, 1.5f);
+                break;
+            }
+            case EventTypes.GetActSpeed:
+            {
+                if(e.Get<Actions>(EnumInfo.Action) == Actions.Shoot) Debug.Log("GIVE ACT SPEED");
+                e.Set(NumInfo.Amount, i.Get(NumInfo.Speed, 1));
+                e.Set(NumInfo.Max, i.Get(NumInfo.Max, 0));
                 break;
             }
         }

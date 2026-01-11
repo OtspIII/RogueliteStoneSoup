@@ -58,13 +58,14 @@ public class BodyController : MonoBehaviour
         Who.WeaponBody = Weapon;
     }
 
-    public float PlayAnim(string a)
+    public float PlayAnim(string a,float speed=1)
     {
         if (Anim == null) return 0;
+        Anim.speed = speed;
         if (Anims.TryGetValue(a,out float r))
         {
             Anim.Play(a);
-            return r * Anim.speed;
+            return r / Anim.speed;
         }
         Anim.Play(DefaultAnim);
         return 0;

@@ -32,18 +32,21 @@ public enum EventTypes{
     DidDrop         =2046,
     OnUse           =2047,  //Called when you click while holding
     OnUseStart      =2048,
+    OnHoldStart     =2060,
+    // OnHoldEnd       =2061,
+    // OnHoldRun       =2062,
     AddScore        =2149,
     
     //Questions
     ShownHP         =9001,
-    GetCurrentAction=9002,
-    GetDefaultAction=9003,
-    GetDefaultAttack=9004,
-    IsPlayer        =9005,
-    IsInteractive   =9006,
     GetDamage       =9007,
     GetProjectile   =9008,
     GetScore        =9009,
+    GetCurrentAction=9100,
+    GetDefaultAction=9101,
+    GetDefaultAttack=9102,
+    GetActSpeed     =9103,  //Amount is mult, Max is duration
+    IsPlayer        =9905,
 }
 
 public enum NumInfo
@@ -53,6 +56,7 @@ public enum NumInfo
     Max=2,
     Min=3,
     Speed=4,
+    Distance=5,
 }
 
 public enum StrInfo

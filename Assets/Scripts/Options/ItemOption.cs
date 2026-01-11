@@ -5,6 +5,9 @@ using UnityEngine;
 public class ItemOption : ThingOption
 {
     public float Damage;
+    public float IdealRange = 1.5f;
+    public float SpeedMult = 1f;
+    public float ActDuration = 0f;
     public Actions DefaultAttack = Actions.None;
     public ThingOption Projectile;
     public BodyController FloorBody;
@@ -23,7 +26,11 @@ public class ItemOption : ThingOption
         if (DefaultAttack != Actions.None)
         {
             TraitInfo h = r.AddTrait(Traits.Tool,
-                God.E().Set(EnumInfo.DefaultAction, (int)DefaultAttack).Set(NumInfo.Amount, Damage));
+                God.E().Set(EnumInfo.DefaultAction, (int)DefaultAttack)
+                    .Set(NumInfo.Amount, Damage)
+                    .Set(NumInfo.Speed, SpeedMult)
+                    .Set(NumInfo.Max, ActDuration)
+                    .Set(NumInfo.Distance,IdealRange));
             if (Projectile != null) h.Set(Projectile);
         }
         return r;

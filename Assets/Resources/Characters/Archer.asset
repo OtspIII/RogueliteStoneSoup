@@ -10,18 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4679cc75b2c8be74e8b047318fa062ea, type: 3}
-  m_Name: Player
+  m_Name: Archer
   m_EditorClassIdentifier: Assembly-CSharp::CharacterOption
-  Name: Player
-  Team: 2
+  Name: Archer
+  Team: 3
   Body: {fileID: 629948465317790645, guid: acf0e760b28c7b046ad7d511fb87a1d3, type: 3}
-  Art: {fileID: 0}
+  Art: {fileID: -7132172409892320828, guid: 507719f271182eb4baded25bf73a29da, type: 3}
   Color: {r: 1, g: 1, b: 1, a: 1}
-  Tags: 01000000
-  Trait:
-  - Trait: 100
-    Numbers: []
-  HP: 300
-  Speed: 10
-  Weapon: {fileID: 11400000, guid: d8535ae3107c2184ab8fc49f1318f904, type: 2}
-  DefaultAction: 1
+  Tags: 66000000
+  Trait: []
+  HP: 1
+  Speed: 2
+  Weapon: {fileID: 11400000, guid: ad13ac6261f013b45ab35c13a6699b50, type: 2}
+  DefaultAction: 201

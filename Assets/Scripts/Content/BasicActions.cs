@@ -60,11 +60,10 @@ public class ChaseAction : ActionScript
         Who.MoveTowards(Who.Target,Who.AttackRange);
         Who.LookAt(Who.Target,0.5f);
         
-        if(Who.Distance(Who.Target) <= Who.AttackRange && Who.IsFacing(Who.Target,5))
+        if((Who.AttackRange <= 0.5f || Who.Distance(Who.Target) <= Who.AttackRange) && Who.IsFacing(Who.Target,5))
             Who.TakeEvent(God.E(EventTypes.StartAction).SetEnum(EnumInfo.Action,(int)Actions.DefaultAttack));
             // Who.DoAction(Who.DefaultAttackAction());
     }
-
 }
 
 public class AttackAction : ActionScript
@@ -150,6 +149,21 @@ public class ShootAction : AttackAction
         base.Begin();
         ThingOption proj = GetWeapon().Ask(EventTypes.GetProjectile).GetOption();
         Who.Shoot(proj);
+    }
+
+    public override void OnRun()
+    {
+        base.OnRun();
+        if (Who.Target != null)
+        {
+            Who.LookAt(Who.Target, 0.5f);
+            Who.MoveTowards(Who.Target, Who.AttackRange);
+        }
+    }
+
+    public override Actions NextAction()
+    {
+        return Actions.Chase;
     }
 }
 

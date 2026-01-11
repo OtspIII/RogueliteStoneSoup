@@ -57,9 +57,13 @@ public class ActionScript
         Reset();
         if(HaltMomentum && Who.RB != null) Who.RB.linearVelocity = Vector2.zero;
         Coro = Who.StartCoroutine(Script());
+        EventInfo sp = Who.Ask(EventTypes.GetActSpeed,true);
+        float speedMult = sp.GetFloat(NumInfo.Amount,1);
+        Duration = Mathf.Max(Duration,sp.GetFloat(NumInfo.Max,0));
+        if(Type == Actions.Shoot)Debug.Log("SHT: " + speedMult + " / " + Duration);
         if (Anim != "")
         {
-            Duration = Who.PlayAnim(Anim);
+            Duration = Mathf.Max(Duration,Who.PlayAnim(Anim,speedMult));
             // foreach(AnimationClip c in Who.Body.Anim.runtimeAnimatorController.animationClips)
             //     if (c.name == Anim)
             //         Duration = c.length * Who.Body.Anim.speed;

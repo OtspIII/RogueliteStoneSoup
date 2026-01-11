@@ -20,6 +20,9 @@ MonoBehaviour:
   Tags: c9000000c8000000
   Trait: []
   Damage: 2
+  IdealRange: 1.5
+  SpeedMult: 0.8
+  ActDuration: 0
   DefaultAttack: 101
   Projectile: {fileID: 0}
   FloorBody: {fileID: 0}

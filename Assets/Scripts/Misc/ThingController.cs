@@ -109,9 +109,13 @@ public class ThingController : MonoBehaviour
         TakeEvent(new EventInfo(e));
     }
 
-    public EventInfo Ask(EventTypes e)
+    public EventInfo Ask(EventTypes e, bool wpn = false)
     {
-        return Info.Ask(e);
+        return Info.Ask(e,wpn);
+    }
+    public EventInfo Ask(EventInfo e, bool wpn = false)
+    {
+        return Info.Ask(e,wpn);
     }
     
     public void TakeEvent(EventInfo e,bool instant=false,int safety=999)
@@ -231,12 +235,12 @@ public class ThingController : MonoBehaviour
         return Mathf.Abs(Mathf.DeltaAngle(tdir, rot)) < thresh;
     }
 
-    public virtual float PlayAnim(string anim="")
+    public virtual float PlayAnim(string anim="",float speed=1)
     {
         float r = 0;
-        r = Math.Max(r,Body.PlayAnim(anim));
+        r = Math.Max(r,Body.PlayAnim(anim,speed));
         // Debug.Log("PLAY ANIM: " + anim + " / " + this);
-        if(Body.Weapon?.Anim != null) r = Math.Max(r,Body.Weapon.PlayAnim(anim));
+        if(Body.Weapon?.Anim != null) r = Math.Max(r,Body.Weapon.PlayAnim(anim,speed));
         return r;
     }
     
