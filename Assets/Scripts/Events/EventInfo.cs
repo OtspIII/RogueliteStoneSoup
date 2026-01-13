@@ -148,6 +148,10 @@ public class EventInfo
         if (Enums.TryGetValue(i, out int r)) return (T)Enum.ToObject(typeof(T), r);
         return (T)Enum.ToObject(typeof(T), 0);
     }
+    public EventInfo Set(Actions v) { return Set(EnumInfo.Default,(int)v);}
+    public EventInfo Set(EnumInfo i,Actions v){return Set(i,(int)v);}
+    public Actions GetAction(EnumInfo i = EnumInfo.Default) {return GetEnum<Actions>(i);}
+    
     
     //Bools
     public EventInfo Set(bool v=true)

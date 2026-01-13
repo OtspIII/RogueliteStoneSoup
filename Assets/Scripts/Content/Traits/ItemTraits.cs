@@ -141,3 +141,59 @@ public class GoldCoinsTrait : Trait
         }
     }
 }
+
+
+public class LimitedUseTrait : Trait
+{
+    public LimitedUseTrait()
+    {
+        Type = Traits.LimitedUse;
+        AddPreListen(EventTypes.OnUse);
+        AddListen(EventTypes.OnUse);
+        AddListen(EventTypes.OnUseEnd);
+        AddListen(EventTypes.ShownName);
+    }
+
+    public override void PreEvent(TraitInfo i, EventInfo e)
+    {
+        switch (e.Type)
+        {
+            case EventTypes.OnUse:
+            {
+                int uses = i.GetInt();
+                if (uses <= 0) e.Abort = true;
+                break;
+            }
+        }
+    }
+
+    public override void TakeEvent(TraitInfo i, EventInfo e)
+    {
+        switch (e.Type)
+        {
+            case EventTypes.OnUse:
+            {
+                int uses = i.GetInt();
+                uses--;
+                i.Set(uses);
+                if(e.GetActor() == God.Player)
+                    God.GM.UpdateInvText();
+                break;
+            }
+            case EventTypes.OnUseEnd:
+            {
+                int uses = i.GetInt();
+                if(uses <= 0) e.GetActor().DropHeld();
+                break;
+            }
+            case EventTypes.ShownName:
+            {
+                string r = e.GetString();
+                int uses = i.GetInt();
+                r = uses + "x " + r;
+                e.Set(r);
+                break;
+            }
+        }
+    }
+}

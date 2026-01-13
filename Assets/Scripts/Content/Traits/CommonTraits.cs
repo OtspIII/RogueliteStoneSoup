@@ -34,7 +34,6 @@ public class HealthTrait : Trait
             }
             case EventTypes.Damage:
             {
-                // Debug.Log("Damage: " + i.Get(NumInfo.Amount) + " / " + e.Get(NumInfo.Amount));
                 float hp = i.Change(-e.GetN());
                 if (hp <= 0)
                 {
@@ -124,6 +123,39 @@ public class DropTrait : Trait
                 ThingInfo exp = o.Create();
                 exp.ChildOf = i.Who;
                 exp.Spawn(i.Who.Thing.transform.position);
+                break;
+            }
+        }
+    }
+}
+
+
+public class DespawnTrait : Trait
+{
+    public DespawnTrait()
+    {
+        Type = Traits.Despawn;
+        AddListen(EventTypes.Setup);
+        AddListen(EventTypes.Update);
+    }
+
+    public override void TakeEvent(TraitInfo i, EventInfo e)
+    {
+        switch (e.Type)
+        {
+            case EventTypes.Setup:
+            {
+                float dur = e.GetFloat(NumInfo.Amount,0.2f);
+                i.Set(NumInfo.Max, dur);
+                i.Set(NumInfo.Amount, dur);
+                break;
+            }
+            case EventTypes.Update:
+            {
+                float dur = i.GetFloat();
+                dur -= Time.deltaTime;
+                if(dur <= 0) i.Who.Destruct();
+                i.Set(NumInfo.Amount, dur);
                 break;
             }
         }

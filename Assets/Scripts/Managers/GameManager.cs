@@ -77,7 +77,7 @@ public class GameManager : MonoBehaviour
         foreach (ThingInfo i in PlayerInventory)
         {
             if (txt != "") txt += "\n";
-            string l = n + ": " + i.Name;
+            string l = n + ": " + i.GetName();
             if (n == InventoryIndex) l = "<b>" + l + "</b>";
             txt += l;
             if (n == 0) break;

@@ -18,6 +18,7 @@ public class ActorTrait : Trait
         AddListen(EventTypes.OnTouchEnd);
         AddListen(EventTypes.UseHeld);
         AddListen(EventTypes.UseHeldStart);
+        AddListen(EventTypes.UseHeldEnd);
     }
 
     public override void TakeEvent(TraitInfo i, EventInfo e)
@@ -100,6 +101,11 @@ public class ActorTrait : Trait
             case EventTypes.UseHeldStart:
             {
                 if(i.Who.CurrentWeapon != null) i.Who.CurrentWeapon.TakeEvent(God.E(EventTypes.OnUseStart).Set(i.Who));
+                break;
+            }
+            case EventTypes.UseHeldEnd:
+            {
+                if(i.Who.CurrentWeapon != null) i.Who.CurrentWeapon.TakeEvent(God.E(EventTypes.OnUseEnd).Set(i.Who));
                 break;
             }
         }

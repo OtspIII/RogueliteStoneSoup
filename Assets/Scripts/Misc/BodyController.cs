@@ -17,6 +17,7 @@ public class BodyController : MonoBehaviour
     public void Setup(ThingController who,ThingOption type=null,bool weapon=false)
     {
         Who = who;
+        if (type != null) Size = type.Size;
         // gameObject.name = Who.Info.Name + " Body";
         transform.localPosition = new Vector3(0, 0, 0);
         transform.localScale = new Vector3(Size,Size,1);

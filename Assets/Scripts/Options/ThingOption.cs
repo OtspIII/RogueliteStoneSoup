@@ -11,6 +11,7 @@ public class ThingOption : ScriptableObject
     public Color Color = Color.white;
     public List<GameTags> Tags;
     public List<TraitBuilder> Trait;
+    public float Size = 1;
     
     
     public virtual ThingInfo Create()
@@ -22,9 +23,9 @@ public class ThingOption : ScriptableObject
         {
             EventInfo ts = new EventInfo();
             foreach(InfoNumber n in t.Numbers)
-                ts.Numbers.Add(n.Type,n.Value);
+                ts.Numbers.Add(n.Type != NumInfo.None ? n.Type : NumInfo.Amount,n.Value);
             foreach(InfoOption n in t.Prefabs)
-                ts.Options.Add(n.Type,n.Value);
+                ts.Options.Add(n.Type != OptionInfo.None ? n.Type : OptionInfo.Default,n.Value);
             r.AddTrait(t.Trait, ts);
             // Debug.Log("ADD TRAIT: " + t.Trait + " / " + Name);
         }

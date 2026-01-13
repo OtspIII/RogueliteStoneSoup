@@ -357,4 +357,9 @@ public class ThingController : MonoBehaviour
         Destroy(WeaponBody.gameObject);
         WeaponBody = null;
     }
+
+    public ThingInfo GetOwner(bool selfOk = true, bool ultimate = true)
+    {
+        return Info.GetOwner(selfOk,ultimate);
+    }
 }

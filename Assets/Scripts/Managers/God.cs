@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public static class God
@@ -189,6 +190,11 @@ public static class God
         if (r != "") r += ", ";
         r += add;
         return r;
+    }
+    
+    public static bool OneOf(object a, params object[] b)
+    {
+        return b.Contains(a);
     }
 }
 

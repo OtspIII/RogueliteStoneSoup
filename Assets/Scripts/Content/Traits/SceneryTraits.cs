@@ -46,13 +46,19 @@ public class DamageZoneTrait : Trait
             {
                 float timer = i.Get(NumInfo.Speed,1);
                 float dmg = i.Get(NumInfo.Amount,1);
+                float knb = i.Get(NumInfo.Speed,0);
 
                 // Debug.Log("INSIDE LAVA: " + timer + " / " + dmg);
                 HitboxController hb = e.GetHitbox();
                 foreach (ThingController tc in hb.Touching)
                 {
                     ThingInfo t = tc.Info;
-                    t.TakeEvent(God.E(EventTypes.Damage).Set(dmg).Set(i.Who));
+                    if (knb != 0)
+                    {
+                        Vector2 kb = (t.Thing.transform.position - i.Who.Thing.transform.position).normalized * knb;
+                        t.TakeEvent(God.E(EventTypes.Knockback).Set(kb).Set(i.Who));
+                    }
+                    if(dmg > 0) t.TakeEvent(God.E(EventTypes.Damage).Set(dmg).Set(i.Who));
                 }
                 hb.Timer = timer;
                 return;

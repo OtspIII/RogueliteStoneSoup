@@ -3,7 +3,7 @@ using UnityEngine;
 
 public static class ActionParser 
 {
-    public static ActionScript GetAction(Actions act,ThingController who)
+    public static ActionScript GetAction(Actions act,ThingController who,EventInfo e=null)
     {
         switch (act)
         {
@@ -38,6 +38,9 @@ public enum Actions
     //AI Actions
     Patrol=201,
     Chase=202,
+    
+    //Misc Actions
+    // SelfDestruct=301,
 }
 
 public enum ProjTypes

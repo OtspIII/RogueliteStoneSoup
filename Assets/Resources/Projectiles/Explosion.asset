@@ -18,4 +18,15 @@ MonoBehaviour:
   Art: {fileID: 5986030973748356752, guid: f0a3329242deda5458fc1b88ffaad786, type: 3}
   Color: {r: 1, g: 1, b: 1, a: 1}
   Tags: 
-  Trait: []
+  Trait:
+  - Trait: 201
+    Numbers:
+    - Type: 1
+      Value: 3
+    - Type: 4
+      Value: 20
+    Prefabs: []
+  - Trait: 4
+    Numbers: []
+    Prefabs: []
+  Size: 3

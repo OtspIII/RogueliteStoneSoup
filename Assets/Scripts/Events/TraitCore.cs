@@ -21,7 +21,7 @@ public class TraitInfo : EventInfo
 
     public override string ToString()
     {
-        return "[TRAIT:" + Trait + "]("+BuildString()+")";
+        return Trait + "["+BuildString()+"]";
     }
 }
 
@@ -45,6 +45,8 @@ public static class TraitManager
         TraitDict.Add(Traits.Exit,new ExitTrait());
         TraitDict.Add(Traits.DamageZone,new DamageZoneTrait());
         TraitDict.Add(Traits.Drop,new DropTrait());
+        TraitDict.Add(Traits.Despawn,new DespawnTrait());
+        TraitDict.Add(Traits.LimitedUse,new LimitedUseTrait());
     }
     
     public static Trait Get(Traits t)
@@ -118,6 +120,7 @@ public enum Traits
     Actor           =0001,
     Health          =0002,
     Drop            =0003,
+    Despawn         =0004,
     Player          =0100,
     Exit            =0200,
     DamageZone      =0201,
@@ -125,6 +128,7 @@ public enum Traits
     Pickupable      =0301,
     HealPack        =0310,
     GoldCoins       =0311,
+    LimitedUse      =0312,
     Projectile      =0400,
     //Misha Traits:  11##
 }

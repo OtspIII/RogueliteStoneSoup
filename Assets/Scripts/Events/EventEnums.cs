@@ -9,6 +9,7 @@ public enum EventTypes{
     SetPhase        =0102,
     UseHeld         =0103,
     UseHeldStart    =0104,
+    UseHeldEnd      =0105,
     
     //Common Combat
     Damage          =1001,
@@ -28,11 +29,12 @@ public enum EventTypes{
     PlayerTouched   =2041,
     PlayerLeft      =2042,
     OnPickup        =2043,  //Called on the item being picked up
-    OnDrop          =2044,
+    // OnDrop          =2044,
     DidPickup       =2045,  //Called on the thing picking the item up
     DidDrop         =2046,
     OnUse           =2047,  //Called when you click while holding
     OnUseStart      =2048,
+    OnUseEnd        =2049,
     OnHoldStart     =2060,
     // OnHoldEnd       =2061,
     // OnHoldRun       =2062,
@@ -40,6 +42,7 @@ public enum EventTypes{
     
     //Questions
     ShownHP         =9001,
+    ShownName       =9002,
     GetDamage       =9007,
     GetProjectile   =9008,
     GetScore        =9009,
@@ -58,7 +61,7 @@ public enum NumInfo
     Min=3,
     Speed=4,
     Distance=5,
-    PassToChild=6,      //For when a trait spawns an object that needs a number
+    Size=6,
 }
 
 public enum StrInfo

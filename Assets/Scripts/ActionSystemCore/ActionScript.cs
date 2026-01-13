@@ -17,11 +17,17 @@ public class ActionScript
     public bool CanRotate = false;
     public int Phase;
 
-    protected void BeIdleAction()
+    public void Setup(Actions type, ThingController who,bool isIdle=false)
     {
-        Priority = 0;
-        MoveMult = 1;
-        CanRotate = true;
+        Type = type;
+        Who = who;
+        Trait = who.ActorTrait;
+        if (isIdle)
+        {
+            Priority = 0;
+            MoveMult = 1;
+            CanRotate = true;
+        }
     }
     
     public void Run()
@@ -60,7 +66,6 @@ public class ActionScript
         EventInfo sp = Who.Ask(EventTypes.GetActSpeed,true);
         float speedMult = sp.GetFloat(NumInfo.Amount,1);
         Duration = Mathf.Max(Duration,sp.GetFloat(NumInfo.Max,0));
-        if(Type == Actions.Shoot)Debug.Log("SHT: " + speedMult + " / " + Duration);
         if (Anim != "")
         {
             Duration = Mathf.Max(Duration,Who.PlayAnim(Anim,speedMult));

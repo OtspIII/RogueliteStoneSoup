@@ -57,7 +57,7 @@ public class ThingInfo
         Thing = GameObject.Instantiate(God.Library.ActorPrefab, pos, Quaternion.Euler(0, 0, rot));
         Thing.Info = this;
         Thing.gameObject.name = Name;
-        Thing.NameText.text = Name;
+        Thing.NameText.text = GetName(true);
         // Debug.Log("SPAWN: " + Name);
         Thing.TakeEvent(EventTypes.Setup);
         Thing.Body = GameObject.Instantiate(Type.GetBody(), Thing.transform);
@@ -133,6 +133,12 @@ public class ThingInfo
         // CurrentWeapon.Seed = weap;
     }
 
+    public void SetWeapon(int n)
+    {
+        if (God.GM.PlayerInventory.Count == 0) return;
+        n = Mathf.Clamp(n,0,God.GM.PlayerInventory.Count - 1);
+        SetWeapon(God.GM.PlayerInventory[n]);
+    }
     public void SetWeapon(ThingInfo w)
     {
         w.Team = Team;
@@ -243,6 +249,12 @@ public class ThingInfo
             if (!ultimate) return r;
         }
         return r;
+    }
+
+    public string GetName(bool raw=false)
+    {
+        if (raw) return Name;
+        return Ask(God.E(EventTypes.ShownName).Set(Name)).GetString();
     }
 
     

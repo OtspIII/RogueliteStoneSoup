@@ -48,41 +48,35 @@ public class PlayerTrait : Trait
                 if (Input.GetKey(KeyCode.W)) vel.y = 1;
                 if (Input.GetKey(KeyCode.S)) vel.y = -1;
                 i.Who.DesiredMove = vel;
-
-                if (Input.GetKeyDown(KeyCode.Mouse0))i.Who.TakeEvent(God.E(EventTypes.UseHeldStart));
-                if (Input.GetKey(KeyCode.Mouse0))i.Who.TakeEvent(God.E(EventTypes.UseHeld));
-                else if (i.Who.CurrentWeapon == null && God.GM.PlayerInventory.Count > 0)
+                if (i.Who.ActorTrait.Action.Priority <= 0)
                 {
-                    i.Who.SetWeapon(God.GM.PlayerInventory[God.GM.InventoryIndex-1]);
-                }
-                // {
-                    // i.Who.TakeEvent(God.E(EventTypes.StartAction).SetEnum(EnumInfo.Action,(int)Actions.DefaultAttack));
-                    // i.Who.Thing.DoAction(Actions.DefaultAttack);
-                // }
-                    
-
-
-                if (Input.GetKey(KeyCode.E))
-                {
-                    List<ThingController> touching = i.Who.Thing.GetTouching();
-                    foreach (ThingController t in touching)
+                    if (Input.GetKeyDown(KeyCode.Mouse0))i.Who.TakeEvent(God.E(EventTypes.UseHeldStart));
+                    if (Input.GetKey(KeyCode.Mouse0))i.Who.TakeEvent(God.E(EventTypes.UseHeld));
+                    else if (i.Who.CurrentWeapon == null)
                     {
-                        t.TakeEvent(God.E(EventTypes.Interact).Set(i.Who));
+                        i.Who.SetWeapon(God.GM.InventoryIndex - 1);//God.GM.PlayerInventory[God.GM.InventoryIndex-1]);
+                    }
+                    if (Input.GetKey(KeyCode.E))
+                    {
+                        List<ThingController> touching = i.Who.Thing.GetTouching();
+                        foreach (ThingController t in touching)
+                        {
+                            t.TakeEvent(God.E(EventTypes.Interact).Set(i.Who));
+                        }
                     }
                 }
-
+                if (Input.GetKeyUp(KeyCode.Mouse0)){i.Who.TakeEvent(God.E(EventTypes.UseHeldEnd));}
                 for (int n = 0; n < God.InvKeys.Count; n++)
                 {
                     if (Input.GetKeyDown(God.InvKeys[n]) && God.GM.PlayerInventory.Count > n)
                     {
-                        God.GM.InventoryIndex = n+1;
+                        God.GM.InventoryIndex = n + 1;
                         God.Player.SetWeapon(God.GM.PlayerInventory[n]);
                         God.GM.UpdateInvText();
                     }
-                        
+
                 }
-                if (Input.GetKey(KeyCode.Alpha1)) vel.y = -1;
-        
+                
                 if(i.Who.ActorTrait.Action.CanRotate) i.Who.Thing.LookAt(God.Cam.Cam.ScreenToWorldPoint(Input.mousePosition),0.1f);
                 break;
             }
