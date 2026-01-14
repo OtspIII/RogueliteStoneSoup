@@ -172,13 +172,24 @@ public class ThingInfo
         }
         MidEvent = true;
         PreListen.TryGetValue(e.Type, out List<Traits> pre);
-        if(pre != null) {foreach (Traits t in pre) Get(t).PreEvent(e);}
+        if(pre != null) {
+            foreach (Traits t in pre)
+            {
+                Get(t).PreEvent(e);
+                if (e.Abort) break;
+            }
+        }
 
         if (e.Abort) return;
         
         TakeListen.TryGetValue(e.Type, out List<Traits> take);
         // Debug.Log("TAKE EVENT C: " + e.Type + " / " + (take == null ? "X" : take.Count));
-        if(take != null) foreach (Traits t in take) Get(t).TakeEvent(e);
+        if(take != null)
+            foreach (Traits t in take)
+            {
+                Get(t).TakeEvent(e);
+                if(e.Abort) break;
+            }
         MidEvent = false;
         if (EventQueue.Count > 0)
         {

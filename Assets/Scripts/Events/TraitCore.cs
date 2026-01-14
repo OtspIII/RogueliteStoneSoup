@@ -47,6 +47,7 @@ public static class TraitManager
         TraitDict.Add(Traits.Drop,new DropTrait());
         TraitDict.Add(Traits.Despawn,new DespawnTrait());
         TraitDict.Add(Traits.LimitedUse,new LimitedUseTrait());
+        TraitDict.Add(Traits.Stackable,new StackableTrait());
     }
     
     public static Trait Get(Traits t)
@@ -129,6 +130,7 @@ public enum Traits
     HealPack        =0310,
     GoldCoins       =0311,
     LimitedUse      =0312,
+    Stackable       =0313,
     Projectile      =0400,
     //Misha Traits:  11##
 }

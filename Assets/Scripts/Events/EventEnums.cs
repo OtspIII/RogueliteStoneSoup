@@ -38,7 +38,8 @@ public enum EventTypes{
     OnHoldStart     =2060,
     // OnHoldEnd       =2061,
     // OnHoldRun       =2062,
-    AddScore        =2149,
+    AddScore        =2100,
+    ChangeStack     =2101,
     
     //Questions
     ShownHP         =9001,
