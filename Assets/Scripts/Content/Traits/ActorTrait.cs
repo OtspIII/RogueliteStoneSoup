@@ -74,6 +74,12 @@ public class ActorTrait : Trait
             case EventTypes.GetDefaultAction:
             {
                 Actions r = i.Get<Actions>(EnumInfo.DefaultAction);
+                if (e.GetActor() != null)
+                {
+                    Actions ch = i.Get<Actions>(EnumInfo.DefaultChaseAction);
+                    if (ch != Actions.None) r = ch;
+                }
+                
                 if (r != Actions.None)
                     e.Set(EnumInfo.DefaultAction,(int)r);
                 break;
@@ -113,6 +119,7 @@ public class ActorTrait : Trait
     
     public virtual void DoAction(TraitInfo t, ActionScript a, Infos i=null)
     {
+        if (t.Who.Thing == null) return;//Maybe you died so you can't do the action
         float prio = i != null ? i.Get(FloatI.Priority, 1) : 1;
         if (t.Action != null)
         {
@@ -133,6 +140,7 @@ public class ActorTrait : Trait
 
     public virtual void DoAction(TraitInfo t, Actions a=Actions.None, Infos i=null)
     {
+        if (t.Who.Thing == null) return;//Maybe you died so you can't do the action
         Actions defaultAct = t.Get<Actions>(EnumInfo.DefaultAction);
         if (a == Actions.DefaultAttack)
         {

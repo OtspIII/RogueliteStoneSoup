@@ -18,9 +18,17 @@ MonoBehaviour:
   Art: {fileID: 21300000, guid: cb8312002cf474c4688fa76c7caea0a3, type: 3}
   Color: {r: 1, g: 1, b: 1, a: 1}
   Tags: c9000000c8000000
-  Trait: []
+  Trait:
+  - Trait: 312
+    Numbers:
+    - Type: 1
+      Value: 10
+    Prefabs: []
+  Size: 1
   Damage: 1
   IdealRange: 5
+  SpeedMult: 1
+  ActDuration: 0
   DefaultAttack: 103
   Projectile: {fileID: 11400000, guid: d05ac0ab76244cd46895ee8edc134d12, type: 2}
   FloorBody: {fileID: 0}

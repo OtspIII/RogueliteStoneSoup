@@ -51,7 +51,6 @@ public class ThingInfo
     {
         if (!Setup)
         {
-            Setup = true;
             foreach (EventTypes e in PreListen.Keys) SortListen(e,true);
             foreach (EventTypes e in TakeListen.Keys) SortListen(e,false);
         }
@@ -60,12 +59,13 @@ public class ThingInfo
         Thing.gameObject.name = Name;
         Thing.NameText.text = GetName(true);
         // Debug.Log("SPAWN: " + Name);
-        Thing.TakeEvent(EventTypes.Setup);
+        if(!Setup) Thing.TakeEvent(EventTypes.Setup);
         Thing.Body = GameObject.Instantiate(Type.GetBody(), Thing.transform);
         Thing.Body.Setup(Thing,Type);
         if(Thing.Body.Anim != null)
             Thing.Body.Anim.Rebind();
         Thing.SetTeam(Team);
+        Setup = true;
         return Thing;
     }
     
@@ -221,13 +221,20 @@ public class ThingInfo
         }
         return e;
     }
+
+    public void DestroyForm()
+    {
+        if (Thing == null) return;
+        GameObject.Destroy(Thing.gameObject);
+        Thing = null;
+    }
     
     public void Destruct(ThingInfo source=null)
     {
         if (Destroyed) return;
         Destroyed = true;
         TakeEvent(God.E(EventTypes.OnDestroy).Set(source));
-        GameObject.Destroy(Thing.gameObject);
+        DestroyForm();
     }
 
     public override string ToString()
@@ -243,12 +250,17 @@ public class ThingInfo
 
     public void DropHeld(bool destroy=false)
     {
-        //todo: spawn a dropped object back on the floor
-        if (Thing != null) Thing.DropHeld();
-        if (CurrentWeapon != null)
+        ThingInfo w = CurrentWeapon;
+        if (w == null) return;
+        God.GM.RemoveInventory(w);
+        CurrentWeapon = null;
+        w.Team = w.Type.Team;
+        
+        if (Thing != null)
         {
-            God.GM.RemoveInventory(CurrentWeapon);
-            CurrentWeapon = null;
+            Thing.DropHeld();
+            w.Spawn(Thing.transform.position);
+            w.TakeEvent(God.E(EventTypes.DidDrop).Set(this));
         }
     }
 

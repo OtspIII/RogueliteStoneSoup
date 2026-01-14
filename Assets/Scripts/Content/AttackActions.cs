@@ -90,10 +90,6 @@ public class ShootAction : AttackAction
         }
     }
 
-    public override Actions NextAction()
-    {
-        return Actions.Chase;
-    }
 }
 
 

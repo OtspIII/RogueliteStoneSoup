@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Health Potion
   Team: 1
-  Body: {fileID: 629948465317790645, guid: 0f8734e4b4d2c3a449506fe0c78c1110, type: 3}
+  Body: {fileID: 629948465317790645, guid: 7ef37acb0fdeb5849995b35a7fdca6ba, type: 3}
   Art: {fileID: -2880734798192188640, guid: f77ef968c74f7a64c86e3247520c36ec, type: 3}
   Color: {r: 1, g: 1, b: 1, a: 1}
   Tags: c8000000
@@ -37,5 +37,5 @@ MonoBehaviour:
   ActDuration: 0
   DefaultAttack: 5
   Projectile: {fileID: 0}
-  FloorBody: {fileID: 0}
+  FloorBody: {fileID: 629948465317790645, guid: 0f8734e4b4d2c3a449506fe0c78c1110, type: 3}
   FloorArt: {fileID: 0}

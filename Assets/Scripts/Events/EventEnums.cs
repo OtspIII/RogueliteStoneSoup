@@ -31,7 +31,7 @@ public enum EventTypes{
     PlayerTouched   =2041,
     PlayerLeft      =2042,
     OnPickup        =2043,  //Called on the item being picked up
-    // OnDrop          =2044,
+    OnDrop          =2044,
     DidPickup       =2045,  //Called on the thing picking the item up
     DidDrop         =2046,
     OnUse           =2047,  //Called when you click while holding
@@ -81,6 +81,7 @@ public enum EnumInfo
     Default=1,
     Action=1001,
     DefaultAction=1002,
+    DefaultChaseAction=1003,
     DamageType=2001,
 }
 

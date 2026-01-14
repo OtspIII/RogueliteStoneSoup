@@ -181,7 +181,7 @@ public class EventInfo
     //Actor
     public EventInfo Set(ThingController a)
     {
-        return SetActor(ActorInfo.Target, a.Info);
+        return SetActor(ActorInfo.Target, a != null ? a.Info : null);
     }
     public EventInfo Set(ThingInfo a)
     {

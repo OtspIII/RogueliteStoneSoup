@@ -64,6 +64,10 @@ public class PlayerTrait : Trait
                             t.TakeEvent(God.E(EventTypes.Interact).Set(i.Who));
                         }
                     }
+                    if (Input.GetKeyDown(KeyCode.R))
+                    {
+                        i.Who.DropHeld(false);
+                    }
                 }
                 // if (Input.GetKeyUp(KeyCode.Mouse0)){i.Who.TakeEvent(God.E(EventTypes.UseHeldEnd));}//Done via Use action now
                 for (int n = 0; n < God.InvKeys.Count; n++)

@@ -22,7 +22,9 @@ MonoBehaviour:
   - Trait: 100
     Numbers: []
     Prefabs: []
+  Size: 1
   HP: 300
   Speed: 10
-  Weapon: {fileID: 11400000, guid: abe97b6c49d19304ea58812e82bd5f6d, type: 2}
+  Weapon: {fileID: 11400000, guid: 7fc77b878c3f272478de54b35b2fb3a3, type: 2}
   DefaultAction: 1
+  DefaultChaseAction: 1

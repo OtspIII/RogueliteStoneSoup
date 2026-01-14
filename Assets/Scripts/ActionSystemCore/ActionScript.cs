@@ -119,7 +119,7 @@ public class ActionScript
         // EventInfo e = God.E(EventTypes.GetDefaultAction);
         // Who.TakeEvent(e);
         // return Who.DefaultAction;
-        return Who.Ask(EventTypes.GetDefaultAction).Get<Actions>(EnumInfo.DefaultAction);
+        return Who.Ask(God.E(EventTypes.GetDefaultAction).Set(Who.Target)).Get<Actions>(EnumInfo.DefaultAction);
     }
 
     public virtual void ChangePhase(int newPhase)

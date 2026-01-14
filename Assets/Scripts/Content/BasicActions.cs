@@ -34,7 +34,12 @@ public class StunAction : ActionScript
     public override void End()
     {
         base.End();
-        Who.Body.transform.rotation = Quaternion.Euler(0,0,0);
+        if (Who.Info == God.Player)
+        {
+            Who.LookAt(God.MouseLoc());
+        }
+        else
+            Who.Body.transform.rotation = Quaternion.Euler(0,0,0);
     }
 }
 
@@ -49,7 +54,6 @@ public class UseAction : ActionScript
         Setup(Actions.Use,who);
         Anim = "Use";
         Duration = e != null ? e.GetFloat(NumInfo.Amount,0.5f) : 0.5f;
-        Debug.Log("USE ACTION");
     }
 
     public override void End()

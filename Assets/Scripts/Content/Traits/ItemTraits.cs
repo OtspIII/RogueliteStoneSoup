@@ -76,7 +76,7 @@ public class PickupableTrait : Trait
                 if (pu.Abort) break;
                 
                 e.GetActor().TakeEvent(God.E(EventTypes.DidPickup).Set(i.Who));
-                i.Who.Destruct();
+                i.Who.DestroyForm();
                 break;
             }
             case EventTypes.PlayerTouched:
@@ -86,7 +86,7 @@ public class PickupableTrait : Trait
             }
             case EventTypes.PlayerLeft:
             {
-                i.Who.Thing.Icon.gameObject.SetActive(false);
+                i.Who.Thing?.Icon.gameObject.SetActive(false);
                 break;
             }
         }

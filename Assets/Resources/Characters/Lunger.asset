@@ -19,6 +19,7 @@ MonoBehaviour:
   Color: {r: 1, g: 1, b: 1, a: 1}
   Tags: 66000000
   Trait: []
+  Size: 0.5
   HP: 1
   Speed: 6
   Weapon: {fileID: 11400000, guid: 7d621acb1abd6f14fb8ce00024521ece, type: 2}
