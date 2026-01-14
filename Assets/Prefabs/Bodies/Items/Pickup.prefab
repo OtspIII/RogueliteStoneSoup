@@ -97,6 +97,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2994115112403250605}
   - component: {fileID: 629948465317790645}
+  - component: {fileID: -571225360916022565}
   m_Layer: 0
   m_Name: Pickup
   m_TagString: Untagged
@@ -133,13 +134,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7592ba79f0fb1544897a50122dda69a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Anim: {fileID: 0}
+  Anim: {fileID: -571225360916022565}
+  ItemHolder: {fileID: 0}
   Weapon: {fileID: 0}
   Who: {fileID: 0}
   Hitbox: {fileID: 6770198507023327989}
   Size: 1
   SR: {fileID: 1376856763321729984}
   DefaultAnim: Idle
+--- !u!95 &-571225360916022565
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4742179959285484603}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 05c02dac08ce4b2478650ec3b072ffdb, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &6054114107041684505
 GameObject:
   m_ObjectHideFlags: 0

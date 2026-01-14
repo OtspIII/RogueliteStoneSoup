@@ -51,6 +51,10 @@ public class GameLibrary : MonoBehaviour
     
     public ThingOption GetThing(SpawnRequest sr,LevelBuilder b=null)
     {
+        if (sr.Mandatory.Contains(GameTags.Something) && God.GM.DebugSpawn != null)
+        {
+            return God.GM.DebugSpawn;
+        }
         List<ThingOption> opts = new List<ThingOption>();
         foreach (ThingOption o in ThingOptions)
         {

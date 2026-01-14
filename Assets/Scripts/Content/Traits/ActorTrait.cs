@@ -114,7 +114,14 @@ public class ActorTrait : Trait
     public virtual void DoAction(TraitInfo t, ActionScript a, Infos i=null)
     {
         float prio = i != null ? i.Get(FloatI.Priority, 1) : 1;
-        if (t.Action != null && t.Action.Priority >= prio) return;
+        if (t.Action != null)
+        {
+            if(!t.Action.TryInterrupt(a,prio)) return;
+            else
+            {
+                t.Action.Abort(a);
+            }
+        }
         if (a == null) Debug.Log("ERROR: NULL ACTION / " + this);
         t.Action = a;
         if (t.Action != null)

@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public List<ThingInfo> PlayerInventory;
     [HideInInspector] public int InventoryIndex = 1;
     private Dictionary<string, string> UIThings = new Dictionary<string, string>();
+    public ThingOption DebugSpawn;
 
     private void Awake()
     {

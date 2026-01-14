@@ -38,6 +38,7 @@ public class SpawnRequest
 
     public void Refine()
     {
+        if (God.GM.DebugSpawn != null) return;
         for (int n = 0; n < Mandatory.Count; n++)
         {
             if (Mandatory[n] == GameTags.Something)

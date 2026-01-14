@@ -37,3 +37,36 @@ public class StunAction : ActionScript
         Who.Body.transform.rotation = Quaternion.Euler(0,0,0);
     }
 }
+
+//A generic interact action. Doesn't do anything, just plays a generic 'use' animation
+//For things like drinking potions. Also attack inherits from this
+public class UseAction : ActionScript
+{
+    public UseAction(){ }
+    
+    public UseAction(ThingController who,EventInfo e=null)
+    {
+        Setup(Actions.Use,who);
+        Anim = "Use";
+        Duration = e != null ? e.GetFloat(NumInfo.Amount,0.5f) : 0.5f;
+        Debug.Log("USE ACTION");
+    }
+
+    public override void End()
+    {
+        base.End();
+        Who.TakeEvent(God.E(EventTypes.UseHeldEnd));
+    }
+
+    public override void Complete()
+    {
+        base.Complete();
+        Who.TakeEvent(God.E(EventTypes.UseHeldComplete));
+    }
+
+    public override void Abort(ActionScript newAct)
+    {
+        base.Abort(newAct);
+        Who.TakeEvent(God.E(EventTypes.UseHeldAbort));
+    }
+}

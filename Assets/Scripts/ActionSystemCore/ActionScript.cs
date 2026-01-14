@@ -38,7 +38,7 @@ public class ActionScript
         {
             Timer+=Time.deltaTime;
             if(Timer >= Duration)
-                End();
+                Complete();
         }
     }
 
@@ -79,6 +79,7 @@ public class ActionScript
         ChangePhase(0);
     }
     
+    //Runs no matter what when the action ends
     public virtual void End()
     {
         Trait.Action = null;
@@ -88,6 +89,24 @@ public class ActionScript
             Who.StopCoroutine(Coro);
             Coro = null;
         }
+    }
+
+    //Runs at end if not interrupted
+    public virtual void Complete()
+    {
+        End();
+    }
+    
+    //Runs at end if action interrupted by a higher priority action
+    public virtual void Abort(ActionScript newAct)
+    {
+        End();
+    }
+
+    public bool TryInterrupt(ActionScript newAct, float prio=-1)
+    {
+        if (prio < 0) prio = newAct.Priority;
+        return Priority < prio;
     }
 
     public virtual IEnumerator Script()

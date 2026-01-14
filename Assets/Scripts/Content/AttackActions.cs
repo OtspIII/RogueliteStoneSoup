@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AttackAction : ActionScript
+public class AttackAction : UseAction
 {
     public float Damage = 1;
     public float Knockback = 10;
@@ -70,6 +70,7 @@ public class ShootAction : AttackAction
         Duration = 0.2f;
         CanRotate = true;
         MoveMult = 0.5f;
+        Anim = "Shoot";
     }
 
     public override void Begin()

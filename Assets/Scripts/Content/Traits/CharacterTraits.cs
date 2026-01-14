@@ -65,7 +65,7 @@ public class PlayerTrait : Trait
                         }
                     }
                 }
-                if (Input.GetKeyUp(KeyCode.Mouse0)){i.Who.TakeEvent(God.E(EventTypes.UseHeldEnd));}
+                // if (Input.GetKeyUp(KeyCode.Mouse0)){i.Who.TakeEvent(God.E(EventTypes.UseHeldEnd));}//Done via Use action now
                 for (int n = 0; n < God.InvKeys.Count; n++)
                 {
                     if (Input.GetKeyDown(God.InvKeys[n]) && God.GM.PlayerInventory.Count > n)

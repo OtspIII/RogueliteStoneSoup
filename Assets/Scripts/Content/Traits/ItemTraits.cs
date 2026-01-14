@@ -72,8 +72,9 @@ public class PickupableTrait : Trait
             case EventTypes.Interact:
             {
                 EventInfo pu = God.E(EventTypes.OnPickup).Set(e.GetActor());
-                i.Who.TakeEvent(pu);
+                i.Who.TakeEvent(pu,true);
                 if (pu.Abort) break;
+                
                 e.GetActor().TakeEvent(God.E(EventTypes.DidPickup).Set(i.Who));
                 i.Who.Destruct();
                 break;
@@ -97,7 +98,7 @@ public class HealPackTrait : Trait
     public HealPackTrait()
     {
         Type = Traits.HealPack;
-        AddListen(EventTypes.OnUseStart);
+        AddListen(EventTypes.OnUse);
     }
     
     public override void TakeEvent(TraitInfo i, EventInfo e)
@@ -110,12 +111,12 @@ public class HealPackTrait : Trait
             //     e.GetActor().TakeEvent(heal,true);
             //     break;
             // }
-            case EventTypes.OnUseStart:
+            case EventTypes.OnUse:
             {
                 EventInfo heal = God.E(EventTypes.Healing).Set(5);
                 e.GetActor().TakeEvent(heal,true);
                 // e.GetActor().
-                e.GetActor().DropHeld();
+                // e.GetActor().DropHeld();
                 break;
             }
         }
@@ -151,6 +152,7 @@ public class LimitedUseTrait : Trait
     {
         Type = Traits.LimitedUse;
         AddPreListen(EventTypes.OnUse);
+        AddListen(EventTypes.Setup);
         AddListen(EventTypes.OnUse);
         AddListen(EventTypes.OnUseEnd);
         AddListen(EventTypes.ShownName,5);
@@ -174,6 +176,17 @@ public class LimitedUseTrait : Trait
     {
         switch (e.Type)
         {
+            case EventTypes.Setup:
+            {
+                TraitInfo stack = i.Who.Get(Traits.Stackable);
+                if (stack != null)
+                {
+                    int uses = Mathf.Max(i.GetInt(), stack.GetInt());
+                    i.Set(uses);
+                    stack.Set(uses);
+                }
+                break;
+            }
             case EventTypes.OnUse:
             {
                 i.Who.TakeEvent(God.E(EventTypes.ChangeStack).Set(-1).Set(e.GetActor()),true);
@@ -196,11 +209,7 @@ public class LimitedUseTrait : Trait
             }
             case EventTypes.ChangeStack:
             {
-                int fix = e.GetInt(NumInfo.Size, -999);
-                if (fix != -999)
-                    i.Set(fix);
-                else
-                    i.Change(e.GetInt(NumInfo.Amount, 1));
+                i.Change(e.GetInt());
                 if (e.GetActor() == God.Player)
                     God.GM.UpdateInvText();
                 break;
@@ -227,7 +236,7 @@ public class StackableTrait : Trait
         {
             case EventTypes.OnPickup:
             {
-                if (i.GetActor() != God.Player)
+                if (e.GetActor() != God.Player)
                 {
                     e.Abort = true;
                     break;
@@ -236,8 +245,9 @@ public class StackableTrait : Trait
                 {
                     if (t.Type == i.Who.Type)
                     {
-                        t.TakeEvent(God.E(EventTypes.ChangeStack).Set(i.GetInt()));
+                        t.TakeEvent(God.E(EventTypes.ChangeStack).Set(i.GetInt()).Set(e.GetActor()));
                         e.Abort = true;
+                        i.Who.Destruct();
                         break;
                     }
                 }
@@ -245,7 +255,20 @@ public class StackableTrait : Trait
             }
             case EventTypes.ChangeStack:
             {
-                
+                float n = i.Change(e.GetInt());
+                //Huh, should the item being destroyed flow from here?
+                //It needs to happen 'late' for usable items, though
+                if (!i.Who.Has(Traits.LimitedUse))
+                {
+                    if (n <= 0)
+                    {
+                        i.Who.Destruct();
+                    }
+
+                    if (e.GetActor() == God.Player)
+                        God.GM.UpdateInvText();
+                }
+
                 break;
             }
             case EventTypes.ShownName:

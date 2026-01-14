@@ -21,8 +21,21 @@ MonoBehaviour:
   Trait:
   - Trait: 310
     Numbers: []
+    Prefabs: []
+  - Trait: 313
+    Numbers: []
+    Prefabs: []
+  - Trait: 312
+    Numbers:
+    - Type: 1
+      Value: 1
+    Prefabs: []
+  Size: 1
   Damage: 0
-  DefaultAttack: 0
+  IdealRange: 1.5
+  SpeedMult: 1
+  ActDuration: 0
+  DefaultAttack: 5
   Projectile: {fileID: 0}
   FloorBody: {fileID: 0}
   FloorArt: {fileID: 0}

@@ -5,6 +5,7 @@ using UnityEngine;
 public class BodyController : MonoBehaviour
 {
     public Animator Anim;
+    public Transform ItemHolder;
     public BodyController Weapon;
     public ThingController Who;
     public HitboxController Hitbox;
@@ -18,6 +19,12 @@ public class BodyController : MonoBehaviour
     {
         Who = who;
         if (type != null) Size = type.Size;
+        if (ItemHolder == null)
+        {
+            ItemHolder = new GameObject("Item Holder").transform;
+            ItemHolder.parent = transform;
+            ItemHolder.localPosition = new Vector3(Size * 0.7f, 0, 0);
+        }
         // gameObject.name = Who.Info.Name + " Body";
         transform.localPosition = new Vector3(0, 0, 0);
         transform.localScale = new Vector3(Size,Size,1);
@@ -52,7 +59,7 @@ public class BodyController : MonoBehaviour
         }
         // ThingOption w = God.Library.GetThing(GameTags.Weapon);
         ThingOption w = wpn.Type;
-        Weapon = Instantiate(w.GetBody(true), transform);
+        Weapon = Instantiate(w.GetBody(true), ItemHolder);
         // Weapon = Instantiate(God.Library.GetWeaponPrefab(who.CurrentWeapon.Seed.Body), transform);
         Weapon.Setup(Who,w,true);
         Weapon.gameObject.name = w.Name;

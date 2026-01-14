@@ -10,6 +10,8 @@ public enum EventTypes{
     UseHeld         =0103,
     UseHeldStart    =0104,
     UseHeldEnd      =0105,
+    UseHeldComplete =0106,
+    UseHeldAbort    =0107,
     
     //Common Combat
     Damage          =1001,
@@ -33,8 +35,9 @@ public enum EventTypes{
     DidPickup       =2045,  //Called on the thing picking the item up
     DidDrop         =2046,
     OnUse           =2047,  //Called when you click while holding
-    OnUseStart      =2048,
+    OnUseStart      =2048,  //Only called the first time you click
     OnUseEnd        =2049,
+    OnUseAbort      =2050,
     OnHoldStart     =2060,
     // OnHoldEnd       =2061,
     // OnHoldRun       =2062,

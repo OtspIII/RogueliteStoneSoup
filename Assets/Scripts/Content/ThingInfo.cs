@@ -10,6 +10,7 @@ public class ThingInfo
     public ThingInfo ChildOf;
     public GameTeams Team;
     public bool Setup = false;
+    public bool Destroyed = false;
     
     public Dictionary<Traits, TraitInfo> Trait = new Dictionary<Traits, TraitInfo>();
     public Dictionary<EventTypes, List<Traits>> PreListen = new Dictionary<EventTypes, List<Traits>>();
@@ -223,6 +224,8 @@ public class ThingInfo
     
     public void Destruct(ThingInfo source=null)
     {
+        if (Destroyed) return;
+        Destroyed = true;
         TakeEvent(God.E(EventTypes.OnDestroy).Set(source));
         GameObject.Destroy(Thing.gameObject);
     }
