@@ -233,7 +233,7 @@ public class ThingInfo
     {
         if (Destroyed) return;
         Destroyed = true;
-        TakeEvent(God.E(EventTypes.OnDestroy).Set(source));
+        TakeEvent(God.E(EventTypes.OnDestroy).Set(source).Set(Thing.transform.position));
         DestroyForm();
     }
 

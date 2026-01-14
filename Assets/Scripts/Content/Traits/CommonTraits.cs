@@ -122,7 +122,7 @@ public class DropTrait : Trait
                 ThingOption o = i.GetOption();
                 ThingInfo exp = o.Create();
                 exp.ChildOf = i.Who;
-                exp.Spawn(i.Who.Thing.transform.position);
+                exp.Spawn(e.GetVector());
                 break;
             }
         }

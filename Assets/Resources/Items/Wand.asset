@@ -24,6 +24,11 @@ MonoBehaviour:
     - Type: 1
       Value: 3
     Prefabs: []
+  - Trait: 313
+    Numbers:
+    - Type: 1
+      Value: 3
+    Prefabs: []
   Size: 1
   Damage: 4
   IdealRange: 5

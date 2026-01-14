@@ -195,7 +195,7 @@ public class LimitedUseTrait : Trait
             case EventTypes.OnUseEnd:
             {
                 int uses = i.GetInt();
-                if (uses <= 0) e.GetActor().DropHeld();
+                if (uses <= 0) e.GetActor().DropHeld(true);
                 break;
             }
             case EventTypes.ShownName:
