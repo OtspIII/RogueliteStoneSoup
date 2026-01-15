@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "ActorOption", menuName = "Scriptable Objects/ActorOption")]
+[CreateAssetMenu(fileName = "ThingOption", menuName = "Scriptable Objects/ThingOption")]
 public class ThingOption : ScriptableObject
 {
     public string Name;
@@ -26,6 +26,20 @@ public class ThingOption : ScriptableObject
                 ts.Numbers.Add(n.Type != NumInfo.None ? n.Type : NumInfo.Amount,n.Value);
             foreach(InfoOption n in t.Prefabs)
                 ts.Options.Add(n.Type != OptionInfo.None ? n.Type : OptionInfo.Default,n.Value);
+            foreach (InfoEnum n in t.Enums)
+            {
+                if (n.Act != Actions.None)
+                {
+                    ts.Enums.Add(n.Type != EnumInfo.None ? n.Type : EnumInfo.Default,(int)n.Act);
+                    break;
+                }
+                if (n.Tag != GameTags.None)
+                {
+                    ts.Enums.Add(n.Type != EnumInfo.None ? n.Type : EnumInfo.Default,(int)n.Tag);
+                    break;
+                }
+            }
+                
             r.AddTrait(t.Trait, ts);
             // Debug.Log("ADD TRAIT: " + t.Trait + " / " + Name);
         }
@@ -51,6 +65,7 @@ public class TraitBuilder
     public Traits Trait;
     public List<InfoNumber> Numbers;
     public List<InfoOption> Prefabs;
+    public List<InfoEnum> Enums;
 }
 
 [System.Serializable]
@@ -65,4 +80,17 @@ public class InfoOption
 {
     public OptionInfo Type=OptionInfo.Default;
     public ThingOption Value;
+}
+
+[System.Serializable]
+public class InfoEnum
+{
+    public EnumInfo Type=EnumInfo.Default;
+    public Actions Act;
+    public GameTags Tag;
+
+    public void OnInspectorGUI()
+    {
+        Debug.Log("OIGUI: " + Type);
+    }
 }

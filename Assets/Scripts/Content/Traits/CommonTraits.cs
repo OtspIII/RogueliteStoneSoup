@@ -120,6 +120,11 @@ public class DropTrait : Trait
             case EventTypes.OnDestroy:
             {
                 ThingOption o = i.GetOption();
+                if (o == null)
+                {
+                    GameTags t = i.Get<GameTags>();
+                    o = God.Library.GetThing(t);
+                }
                 ThingInfo exp = o.Create();
                 exp.ChildOf = i.Who;
                 exp.Spawn(e.GetVector());

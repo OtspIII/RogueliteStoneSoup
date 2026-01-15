@@ -81,7 +81,7 @@ public class PickupableTrait : Trait
             }
             case EventTypes.PlayerTouched:
             {
-                i.Who.Thing.Icon.gameObject.SetActive(true);
+                i.Who.Thing?.Icon.gameObject.SetActive(true);
                 break;
             }
             case EventTypes.PlayerLeft:
