@@ -8,7 +8,8 @@ public class PlayerTrait : Trait
     public PlayerTrait()
     {
         Type = Traits.Player;
-        AddListen(EventTypes.Setup,5);
+        // AddListen(EventTypes.Setup, 5);
+        AddListen(EventTypes.OnSpawn);
         AddListen(EventTypes.Update);
         AddListen(EventTypes.IsPlayer);
         AddListen(EventTypes.OnTouch);
@@ -27,11 +28,17 @@ public class PlayerTrait : Trait
         // Debug.Log("TAKE EVENT PLAYER: " + i.Type);
         switch (e.Type)
         {
-            case EventTypes.Setup:
+            // case EventTypes.Setup:
+            // {
+            //     // Debug.Log("SETUP PLAYER");
+            //     
+            //     // i.Set(EnumInfo.DefaultAction, (int)Actions.Idle);
+            //     
+            //     break;
+            // }
+            case EventTypes.OnSpawn:
             {
-                // Debug.Log("SETUP PLAYER");
                 God.Player = i.Who;
-                i.Set(EnumInfo.DefaultAction, (int)Actions.Idle);
                 God.Cam.Target = i.Who.Thing.gameObject;
                 if(i.Who.CurrentWeapon != null)
                     i.Who.TakeEvent(God.E(EventTypes.DidPickup).Set(i.Who.CurrentWeapon));

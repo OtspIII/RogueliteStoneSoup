@@ -11,12 +11,15 @@ public class LevelBuilder
     public GeoTile PlayerSpawn;
     public GeoTile Exit;
     public List<SpawnPointController> SpawnPoints = new List<SpawnPointController>();
-
-    public LevelBuilder() { }
+    public List<SpawnPointController> SpawnPointsFixed = new List<SpawnPointController>();
+    public List<GameTags> ToSpawnTags = new List<GameTags>();
+    public List<ThingOption> ToSpawn = new List<ThingOption>();
 
     public virtual void Build()
     {
         if(God.Session == null) God.Session = new GameSession();
+        //Does the specific level we're on change any basic info (Size/LinkOdds/etc)? Do that here
+        Customize();
         //Build out a zoomed-out map of the level, without specific rooms
         BuildGeoMap();
         //Connect geomorphs to each other to make sure there's a path from player spawn to exit
@@ -35,15 +38,91 @@ public class LevelBuilder
 
     public virtual void FindQuotas()
     {
+        float rms = AllGeo.Count - 2; //How many rooms other than start and end are there?
+        //We're going to spawn 1.1 monsters per room on average
+        float mons = God.RoundRand(rms * 1.1f);
+        for(float n=0;n<mons;n++) ToSpawnTags.Add(GameTags.NPC);
+        float wpn = God.RoundRand(1 + (rms * 0.05f));
+        for(float n=0;n<wpn;n++) ToSpawnTags.Add(GameTags.Weapon);
+        float con = God.RoundRand(rms * 0.25f);
+        for(float n=0;n<con;n++) ToSpawnTags.Add(GameTags.Consumable);
+        float scr = God.RoundRand(rms * 0.5f);
+        for(float n=0;n<scr;n++) ToSpawnTags.Add(GameTags.ScoreThing);
+        
+        //Then we take those tags and use them to decide on a list of actual things to spawn
+        foreach (GameTags tag in ToSpawnTags)
+        {
+            ThingOption o = God.Library.GetThing(tag);
+            ToSpawn.Add(o);
+        }
         
     }
     
     public virtual void SpawnThings()
     {
-        foreach (GeoTile g in AllGeo)
+        SpawnPointController playerStart = null;
+        foreach (SpawnPointController s in PlayerSpawn.Room.Spawners)
         {
-            g.Room.Spawn();
+            if (s.ToSpawn.Mandatory.Contains(GameTags.Player) || s.ToSpawn.Any.Contains(GameTags.Player))
+            {
+                playerStart = s;
+                SpawnPoints.Remove(s);
+                SpawnPointsFixed.Remove(s);
+                break;
+            }
         }
+
+        if (playerStart != null) God.Session.Player.Spawn(playerStart);
+        else
+        {
+            Debug.Log("ERROR: Player Spawn Room has no spawners for a player: " + PlayerSpawn.Room);
+            God.Session.Player.Spawn(PlayerSpawn.Room.transform.position);
+        }
+        
+        while(ToSpawn.Count > 0)
+        {
+            if (SpawnPoints.Count == 0)
+            {
+                Debug.Log("Ran out of spawn points!");
+                break;
+            }
+            ThingOption o = ToSpawn.Random();
+            ToSpawn.Remove(o);
+            List<SpawnPointController> s = new List<SpawnPointController>();
+            s.AddRange(SpawnPoints);
+            ThingInfo i=null;
+            while (s.Count > 0)
+            {
+                SpawnPointController chosen = s.Random();
+                s.Remove(chosen);
+                if (chosen.CanSpawn(o, this))
+                {
+                    i = o.Create();
+                    i.Spawn(chosen);
+                    SpawnPoints.Remove(chosen);
+                    break;
+                }
+            }
+            if(i == null) Debug.Log("Thing couldn't find a place to spawn: " + o.Name);
+        }
+
+        foreach (SpawnPointController s in SpawnPointsFixed)
+        {
+            s.Spawn(this);
+        }
+        // foreach (GeoTile g in AllGeo)
+        // {
+        //     g.Room.Spawn();
+        // }
+    }
+
+    public virtual void Customize()
+    {
+        //In the second half of the game the levels get a little bigger
+        if(God.Session.Level >= 5)
+            Size = new Vector2Int(4, 5);
+        if (God.Session.Player == null)
+            God.Session.Player = God.Library.GetThing(GameTags.Player).Create();
     }
 
     public virtual void BuildGeoMap()
@@ -181,7 +260,9 @@ public class LevelBuilder
             God.GM.Rooms.Add(g.Room);
             foreach (SpawnPointController spc in g.Room.Spawners)
             {
-                SpawnPoints.Add(spc);
+                spc.ToSpawn.Refine();
+                if(spc.AlwaysSpawn) SpawnPointsFixed.Add(spc);
+                else SpawnPoints.Add(spc);
             }
         }
     }

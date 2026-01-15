@@ -15,7 +15,7 @@ public class StunAction : ActionScript
     public StunAction(ThingController who,EventInfo e=null)
     {
         Setup(Actions.Stun,who);
-        Duration = e != null ? e.GetFloat(NumInfo.Amount,1) : 1;
+        Duration = e != null ? e.GetFloat(NumInfo.Amount,0.5f) : 0.5f;
     }
 
     public override IEnumerator Script()

@@ -17,13 +17,19 @@ MonoBehaviour:
   Body: {fileID: 629948465317790645, guid: 0f8734e4b4d2c3a449506fe0c78c1110, type: 3}
   Art: {fileID: -2322180950842035098, guid: 38af7f6f611a7064b87743a25c742649, type: 3}
   Color: {r: 1, g: 1, b: 1, a: 1}
-  Tags: c8000000
+  Tags: c8000000cb000000
   Trait:
   - Trait: 311
     Numbers:
     - Type: 1
       Value: 1
+    Prefabs: []
+    Enums: []
+  Size: 1
   Damage: 0
+  IdealRange: 1.5
+  SpeedMult: 1
+  ActDuration: 0
   DefaultAttack: 0
   Projectile: {fileID: 0}
   FloorBody: {fileID: 0}

@@ -4,6 +4,8 @@ using UnityEngine;
 [System.Serializable]
 public class SpawnRequest
 {
+    bool Refined = false;
+    public ThingOption Fixed;
     public List<GameTags> Mandatory = new List<GameTags>();
     public List<GameTags> Any = new List<GameTags>();
 
@@ -13,6 +15,17 @@ public class SpawnRequest
         {
             Mandatory.Add(t);
         }
+    }
+
+    public ThingOption FindThing(LevelBuilder b=null)
+    {
+        if (!Refined)
+        {
+            Refine();
+            Refined = true;
+        }
+        if (Fixed != null) return Fixed;
+        return God.Library.GetThing(this,b);
     }
     
     public float Judge(ThingOption o, LevelBuilder b=null)

@@ -45,9 +45,9 @@ public class RoomScript : MonoBehaviour
         }
     }
 
-    public void Spawn()
-    {
-        foreach(SpawnPointController s in Spawners)
-            s.Spawn();
-    }
+    // public void Spawn()
+    // {
+    //     foreach(SpawnPointController s in Spawners)
+    //         s.Spawn();
+    // }
 }

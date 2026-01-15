@@ -65,6 +65,7 @@ public class ThingInfo
         if(Thing.Body.Anim != null)
             Thing.Body.Anim.Rebind();
         Thing.SetTeam(Team);
+        TakeEvent(EventTypes.OnSpawn);
         Setup = true;
         return Thing;
     }

@@ -17,18 +17,20 @@ MonoBehaviour:
   Body: {fileID: 629948465317790645, guid: b4fa405680f33044abe2c4567ecf147f, type: 3}
   Art: {fileID: -4421300922047078791, guid: 4bf70cedee363fb4b9048f89e88c9ddc, type: 3}
   Color: {r: 1, g: 1, b: 1, a: 1}
-  Tags: c9000000c8000000
+  Tags: ca000000c8000000
   Trait:
   - Trait: 312
     Numbers:
     - Type: 1
       Value: 3
     Prefabs: []
+    Enums: []
   - Trait: 313
     Numbers:
     - Type: 1
       Value: 3
     Prefabs: []
+    Enums: []
   Size: 1
   Damage: 4
   IdealRange: 5

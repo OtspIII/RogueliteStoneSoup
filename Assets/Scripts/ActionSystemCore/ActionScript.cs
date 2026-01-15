@@ -94,13 +94,13 @@ public class ActionScript
     //Runs at end if not interrupted
     public virtual void Complete()
     {
-        End();
+        if(Who != null) End();
     }
     
     //Runs at end if action interrupted by a higher priority action
     public virtual void Abort(ActionScript newAct)
     {
-        End();
+        if(Who != null) End();
     }
 
     public bool TryInterrupt(ActionScript newAct, float prio=-1)
