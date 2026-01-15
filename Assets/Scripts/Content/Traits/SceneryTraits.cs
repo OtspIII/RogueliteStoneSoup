@@ -20,7 +20,7 @@ public class ExitTrait : Trait
                 ThingInfo t = col.Other.Info;
                 if (t.Has(Traits.Player))
                 {
-                    SceneManager.LoadScene("YouWin");
+                    God.Session.Progress(e); //I guess if I wanted to have branching exits or something I could add info here
                 }
 
                 return;

@@ -249,19 +249,25 @@ public class ThingController : MonoBehaviour
         TakeEvent(God.E(EventTypes.SetPhase).Set(n));
     }
     
-    public virtual void DoAction(ActionScript a, Infos i=null)
+    public virtual void DoAction(ActionScript a, EventInfo e=null)
     {
-        TakeEvent(God.E(EventTypes.StartAction).Set(a));
+        if(e == null) e = God.E();
+        e.Type = EventTypes.StartAction;
+        e.Set(a);
+        TakeEvent(e);
     }
     
-    public virtual void DoAction(string a, Infos i=null)
+    public virtual void DoAction(string a, EventInfo e=null)
     {
-        DoAction(Enum.Parse<Actions>(a),i);
+        DoAction(Enum.Parse<Actions>(a),e);
     }
     
-    public virtual void DoAction(Actions a=Actions.None, Infos i=null)
+    public virtual void DoAction(Actions a=Actions.None, EventInfo e=null)
     {
-        TakeEvent(God.E(EventTypes.StartAction).Set(EnumInfo.Action,(int)a));
+        if(e == null) e = God.E();
+        e.Type = EventTypes.StartAction;
+        e.Set(EnumInfo.Action,a);
+        TakeEvent(e);
     }
     
     // public virtual ActionScript DefaultAttackAction()
@@ -272,7 +278,7 @@ public class ThingController : MonoBehaviour
 
     public virtual ActionScript GetAction(Actions a)
     {
-        return ActionParser.GetAction(a,this);
+        return Parser.Get(a,this);
     }
 
     // private void OnTriggerEnter2D(Collider2D other)

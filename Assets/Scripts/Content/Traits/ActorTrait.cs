@@ -51,11 +51,11 @@ public class ActorTrait : Trait
             case EventTypes.StartAction:
             {
                 if(e.Action != null)
-                    DoAction(i,e.Action);
+                    DoAction(i,e.Action,e);
                 else
                 {
                     Actions a = e.Get<Actions>(EnumInfo.Action);
-                    DoAction(i,a);
+                    DoAction(i,a,e);
                 }
                 break;
             }
@@ -117,10 +117,10 @@ public class ActorTrait : Trait
         }
     }
     
-    public virtual void DoAction(TraitInfo t, ActionScript a, Infos i=null)
+    public virtual void DoAction(TraitInfo t, ActionScript a, EventInfo e=null)
     {
         if (t.Who.Thing == null) return;//Maybe you died so you can't do the action
-        float prio = i != null ? i.Get(FloatI.Priority, 1) : 1;
+        float prio = e != null ? e.Get(NumInfo.Priority, 1) : 1;
         if (t.Action != null)
         {
             if(!t.Action.TryInterrupt(a,prio)) return;
@@ -138,7 +138,7 @@ public class ActorTrait : Trait
         }
     }
 
-    public virtual void DoAction(TraitInfo t, Actions a=Actions.None, Infos i=null)
+    public virtual void DoAction(TraitInfo t, Actions a=Actions.None, EventInfo e=null)
     {
         if (t.Who.Thing == null) return;//Maybe you died so you can't do the action
         Actions defaultAct = t.Get<Actions>(EnumInfo.DefaultAction);
@@ -146,10 +146,10 @@ public class ActorTrait : Trait
         {
             // Debug.Log(t.Who.Name + ": " + t.Who.CurrentWeapon);
             // Debug.Log(t.Who.CurrentWeapon.Trait);
-            EventInfo e = t.Who.CurrentWeapon.Ask(EventTypes.GetDefaultAttack);
-            a = e.Get<Actions>(EnumInfo.DefaultAction);
+            EventInfo atk = t.Who.CurrentWeapon.Ask(EventTypes.GetDefaultAttack);
+            a = atk.Get<Actions>(EnumInfo.DefaultAction);
         }
-        ActionScript act = ActionParser.GetAction(a == Actions.None ? defaultAct : a,t.Who.Thing);
-        DoAction(t,act,i);
+        ActionScript act = Parser.Get(a == Actions.None ? defaultAct : a,t.Who.Thing);
+        DoAction(t,act,e);
     }
 }

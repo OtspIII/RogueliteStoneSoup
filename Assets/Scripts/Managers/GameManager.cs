@@ -1,8 +1,10 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -16,39 +18,21 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public int InventoryIndex = 1;
     private Dictionary<string, string> UIThings = new Dictionary<string, string>();
     public ThingOption DebugSpawn;
+    public Image Fader;
 
     private void Awake()
     {
         God.GM = this;
-        TraitManager.Init();
-        ThingBuilder.Init();
+        Parser.Init();
+        // ThingBuilder.Init();
     }
 
     void Start()
     {
         God.Library.Setup();
-        BuildLevel();
-    }
-
-    void Update()
-    {
-    }
-
-    public virtual void BuildLevel()
-    {
         LevelHolder = new GameObject("Level").transform;
         Level = new LevelBuilder();
-        foreach (GeoTile g in Level.AllGeo)
-        {
-            RoomOption rm = God.Library.GetRoom(g, Level);
-            RoomScript rs = rm.Build(g,Level);
-            if(rs != null)
-                Rooms.Add(rs);
-        }
-        foreach (RoomScript rs in Rooms)
-        {
-            rs.Spawn();
-        }
+        Level.Build();
     }
 
     public void AddSpawn(SpawnPointController s)
@@ -115,5 +99,25 @@ public class GameManager : MonoBehaviour
             r += s.Substring(1);
         }
         HealthTxt.text = r;
+    }
+
+    public void PlayerWin()
+    {
+        StartCoroutine(God.Session.BeatLevel());
+    }
+    
+    public void PlayerLose()
+    {
+        StartCoroutine(God.Session.LoseLevel());
+    }
+
+    public Coroutine Fade(bool fadeOut=true)
+    {
+        return StartCoroutine(fade(fadeOut));
+    }
+
+    private IEnumerator fade(bool fadeOut=true)
+    {
+        yield return God.Fade(Fader);
     }
 }

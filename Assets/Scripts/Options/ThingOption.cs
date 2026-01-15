@@ -55,8 +55,7 @@ public class ThingOption : ScriptableObject
     {
         return Art;
     }
-    
-    
+   
 }
 
 [System.Serializable]
@@ -88,9 +87,4 @@ public class InfoEnum
     public EnumInfo Type=EnumInfo.Default;
     public Actions Act;
     public GameTags Tag;
-
-    public void OnInspectorGUI()
-    {
-        Debug.Log("OIGUI: " + Type);
-    }
 }

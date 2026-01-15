@@ -16,7 +16,7 @@ public class EventInfo
     public Dictionary<OptionInfo, ThingOption> Options = new Dictionary<OptionInfo, ThingOption>();
     public Dictionary<VectorInfo, Vector2> Vectors = new Dictionary<VectorInfo, Vector2>();
     public ActionScript Action;
-    public ThingSeed Seed;
+    // public ThingSeed Seed;
     public Dictionary<HitboxInfo, HitboxController> Hitboxes = new Dictionary<HitboxInfo, HitboxController>();
     public GameCollision Collision;
 
@@ -47,7 +47,7 @@ public class EventInfo
         foreach(VectorInfo n in i.Vectors.Keys) Vectors.Add(n,i.Vectors[n]);
         foreach(HitboxInfo n in i.Hitboxes.Keys) Hitboxes.Add(n,i.Hitboxes[n]);
         Action = i.Action;
-        Seed = i.Seed;
+        // Seed = i.Seed;
         Collision = i.Collision;
     }
     
@@ -261,11 +261,11 @@ public class EventInfo
         Action = a;
         return this;
     }
-    public EventInfo Set(ThingSeed a)
-    {
-        Seed = a;
-        return this;
-    }
+    // public EventInfo Set(ThingSeed a)
+    // {
+    //     Seed = a;
+    //     return this;
+    // }
     public EventInfo Set(HitboxController a)
     {
         SetHitbox(HitboxInfo.Theirs, a);

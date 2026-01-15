@@ -24,9 +24,12 @@ MonoBehaviour:
     - Type: 1
       Value: 1
     Prefabs: []
+    Enums: []
   - Trait: 3
     Numbers: []
-    Prefabs:
+    Prefabs: []
+    Enums:
     - Type: 1
-      Value: {fileID: 11400000, guid: 6ea52f9f0d1d35e48b91b53e436681ad, type: 2}
+      Act: 0
+      Tag: 200
   Size: 1

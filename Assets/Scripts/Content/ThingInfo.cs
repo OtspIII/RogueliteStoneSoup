@@ -116,7 +116,7 @@ public class ThingInfo
         Dictionary<Traits, float> prio = new Dictionary<Traits, float>();
         foreach (Traits t in l)
         {
-            Trait tr = TraitManager.Get(t);
+            Trait tr = Parser.Get(t);
             float pr = pre ? tr.PreListen[e] : tr.TakeListen[e];
             prio.Add(t,pr);
         }

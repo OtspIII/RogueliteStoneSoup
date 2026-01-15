@@ -14,10 +14,10 @@ public class TraitInfo : EventInfo
         Set(ActorInfo.Source, who);
     }
 
-    public void Init() { TraitManager.Get(Trait).Init(this); }
-    public void ReUp(EventInfo i) { TraitManager.Get(Trait).ReUp(this,i); }
-    public void PreEvent(EventInfo e) { TraitManager.Get(Trait).PreEvent(this,e); }
-    public void TakeEvent(EventInfo e) { TraitManager.Get(Trait).TakeEvent(this,e); }
+    public void Init() { Parser.Get(Trait).Init(this); }
+    public void ReUp(EventInfo i) { Parser.Get(Trait).ReUp(this,i); }
+    public void PreEvent(EventInfo e) { Parser.Get(Trait).PreEvent(this,e); }
+    public void TakeEvent(EventInfo e) { Parser.Get(Trait).TakeEvent(this,e); }
 
     public override string ToString()
     {
@@ -25,38 +25,38 @@ public class TraitInfo : EventInfo
     }
 }
 
-public static class TraitManager
-{
-    public static bool Setup = false;
-    public static Dictionary<Traits, Trait> TraitDict = new Dictionary<Traits, Trait>();
-
-    public static void Init()
-    {
-        if (Setup) return;
-        Setup = true;
-        TraitDict.Add(Traits.Health,new HealthTrait());
-        TraitDict.Add(Traits.Actor,new ActorTrait());
-        TraitDict.Add(Traits.Player,new PlayerTrait());
-        TraitDict.Add(Traits.Tool,new ToolTrait());
-        TraitDict.Add(Traits.Pickupable,new PickupableTrait());
-        TraitDict.Add(Traits.HealPack,new HealPackTrait());
-        TraitDict.Add(Traits.GoldCoins,new GoldCoinsTrait());
-        TraitDict.Add(Traits.Projectile,new ProjectileTrait());
-        TraitDict.Add(Traits.Exit,new ExitTrait());
-        TraitDict.Add(Traits.DamageZone,new DamageZoneTrait());
-        TraitDict.Add(Traits.Drop,new DropTrait());
-        TraitDict.Add(Traits.Despawn,new DespawnTrait());
-        TraitDict.Add(Traits.LimitedUse,new LimitedUseTrait());
-        TraitDict.Add(Traits.Stackable,new StackableTrait());
-    }
-    
-    public static Trait Get(Traits t)
-    {
-        if (TraitDict.TryGetValue(t, out Trait r)) return r;
-        Debug.Log("ERROR MISSING TRAIT: " + t+"\nMust add to TraitManager");
-        return null;
-    }
-}
+// public static class TraitManager
+// {
+//     public static bool Setup = false;
+//     public static Dictionary<Traits, Trait> TraitDict = new Dictionary<Traits, Trait>();
+//
+//     public static void Init()
+//     {
+//         if (Setup) return;
+//         Setup = true;
+//         TraitDict.Add(Traits.Health,new HealthTrait());
+//         TraitDict.Add(Traits.Actor,new ActorTrait());
+//         TraitDict.Add(Traits.Player,new PlayerTrait());
+//         TraitDict.Add(Traits.Tool,new ToolTrait());
+//         TraitDict.Add(Traits.Pickupable,new PickupableTrait());
+//         TraitDict.Add(Traits.HealPack,new HealPackTrait());
+//         TraitDict.Add(Traits.GoldCoins,new GoldCoinsTrait());
+//         TraitDict.Add(Traits.Projectile,new ProjectileTrait());
+//         TraitDict.Add(Traits.Exit,new ExitTrait());
+//         TraitDict.Add(Traits.DamageZone,new DamageZoneTrait());
+//         TraitDict.Add(Traits.Drop,new DropTrait());
+//         TraitDict.Add(Traits.Despawn,new DespawnTrait());
+//         TraitDict.Add(Traits.LimitedUse,new LimitedUseTrait());
+//         TraitDict.Add(Traits.Stackable,new StackableTrait());
+//     }
+//     
+//     public static Trait Get(Traits t)
+//     {
+//         if (TraitDict.TryGetValue(t, out Trait r)) return r;
+//         Debug.Log("ERROR MISSING TRAIT: " + t+"\nMust add to TraitManager");
+//         return null;
+//     }
+// }
 
 public class Trait
 {

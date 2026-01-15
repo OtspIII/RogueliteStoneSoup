@@ -10,8 +10,43 @@ public class LevelBuilder
     public float LinkOdds = 0.1f;
     public GeoTile PlayerSpawn;
     public GeoTile Exit;
+    public List<SpawnPointController> SpawnPoints = new List<SpawnPointController>();
 
-    public LevelBuilder()
+    public LevelBuilder() { }
+
+    public virtual void Build()
+    {
+        if(God.Session == null) God.Session = new GameSession();
+        //Build out a zoomed-out map of the level, without specific rooms
+        BuildGeoMap();
+        //Connect geomorphs to each other to make sure there's a path from player spawn to exit
+        BuildMainPath();
+        //Open more connections between geomorphs to make sure all are accessable
+        ConnectAllGeos();
+        //Pick a room from the list of options for each geomorph
+        PickRooms();
+        //Actually spawn the rooms
+        BuildRooms();
+        //Decide how much stuff to spawn per level
+        FindQuotas();
+        //Actually spawn all the objects into the levels
+        SpawnThings();
+    }
+
+    public virtual void FindQuotas()
+    {
+        
+    }
+    
+    public virtual void SpawnThings()
+    {
+        foreach (GeoTile g in AllGeo)
+        {
+            g.Room.Spawn();
+        }
+    }
+
+    public virtual void BuildGeoMap()
     {
         for (int x = 0; x < Size.x; x++)for (int y = 0; y < Size.y; y++)
         {
@@ -20,7 +55,10 @@ public class LevelBuilder
             GeoMap[x].Add(y,g);
             AllGeo.Add(g);
         }
+    }
 
+    public virtual void BuildMainPath()
+    {
         //Make a safe path leading to the exit
         int start = Random.Range(0, Size.x);
         //For each row. . .
@@ -67,10 +105,14 @@ public class LevelBuilder
             }
             else
             {
-                GetGeo(start, y).SetPath(GeoTile.GeoTileTypes.Exit);
+                Exit = GetGeo(start, y); 
+                Exit.SetPath(GeoTile.GeoTileTypes.Exit);
             }
         }
+    }
 
+    public virtual void ConnectAllGeos()
+    {
         //Open up a bunch of random links between rooms
         foreach (GeoTile g in AllGeo)
         {
@@ -119,8 +161,29 @@ public class LevelBuilder
             }
             uncon = UnconnectedTest();
         }
-        
+    }
+    
+    public virtual void PickRooms()
+    {
+        foreach (GeoTile g in AllGeo)
+        {
+            g.RoomType = God.Library.GetRoom(g, this);
+        }
+    }
 
+    public virtual void BuildRooms()
+    {
+        foreach (GeoTile g in AllGeo)
+        {
+            if (g.RoomType == null) continue;
+            g.Room = g.RoomType.Build(g, this);
+            if (g.Room == null) continue;
+            God.GM.Rooms.Add(g.Room);
+            foreach (SpawnPointController spc in g.Room.Spawners)
+            {
+                SpawnPoints.Add(spc);
+            }
+        }
     }
 
     public List<GeoTile> UnconnectedTest()
@@ -168,6 +231,8 @@ public class GeoTile
     // public bool MainPath;
     // public int Depth = 999;
     public LevelBuilder Builder;
+    public RoomOption RoomType;
+    public RoomScript Room;
     
     public GeoTile(int x, int y, LevelBuilder b)
     {

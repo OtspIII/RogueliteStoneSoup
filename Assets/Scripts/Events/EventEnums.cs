@@ -66,6 +66,7 @@ public enum NumInfo
     Speed=4,
     Distance=5,
     Size=6,
+    Priority=7,
 }
 
 public enum StrInfo

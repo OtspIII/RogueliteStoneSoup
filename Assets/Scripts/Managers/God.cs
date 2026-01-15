@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 public static class God
 {
@@ -9,6 +10,7 @@ public static class God
     
     public static GameManager GM;
     public static GameLibrary Library;
+    public static GameSession Session;
     public static ThingInfo Player;
     public static CameraController Cam;
     // public static LevelJSON JSON;
@@ -127,6 +129,24 @@ public static class God
         return r;
     }
 
+    public static IEnumerator Fade(Image sr, bool fadeOut = true, float time = 0.5f, bool turnOff = true)
+    {
+        sr.gameObject.SetActive(true);
+        float start = fadeOut ? 0 : 1;
+        float end = fadeOut ? 1 : 0;
+        float t = 0;
+        while (t < 1)
+        {
+            float tt = God.Ease (t, Eases.Out);
+            sr.color = new Color(0,0,0,Mathf.Lerp(start,end,tt));
+            yield return null;
+            t += Time.deltaTime / time;
+        }
+        sr.color = new Color(0,0,0,end);
+        if(!fadeOut && turnOff)
+            sr.gameObject.SetActive(false);
+    }
+    
     public static IEnumerator Fade(SpriteRenderer sr, bool fadeOut = true, float time = 0.5f, bool turnOff = true)
     {
         sr.gameObject.SetActive(true);

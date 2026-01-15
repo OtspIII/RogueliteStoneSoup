@@ -123,6 +123,7 @@ public class PlayerTrait : Trait
             case EventTypes.Death:
             {
                 God.GM.SetUI("Health","GAME OVER",1);
+                God.Session.PlayerDeath(e);
                 break;
             }
             case EventTypes.AddScore:
