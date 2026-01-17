@@ -750,6 +750,8 @@ MonoBehaviour:
     Y: 0
     Path: 0
     Links: 
+    RoomType: {fileID: 0}
+    Room: {fileID: 0}
   SpawnerHolder: {fileID: 2353098262368716552}
   DoorHolder: {fileID: 3899709892671216710}
   Spawners: []
@@ -1980,6 +1982,14 @@ PrefabInstance:
       propertyPath: 'ToSpawn.Mandatory.Array.data[0]'
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 8540057791775574626, guid: 7296cde674c3b344490b87f150ec75ca, type: 3}
+      propertyPath: ToSpawn.Mandatory.Array.data[0].W
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8540057791775574626, guid: 7296cde674c3b344490b87f150ec75ca, type: 3}
+      propertyPath: ToSpawn.Mandatory.Array.data[0].Common
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2052,6 +2062,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8540057791775574626, guid: 7296cde674c3b344490b87f150ec75ca, type: 3}
       propertyPath: 'ToSpawn.Mandatory.Array.data[0]'
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8540057791775574626, guid: 7296cde674c3b344490b87f150ec75ca, type: 3}
+      propertyPath: ToSpawn.Mandatory.Array.data[0].W
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8540057791775574626, guid: 7296cde674c3b344490b87f150ec75ca, type: 3}
+      propertyPath: ToSpawn.Mandatory.Array.data[1].W
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8540057791775574626, guid: 7296cde674c3b344490b87f150ec75ca, type: 3}
+      propertyPath: ToSpawn.Mandatory.Array.data[0].Common
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8540057791775574626, guid: 7296cde674c3b344490b87f150ec75ca, type: 3}
+      propertyPath: ToSpawn.Mandatory.Array.data[1].Common
       value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -2128,6 +2154,14 @@ PrefabInstance:
       propertyPath: 'ToSpawn.Mandatory.Array.data[0]'
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 8540057791775574626, guid: 7296cde674c3b344490b87f150ec75ca, type: 3}
+      propertyPath: ToSpawn.Mandatory.Array.data[0].W
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8540057791775574626, guid: 7296cde674c3b344490b87f150ec75ca, type: 3}
+      propertyPath: ToSpawn.Mandatory.Array.data[0].Common
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2200,6 +2234,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8540057791775574626, guid: 7296cde674c3b344490b87f150ec75ca, type: 3}
       propertyPath: 'ToSpawn.Mandatory.Array.data[0]'
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8540057791775574626, guid: 7296cde674c3b344490b87f150ec75ca, type: 3}
+      propertyPath: ToSpawn.Mandatory.Array.data[0].W
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8540057791775574626, guid: 7296cde674c3b344490b87f150ec75ca, type: 3}
+      propertyPath: ToSpawn.Mandatory.Array.data[0].Common
       value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []

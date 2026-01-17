@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,12 +10,12 @@ public class ThingOption : ScriptableObject
     public BodyController Body;
     public Sprite Art;
     public Color Color = Color.white;
-    public List<GameTags> Tags;
+    // public List<GameTags> Tags;
+    public List<Tag> Tags;
     public List<TraitBuilder> Trait;
     public float Size = 1;
-    
-    
-    public virtual ThingInfo Create()
+
+   public virtual ThingInfo Create()
     {
         ThingInfo r = new ThingInfo(this);
         r.Name = Name;
@@ -44,7 +45,23 @@ public class ThingOption : ScriptableObject
     {
         return Art;
     }
-   
+
+    public virtual bool HasTag(string tag, out float w)
+    {
+        // Debug.Log("HAS TAG: " + tag);
+        bool something = tag ==  GameTags.Something.ToString();
+        foreach (Tag t in Tags)
+        {
+            // Debug.Log("COMP TAG: " + t.Value + " / " + tag + " / " + (t.Value == tag) + " / " + something + " / " + God.LB.Somethings.Contains(t.Value));
+            if (t.Value == tag || (something && God.LB.Somethings.Contains(t.Value)))
+            {
+                w = t.W != 0 ? t.W : 1;
+                return true;
+            }
+        }
+        w = 0;
+        return false;
+    }
 }
 
 [System.Serializable]

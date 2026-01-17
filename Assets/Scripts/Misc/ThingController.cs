@@ -153,11 +153,11 @@ public class ThingController : MonoBehaviour
         DesiredMove = targ - transform.position;
     }
 
-    public ThingController Shoot(GameTags t =GameTags.Projectile)
-    {
-        ThingOption stat = God.Library.GetThing(t);
-        return Shoot(stat);
-    }
+    // public ThingController Shoot(GameTags t =GameTags.Projectile)
+    // {
+    //     ThingOption stat = God.Library.GetThing(t);
+    //     return Shoot(stat);
+    // }
 
     public ThingController Shoot(ThingOption o)
     {

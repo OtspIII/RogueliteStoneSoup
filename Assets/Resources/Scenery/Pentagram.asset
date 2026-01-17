@@ -17,5 +17,8 @@ MonoBehaviour:
   Body: {fileID: 629948465317790645, guid: 7bfc7e89c5111624a9658fd0a5a7c71e, type: 3}
   Art: {fileID: 0}
   Color: {r: 1, g: 1, b: 1, a: 1}
-  Tags: 90010000
+  Tags:
+  - Common: 400
+    Custom: 
   Trait: []
+  Size: 1

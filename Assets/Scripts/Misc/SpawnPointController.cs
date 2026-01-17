@@ -7,10 +7,10 @@ public class SpawnPointController : MonoBehaviour
     public SpawnRequest ToSpawn;
     public bool AlwaysSpawn; //If this is true, it always spawns its thing and doesn't count for level totals
 
-    public void Spawn(LevelBuilder b)
+    public void Spawn()
     {
-        ToSpawn.Refine();
-        ThingOption chosen = ToSpawn.FindThing(b);
+        // ToSpawn.Refine();
+        ThingOption chosen = ToSpawn.FindThing();
         if (chosen == null)
         {
             Debug.Log(ToSpawn);
@@ -22,8 +22,8 @@ public class SpawnPointController : MonoBehaviour
         Destroy(gameObject);
     }
 
-    public bool CanSpawn(ThingOption o,LevelBuilder b=null)
+    public bool CanSpawn(ThingOption o)
     {
-        return ToSpawn.Judge(o,b) > 0;
+        return ToSpawn.Judge(o) > 0;
     }
 }

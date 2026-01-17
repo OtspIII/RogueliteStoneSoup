@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "HoldableOption", menuName = "Scriptable Objects/ItemOption")]
@@ -18,6 +19,8 @@ public class ItemOption : ThingOption
     //     if(!Tags.Contains(GameTags.Weapon))
     //         Tags.Add(GameTags.Weapon);
     // }
+
+    
 
     public override ThingInfo Create()
     {
@@ -47,4 +50,4 @@ public class ItemOption : ThingOption
         if (held) return Art;
         return FloorArt != null ? FloorArt : Art;
     }
-}
+    }

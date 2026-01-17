@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
+using Random = UnityEngine.Random;
 
 public class GameLibrary : MonoBehaviour
 {
@@ -44,29 +45,46 @@ public class GameLibrary : MonoBehaviour
         return opts.Random();
     }
 
-    public ThingOption GetThing(params GameTags[] tags)
-    {
-        return GetThing(new SpawnRequest(tags));
-    }
+    // public ThingOption GetThing(LevelBuilder b,params GameTags[] tags)
+    // {
+    //     // Debug.Log("GT1: " + tags);
+    //     return GetThing(new SpawnRequest(tags));
+    // }
     
-    public ThingOption GetThing(SpawnRequest sr,LevelBuilder b=null)
+    public ThingOption GetThing(SpawnRequest sr)
     {
-        if (sr.Mandatory.Contains(GameTags.Something) && God.GM.DebugSpawn != null)
+        if (sr.HasTag(GameTags.Something) && God.GM.DebugSpawn != null)
         {
             return God.GM.DebugSpawn;
         }
-        List<ThingOption> opts = new List<ThingOption>();
+        // Debug.Log("GT2: " + sr);
+        Dictionary<ThingOption, float> opts = new Dictionary<ThingOption, float>();
         foreach (ThingOption o in ThingOptions)
         {
-            if(sr.Judge(o) > 0) opts.Add(o);
+            float w = sr.Judge(o);
+            if(w > 0) opts.Add(o,w);
             // Debug.Log("THING: " + sr.Judge(o) + " / " + o.Name);
         }
 
-        if (opts.Count == 0)
+        if (opts.Keys.Count == 0)
         {
-            Debug.Log("NO VALID ROOMS: " + sr + " / " + b + " / " + ThingOptions.Count);
+            Debug.Log("NO VALID THINGS: " + sr + " / " + God.LB + " / " + ThingOptions.Count);
             return null;
         }
-        return opts.Random();
+        return WRandom(opts);
+    }
+    
+    public ThingOption WRandom(Dictionary<ThingOption, float> opts)
+    {
+        float total = 0;
+        foreach (float v in opts.Values) total += v;
+        float roll = Random.Range(0, total);
+        foreach (ThingOption k in opts.Keys)
+        {
+            roll -= opts[k];
+            if (roll <= 0) return k;
+        }
+        Debug.Log("Weighted Random With No Result Somehow: " + opts.Keys.Count);
+        return null;
     }
 }

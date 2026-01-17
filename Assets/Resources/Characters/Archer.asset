@@ -17,9 +17,13 @@ MonoBehaviour:
   Body: {fileID: 629948465317790645, guid: acf0e760b28c7b046ad7d511fb87a1d3, type: 3}
   Art: {fileID: -7132172409892320828, guid: 507719f271182eb4baded25bf73a29da, type: 3}
   Color: {r: 1, g: 1, b: 1, a: 1}
-  Tags: 66000000
+  Tags:
+  - Common: 102
+    Custom: 
   Trait: []
+  Size: 1
   HP: 1
   Speed: 2
   Weapon: {fileID: 11400000, guid: ad13ac6261f013b45ab35c13a6699b50, type: 2}
   DefaultAction: 201
+  DefaultChaseAction: 202

@@ -17,18 +17,28 @@ MonoBehaviour:
   Body: {fileID: 629948465317790645, guid: b4fa405680f33044abe2c4567ecf147f, type: 3}
   Art: {fileID: 21300000, guid: cb8312002cf474c4688fa76c7caea0a3, type: 3}
   Color: {r: 1, g: 1, b: 1, a: 1}
-  Tags: ca000000c8000000
+  Tags:
+  - Common: 202
+    Custom: 
   Trait:
   - Trait: 312
     Numbers:
     - Type: 1
       Value: 10
     Prefabs: []
-    Enums: []
+    Acts: []
+    SpawnReq:
+      Fixed: {fileID: 0}
+      Mandatory: 
+      Any: 
   - Trait: 313
     Numbers: []
     Prefabs: []
-    Enums: []
+    Acts: []
+    SpawnReq:
+      Fixed: {fileID: 0}
+      Mandatory: 
+      Any: 
   Size: 1
   Damage: 1
   IdealRange: 5

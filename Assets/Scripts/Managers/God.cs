@@ -11,6 +11,7 @@ public static class God
     public static GameManager GM;
     public static GameLibrary Library;
     public static GameSession Session;
+    public static LevelBuilder LB;
     public static ThingInfo Player;
     public static CameraController Cam;
     // public static LevelJSON JSON;
@@ -216,6 +217,14 @@ public static class God
     {
         return b.Contains(a);
     }
+
+    //We might want a fancier way of doing this eventually, so I'm making it a standalone function
+    public static float MergeWeight(float w, float n)
+    {
+        return w * n;
+    } 
+    
+    
 }
 
 //For use with GameMaster.Ease()

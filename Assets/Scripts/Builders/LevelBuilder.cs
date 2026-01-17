@@ -14,10 +14,12 @@ public class LevelBuilder
     public List<SpawnPointController> SpawnPointsFixed = new List<SpawnPointController>();
     public List<GameTags> ToSpawnTags = new List<GameTags>();
     public List<ThingOption> ToSpawn = new List<ThingOption>();
+    public List<string> Somethings = new List<string>(){"NPC","Weapon","Consumable","ScoreThing"};
 
     public virtual void Build()
     {
         if(God.Session == null) God.Session = new GameSession();
+        God.LB = this;
         //Does the specific level we're on change any basic info (Size/LinkOdds/etc)? Do that here
         Customize();
         //Build out a zoomed-out map of the level, without specific rooms
@@ -52,7 +54,7 @@ public class LevelBuilder
         //Then we take those tags and use them to decide on a list of actual things to spawn
         foreach (GameTags tag in ToSpawnTags)
         {
-            ThingOption o = God.Library.GetThing(tag);
+            ThingOption o = God.Library.GetThing(new SpawnRequest(tag));
             ToSpawn.Add(o);
         }
         
@@ -63,8 +65,9 @@ public class LevelBuilder
         SpawnPointController playerStart = null;
         foreach (SpawnPointController s in PlayerSpawn.Room.Spawners)
         {
-            if (s.ToSpawn.Mandatory.Contains(GameTags.Player) || s.ToSpawn.Any.Contains(GameTags.Player))
+            if (s.ToSpawn.HasTag(GameTags.Player))
             {
+                // Debug.Log("PLAYER SPAWN FOUND");
                 playerStart = s;
                 SpawnPoints.Remove(s);
                 SpawnPointsFixed.Remove(s);
@@ -78,12 +81,13 @@ public class LevelBuilder
             Debug.Log("ERROR: Player Spawn Room has no spawners for a player: " + PlayerSpawn.Room);
             God.Session.Player.Spawn(PlayerSpawn.Room.transform.position);
         }
-        
+        int totalToSpawn = ToSpawn.Count;
+        int totalSpawns = SpawnPoints.Count;
         while(ToSpawn.Count > 0)
         {
             if (SpawnPoints.Count == 0)
             {
-                Debug.Log("Ran out of spawn points!");
+                Debug.Log("Ran out of spawn points ("+totalSpawns+")! " + ToSpawn.Count+"/"+totalToSpawn + " items left to spawn.");
                 break;
             }
             ThingOption o = ToSpawn.Random();
@@ -95,7 +99,7 @@ public class LevelBuilder
             {
                 SpawnPointController chosen = s.Random();
                 s.Remove(chosen);
-                if (chosen.CanSpawn(o, this))
+                if (chosen.CanSpawn(o))
                 {
                     i = o.Create();
                     i.Spawn(chosen);
@@ -108,7 +112,7 @@ public class LevelBuilder
 
         foreach (SpawnPointController s in SpawnPointsFixed)
         {
-            s.Spawn(this);
+            s.Spawn();
         }
         // foreach (GeoTile g in AllGeo)
         // {
@@ -124,7 +128,7 @@ public class LevelBuilder
         int h = 2 + Mathf.FloorToInt(l/2);
         Size = new Vector2Int(w, h);
         if (God.Session.Player == null)
-            God.Session.Player = God.Library.GetThing(GameTags.Player).Create();
+            God.Session.Player = God.Library.GetThing(new SpawnRequest(GameTags.Player)).Create();
     }
 
     public virtual void BuildGeoMap()
@@ -262,7 +266,7 @@ public class LevelBuilder
             God.GM.Rooms.Add(g.Room);
             foreach (SpawnPointController spc in g.Room.Spawners)
             {
-                spc.ToSpawn.Refine();
+                // spc.ToSpawn.Refine();
                 if(spc.AlwaysSpawn) SpawnPointsFixed.Add(spc);
                 else SpawnPoints.Add(spc);
             }

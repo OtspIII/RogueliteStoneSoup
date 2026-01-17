@@ -17,7 +17,16 @@ MonoBehaviour:
   Body: {fileID: 629948465317790645, guid: 073ebe890d72bac48bacd0748bd84afc, type: 3}
   Art: {fileID: 0}
   Color: {r: 1, g: 0, b: 0, a: 1}
-  Tags: 90010000
+  Tags:
+  - Common: 400
+    Custom: 
   Trait:
   - Trait: 201
     Numbers: []
+    Prefabs: []
+    Acts: []
+    SpawnReq:
+      Fixed: {fileID: 0}
+      Mandatory: 
+      Any: 
+  Size: 1

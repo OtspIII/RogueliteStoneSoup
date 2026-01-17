@@ -17,9 +17,15 @@ MonoBehaviour:
   Body: {fileID: 629948465317790645, guid: b4fa405680f33044abe2c4567ecf147f, type: 3}
   Art: {fileID: 21300000, guid: 6c7f9cbfcc8f8d145913c8ae22c5bd51, type: 3}
   Color: {r: 1, g: 1, b: 1, a: 1}
-  Tags: c8000000c9000000
+  Tags:
+  - Common: 201
+    Custom: 
   Trait: []
+  Size: 1
   Damage: 1
+  IdealRange: 1.5
+  SpeedMult: 1
+  ActDuration: 0
   DefaultAttack: 101
   Projectile: {fileID: 0}
   FloorBody: {fileID: 0}

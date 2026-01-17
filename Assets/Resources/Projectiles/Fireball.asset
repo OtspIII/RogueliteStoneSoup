@@ -17,7 +17,7 @@ MonoBehaviour:
   Body: {fileID: 629948465317790645, guid: 9edb53243ae32704ead177294fe49d22, type: 3}
   Art: {fileID: 21300000, guid: 3e9a18ec3cf9bf247a86f7408211fd5a, type: 3}
   Color: {r: 1, g: 1, b: 1, a: 1}
-  Tags: 2c010000
+  Tags: []
   Trait:
   - Trait: 3
     Numbers:
@@ -26,5 +26,11 @@ MonoBehaviour:
     Prefabs:
     - Type: 1
       Value: {fileID: 11400000, guid: fa9fd6eea68462e47818ec67068d8b08, type: 2}
+    Acts: []
+    SpawnReq:
+      Fixed: {fileID: 11400000, guid: fa9fd6eea68462e47818ec67068d8b08, type: 2}
+      Mandatory: 
+      Any: 
+  Size: 1
   Damage: 0
   Speed: 10
