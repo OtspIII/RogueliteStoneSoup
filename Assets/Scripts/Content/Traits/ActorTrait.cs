@@ -29,8 +29,8 @@ public class ActorTrait : Trait
             case EventTypes.Setup:
             {
                 i.Who.ActorTrait = i;
-                if(i.Get<Actions>(EnumInfo.DefaultAction) == Actions.None)
-                    i.Set(EnumInfo.DefaultAction,(int)Actions.Idle);
+                if(i.Get(ActionInfo.DefaultAction) == Actions.None)
+                    i.Set(ActionInfo.DefaultAction,Actions.Idle);
                 break;
             }
             case EventTypes.OnSpawn:
@@ -49,44 +49,44 @@ public class ActorTrait : Trait
             }
             case EventTypes.Update:
             {
-                if(i.Action != null)
-                    i.Action.Run();
+                if(i.ActScript != null)
+                    i.ActScript.Run();
                 break;
             }
             case EventTypes.StartAction:
             {
-                if(e.Action != null)
-                    DoAction(i,e.Action,e);
+                if(e.ActScript != null)
+                    DoAction(i,e.ActScript,e);
                 else
                 {
-                    Actions a = e.Get<Actions>(EnumInfo.Action);
+                    Actions a = e.Get(ActionInfo.Action);
                     DoAction(i,a,e);
                 }
                 break;
             }
             case EventTypes.SetPhase:
             {
-                if(i.Action != null)
-                    i.Action.ChangePhase(e.GetInt());
+                if(i.ActScript != null)
+                    i.ActScript.ChangePhase(e.GetInt());
                 break;
             }
             case EventTypes.GetCurrentAction:
             {
-                if (i.Action != null)
-                    e.Action = i.Action;
+                if (i.ActScript != null)
+                    e.ActScript = i.ActScript;
                 break;
             }
             case EventTypes.GetDefaultAction:
             {
-                Actions r = i.Get<Actions>(EnumInfo.DefaultAction);
+                Actions r = i.Get(ActionInfo.DefaultAction);
                 if (e.GetActor() != null)
                 {
-                    Actions ch = i.Get<Actions>(EnumInfo.DefaultChaseAction);
+                    Actions ch = i.Get(ActionInfo.DefaultChaseAction);
                     if (ch != Actions.None) r = ch;
                 }
                 
                 if (r != Actions.None)
-                    e.Set(EnumInfo.DefaultAction,(int)r);
+                    e.Set(ActionInfo.DefaultAction,r);
                 break;
             }
             case EventTypes.Knockback:
@@ -96,12 +96,12 @@ public class ActorTrait : Trait
             }
             case EventTypes.OnTouch:
             {
-                if (i.Action != null) i.Action.HitBegin(e.Collision);
+                if (i.ActScript != null) i.ActScript.HitBegin(e.Collision);
                 break;
             }
             case EventTypes.OnTouchEnd:
             {
-                if (i.Action != null) i.Action.HitEnd(e.Collision);
+                if (i.ActScript != null) i.ActScript.HitEnd(e.Collision);
                 break;
             }
             case EventTypes.UseHeld:
@@ -126,33 +126,33 @@ public class ActorTrait : Trait
     {
         if (t.Who.Thing == null) return;//Maybe you died so you can't do the action
         float prio = e != null ? e.Get(NumInfo.Priority, 1) : 1;
-        if (t.Action != null)
+        if (t.ActScript != null)
         {
-            if(!t.Action.TryInterrupt(a,prio)) return;
+            if(!t.ActScript.TryInterrupt(a,prio)) return;
             else
             {
-                t.Action.Abort(a);
+                t.ActScript.Abort(a);
             }
         }
         if (a == null) Debug.Log("ERROR: NULL ACTION / " + this);
-        t.Action = a;
-        if (t.Action != null)
+        t.ActScript = a;
+        if (t.ActScript != null)
         {
-            t.Action.Begin();
-            t.Who.Thing.DebugTxt = ""+t.Action;
+            t.ActScript.Begin();
+            t.Who.Thing.DebugTxt = ""+t.ActScript;
         }
     }
 
     public virtual void DoAction(TraitInfo t, Actions a=Actions.None, EventInfo e=null)
     {
         if (t.Who.Thing == null) return;//Maybe you died so you can't do the action
-        Actions defaultAct = t.Get<Actions>(EnumInfo.DefaultAction);
+        Actions defaultAct = t.Get(ActionInfo.DefaultAction);
         if (a == Actions.DefaultAttack)
         {
             // Debug.Log(t.Who.Name + ": " + t.Who.CurrentWeapon);
             // Debug.Log(t.Who.CurrentWeapon.Trait);
             EventInfo atk = t.Who.CurrentWeapon.Ask(EventTypes.GetDefaultAttack);
-            a = atk.Get<Actions>(EnumInfo.DefaultAction);
+            a = atk.Get(ActionInfo.DefaultAction);
         }
         ActionScript act = Parser.Get(a == Actions.None ? defaultAct : a,t.Who.Thing);
         DoAction(t,act,e);

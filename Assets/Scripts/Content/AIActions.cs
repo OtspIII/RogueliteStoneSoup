@@ -17,7 +17,7 @@ public class ChaseAction : ActionScript
         Who.LookAt(Who.Target,0.5f);
         
         if((Who.AttackRange <= 0.5f || Who.Distance(Who.Target) <= Who.AttackRange) && Who.IsFacing(Who.Target,5))
-            Who.TakeEvent(God.E(EventTypes.StartAction).SetEnum(EnumInfo.Action,(int)Actions.DefaultAttack));
+            Who.TakeEvent(God.E(EventTypes.StartAction).Set(ActionInfo.Action,Actions.DefaultAttack));
             // Who.DoAction(Who.DefaultAttackAction());
     }
 }

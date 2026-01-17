@@ -122,7 +122,7 @@ public class DropTrait : Trait
                 ThingOption o = i.GetOption();
                 if (o == null)
                 {
-                    GameTags t = i.Get<GameTags>();
+                    SpawnRequest t = i.SpawnReq;
                     o = God.Library.GetThing(t);
                 }
                 ThingInfo exp = o.Create();

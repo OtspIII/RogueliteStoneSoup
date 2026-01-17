@@ -56,7 +56,7 @@ public class PlayerTrait : Trait
                 if (Input.GetKey(KeyCode.W)) vel.y = 1;
                 if (Input.GetKey(KeyCode.S)) vel.y = -1;
                 i.Who.DesiredMove = vel;
-                if (i.Who.ActorTrait.Action.Priority <= 0)
+                if (i.Who.ActorTrait.ActScript.Priority <= 0)
                 {
                     if (Input.GetKeyDown(KeyCode.Mouse0))i.Who.TakeEvent(God.E(EventTypes.UseHeldStart));
                     if (Input.GetKey(KeyCode.Mouse0))i.Who.TakeEvent(God.E(EventTypes.UseHeld));
@@ -89,7 +89,7 @@ public class PlayerTrait : Trait
 
                 }
                 
-                if(i.Who.ActorTrait.Action.CanRotate) i.Who.Thing.LookAt(God.Cam.Cam.ScreenToWorldPoint(Input.mousePosition),0.1f);
+                if(i.Who.ActorTrait.ActScript.CanRotate) i.Who.Thing.LookAt(God.Cam.Cam.ScreenToWorldPoint(Input.mousePosition),0.1f);
                 break;
             }
             case EventTypes.IsPlayer:

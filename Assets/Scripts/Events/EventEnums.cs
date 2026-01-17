@@ -77,14 +77,13 @@ public enum StrInfo
     Debug=2,
 }
 
-public enum EnumInfo
+public enum ActionInfo
 {
     None=0,
     Default=1,
     Action=1001,
     DefaultAction=1002,
     DefaultChaseAction=1003,
-    DamageType=2001,
 }
 
 public enum BoolInfo
@@ -126,7 +125,7 @@ public enum HitboxInfo
 
 public enum GameTags
 {
-    None            =0000,
+    Custom          =0000,
     Player          =0001,
     Something       =0002,
     NPC             =0102,

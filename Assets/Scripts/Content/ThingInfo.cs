@@ -246,7 +246,7 @@ public class ThingInfo
             if (tr != "") tr += ",";
             tr += t.ToString();
         }
-        return Name + "("+ActorTrait?.Action?.ToString()+"/"+CurrentWeapon?.Name+"/"+tr+")";
+        return Name + "("+ActorTrait?.ActScript?.ToString()+"/"+CurrentWeapon?.Name+"/"+tr+")";
     }
 
     public void DropHeld(bool destroy=false)

@@ -10,15 +10,17 @@ public class EventInfo
     public bool Abort { get { return GetBool(BoolInfo.Abort); } set { SetBool(BoolInfo.Abort, value);} }
     public Dictionary<NumInfo, float> Numbers = new Dictionary<NumInfo, float>();
     public Dictionary<StrInfo, string> Texts = new Dictionary<StrInfo, string>();
-    public Dictionary<EnumInfo, int> Enums = new Dictionary<EnumInfo, int>();
+    public Dictionary<ActionInfo, Actions> Acts = new Dictionary<ActionInfo, Actions>();
+    // public Dictionary<EnumInfo, int> Enums = new Dictionary<EnumInfo, int>();
     public List<BoolInfo> Bools = new List<BoolInfo>();
     public Dictionary<ActorInfo, ThingInfo> Actors = new Dictionary<ActorInfo, ThingInfo>();
     public Dictionary<OptionInfo, ThingOption> Options = new Dictionary<OptionInfo, ThingOption>();
     public Dictionary<VectorInfo, Vector2> Vectors = new Dictionary<VectorInfo, Vector2>();
-    public ActionScript Action;
+    public ActionScript ActScript;
     // public ThingSeed Seed;
     public Dictionary<HitboxInfo, HitboxController> Hitboxes = new Dictionary<HitboxInfo, HitboxController>();
     public GameCollision Collision;
+    public SpawnRequest SpawnReq;
 
     public EventInfo(){ }
     
@@ -40,15 +42,16 @@ public class EventInfo
         Type = i.Type;
         foreach(NumInfo n in i.Numbers.Keys) Numbers.Add(n,i.Numbers[n]);
         foreach(StrInfo n in i.Texts.Keys) Texts.Add(n,i.Texts[n]);
-        foreach(EnumInfo n in i.Enums.Keys) Enums.Add(n,i.Enums[n]);
+        foreach(ActionInfo n in i.Acts.Keys) Acts.Add(n,i.Acts[n]);
         foreach(BoolInfo n in i.Bools) Bools.Add(n);
         foreach(ActorInfo n in i.Actors.Keys) Actors.Add(n,i.Actors[n]);
         foreach(OptionInfo n in i.Options.Keys) Options.Add(n,i.Options[n]);
         foreach(VectorInfo n in i.Vectors.Keys) Vectors.Add(n,i.Vectors[n]);
         foreach(HitboxInfo n in i.Hitboxes.Keys) Hitboxes.Add(n,i.Hitboxes[n]);
-        Action = i.Action;
+        ActScript = i.ActScript;
         // Seed = i.Seed;
         Collision = i.Collision;
+        SpawnReq = i.SpawnReq;
     }
     
     //Numbers
@@ -124,33 +127,30 @@ public class EventInfo
         return "";
     }
     
-    //Enums
-    public EventInfo Set(EnumInfo i, int v)
+    //Actions
+    public EventInfo Set(ActionInfo i, Actions v)
     {
-        return SetEnum(i, v);
+        return SetAction(i, v);
     }
-    public EventInfo SetEnum(int v)
+    public EventInfo SetAction(Actions v)
     {
-        if (!Enums.TryAdd(EnumInfo.Default,v)) Enums[EnumInfo.Default]=v;
+        if (!Acts.TryAdd(ActionInfo.Default,v)) Acts[ActionInfo.Default]=v;
         return this;
     }
-    public EventInfo SetEnum(EnumInfo i, int v)
+    public EventInfo SetAction(ActionInfo i, Actions v)
     {
-        if (!Enums.TryAdd(i,v)) Enums[i]=v;
+        if (!Acts.TryAdd(i,v)) Acts[i]=v;
         return this;
     }
-    public T Get<T>(EnumInfo i=EnumInfo.Default)
+    public Actions Get(ActionInfo i=ActionInfo.Default)
     {
-        return GetEnum<T>(i);
+        return GetAction(i);
     }
-    public T GetEnum<T>(EnumInfo i=EnumInfo.Default)
+    public Actions GetAction(ActionInfo i=ActionInfo.Default)
     {
-        if (Enums.TryGetValue(i, out int r)) return (T)Enum.ToObject(typeof(T), r);
-        return (T)Enum.ToObject(typeof(T), 0);
+        if (Acts.TryGetValue(i, out Actions r)) return r;
+        return Actions.None;
     }
-    public EventInfo Set(Actions v) { return Set(EnumInfo.Default,(int)v);}
-    public EventInfo Set(EnumInfo i,Actions v){return Set(i,(int)v);}
-    public Actions GetAction(EnumInfo i = EnumInfo.Default) {return GetEnum<Actions>(i);}
     
     
     //Bools
@@ -258,7 +258,7 @@ public class EventInfo
     //Action
     public EventInfo Set(ActionScript a)
     {
-        Action = a;
+        ActScript = a;
         return this;
     }
     // public EventInfo Set(ThingSeed a)
@@ -296,6 +296,11 @@ public class EventInfo
         Collision = a;
         return this;
     }
+    public EventInfo Set(SpawnRequest sr)
+    {
+        SpawnReq = sr;
+        return this;
+    }
     
     public override string ToString()
     {
@@ -308,7 +313,7 @@ public class EventInfo
         if (Abort) r += "##ABORT##";
         foreach (NumInfo l in Numbers.Keys) r = God.AddList(r, l+"<"+Numbers[l].ToString()+">");
         foreach (StrInfo l in Texts.Keys) r = God.AddList(r, l+"<"+Texts[l].ToString()+">");
-        foreach (EnumInfo l in Enums.Keys) r = God.AddList(r, l+"<"+Enums[l].ToString()+">");
+        foreach (ActionInfo l in Acts.Keys) r = God.AddList(r, l+"<"+Acts[l].ToString()+">");
         foreach (BoolInfo l in Bools) r = God.AddList(r, l.ToString());
         foreach (ActorInfo l in Actors.Keys) r = God.AddList(r, l+"<"+Actors[l].ToString()+">");
         foreach (OptionInfo l in Options.Keys) r = God.AddList(r,l+"<"+Options[l].ToString()+">");

@@ -26,7 +26,7 @@ public class ItemOption : ThingOption
         if (DefaultAttack != Actions.None)
         {
             TraitInfo h = r.AddTrait(Traits.Tool,
-                God.E().Set(EnumInfo.DefaultAction, (int)DefaultAttack)
+                God.E().Set(ActionInfo.DefaultAction, DefaultAttack)
                     .Set(NumInfo.Amount, Damage)
                     .Set(NumInfo.Speed, SpeedMult)
                     .Set(NumInfo.Max, ActDuration)

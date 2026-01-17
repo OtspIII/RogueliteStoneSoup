@@ -20,12 +20,12 @@ public class ToolTrait : Trait
         {
             case EventTypes.GetDefaultAttack:
             {
-                e.Set(EnumInfo.DefaultAction, (int)i.Get<Actions>(EnumInfo.DefaultAction));
+                e.Set(ActionInfo.DefaultAction, i.Get(ActionInfo.DefaultAction));
                 break;
             }
             case EventTypes.OnUse:
             {
-                e.GetActor().TakeEvent(God.E(EventTypes.StartAction).SetEnum(EnumInfo.Action,(int)Actions.DefaultAttack));
+                e.GetActor().TakeEvent(God.E(EventTypes.StartAction).Set(ActionInfo.Action,Actions.DefaultAttack));
                 break;
             }
             case EventTypes.GetDamage:
@@ -45,7 +45,7 @@ public class ToolTrait : Trait
             }
             case EventTypes.GetActSpeed:
             {
-                if(e.Get<Actions>(EnumInfo.Action) == Actions.Shoot) Debug.Log("GIVE ACT SPEED");
+                if(e.Get(ActionInfo.Action) == Actions.Shoot) Debug.Log("GIVE ACT SPEED");
                 e.Set(NumInfo.Amount, i.Get(NumInfo.Speed, 1));
                 e.Set(NumInfo.Max, i.Get(NumInfo.Max, 0));
                 break;

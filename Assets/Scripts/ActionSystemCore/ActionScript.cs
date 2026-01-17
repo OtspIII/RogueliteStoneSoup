@@ -82,7 +82,7 @@ public class ActionScript
     //Runs no matter what when the action ends
     public virtual void End()
     {
-        Trait.Action = null;
+        Trait.ActScript = null;
         Who.DoAction(NextAction());
         if (Coro != null)
         {
@@ -119,7 +119,7 @@ public class ActionScript
         // EventInfo e = God.E(EventTypes.GetDefaultAction);
         // Who.TakeEvent(e);
         // return Who.DefaultAction;
-        return Who.Ask(God.E(EventTypes.GetDefaultAction).Set(Who.Target)).Get<Actions>(EnumInfo.DefaultAction);
+        return Who.Ask(God.E(EventTypes.GetDefaultAction).Set(Who.Target)).Get(ActionInfo.DefaultAction);
     }
 
     public virtual void ChangePhase(int newPhase)

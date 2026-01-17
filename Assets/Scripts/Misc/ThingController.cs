@@ -266,7 +266,7 @@ public class ThingController : MonoBehaviour
     {
         if(e == null) e = God.E();
         e.Type = EventTypes.StartAction;
-        e.Set(EnumInfo.Action,a);
+        e.Set(ActionInfo.Action,a);
         TakeEvent(e);
     }
     

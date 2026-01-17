@@ -75,3 +75,23 @@ public class SpawnRequest
         return "SPAWN REQUEST[" + r + "]";
     }
 }
+
+[System.Serializable]
+public class SpawnWeight
+{
+    
+}
+
+[System.Serializable]
+public class TagWeight
+{
+    public GameTags Tag;
+}
+
+[System.Serializable]
+public class TagInput
+{
+    public GameTags Common;
+    public string Custom;
+    public string Value { get { return Common != GameTags.Custom ? Common.ToString() : Custom ; } }
+}

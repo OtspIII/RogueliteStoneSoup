@@ -26,20 +26,9 @@ public class ThingOption : ScriptableObject
                 ts.Numbers.Add(n.Type != NumInfo.None ? n.Type : NumInfo.Amount,n.Value);
             foreach(InfoOption n in t.Prefabs)
                 ts.Options.Add(n.Type != OptionInfo.None ? n.Type : OptionInfo.Default,n.Value);
-            foreach (InfoEnum n in t.Enums)
-            {
-                if (n.Act != Actions.None)
-                {
-                    ts.Enums.Add(n.Type != EnumInfo.None ? n.Type : EnumInfo.Default,(int)n.Act);
-                    break;
-                }
-                if (n.Tag != GameTags.None)
-                {
-                    ts.Enums.Add(n.Type != EnumInfo.None ? n.Type : EnumInfo.Default,(int)n.Tag);
-                    break;
-                }
-            }
-                
+            foreach (InfoAction n in t.Acts)
+                ts.Acts.Add(n.Type != ActionInfo.None ? n.Type : ActionInfo.Default,n.Act);
+            ts.SpawnReq = t.SpawnReq;
             r.AddTrait(t.Trait, ts);
             // Debug.Log("ADD TRAIT: " + t.Trait + " / " + Name);
         }
@@ -64,7 +53,8 @@ public class TraitBuilder
     public Traits Trait;
     public List<InfoNumber> Numbers;
     public List<InfoOption> Prefabs;
-    public List<InfoEnum> Enums;
+    public List<InfoAction> Acts;
+    public SpawnRequest SpawnReq;
 }
 
 [System.Serializable]
@@ -82,9 +72,8 @@ public class InfoOption
 }
 
 [System.Serializable]
-public class InfoEnum
+public class InfoAction
 {
-    public EnumInfo Type=EnumInfo.Default;
+    public ActionInfo Type=ActionInfo.None;
     public Actions Act;
-    public GameTags Tag;
 }
