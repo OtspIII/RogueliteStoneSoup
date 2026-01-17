@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -9,6 +10,8 @@ public class GameSession
     public ThingInfo Player;
     public bool Victory = false;
     public bool Defeat = false;
+    public List<ThingInfo> PlayerInventory = new List<ThingInfo>();
+    public int InventoryIndex = 1;
 
     public virtual void Progress(EventInfo e)
     {
@@ -33,5 +36,20 @@ public class GameSession
     {
         yield return (God.GM.Fade());
         SceneManager.LoadScene("YouLose");
+    }
+    
+    public void AddInventory(ThingInfo i)
+    {
+        if (PlayerInventory.Contains(i)) return;
+        PlayerInventory.Add(i);
+        God.GM?.UpdateInvText();
+    }
+
+    public void RemoveInventory(ThingInfo i)
+    {
+        int n = PlayerInventory.IndexOf(i);
+        PlayerInventory.Remove(i);
+        if (InventoryIndex - 1 == n) InventoryIndex--;
+        God.GM?.UpdateInvText();
     }
 }

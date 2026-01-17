@@ -14,8 +14,7 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI HealthTxt;
     public TextMeshProUGUI InvTxt;
     public List<RoomScript> Rooms;
-    [HideInInspector] public List<ThingInfo> PlayerInventory;
-    [HideInInspector] public int InventoryIndex = 1;
+    
     private Dictionary<string, string> UIThings = new Dictionary<string, string>();
     public ThingOption DebugSpawn;
     public Image Fader;
@@ -40,30 +39,17 @@ public class GameManager : MonoBehaviour
         SpawnPoints.Add(s);
     }
 
-    public void AddInventory(ThingInfo i)
-    {
-        if (PlayerInventory.Contains(i)) return;
-        PlayerInventory.Add(i);
-        UpdateInvText();
-    }
-
-    public void RemoveInventory(ThingInfo i)
-    {
-        int n = PlayerInventory.IndexOf(i);
-        PlayerInventory.Remove(i);
-        if (InventoryIndex - 1 == n) InventoryIndex--;
-        UpdateInvText();
-    }
+    
 
     public void UpdateInvText()
     {
         string txt = "";
         int n = 1;
-        foreach (ThingInfo i in PlayerInventory)
+        foreach (ThingInfo i in God.Session.PlayerInventory)
         {
             if (txt != "") txt += "\n";
             string l = n + ": " + i.GetName();
-            if (n == InventoryIndex) l = "<b>" + l + "</b>";
+            if (n == God.Session.InventoryIndex) l = "<b>" + l + "</b>";
             txt += l;
             if (n == 0) break;
             n++;

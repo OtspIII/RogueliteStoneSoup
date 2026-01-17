@@ -25,6 +25,10 @@ MonoBehaviour:
       Value: 10
     Prefabs: []
     Enums: []
+  - Trait: 313
+    Numbers: []
+    Prefabs: []
+    Enums: []
   Size: 1
   Damage: 1
   IdealRange: 5

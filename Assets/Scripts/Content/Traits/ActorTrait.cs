@@ -7,6 +7,7 @@ public class ActorTrait : Trait
     {
         Type = Traits.Actor;
         AddListen(EventTypes.Setup);
+        AddListen(EventTypes.OnSpawn);
         AddListen(EventTypes.Start);
         AddListen(EventTypes.Update);
         AddListen(EventTypes.StartAction);
@@ -30,6 +31,10 @@ public class ActorTrait : Trait
                 i.Who.ActorTrait = i;
                 if(i.Get<Actions>(EnumInfo.DefaultAction) == Actions.None)
                     i.Set(EnumInfo.DefaultAction,(int)Actions.Idle);
+                break;
+            }
+            case EventTypes.OnSpawn:
+            {
                 float spd = i.Get(NumInfo.Speed,5);
                 i.Who.CurrentSpeed = spd;
                 if (spd > 0) i.Who.Thing.AddRB();

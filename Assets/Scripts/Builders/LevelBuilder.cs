@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LevelBuilder
 {
-    public Vector2Int Size = new Vector2Int(4, 4);
+    public Vector2Int Size = new Vector2Int(2, 2);
     public Dictionary<int, Dictionary<int, GeoTile>> GeoMap = new Dictionary<int, Dictionary<int, GeoTile>>();
     public List<GeoTile> AllGeo = new List<GeoTile>();
     public float LinkOdds = 0.1f;
@@ -118,9 +118,11 @@ public class LevelBuilder
 
     public virtual void Customize()
     {
-        //In the second half of the game the levels get a little bigger
-        if(God.Session.Level >= 5)
-            Size = new Vector2Int(4, 5);
+        //As you go deeper the map gets bigger
+        int l = God.Session.Level;
+        int w = 2 + Mathf.FloorToInt(l/3);
+        int h = 2 + Mathf.FloorToInt(l/2);
+        Size = new Vector2Int(w, h);
         if (God.Session.Player == null)
             God.Session.Player = God.Library.GetThing(GameTags.Player).Create();
     }

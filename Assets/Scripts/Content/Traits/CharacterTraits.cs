@@ -45,6 +45,7 @@ public class PlayerTrait : Trait
                 EventInfo hpi = i.Who.Ask(EventTypes.ShownHP);
                 God.GM.SetUI("Health",hpi.GetInt()+"/"+hpi.GetInt(NumInfo.Max),1);
                 God.GM.SetUI("Score","Score: "+Mathf.Floor(i.GetN()),2);
+                God.GM.UpdateInvText();
                 break;
             }
             case EventTypes.Update:
@@ -61,7 +62,7 @@ public class PlayerTrait : Trait
                     if (Input.GetKey(KeyCode.Mouse0))i.Who.TakeEvent(God.E(EventTypes.UseHeld));
                     else if (i.Who.CurrentWeapon == null)
                     {
-                        i.Who.SetWeapon(God.GM.InventoryIndex - 1);//God.GM.PlayerInventory[God.GM.InventoryIndex-1]);
+                        i.Who.SetWeapon(God.Session.InventoryIndex - 1);//God.Session.PlayerInventory[God.GM.InventoryIndex-1]);
                     }
                     if (Input.GetKey(KeyCode.E))
                     {
@@ -79,10 +80,10 @@ public class PlayerTrait : Trait
                 // if (Input.GetKeyUp(KeyCode.Mouse0)){i.Who.TakeEvent(God.E(EventTypes.UseHeldEnd));}//Done via Use action now
                 for (int n = 0; n < God.InvKeys.Count; n++)
                 {
-                    if (Input.GetKeyDown(God.InvKeys[n]) && God.GM.PlayerInventory.Count > n)
+                    if (Input.GetKeyDown(God.InvKeys[n]) && God.Session.PlayerInventory.Count > n)
                     {
-                        God.GM.InventoryIndex = n + 1;
-                        God.Player.SetWeapon(God.GM.PlayerInventory[n]);
+                        God.Session.InventoryIndex = n + 1;
+                        God.Player.SetWeapon(God.Session.PlayerInventory[n]);
                         God.GM.UpdateInvText();
                     }
 
@@ -112,12 +113,12 @@ public class PlayerTrait : Trait
             }
             case EventTypes.DidPickup:
             {
-                God.GM.AddInventory(e.GetActor());
+                God.Session.AddInventory(e.GetActor());
                 break;
             }
             case EventTypes.DidDrop:
             {
-                God.GM.RemoveInventory(e.GetActor());
+                God.Session.RemoveInventory(e.GetActor());
                 break;
             }
             case EventTypes.Healing:

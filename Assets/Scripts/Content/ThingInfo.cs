@@ -137,9 +137,9 @@ public class ThingInfo
 
     public void SetWeapon(int n)
     {
-        if (God.GM.PlayerInventory.Count == 0) return;
-        n = Mathf.Clamp(n,0,God.GM.PlayerInventory.Count - 1);
-        SetWeapon(God.GM.PlayerInventory[n]);
+        if (God.Session.PlayerInventory.Count == 0) return;
+        n = Mathf.Clamp(n,0,God.Session.PlayerInventory.Count - 1);
+        SetWeapon(God.Session.PlayerInventory[n]);
     }
     public void SetWeapon(ThingInfo w)
     {
@@ -253,15 +253,18 @@ public class ThingInfo
     {
         ThingInfo w = CurrentWeapon;
         if (w == null) return;
-        God.GM.RemoveInventory(w);
+        God.Session.RemoveInventory(w);
         CurrentWeapon = null;
         w.Team = w.Type.Team;
         
         if (Thing != null)
         {
             Thing.DropHeld();
-            w.Spawn(Thing.transform.position);
-            w.TakeEvent(God.E(EventTypes.DidDrop).Set(this));
+            if (!destroy)
+            {
+                w.Spawn(Thing.transform.position);
+                w.TakeEvent(God.E(EventTypes.DidDrop).Set(this));
+            }
         }
     }
 

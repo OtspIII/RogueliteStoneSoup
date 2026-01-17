@@ -241,7 +241,7 @@ public class StackableTrait : Trait
                     e.Abort = true;
                     break;
                 }
-                foreach (ThingInfo t in God.GM.PlayerInventory)
+                foreach (ThingInfo t in God.Session.PlayerInventory)
                 {
                     if (t.Type == i.Who.Type)
                     {
