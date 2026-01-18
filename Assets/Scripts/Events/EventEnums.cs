@@ -19,8 +19,8 @@ public enum EventTypes{
     Healing         =1002,
     Death           =1003,
     Knockback       =1004,
-    // GainTrait       =1100,
-    // LoseTrait       =1101,
+    GainTrait       =1100,  //TO ADD
+    LoseTrait       =1101,  //TO ADD
     
     //Common Actions
     OnTouch         =2000,  //Touch is Hitbox to Hitbox
@@ -68,6 +68,7 @@ public enum NumInfo
     Distance=5,
     Size=6,
     Priority=7,
+    Time=8,
 }
 
 public enum StrInfo
@@ -75,6 +76,7 @@ public enum StrInfo
     None=0,
     Text=1,
     Debug=2,
+    DType=3,
 }
 
 public enum ActionInfo

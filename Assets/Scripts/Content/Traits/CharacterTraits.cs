@@ -58,8 +58,8 @@ public class PlayerTrait : Trait
                 i.Who.DesiredMove = vel;
                 if (i.Who.ActorTrait.ActScript.Priority <= 0)
                 {
-                    if (Input.GetKeyDown(KeyCode.Mouse0))i.Who.TakeEvent(God.E(EventTypes.UseHeldStart));
-                    if (Input.GetKey(KeyCode.Mouse0))i.Who.TakeEvent(God.E(EventTypes.UseHeld));
+                    if (Input.GetKeyDown(KeyCode.Mouse0))i.Who.TakeEvent(God.E(EventTypes.UseHeldStart).Set(God.MouseLoc()));
+                    if (Input.GetKey(KeyCode.Mouse0))i.Who.TakeEvent(God.E(EventTypes.UseHeld).Set(God.MouseLoc()));
                     else if (i.Who.CurrentWeapon == null)
                     {
                         i.Who.SetWeapon(God.Session.InventoryIndex - 1);//God.Session.PlayerInventory[God.GM.InventoryIndex-1]);

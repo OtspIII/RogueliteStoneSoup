@@ -132,5 +132,6 @@ public enum Traits
     LimitedUse      =0312,
     Stackable       =0313,
     Projectile      =0400,
+    OnFire          =0500,
     //Misha Traits:  11##
 }
