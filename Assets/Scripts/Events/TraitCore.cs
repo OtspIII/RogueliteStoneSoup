@@ -16,6 +16,7 @@ public class TraitInfo : EventInfo
 
     public void Init() { Parser.Get(Trait).Init(this); }
     public void ReUp(EventInfo i) { Parser.Get(Trait).ReUp(this,i); }
+    public void Remove(EventInfo e) { Parser.Get(Trait).Remove(this,e); }
     public void PreEvent(EventInfo e) { Parser.Get(Trait).PreEvent(this,e); }
     public void TakeEvent(EventInfo e) { Parser.Get(Trait).TakeEvent(this,e); }
 
@@ -82,6 +83,21 @@ public class Trait
     public virtual void ReUp(TraitInfo old,EventInfo n)
     {
         //Called when you gain a trait when you already had it
+    }
+    
+    public void Remove(TraitInfo i,EventInfo n)
+    {
+        //Called when you lose a trait
+        foreach (EventTypes e in PreListen.Keys)
+            i.Who.RemoveListen(e,Type,true);
+        foreach (EventTypes e in TakeListen.Keys)
+            i.Who.RemoveListen(e,Type,false);
+        OnRemove(i,n);
+    }
+    
+    protected virtual void OnRemove(TraitInfo i,EventInfo n)
+    {
+        //Called when a trait first gets added to an actor
     }
     
     public virtual void PreEvent(TraitInfo i, EventInfo e)

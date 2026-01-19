@@ -70,8 +70,16 @@ public class ThingInfo
         return Thing;
     }
     
-    public TraitInfo AddTrait(Traits t,EventInfo i=null)
+    public TraitInfo AddTrait(Traits t,EventInfo i=null,EventInfo e=null)
     {
+        if (Setup)
+        {
+            if (e == null) e = God.E();
+            e.Type = EventTypes.GainTrait;
+            e.Set(t);
+            TakeEvent(e, true);
+            if (e.Abort) return null;
+        }
         TraitInfo r = Get(t);
         if (r != null)
         {
@@ -87,6 +95,22 @@ public class ThingInfo
             r.Init();
         }
         return r;
+    }
+    
+    public bool RemoveTrait(Traits t,EventInfo e=null)
+    {
+        if (Setup)
+        {
+            if (e == null) e = God.E();
+            e.Type = EventTypes.LoseTrait;
+            e.Set(t);
+            TakeEvent(e, true);
+            if (e.Abort) return false;
+        }
+        TraitInfo r = Get(t);
+        if (r == null) return false;
+        r.Remove(e);
+        return true;
     }
     
     public TraitInfo Get(Traits t)
@@ -108,6 +132,14 @@ public class ThingInfo
         if(!d.ContainsKey(e)) d.Add(e,new List<Traits>());
         if(!d[e].Contains(t)) d[e].Add(t);
         if(Setup) SortListen(e,pre);
+    }
+
+    public void RemoveListen(EventTypes e, Traits t, bool pre = false)
+    {
+        Dictionary<EventTypes, List<Traits>> d = pre ? PreListen : TakeListen;
+        if (!d.ContainsKey(e)) return;
+        List<Traits> r = d[e];
+        r.Remove(t);
     }
 
     public void SortListen(EventTypes e, bool pre = false)

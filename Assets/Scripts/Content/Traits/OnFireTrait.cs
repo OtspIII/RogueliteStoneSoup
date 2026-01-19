@@ -21,7 +21,7 @@ public class OnFireTrait : Trait
                     .Set(i.GetActor()).Set(i.Get(StrInfo.DType)));
                 dur -= Time.deltaTime;
                 i.Set(NumInfo.Time, dur);
-                if(dur <= 0) i.Who.TakeEvent(God.E(EventTypes.LoseTrait).Set(Type));
+                if (dur <= 0) i.Who.RemoveTrait(Type);
                 break;
             }
         }
