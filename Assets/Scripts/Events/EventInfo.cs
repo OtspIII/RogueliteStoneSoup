@@ -21,7 +21,7 @@ public class EventInfo
     public Dictionary<HitboxInfo, HitboxController> Hitboxes = new Dictionary<HitboxInfo, HitboxController>();
     public GameCollision Collision;
     public SpawnRequest SpawnReq;
-    public Traits Trait;
+    public Traits TraitI;
 
     public EventInfo(){ }
     
@@ -53,7 +53,7 @@ public class EventInfo
         // Seed = i.Seed;
         Collision = i.Collision;
         SpawnReq = i.SpawnReq;
-        Trait = i.Trait;
+        TraitI = i.TraitI;
     }
     
     //Numbers
@@ -156,8 +156,13 @@ public class EventInfo
     
     public EventInfo Set(Traits v)
     {
-        Trait = v;
+        TraitI = v;
         return this;
+    }
+
+    public Traits GetTrait()
+    {
+        return TraitI;
     }
     
     //Bools

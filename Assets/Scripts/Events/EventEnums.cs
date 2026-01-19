@@ -6,6 +6,7 @@ public enum EventTypes{
     OnSpawn         =0003,
     Start           =0004,
     Update          =0005,
+    Message         =0006, //Generic event, you can use this for events that don't have enums yet (just set StrInfo.Message)
     StartAction     =0101,
     SetPhase        =0102,
     UseHeld         =0103,
@@ -19,8 +20,8 @@ public enum EventTypes{
     Healing         =1002,
     Death           =1003,
     Knockback       =1004,
-    GainTrait       =1100,  //TO ADD
-    LoseTrait       =1101,  //TO ADD
+    GainTrait       =1100,
+    LoseTrait       =1101,
     
     //Common Actions
     OnTouch         =2000,  //Touch is Hitbox to Hitbox
@@ -77,6 +78,7 @@ public enum StrInfo
     Text=1,
     Debug=2,
     DType=3,
+    Message=4,
 }
 
 public enum ActionInfo
