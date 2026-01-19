@@ -4,7 +4,7 @@ using UnityEngine;
 [System.Serializable]
 public class SpawnRequest
 {
-    bool Refined = false;
+    // bool Refined = false;
     public ThingOption Fixed;
     public List<Tag> Mandatory = new List<Tag>();
     public List<Tag> Any = new List<Tag>();
@@ -40,7 +40,6 @@ public class SpawnRequest
     public bool HasTag(GameTags tag, out float w) { return HasTag(tag.ToString(),out w); }
     public bool HasTag(string tag,out float w)
     {
-        bool r = false;
         foreach (Tag t in Mandatory)
             if (t.Value == tag)
             {

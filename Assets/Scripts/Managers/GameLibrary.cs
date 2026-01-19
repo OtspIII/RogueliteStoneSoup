@@ -8,6 +8,7 @@ public class GameLibrary : MonoBehaviour
 {
     public ThingController ActorPrefab;
     public BodyController PickupDefaultBody;
+    public SfXGnome GnomePrefab;
     private List<RoomOption> RoomOptions = new List<RoomOption>();
     private List<ThingOption> ThingOptions = new List<ThingOption>();
 

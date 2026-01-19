@@ -127,8 +127,6 @@ MonoBehaviour:
   HealthTxt: {fileID: 6799186917877728896}
   InvTxt: {fileID: 7720522198783288196}
   Rooms: []
-  PlayerInventory: []
-  InventoryIndex: 1
   DebugSpawn: {fileID: 0}
   Fader: {fileID: 4497842725835829419}
 --- !u!1 &1505889798978773429
@@ -639,3 +637,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ActorPrefab: {fileID: 7168331786191300375, guid: c8fbb66690624b049a9e874f3aee606b, type: 3}
   PickupDefaultBody: {fileID: 629948465317790645, guid: 0f8734e4b4d2c3a449506fe0c78c1110, type: 3}
+  GnomePrefab: {fileID: 6859709298145946338, guid: 5917afff6b029b64086d6c54cbb75a22, type: 3}
