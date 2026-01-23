@@ -6,6 +6,7 @@ using UnityEngine;
 public class ThingOption : ScriptableObject
 {
     public string Name;
+    public string Author = "";
     public GameTeams Team = GameTeams.Neutral;
     public BodyController Body;
     public Sprite Art;
@@ -14,6 +15,7 @@ public class ThingOption : ScriptableObject
     public List<Tag> Tags;
     public List<TraitBuilder> Trait;
     public float Size = 1;
+    public Vector2Int LevelRange = new Vector2Int(0,0);
 
    public virtual ThingInfo Create()
     {

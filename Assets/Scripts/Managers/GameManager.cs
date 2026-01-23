@@ -9,6 +9,7 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public LevelBuilder Level;
+    public Image Fader;
     [HideInInspector] public Transform LevelHolder;
     public List<SpawnPointController> SpawnPoints;
     public TextMeshProUGUI HealthTxt;
@@ -17,7 +18,7 @@ public class GameManager : MonoBehaviour
     
     private Dictionary<string, string> UIThings = new Dictionary<string, string>();
     public ThingOption DebugSpawn;
-    public Image Fader;
+    public int LevelOverride = 0;
 
     private void Awake()
     {

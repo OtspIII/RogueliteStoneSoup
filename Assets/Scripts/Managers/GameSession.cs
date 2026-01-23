@@ -13,6 +13,14 @@ public class GameSession
     public List<ThingInfo> PlayerInventory = new List<ThingInfo>();
     public int InventoryIndex = 1;
 
+    public GameSession()
+    {
+        if (God.GM != null && God.GM.LevelOverride > 0)
+        {
+            Level = God.GM.LevelOverride;
+        }
+    }
+    
     public virtual void Progress(EventInfo e)
     {
         Level++;

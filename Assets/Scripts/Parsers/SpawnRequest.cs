@@ -8,6 +8,7 @@ public class SpawnRequest
     public ThingOption Fixed;
     public List<Tag> Mandatory = new List<Tag>();
     public List<Tag> Any = new List<Tag>();
+    public int Level = 0;
 
     public SpawnRequest(params GameTags[] tags)
     {
@@ -71,6 +72,7 @@ public class SpawnRequest
     
     public float Judge(ThingOption o)
     {
+        if (!JudgeLevel(o)) return 0;
         float w = 1;
         foreach(Tag t in Mandatory)
             if (o.HasTag(t.Value, out float tw))
@@ -93,6 +95,16 @@ public class SpawnRequest
                 return 0;
         }
         return w;
+    }
+
+    public bool JudgeLevel(ThingOption o)
+    {
+        if (Level < 0) return true;
+        if (o.LevelRange == Vector2Int.zero) return true;
+        int l = Level != 0 ? Level : God.Session.Level;
+        if (l < o.LevelRange.x && o.LevelRange.x > 0) return false;
+        if (l > o.LevelRange.y && o.LevelRange.y > 0) return false;
+        return true;
     }
 
     // public void Refine()
