@@ -99,7 +99,7 @@ public class LevelBuilder
             {
                 SpawnPointController chosen = s.Random();
                 s.Remove(chosen);
-                if (chosen.CanSpawn(o))
+                if (chosen.CanSpawn(o,this))
                 {
                     i = o.Create();
                     i.Spawn(chosen);
@@ -304,6 +304,40 @@ public class LevelBuilder
     {
         if (!GeoMap.ContainsKey(x)) return null;
         return GeoMap[x].ContainsKey(y) ? GeoMap[x][y] : null;
+    }
+
+    public float JudgeRoom(GeoTile g, RoomOption o)
+    {
+        if (g.Path == GeoTile.GeoTileTypes.PlayerStart && !o.Tags.Contains(RoomTags.PlayerStart)) return 0;
+        if (g.Path == GeoTile.GeoTileTypes.Exit && !o.Tags.Contains(RoomTags.Exit)) return 0;
+        return 1;
+    }
+    
+    public float JudgeThing(SpawnRequest sr, ThingOption o)
+    {
+        if (!sr.JudgeLevel(o)) return 0;
+        float w = 1;
+        foreach(Tag t in sr.Mandatory)
+            if (o.HasTag(t.Value, out float tw))
+            {
+                w = God.MergeWeight(w,tw);
+            }
+            else return 0;
+        if (sr.Any.Count > 0)
+        {
+            bool any = false;
+            foreach (Tag t in sr.Any)
+            {
+                if (o.HasTag(t.Value, out float tw))
+                {
+                    w = God.MergeWeight(w, tw);
+                    any = true;
+                }
+            }
+            if(!any)
+                return 0;
+        }
+        return w;
     }
 }
 

@@ -70,32 +70,7 @@ public class SpawnRequest
 
    
     
-    public float Judge(ThingOption o)
-    {
-        if (!JudgeLevel(o)) return 0;
-        float w = 1;
-        foreach(Tag t in Mandatory)
-            if (o.HasTag(t.Value, out float tw))
-            {
-                w = God.MergeWeight(w,tw);
-            }
-            else return 0;
-        if (Any.Count > 0)
-        {
-            bool any = false;
-            foreach (Tag t in Any)
-            {
-                if (o.HasTag(t.Value, out float tw))
-                {
-                    w = God.MergeWeight(w, tw);
-                    any = true;
-                }
-            }
-            if(!any)
-                return 0;
-        }
-        return w;
-    }
+    
 
     public bool JudgeLevel(ThingOption o)
     {

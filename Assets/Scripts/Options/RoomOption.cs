@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "RoomOption", menuName = "Scriptable Objects/RoomOption")]
-public class RoomOption : ScriptableObject
+public class RoomOption : GameOption
 {
     public RoomScript Prefab;
     public List<RoomTags> Tags;

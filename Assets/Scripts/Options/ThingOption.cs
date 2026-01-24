@@ -2,11 +2,15 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "ThingOption", menuName = "Scriptable Objects/ThingOption")]
-public class ThingOption : ScriptableObject
+public class GameOption : ScriptableObject
 {
     public string Name;
-    public string Author = "";
+    public string Author;
+}
+
+[CreateAssetMenu(fileName = "ThingOption", menuName = "Scriptable Objects/ThingOption")]
+public class ThingOption : GameOption
+{
     public GameTeams Team = GameTeams.Neutral;
     public BodyController Body;
     public Sprite Art;

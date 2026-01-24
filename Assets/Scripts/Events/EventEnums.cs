@@ -132,6 +132,7 @@ public enum GameTags
     Custom          =0000,
     Player          =0001,
     Something       =0002,
+    Debug           =0003,
     NPC             =0102,
     Pickup          =0200,
     Weapon          =0201,
