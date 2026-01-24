@@ -34,7 +34,12 @@ public class HealthTrait : Trait
             }
             case EventTypes.Damage:
             {
-                float hp = i.Change(-e.GetN());
+                int amt = e.GetInt();
+                if (amt == 0) return;
+                Vector2 where = i.Who.Thing.transform.position;
+                if (i.Collision != null) where = i.Collision.Where;
+                God.Library.GetGnome("Blood").Spawn(where,amt * 3);
+                float hp = i.Change(-amt);
                 if (hp <= 0)
                 {
                     i.Who.TakeEvent(God.E(EventTypes.Death).Set(e.GetActor()));

@@ -29,7 +29,6 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        God.Library.Setup();
         LevelHolder = new GameObject("Level").transform;
         Level = new LevelBuilder();
         Level.Build();

@@ -11,6 +11,8 @@ public class GameLibrary : MonoBehaviour
     public SfXGnome GnomePrefab;
     private List<RoomOption> RoomOptions = new List<RoomOption>();
     private List<ThingOption> ThingOptions = new List<ThingOption>();
+    private List<GnomeOption> GnomeOptions = new List<GnomeOption>();
+    private Dictionary<string, GnomeOption> GnomeDict = new Dictionary<string, GnomeOption>();
 
     private void Awake()
     {
@@ -19,11 +21,21 @@ public class GameLibrary : MonoBehaviour
             ThingOptions.Add(o);
         foreach (RoomOption o in Resources.LoadAll<RoomOption>("Rooms/"))
             RoomOptions.Add(o);
+        foreach (GnomeOption o in Resources.LoadAll<GnomeOption>("Gnomes/"))
+        {
+            GnomeOptions.Add(o);
+            if(!GnomeDict.ContainsKey(o.Name))
+                GnomeDict.Add(o.Name,o);
+            else
+                Debug.LogWarning("Duplicate Gnome: " + o.Name);
+        }
+            
     }
 
-    public void Setup()
+    public GnomeOption GetGnome(string g)
     {
-        
+        if (GnomeDict.TryGetValue(g, out GnomeOption r)) return r;
+        return null;
     }
 
     
