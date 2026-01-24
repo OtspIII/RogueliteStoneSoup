@@ -308,14 +308,16 @@ public class LevelBuilder
 
     public float JudgeRoom(GeoTile g, RoomOption o)
     {
-        if (g.Path == GeoTile.GeoTileTypes.PlayerStart && !o.Tags.Contains(RoomTags.PlayerStart)) return 0;
-        if (g.Path == GeoTile.GeoTileTypes.Exit && !o.Tags.Contains(RoomTags.Exit)) return 0;
-        return 1;
+        RoomTags t = RoomTags.Generic;
+        if (g.Path == GeoTile.GeoTileTypes.PlayerStart) t = RoomTags.PlayerStart;
+        if (g.Path == GeoTile.GeoTileTypes.Exit) t = RoomTags.Exit;
+        if(o.Tags.Contains(t)) return 1;
+        return 0;
     }
     
     public float JudgeThing(SpawnRequest sr, ThingOption o)
     {
-        if (!sr.JudgeLevel(o)) return 0;
+        // if (!sr.JudgeLevel(o)) return 0;
         float w = 1;
         foreach(Tag t in sr.Mandatory)
             if (o.HasTag(t.Value, out float tw))
