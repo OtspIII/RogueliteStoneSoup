@@ -13,23 +13,29 @@ public class GameLibrary : MonoBehaviour
     public BodyController PickupDefaultBody;
     //A generic gnome that gets customized when spawned
     public SfXGnome GnomePrefab;
-    //A list of all the possible spawnable rooms/actors/gnomes the procgen system can pull from
-    private List<RoomOption> RoomOptions = new List<RoomOption>();
-    private List<ThingOption> ThingOptions = new List<ThingOption>();
-    private List<GnomeOption> GnomeOptions = new List<GnomeOption>();
+    //We don't need to load our Resources folder more than once, so let's have a bool that says once we've done it
+    public static bool Setup = false;
+    //A list of all the possible spawnable rooms/actors/gnomes the procgen system can pull from.
+    //Static so we don't lose them on a level reload
+    private static List<RoomOption> RoomOptions = new List<RoomOption>();
+    private static List<ThingOption> ThingOptions = new List<ThingOption>();
+    private static List<GnomeOption> GnomeOptions = new List<GnomeOption>();
     //I also sort the gnomes by name to make them easy to find
-    private Dictionary<string, GnomeOption> GnomeDict = new Dictionary<string, GnomeOption>();
+    private static Dictionary<string, GnomeOption> GnomeDict = new Dictionary<string, GnomeOption>();
 
     private void Awake()
     {
         //Register myself to a static variable for easy finding
         God.Library = this;
+        //If we already loaded our Resources folder then we don't need to do any of the below
+        if (Setup) return;
+        Setup = true;
         //Read the Resources folder to find all the Options we've crafted for it to use when generating levels
         foreach (ThingOption o in Resources.LoadAll<ThingOption>("/"))
             ThingOptions.Add(o);
-        foreach (RoomOption o in Resources.LoadAll<RoomOption>("Rooms/"))
+        foreach (RoomOption o in Resources.LoadAll<RoomOption>("/"))
             RoomOptions.Add(o);
-        foreach (GnomeOption o in Resources.LoadAll<GnomeOption>("Gnomes/"))
+        foreach (GnomeOption o in Resources.LoadAll<GnomeOption>("/"))
         {
             GnomeOptions.Add(o);
             if(!GnomeDict.ContainsKey(o.Name))

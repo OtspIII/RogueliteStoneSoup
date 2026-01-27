@@ -36,89 +36,7 @@ public class LevelBuilder
         //Actually spawn all the objects into the levels
         SpawnThings();
     }
-
-    public virtual void FindQuotas()
-    {
-        float rms = AllGeo.Count - 2; //How many rooms other than start and end are there?
-        //We're going to spawn 1.1 monsters per room on average
-        float mons = God.RoundRand(rms * 1.1f);
-        for(float n=0;n<mons;n++) ToSpawnTags.Add(GameTags.NPC);
-        float wpn = God.RoundRand(1 + (rms * 0.05f));
-        for(float n=0;n<wpn;n++) ToSpawnTags.Add(GameTags.Weapon);
-        float con = God.RoundRand(rms * 0.25f);
-        for(float n=0;n<con;n++) ToSpawnTags.Add(GameTags.Consumable);
-        float scr = God.RoundRand(rms * 0.5f);
-        for(float n=0;n<scr;n++) ToSpawnTags.Add(GameTags.ScoreThing);
-        
-        //Then we take those tags and use them to decide on a list of actual things to spawn
-        foreach (GameTags tag in ToSpawnTags)
-        {
-            ThingOption o = God.Library.GetThing(new SpawnRequest(tag));
-            ToSpawn.Add(o);
-        }
-        
-    }
     
-    public virtual void SpawnThings()
-    {
-        SpawnPointController playerStart = null;
-        foreach (SpawnPointController s in PlayerSpawn.Room.Spawners)
-        {
-            if (s.ToSpawn.HasTag(GameTags.Player))
-            {
-                // Debug.Log("PLAYER SPAWN FOUND");
-                playerStart = s;
-                SpawnPoints.Remove(s);
-                SpawnPointsFixed.Remove(s);
-                break;
-            }
-        }
-
-        if (playerStart != null) God.Session.Player.Spawn(playerStart);
-        else
-        {
-            Debug.Log("ERROR: Player Spawn Room has no spawners for a player: " + PlayerSpawn.Room);
-            God.Session.Player.Spawn(PlayerSpawn.Room.transform.position);
-        }
-        int totalToSpawn = ToSpawn.Count;
-        int totalSpawns = SpawnPoints.Count;
-        while(ToSpawn.Count > 0)
-        {
-            if (SpawnPoints.Count == 0)
-            {
-                Debug.Log("Ran out of spawn points ("+totalSpawns+")! " + ToSpawn.Count+"/"+totalToSpawn + " items left to spawn.");
-                break;
-            }
-            ThingOption o = ToSpawn.Random();
-            ToSpawn.Remove(o);
-            List<SpawnPointController> s = new List<SpawnPointController>();
-            s.AddRange(SpawnPoints);
-            ThingInfo i=null;
-            while (s.Count > 0)
-            {
-                SpawnPointController chosen = s.Random();
-                s.Remove(chosen);
-                if (chosen.CanSpawn(o,this))
-                {
-                    i = o.Create();
-                    i.Spawn(chosen);
-                    SpawnPoints.Remove(chosen);
-                    break;
-                }
-            }
-            if(i == null) Debug.Log("Thing couldn't find a place to spawn: " + o.Name);
-        }
-
-        foreach (SpawnPointController s in SpawnPointsFixed)
-        {
-            s.Spawn();
-        }
-        // foreach (GeoTile g in AllGeo)
-        // {
-        //     g.Room.Spawn();
-        // }
-    }
-
     public virtual void Customize()
     {
         //As you go deeper the map gets bigger
@@ -339,6 +257,88 @@ public class LevelBuilder
                 return 0;
         }
         return w;
+    }
+    
+    public virtual void FindQuotas()
+    {
+        float rms = AllGeo.Count - 2; //How many rooms other than start and end are there?
+        //We're going to spawn 1 monster per room on average, but each level the density rises
+        float mons = God.RoundRand(rms * (1f + (God.Session.Level * 0.1f)));
+        for(float n=0;n<mons;n++) ToSpawnTags.Add(GameTags.NPC);
+        float wpn = God.RoundRand(1 + (rms * 0.05f));
+        for(float n=0;n<wpn;n++) ToSpawnTags.Add(GameTags.Weapon);
+        float con = God.RoundRand(rms * 0.25f);
+        for(float n=0;n<con;n++) ToSpawnTags.Add(GameTags.Consumable);
+        float scr = God.RoundRand(rms * 0.5f);
+        for(float n=0;n<scr;n++) ToSpawnTags.Add(GameTags.ScoreThing);
+        
+        //Then we take those tags and use them to decide on a list of actual things to spawn
+        foreach (GameTags tag in ToSpawnTags)
+        {
+            ThingOption o = God.Library.GetThing(new SpawnRequest(tag));
+            ToSpawn.Add(o);
+        }
+        
+    }
+    
+    public virtual void SpawnThings()
+    {
+        SpawnPointController playerStart = null;
+        foreach (SpawnPointController s in PlayerSpawn.Room.Spawners)
+        {
+            if (s.ToSpawn.HasTag(GameTags.Player))
+            {
+                // Debug.Log("PLAYER SPAWN FOUND");
+                playerStart = s;
+                SpawnPoints.Remove(s);
+                SpawnPointsFixed.Remove(s);
+                break;
+            }
+        }
+
+        if (playerStart != null) God.Session.Player.Spawn(playerStart);
+        else
+        {
+            Debug.Log("ERROR: Player Spawn Room has no spawners for a player: " + PlayerSpawn.Room);
+            God.Session.Player.Spawn(PlayerSpawn.Room.transform.position);
+        }
+        int totalToSpawn = ToSpawn.Count;
+        int totalSpawns = SpawnPoints.Count;
+        while(ToSpawn.Count > 0)
+        {
+            if (SpawnPoints.Count == 0)
+            {
+                Debug.Log("Ran out of spawn points ("+totalSpawns+")! " + ToSpawn.Count+"/"+totalToSpawn + " items left to spawn.");
+                break;
+            }
+            ThingOption o = ToSpawn.Random();
+            ToSpawn.Remove(o);
+            List<SpawnPointController> s = new List<SpawnPointController>();
+            s.AddRange(SpawnPoints);
+            ThingInfo i=null;
+            while (s.Count > 0)
+            {
+                SpawnPointController chosen = s.Random();
+                s.Remove(chosen);
+                if (chosen.CanSpawn(o,this))
+                {
+                    i = o.Create();
+                    i.Spawn(chosen);
+                    SpawnPoints.Remove(chosen);
+                    break;
+                }
+            }
+            if(i == null) Debug.Log("Thing couldn't find a place to spawn: " + o.Name);
+        }
+
+        foreach (SpawnPointController s in SpawnPointsFixed)
+        {
+            s.Spawn();
+        }
+        // foreach (GeoTile g in AllGeo)
+        // {
+        //     g.Room.Spawn();
+        // }
     }
 }
 

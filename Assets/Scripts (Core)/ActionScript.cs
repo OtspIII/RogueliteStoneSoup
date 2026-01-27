@@ -5,7 +5,7 @@ using UnityEngine;
 public class ActionScript
 {
     public Actions Type;
-    public ThingController Who;
+    public ThingInfo Who;
     public TraitInfo Trait;
     public float MoveMult = 0;
     public bool HaltMomentum = true;
@@ -17,7 +17,7 @@ public class ActionScript
     public bool CanRotate = false;
     public int Phase;
 
-    public void Setup(Actions type, ThingController who,bool isIdle=false)
+    public void Setup(Actions type, ThingInfo who,bool isIdle=false)
     {
         Type = type;
         Who = who;
@@ -54,28 +54,28 @@ public class ActionScript
     
     public virtual void HandleMove()
     {
-        if (Who.RB == null) return;
-        Who.RB.linearVelocity = (MoveMult * Who.CurrentSpeed * Who.DesiredMove.normalized) + Who.Knockback;
+        if (Who.Thing.RB == null) return;
+        Who.Thing.RB.linearVelocity = (MoveMult * Who.CurrentSpeed * Who.DesiredMove.normalized) + Who.Knockback;
     }
 
     public virtual void Begin()
     {
         Reset();
-        if(HaltMomentum && Who.RB != null) Who.RB.linearVelocity = Vector2.zero;
-        Coro = Who.StartCoroutine(Script());
+        if(HaltMomentum && Who.Thing.RB != null) Who.Thing.RB.linearVelocity = Vector2.zero;
+        Coro = Who.Thing.StartCoroutine(Script());
         EventInfo sp = Who.Ask(EventTypes.GetActSpeed,true);
         float speedMult = sp.GetFloat(NumInfo.Amount,1);
         Duration = Mathf.Max(Duration,sp.GetFloat(NumInfo.Max,0));
         if (Anim != "")
         {
-            Duration = Mathf.Max(Duration,Who.PlayAnim(Anim,speedMult));
+            Duration = Mathf.Max(Duration,Who.Thing.PlayAnim(Anim,speedMult));
             // foreach(AnimationClip c in Who.Body.Anim.runtimeAnimatorController.animationClips)
             //     if (c.name == Anim)
             //         Duration = c.length * Who.Body.Anim.speed;
             
         }
         else
-            Who.PlayAnim();
+            Who.Thing.PlayAnim();
         ChangePhase(0);
     }
     
@@ -83,10 +83,10 @@ public class ActionScript
     public virtual void End()
     {
         Trait.ActScript = null;
-        Who.DoAction(NextAction());
+        Who.Thing.DoAction(NextAction());
         if (Coro != null)
         {
-            Who.StopCoroutine(Coro);
+            Who.Thing.StopCoroutine(Coro);
             Coro = null;
         }
     }

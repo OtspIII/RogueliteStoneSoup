@@ -25,16 +25,16 @@ public class AttackAction : UseAction
         if (AlreadyHit.Contains(hit)) return;
         AlreadyHit.Add(hit);
         // Debug.Log("TAKE DAMAGE: " + hit.gameObject);
-        hit.TakeEvent(new EventInfo(EventTypes.Damage).Set(NumInfo.Amount,GetDamage()).Set(Who?.Info));
+        hit.TakeEvent(new EventInfo(EventTypes.Damage).Set(NumInfo.Amount,GetDamage()).Set(Who));
         // hit.TakeDamage(GetDamage());
         hit.DoAction(Actions.Stun,God.E().Set(10.5f).Set(NumInfo.Priority,3));
-        hit.TakeKnockback(Who.transform.position,Knockback);
+        hit.TakeKnockback(Who.Thing.transform.position,Knockback);
     }
 }
 
 public class SwingAction : AttackAction
 {
-    public SwingAction(ThingController who,EventInfo e=null)
+    public SwingAction(ThingInfo who,EventInfo e=null)
     {
         Setup(Actions.Swing,who);
         Anim = "Swing";
@@ -45,7 +45,7 @@ public class SwingAction : AttackAction
         base.OnRun();
         if (Phase < 1)
         {
-            Who.MoveForwards();
+            Who.Thing.MoveForwards();
         }
     }
 
@@ -64,7 +64,7 @@ public class SwingAction : AttackAction
 
 public class ShootAction : AttackAction
 {
-    public ShootAction(ThingController who,EventInfo e=null)
+    public ShootAction(ThingInfo who,EventInfo e=null)
     {
         Setup(Actions.Shoot,who);
         Duration = 0.2f;
@@ -77,7 +77,7 @@ public class ShootAction : AttackAction
     {
         base.Begin();
         ThingOption proj = GetWeapon().Ask(EventTypes.GetProjectile).GetOption();
-        Who.Shoot(proj);
+        Who.Thing.Shoot(proj);
     }
 
     public override void OnRun()
@@ -85,8 +85,8 @@ public class ShootAction : AttackAction
         base.OnRun();
         if (Who.Target != null)
         {
-            Who.LookAt(Who.Target, 0.5f);
-            Who.MoveTowards(Who.Target, Who.AttackRange);
+            Who.Thing.LookAt(Who.Target, 0.5f);
+            Who.Thing.MoveTowards(Who.Target, Who.AttackRange);
         }
     }
 
@@ -97,7 +97,7 @@ public class ShootAction : AttackAction
 public class LungeAction : AttackAction
 {
     
-    public LungeAction(ThingController who,EventInfo e=null)
+    public LungeAction(ThingInfo who,EventInfo e=null)
     {
         Setup(Actions.Lunge,who);
         Anim = "Lunge";
@@ -111,7 +111,7 @@ public class LungeAction : AttackAction
         if (Phase == 0)
         {
             MoveMult = Who.AttackRange;
-            Who.MoveForwards();
+            Who.Thing.MoveForwards();
         }
         else
             MoveMult = 0;

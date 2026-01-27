@@ -85,7 +85,7 @@ public class ProjectileTrait : Trait
             {
                 ThingController who = i.Who.Thing;
                 float spd = i.Get(NumInfo.Speed,10);
-                who.CurrentSpeed = spd;
+                who.Info.CurrentSpeed = spd;
                 who.AddRB();
                 who.RB.linearVelocity = who.transform.up * spd;
                 break;

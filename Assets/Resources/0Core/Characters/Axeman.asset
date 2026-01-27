@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4679cc75b2c8be74e8b047318fa062ea, type: 3}
   m_Name: Axeman
   m_EditorClassIdentifier: Assembly-CSharp::CharacterOption
-  Name: Swordguy
+  Name: Axeman
+  Author: 0
   Team: 3
   Body: {fileID: 629948465317790645, guid: acf0e760b28c7b046ad7d511fb87a1d3, type: 3}
   Art: {fileID: 6005008538062400051, guid: 6b94876af2f4daa4dbef6aebff1ec0d9, type: 3}
@@ -20,8 +21,10 @@ MonoBehaviour:
   Tags:
   - Common: 102
     Custom: 
+    W: 1
   Trait: []
   Size: 1
+  LevelRange: {x: 0, y: 0}
   HP: 2
   Speed: 3
   Weapon: {fileID: 11400000, guid: d8535ae3107c2184ab8fc49f1318f904, type: 2}

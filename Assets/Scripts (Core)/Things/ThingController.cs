@@ -22,22 +22,6 @@ public class ThingController : MonoBehaviour
     public ThingInfo CurrentWeapon {get {return Info.CurrentWeapon;} set { Info.CurrentWeapon = value;}}
     public BodyController WeaponBody;
     
-    // public Dictionary<Traits, TraitInfo> Trait {get {return Info.Trait;} set { Info.Trait = value;}}
-    // public Dictionary<EventTypes, List<Traits>> PreListen {get {return Info.PreListen;} set { Info.PreListen = value;}}
-    // public Dictionary<EventTypes, List<Traits>> TakeListen {get {return Info.TakeListen;} set { Info.TakeListen = value;}}
-    // public List<EventInfo> EventQueue {get {return Info.EventQueue;} set { Info.EventQueue = value;}}
-    // public bool MidEvent {get {return Info.MidEvent;} set { Info.MidEvent = value;}}
-    
-    //May be moved to traits
-    public ThingController Target {get {return Info.Target != null ? Info.Target.Thing : null;} set { Info.Target = (value == null ? null : value.Info);}}
-    public TraitInfo ActorTrait {get {return Info.ActorTrait;} set { Info.ActorTrait = value;}}
-    public float AttackRange {get {return Info.AttackRange;} set { Info.AttackRange = value;}}
-    public float VisionRange  {get {return Info.VisionRange;} set { Info.VisionRange = value;}}
-    public float CurrentSpeed {get {return Info.CurrentSpeed;} set { Info.CurrentSpeed = value;}}
-    public Vector2 DesiredMove {get {return Info.DesiredMove;} set { Info.DesiredMove = value;}}
-    public Vector2 Knockback {get {return Info.Knockback;} set { Info.Knockback = value;}}
-
-    
     public void Awake()
     {
         OnAwake();
@@ -71,11 +55,11 @@ public class ThingController : MonoBehaviour
     
     private void FixedUpdate()
     {
-        if (Knockback != Vector2.zero)
+        if (Info.Knockback != Vector2.zero)
         {
-            Knockback *= 0.9f;
-            if (Knockback.magnitude < 0.1)
-                Knockback = Vector2.zero;
+            Info.Knockback *= 0.9f;
+            if (Info.Knockback.magnitude < 0.1)
+                Info.Knockback = Vector2.zero;
         }
     }
     
@@ -92,19 +76,6 @@ public class ThingController : MonoBehaviour
         RB.gravityScale = 0;
     }
     
-    
-    // public TraitInfo AddTrait(Traits t,EventInfo i=null)
-    // {
-    //     return Info.AddTrait(t, i);
-    // }
-    //
-    // public TraitInfo Get(Traits t)
-    // {
-    //     return Info.Get(t);
-    // }
-
-    
-
     public void TakeEvent(EventTypes e)
     {
         TakeEvent(new EventInfo(e));
@@ -125,6 +96,11 @@ public class ThingController : MonoBehaviour
         Info.TakeEvent(e,instant,safety);
     }
     
+    public void MoveTowards(ThingInfo targ,float thresh=0)
+    {
+        if (targ == null) return;
+        MoveTowards(targ.Thing,thresh);
+    }
     public void MoveTowards(ThingController targ,float thresh=0)
     {
         if (targ == null) return;
@@ -144,40 +120,37 @@ public class ThingController : MonoBehaviour
             {
                 
                 if (d < thresh - 1)
-                    DesiredMove = transform.position - targ;
+                    Info.DesiredMove = transform.position - targ;
                 else
-                    DesiredMove = Vector2.zero;
+                    Info.DesiredMove = Vector2.zero;
                 return;
             }
         }
         
-        DesiredMove = targ - transform.position;
+        Info.DesiredMove = targ - transform.position;
     }
 
-    // public ThingController Shoot(GameTags t =GameTags.Projectile)
-    // {
-    //     ThingOption stat = God.Library.GetThing(t);
-    //     return Shoot(stat);
-    // }
 
-    public ThingController Shoot(ThingOption o)
+    public ThingInfo Shoot(ThingOption o)
     {
         ThingInfo i = o.Create();
         i.ChildOf = Info;
         i.Team = Info.Team;
         float rot = Body.Weapon.transform.rotation.eulerAngles.z - 90;
-        ThingController r = i.Spawn(Body.Weapon.transform.position,rot);
-        // rot.z -= 90; //Eventually add accuracy stat?
-        // ProjectileController r = Instantiate(pref, Body.Weapon.transform.position, Quaternion.Euler(rot));
-        // r.Setup(this,stat);
-        return r;
+        i.Spawn(Body.Weapon.transform.position,rot);
+        return i;
     }
 
     public void MoveForwards()
     {
-        DesiredMove = Body.transform.right;
+        Info.DesiredMove = Body.transform.right;
     }
 
+    public float Distance(ThingInfo targ)
+    {
+        if (targ == null) return 999;
+        return Distance(targ.Thing);
+    }
     public float Distance(ThingController targ)
     {
         if (targ == null) return 999;
@@ -193,6 +166,11 @@ public class ThingController : MonoBehaviour
         return Vector3.Distance(targ, transform.position);
     }
 
+    public float LookAt(ThingInfo targ,float turnTime=0)
+    {
+        if (targ == null) return 0;
+        return LookAt(targ.Thing,turnTime);
+    }
     public float LookAt(ThingController targ,float turnTime=0)
     {
         if (targ == null) return 0;
@@ -215,9 +193,14 @@ public class ThingController : MonoBehaviour
     public virtual void TakeKnockback(Vector3 from,float amt)
     {
         Vector2 dir = transform.position - from;
-        Knockback = dir.normalized * amt;
+        Info.Knockback = dir.normalized * amt;
     }
 
+    public bool IsFacing(ThingInfo targ,float thresh=45)
+    {
+        if (targ == null) return false;
+        return IsFacing(targ.Thing,thresh);
+    }
     public bool IsFacing(ThingController targ,float thresh=45)
     {
         if (targ == null) return false;
@@ -271,66 +254,10 @@ public class ThingController : MonoBehaviour
         TakeEvent(e);
     }
     
-    // public virtual ActionScript DefaultAttackAction()
-    // {
-    //     Actions act = CurrentWeapon.Get<Actions>(EnumInfo.DefaultAction);
-    //     return GetAction(act);
-    // }
-
     public virtual ActionScript GetAction(Actions a)
     {
-        return Parser.Get(a,this);
+        return Parser.Get(a,Info);
     }
-
-    // private void OnTriggerEnter2D(Collider2D other)
-    // {
-    //     HitboxController hb = other.gameObject.GetComponent<HitboxController>();
-    //     if (hb != null && hb.Who != null)
-    //     {
-    //         // Debug.Log("COLL: " + hb.Who);
-    //         TakeEvent(God.E(EventTypes.OnTouch).Set(hb.Who));
-    //         if(!Touching.Contains(hb.Who)) Touching.Add(hb.Who);
-    //         //Only one because they'll call their own version
-    //     }
-    //     else
-    //     {
-    //         TakeEvent(God.E(EventTypes.OnTouchWall).Set(transform.position));
-    //     }
-    // }
-    //
-    // private void OnTriggerExit2D(Collider2D other)
-    // {
-    //     HitboxController hb = other.gameObject.GetComponent<HitboxController>();
-    //     if (hb != null)
-    //     {
-    //         Touching.Remove(hb.Who);
-    //     }
-    // }
-
-    // private void OnCollisionEnter2D(Collision2D other)
-    // {
-    //     ThingController tc = other.gameObject.GetComponent<ThingController>();
-    //     if (tc != null)
-    //     {
-    //         TakeEvent(God.E(EventTypes.OnTouch).Set(tc));
-    //         if(!Touching.Contains(tc)) Touching.Add(tc);
-    //         //Only one because they'll call their own version
-    //     }
-    //     else
-    //     {
-    //         TakeEvent(God.E(EventTypes.OnTouchWall).Set(other.GetContact(0).point));
-    //     }
-    // }
-    //
-    // private void OnCollisionExit2D(Collision2D other)
-    // {
-    //     ThingController tc = other.gameObject.GetComponent<ThingController>();
-    //     if (tc != null)
-    //     {
-    //         Touching.Remove(tc);
-    //     }
-    // }
-
 
     public void SetTeam(GameTeams team)
     {

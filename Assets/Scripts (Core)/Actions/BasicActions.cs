@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class IdleAction : ActionScript
 {
-    public IdleAction(ThingController who,EventInfo e=null)
+    public IdleAction(ThingInfo who,EventInfo e=null)
     {
         Setup(Actions.Idle,who,true);
     }
@@ -12,7 +12,7 @@ public class IdleAction : ActionScript
 
 public class StunAction : ActionScript
 {   
-    public StunAction(ThingController who,EventInfo e=null)
+    public StunAction(ThingInfo who,EventInfo e=null)
     {
         Setup(Actions.Stun,who);
         Duration = e != null ? e.GetFloat(NumInfo.Amount,0.5f) : 0.5f;
@@ -25,7 +25,7 @@ public class StunAction : ActionScript
         while (rot < 360)
         {
             rot += speed * Time.deltaTime;
-            Who.Body.transform.rotation = Quaternion.Euler(0,0,rot);
+            Who.Thing.Body.transform.rotation = Quaternion.Euler(0,0,rot);
             yield return null;
         }
         End();
@@ -34,12 +34,12 @@ public class StunAction : ActionScript
     public override void End()
     {
         base.End();
-        if (Who.Info == God.Player)
+        if (Who == God.Player)
         {
-            Who.LookAt(God.MouseLoc());
+            Who.Thing.LookAt(God.MouseLoc());
         }
         else
-            Who.Body.transform.rotation = Quaternion.Euler(0,0,0);
+            Who.Thing.Body.transform.rotation = Quaternion.Euler(0,0,0);
     }
 }
 
@@ -49,7 +49,7 @@ public class UseAction : ActionScript
 {
     public UseAction(){ }
     
-    public UseAction(ThingController who,EventInfo e=null)
+    public UseAction(ThingInfo who,EventInfo e=null)
     {
         Setup(Actions.Use,who);
         Anim = "Use";

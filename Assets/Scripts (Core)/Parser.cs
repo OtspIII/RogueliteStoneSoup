@@ -34,7 +34,7 @@ public static class Parser
         TraitDict.Add(Traits.Stackable,new StackableTrait());
     }
     
-    public static ActionScript Get(Actions act,ThingController who,EventInfo e=null)
+    public static ActionScript Get(Actions act,ThingInfo who,EventInfo e=null)
     {
         switch (act)
         {
@@ -95,43 +95,104 @@ public enum Traits
 {
     //Basic Traits:  0###
     None            =0000,
-    Actor           =0001,
-    Health          =0002,
-    Drop            =0003,
-    Despawn         =0004,
-    Player          =0100,
-    Exit            =0200,
-    DamageZone      =0201,
-    Tool            =0300,
-    Pickupable      =0301,
-    HealPack        =0310,
-    GoldCoins       =0311,
-    LimitedUse      =0312,
-    Stackable       =0313,
-    Projectile      =0400,
-    OnFire          =0500,
+    Actor           =0001,//Handles Actions
+    Health          =0002,//Handles Damage/Healing
+    Drop            =0003,//Spawn Thing On Death
+    Despawn         =0004,//Vanish After Time Passes
+    Player          =0100,//Read Keyboard/Mouse
+    Exit            =0200,//Win Game Upon Touching
+    DamageZone      =0201,//Deal Damage Upon Touching
+    Tool            =0300,//Can Be Used When Held
+    Pickupable      =0301,//Can Be Picked Up
+    HealPack        =0310,//Heals When Used
+    GoldCoins       =0311,//Gives Points When Touched
+    LimitedUse      =0312,//Self Destructs When Used Up
+    Stackable       =0313,//Stacks When Picked Up
+    Projectile      =0400,//Flies In A Direction
+    OnFire          =0500,//I Didn't Finish This Yet
     //Misha Traits:  11##
+    Misha1          =1101,
+    //AdamD         =20##,
+    AdamD1          =2001,
+    //AlejandroM    =25##,
+    AlejandroM1     =2501,
+    //ElioR         =30##,
+    ElioR1          =3001,
+    //JaidenB       =35##,
+    JaidenB1        =3501,
+    //JuliusP       =40##,
+    JuliusP1        =4001,
+    //MazK          =45##,
+    MazK1           =4501,
+    //MichaelT      =50##,
+    MichaelT1       =5001,
+    //QixiangD      =55##,
+    QixiangD1       =5501,
+    //RaphaelC      =60##,
+    RaphaelC1       =6001,
+    //SabahE        =65##,
+    SabahE1         =6501,
+    //SamsonW       =70##,
+    SamsonW1        =7001,
+    //SarahS        =75##,
+    SarahS1         =7501,
+    //TracyH        =80##,
+    TracyH1         =8001,
+    //WesleyP       =90##,
+    WesleyP1        =9001,
+    //YuChen        =95##,
+    YuChen1         =9501,
 }
 
 public enum Actions
 {
     //The Basics
-    None=0,
-    Idle=1,
-    Stun=2,
-    DefaultAction=3,
-    DefaultAttack=4,
-    Use=5,
+    None            =0,
+    Idle            =0001,//Do Nothing, Default Player Action
+    Stun            =0002,//Spin Uncontrollably
+    DefaultAction   =0003,//Find Your Default Action & Do It
+    DefaultAttack   =0004,//Find Your Default Attack & Do It
+    Use             =0005,//Generic Item Use Action
     
     //Attack Actions
-    Swing=101,
-    Lunge=102,
-    Shoot=103,
+    Swing           =0101,//Swing A Sword
+    Lunge           =0102,//Fly Forward & Deal Impact Damage
+    Shoot           =0103,//Fire A Projectile
     
     //AI Actions
-    Patrol=201,
-    Chase=202,
+    Patrol         =0201,//Walk Randomly
+    Chase          =0202,//Run At A Target
     
-    //Misc Actions
-    // SelfDestruct=301,
+    //Student Actions
+    //AdamD         =20##,
+    AdamD1          =2001,
+    //AlejandroM    =25##,
+    AlejandroM1     =2501,
+    //ElioR         =30##,
+    ElioR1          =3001,
+    //JaidenB       =35##,
+    JaidenB1        =3501,
+    //JuliusP       =40##,
+    JuliusP1        =4001,
+    //MazK          =45##,
+    MazK1           =4501,
+    //MichaelT      =50##,
+    MichaelT1       =5001,
+    //QixiangD      =55##,
+    QixiangD1       =5501,
+    //RaphaelC      =60##,
+    RaphaelC1       =6001,
+    //SabahE        =65##,
+    SabahE1         =6501,
+    //SamsonW       =70##,
+    SamsonW1        =7001,
+    //SarahS        =75##,
+    SarahS1         =7501,
+    //TracyH        =80##,
+    TracyH1         =8001,
+    //WesleyP       =90##,
+    WesleyP1        =9001,
+    //YuChen        =95##,
+    YuChen1         =9501,
+    
 }
