@@ -33,6 +33,16 @@ public static class God
         return new EventInfo(e);
     }
 
+    public static Coroutine C(IEnumerator c)
+    {
+        if (God.GM == null)
+        {
+            Debug.LogError("Tried to call God.C outside of the gameplay scene!");
+            return null;
+        }
+        return God.GM.StartCoroutine(c);
+    }
+
     
     /// Returns either true or false. The higher the odds param is, the more likely true.
     public static bool CoinFlip(float odds=0.5f)

@@ -122,13 +122,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4e6a35f2ee40aa46a25e832e60e8fbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LevelHolder: {fileID: 0}
-  SpawnPoints: []
-  HealthTxt: {fileID: 6799186917877728896}
+  Fader: {fileID: 4497842725835829419}
+  InfoTxt: {fileID: 6799186917877728896}
   InvTxt: {fileID: 7720522198783288196}
+  LevelHolder: {fileID: 0}
   Rooms: []
   DebugSpawn: {fileID: 0}
-  Fader: {fileID: 4497842725835829419}
+  LevelOverride: 0
 --- !u!1 &1505889798978773429
 GameObject:
   m_ObjectHideFlags: 0
@@ -354,6 +354,7 @@ MonoBehaviour:
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -558,6 +559,7 @@ MonoBehaviour:
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0

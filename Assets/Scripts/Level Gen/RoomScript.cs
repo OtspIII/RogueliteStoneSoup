@@ -21,7 +21,6 @@ public class RoomScript : MonoBehaviour
             SpawnPointController s = SpawnerHolder.GetChild(n).GetComponent<SpawnPointController>();
             if (s != null)
             {
-                God.GM.AddSpawn(s);
                 Spawners.Add(s);
             }
         }

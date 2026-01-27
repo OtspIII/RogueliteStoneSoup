@@ -25,13 +25,13 @@ public class GameSession
     {
         Level++;
         if (Level >= MaxLevel) Victory = true;
-        God.GM.PlayerWin();
+        God.C(BeatLevel());
     }
 
     public virtual void PlayerDeath(EventInfo e)
     {
         Defeat = true;
-        God.GM.PlayerLose();
+        God.C(LoseLevel());
     }
 
     public virtual IEnumerator BeatLevel()
