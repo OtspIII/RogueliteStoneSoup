@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameOption : ScriptableObject
 {
     public string Name;
-    public string Author;
+    public Authors Author;
 }
 
 [CreateAssetMenu(fileName = "ThingOption", menuName = "Scriptable Objects/ThingOption")]

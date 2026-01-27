@@ -130,24 +130,3 @@ public class Trait
 }
 
 
-public enum Traits
-{
-    //Basic Traits:  0###
-    None            =0000,
-    Actor           =0001,
-    Health          =0002,
-    Drop            =0003,
-    Despawn         =0004,
-    Player          =0100,
-    Exit            =0200,
-    DamageZone      =0201,
-    Tool            =0300,
-    Pickupable      =0301,
-    HealPack        =0310,
-    GoldCoins       =0311,
-    LimitedUse      =0312,
-    Stackable       =0313,
-    Projectile      =0400,
-    OnFire          =0500,
-    //Misha Traits:  11##
-}

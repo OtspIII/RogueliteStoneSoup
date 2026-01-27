@@ -1,9 +1,15 @@
+using System;
 using UnityEngine;
 
 public class SfXGnome : MonoBehaviour
 {
     public ParticleSystem Particles;
     public AudioSource AS;
+
+    public void Start()
+    {
+        if(God.GM != null && !God.GM.Gnomes.Contains(this)) God.GM.Gnomes.Add(this);
+    }
     
     public void Setup(GnomeOption o,int amt=0)
     {
@@ -23,5 +29,10 @@ public class SfXGnome : MonoBehaviour
         }
         if(!o.ManualDelete)
             Destroy(gameObject,life + 0.5f);
+    }
+
+    void OnDestroy()
+    {
+        if(God.GM != null) God.GM.Gnomes.Remove(this);
     }
 }

@@ -51,12 +51,9 @@ public class ThingController : MonoBehaviour
     
     public void Start()
     {
+        if(God.GM != null && !God.GM.Things.Contains(this)) God.GM.Things.Add(this);
         NameText.gameObject.SetActive(Input.GetKey(God.InfoKey));
         TakeEvent(EventTypes.Start);
-    }
-
-    public virtual void OnStart()
-    {
     }
 
     public void Update()
@@ -71,7 +68,6 @@ public class ThingController : MonoBehaviour
         TakeEvent(EventTypes.Update);
         
     }
-
     
     private void FixedUpdate()
     {
@@ -81,6 +77,11 @@ public class ThingController : MonoBehaviour
             if (Knockback.magnitude < 0.1)
                 Knockback = Vector2.zero;
         }
+    }
+    
+    void OnDestroy()
+    {
+        if(God.GM != null) God.GM.Things.Remove(this);
     }
 
     public void AddRB()

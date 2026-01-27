@@ -18,7 +18,6 @@ public class LevelBuilder
 
     public virtual void Build()
     {
-        if(God.Session == null) God.Session = new GameSession();
         God.LB = this;
         //Does the specific level we're on change any basic info (Size/LinkOdds/etc)? Do that here
         Customize();

@@ -1,15 +1,23 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public static class Parser 
 {
     public static bool Setup = false;
     public static Dictionary<Traits, Trait> TraitDict = new Dictionary<Traits, Trait>();
+    public static List<Authors> AllAuthors = new List<Authors>();
     
     public static void Init()
     {
         if (Setup) return;
         Setup = true;
+        foreach (Authors a in Enum.GetValues(typeof(Authors)))
+        {
+            if((int)a <= 11) continue;
+            AllAuthors.Add(a);
+        }
         TraitDict.Add(Traits.Health,new HealthTrait());
         TraitDict.Add(Traits.Actor,new ActorTrait());
         TraitDict.Add(Traits.Player,new PlayerTrait());
@@ -49,8 +57,61 @@ public static class Parser
         Debug.Log("ERROR MISSING TRAIT: " + t+"\nMust add to TraitManager");
         return null;
     }
+
+    public static LevelBuilder GetLB(Authors a)
+    {
+        if (a == Authors.Universal) a = AllAuthors[Random.Range(0,AllAuthors.Count)];
+        switch (a)
+        {
+            case Authors.MishaF: return new LevelBuilder();
+            default: return new LevelBuilder();
+        }
+    }
 }
 
+public enum Authors
+{
+    None=00,
+    Universal=01,
+    MishaF=11,
+    AdamD=20,
+    AlejandroM=25,
+    ElioR=30,
+    JaidenB=35,
+    JuliusP=40,
+    MazK=45,
+    MichaelT=50,
+    QixiangD=55,
+    RaphaelC=60,
+    SabahE=65,
+    SamsonW=70,
+    SarahS=75,
+    TracyH=80,
+    WesleyP=90,
+    YuChen=95,
+}
+
+public enum Traits
+{
+    //Basic Traits:  0###
+    None            =0000,
+    Actor           =0001,
+    Health          =0002,
+    Drop            =0003,
+    Despawn         =0004,
+    Player          =0100,
+    Exit            =0200,
+    DamageZone      =0201,
+    Tool            =0300,
+    Pickupable      =0301,
+    HealPack        =0310,
+    GoldCoins       =0311,
+    LimitedUse      =0312,
+    Stackable       =0313,
+    Projectile      =0400,
+    OnFire          =0500,
+    //Misha Traits:  11##
+}
 
 public enum Actions
 {
@@ -73,10 +134,4 @@ public enum Actions
     
     //Misc Actions
     // SelfDestruct=301,
-}
-
-public enum ProjTypes
-{
-    None=0,
-    Arrow=1,
 }

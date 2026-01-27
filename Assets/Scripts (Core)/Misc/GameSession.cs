@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class GameSession
 {
+    public Authors Author;
     public int Level = 1;
     public int MaxLevel = 10;
     public ThingInfo Player;
@@ -13,8 +14,9 @@ public class GameSession
     public List<ThingInfo> PlayerInventory = new List<ThingInfo>();
     public int InventoryIndex = 1;
 
-    public GameSession()
+    public GameSession(Authors a)
     {
+        if(a == Authors.None) a = Parser.AllAuthors[Random.Range(0,Parser.AllAuthors.Count)];
         if (God.GM != null && God.GM.LevelOverride > 0)
         {
             Level = God.GM.LevelOverride;

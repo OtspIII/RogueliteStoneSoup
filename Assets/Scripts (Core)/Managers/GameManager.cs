@@ -11,6 +11,14 @@ using UnityEngine.UI;
 //It's also in charge of any UI elements the game has
 public class GameManager : MonoBehaviour
 {
+    [Header("Debug Elements")]
+    //Whose game are we going to play? Picks randomly in GameSession if left blank.
+    public Authors CurrentAuthor;
+    //If you put an Option in here, two of them will spawn in the player's starting room. For testing.
+    public ThingOption DebugSpawn;
+    //What level does the game start on? If not 0, skips straight to the selected level.
+    public int LevelOverride = 0;
+    
     [Header("UI Elements")]
     //For fading in and out of blackness at level start and end
     public Image Fader;
@@ -21,16 +29,12 @@ public class GameManager : MonoBehaviour
     
     //We're going to spawn all the rooms as children of this empty GameObject
     [HideInInspector] public Transform LevelHolder;
-    //List of all the rooms we've spawned, just in case we need it
+    //List of all the rooms/things/etc we've spawned, just in case we need it
     [HideInInspector] public List<RoomScript> Rooms;
+    [HideInInspector] public List<ThingController> Things;
+    [HideInInspector] public List<SfXGnome> Gnomes;
     //Keeps track of the text that InfoTxt needs to display. See SetUI().
     private Dictionary<string, UIText> UIInfo = new Dictionary<string, UIText>();
-    
-    [Header("UI Elements")]
-    //If you put an Option in here, two of them will spawn in the player's starting room. For testing.
-    public ThingOption DebugSpawn;
-    //What level does the game start on? If not 0, skips straight to the selected level.
-    public int LevelOverride = 0;
 
     //All the code that needs to run before the level build process starts
     private void Awake()
@@ -44,10 +48,12 @@ public class GameManager : MonoBehaviour
     //Actually build the level
     void Start()
     {
+        //If this is the first level, create a new GameSession to track our progress
+        if(God.Session == null) God.Session = new GameSession(CurrentAuthor);
         //Spawn an empty game object to hold all our rooms.
         LevelHolder = new GameObject("Level").transform;
         //Create a new LevelBuilder and tell it to build a level for us
-        God.LB = new LevelBuilder();
+        God.LB = Parser.GetLB(God.Session.Author);
         God.LB.Build();
     }
     
