@@ -20,6 +20,7 @@ public class AttackAction : UseAction
     public override void HitBegin(GameCollision col)
     {
         base.HitBegin(col);
+        if (Who.Thing == null) return;
         if (God.OneOf(col.HBMe.Type, HitboxTypes.Body, HitboxTypes.Friendly)) return;
         ThingController hit = col.Other;
         if (AlreadyHit.Contains(hit)) return;

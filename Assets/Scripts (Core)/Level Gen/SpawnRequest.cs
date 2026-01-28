@@ -9,9 +9,11 @@ public class SpawnRequest
     public List<Tag> Mandatory = new List<Tag>();
     public List<Tag> Any = new List<Tag>();
     public int Level = 0;
+    public Authors Author;
 
     public SpawnRequest(params GameTags[] tags)
     {
+        Author = God.Session.Author;
         // Debug.Log("SR1: " + tags);
         foreach (GameTags t in tags)
         {
@@ -22,6 +24,7 @@ public class SpawnRequest
     
     public SpawnRequest(params string[] tags)
     {
+        Author = God.Session.Author;
         foreach (string t in tags)
         {
             Mandatory.Add(new Tag(t));
@@ -30,6 +33,7 @@ public class SpawnRequest
     
     public SpawnRequest(params Tag[] tags)
     {
+        Author = God.Session.Author;
         foreach (Tag t in tags)
         {
             Mandatory.Add(t);
@@ -68,36 +72,30 @@ public class SpawnRequest
         return God.Library.GetThing(this);
     }
 
-   
-    
-    
-
-    public bool JudgeLevel(ThingOption o)
+    public SpawnRequest SetAuthor(Authors a)
     {
-        if (Level < 0) return true;
-        if (o.LevelRange == Vector2Int.zero) return true;
-        int l = Level != 0 ? Level : God.Session.Level;
-        if (l < o.LevelRange.x && o.LevelRange.x > 0) return false;
-        if (l > o.LevelRange.y && o.LevelRange.y > 0) return false;
-        return true;
+        Author = a;
+        return this;
     }
+    
+    
 
-    // public void Refine()
+    // public bool JudgeLevel(ThingOption o)
     // {
-    //     if (God.GM.DebugSpawn != null) return;
-    //     for (int n = 0; n < Mandatory.Count; n++)
-    //     {
-    //         if (Mandatory[n].Value == GameTags.Something.ToString())
-    //         {
-    //             Mandatory[n].Custom = God.CoinFlip() ? GameTags.NPC.ToString() : GameTags.Pickup.ToString();
-    //         }
-    //     }
-    //
-    //     // if (Any.Contains(GameTags.Something))
-    //     // {
-    //     //     Any.Add(GameTags.NPC);
-    //     //     Any.Add(GameTags.Pickup);
-    //     // }
+    //     Debug.Log("AUTHORS: " + Author + " / " + o.Author);
+    //     //Make sure it's the right author. If either the option or the game is universal, it's okay
+    //     if (Author != Authors.Universal && o.Author != Authors.Universal && o.Author != Author) return false;
+    //     //If the level is set to -1 then anything is okay
+    //     if (Level < 0) return true;
+    //     //If the Option's level range isn't set up, it's okay
+    //     if (o.LevelRange == Vector2Int.zero) return true;
+    //     //If we didn't set the level manually just use the game session's current level
+    //     int l = Level != 0 ? Level : God.Session.Level;
+    //     //If we're too high or low level, it's not okay
+    //     if (l < o.LevelRange.x && o.LevelRange.x > 0) return false;
+    //     if (l > o.LevelRange.y && o.LevelRange.y > 0) return false;
+    //     //If nothing went wrong, we're good
+    //     return true;
     // }
 
     public override string ToString()

@@ -15,7 +15,7 @@ public static class Parser
         Setup = true;
         foreach (Authors a in Enum.GetValues(typeof(Authors)))
         {
-            if((int)a <= 11) continue;
+            if((int)a < 20) continue;
             AllAuthors.Add(a);
         }
         TraitDict.Add(Traits.Health,new HealthTrait());
@@ -67,19 +67,35 @@ public static class Parser
             default: return new LevelBuilder();
         }
     }
+
+    /// Okay, so this is pretty silly. If you don't set an Author, it'll read the name of your computer
+    /// If you add the name of your computer to this switch statement, it'll auto-set the author to be you if it's unset
+    /// This way you won't need to fuss with the CurrentAuthor variable on the GameManager
+    /// If you don't know your computer's name, just run "Debug.Log(Environment.UserName);" and it'll show in console
+    public static Authors FindAuthor()
+    {
+        Debug.Log(Environment.UserName);
+        switch (Environment.UserName)
+        {
+            case "Ipos": return Authors.Universal;
+        }
+        Debug.Log("FOUND NONE");
+        return Authors.None;
+    }
 }
 
 public enum Authors
 {
     None=00,
     Universal=01,
+    Random=02,
     MishaF=11,
+    MazK=12,
     AdamD=20,
     AlejandroM=25,
     ElioR=30,
     JaidenB=35,
     JuliusP=40,
-    MazK=45,
     MichaelT=50,
     QixiangD=55,
     RaphaelC=60,

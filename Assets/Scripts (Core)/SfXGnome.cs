@@ -5,6 +5,8 @@ public class SfXGnome : MonoBehaviour
 {
     public ParticleSystem Particles;
     public AudioSource AS;
+    public GnomeOption Option;
+    public float Lifespan;
 
     public void Start()
     {
@@ -13,6 +15,7 @@ public class SfXGnome : MonoBehaviour
     
     public void Setup(GnomeOption o,int amt=0)
     {
+        Option = o;
         float life = 0;
         if (o.Particles != null)
         {
@@ -27,6 +30,7 @@ public class SfXGnome : MonoBehaviour
             AS.PlayOneShot(o.Audio);
             life = Mathf.Max(life, o.Audio.length);
         }
+        Lifespan = life;
         if(!o.ManualDelete)
             Destroy(gameObject,life + 0.5f);
     }

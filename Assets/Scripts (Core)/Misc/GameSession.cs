@@ -16,10 +16,19 @@ public class GameSession
 
     public GameSession(Authors a)
     {
-        if(a == Authors.None) a = Parser.AllAuthors[Random.Range(0,Parser.AllAuthors.Count)];
-        if (God.GM != null && God.GM.LevelOverride > 0)
+        //If the author isn't set, auto-set it. This won't work unless you go to Parser and add the code for it
+        if (a == Authors.None) 
+            a = Parser.FindAuthor();
+        //If that didn't work or if I want it random, make it a random one 
+        if (a == Authors.None || a == Authors.Random)
         {
-            Level = God.GM.LevelOverride;
+            a = Parser.AllAuthors[Random.Range(0,Parser.AllAuthors.Count)];
+        }
+        Author = a;
+        if (God.GM != null) 
+        {
+            God.GM.CurrentAuthor = a;
+            if(God.GM.LevelOverride > 0) Level = God.GM.LevelOverride;
         }
     }
     
