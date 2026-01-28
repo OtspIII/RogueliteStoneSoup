@@ -232,12 +232,13 @@ public class LevelBuilder
         return 0;
     }
     
-    public float JudgeThing(SpawnRequest sr, ThingOption o)
+    public float JudgeThing(SpawnRequest sr, ThingOption o,bool backup=false)
     {
-        Debug.Log("AUTHORS: " + sr.Author + " / " + o.Author);
-        //Make sure it's the right author. If either the option or the game is universal, it's okay
-        if (sr.Author != Authors.Universal && o.Author != Authors.Universal && o.Author != sr.Author) return 0;
-        // if (!sr.JudgeLevel(o)) return 0;
+        if (!backup)
+        {
+            //Make sure it's the right author. If either the option or the game is universal, it's okay
+            if (sr.Author != Authors.Universal && o.Author != Authors.Universal && o.Author != sr.Author) return 0;
+        }
         float w = 1;
         foreach(Tag t in sr.Mandatory)
             if (o.HasTag(t.Value, out float tw))

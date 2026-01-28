@@ -91,6 +91,17 @@ public class GameLibrary : MonoBehaviour
             //If it likes it at all, add it (and how much it liked it) to the list
             if(w > 0) opts.Add(o,w);
         }
+        //If we get zero results, do a fallback where we don't care about the author.
+        //Maybe you just don't have anything with this tag yet
+        if (opts.Keys.Count == 0)
+        {
+            foreach (ThingOption o in ThingOptions)
+            {
+                //By setting this override true it'll ignore authors of Options
+                float w = b.JudgeThing(sr,o,true);
+                if(w > 0) opts.Add(o,w);
+            }
+        }
         //If there was nothing that could be spawned, throw a warning. You might need to make more things!
         if (opts.Keys.Count == 0)
         {
