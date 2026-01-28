@@ -77,9 +77,8 @@ public static class Parser
         Debug.Log(Environment.UserName);
         switch (Environment.UserName)
         {
-            case "Ipos": return Authors.Universal;
+            case "Ipos":case"otspi": return Authors.Universal;
         }
-        Debug.Log("FOUND NONE");
         return Authors.None;
     }
 }

@@ -204,6 +204,7 @@ public static class God
         return Vector2Int.zero;
     }
 
+    ///Feed this a direction (up) and it'll return its opposite (down)
     public static Directions OppositeDir(Directions d)
     {
         switch (d)

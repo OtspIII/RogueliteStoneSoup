@@ -4,16 +4,30 @@ using UnityEngine;
 
 public class LevelBuilder
 {
-    public Vector2Int Size = new Vector2Int(2, 2);
-    public Dictionary<int, Dictionary<int, GeoTile>> GeoMap = new Dictionary<int, Dictionary<int, GeoTile>>();
-    public List<GeoTile> AllGeo = new List<GeoTile>();
+    //These are variables meant to be set in Customize as desired
+    //How big should the level be?
+    public Vector2Int Size;
+    //What is the % chance that any two adjacent rooms that don't need to be are connected
     public float LinkOdds = 0.1f;
+    
+    //And here are the variables that are just bookkeeping for the level dev process
+    //A grid of tiles, lets you find a tile by its x/y coordinate
+    public Dictionary<int, Dictionary<int, GeoTile>> GeoMap = new Dictionary<int, Dictionary<int, GeoTile>>();
+    //A list of all the tiles, in case we just want to iterate through them
+    public List<GeoTile> AllGeo = new List<GeoTile>();
+    //What tile does the player spawn at?
     public GeoTile PlayerSpawn;
+    //What tile does the exit spawn at?
     public GeoTile Exit;
+    //A list of all the spawn points in the game you can spawn stuff at
     public List<SpawnPointController> SpawnPoints = new List<SpawnPointController>();
+    //A list of all the spawn points that just want to spawn their own thing
     public List<SpawnPointController> SpawnPointsFixed = new List<SpawnPointController>();
-    public List<GameTags> ToSpawnTags = new List<GameTags>();
+    //A list of all the types of things we want to spawn somewhere in the level
+    public List<SpawnRequest> SpawnRequests = new List<SpawnRequest>();
+    //A list of all the specific things we want to spawn in the level
     public List<ThingOption> ToSpawn = new List<ThingOption>();
+    //If a SpawnPoint can spawn "Something" it'll be okay for all of these options 
     public List<string> Somethings = new List<string>(){"NPC","Weapon","Consumable","ScoreThing"};
 
     public virtual void Build()
@@ -37,53 +51,67 @@ public class LevelBuilder
         SpawnThings();
     }
     
+    ///Does the specific level we're on change any basic info (Size/LinkOdds/etc)? Do that here
     public virtual void Customize()
     {
         //As you go deeper the map gets bigger
         int l = God.Session.Level;
+        //Width starts at 2, and every third level grows by 1
         int w = 2 + Mathf.FloorToInt(l/3);
+        //Height starts at 2, and every other level grows by 1
         int h = 2 + Mathf.FloorToInt(l/2);
         Size = new Vector2Int(w, h);
+        //If we haven't created a player yet for this playthrough, make one.
         if (God.Session.Player == null)
             God.Session.Player = God.Library.GetThing(new SpawnRequest(GameTags.Player)).Create();
     }
 
+    ///Build out a zoomed-out map of the level, without specific rooms
     public virtual void BuildGeoMap()
     {
+        //Two nested for loops lets us build a grid of room slots at our desired size
         for (int x = 0; x < Size.x; x++)for (int y = 0; y < Size.y; y++)
         {
+            //Spawn a blank room slot into the position 
             GeoTile g = new GeoTile(x, y,this);
+            //If our dictionary doesn't have this X-row added, add it
             if(!GeoMap.ContainsKey(x)) GeoMap.Add(x,new Dictionary<int, GeoTile>());
+            //Add it to the dictionary and list of slots
             GeoMap[x].Add(y,g);
             AllGeo.Add(g);
         }
     }
 
+    ///Connect geomorphs to each other to make sure there's a path from player spawn to exit
     public virtual void BuildMainPath()
     {
         //Make a safe path leading to the exit
+        //Pick the column the player spawns in (at the bottom of the level)
         int start = Random.Range(0, Size.x);
         //For each row. . .
         for (int y = 0; y < Size.y; y++)
         {
-            //Pick a slot to move the path towards
+            //Pick a slot to move the path towards before moving up a row
             int end = Random.Range(0, Size.x);
             if(end == start) end = Random.Range(0, Size.x);
             int x = start;
-            //If this is the bottom row, the first place we are is the player spawn
+            //If this is the bottom row. . .
             if (y == 0)
             {
+                //Then our start column is the player start point
                 PlayerSpawn = GetGeo(x, 0);
                 PlayerSpawn.SetPath(GeoTile.GeoTileTypes.PlayerStart);
             }
-
-            God.Log("Y: " + y + " / X:" + start+"->"+end);
+            //While we haven't reached out destination. . .
             while(x != end)
             {
                 int old = x;
+                //Take a step towards the destination
                 x = (int)Mathf.MoveTowards(x, end, 1);
+                //Open up a connection between the tile we came from and the one we're at now
                 GeoTile a = GetGeo(old, y);
                 GeoTile b = GetGeo(x, y);
+                //And make sure it's marked as being on the main path (does nothing for now)
                 b.SetPath(GeoTile.GeoTileTypes.MainPath);
                 if (start > end)
                 {
@@ -96,8 +124,9 @@ public class LevelBuilder
                     b.Links.Add(Directions.Left);
                 }
             }
+            //Mark our end point as the start of the path on the next row
             start = end;
-            //Move up row up and repeat
+            //Move up row up and repeat, linking to the slot below
             if (y < Size.y - 1)
             {
                 GeoTile a = GetGeo(start, y);
@@ -107,21 +136,28 @@ public class LevelBuilder
             }
             else
             {
+                //But if we're at the top of the map, mark our ultimate position as the exit spawn location
                 Exit = GetGeo(start, y); 
                 Exit.SetPath(GeoTile.GeoTileTypes.Exit);
             }
         }
     }
 
+    ///Open more connections between geomorphs to make sure all are accessable
     public virtual void ConnectAllGeos()
     {
         //Open up a bunch of random links between rooms
+        //For each room slot that exists. . .
         foreach (GeoTile g in AllGeo)
         {
+            //Get a list of the slots above it and to its right
             List<Directions> maybe = g.PotentialLinks();
+            //For each possible link. . .
             foreach (Directions d in maybe)
             {
+                //Flip a (weighted) coin. If it comes up false, don't link the room slots
                 if (!God.CoinFlip(LinkOdds)) continue;
+                //But if it came up true, and its neighbor actually exists, connect them!
                 GeoTile other = g.Neighbor(d);
                 if (other == null) continue;
                 g.Links.Add(d);
@@ -132,32 +168,40 @@ public class LevelBuilder
         //Do we have any isolated rooms you can't get to?
         //If so, open some more links
         List<GeoTile> uncon = UnconnectedTest();
+        //Only do this while loop 99 times, in case we cause an infinite loop
         int safety = 99;
         while (uncon.Count > 0 && safety > 0)
         {
             safety--;
+            //For each tile that's not connected to anyone. . .
             foreach (GeoTile g in uncon)
             {
+                //Get a list of all four of its neighbors
                 List<Directions> maybe = g.PotentialLinks(false);
+                //If it has no neighbors, something's wrong and we should throw an error
                 if (maybe.Count == 0)
                 {
-                    Debug.Log("TILE BOTH LINKLESS AND UNCONNECTABLE: " + g);
+                    Debug.LogError("TILE BOTH LINKLESS AND UNCONNECTABLE: " + g);
                     continue;
                 }
-                //Roll twice and take the smaller to bias towards up/down links
+                //Up/down links are more level-design-fun than left/right ones, and up/down are returned first in the list
+                //So roll twice and take the smaller to bias towards up/down links
                 int roll = Mathf.Min(Random.Range(0, maybe.Count), Random.Range(0, maybe.Count));
                 Directions d = maybe[roll];
+                //Find the neighbor in that direction and make sure it exists
                 GeoTile other = g.Neighbor(d);
                 if (other == null)
                 {
-                    Debug.Log("POTENTIAL LINK NULL: " + g + " / " + d + " / " + other);
+                    Debug.LogWarning("POTENTIAL LINK NULL: " + g + " / " + d + " / " + other);
                     continue;
                 }
-                if ((int)other.Path <= (int)GeoTile.GeoTileTypes.Connected)
+                //If the tile we're connecting to is reachable, connect to it and mark yourself as reachable
+                if (other.Path != GeoTile.GeoTileTypes.Unreachable)
                 {
                     g.Links.Add(d);
                     other.Links.Add(God.OppositeDir(d));
                     g.SetPath(GeoTile.GeoTileTypes.Connected);
+                    g.Depth = other.Depth + 1;
                 }
 
             }
@@ -189,7 +233,8 @@ public class LevelBuilder
             }
         }
     }
-
+    
+    ///Do a flood of all the room slots in the dungeon and return a list of all that aren't connected 
     public List<GeoTile> UnconnectedTest()
     {
         //Make a flood to see if all the rooms are connected
@@ -262,24 +307,31 @@ public class LevelBuilder
         }
         return w;
     }
+
+    public virtual void AddSpawn(params GameTags[] t)
+    { SpawnRequests.Add(new SpawnRequest(t)); }
+    public virtual void AddSpawn(params string[] t)
+    { SpawnRequests.Add(new SpawnRequest(t)); }
+    public virtual void AddSpawn(SpawnRequest sr)
+    { SpawnRequests.Add(sr); }
     
     public virtual void FindQuotas()
     {
         float rms = AllGeo.Count - 2; //How many rooms other than start and end are there?
         //We're going to spawn 1 monster per room on average, but each level the density rises
         float mons = God.RoundRand(rms * (1f + (God.Session.Level * 0.1f)));
-        for(float n=0;n<mons;n++) ToSpawnTags.Add(GameTags.NPC);
+        for(float n=0;n<mons;n++) AddSpawn(GameTags.NPC);
         float wpn = God.RoundRand(1 + (rms * 0.05f));
-        for(float n=0;n<wpn;n++) ToSpawnTags.Add(GameTags.Weapon);
+        for(float n=0;n<wpn;n++) AddSpawn(GameTags.Weapon);
         float con = God.RoundRand(rms * 0.25f);
-        for(float n=0;n<con;n++) ToSpawnTags.Add(GameTags.Consumable);
+        for(float n=0;n<con;n++) AddSpawn(GameTags.Consumable);
         float scr = God.RoundRand(rms * 0.5f);
-        for(float n=0;n<scr;n++) ToSpawnTags.Add(GameTags.ScoreThing);
+        for(float n=0;n<scr;n++) AddSpawn(GameTags.ScoreThing);
         
         //Then we take those tags and use them to decide on a list of actual things to spawn
-        foreach (GameTags tag in ToSpawnTags)
+        foreach (SpawnRequest sr in SpawnRequests)
         {
-            ThingOption o = God.Library.GetThing(new SpawnRequest(tag));
+            ThingOption o = God.Library.GetThing(sr);
             ToSpawn.Add(o);
         }
         
@@ -343,86 +395,5 @@ public class LevelBuilder
         // {
         //     g.Room.Spawn();
         // }
-    }
-}
-
-[System.Serializable]
-public class GeoTile
-{
-    public int X;
-    public int Y;
-    public GeoTileTypes Path = GeoTileTypes.Unreachable;
-    // public bool PlayerStart;
-    public List<Directions> Links = new List<Directions>();
-    // public bool MainPath;
-    // public int Depth = 999;
-    public LevelBuilder Builder;
-    public RoomOption RoomType;
-    public RoomScript Room;
-    
-    public GeoTile(int x, int y, LevelBuilder b)
-    {
-        Builder = b;
-        X = x;
-        Y = y;
-    }
-
-    public List<Directions> PotentialLinks(bool urOnly=true)
-    {
-        List<Directions> r = new List<Directions>();
-        if(Y != Builder.Size.y - 1 && !Links.Contains(Directions.Up)) r.Add(Directions.Up);
-        if(!urOnly && Y != 0 && !Links.Contains(Directions.Down)) r.Add(Directions.Down);
-        if(X != Builder.Size.x - 1 && !Links.Contains(Directions.Right)) r.Add(Directions.Right);
-        if(!urOnly && X != 0 && !Links.Contains(Directions.Left)) r.Add(Directions.Left);
-        return r;
-    }
-
-    public GeoTile Neighbor(Directions d)
-    {
-        return Neighbor(God.DirToV(d));
-    }
-    public GeoTile Neighbor(Vector2Int d)
-    {
-        return Neighbor(d.x, d.y);
-    }
-    public GeoTile Neighbor(int x, int y)
-    {
-        int xx = X + x;
-        int yy = Y + y;
-        return Builder.GetGeo(xx, yy);
-    }
-
-    public List<GeoTile> Neighbors(bool linkedOnly=false)
-    {
-        List<GeoTile> r = new List<GeoTile>();
-        List<Directions> dirs = linkedOnly ? Links : God.Dirs;
-        foreach(Directions d in dirs)
-        {
-            GeoTile nei = Neighbor(d);
-            if(nei != null && !r.Contains(nei))
-                r.Add(nei);
-        }
-        return r;
-    }
-
-    public void SetPath(GeoTileTypes t)
-    {
-        if ((int)t < (int)Path)
-            Path = t;
-    }
-
-    public override string ToString()
-    {
-        return "GeoTile[" + X + "." + Y + " / " + Path + "]";
-    }
-
-    public enum GeoTileTypes
-    {
-        None=0,
-        PlayerStart=1,
-        Exit=2,
-        MainPath=3,
-        Connected=4,
-        Unreachable=5
     }
 }
