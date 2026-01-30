@@ -13,13 +13,17 @@ MonoBehaviour:
   m_Name: Wand
   m_EditorClassIdentifier: 
   Name: Wand
+  Author: 0
   Team: 1
   Body: {fileID: 629948465317790645, guid: b4fa405680f33044abe2c4567ecf147f, type: 3}
   Art: {fileID: -4421300922047078791, guid: 4bf70cedee363fb4b9048f89e88c9ddc, type: 3}
   Color: {r: 1, g: 1, b: 1, a: 1}
+  Size: 1
   Tags:
   - Common: 202
     Custom: 
+    W: 1
+  LevelRange: {x: 0, y: 0}
   Trait:
   - Trait: 312
     Numbers:
@@ -29,14 +33,20 @@ MonoBehaviour:
     Acts: []
     SpawnReq:
       Fixed: {fileID: 0}
-      Mandatory: 
-      Any: 
-  Size: 1
+      Mandatory: []
+      Any: []
+      Level: 0
+      Author: 0
+  DefaultAttack: 103
+  ToSpawn:
+    Fixed: {fileID: 11400000, guid: 69ef23eaac7508d43a5ae431368fbf0d, type: 2}
+    Mandatory: []
+    Any: []
+    Level: 0
+    Author: 0
+  FloorBody: {fileID: 0}
+  FloorArt: {fileID: 0}
   Damage: 4
   IdealRange: 5
   SpeedMult: 1
   ActDuration: 1
-  DefaultAttack: 103
-  Projectile: {fileID: 11400000, guid: 69ef23eaac7508d43a5ae431368fbf0d, type: 2}
-  FloorBody: {fileID: 0}
-  FloorArt: {fileID: 0}

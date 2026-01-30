@@ -72,6 +72,10 @@ public class SpawnRequest
     public ThingOption FindThing()
     {
         if (Fixed != null) return Fixed;
+        if (Mandatory.Count == 0 && Any.Count == 0)
+        {
+            Debug.LogWarning("Spawn request totally blank: could spawn anything.");
+        }
         return God.Library.GetThing(this);
     }
 
