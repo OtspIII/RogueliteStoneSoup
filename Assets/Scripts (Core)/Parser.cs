@@ -74,7 +74,7 @@ public static class Parser
     /// If you don't know your computer's name, just run "Debug.Log(Environment.UserName);" and it'll show in console
     public static Authors FindAuthor()
     {
-        Debug.Log(Environment.UserName);
+        // Debug.Log(Environment.UserName);
         switch (Environment.UserName)
         {
             case "Ipos":case"otspi": return Authors.Universal;
