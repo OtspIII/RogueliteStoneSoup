@@ -87,6 +87,7 @@ public class ProjectileTrait : Trait
                 float spd = i.Get(NumInfo.Speed,10);
                 who.Info.CurrentSpeed = spd;
                 who.AddRB();
+                who.ActualMove = who.transform.up * spd;
                 who.RB.linearVelocity = who.transform.up * spd;
                 break;
             }

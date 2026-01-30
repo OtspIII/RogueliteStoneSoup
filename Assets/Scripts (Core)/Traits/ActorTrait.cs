@@ -91,7 +91,7 @@ public class ActorTrait : Trait
             }
             case EventTypes.Knockback:
             {
-                i.Who.Knockback = e.GetVector();
+                i.Who.Thing.Knockback = e.GetVector();
                 break;
             }
             case EventTypes.OnTouch:

@@ -26,7 +26,6 @@ public class ThingInfo
     public float VisionRange = 4;
     public float CurrentSpeed; //Set by traits so you don't need to recalc constantly
     public Vector2 DesiredMove;
-    public Vector2 Knockback;
 
     public ThingInfo()
     {

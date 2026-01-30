@@ -15,78 +15,92 @@ public class ThingController : MonoBehaviour
     public Collider2D NoClip;     //I have a tiny collider that only collides with walls. To make sure I don't escape the stage.
     public ThingInfo Info;        //My Info. The core of who I am. Most of the code that controls me lives here.
     public ThingInfo CurrentWeapon {get {return Info.CurrentWeapon;} set { Info.CurrentWeapon = value;}}  //My currently equipped item's info
+    [Header("Movement Bookkeeping")]
+    public Vector2 ActualMove;
+    public Vector2 Knockback;
     [Header("Debug Info")]
     public Vector3 StartSpot;     //I write down where I first spawned, just so I know
     public string DebugTxt;       //This just exists as a secondary debug.log. Set it and check its status in the inspector
     
     public void Awake()
     {
-        StartSpot = transform.position;
-        RB = GetComponent<Rigidbody2D>();
+        StartSpot = transform.position;    //Record our start spot
+        RB = GetComponent<Rigidbody2D>();  //If we have a rigidbody, note it
     }
 
     public void Start()
     {
+        //When I spawn, add me to the list of Things that exist that's on the GameManager
         if(God.GM != null && !God.GM.Things.Contains(this)) God.GM.Things.Add(this);
+        //When I spawn, display my name if the 'show names' button is currently held
         NameText.gameObject.SetActive(Input.GetKey(God.InfoKey));
+        //Tell my Traits that we're started
         TakeEvent(EventTypes.Start);
     }
 
     public void Update()
     {
+        //If the player hits the 'show name' key, show my name
         if (Input.GetKeyDown(God.InfoKey)) NameText.gameObject.SetActive(true);
+        //If the player lets go of the 'show name' key, hide my name
         if (Input.GetKeyUp(God.InfoKey)) NameText.gameObject.SetActive(false);
+        //If a new frame starts and we're in the middle of resolving an Event, that means the event bugged out and didn't finish
         if (Info.MidEvent)
         {
-            Debug.Log("Thing Got Stuck Mid-Action: " + Name);
+            Debug.LogError("Thing Got Stuck Mid-Action: " + Name);
             Info.MidEvent = false;
         }
+        //Tell all my traits to run their 'every frame' code
         TakeEvent(EventTypes.Update);
-        
     }
     
     private void FixedUpdate()
     {
-        if (Info.Knockback != Vector2.zero)
+        if (RB != null)
         {
-            Info.Knockback *= 0.9f;
-            if (Info.Knockback.magnitude < 0.1)
-                Info.Knockback = Vector2.zero;
+            //If I'm suffering knockback, resolve it.
+            if (Knockback != Vector2.zero)
+            {
+                //My knockback gets weaker every frame, and once it's weak enough it sets fully to 0
+                Knockback *= 0.9f;
+                if (Knockback.magnitude < 0.1)
+                    Knockback = Vector2.zero;
+            }
+
+            //Actual assignment of velocity to the rigidbody
+            //ActualMove is calculated by the thing's Action
+            RB.linearVelocity = ActualMove + Knockback;
         }
     }
     
+    //When I get destroyed, tell the GM to take me off the list of everything that exists
     void OnDestroy()
     {
         if(God.GM != null) God.GM.Things.Remove(this);
     }
 
+    ///Adds a rigidbody to the Thing. Called by some Traits during setup.
     public void AddRB()
     {
+        //If I already have a RB, don't add a second one
         if (RB != null) return;
         RB = gameObject.AddComponent<Rigidbody2D>();
         RB.constraints = RigidbodyConstraints2D.FreezeRotation;
         RB.gravityScale = 0;
     }
     
-    public void TakeEvent(EventTypes e)
-    {
-        TakeEvent(new EventInfo(e));
-    }
-
-    public EventInfo Ask(EventTypes e, bool wpn = false)
-    {
-        return Info.Ask(e,wpn);
-    }
-    public EventInfo Ask(EventInfo e, bool wpn = false)
-    {
-        return Info.Ask(e,wpn);
-    }
+    //#################Event Shortcuts###################
+    //Most of the real code for these lives on ThingInfo, but I added a function here that just calls that for QoL purposes
+    //If you want to know what they do, look at their ThingInfo equivalents
     
-    public void TakeEvent(EventInfo e,bool instant=false,int safety=999)
-    {
-        // Debug.Log("TAKE EVENT A: " + e.Type);
-        Info.TakeEvent(e,instant,safety);
-    }
+    public EventInfo Ask(EventTypes e, bool wpn = false) { return Info.Ask(e,wpn); }
+    public EventInfo Ask(EventInfo e, bool wpn = false) { return Info.Ask(e,wpn); }
+    public void TakeEvent(EventTypes e,bool instant=false,int safety=999) { Info.TakeEvent(new EventInfo(e)); }
+    public void TakeEvent(EventInfo e,bool instant=false,int safety=999) { Info.TakeEvent(e,instant,safety); }
+    
+    //#################Useful Functions###################
+    //There's a ton of stuff that a creature might want to do that I wrote functions to make easier
+    //You can have your actions/etc just call these instead of coding them directly
     
     public void MoveTowards(ThingInfo targ,float thresh=0)
     {
@@ -184,8 +198,8 @@ public class ThingController : MonoBehaviour
     
     public void TakeKnockback(Vector3 from,float amt)
     {
-        Vector2 dir = transform.position - from;
-        Info.Knockback = dir.normalized * amt;
+        Vector2 dir = transform.position - from; //Should this be an event??
+        Knockback = dir.normalized * amt;
     }
 
     public bool IsFacing(ThingInfo targ,float thresh=45)
