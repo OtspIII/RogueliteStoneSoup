@@ -1,9 +1,12 @@
 using UnityEngine;
 
+///A type of Option that auto-adds the Projectile trait
 [CreateAssetMenu(fileName = "ProjectileOption", menuName = "Scriptable Objects/ProjectileOption")]
 public class ProjectileOption : ThingOption
 {
+    //How much damage does the projectile do on an impact?
     public float Damage;
+    //How fast does the projectile fly?
     public float Speed;
     
     public override ThingInfo Create()

@@ -401,7 +401,7 @@ public class LevelBuilder
         if (!backup)
         {
             //Make sure it's the right author. If either the option or the game is universal, it's okay
-            if (sr.Author != Authors.Universal && o.Author != Authors.Universal && o.Author != sr.Author) return 0;
+            if (sr.Author != Authors.Universal && o.Author != Authors.Universal && o.Author != Authors.None && o.Author != sr.Author) return 0;
         }
         //If the level is set to -1 or the option's level range is unset then anything is okay
         if (sr.Level >= 0 && o.LevelRange != Vector2Int.zero)

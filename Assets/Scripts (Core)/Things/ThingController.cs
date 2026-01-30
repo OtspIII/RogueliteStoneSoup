@@ -5,34 +5,26 @@ using UnityEngine;
 
 public class ThingController : MonoBehaviour
 {
+    //If you ask me my name, I'll give you the name from my info
     public string Name {get {return Info.Name;} set { Info.Name = value;}}
-    [HideInInspector]
-    public Rigidbody2D RB;
-    public BodyController Body;
-    public SpriteRenderer Icon;
-    public TextMeshPro NameText;
-    public Collider2D NoClip;
-    
-    public Vector3 StartSpot;
-    public string DebugTxt;
-
-    public ThingInfo Info;
-    
-    // public CharacterStats Stats;
-    public ThingInfo CurrentWeapon {get {return Info.CurrentWeapon;} set { Info.CurrentWeapon = value;}}
-    public BodyController WeaponBody;
+    [HideInInspector] public Rigidbody2D RB; //I spawn my own RB, so hide this from the inspector
+    public BodyController Body;   //My body, which I spawn as a separate prefab
+    public BodyController WeaponBody; //My currently equipped item's body
+    public SpriteRenderer Icon;   //I have a little sprite that can be used for context action icons. 'Hit E to pick me up' type stuff
+    public TextMeshPro NameText;  //I have a textmesh that displays my name. You can see it by holding shift.
+    public Collider2D NoClip;     //I have a tiny collider that only collides with walls. To make sure I don't escape the stage.
+    public ThingInfo Info;        //My Info. The core of who I am. Most of the code that controls me lives here.
+    public ThingInfo CurrentWeapon {get {return Info.CurrentWeapon;} set { Info.CurrentWeapon = value;}}  //My currently equipped item's info
+    [Header("Debug Info")]
+    public Vector3 StartSpot;     //I write down where I first spawned, just so I know
+    public string DebugTxt;       //This just exists as a secondary debug.log. Set it and check its status in the inspector
     
     public void Awake()
-    {
-        OnAwake();
-    }
-
-    public virtual void OnAwake()
     {
         StartSpot = transform.position;
         RB = GetComponent<Rigidbody2D>();
     }
-    
+
     public void Start()
     {
         if(God.GM != null && !God.GM.Things.Contains(this)) God.GM.Things.Add(this);
@@ -190,7 +182,7 @@ public class ThingController : MonoBehaviour
         return Mathf.Abs(Mathf.DeltaAngle(z, rot_z));
     }
     
-    public virtual void TakeKnockback(Vector3 from,float amt)
+    public void TakeKnockback(Vector3 from,float amt)
     {
         Vector2 dir = transform.position - from;
         Info.Knockback = dir.normalized * amt;
@@ -219,7 +211,7 @@ public class ThingController : MonoBehaviour
         return Mathf.Abs(Mathf.DeltaAngle(tdir, rot)) < thresh;
     }
 
-    public virtual float PlayAnim(string anim="",float speed=1)
+    public float PlayAnim(string anim="",float speed=1)
     {
         float r = 0;
         r = Math.Max(r,Body.PlayAnim(anim,speed));
@@ -233,7 +225,7 @@ public class ThingController : MonoBehaviour
         TakeEvent(God.E(EventTypes.SetPhase).Set(n));
     }
     
-    public virtual void DoAction(ActionScript a, EventInfo e=null)
+    public void DoAction(ActionScript a, EventInfo e=null)
     {
         if(e == null) e = God.E();
         e.Type = EventTypes.StartAction;
@@ -241,12 +233,12 @@ public class ThingController : MonoBehaviour
         TakeEvent(e);
     }
     
-    public virtual void DoAction(string a, EventInfo e=null)
+    public void DoAction(string a, EventInfo e=null)
     {
         DoAction(Enum.Parse<Actions>(a),e);
     }
     
-    public virtual void DoAction(Actions a=Actions.None, EventInfo e=null)
+    public void DoAction(Actions a=Actions.None, EventInfo e=null)
     {
         if(e == null) e = God.E();
         e.Type = EventTypes.StartAction;
@@ -254,11 +246,6 @@ public class ThingController : MonoBehaviour
         TakeEvent(e);
     }
     
-    public virtual ActionScript GetAction(Actions a)
-    {
-        return Parser.Get(a,Info);
-    }
-
     public void SetTeam(GameTeams team)
     {
         Body.SetTeam(team);

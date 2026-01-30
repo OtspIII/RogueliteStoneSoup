@@ -35,7 +35,8 @@ public class ToolTrait : Trait
             }
             case EventTypes.GetProjectile:
             {
-                e.Set(i.GetOption());
+                ThingOption p = i.SpawnReq.FindThing();
+                e.Set(p);
                 break;
             }
             case EventTypes.OnHoldStart:

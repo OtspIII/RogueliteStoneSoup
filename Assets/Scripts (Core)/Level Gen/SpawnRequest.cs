@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [System.Serializable]
 public class SpawnRequest
@@ -11,6 +12,13 @@ public class SpawnRequest
     public int Level = 0;
     public Authors Author;
 
+    public SpawnRequest(ThingOption o)
+    {
+        if(God.Session != null)
+            Author = God.Session.Author;
+        Fixed = o;
+    }
+    
     public SpawnRequest(params GameTags[] tags)
     {
         Author = God.Session.Author;
@@ -63,11 +71,6 @@ public class SpawnRequest
 
     public ThingOption FindThing()
     {
-        // if (!Refined)
-        // {
-        //     Refine();
-        //     Refined = true;
-        // }
         if (Fixed != null) return Fixed;
         return God.Library.GetThing(this);
     }

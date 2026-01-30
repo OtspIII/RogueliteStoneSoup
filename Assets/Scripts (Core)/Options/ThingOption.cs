@@ -10,10 +10,10 @@ public class ThingOption : GameOption //A generic class for anything that might 
     public BodyController Body;                //A link to this thing's body prefab
     public Sprite Art;                         //If this isn't null, override the body's art with this sprite
     public Color Color = Color.white;        //Dye the body's spriterenderer with this color
-    public List<Tag> Tags;                     //A list of tags this thing has. Used to know what's valid to spawn
-    public List<TraitBuilder> Trait;           //The traits the thing has. Includes slots for customization
     public float Size = 1;                     //Changes the size of the thing
-    public Vector2Int LevelRange = new Vector2Int(0,0); //Selects what levels the thing is valid to spawn in.
+    public List<Tag> Tags;             //The traits the thing has. Includes slots for customization
+    public Vector2Int LevelRange = new Vector2Int(0,0); //Selects what levels the thing is valid to spawn in.                  //A list of tags this thing has. Used to know what's valid to spawn
+    public List<TraitBuilder> Trait; 
     
     ///Called when the thing is first created. Makes its ThingInfo, but not its ThingController. That's done by ThingInfo.Spawn()
     public virtual ThingInfo Create()
