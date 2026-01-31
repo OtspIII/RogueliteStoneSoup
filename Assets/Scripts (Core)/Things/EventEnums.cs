@@ -70,6 +70,7 @@ public enum NumInfo
     Size=6,
     Priority=7,
     Time=8,
+    Phase=9,
 }
 
 public enum StrInfo

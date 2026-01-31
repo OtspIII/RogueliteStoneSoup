@@ -299,6 +299,8 @@ public class ThingInfo
         }
     }
 
+    ///Returns the 'owner' of this thing. This is usually itself, but projectiles are 'owned' by the character who shot them
+    /// Imagine: if you died from touching this thing in a deathmatch shooter, who would get credit for the kill?
     public ThingInfo GetOwner(bool selfOk=true,bool ultimate = true) //if ultimate is false just return immediate parent
     {
         ThingInfo r = selfOk ? this : ChildOf;

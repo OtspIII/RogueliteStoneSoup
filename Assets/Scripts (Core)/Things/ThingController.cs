@@ -102,6 +102,8 @@ public class ThingController : MonoBehaviour
     //There's a ton of stuff that a creature might want to do that I wrote functions to make easier
     //You can have your actions/etc just call these instead of coding them directly
     
+    //Set your DesiredMove to be moving towards a target
+    //You can feed in a ThingController, ThingInfo, GameObject, or just Vector3 and it'll handle it
     public void MoveTowards(ThingInfo targ,float thresh=0)
     {
         if (targ == null) return;
@@ -132,26 +134,17 @@ public class ThingController : MonoBehaviour
                 return;
             }
         }
-        
         Info.DesiredMove = targ - transform.position;
     }
 
-
-    public ThingInfo Shoot(ThingOption o)
-    {
-        ThingInfo i = o.Create();
-        i.ChildOf = Info;
-        i.Team = Info.Team;
-        float rot = Body.Weapon.transform.rotation.eulerAngles.z - 90;
-        i.Spawn(Body.Weapon.transform.position,rot);
-        return i;
-    }
-
+    //Sets your DesiredMove to just be going in the direction you're facing
     public void MoveForwards()
     {
         Info.DesiredMove = Body.transform.right;
     }
 
+    //Measures how far you are from another thing
+    //Can be fed a ThingInfo, ThingController, GameObject, or Vector3
     public float Distance(ThingInfo targ)
     {
         if (targ == null) return 999;
@@ -172,6 +165,9 @@ public class ThingController : MonoBehaviour
         return Vector3.Distance(targ, transform.position);
     }
 
+    //Rotates you towards looking at another thing.
+    //If turnTime is set, the bigger it is the slower you turn--it's how long you would take to do a 180 in seconds
+    //Can be fed a ThingInfo, ThingController, GameObject, or Vector3
     public float LookAt(ThingInfo targ,float turnTime=0)
     {
         if (targ == null) return 0;
@@ -196,12 +192,31 @@ public class ThingController : MonoBehaviour
         return Mathf.Abs(Mathf.DeltaAngle(z, rot_z));
     }
     
+    //Sets your knockback, making you fly away from a specified point with a speed of 'amt'
+    //Can be fed a ThingInfo, ThingController, GameObject, or Vector3
+    public void TakeKnockback(ThingInfo from,float amt)
+    {
+        if (from?.Thing == null) return;
+        TakeKnockback(from.Thing.transform.position,amt);
+    }
+    public void TakeKnockback(ThingController from,float amt)
+    {
+        if (from == null) return;
+        TakeKnockback(from.transform.position,amt);
+    }
+    public void TakeKnockback(GameObject from,float amt)
+    {
+        if (from == null) return;
+        TakeKnockback(from.transform.position,amt);
+    }
     public void TakeKnockback(Vector3 from,float amt)
     {
-        Vector2 dir = transform.position - from; //Should this be an event??
+        Vector2 dir = transform.position - from;
         Knockback = dir.normalized * amt;
     }
 
+    //Returns true if you are facing the point specified, false otherwise. Thresh is how much leeway you have
+    //Can be fed a ThingInfo, ThingController, GameObject, or Vector3
     public bool IsFacing(ThingInfo targ,float thresh=45)
     {
         if (targ == null) return false;
@@ -224,21 +239,39 @@ public class ThingController : MonoBehaviour
         float rot = Body.transform.rotation.eulerAngles.z;
         return Mathf.Abs(Mathf.DeltaAngle(tdir, rot)) < thresh;
     }
+    
+    //Spawns a projectile (or any Option, technically) just in front of the character and set it as a child of them
+    //Can feed it either an Option directly or a Spawn Request
+    public ThingInfo Shoot(SpawnRequest sr)
+    {
+        ThingOption o = sr.FindThing();
+        return Shoot(o);
+    }
+    public ThingInfo Shoot(ThingOption o)
+    {
+        ThingInfo i = o.Create();
+        i.ChildOf = Info;
+        i.Team = Info.Team;
+        float rot = Body.Weapon.transform.rotation.eulerAngles.z - 90;
+        i.Spawn(Body.Weapon.transform.position,rot);
+        return i;
+    }
 
+    //#################Doing Physical Things###################
+    //Most code gets run on ThingInfo, but code that's specifically related to physics/animations/etc goes here instead
+    
+    ///Plays an animation on both body and weapon and returns how long the longer of those animation goes.
+    /// Speed sets how fast the animation plays out, and modifies the return time. 
     public float PlayAnim(string anim="",float speed=1)
     {
         float r = 0;
         r = Math.Max(r,Body.PlayAnim(anim,speed));
-        // Debug.Log("PLAY ANIM: " + anim + " / " + this);
         if(Body.Weapon?.Anim != null) r = Math.Max(r,Body.Weapon.PlayAnim(anim,speed));
         return r;
     }
-    
-    public void SetPhase(int n)
-    {
-        TakeEvent(God.E(EventTypes.SetPhase).Set(n));
-    }
-    
+
+    //Sets the Thing to start a new action by sending a message to its ActorTrait.
+    //Can be called as an ActionScript, string, or enum
     public void DoAction(ActionScript a, EventInfo e=null)
     {
         if(e == null) e = God.E();
@@ -246,12 +279,10 @@ public class ThingController : MonoBehaviour
         e.Set(a);
         TakeEvent(e);
     }
-    
     public void DoAction(string a, EventInfo e=null)
     {
         DoAction(Enum.Parse<Actions>(a),e);
     }
-    
     public void DoAction(Actions a=Actions.None, EventInfo e=null)
     {
         if(e == null) e = God.E();
@@ -260,41 +291,46 @@ public class ThingController : MonoBehaviour
         TakeEvent(e);
     }
     
+    ///Set the team of my bodies, and by extension all their hitboxes
     public void SetTeam(GameTeams team)
     {
+        //Tell my body to update the team of all their hitboxes
         Body.SetTeam(team);
+        //And if I have a weapon, tell them to do the same
         if(WeaponBody != null) WeaponBody.SetTeam(team);
     }
 
+    ///This is basically OnCollisionEnter. Gets called by HitboxController when hitboxes touch each other
+    ///GameCollision is basically Collision2D but automatically tells you the ThingInfos/Hitboxes of everyone involved
     public void TouchStart(GameCollision col)
     {
         TakeEvent(God.E(EventTypes.OnTouch).Set(col));
     }
     
+    ///This is basically OnCollisionExit. Gets called by HitboxController when hitboxes untouch each other
+    ///GameCollision is basically Collision2D but automatically tells you the ThingInfos/Hitboxes of everyone involved
     public void TouchEnd(GameCollision col)
     {
         TakeEvent(God.E(EventTypes.OnTouchEnd).Set(col));
     }
 
+    ///Walls don't have the ThingController script, so we have a different collision script for them. Where is where we touched them (maybe)
     public void TouchWall(Vector2 where)
     {
         TakeEvent(God.E(EventTypes.OnTouchWall).Set(where));
     }
     
+    ///Gives a list of all the Things we're currently touching. Filter can return only certain types of things
     public List<ThingController> GetTouching(HitboxTypes filter = HitboxTypes.None)
     {
         return Body.GetTouching(filter);
     }
 
+    ///Destroys the body of the item we're currently holding. The code for actually being dropped is elsewhere
     public void DropHeld()
     {
         if (WeaponBody == null) return;
         Destroy(WeaponBody.gameObject);
         WeaponBody = null;
-    }
-
-    public ThingInfo GetOwner(bool selfOk = true, bool ultimate = true)
-    {
-        return Info.GetOwner(selfOk,ultimate);
     }
 }

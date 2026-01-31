@@ -66,8 +66,10 @@ public class ActorTrait : Trait
             }
             case EventTypes.SetPhase:
             {
+                int p = e.GetInt();
+                i.Set(NumInfo.Phase, p);
                 if(i.ActScript != null)
-                    i.ActScript.ChangePhase(e.GetInt());
+                    i.ActScript.ChangePhase(p);
                 break;
             }
             case EventTypes.GetCurrentAction:
@@ -136,6 +138,7 @@ public class ActorTrait : Trait
         }
         if (a == null) Debug.Log("ERROR: NULL ACTION / " + this);
         t.ActScript = a;
+        t.Set(NumInfo.Phase, 0);
         if (t.ActScript != null)
         {
             t.ActScript.Begin();

@@ -79,9 +79,11 @@ public class BodyController : MonoBehaviour
         return 0;
     }
 
+    ///Called by animations, to let the Thing know what phase of the animation is currently playing
     public void SetPhase(int n)
     {
-        Who.SetPhase(n);
+        Who.TakeEvent(God.E(EventTypes.SetPhase).Set(n));
+        // Who.SetPhase(n);
     }
 
     public void SetHitbox(bool tf)
