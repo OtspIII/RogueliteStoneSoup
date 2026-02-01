@@ -92,6 +92,7 @@ public class Trait
             i.Who.RemoveListen(e,Type,true);
         foreach (EventTypes e in TakeListen.Keys)
             i.Who.RemoveListen(e,Type,false);
+        i.Who.Trait.Remove(Type);
         OnRemove(i,n);
     }
     

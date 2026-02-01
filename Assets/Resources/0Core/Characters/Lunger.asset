@@ -13,17 +13,20 @@ MonoBehaviour:
   m_Name: Lunger
   m_EditorClassIdentifier: Assembly-CSharp::CharacterOption
   Name: Lunger
+  Author: 0
   Team: 3
   Body: {fileID: 629948465317790645, guid: c5227d51ccfec934db9e0058624b573e, type: 3}
   Art: {fileID: 0}
   Color: {r: 1, g: 1, b: 1, a: 1}
+  Size: 0.5
   Tags:
   - Common: 102
     Custom: 
+    W: 1
+  LevelRange: {x: 0, y: 0}
   Trait: []
-  Size: 0.5
   HP: 1
   Speed: 6
-  Weapon: {fileID: 11400000, guid: 7d621acb1abd6f14fb8ce00024521ece, type: 2}
+  Held: {fileID: 11400000, guid: 7d621acb1abd6f14fb8ce00024521ece, type: 2}
   DefaultAction: 201
   DefaultChaseAction: 202

@@ -1,12 +1,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class BodyController : MonoBehaviour
 {
     public Animator Anim;
     public Transform ItemHolder;
-    public BodyController Weapon;
+    public BodyController Held;
     public ThingController Who;
     public HitboxController Hitbox;
     // public HurtboxController Hurtbox;
@@ -15,7 +16,7 @@ public class BodyController : MonoBehaviour
     public Dictionary<string,float> Anims = new Dictionary<string, float>();
     public string DefaultAnim = "Idle";
 
-    public void Setup(ThingController who,ThingOption type=null,bool weapon=false)
+    public void Setup(ThingController who,ThingOption type=null,bool held=false)
     {
         Who = who;
         if (type != null) Size = type.Size;
@@ -28,42 +29,47 @@ public class BodyController : MonoBehaviour
         // gameObject.name = Who.Info.Name + " Body";
         transform.localPosition = new Vector3(0, 0, 0);
         transform.localScale = new Vector3(Size,Size,1);
-        if (!weapon && who.CurrentWeapon != null)
+        if (!held && who.CurrentHeld != null)
         {
-            SetWeapon(who.CurrentWeapon);
+            SetHeld(who.CurrentHeld);
         }
 
         if (type != null)
         {
             if (SR != null)
             {
-                Sprite art = type.GetArt(weapon);
+                Sprite art = type.GetArt(held);
                 if (art != null)
                     SR.sprite = art;
                 SR.color = type.Color;
             }
         }
 
-        if(Anim != null)
-            foreach(AnimationClip c in Anim.runtimeAnimatorController.animationClips)
-                Anims.Add(c.name,c.length);
+        if (Anim != null)
+        {
+            foreach (AnimationClip c in Anim.runtimeAnimatorController.animationClips)
+                Anims.Add(c.name, c.length);
+            Anim.Rebind();
+        }
+
         if (!Anims.ContainsKey(DefaultAnim) && Anims.Keys.Count > 0)
             DefaultAnim = Anims.Keys.ToArray()[0];
+            
     }
 
-    public void SetWeapon(ThingInfo wpn)
+    public void SetHeld(ThingInfo wpn)
     {
-        if (Weapon != null)
+        if (Held != null)
         {
-            Destroy(Weapon.gameObject);
+            Destroy(Held.gameObject);
         }
         // ThingOption w = God.Library.GetThing(GameTags.Weapon);
         ThingOption w = wpn.Type;
-        Weapon = Instantiate(w.GetBody(true), ItemHolder);
+        Held = Instantiate(w.GetBody(true), ItemHolder);
         // Weapon = Instantiate(God.Library.GetWeaponPrefab(who.CurrentWeapon.Seed.Body), transform);
-        Weapon.Setup(Who,w,true);
-        Weapon.gameObject.name = w.Name;
-        Who.WeaponBody = Weapon;
+        Held.Setup(Who,w,true);
+        Held.gameObject.name = w.Name;
+        Who.HeldBody = Held;
     }
 
     public float PlayAnim(string a,float speed=1)
@@ -104,7 +110,7 @@ public class BodyController : MonoBehaviour
         {
             r.AddRange(Hitbox.Touching);
         }
-        if(Weapon != null) r.AddRange(Weapon.GetTouching(filter));
+        if(Held != null) r.AddRange(Held.GetTouching(filter));
         return r;
     }
 }

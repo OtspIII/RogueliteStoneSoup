@@ -14,7 +14,7 @@ public class AttackAction : UseAction
 
     public virtual float GetDamage()
     {
-        return Who.CurrentWeapon.Ask(EventTypes.GetDamage).GetFloat() * Damage;
+        return Who.CurrentHeld.Ask(EventTypes.GetDamage).GetFloat() * Damage;
     }
 
     public override void HitBegin(GameCollision col)
@@ -77,7 +77,7 @@ public class ShootAction : AttackAction
     public override void Begin()
     {
         base.Begin();
-        ThingOption proj = GetWeapon().Ask(EventTypes.GetProjectile).GetOption();
+        ThingOption proj = GetHeld().Ask(EventTypes.GetProjectile).GetOption();
         Who.Thing.Shoot(proj);
     }
 

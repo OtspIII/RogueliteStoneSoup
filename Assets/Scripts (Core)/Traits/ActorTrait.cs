@@ -108,17 +108,17 @@ public class ActorTrait : Trait
             }
             case EventTypes.UseHeld:
             {
-                if(i.Who.CurrentWeapon != null) i.Who.CurrentWeapon.TakeEvent(God.E(EventTypes.OnUse).Set(i.Who));
+                if(i.Who.CurrentHeld != null) i.Who.CurrentHeld.TakeEvent(God.E(EventTypes.OnUse).Set(i.Who));
                 break;
             }
             case EventTypes.UseHeldStart:
             {
-                if(i.Who.CurrentWeapon != null) i.Who.CurrentWeapon.TakeEvent(God.E(EventTypes.OnUseStart).Set(i.Who));
+                if(i.Who.CurrentHeld != null) i.Who.CurrentHeld.TakeEvent(God.E(EventTypes.OnUseStart).Set(i.Who));
                 break;
             }
             case EventTypes.UseHeldEnd:
             {
-                if(i.Who.CurrentWeapon != null) i.Who.CurrentWeapon.TakeEvent(God.E(EventTypes.OnUseEnd).Set(i.Who));
+                if(i.Who.CurrentHeld != null) i.Who.CurrentHeld.TakeEvent(God.E(EventTypes.OnUseEnd).Set(i.Who));
                 break;
             }
         }
@@ -154,7 +154,7 @@ public class ActorTrait : Trait
         {
             // Debug.Log(t.Who.Name + ": " + t.Who.CurrentWeapon);
             // Debug.Log(t.Who.CurrentWeapon.Trait);
-            EventInfo atk = t.Who.CurrentWeapon.Ask(EventTypes.GetDefaultAttack);
+            EventInfo atk = t.Who.CurrentHeld.Ask(EventTypes.GetDefaultAttack);
             a = atk.Get(ActionInfo.DefaultAction);
         }
         ActionScript act = Parser.Get(a == Actions.None ? defaultAct : a,t.Who);

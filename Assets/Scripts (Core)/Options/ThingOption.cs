@@ -38,6 +38,7 @@ public class ThingOption : GameOption //A generic class for anything that might 
             //Once the info is all transcribed, tell the Thing to add the Trait to itself
             r.AddTrait(t.Trait, ts);
         }
+        
         //Return a link to the ThingInfo we just made
         return r;
     }

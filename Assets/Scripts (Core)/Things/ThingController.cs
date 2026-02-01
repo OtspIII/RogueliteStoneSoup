@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class ThingController : MonoBehaviour
 {
@@ -9,12 +10,12 @@ public class ThingController : MonoBehaviour
     public string Name {get {return Info.Name;} set { Info.Name = value;}}
     [HideInInspector] public Rigidbody2D RB; //I spawn my own RB, so hide this from the inspector
     public BodyController Body;   //My body, which I spawn as a separate prefab
-    public BodyController WeaponBody; //My currently equipped item's body
+    public BodyController HeldBody; //My currently equipped item's body
     public SpriteRenderer Icon;   //I have a little sprite that can be used for context action icons. 'Hit E to pick me up' type stuff
     public TextMeshPro NameText;  //I have a textmesh that displays my name. You can see it by holding shift.
     public Collider2D NoClip;     //I have a tiny collider that only collides with walls. To make sure I don't escape the stage.
     public ThingInfo Info;        //My Info. The core of who I am. Most of the code that controls me lives here.
-    public ThingInfo CurrentWeapon {get {return Info.CurrentWeapon;} set { Info.CurrentWeapon = value;}}  //My currently equipped item's info
+    public ThingInfo CurrentHeld {get {return Info.CurrentHeld;} set { Info.CurrentHeld = value;}}  //My currently equipped item's info
     [Header("Movement Bookkeeping")]
     public Vector2 ActualMove;
     public Vector2 Knockback;
@@ -252,8 +253,8 @@ public class ThingController : MonoBehaviour
         ThingInfo i = o.Create();
         i.ChildOf = Info;
         i.Team = Info.Team;
-        float rot = Body.Weapon.transform.rotation.eulerAngles.z - 90;
-        i.Spawn(Body.Weapon.transform.position,rot);
+        float rot = Body.Held.transform.rotation.eulerAngles.z - 90;
+        i.Spawn(Body.Held.transform.position,rot);
         return i;
     }
 
@@ -266,7 +267,7 @@ public class ThingController : MonoBehaviour
     {
         float r = 0;
         r = Math.Max(r,Body.PlayAnim(anim,speed));
-        if(Body.Weapon?.Anim != null) r = Math.Max(r,Body.Weapon.PlayAnim(anim,speed));
+        if(Body.Held?.Anim != null) r = Math.Max(r,Body.Held.PlayAnim(anim,speed));
         return r;
     }
 
@@ -297,7 +298,7 @@ public class ThingController : MonoBehaviour
         //Tell my body to update the team of all their hitboxes
         Body.SetTeam(team);
         //And if I have a weapon, tell them to do the same
-        if(WeaponBody != null) WeaponBody.SetTeam(team);
+        if(HeldBody != null) HeldBody.SetTeam(team);
     }
 
     ///This is basically OnCollisionEnter. Gets called by HitboxController when hitboxes touch each other
@@ -329,8 +330,8 @@ public class ThingController : MonoBehaviour
     ///Destroys the body of the item we're currently holding. The code for actually being dropped is elsewhere
     public void DropHeld()
     {
-        if (WeaponBody == null) return;
-        Destroy(WeaponBody.gameObject);
-        WeaponBody = null;
+        if (HeldBody == null) return;
+        Destroy(HeldBody.gameObject);
+        HeldBody = null;
     }
 }

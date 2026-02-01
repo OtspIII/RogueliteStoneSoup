@@ -138,9 +138,9 @@ public class ActionScript
         
     }
     
-    public virtual ThingInfo GetWeapon()
+    public virtual ThingInfo GetHeld()
     {
-        return Who.CurrentWeapon;
+        return Who.CurrentHeld;
     }
 
     public float Perc()

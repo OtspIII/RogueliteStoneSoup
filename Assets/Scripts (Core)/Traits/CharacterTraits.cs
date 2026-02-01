@@ -40,8 +40,8 @@ public class PlayerTrait : Trait
             {
                 God.Player = i.Who;
                 God.Cam.Target = i.Who.Thing.gameObject;
-                if(i.Who.CurrentWeapon != null)
-                    i.Who.TakeEvent(God.E(EventTypes.DidPickup).Set(i.Who.CurrentWeapon));
+                if(i.Who.CurrentHeld != null)
+                    i.Who.TakeEvent(God.E(EventTypes.DidPickup).Set(i.Who.CurrentHeld));
                 EventInfo hpi = i.Who.Ask(EventTypes.ShownHP);
                 God.GM.SetUI("Health",hpi.GetInt()+"/"+hpi.GetInt(NumInfo.Max),1);
                 God.GM.SetUI("Score","Score: "+Mathf.Floor(i.GetN()),2);
@@ -60,9 +60,9 @@ public class PlayerTrait : Trait
                 {
                     if (Input.GetKeyDown(KeyCode.Mouse0))i.Who.TakeEvent(God.E(EventTypes.UseHeldStart).Set(God.MouseLoc()));
                     if (Input.GetKey(KeyCode.Mouse0))i.Who.TakeEvent(God.E(EventTypes.UseHeld).Set(God.MouseLoc()));
-                    else if (i.Who.CurrentWeapon == null)
+                    else if (i.Who.CurrentHeld == null)
                     {
-                        i.Who.SetWeapon(God.Session.InventoryIndex - 1);//God.Session.PlayerInventory[God.GM.InventoryIndex-1]);
+                        i.Who.SetHeld(God.Session.InventoryIndex - 1);//God.Session.PlayerInventory[God.GM.InventoryIndex-1]);
                     }
                     if (Input.GetKey(KeyCode.E))
                     {
@@ -83,7 +83,7 @@ public class PlayerTrait : Trait
                     if (Input.GetKeyDown(God.InvKeys[n]) && God.Session.PlayerInventory.Count > n)
                     {
                         God.Session.InventoryIndex = n + 1;
-                        God.Player.SetWeapon(God.Session.PlayerInventory[n]);
+                        God.Player.SetHeld(God.Session.PlayerInventory[n]);
                         God.GM.UpdateInvText();
                     }
 
