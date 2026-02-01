@@ -48,6 +48,9 @@ public class ThingInfo //The class that handles all the core info for all non-wa
     { return Spawn(pos, 0); }
     public ThingController Spawn(Vector3 pos, float rot)
     {
+        //Instantiate our GameObject and set a few of its variables to mirror ours
+        Thing = GameObject.Instantiate(God.Library.ActorPrefab, pos, Quaternion.Euler(0, 0, rot));
+        Thing.Info = this;
         //If this is the first time we've spawned, set up all our listeners
         if (!Setup)
         {
@@ -56,9 +59,6 @@ public class ThingInfo //The class that handles all the core info for all non-wa
             //Tell our Traits that we just came into existence.
             Thing.TakeEvent(EventTypes.Setup);
         }
-        //Instantiate our GameObject and set a few of its variables to mirror ours
-        Thing = GameObject.Instantiate(God.Library.ActorPrefab, pos, Quaternion.Euler(0, 0, rot));
-        Thing.Info = this;
         Thing.gameObject.name = Name;
         Thing.NameText.text = GetName(true);
         //Spawn and set up our body and tell everything what team it's on
