@@ -40,7 +40,6 @@ public class HitboxController : MonoBehaviour
     
     public void SetTeam(GameTeams t)
     {
-        // Debug.Log("Set Team: " + Who.Info.Name + " / " + t + " / " + gameObject);
         //Do we need to make a distinction between bodies and attacks for layers? Maybe not??
         string layer = "Neutral";
         switch (t)
@@ -84,23 +83,6 @@ public class HitboxController : MonoBehaviour
         GameCollision col = new GameCollision(hb, this, where);
         Who.TouchStart(col);
         if(!Touching.Contains(hb.Who)) Touching.Add(hb.Who);
-
-        // ThingController tc = other.gameObject.GetComponent<ThingController>();
-        // if (tc == null)
-        // {
-        //     HitboxController hb = other.gameObject.GetComponent<HitboxController>();
-        //     if (hb != null && hb.Who != null) tc = hb.Who;
-        // }
-        // if (tc != null)
-        // {
-        //     Who.TakeEvent(God.E(EventTypes.OnTouch).Set(tc));
-        //     if(!Touching.Contains(tc)) Touching.Add(tc);
-        //     //Only one because they'll call their own version
-        // }
-        // else
-        // {
-        //     Who.TakeEvent(God.E(EventTypes.OnTouchWall).Set(other.GetContact(0).point));
-        // }
     }
 
     private void OnCollisionExit2D(Collision2D other)
@@ -110,11 +92,6 @@ public class HitboxController : MonoBehaviour
         GameCollision col = new GameCollision(hb,this);
         Who.TouchEnd(col);
         Touching.Remove(hb.Who);
-        // // ThingController tc = other.gameObject.GetComponent<ThingController>();
-        // if (tc != null)
-        // {
-        //     Touching.Remove(tc);
-        // }
     }
     
     private void OnTriggerEnter2D(Collider2D other)
@@ -129,20 +106,6 @@ public class HitboxController : MonoBehaviour
         GameCollision col = new GameCollision(hb, this);
         Who.TouchStart(col);
         if(!Touching.Contains(hb.Who)) Touching.Add(hb.Who);
-        
-        
-        // HitboxController hb = other.gameObject.GetComponent<HitboxController>();
-        // if (hb != null && hb.Who != null)
-        // {
-        //     // Debug.Log("COLL: " + hb.Who);
-        //     Who.TakeEvent(God.E(EventTypes.OnTouch).Set(hb.Who));
-        //     if(!Touching.Contains(hb.Who)) Touching.Add(hb.Who);
-        //     //Only one because they'll call their own version
-        // }
-        // else
-        // {
-        //     Who.TakeEvent(God.E(EventTypes.OnTouchWall).Set(transform.position));
-        // }
     }
 
     private void OnTriggerExit2D(Collider2D other)
@@ -152,12 +115,6 @@ public class HitboxController : MonoBehaviour
         GameCollision col = new GameCollision(hb, this);
         Who.TouchEnd(col);
         Touching.Remove(hb.Who);
-        
-        // HitboxController hb = other.gameObject.GetComponent<HitboxController>();
-        // if (hb != null)
-        // {
-        //     Touching.Remove(hb.Who);
-        // }
     }
 
     public void Audit()

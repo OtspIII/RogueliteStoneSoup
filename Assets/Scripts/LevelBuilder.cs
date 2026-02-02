@@ -272,8 +272,8 @@ public class LevelBuilder
         //One consumable per four rooms
         float con = God.RoundRand(rms * 0.25f);
         for(float n=0;n<con;n++) AddSpawn(GameTags.Consumable);
-        //And one pile of coins per two rooms
-        float scr = God.RoundRand(rms * 0.5f);
+        //And as many piles of coins as our level number. Can you find them all before using the exit?
+        float scr = God.Session.Level;
         for(float n=0;n<scr;n++) AddSpawn(GameTags.ScoreThing);
         
         //Then we take those tags and use them to decide on a list of actual things to spawn
