@@ -23,8 +23,9 @@ public class SpawnPointController : MonoBehaviour
         Destroy(gameObject);
     }
 
-    public bool CanSpawn(ThingOption o,LevelBuilder b=null)
+    public bool CanSpawn(ThingOption o,LevelBuilder b=null,bool backup=false)
     {
-        return (b != null ? b : God.LB).JudgeThing(ToSpawn,o) > 0;
+        if (b == null) b = God.LB;
+        return (b != null ? b : God.LB).JudgeThing(ToSpawn,o,backup) > 0;
     }
 }

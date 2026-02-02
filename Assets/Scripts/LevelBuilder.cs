@@ -327,24 +327,46 @@ public class LevelBuilder
             //Make a new list of all the unused spawn points, so we can mess with it without changing the original
             List<SpawnPointController> s = new List<SpawnPointController>();
             s.AddRange(SpawnPoints);
-            ThingInfo i=null;
+            SpawnPointController here = null;
             //For as long as we have possible spawns to try. . .
             while (s.Count > 0)
             {
                 //Pick a random spawn point, remove it from the list, and see if it can spawn this type of thing
                 SpawnPointController chosen = s.Random();
                 s.Remove(chosen);
-                //If you can, then spawn one into that spot and 'use up' the spawn point
+                //If you can, then mark it as the one we're using
                 if (chosen.CanSpawn(o,this))
                 {
-                    i = o.Create();
-                    i.Spawn(chosen);
+                    here = chosen;
                     SpawnPoints.Remove(chosen);
                     break;
                 }
             }
-            //If we tried all of the spawn points and found nothing, throw a warning
-            if(i == null) Debug.LogWarning("Thing couldn't find a place to spawn: " + o.Name);
+            //If we didn't find anything on a first pass, try again with relaxed pickiness.
+            if (here == null)
+            {
+                s.AddRange(SpawnPoints);
+                while (s.Count > 0)
+                {
+                    SpawnPointController chosen = s.Random();
+                    s.Remove(chosen);
+                    //That 'true' means that we're accepting work by other authors as a backup plan
+                    if (chosen.CanSpawn(o,this,true))
+                    {
+                        here = chosen;
+                        SpawnPoints.Remove(chosen);
+                        break;
+                    }
+                }
+            }
+            //If we found somewhere, spawn it there!
+            if (here != null)
+            {
+                ThingInfo i = o.Create();
+                i.Spawn(here);
+            }
+            else //If we tried all of the spawn points twice and found nothing, throw a warning
+                Debug.LogWarning("Thing couldn't find a place to spawn: " + o.Name);
         }
         //For each spawn point that just spawns one specific thing, let it spawn its thing
         foreach (SpawnPointController s in SpawnPointsFixed)
@@ -400,8 +422,9 @@ public class LevelBuilder
     {
         if (!backup)
         {
+            Authors sra = sr.Author == Authors.None ? God.Session.Author : sr.Author;
             //Make sure it's the right author. If either the option or the game is universal, it's okay
-            if (sr.Author != Authors.Universal && o.Author != Authors.Universal && o.Author != Authors.None && o.Author != sr.Author) return 0;
+            if (sra != Authors.Universal && o.Author != Authors.Universal && sra != Authors.None && o.Author != sra) return 0;
         }
         //If the level is set to -1 or the option's level range is unset then anything is okay
         if (sr.Level >= 0 && o.LevelRange != Vector2Int.zero)
@@ -412,7 +435,6 @@ public class LevelBuilder
             if (l < o.LevelRange.x && o.LevelRange.x > 0) return 0;
             if (l > o.LevelRange.y && o.LevelRange.y > 0) return 0;
         }
-
         float w = 1;
         foreach(Tag t in sr.Mandatory)
             if (o.HasTag(t.Value, out float tw))
@@ -434,6 +456,7 @@ public class LevelBuilder
             if(!any)
                 return 0;
         }
+
         return w;
     }
 
