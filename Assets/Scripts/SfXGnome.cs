@@ -1,0 +1,42 @@
+using System;
+using UnityEngine;
+
+public class SfXGnome : MonoBehaviour
+{
+    public ParticleSystem Particles;
+    public AudioSource AS;
+    public GnomeOption Option;
+    public float Lifespan;
+
+    public void Start()
+    {
+        if(God.GM != null && !God.GM.Gnomes.Contains(this)) God.GM.Gnomes.Add(this);
+    }
+    
+    public void Setup(GnomeOption o,int amt=0)
+    {
+        Option = o;
+        float life = 0;
+        if (o.Particles != null)
+        {
+            if (amt == 0) amt = o.ParticleBlast;
+            Particles = Instantiate(o.Particles, transform);
+            Particles.transform.localPosition = Vector3.zero;
+            if(amt > 0) Particles.Emit(amt);
+            life = Mathf.Max(Particles.main.duration, Particles.main.startLifetime.constantMax);
+        }
+        if (o.Audio != null)
+        {
+            AS.PlayOneShot(o.Audio);
+            life = Mathf.Max(life, o.Audio.length);
+        }
+        Lifespan = life;
+        if(!o.ManualDelete)
+            Destroy(gameObject,life + 0.5f);
+    }
+
+    void OnDestroy()
+    {
+        if(God.GM != null) God.GM.Gnomes.Remove(this);
+    }
+}
