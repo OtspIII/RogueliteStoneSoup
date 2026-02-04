@@ -1,0 +1,72 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a47d2194617e47469e601e558e7b8b4, type: 3}
+  m_Name: EatenApple
+  m_EditorClassIdentifier: 
+  Name: Eaten Apple
+  Author: 0
+  Team: 1
+  Body: {fileID: 629948465317790645, guid: 7ef37acb0fdeb5849995b35a7fdca6ba, type: 3}
+  Art: {fileID: -2880734798192188640, guid: f77ef968c74f7a64c86e3247520c36ec, type: 3}
+  Color: {r: 1, g: 1, b: 1, a: 1}
+  Size: 1
+  Tags:
+  - Common: 202
+    Custom: 
+    W: 1
+  LevelRange: {x: 0, y: 0}
+  Trait:
+  - Trait: 310
+    Numbers: []
+    Prefabs: []
+    Acts: []
+    SpawnReq:
+      Fixed: {fileID: 0}
+      Mandatory: []
+      Any: []
+      Level: 0
+      Author: 0
+  - Trait: 313
+    Numbers: []
+    Prefabs: []
+    Acts: []
+    SpawnReq:
+      Fixed: {fileID: 0}
+      Mandatory: []
+      Any: []
+      Level: 0
+      Author: 0
+  - Trait: 312
+    Numbers:
+    - Type: 1
+      Value: 1
+    Prefabs: []
+    Acts: []
+    SpawnReq:
+      Fixed: {fileID: 0}
+      Mandatory: []
+      Any: []
+      Level: 0
+      Author: 0
+  DefaultAttack: 5
+  ToSpawn:
+    Fixed: {fileID: 0}
+    Mandatory: []
+    Any: []
+    Level: 0
+    Author: 0
+  FloorBody: {fileID: 629948465317790645, guid: 0f8734e4b4d2c3a449506fe0c78c1110, type: 3}
+  FloorArt: {fileID: 0}
+  Damage: 0
+  IdealRange: 1.5
+  SpeedMult: 1
+  ActDuration: 0
