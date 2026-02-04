@@ -14,7 +14,7 @@ public class AttackAction : UseAction
 
     public virtual float GetDamage()
     {
-        return Who.CurrentHeld.Ask(EventTypes.GetDamage).GetFloat() * Damage;
+        return Who.CurrentHeld.Ask(God.E(EventTypes.GetDamage).Set(Type).Set(Who)).GetFloat() * Damage;
     }
 
     public override void HitBegin(GameCollision col)

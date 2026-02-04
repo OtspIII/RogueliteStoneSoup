@@ -35,7 +35,7 @@ public class HealthTrait : Trait
             }
             case EventTypes.Damage:
             {
-                int amt = e.GetInt();    //How much damage does the event say to take?
+                int amt = God.RoundRand(e.GetN()); //How much damage does the event say to take? If a fraction, round in a semi-random direction
                 if (amt == 0) return;    //If 0, then don't do anything
                 if (i.Who.Thing != null) //If I still exist, spray blood
                 {
