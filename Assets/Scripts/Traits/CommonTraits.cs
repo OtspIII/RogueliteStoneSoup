@@ -1,17 +1,17 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-
+///The trait that manages damage and healing.
 public class HealthTrait : Trait
 {
     public HealthTrait()
     {
         Type = Traits.Health;
-        AddListen(EventTypes.Setup);
-        AddListen(EventTypes.ShownHP);
-        AddListen(EventTypes.Damage);
-        AddListen(EventTypes.Healing);
-        AddListen(EventTypes.Death);
+        AddListen(EventTypes.Setup);   //Set MaxHP
+        AddListen(EventTypes.ShownHP); //If asked for health, returns current HP
+        AddListen(EventTypes.Damage);  //Lowers health, sprays blood, checks for death
+        AddListen(EventTypes.Healing); //Raises health up to max
+        AddListen(EventTypes.Death);   //Destroys the thing
     }
 
     public override void TakeEvent(TraitInfo i, EventInfo e)
@@ -21,38 +21,37 @@ public class HealthTrait : Trait
             case EventTypes.Setup:
             {
                 //Begin the game with max health
-                float hp = i.GetN();
-                if(hp <= 0) Debug.Log("INVALID HEALTH: " + i.Type + " / " + i.Who + " / " + hp);
-                i.Set(NumInfo.Max,hp);
+                float hp = i.GetN();   //What's my current health?
+                if(hp <= 0)            //If I have 0 or less HP, something is wrong
+                    Debug.Log("INVALID HEALTH: " + i.Type + " / " + i.Who + " / " + hp);
+                i.Set(NumInfo.Max,hp); //Set my MaxHP to equal my current hp at game start
                 break;
             }
             case EventTypes.ShownHP:
             {
-                e.Set(i.GetInt());
-                e.Set(NumInfo.Max,i.GetInt(NumInfo.Max));
+                e.Set(i.GetInt()); //Update the EventInfo with my current health
+                e.Set(NumInfo.Max,i.GetInt(NumInfo.Max)); //Include my max health, just in case
                 break;
             }
             case EventTypes.Damage:
             {
-                int amt = e.GetInt();
-                if (amt == 0) return;
-                if (i.Who.Thing != null)
+                int amt = e.GetInt();    //How much damage does the event say to take?
+                if (amt == 0) return;    //If 0, then don't do anything
+                if (i.Who.Thing != null) //If I still exist, spray blood
                 {
                     Vector2 where = i.Who.Thing.transform.position;
                     if (i.Collision != null) where = i.Collision.Where;
                     God.Library.GetGnome("Blood").Spawn(where, amt * 3);
                 }
-                float hp = i.Change(-amt);
-                if (hp <= 0)
-                {
-                    i.Who.TakeEvent(God.E(EventTypes.Death).Set(e.GetActor()));
-                }
+                float hp = i.Change(-amt); //Lower my health by the amount
+                if (hp <= 0)               //If that takes me to 0, send myself a Death message
+                    i.Who.TakeEvent(God.E(EventTypes.Death).Set(e.GetThing()));
                 break;
             }
             case EventTypes.Healing:
             {
-                float hp = i.Change(e.GetN());
-                if (hp > i.Get(NumInfo.Max))
+                float hp = i.Change(e.GetN());  //Raise my health by the event's amount
+                if (hp > i.Get(NumInfo.Max))    //If that takes me over my max, set me to max
                 {
                     i.Set(i.Get(NumInfo.Max));
                 }
@@ -60,7 +59,7 @@ public class HealthTrait : Trait
             }
             case EventTypes.Death:
             {
-                i.Who.Destruct(e.GetActor());
+                i.Who.Destruct(e.GetThing());  //Destroy me, giving credit to who the event says did it
                 break;
             }
         }
@@ -72,7 +71,7 @@ public class ProjectileTrait : Trait
     public ProjectileTrait()
     {
         Type = Traits.Projectile;
-        AddListen(EventTypes.Start);
+        AddListen(EventTypes.OnSpawn);
         AddListen(EventTypes.OnTouch);
         AddListen(EventTypes.OnTouchWall);
     }
@@ -81,7 +80,7 @@ public class ProjectileTrait : Trait
     {
         switch (e.Type)
         {
-            case EventTypes.Start:
+            case EventTypes.OnSpawn:
             {
                 ThingController who = i.Who.Thing;
                 float spd = i.Get(NumInfo.Speed,10);
@@ -159,9 +158,9 @@ public class DespawnTrait : Trait
         {
             case EventTypes.Setup:
             {
-                float dur = e.GetFloat(NumInfo.Amount,0.2f);
+                float dur = e.GetFloat(NumInfo.Default,0.2f);
                 i.Set(NumInfo.Max, dur);
-                i.Set(NumInfo.Amount, dur);
+                i.Set(NumInfo.Default, dur);
                 break;
             }
             case EventTypes.Update:
@@ -169,7 +168,7 @@ public class DespawnTrait : Trait
                 float dur = i.GetFloat();
                 dur -= Time.deltaTime;
                 if(dur <= 0) i.Who.Destruct();
-                i.Set(NumInfo.Amount, dur);
+                i.Set(NumInfo.Default, dur);
                 break;
             }
         }

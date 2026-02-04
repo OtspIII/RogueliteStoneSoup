@@ -4,8 +4,8 @@ public enum EventTypes{
     TraitInfo       =0001,
     Setup           =0002,
     OnSpawn         =0003,
-    Start           =0004,
-    Update          =0005,
+    Update          =0004,
+    FixedUpdate     =0005,
     Message         =0006, //Generic event, you can use this for events that don't have enums yet (just set StrInfo.Message)
     StartAction     =0101,
     SetPhase        =0102,
@@ -41,8 +41,6 @@ public enum EventTypes{
     OnUseEnd        =2049,
     OnUseAbort      =2050,
     OnHoldStart     =2060,
-    // OnHoldEnd       =2061,
-    // OnHoldRun       =2062,
     AddScore        =2100,
     ChangeStack     =2101,
     
@@ -62,7 +60,7 @@ public enum EventTypes{
 public enum NumInfo
 {
     None=0,
-    Amount=1,
+    Default=1,
     Max=2,
     Min=3,
     Speed=4,
@@ -71,24 +69,35 @@ public enum NumInfo
     Priority=7,
     Time=8,
     Phase=9,
+    MiscA=10,
+    MiscB=11,
+    MiscC=12,
+    MiscD=13,
+    MiscE=14,
 }
 
 public enum StrInfo
 {
     None=0,
-    Text=1,
+    Default=1,
     Debug=2,
     DType=3,
     Message=4,
+    D=5,
+    E=6,
+    F=7
 }
 
 public enum ActionInfo
 {
     None=0,
     Default=1,
-    Action=1001,
-    DefaultAction=1002,
-    DefaultChaseAction=1003,
+    Action=2,
+    DefaultAction=3,
+    DefaultChaseAction=4,
+    D=5,
+    E=6,
+    F=7
 }
 
 public enum BoolInfo
@@ -97,19 +106,34 @@ public enum BoolInfo
     Default=1,
     Abort=2,
     Success=3,
+    C=4,
+    D=5,
+    E=6,
+    F=7
 }
 
-public enum ActorInfo
+public enum ThingEInfo
 {
     None=0,
-    Target=1,
+    Default=1,
     Source=2,
+    Target=3,
+    C=4,
+    D=5,
+    E=6,
+    F=7
 }
 
 public enum OptionInfo
 {
     None=0,
     Default=1,
+    A=2,
+    B=3,
+    C=4,
+    D=5,
+    E=6,
+    F=7
 }
 
 public enum VectorInfo
@@ -117,6 +141,11 @@ public enum VectorInfo
     None=0,
     Amount=1,
     Dir=2,
+    B=3,
+    C=4,
+    D=5,
+    E=6,
+    F=7
 }
 
 
@@ -125,6 +154,11 @@ public enum HitboxInfo
     None=0,
     Theirs=1,
     Mine=2,
+    B=3,
+    C=4,
+    D=5,
+    E=6,
+    F=7
 }
 
 
