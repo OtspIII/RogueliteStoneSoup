@@ -25,7 +25,7 @@ public class ToolTrait : Trait
             }
             case EventTypes.OnUse:
             {
-                e.GetActor().TakeEvent(God.E(EventTypes.StartAction).Set(ActionInfo.Action,Actions.DefaultAttack));
+                e.GetThing().TakeEvent(God.E(EventTypes.StartAction).Set(ActionInfo.Action,Actions.DefaultAttack));
                 break;
             }
             case EventTypes.GetDamage:
@@ -41,13 +41,12 @@ public class ToolTrait : Trait
             }
             case EventTypes.OnHoldStart:
             {
-                e.GetActor().AttackRange = i.Get(NumInfo.Distance, 1.5f);
+                e.GetThing().AttackRange = i.Get(NumInfo.Distance, 1.5f);
                 break;
             }
             case EventTypes.GetActSpeed:
             {
-                if(e.Get(ActionInfo.Action) == Actions.Shoot) Debug.Log("GIVE ACT SPEED");
-                e.Set(NumInfo.Amount, i.Get(NumInfo.Speed, 1));
+                e.Set(NumInfo.Default, i.Get(NumInfo.Speed, 1));
                 e.Set(NumInfo.Max, i.Get(NumInfo.Max, 0));
                 break;
             }
@@ -72,11 +71,11 @@ public class PickupableTrait : Trait
         {
             case EventTypes.Interact:
             {
-                EventInfo pu = God.E(EventTypes.OnPickup).Set(e.GetActor());
+                EventInfo pu = God.E(EventTypes.OnPickup).Set(e.GetThing());
                 i.Who.TakeEvent(pu,true);
                 if (pu.Abort) break;
                 
-                e.GetActor().TakeEvent(God.E(EventTypes.DidPickup).Set(i.Who));
+                e.GetThing().TakeEvent(God.E(EventTypes.DidPickup).Set(i.Who));
                 i.Who.DestroyForm();
                 break;
             }
@@ -115,7 +114,7 @@ public class HealPackTrait : Trait
             case EventTypes.OnUse:
             {
                 EventInfo heal = God.E(EventTypes.Healing).Set(5);
-                e.GetActor().TakeEvent(heal,true);
+                e.GetThing().TakeEvent(heal,true);
                 // e.GetActor().
                 // e.GetActor().DropHeld();
                 break;
@@ -138,7 +137,7 @@ public class GoldCoinsTrait : Trait
         {
             case EventTypes.PlayerTouched:
             {
-                e.GetActor().TakeEvent(God.E(EventTypes.AddScore).Set(i.GetN(NumInfo.Amount,1)).Set(i.Who));
+                e.GetThing().TakeEvent(God.E(EventTypes.AddScore).Set(i.GetN(NumInfo.Default,1)).Set(i.Who));
                 i.Who.Destruct();
                 break;
             }
@@ -190,13 +189,13 @@ public class LimitedUseTrait : Trait
             }
             case EventTypes.OnUse:
             {
-                i.Who.TakeEvent(God.E(EventTypes.ChangeStack).Set(-1).Set(e.GetActor()),true);
+                i.Who.TakeEvent(God.E(EventTypes.ChangeStack).Set(-1).Set(e.GetThing()),true);
                 break;
             }
             case EventTypes.OnUseEnd:
             {
                 int uses = i.GetInt();
-                if (uses <= 0) e.GetActor().DropHeld(true);
+                if (uses <= 0) e.GetThing().DropHeld(true);
                 break;
             }
             case EventTypes.ShownName:
@@ -211,7 +210,7 @@ public class LimitedUseTrait : Trait
             case EventTypes.ChangeStack:
             {
                 i.Change(e.GetInt());
-                if (e.GetActor() == God.Player)
+                if (e.GetThing() == God.Player)
                     God.GM.UpdateInvText();
                 break;
             }
@@ -237,7 +236,7 @@ public class StackableTrait : Trait
         {
             case EventTypes.OnPickup:
             {
-                if (e.GetActor() != God.Player)
+                if (e.GetThing() != God.Player)
                 {
                     e.Abort = true;
                     break;
@@ -246,7 +245,7 @@ public class StackableTrait : Trait
                 {
                     if (t.Type == i.Who.Type)
                     {
-                        t.TakeEvent(God.E(EventTypes.ChangeStack).Set(i.GetInt()).Set(e.GetActor()));
+                        t.TakeEvent(God.E(EventTypes.ChangeStack).Set(i.GetInt()).Set(e.GetThing()));
                         e.Abort = true;
                         i.Who.Destruct();
                         break;
@@ -266,7 +265,7 @@ public class StackableTrait : Trait
                         i.Who.Destruct();
                     }
 
-                    if (e.GetActor() == God.Player)
+                    if (e.GetThing() == God.Player)
                         God.GM.UpdateInvText();
                 }
 

@@ -14,7 +14,7 @@ public class AttackAction : UseAction
 
     public virtual float GetDamage()
     {
-        return Who.CurrentHeld.Ask(EventTypes.GetDamage).GetFloat() * Damage;
+        return Who.CurrentHeld.Ask(God.E(EventTypes.GetDamage).Set(Type).Set(Who)).GetFloat() * Damage;
     }
 
     public override void HitBegin(GameCollision col)
@@ -26,7 +26,7 @@ public class AttackAction : UseAction
         if (AlreadyHit.Contains(hit)) return;
         AlreadyHit.Add(hit);
         // Debug.Log("TAKE DAMAGE: " + hit.gameObject);
-        hit.TakeEvent(new EventInfo(EventTypes.Damage).Set(NumInfo.Amount,GetDamage()).Set(Who));
+        hit.TakeEvent(new EventInfo(EventTypes.Damage).Set(NumInfo.Default,GetDamage()).Set(Who));
         // hit.TakeDamage(GetDamage());
         hit.DoAction(Actions.Stun,God.E().Set(10.5f).Set(NumInfo.Priority,3));
         hit.TakeKnockback(Who.Thing.transform.position,Knockback);
@@ -77,9 +77,28 @@ public class ShootAction : AttackAction
     public override void Begin()
     {
         base.Begin();
+        // Who.TakeEvent(God.E(EventTypes.UseHeld));
         ThingOption proj = GetHeld().Ask(EventTypes.GetProjectile).GetOption();
         Who.Thing.Shoot(proj);
     }
+    
+    // public override void End()
+    // {
+    //     base.End();
+    //     Who.TakeEvent(God.E(EventTypes.UseHeldEnd));
+    // }
+    //
+    // public override void Complete()
+    // {
+    //     base.Complete();
+    //     Who.TakeEvent(God.E(EventTypes.UseHeldComplete));
+    // }
+    //
+    // public override void Abort(ActionScript newAct)
+    // {
+    //     base.Abort(newAct);
+    //     Who.TakeEvent(God.E(EventTypes.UseHeldAbort).Set(newAct.Type));
+    // }
 
     public override void OnRun()
     {

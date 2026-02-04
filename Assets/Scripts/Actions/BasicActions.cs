@@ -15,7 +15,7 @@ public class StunAction : ActionScript
     public StunAction(ThingInfo who,EventInfo e=null)
     {
         Setup(Actions.Stun,who);
-        Duration = e != null ? e.GetFloat(NumInfo.Amount,0.5f) : 0.5f;
+        Duration = e != null ? e.GetFloat(NumInfo.Default,0.5f) : 0.5f;
     }
 
     public override IEnumerator Script()
@@ -53,7 +53,7 @@ public class UseAction : ActionScript
     {
         Setup(Actions.Use,who);
         Anim = "Use";
-        Duration = e != null ? e.GetFloat(NumInfo.Amount,0.5f) : 0.5f;
+        Duration = e != null ? e.GetFloat(NumInfo.Default,0.5f) : 0.5f;
     }
 
     public override void End()
@@ -71,6 +71,6 @@ public class UseAction : ActionScript
     public override void Abort(ActionScript newAct)
     {
         base.Abort(newAct);
-        Who.TakeEvent(God.E(EventTypes.UseHeldAbort));
+        Who.TakeEvent(God.E(EventTypes.UseHeldAbort).Set(newAct.Type));
     }
 }

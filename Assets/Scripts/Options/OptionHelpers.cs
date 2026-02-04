@@ -23,7 +23,7 @@ public class TraitBuilder
 [System.Serializable]
 public class InfoNumber
 {
-    public NumInfo Type=NumInfo.Amount;
+    public NumInfo Type=NumInfo.Default;
     public float Value;
 }
 

@@ -11,7 +11,6 @@ public class PlayerTrait : Trait
         // AddListen(EventTypes.Setup, 5);
         AddListen(EventTypes.OnSpawn);
         AddListen(EventTypes.Update);
-        AddListen(EventTypes.IsPlayer);
         AddListen(EventTypes.OnTouch);
         AddListen(EventTypes.OnTouchEnd);
         AddListen(EventTypes.DidPickup);
@@ -92,33 +91,30 @@ public class PlayerTrait : Trait
                 if(i.Who.ActorTrait.ActScript.CanRotate) i.Who.Thing.LookAt(God.Cam.Cam.ScreenToWorldPoint(Input.mousePosition),0.1f);
                 break;
             }
-            case EventTypes.IsPlayer:
-            {
-                i.Set(BoolInfo.Default,true);
-                break;
-            }
             case EventTypes.OnTouch:
             {
                 GameCollision col = e.Collision;
                 ThingInfo what = col.Other.Info;
-                what.TakeEvent(God.E(EventTypes.PlayerTouched).Set(i.Who));
+                if(col.HBMe.Type == HitboxTypes.Body)
+                    what.TakeEvent(God.E(EventTypes.PlayerTouched).Set(i.Who).Set(col.HBMe));
                 break;
             }
             case EventTypes.OnTouchEnd:
             {
                 GameCollision col = e.Collision;
                 ThingInfo what = col.Other.Info;
-                what.TakeEvent(God.E(EventTypes.PlayerLeft).Set(i.Who));
+                if(col.HBMe.Type == HitboxTypes.Body)
+                    what.TakeEvent(God.E(EventTypes.PlayerLeft).Set(i.Who).Set(col.HBMe));
                 break;
             }
             case EventTypes.DidPickup:
             {
-                God.Session.AddInventory(e.GetActor());
+                God.Session.AddInventory(e.GetThing());
                 break;
             }
             case EventTypes.DidDrop:
             {
-                God.Session.RemoveInventory(e.GetActor());
+                God.Session.RemoveInventory(e.GetThing());
                 break;
             }
             case EventTypes.Healing:

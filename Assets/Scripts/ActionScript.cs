@@ -64,8 +64,8 @@ public class ActionScript
         Reset();
         if(HaltMomentum && Who.Thing.RB != null) Who.Thing.RB.linearVelocity = Vector2.zero;
         Coro = Who.Thing.StartCoroutine(Script());
-        EventInfo sp = Who.Ask(EventTypes.GetActSpeed,true);
-        float speedMult = sp.GetFloat(NumInfo.Amount,1);
+        EventInfo sp = Who.Ask(God.E(EventTypes.GetActSpeed).Set(Type),true);
+        float speedMult = sp.GetFloat(NumInfo.Default,1);
         Duration = Mathf.Max(Duration,sp.GetFloat(NumInfo.Max,0));
         if (Anim != "")
         {

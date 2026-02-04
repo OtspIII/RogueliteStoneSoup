@@ -8,7 +8,7 @@ public class ActorTrait : Trait
         Type = Traits.Actor;
         AddListen(EventTypes.Setup);
         AddListen(EventTypes.OnSpawn);
-        AddListen(EventTypes.Start);
+        // AddListen(EventTypes.Start);
         AddListen(EventTypes.Update);
         AddListen(EventTypes.StartAction);
         AddListen(EventTypes.SetPhase);
@@ -38,10 +38,6 @@ public class ActorTrait : Trait
                 float spd = i.Get(NumInfo.Speed,5);
                 i.Who.CurrentSpeed = spd;
                 if (spd > 0) i.Who.Thing.AddRB();
-                break;
-            }
-            case EventTypes.Start:
-            {
                 if(i.Who != God.Player)
                     i.Who.Target = God.Player;
                 DoAction(i);
@@ -75,13 +71,16 @@ public class ActorTrait : Trait
             case EventTypes.GetCurrentAction:
             {
                 if (i.ActScript != null)
+                {
                     e.ActScript = i.ActScript;
+                    e.Set(i.ActScript.Type);
+                }
                 break;
             }
             case EventTypes.GetDefaultAction:
             {
                 Actions r = i.Get(ActionInfo.DefaultAction);
-                if (e.GetActor() != null)
+                if (e.GetThing() != null)
                 {
                     Actions ch = i.Get(ActionInfo.DefaultChaseAction);
                     if (ch != Actions.None) r = ch;

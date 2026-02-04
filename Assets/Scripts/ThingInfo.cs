@@ -322,7 +322,8 @@ public class ThingInfo //The class that handles all the core info for all non-wa
             if (!destroy)
             {
                 w.Spawn(Thing.transform.position);
-                w.TakeEvent(God.E(EventTypes.DidDrop).Set(this));
+                w.TakeEvent(God.E(EventTypes.OnDrop).Set(this));
+                TakeEvent(God.E(EventTypes.DidDrop).Set(w));
             }
         }
     }
