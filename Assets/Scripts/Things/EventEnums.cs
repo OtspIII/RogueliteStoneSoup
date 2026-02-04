@@ -48,13 +48,12 @@ public enum EventTypes{
     ShownHP         =9001,
     ShownName       =9002,
     GetDamage       =9007,
-    GetProjectile   =9008,
+    GetProjectile   =9008,  //To be replaced
     GetScore        =9009,
     GetCurrentAction=9100,
     GetDefaultAction=9101,
     GetDefaultAttack=9102,
     GetActSpeed     =9103,  //Amount is mult, Max is duration
-    IsPlayer        =9905,
 }
 
 public enum NumInfo

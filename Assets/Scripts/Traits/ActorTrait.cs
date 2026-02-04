@@ -71,7 +71,10 @@ public class ActorTrait : Trait
             case EventTypes.GetCurrentAction:
             {
                 if (i.ActScript != null)
+                {
                     e.ActScript = i.ActScript;
+                    e.Set(i.ActScript.Type);
+                }
                 break;
             }
             case EventTypes.GetDefaultAction:

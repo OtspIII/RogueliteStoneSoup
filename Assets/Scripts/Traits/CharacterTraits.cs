@@ -11,7 +11,6 @@ public class PlayerTrait : Trait
         // AddListen(EventTypes.Setup, 5);
         AddListen(EventTypes.OnSpawn);
         AddListen(EventTypes.Update);
-        AddListen(EventTypes.IsPlayer);
         AddListen(EventTypes.OnTouch);
         AddListen(EventTypes.OnTouchEnd);
         AddListen(EventTypes.DidPickup);
@@ -90,11 +89,6 @@ public class PlayerTrait : Trait
                 }
                 
                 if(i.Who.ActorTrait.ActScript.CanRotate) i.Who.Thing.LookAt(God.Cam.Cam.ScreenToWorldPoint(Input.mousePosition),0.1f);
-                break;
-            }
-            case EventTypes.IsPlayer:
-            {
-                i.Set(BoolInfo.Default,true);
                 break;
             }
             case EventTypes.OnTouch:

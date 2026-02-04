@@ -46,7 +46,6 @@ public class ToolTrait : Trait
             }
             case EventTypes.GetActSpeed:
             {
-                if(e.Get(ActionInfo.Action) == Actions.Shoot) Debug.Log("GIVE ACT SPEED");
                 e.Set(NumInfo.Default, i.Get(NumInfo.Speed, 1));
                 e.Set(NumInfo.Max, i.Get(NumInfo.Max, 0));
                 break;

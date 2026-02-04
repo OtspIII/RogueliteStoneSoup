@@ -77,9 +77,28 @@ public class ShootAction : AttackAction
     public override void Begin()
     {
         base.Begin();
+        // Who.TakeEvent(God.E(EventTypes.UseHeld));
         ThingOption proj = GetHeld().Ask(EventTypes.GetProjectile).GetOption();
         Who.Thing.Shoot(proj);
     }
+    
+    // public override void End()
+    // {
+    //     base.End();
+    //     Who.TakeEvent(God.E(EventTypes.UseHeldEnd));
+    // }
+    //
+    // public override void Complete()
+    // {
+    //     base.Complete();
+    //     Who.TakeEvent(God.E(EventTypes.UseHeldComplete));
+    // }
+    //
+    // public override void Abort(ActionScript newAct)
+    // {
+    //     base.Abort(newAct);
+    //     Who.TakeEvent(God.E(EventTypes.UseHeldAbort).Set(newAct.Type));
+    // }
 
     public override void OnRun()
     {
