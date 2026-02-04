@@ -24,7 +24,7 @@ public class ItemOption : ThingOption
         {
             TraitInfo h = r.AddTrait(Traits.Tool,
                 God.E().Set(ActionInfo.DefaultAction, DefaultAttack)
-                    .Set(NumInfo.Amount, Damage)
+                    .Set(NumInfo.Default, Damage)
                     .Set(NumInfo.Speed, SpeedMult)
                     .Set(NumInfo.Max, ActDuration)
                     .Set(NumInfo.Distance,IdealRange));

@@ -17,8 +17,8 @@ public class OnFireTrait : Trait
                 float dur = i.GetFloat(NumInfo.Time,3);
                 float ping = dur % i.GetFloat(NumInfo.Speed,1);
                 ping -= Time.deltaTime;
-                if(ping <= 0) i.Who.TakeEvent(God.E(EventTypes.Damage).Set(i.GetFloat(NumInfo.Amount,1))
-                    .Set(i.GetActor()).Set(i.Get(StrInfo.DType)));
+                if(ping <= 0) i.Who.TakeEvent(God.E(EventTypes.Damage).Set(i.GetFloat(NumInfo.Default,1))
+                    .Set(i.GetThing()).Set(i.Get(StrInfo.DType)));
                 dur -= Time.deltaTime;
                 i.Set(NumInfo.Time, dur);
                 if (dur <= 0) i.Who.RemoveTrait(Type);

@@ -35,8 +35,6 @@ public class ThingController : MonoBehaviour
         if(God.GM != null && !God.GM.Things.Contains(this)) God.GM.Things.Add(this);
         //When I spawn, display my name if the 'show names' button is currently held
         NameText.gameObject.SetActive(Input.GetKey(God.InfoKey));
-        //Tell my Traits that we're started
-        TakeEvent(EventTypes.Start);
     }
 
     public void Update()
@@ -72,6 +70,7 @@ public class ThingController : MonoBehaviour
             //ActualMove is calculated by the thing's Action
             RB.linearVelocity = ActualMove + Knockback;
         }
+        TakeEvent(EventTypes.FixedUpdate);
     }
     
     //When I get destroyed, tell the GM to take me off the list of everything that exists

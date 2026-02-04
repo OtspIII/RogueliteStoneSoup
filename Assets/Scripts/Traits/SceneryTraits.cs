@@ -45,7 +45,7 @@ public class DamageZoneTrait : Trait
             case EventTypes.OnInside:
             {
                 float timer = i.Get(NumInfo.Speed,1);
-                float dmg = i.Get(NumInfo.Amount,1);
+                float dmg = i.Get(NumInfo.Default,1);
                 float knb = i.Get(NumInfo.Speed,0);
 
                 // Debug.Log("INSIDE LAVA: " + timer + " / " + dmg);

@@ -29,7 +29,7 @@ public class ThingOption : GameOption //A generic class for anything that might 
             //This is the was of info that will be given to the trait to let it set itself up
             EventInfo ts = new EventInfo();
             foreach(InfoNumber n in t.Numbers)
-                ts.Numbers.Add(n.Type != NumInfo.None ? n.Type : NumInfo.Amount,n.Value);
+                ts.Numbers.Add(n.Type != NumInfo.None ? n.Type : NumInfo.Default,n.Value);
             foreach(InfoOption n in t.Prefabs)
                 ts.Options.Add(n.Type != OptionInfo.None ? n.Type : OptionInfo.Default,n.Value);
             foreach (InfoAction n in t.Acts)
