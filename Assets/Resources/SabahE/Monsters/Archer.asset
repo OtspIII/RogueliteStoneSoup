@@ -10,23 +10,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4679cc75b2c8be74e8b047318fa062ea, type: 3}
-  m_Name: Player
+  m_Name: Archer
   m_EditorClassIdentifier: Assembly-CSharp::CharacterOption
-  Name: Player
-  Author: 0
-  Team: 2
-  Body: {fileID: 629948465317790645, guid: acf0e760b28c7b046ad7d511fb87a1d3, type: 3}
-  Art: {fileID: -6930072583179015400, guid: 466134fd5ef0c8346910fe7179d8e3a2, type: 3}
-  Color: {r: 0.21960786, g: 0.21960786, b: 0.21960786, a: 1}
-  Size: 1
+  Name: Archer
+  Author: 65
+  Team: 3
+  Body: {fileID: 0}
+  Art: {fileID: 3083089168873209362, guid: 686df7d4d5faf074eb3b4867fc9296a4, type: 3}
+  Color: {r: 0.44025147, g: 0, b: 0, a: 1}
+  Size: 2
   Tags:
-  - Common: 1
+  - Common: 102
     Custom: 
     W: 1
   LevelRange: {x: 0, y: 0}
   Trait:
-  - Trait: 100
-    Numbers: []
+  - Trait: 3
+    Numbers:
+    - Type: 0
+      Value: 0
     Prefabs: []
     Acts: []
     SpawnReq:
@@ -35,8 +37,8 @@ MonoBehaviour:
       Any: []
       Level: 0
       Author: 0
-  HP: 5
-  Speed: 5
-  Held: {fileID: 11400000, guid: 7fc77b878c3f272478de54b35b2fb3a3, type: 2}
-  DefaultAction: 1
-  DefaultChaseAction: 1
+  HP: 1
+  Speed: 4
+  Held: {fileID: 11400000, guid: ad13ac6261f013b45ab35c13a6699b50, type: 2}
+  DefaultAction: 201
+  DefaultChaseAction: 202
