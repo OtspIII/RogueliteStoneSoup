@@ -1,0 +1,56 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4679cc75b2c8be74e8b047318fa062ea, type: 3}
+  m_Name: Agressor
+  m_EditorClassIdentifier: Assembly-CSharp::CharacterOption
+  Name: Agressor
+  Author: 40
+  Team: 3
+  Body: {fileID: 629948465317790645, guid: c5227d51ccfec934db9e0058624b573e, type: 3}
+  Art: {fileID: 9183382434615233273, guid: ce7ae796c54402f41bf8753d6ec49110, type: 3}
+  Color: {r: 1, g: 1, b: 1, a: 1}
+  Size: 1.58
+  Tags:
+  - Common: 102
+    Custom: 
+    W: 100
+  LevelRange: {x: 0, y: 0}
+  Trait:
+  - Trait: 3
+    Numbers: []
+    Prefabs:
+    - Type: 0
+      Value: {fileID: 11400000, guid: f771862cadf3fb549aeabebb90e9ee2a, type: 2}
+    Acts: []
+    SpawnReq:
+      Fixed: {fileID: 0}
+      Mandatory: []
+      Any: []
+      Level: 0
+      Author: 0
+  - Trait: 3
+    Numbers: []
+    Prefabs:
+    - Type: 0
+      Value: {fileID: 11400000, guid: f771862cadf3fb549aeabebb90e9ee2a, type: 2}
+    Acts: []
+    SpawnReq:
+      Fixed: {fileID: 0}
+      Mandatory: []
+      Any: []
+      Level: 0
+      Author: 0
+  HP: 10
+  Speed: 5
+  Held: {fileID: 11400000, guid: bd1d3b73b8fa8ae43b99cd32a508630e, type: 2}
+  DefaultAction: 201
+  DefaultChaseAction: 202
