@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a47d2194617e47469e601e558e7b8b4, type: 3}
-  m_Name: Acidic Wand
+  m_Name: Infinite Fire Bow
   m_EditorClassIdentifier: Assembly-CSharp::ItemOption
-  Name: Acidic Wand
+  Name: Infinity Bow
   Author: 40
   Team: 1
   Body: {fileID: 629948465317790645, guid: b4fa405680f33044abe2c4567ecf147f, type: 3}
-  Art: {fileID: -4421300922047078791, guid: 4bf70cedee363fb4b9048f89e88c9ddc, type: 3}
+  Art: {fileID: 21300000, guid: cb8312002cf474c4688fa76c7caea0a3, type: 3}
   Color: {r: 1, g: 1, b: 1, a: 1}
   Size: 1
   Tags:
@@ -24,39 +24,17 @@ MonoBehaviour:
     Custom: 
     W: 50
   LevelRange: {x: 0, y: 0}
-  Trait:
-  - Trait: 301
-    Numbers: []
-    Prefabs: []
-    Acts: []
-    SpawnReq:
-      Fixed: {fileID: 0}
-      Mandatory: []
-      Any: []
-      Level: 0
-      Author: 0
-  - Trait: 312
-    Numbers:
-    - Type: 1
-      Value: 5
-    Prefabs: []
-    Acts: []
-    SpawnReq:
-      Fixed: {fileID: 0}
-      Mandatory: []
-      Any: []
-      Level: 0
-      Author: 0
+  Trait: []
   DefaultAttack: 103
   ToSpawn:
-    Fixed: {fileID: 11400000, guid: 216ef581bbe454a389b5d4e90030c62f, type: 2}
+    Fixed: {fileID: 11400000, guid: 69ef23eaac7508d43a5ae431368fbf0d, type: 2}
     Mandatory: []
     Any: []
     Level: 0
-    Author: 40
+    Author: 0
   FloorBody: {fileID: 0}
   FloorArt: {fileID: 0}
   Damage: 1
-  IdealRange: 0.11
-  SpeedMult: 1.77
+  IdealRange: 1.5
+  SpeedMult: 2.95
   ActDuration: 0

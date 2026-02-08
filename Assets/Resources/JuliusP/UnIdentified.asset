@@ -9,18 +9,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a47d2194617e47469e601e558e7b8b4, type: 3}
-  m_Name: Acidic Wand
-  m_EditorClassIdentifier: Assembly-CSharp::ItemOption
-  Name: Acidic Wand
+  m_Script: {fileID: 11500000, guid: 037523bd7ae983240ad1b7cc3ff106cd, type: 3}
+  m_Name: UnIdentified
+  m_EditorClassIdentifier: Assembly-CSharp::ThingOption
+  Name: '"Unknown"'
   Author: 40
-  Team: 1
-  Body: {fileID: 629948465317790645, guid: b4fa405680f33044abe2c4567ecf147f, type: 3}
-  Art: {fileID: -4421300922047078791, guid: 4bf70cedee363fb4b9048f89e88c9ddc, type: 3}
+  Team: 3
+  Body: {fileID: 629948465317790645, guid: c5227d51ccfec934db9e0058624b573e, type: 3}
+  Art: {fileID: 9183382434615233273, guid: ce7ae796c54402f41bf8753d6ec49110, type: 3}
   Color: {r: 1, g: 1, b: 1, a: 1}
-  Size: 1
+  Size: 1.36
   Tags:
-  - Common: 201
+  - Common: 102
     Custom: 
     W: 50
   LevelRange: {x: 0, y: 0}
@@ -47,16 +47,17 @@ MonoBehaviour:
       Any: []
       Level: 0
       Author: 0
-  DefaultAttack: 103
-  ToSpawn:
-    Fixed: {fileID: 11400000, guid: 216ef581bbe454a389b5d4e90030c62f, type: 2}
-    Mandatory: []
-    Any: []
-    Level: 0
-    Author: 40
-  FloorBody: {fileID: 0}
-  FloorArt: {fileID: 0}
-  Damage: 1
-  IdealRange: 0.11
-  SpeedMult: 1.77
-  ActDuration: 0
+  - Trait: 300
+    Numbers: []
+    Prefabs:
+    - Type: 0
+      Value: {fileID: 11400000, guid: f1348eb43e54d44339e89f1bb9a4226b, type: 2}
+    Acts:
+    - Type: 3
+      Act: 103
+    SpawnReq:
+      Fixed: {fileID: 0}
+      Mandatory: []
+      Any: []
+      Level: 0
+      Author: 0
