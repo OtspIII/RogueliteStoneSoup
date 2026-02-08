@@ -22,7 +22,7 @@ MonoBehaviour:
   Tags:
   - Common: 201
     Custom: 
-    W: 100
+    W: 50
   LevelRange: {x: 0, y: 0}
   Trait:
   - Trait: 312
@@ -37,9 +37,9 @@ MonoBehaviour:
       Any: []
       Level: 0
       Author: 0
-  DefaultAttack: 0
+  DefaultAttack: 103
   ToSpawn:
-    Fixed: {fileID: 0}
+    Fixed: {fileID: 11400000, guid: 69ef23eaac7508d43a5ae431368fbf0d, type: 2}
     Mandatory: []
     Any: []
     Level: 0
