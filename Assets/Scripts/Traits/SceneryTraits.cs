@@ -46,7 +46,7 @@ public class DamageZoneTrait : Trait
             {
                 float timer = i.Get(NumInfo.Speed,1);
                 float dmg = i.Get(NumInfo.Default,1);
-                float knb = i.Get(NumInfo.Speed,0);
+                float knb = i.Get(NumInfo.Distance,0);
 
                 // Debug.Log("INSIDE LAVA: " + timer + " / " + dmg);
                 HitboxController hb = e.GetHitbox();

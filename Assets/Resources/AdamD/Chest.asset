@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 037523bd7ae983240ad1b7cc3ff106cd, type: 3}
-  m_Name: Suspicious Crate
+  m_Name: Chest
   m_EditorClassIdentifier: 
-  Name: Suspicious Crate
-  Author: 0
+  Name: Chest
+  Author: 20
   Team: 1
   Body: {fileID: 629948465317790645, guid: 37c4754857b78e24995335d45e308e0b, type: 3}
   Art: {fileID: -1362058913294850930, guid: f7ed4d06ee2bd2f4c97d3e34fa915bd9, type: 3}
-  Color: {r: 0.3056603, g: 0.3056603, b: 0.3056603, a: 1}
-  Size: 1.5
+  Color: {r: 1, g: 1, b: 1, a: 1}
+  Size: 1
   Tags:
   - Common: 400
     Custom: 
@@ -40,7 +40,7 @@ MonoBehaviour:
       Any: []
       Level: 0
       Author: 0
-  - Trait: 201
+  - Trait: 3
     Numbers: []
     Prefabs: []
     Acts: []

@@ -10,23 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4679cc75b2c8be74e8b047318fa062ea, type: 3}
-  m_Name: FunnyGuy
+  m_Name: Zombie
   m_EditorClassIdentifier: Assembly-CSharp::CharacterOption
-  Name: FunnyGuy
+  Name: Sworder
   Author: 60
   Team: 3
-  Body: {fileID: 629948465317790645, guid: c5227d51ccfec934db9e0058624b573e, type: 3}
-  Art: {fileID: -2043683151485635411, guid: 4635bc6e724f8564b83cba6eccc4e319, type: 3}
+  Body: {fileID: 629948465317790645, guid: acf0e760b28c7b046ad7d511fb87a1d3, type: 3}
+  Art: {fileID: 2649847697073447219, guid: 10f97ce30d99ca74ca1e5c82c0be0577, type: 3}
   Color: {r: 1, g: 1, b: 1, a: 1}
-  Size: 1
+  Size: 0.75
   Tags:
   - Common: 102
     Custom: 
-    W: 0.5
+    W: 1
   LevelRange: {x: 0, y: 0}
   Trait: []
   HP: 1
-  Speed: 2
-  Held: {fileID: 11400000, guid: 7eef3b2d1786b6349b779d64bdad2c6e, type: 2}
+  Speed: 1
+  Held: {fileID: 11400000, guid: d6bc326dd57561a4fb4251edad935d43, type: 2}
   DefaultAction: 201
   DefaultChaseAction: 202

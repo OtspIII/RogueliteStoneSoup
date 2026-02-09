@@ -13,6 +13,7 @@ public class GameSession
     public bool Defeat = false;
     public List<ThingInfo> PlayerInventory = new List<ThingInfo>();
     public int InventoryIndex = 1;
+    public string GameOverInfo = "";
 
     public GameSession(Authors a)
     {
@@ -42,6 +43,17 @@ public class GameSession
     public virtual void PlayerDeath(EventInfo e)
     {
         Defeat = true;
+        string go = "Score: " + Player.Ask(EventTypes.GetScore).GetInt();
+        ThingInfo src = e.GetThing();
+        if (src != null)
+        {
+            go += "\nKilled By: " + src.Name;
+            if (src.Type.Author != Authors.None && src.Type.Author != Author)
+                go += " (" + src.Type.Author + ")";
+        }
+        else
+            go += "\nKilled By: Unknown";
+        GameOverInfo = go;
         God.C(LoseLevel());
     }
 

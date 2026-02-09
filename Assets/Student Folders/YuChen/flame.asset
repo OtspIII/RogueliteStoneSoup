@@ -15,7 +15,7 @@ MonoBehaviour:
   Name: flame
   Author: 95
   Team: 3
-  Body: {fileID: 0}
+  Body: {fileID: 629948465317790645, guid: acf0e760b28c7b046ad7d511fb87a1d3, type: 3}
   Art: {fileID: -8527442550737655860, guid: b4f8f31970938b842b330abf0c97ecd8, type: 3}
   Color: {r: 1, g: 1, b: 1, a: 1}
   Size: 1
@@ -24,6 +24,6 @@ MonoBehaviour:
   Trait: []
   HP: 15
   Speed: 5
-  Held: {fileID: 11400000, guid: 97bb7883fbd967b4abe100d7424075a8, type: 2}
-  DefaultAction: 201
+  Held: {fileID: 11400000, guid: eeffd4e4a3306b545b6155def773cd9f, type: 2}
+  DefaultAction: 101
   DefaultChaseAction: 202

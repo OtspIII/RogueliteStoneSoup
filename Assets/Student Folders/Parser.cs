@@ -47,14 +47,14 @@ public static class Parser
             case Actions.Chase: return new ChaseAction(who,e);
             case Actions.Use: return new UseAction(who, e);
         }
-        Debug.Log("UNCAUGHT ACTION: " + act);
+        God.LogError("UNCAUGHT ACTION: " + act);
         return new IdleAction(who,e);
     }
     
     public static Trait Get(Traits t)
     {
         if (TraitDict.TryGetValue(t, out Trait r)) return r;
-        Debug.Log("ERROR MISSING TRAIT: " + t+"\nMust add to TraitManager");
+        God.LogError("ERROR MISSING TRAIT: " + t+"\nMust add to TraitManager");
         return null;
     }
 

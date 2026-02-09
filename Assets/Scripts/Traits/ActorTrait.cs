@@ -151,6 +151,11 @@ public class ActorTrait : Trait
         Actions defaultAct = t.Get(ActionInfo.DefaultAction);
         if (a == Actions.DefaultAttack)
         {
+            if (t.Who.CurrentHeld == null)
+            {
+                God.LogWarning("Tried to do default attack with no held item: " + t.Who.Name + " ("+t.Who.Type.Author+")");
+                return;
+            }
             // Debug.Log(t.Who.Name + ": " + t.Who.CurrentWeapon);
             // Debug.Log(t.Who.CurrentWeapon.Trait);
             EventInfo atk = t.Who.CurrentHeld.Ask(EventTypes.GetDefaultAttack);

@@ -48,6 +48,8 @@ public class ThingInfo //The class that handles all the core info for all non-wa
     { return Spawn(pos, 0); }
     public ThingController Spawn(Vector3 pos, float rot)
     {
+        //If anything goes wrong, it's useful to know who we were spawning when things bugged out.
+        God.DebugTxt = "Spawning " + Name + " / " + Type.Author;
         //Instantiate our GameObject and set a few of its variables to mirror ours
         Thing = GameObject.Instantiate(God.Library.ActorPrefab, pos, Quaternion.Euler(0, 0, rot));
         Thing.Info = this;
@@ -61,6 +63,8 @@ public class ThingInfo //The class that handles all the core info for all non-wa
         }
         Thing.gameObject.name = Name;
         Thing.NameText.text = GetName(true);
+        if (Type.Author != Authors.None && Type.Author != God.Session.Author)
+            Thing.NameText.text += "\n(" + Type.Author + ")";
         //Spawn and set up our body and tell everything what team it's on
         Thing.Body = GameObject.Instantiate(Type.GetBody(), Thing.transform);
         Thing.Body.Setup(Thing,Type);
@@ -69,6 +73,7 @@ public class ThingInfo //The class that handles all the core info for all non-wa
         TakeEvent(EventTypes.OnSpawn);
         //Mark us as having been setup, so we don't do setup things twice
         Setup = true;
+        God.DebugTxt = "";
         return Thing; //Return the gameobject script we just made
     }
     

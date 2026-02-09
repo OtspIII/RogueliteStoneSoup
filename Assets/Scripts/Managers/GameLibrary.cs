@@ -41,7 +41,7 @@ public class GameLibrary : MonoBehaviour
             if(!GnomeDict.ContainsKey(o.Name))
                 GnomeDict.Add(o.Name,o);
             else
-                Debug.LogWarning("Duplicate Gnome: " + o.Name);
+                God.LogWarning("Duplicate Gnome: " + o.Name);
         }
             
     }
@@ -62,7 +62,7 @@ public class GameLibrary : MonoBehaviour
         //If we didn't find any valid options, throw a warning. You might need to make more room types
         if (opts.Count == 0)
         {
-            Debug.LogWarning("NO VALID ROOMS: " + g);
+            God.LogWarning("NO VALID ROOMS: " + g);
             return null;
         }
         //Return a random option
@@ -105,7 +105,7 @@ public class GameLibrary : MonoBehaviour
         //If there was nothing that could be spawned, throw a warning. You might need to make more things!
         if (opts.Keys.Count == 0)
         {
-            Debug.LogWarning("NO VALID THINGS: " + sr);
+            God.LogWarning("NO VALID THINGS: " + sr);
             return null;
         }
         //Return a random option, with more liked options being more likely
@@ -138,7 +138,7 @@ public class GameLibrary : MonoBehaviour
             if (roll <= 0) return k;
         }
         //This should never happen. Things that should never happen often happen. That's why it's good to put a warning on it.
-        Debug.LogWarning("Weighted Random With No Result Somehow: " + opts.Keys.Count);
+        God.LogWarning("Weighted Random With No Result Somehow: " + opts.Keys.Count);
         return null;
     }
 }

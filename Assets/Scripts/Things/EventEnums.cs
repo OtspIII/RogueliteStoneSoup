@@ -39,7 +39,7 @@ public enum EventTypes{
     OnUse           =2047,  //Called when you click while holding
     OnUseStart      =2048,  //Only called the first time you click
     OnUseEnd        =2049,
-    OnUseAbort      =2050,
+    // OnUseAbort      =2050,
     OnHoldStart     =2060,
     AddScore        =2100,
     ChangeStack     =2101,
@@ -48,12 +48,13 @@ public enum EventTypes{
     ShownHP         =9001,
     ShownName       =9002,
     GetDamage       =9007,
-    GetProjectile   =9008,  //To be replaced
+    GetProjectile   =9008,
     GetScore        =9009,
     GetCurrentAction=9100,
     GetDefaultAction=9101,
     GetDefaultAttack=9102,
     GetActSpeed     =9103,  //Amount is mult, Max is duration
+    IsPlayer        =9905,
 }
 
 public enum NumInfo
@@ -168,13 +169,13 @@ public enum GameTags
     Something       =0002,
     Debug           =0003,
     NPC             =0102,
-    Pickup          =0200,
     Weapon          =0201,
     Consumable      =0202,
     ScoreThing      =0203,
     Projectile      =0300,
     Centerpiece     =0400,
     Exit            =0401,
+    Scenery         =0402,
 }
 
 public enum RoomTags

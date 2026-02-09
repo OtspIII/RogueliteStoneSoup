@@ -113,7 +113,8 @@ public class HealPackTrait : Trait
             // }
             case EventTypes.OnUse:
             {
-                EventInfo heal = God.E(EventTypes.Healing).Set(5);
+                int amt = i.GetInt(NumInfo.Default, 5);
+                EventInfo heal = God.E(EventTypes.Healing).Set(amt);
                 e.GetThing().TakeEvent(heal,true);
                 // e.GetActor().
                 // e.GetActor().DropHeld();
@@ -137,7 +138,8 @@ public class GoldCoinsTrait : Trait
         {
             case EventTypes.PlayerTouched:
             {
-                e.GetThing().TakeEvent(God.E(EventTypes.AddScore).Set(i.GetN(NumInfo.Default,1)).Set(i.Who));
+                int amt = i.GetInt(NumInfo.Default, 1);
+                e.GetThing().TakeEvent(God.E(EventTypes.AddScore).Set(amt).Set(i.Who));
                 i.Who.Destruct();
                 break;
             }
@@ -283,3 +285,4 @@ public class StackableTrait : Trait
         }
     }
 }
+
