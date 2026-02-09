@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4679cc75b2c8be74e8b047318fa062ea, type: 3}
-  m_Name: Archer 2
+  m_Name: Turret
   m_EditorClassIdentifier: Assembly-CSharp::CharacterOption
   Name: Turret
   Author: 20
@@ -24,9 +24,19 @@ MonoBehaviour:
     Custom: 
     W: 1
   LevelRange: {x: 0, y: 0}
-  Trait: []
+  Trait:
+  - Trait: 0
+    Numbers: []
+    Prefabs: []
+    Acts: []
+    SpawnReq:
+      Fixed: {fileID: 0}
+      Mandatory: []
+      Any: []
+      Level: 0
+      Author: 0
   HP: 1
   Speed: 1
   Held: {fileID: 11400000, guid: ad13ac6261f013b45ab35c13a6699b50, type: 2}
-  DefaultAction: 1
+  DefaultAction: 103
   DefaultChaseAction: 103

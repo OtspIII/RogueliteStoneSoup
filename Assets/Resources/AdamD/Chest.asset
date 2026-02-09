@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 037523bd7ae983240ad1b7cc3ff106cd, type: 3}
-  m_Name: Crate 1
+  m_Name: Chest
   m_EditorClassIdentifier: 
   Name: Chest
-  Author: 0
+  Author: 20
   Team: 1
   Body: {fileID: 629948465317790645, guid: 37c4754857b78e24995335d45e308e0b, type: 3}
   Art: {fileID: -1362058913294850930, guid: f7ed4d06ee2bd2f4c97d3e34fa915bd9, type: 3}
