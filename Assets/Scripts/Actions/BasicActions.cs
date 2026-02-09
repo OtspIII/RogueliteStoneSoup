@@ -24,6 +24,7 @@ public class StunAction : ActionScript
         float rot = 0;
         while (rot < 360)
         {
+            if (Who.Thing == null) yield break;
             rot += speed * Time.deltaTime;
             Who.Thing.Body.transform.rotation = Quaternion.Euler(0,0,rot);
             yield return null;
