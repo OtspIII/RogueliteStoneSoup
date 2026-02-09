@@ -10,24 +10,26 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4679cc75b2c8be74e8b047318fa062ea, type: 3}
-  m_Name: Player
+  m_Name: Avenger
   m_EditorClassIdentifier: Assembly-CSharp::CharacterOption
-  Name: Player
-  Author: 0
-  Team: 2
-  Body: {fileID: 629948465317790645, guid: acf0e760b28c7b046ad7d511fb87a1d3, type: 3}
-  Art: {fileID: -6930072583179015400, guid: 466134fd5ef0c8346910fe7179d8e3a2, type: 3}
-  Color: {r: 0.21960786, g: 0.21960786, b: 0.21960786, a: 1}
+  Name: Avenger
+  Author: 40
+  Team: 3
+  Body: {fileID: 629948465317790645, guid: c5227d51ccfec934db9e0058624b573e, type: 3}
+  Art: {fileID: 21300000, guid: e81f66ce6c87d8c42b90a6f710390669, type: 3}
+  Color: {r: 1, g: 0, b: 0, a: 1}
   Size: 1
   Tags:
-  - Common: 1
+  - Common: 102
     Custom: 
-    W: 1
+    W: 50
   LevelRange: {x: 0, y: 0}
   Trait:
-  - Trait: 100
+  - Trait: 3
     Numbers: []
-    Prefabs: []
+    Prefabs:
+    - Type: 0
+      Value: {fileID: 11400000, guid: 216ef581bbe454a389b5d4e90030c62f, type: 2}
     Acts: []
     SpawnReq:
       Fixed: {fileID: 0}
@@ -35,8 +37,8 @@ MonoBehaviour:
       Any: []
       Level: 0
       Author: 0
-  HP: 5
+  HP: 10
   Speed: 5
-  Held: {fileID: 11400000, guid: 7fc77b878c3f272478de54b35b2fb3a3, type: 2}
-  DefaultAction: 1
-  DefaultChaseAction: 1
+  Held: {fileID: 11400000, guid: 7d621acb1abd6f14fb8ce00024521ece, type: 2}
+  DefaultAction: 201
+  DefaultChaseAction: 202

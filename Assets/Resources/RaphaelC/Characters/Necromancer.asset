@@ -10,33 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4679cc75b2c8be74e8b047318fa062ea, type: 3}
-  m_Name: Player
+  m_Name: Necromancer
   m_EditorClassIdentifier: Assembly-CSharp::CharacterOption
-  Name: Player
-  Author: 0
-  Team: 2
+  Name: Sworder
+  Author: 60
+  Team: 3
   Body: {fileID: 629948465317790645, guid: acf0e760b28c7b046ad7d511fb87a1d3, type: 3}
-  Art: {fileID: -6930072583179015400, guid: 466134fd5ef0c8346910fe7179d8e3a2, type: 3}
-  Color: {r: 0.21960786, g: 0.21960786, b: 0.21960786, a: 1}
+  Art: {fileID: -2792402802363126846, guid: c4aacb77efc796c4488d57bf013f47cc, type: 3}
+  Color: {r: 1, g: 1, b: 1, a: 1}
   Size: 1
   Tags:
-  - Common: 1
+  - Common: 102
     Custom: 
     W: 1
   LevelRange: {x: 0, y: 0}
-  Trait:
-  - Trait: 100
-    Numbers: []
-    Prefabs: []
-    Acts: []
-    SpawnReq:
-      Fixed: {fileID: 0}
-      Mandatory: []
-      Any: []
-      Level: 0
-      Author: 0
-  HP: 5
-  Speed: 5
-  Held: {fileID: 11400000, guid: 7fc77b878c3f272478de54b35b2fb3a3, type: 2}
-  DefaultAction: 1
-  DefaultChaseAction: 1
+  Trait: []
+  HP: 3
+  Speed: 1
+  Held: {fileID: 11400000, guid: 208b51eb500c2b64db2e40861ca46f4a, type: 2}
+  DefaultAction: 201
+  DefaultChaseAction: 202
