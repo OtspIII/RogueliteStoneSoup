@@ -46,7 +46,7 @@ public class ThingController : MonoBehaviour
         //If a new frame starts and we're in the middle of resolving an Event, that means the event bugged out and didn't finish
         if (Info.MidEvent)
         {
-            Debug.LogError("Thing Got Stuck Mid-Action: " + Name);
+            God.LogError("Thing Got Stuck Mid-Action: " + Name);
             Info.MidEvent = false;
         }
         //Tell all my traits to run their 'every frame' code
