@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4679cc75b2c8be74e8b047318fa062ea, type: 3}
-  m_Name: FunnyGuy
+  m_Name: CrazyArcher
   m_EditorClassIdentifier: Assembly-CSharp::CharacterOption
-  Name: FunnyGuy
+  Name: CrazyArcher
   Author: 60
   Team: 3
-  Body: {fileID: 629948465317790645, guid: c5227d51ccfec934db9e0058624b573e, type: 3}
-  Art: {fileID: -2043683151485635411, guid: 4635bc6e724f8564b83cba6eccc4e319, type: 3}
+  Body: {fileID: 629948465317790645, guid: acf0e760b28c7b046ad7d511fb87a1d3, type: 3}
+  Art: {fileID: 6104950300687878253, guid: f14f728d45b6cbd46bba5b5ddca586dd, type: 3}
   Color: {r: 1, g: 1, b: 1, a: 1}
   Size: 1
   Tags:
@@ -25,8 +25,8 @@ MonoBehaviour:
     W: 0.5
   LevelRange: {x: 0, y: 0}
   Trait: []
-  HP: 1
+  HP: 3
   Speed: 2
-  Held: {fileID: 11400000, guid: 7eef3b2d1786b6349b779d64bdad2c6e, type: 2}
-  DefaultAction: 201
+  Held: {fileID: 11400000, guid: 682fd5ac9d88f8640b6463bda8c0a3c6, type: 2}
+  DefaultAction: 103
   DefaultChaseAction: 202

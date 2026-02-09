@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Suspicious Crate
   m_EditorClassIdentifier: 
   Name: Suspicious Crate
-  Author: 0
+  Author: 60
   Team: 1
   Body: {fileID: 629948465317790645, guid: 37c4754857b78e24995335d45e308e0b, type: 3}
   Art: {fileID: -1362058913294850930, guid: f7ed4d06ee2bd2f4c97d3e34fa915bd9, type: 3}

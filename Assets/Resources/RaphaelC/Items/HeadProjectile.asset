@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 666e3856c5664c242bde2f0f953b72bc, type: 3}
+  m_Name: HeadProjectile
+  m_EditorClassIdentifier: 
+  Name: Fireball
+  Author: 60
+  Team: 1
+  Body: {fileID: 629948465317790645, guid: 9edb53243ae32704ead177294fe49d22, type: 3}
+  Art: {fileID: 21300000, guid: 2d7e0ce399741ea4297e5d3e535c5d8c, type: 3}
+  Color: {r: 1, g: 1, b: 1, a: 1}
+  Size: 1
+  Tags: []
+  LevelRange: {x: 0, y: 0}
+  Trait:
+  - Trait: 3
+    Numbers:
+    - Type: 2
+      Value: 3
+    Prefabs:
+    - Type: 1
+      Value: {fileID: 11400000, guid: fa9fd6eea68462e47818ec67068d8b08, type: 2}
+    Acts: []
+    SpawnReq:
+      Fixed: {fileID: 11400000, guid: fa9fd6eea68462e47818ec67068d8b08, type: 2}
+      Mandatory: []
+      Any: []
+      Level: 0
+      Author: 0
+  Damage: 1
+  Speed: 10
