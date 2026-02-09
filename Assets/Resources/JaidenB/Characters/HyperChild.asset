@@ -10,22 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4679cc75b2c8be74e8b047318fa062ea, type: 3}
-  m_Name: Player
+  m_Name: HyperChild
   m_EditorClassIdentifier: Assembly-CSharp::CharacterOption
-  Name: Player
-  Author: 0
+  Name: Hyper Child
+  Author: 35
   Team: 2
   Body: {fileID: 629948465317790645, guid: acf0e760b28c7b046ad7d511fb87a1d3, type: 3}
-  Art: {fileID: -6930072583179015400, guid: 466134fd5ef0c8346910fe7179d8e3a2, type: 3}
-  Color: {r: 0.21960786, g: 0.21960786, b: 0.21960786, a: 1}
-  Size: 1
+  Art: {fileID: -2043683151485635411, guid: 4635bc6e724f8564b83cba6eccc4e319, type: 3}
+  Color: {r: 1, g: 0.4292453, b: 0.92376226, a: 1}
+  Size: 0.8
   Tags:
   - Common: 1
     Custom: 
-    W: 1
+    W: 0
   LevelRange: {x: 0, y: 0}
   Trait:
-  - Trait: 100
+  - Trait: 2
     Numbers: []
     Prefabs: []
     Acts: []
@@ -35,8 +35,8 @@ MonoBehaviour:
       Any: []
       Level: 0
       Author: 0
-  HP: 5
-  Speed: 5
-  Held: {fileID: 11400000, guid: 7fc77b878c3f272478de54b35b2fb3a3, type: 2}
+  HP: 3
+  Speed: 8
+  Held: {fileID: 0}
   DefaultAction: 1
   DefaultChaseAction: 1
