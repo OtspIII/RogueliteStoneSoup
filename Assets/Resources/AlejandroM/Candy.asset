@@ -12,17 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a47d2194617e47469e601e558e7b8b4, type: 3}
   m_Name: Candy
   m_EditorClassIdentifier: Assembly-CSharp::ItemOption
-  Name: 
-  Author: 0
+  Name: Candy
+  Author: 25
   Team: 1
-  Body: {fileID: 0}
-  Art: {fileID: 0}
+  Body: {fileID: 629948465317790645, guid: 7ef37acb0fdeb5849995b35a7fdca6ba, type: 3}
+  Art: {fileID: -3366272070310193754, guid: 1d589f83c0022fd4ea5376cc4bcd90f5, type: 3}
   Color: {r: 1, g: 1, b: 1, a: 1}
   Size: 1
   Tags: []
   LevelRange: {x: 0, y: 0}
   Trait: []
-  DefaultAttack: 0
+  DefaultAttack: 5
   ToSpawn:
     Fixed: {fileID: 0}
     Mandatory: []
@@ -33,5 +33,5 @@ MonoBehaviour:
   FloorArt: {fileID: 0}
   Damage: 0
   IdealRange: 1.5
-  SpeedMult: 1
+  SpeedMult: 2
   ActDuration: 0
