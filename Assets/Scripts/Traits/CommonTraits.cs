@@ -158,7 +158,7 @@ public class DespawnTrait : Trait
         {
             case EventTypes.Setup:
             {
-                float dur = e.GetFloat(NumInfo.Default,0.2f);
+                float dur = i.GetFloat(NumInfo.Default,0.2f);
                 i.Set(NumInfo.Max, dur);
                 i.Set(NumInfo.Default, dur);
                 break;
