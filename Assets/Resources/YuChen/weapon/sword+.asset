@@ -10,19 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a47d2194617e47469e601e558e7b8b4, type: 3}
-  m_Name: HoldableOption
+  m_Name: sword+
   m_EditorClassIdentifier: Assembly-CSharp::ItemOption
-  Name: 
+  Name: sword+
   Author: 95
-  Team: 0
-  Body: {fileID: 0}
-  Art: {fileID: -1603291472181913768, guid: fc3885f1178bbfb4fa43393e6d6fefa1, type: 3}
+  Team: 1
+  Body: {fileID: 629948465317790645, guid: ef672722d780ecf4e9d868d0ce938dec, type: 3}
+  Art: {fileID: 3763752930381237044, guid: 6182c182fed00e244ac4d80067b6d5db, type: 3}
   Color: {r: 1, g: 1, b: 1, a: 1}
-  Size: 1
-  Tags: []
+  Size: 0.9
+  Tags:
+  - Common: 201
+    Custom: 
+    W: 0
   LevelRange: {x: 0, y: 0}
   Trait: []
-  DefaultAttack: 0
+  DefaultAttack: 101
   ToSpawn:
     Fixed: {fileID: 0}
     Mandatory: []
@@ -31,7 +34,7 @@ MonoBehaviour:
     Author: 0
   FloorBody: {fileID: 0}
   FloorArt: {fileID: 0}
-  Damage: 0
-  IdealRange: 1.5
+  Damage: 15
+  IdealRange: 2
   SpeedMult: 1
   ActDuration: 0
