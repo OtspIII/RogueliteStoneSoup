@@ -31,7 +31,7 @@ public class ThingInfo //The class that handles all the core info for all non-wa
     public ThingInfo Target;         //Is there a thing I'm targeting? Record it here
     public TraitInfo ActorTrait;     //A link to my ActorTrait, if any. For efficiency
     public float AttackRange = 1.5f; //My range from my target before I use my held item. So I don't need to ask my traits constantly
-    public float VisionRange = 4;    //My detection range before I see the player
+    public float VisionRange;        //My detection range before I see the player
     public float CurrentSpeed;       //Set by traits so you don't need to recalc constantly
     public Vector2 DesiredMove;      //What direction do I want to be moving in? Used by Actions
     
@@ -69,6 +69,8 @@ public class ThingInfo //The class that handles all the core info for all non-wa
         Thing.Body = GameObject.Instantiate(Type.GetBody(), Thing.transform);
         Thing.Body.Setup(Thing,Type);
         Thing.SetTeam(Team);
+        if(VisionRange > 0)
+            Thing.AddHitbox(HitboxTypes.Vision, VisionRange);
         //Tell our traits we just spawned a GameObject!
         TakeEvent(EventTypes.OnSpawn);
         //Mark us as having been setup, so we don't do setup things twice

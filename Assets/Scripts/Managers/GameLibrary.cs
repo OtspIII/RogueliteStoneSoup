@@ -13,6 +13,8 @@ public class GameLibrary : MonoBehaviour
     public BodyController PickupDefaultBody;
     //A generic gnome that gets customized when spawned
     public SfXGnome GnomePrefab;
+    //A generic hitbox used by ThingController.AddHitbox
+    public HitboxController Hitbox;
     //We don't need to load our Resources folder more than once, so let's have a bool that says once we've done it
     public static bool Setup = false;
     //A list of all the possible spawnable rooms/actors/gnomes the procgen system can pull from.

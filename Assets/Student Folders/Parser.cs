@@ -32,6 +32,7 @@ public static class Parser
         TraitDict.Add(Traits.Despawn,new DespawnTrait());
         TraitDict.Add(Traits.LimitedUse,new LimitedUseTrait());
         TraitDict.Add(Traits.Stackable,new StackableTrait());
+        TraitDict.Add(Traits.Hostile,new HostileTrait());
     }
     
     public static ActionScript Get(Actions act,ThingInfo who,EventInfo e=null)
@@ -115,6 +116,7 @@ public enum Traits
     Drop            =0003,//Spawn Thing On Death
     Despawn         =0004,//Vanish After Time Passes
     Player          =0100,//Read Keyboard/Mouse
+    Hostile         =0101,//Attacks the player if they see them
     Exit            =0200,//Win Game Upon Touching
     DamageZone      =0201,//Deal Damage Upon Touching
     Tool            =0300,//Can Be Used When Held

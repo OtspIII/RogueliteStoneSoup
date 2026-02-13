@@ -40,7 +40,7 @@ public class HealthTrait : Trait
                 if (i.Who.Thing != null) //If I still exist, spray blood
                 {
                     Vector2 where = i.Who.Thing.transform.position;
-                    if (i.Collision != null) where = i.Collision.Where;
+                    if (e.Collision != null) where = e.Collision.Where;
                     God.Library.GetGnome("Blood").Spawn(where, amt * 3);
                 }
                 float hp = i.Change(-amt); //Lower my health by the amount

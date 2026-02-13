@@ -144,3 +144,25 @@ public class PlayerTrait : Trait
         }
     }
 }
+
+public class HostileTrait : Trait
+{
+    public HostileTrait()
+    {
+        Type = Traits.Hostile;
+        AddListen(EventTypes.OnSee);
+    }
+
+    public override void TakeEvent(TraitInfo i, EventInfo e)
+    {
+        switch (e.Type)
+        {
+            case EventTypes.OnSee:
+            {
+                if (e.GetThing() == God.Player)
+                    i.Who.Target = e.GetThing();
+                break;
+            }
+        }
+    }
+}

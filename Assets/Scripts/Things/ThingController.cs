@@ -19,6 +19,7 @@ public class ThingController : MonoBehaviour
     [Header("Movement Bookkeeping")]
     public Vector2 ActualMove;
     public Vector2 Knockback;
+    public List<ThingInfo> CanSee; //A list of all the Things you can currently see
     [Header("Debug Info")]
     public Vector3 StartSpot;     //I write down where I first spawned, just so I know
     public string DebugTxt;       //This just exists as a secondary debug.log. Set it and check its status in the inspector
@@ -88,7 +89,18 @@ public class ThingController : MonoBehaviour
         RB.constraints = RigidbodyConstraints2D.FreezeRotation;
         RB.gravityScale = 0;
     }
-    
+
+    ///Creates a new hitbox of a certain type.
+    public HitboxController AddHitbox(HitboxTypes t, float size = 1)
+    {
+        HitboxController r = Instantiate(God.Library.Hitbox, transform);
+        r.gameObject.name = t + " Hitbox";
+        r.transform.localPosition = Vector3.zero;
+        ((CircleCollider2D)r.Coll).radius = size;
+        r.Setup(t,this);
+        return r;
+    }
+
     //#################Event Shortcuts###################
     //Most of the real code for these lives on ThingInfo, but I added a function here that just calls that for QoL purposes
     //If you want to know what they do, look at their ThingInfo equivalents
@@ -324,6 +336,22 @@ public class ThingController : MonoBehaviour
     public List<ThingController> GetTouching(HitboxTypes filter = HitboxTypes.None)
     {
         return Body.GetTouching(filter);
+    }
+    
+    ///Called when an object enters a Vision Hitbox owned by the character
+    public void SeeBegin(ThingInfo who)
+    {
+        if (CanSee.Contains(who)) return;
+        CanSee.Add(who);
+        TakeEvent(God.E(EventTypes.OnSee).Set(who));
+    }
+    
+    ///Called when an object leaves a Vision Hitbox owned by the character
+    public void SeeEnd(ThingInfo who)
+    {
+        if (!CanSee.Contains(who)) return;
+        CanSee.Remove(who);
+        TakeEvent(God.E(EventTypes.OnSeeEnd).Set(who));
     }
 
     ///Destroys the body of the item we're currently holding. The code for actually being dropped is elsewhere

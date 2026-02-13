@@ -643,3 +643,4 @@ MonoBehaviour:
   ActorPrefab: {fileID: 7168331786191300375, guid: c8fbb66690624b049a9e874f3aee606b, type: 3}
   PickupDefaultBody: {fileID: 629948465317790645, guid: 0f8734e4b4d2c3a449506fe0c78c1110, type: 3}
   GnomePrefab: {fileID: 6859709298145946338, guid: 5917afff6b029b64086d6c54cbb75a22, type: 3}
+  Hitbox: {fileID: 1614587136754571350, guid: 4ddcca3579e79494e8e922b867c2c9fb, type: 3}

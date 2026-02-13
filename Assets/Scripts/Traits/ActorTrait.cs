@@ -38,8 +38,8 @@ public class ActorTrait : Trait
                 float spd = i.Get(NumInfo.Speed,5);
                 i.Who.CurrentSpeed = spd;
                 if (spd > 0) i.Who.Thing.AddRB();
-                if(i.Who != God.Player)
-                    i.Who.Target = God.Player;
+                // if(i.Who != God.Player)
+                //     i.Who.Target = God.Player;
                 DoAction(i);
                 break;
             }
