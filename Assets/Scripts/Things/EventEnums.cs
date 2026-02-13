@@ -23,7 +23,9 @@ public enum EventTypes{
     GainTrait       =1100,
     LoseTrait       =1101,
     OnSee           =1201,
-    OnSeeEnd      =1202,
+    OnSeeEnd        =1202,
+    OnTargetDie     =1203,
+    OnKill          =1204,
     
     //Common Actions
     OnTouch         =2000,  //Touch is Hitbox to Hitbox

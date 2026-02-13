@@ -151,6 +151,8 @@ public class HostileTrait : Trait
     {
         Type = Traits.Hostile;
         AddListen(EventTypes.OnSee);
+        AddListen(EventTypes.OnTargetDie);
+        AddListen(EventTypes.OnKill);
     }
 
     public override void TakeEvent(TraitInfo i, EventInfo e)
@@ -160,7 +162,7 @@ public class HostileTrait : Trait
             case EventTypes.OnSee:
             {
                 if (e.GetThing() == God.Player)
-                    i.Who.Target = e.GetThing();
+                    i.Who.SetTarget(e.GetThing());
                 break;
             }
         }
