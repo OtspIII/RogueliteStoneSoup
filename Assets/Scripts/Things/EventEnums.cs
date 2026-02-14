@@ -14,6 +14,9 @@ public enum EventTypes{
     UseHeldEnd      =0105,
     UseHeldComplete =0106,
     UseHeldAbort    =0107,
+    LevelEnd        =0201,
+    EnterRoom       =0202,
+    ExitRoom        =0203,
     
     //Common Combat
     Damage          =1001,

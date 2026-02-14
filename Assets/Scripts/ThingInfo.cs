@@ -364,7 +364,7 @@ public class ThingInfo //The class that handles all the core info for all non-wa
         foreach (ThingInfo t in TargetedBy.ToArray())
         {
             t.Target = null;
-            t.TakeEvent(God.E(EventTypes.OnTargetDie).Set(this).Set(Thing.transform.position));
+            t.TakeEvent(God.E(EventTypes.OnTargetDie).Set(this).Set(Thing.transform.position).SetThing(ThingEInfo.Source,source));
         }
         DestroyForm();
     }

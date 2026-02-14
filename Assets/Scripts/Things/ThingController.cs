@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -20,6 +21,7 @@ public class ThingController : MonoBehaviour
     public Vector2 ActualMove;
     public Vector2 Knockback;
     public List<ThingInfo> CanSee; //A list of all the Things you can currently see
+    public List<RoomScript> CurrentRooms;
     [Header("Debug Info")]
     public Vector3 StartSpot;     //I write down where I first spawned, just so I know
     public string DebugTxt;       //This just exists as a secondary debug.log. Set it and check its status in the inspector
@@ -360,5 +362,26 @@ public class ThingController : MonoBehaviour
         if (HeldBody == null) return;
         Destroy(HeldBody.gameObject);
         HeldBody = null;
+    }
+
+    public void EnterRoom(RoomScript rm)
+    {
+        if (!CurrentRooms.Contains(rm))
+            CurrentRooms.Add(rm);
+        if (!rm.Contents.Contains(this))
+        {
+            rm.Contents.Add(this);
+            rm.SendEvent(God.E(EventTypes.EnterRoom).Set(Info).Set(rm).Set(transform.position));
+        }
+    }
+    
+    public void ExitRoom(RoomScript rm)
+    {
+        CurrentRooms.Remove(rm);
+        if (rm.Contents.Contains(this))
+        {
+            rm.Contents.Remove(this);
+            rm.SendEvent(God.E(EventTypes.ExitRoom).Set(Info).Set(rm).Set(transform.position));
+        }
     }
 }

@@ -35,6 +35,8 @@ public class ThingOption : GameOption //A generic class for anything that might 
                 ts.Options.Add(n.Type != OptionInfo.None ? n.Type : OptionInfo.Default,n.Value);
             foreach (InfoAction n in t.Acts)
                 ts.Acts.Add(n.Type != ActionInfo.None ? n.Type : ActionInfo.Default,n.Act);
+            if (t.OtherTrait != Traits.None)
+                ts.Set(t.OtherTrait);
             ts.SpawnReq = t.SpawnReq;
             //Once the info is all transcribed, tell the Thing to add the Trait to itself
             r.AddTrait(t.Trait, ts);

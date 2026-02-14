@@ -59,6 +59,10 @@ public class GameSession
 
     public virtual IEnumerator BeatLevel()
     {
+        foreach (ThingController t in God.GM.Things)
+        {
+            t.Info.TakeEvent(EventTypes.LevelEnd);
+        }
         yield return (God.GM.Fade());
         SceneManager.LoadScene(Victory ? "YouWin" : "Gameplay");
     }

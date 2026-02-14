@@ -135,6 +135,32 @@ public class GameManager : MonoBehaviour
         //Plug it in to the TextMesh
         InfoTxt.text = r;
     }
+
+    public List<ThingInfo> CollideCircle(Vector2 where, float size,params HitboxTypes[] hbt)
+    {
+        Collider2D[] o = Physics2D.OverlapCircleAll(where, size);
+        List<ThingInfo> r = new List<ThingInfo>();
+        foreach (Collider2D c in o)
+        {
+            HitboxController hbc = c.GetComponent<HitboxController>();
+            if (hbc == null || (hbt.Length > 0 && !hbt.Contains(hbc.Type)) || r.Contains(hbc.Who.Info)) continue;
+            r.Add(hbc.Who.Info);
+        }
+        return r;
+    }
+    
+    public List<ThingInfo> CollideSquare(Vector2 where, Vector2 size,float angle=0,params HitboxTypes[] hbt)
+    {
+        Collider2D[] o = Physics2D.OverlapBoxAll(where, size,angle);
+        List<ThingInfo> r = new List<ThingInfo>();
+        foreach (Collider2D c in o)
+        {
+            HitboxController hbc = c.GetComponent<HitboxController>();
+            if (hbc == null || (hbt.Length > 0 && !hbt.Contains(hbc.Type)) || r.Contains(hbc.Who.Info)) continue;
+            r.Add(hbc.Who.Info);
+        }
+        return r;
+    }
 }
 
 ///A little custom data-class for storing UI entries like the player's health or score
