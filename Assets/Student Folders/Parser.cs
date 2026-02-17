@@ -32,6 +32,9 @@ public static class Parser
         TraitDict.Add(Traits.Despawn,new DespawnTrait());
         TraitDict.Add(Traits.LimitedUse,new LimitedUseTrait());
         TraitDict.Add(Traits.Stackable,new StackableTrait());
+        TraitDict.Add(Traits.Rage, new RageTrait());
+        TraitDict.Add(Traits.Dash, new DashTrait());
+      
     }
     
     public static ActionScript Get(Actions act,ThingInfo who,EventInfo e=null)
@@ -135,8 +138,12 @@ public enum Traits
     ElioR1          =3001,
     //JaidenB       =35##,
     JaidenB1        =3501,
+    
     //JuliusP       =40##,
     JuliusP1        =4001,
+    Rage            =4002, 
+    Dash            =4003,
+    
     //MazK          =45##,
     MazK1           =4501,
     //MichaelT      =50##,
