@@ -24,17 +24,7 @@ MonoBehaviour:
     Custom: 
     W: 1
   LevelRange: {x: 0, y: 0}
-  Trait:
-  - Trait: 0
-    Numbers: []
-    Prefabs: []
-    Acts: []
-    SpawnReq:
-      Fixed: {fileID: 0}
-      Mandatory: []
-      Any: []
-      Level: 0
-      Author: 0
+  Trait: []
   HP: 1
   Speed: 1
   Held: {fileID: 11400000, guid: ad13ac6261f013b45ab35c13a6699b50, type: 2}

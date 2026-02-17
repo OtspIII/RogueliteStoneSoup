@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,6 +9,8 @@ public class RoomScript : MonoBehaviour
     public Transform DoorHolder;
     public List<SpawnPointController> Spawners;
     public Dictionary<Directions,List<DoorController>> Doors = new Dictionary<Directions, List<DoorController>>();
+    public BoxCollider2D Coll;
+    [SerializeReference] public List<ThingController> Contents = new List<ThingController>();
     // public List<RoomTags> Tags;
     
     public void Setup(GeoTile g)
@@ -41,6 +44,34 @@ public class RoomScript : MonoBehaviour
             {
                 foreach (DoorController dc in doors) dc.TurnOn();
             }
+        }
+
+        if (Coll == null) God.LogWarning("ROOM SET UP WITH NO COLLIDER: " + this);
+        else if (!Coll.isTrigger) God.LogWarning("ROOM SET UP WITH NON-TRIGGER COLLIDER: " + this);
+        else if (Coll.gameObject.layer != LayerMask.NameToLayer("Room")) God.LogWarning("ROOM SET UP WITH NON-ROOM LAYER ON COLLIDER: " + this);
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        ThingController o = other.gameObject.transform.parent?.GetComponent<ThingController>();
+        if (o == null)return;
+        o.EnterRoom(this);
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        ThingController o = other.gameObject.transform.parent?.GetComponent<ThingController>();
+        if (o == null)return;
+        o.ExitRoom(this);
+    }
+
+    public void SendEvent(EventInfo e)
+    {
+        foreach (ThingController who in Contents)
+        {
+            EventInfo ec = new EventInfo();
+            ec.Clone(e);
+            who.TakeEvent(ec);
         }
     }
 

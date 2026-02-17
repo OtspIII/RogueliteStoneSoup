@@ -17,6 +17,7 @@ public class TraitBuilder
     public List<InfoNumber> Numbers;
     public List<InfoOption> Prefabs;
     public List<InfoAction> Acts;
+    public Traits OtherTrait;
     public SpawnRequest SpawnReq;
 }
 

@@ -23,6 +23,7 @@ public class EventInfo
     public GameCollision Collision;
     public SpawnRequest SpawnReq;
     public Traits TraitI;
+    public RoomScript Room;
 
     public EventInfo(){ }
     
@@ -55,6 +56,7 @@ public class EventInfo
         Collision = i.Collision;
         SpawnReq = i.SpawnReq;
         TraitI = i.TraitI;
+        Room = i.Room;
     }
     
     //Numbers
@@ -168,6 +170,17 @@ public class EventInfo
     public Traits GetTrait()
     {
         return TraitI;
+    }
+    
+    public EventInfo Set(RoomScript v)
+    {
+        Room = v;
+        return this;
+    }
+
+    public RoomScript GetRoom()
+    {
+        return Room;
     }
     
     //Bools

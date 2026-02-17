@@ -20,6 +20,8 @@ public class PlayerTrait : Trait
         AddListen(EventTypes.Death,5);
         AddListen(EventTypes.AddScore);
         AddListen(EventTypes.GetScore);
+        AddListen(EventTypes.EnterRoom);
+        AddListen(EventTypes.ExitRoom);
     }
 
     public override void TakeEvent(TraitInfo i, EventInfo e)
@@ -139,6 +141,40 @@ public class PlayerTrait : Trait
             case EventTypes.GetScore:
             {
                 e.Set(i.GetFloat());
+                break;
+            }
+            case EventTypes.EnterRoom:
+            {
+                Debug.Log("ENTER ROOM: " + e.GetThing());
+                break;
+            }
+            case EventTypes.ExitRoom:
+            {
+                Debug.Log("EXIT ROOM: " + e.GetThing());
+                break;
+            }
+        }
+    }
+}
+
+public class HostileTrait : Trait
+{
+    public HostileTrait()
+    {
+        Type = Traits.Hostile;
+        AddListen(EventTypes.OnSee);
+        AddListen(EventTypes.OnTargetDie);
+        AddListen(EventTypes.OnKill);
+    }
+
+    public override void TakeEvent(TraitInfo i, EventInfo e)
+    {
+        switch (e.Type)
+        {
+            case EventTypes.OnSee:
+            {
+                if (e.GetThing() == God.Player)
+                    i.Who.SetTarget(e.GetThing());
                 break;
             }
         }

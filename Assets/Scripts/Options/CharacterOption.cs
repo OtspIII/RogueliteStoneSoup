@@ -8,6 +8,7 @@ public class CharacterOption : ThingOption
 {
     public int HP;           //How much HP does the character have?
     public float Speed = 5;  //How fast do they walk?
+    public float VisionRange = 4; //How far can they see?
     public ItemOption Held;//What are they holding? Determines their default attack/action
     public Actions DefaultAction=Actions.Patrol;     //What do they do whenever they aren't doing any other action?
     public Actions DefaultChaseAction=Actions.Chase; //What do they do once they see the player?
@@ -19,7 +20,9 @@ public class CharacterOption : ThingOption
         r.AddTrait(Traits.Actor,God.E().Set(NumInfo.Speed,Speed).SetAction(ActionInfo.DefaultAction,DefaultAction)
             .SetAction(ActionInfo.DefaultChaseAction,DefaultChaseAction));
         r.AddTrait(Traits.Health, new EventInfo(HP));
+        if (Team == GameTeams.Enemy) r.AddTrait(Traits.Hostile);
         r.SetHeld(Held);
+        r.VisionRange = VisionRange;
         return r;
     }
 }

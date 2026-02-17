@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -29,9 +30,10 @@ public class ThingInfo //The class that handles all the core info for all non-wa
     [HideInInspector]public bool Setup = false;     //Have I run setup already? Prevents setup from running twice
     [HideInInspector]public bool Destroyed = false; //Have I been marked for destruction? So I don't trigger death effects multiple times
     public ThingInfo Target;         //Is there a thing I'm targeting? Record it here
+    [SerializeReference]public List<ThingInfo> TargetedBy = new List<ThingInfo>();//A list of everyone targeting me.
     public TraitInfo ActorTrait;     //A link to my ActorTrait, if any. For efficiency
     public float AttackRange = 1.5f; //My range from my target before I use my held item. So I don't need to ask my traits constantly
-    public float VisionRange = 4;    //My detection range before I see the player
+    public float VisionRange;        //My detection range before I see the player
     public float CurrentSpeed;       //Set by traits so you don't need to recalc constantly
     public Vector2 DesiredMove;      //What direction do I want to be moving in? Used by Actions
     
@@ -48,6 +50,8 @@ public class ThingInfo //The class that handles all the core info for all non-wa
     { return Spawn(pos, 0); }
     public ThingController Spawn(Vector3 pos, float rot)
     {
+        //If anything goes wrong, it's useful to know who we were spawning when things bugged out.
+        God.DebugTxt = "Spawning " + Name + " / " + Type.Author;
         //Instantiate our GameObject and set a few of its variables to mirror ours
         Thing = GameObject.Instantiate(God.Library.ActorPrefab, pos, Quaternion.Euler(0, 0, rot));
         Thing.Info = this;
@@ -61,14 +65,19 @@ public class ThingInfo //The class that handles all the core info for all non-wa
         }
         Thing.gameObject.name = Name;
         Thing.NameText.text = GetName(true);
+        if (Type.Author != Authors.None && Type.Author != God.Session.Author)
+            Thing.NameText.text += "\n(" + Type.Author + ")";
         //Spawn and set up our body and tell everything what team it's on
         Thing.Body = GameObject.Instantiate(Type.GetBody(), Thing.transform);
         Thing.Body.Setup(Thing,Type);
         Thing.SetTeam(Team);
+        if(VisionRange > 0)
+            Thing.AddHitbox(HitboxTypes.Vision, VisionRange);
         //Tell our traits we just spawned a GameObject!
         TakeEvent(EventTypes.OnSpawn);
         //Mark us as having been setup, so we don't do setup things twice
         Setup = true;
+        God.DebugTxt = "";
         return Thing; //Return the gameobject script we just made
     }
     
@@ -327,6 +336,17 @@ public class ThingInfo //The class that handles all the core info for all non-wa
             }
         }
     }
+
+    public void SetTarget(ThingInfo t)
+    {
+        //If I'm retargeting the same thing, don't bother doing anything
+        if (Target == t) return;
+        //If I was targeting someone, tell them I stopped
+        if (Target != null) Target.TargetedBy.Remove(this);
+        Target = t;
+        //Tell my new target that I'm targeting them
+        if (Target != null && !Target.TargetedBy.Contains(this)) Target.TargetedBy.Add(this);
+    }
     
     public void DestroyForm()
     {
@@ -340,6 +360,12 @@ public class ThingInfo //The class that handles all the core info for all non-wa
         if (Destroyed) return;
         Destroyed = true;
         TakeEvent(God.E(EventTypes.OnDestroy).Set(source).Set(Thing.transform.position));
+        if(source != null) source.TakeEvent(God.E(EventTypes.OnKill).Set(this).Set(Thing.transform.position));
+        foreach (ThingInfo t in TargetedBy.ToArray())
+        {
+            t.Target = null;
+            t.TakeEvent(God.E(EventTypes.OnTargetDie).Set(this).Set(Thing.transform.position).SetThing(ThingEInfo.Source,source));
+        }
         DestroyForm();
     }
 

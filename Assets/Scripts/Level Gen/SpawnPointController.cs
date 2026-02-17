@@ -14,7 +14,7 @@ public class SpawnPointController : MonoBehaviour
         if (chosen == null)
         {
             if(!ToSpawn.HasTag(GameTags.Debug))
-                Debug.LogWarning("Tried to spawn but couldn't: " + ToSpawn);
+                God.LogWarning("Tried to spawn but couldn't: " + ToSpawn);
             return;
         }
 
