@@ -29,7 +29,7 @@ public class GameSession
         if (God.GM != null) 
         {
             God.GM.CurrentAuthor = a;
-            if(God.GM.LevelOverride > 0) Level = God.GM.LevelOverride;
+            if(God.GM.LevelOverride != 0) Level = God.GM.LevelOverride;
         }
     }
     

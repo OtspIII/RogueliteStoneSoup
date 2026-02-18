@@ -60,6 +60,11 @@ public class LevelBuilder
         int w = 2 + Mathf.FloorToInt(l/3);
         //Height starts at 2, and every other level grows by 1
         int h = 2 + Mathf.FloorToInt(l/2);
+        if (l == -1)
+        {
+            w = 1;
+            h = 2;
+        }
         Size = new Vector2Int(w, h);
         //If we haven't created a player yet for this playthrough, make one.
         if (God.Session.Player == null)
@@ -259,6 +264,7 @@ public class LevelBuilder
     ///Decide how much stuff to spawn per level
     public virtual void FindQuotas()
     {
+        if (God.Session.Level == -1) return;
         //We're going to add a bunch of SpawnRequests to our queue
         //First we calculate how many (non-start/non-end) rooms we have. . .
         float rms = AllGeo.Count - 2;
