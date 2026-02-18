@@ -68,6 +68,21 @@ public static class Parser
             case Actions.Patrol: return new PatrolAction(who,e);
             case Actions.Chase: return new ChaseAction(who,e);
             case Actions.Use: return new UseAction(who, e);
+            // MazK=12,
+            // AdamD=20,
+            // AlejandroM=25,
+            // ElioR=30,
+            // JaidenB=35,
+            // JuliusP=40,
+            // MichaelT=50,
+            // QixiangD=55,
+            // RaphaelC=60,
+            // SabahE=65,
+            // SamsonW=70,
+            // SarahS=75,
+            // TracyH=80,
+            // WesleyP=90,
+            // YuChen=95,
         }
         God.LogError("UNCAUGHT ACTION: " + act);
         return new IdleAction(who,e);
