@@ -20,8 +20,6 @@ public class PlayerTrait : Trait
         AddListen(EventTypes.Death,5);
         AddListen(EventTypes.AddScore);
         AddListen(EventTypes.GetScore);
-        AddListen(EventTypes.EnterRoom);
-        AddListen(EventTypes.ExitRoom);
     }
 
     public override void TakeEvent(TraitInfo i, EventInfo e)
@@ -141,16 +139,6 @@ public class PlayerTrait : Trait
             case EventTypes.GetScore:
             {
                 e.Set(i.GetFloat());
-                break;
-            }
-            case EventTypes.EnterRoom:
-            {
-                Debug.Log("ENTER ROOM: " + e.GetThing());
-                break;
-            }
-            case EventTypes.ExitRoom:
-            {
-                Debug.Log("EXIT ROOM: " + e.GetThing());
                 break;
             }
         }

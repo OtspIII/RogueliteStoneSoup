@@ -16,6 +16,8 @@ public class GameManager : MonoBehaviour
     public Authors CurrentAuthor;
     //If you put an Option in here, two of them will spawn in the player's starting room. For testing.
     public ThingOption DebugSpawn;
+    public ThingOption DebugSpawnAlt;
+    public ThingOption DebugSpawnEnd;
     //What level does the game start on? If not 0, skips straight to the selected level.
     public int LevelOverride = 0;
     

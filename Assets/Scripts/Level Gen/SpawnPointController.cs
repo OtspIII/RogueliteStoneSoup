@@ -13,7 +13,7 @@ public class SpawnPointController : MonoBehaviour
         ThingOption chosen = ToSpawn.FindThing();
         if (chosen == null)
         {
-            if(!ToSpawn.HasTag(GameTags.Debug))
+            if(!ToSpawn.HasTag(GameTags.Debug) && !ToSpawn.HasTag(GameTags.DebugAlt) && !ToSpawn.HasTag(GameTags.DebugEnd))
                 God.LogWarning("Tried to spawn but couldn't: " + ToSpawn);
             return;
         }

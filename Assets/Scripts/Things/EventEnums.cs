@@ -175,6 +175,8 @@ public enum GameTags
     Player          =0001,
     Something       =0002,
     Debug           =0003,
+    DebugAlt        =0004,
+    DebugEnd        =0005,
     NPC             =0102,
     Weapon          =0201,
     Consumable      =0202,

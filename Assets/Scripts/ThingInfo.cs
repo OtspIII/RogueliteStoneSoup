@@ -68,7 +68,9 @@ public class ThingInfo //The class that handles all the core info for all non-wa
         if (Type.Author != Authors.None && Type.Author != God.Session.Author)
             Thing.NameText.text += "\n(" + Type.Author + ")";
         //Spawn and set up our body and tell everything what team it's on
-        Thing.Body = GameObject.Instantiate(Type.GetBody(), Thing.transform);
+        BodyController bc = Type.GetBody();
+        if(bc == null) God.LogError("BODY NOT SET ON OPTION: " + Type.Name);
+        Thing.Body = GameObject.Instantiate(bc, Thing.transform);
         Thing.Body.Setup(Thing,Type);
         Thing.SetTeam(Team);
         if(VisionRange > 0)

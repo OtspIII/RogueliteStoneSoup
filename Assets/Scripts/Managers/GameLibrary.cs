@@ -77,10 +77,9 @@ public class GameLibrary : MonoBehaviour
         //There's an option on the GameManager to set a debug thing to spawn in the player's room
         //If we have something like that set, any spawner set to spawn 'Debug' will spawn that object
         //Otherwise, nothing will happen
-        if (sr.HasTag(GameTags.Debug))
-        {
-            return God.GM.DebugSpawn != null ? God.GM.DebugSpawn : null;
-        }
+        if (sr.HasTag(GameTags.Debug)) return God.GM.DebugSpawn != null ? God.GM.DebugSpawn : null;
+        if (sr.HasTag(GameTags.DebugAlt)) return God.GM.DebugSpawnAlt != null ? God.GM.DebugSpawnAlt : null;
+        if (sr.HasTag(GameTags.DebugEnd)) return God.GM.DebugSpawnEnd != null ? God.GM.DebugSpawnEnd : null;
         //Make a list of all the things that *might* spawn here
         Dictionary<ThingOption, float> opts = new Dictionary<ThingOption, float>();
         //If we didn't set the level builder to use, just use the one that built the current level
