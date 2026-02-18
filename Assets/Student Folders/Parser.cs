@@ -33,6 +33,8 @@ public static class Parser
         TraitDict.Add(Traits.LimitedUse,new LimitedUseTrait());
         TraitDict.Add(Traits.Stackable,new StackableTrait());
         TraitDict.Add(Traits.Hostile,new HostileTrait());
+        TraitDict.Add(Traits.Lighting_RaphaelC,new Lighting_RaphaelC());
+        TraitDict.Add(Traits.Teleport, new TeleportTrait());
     }
     
     public static ActionScript Get(Actions act,ThingInfo who,EventInfo e=null)
@@ -146,7 +148,7 @@ public enum Traits
     //QixiangD      =55##,
     QixiangD1       =5501,
     //RaphaelC      =60##,
-    RaphaelC1       =6001,
+    Lighting_RaphaelC       =6001,
     //SabahE        =65##,
     SabahE1         =6501,
     //SamsonW       =70##,
@@ -155,6 +157,7 @@ public enum Traits
     SarahS1         =7501,
     //TracyH        =80##,
     TracyH1         =8001,
+    Teleport        =8002,
     //WesleyP       =90##,
     WesleyP1        =9001,
     //YuChen        =95##,
