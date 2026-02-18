@@ -246,7 +246,21 @@ public static class God
         return w * n;
     } 
     
-    
+    /// <summary>
+    /// Returns a new Vector3 with one component (x, y, or z) set to a new value.
+    /// Vector3.x = x does not work as expected in Unity, so this is a workaround.
+    /// </summary>
+    public static Vector3 WithX(this Vector3 vector, float x) => new Vector3(x, vector.y, vector.z);
+    /// <summary>
+    /// Returns a new Vector3 with one component (x, y, or z) set to a new value.
+    /// Vector3.z = z does not work as expected in Unity, so this is a workaround.
+    /// </summary>
+    public static Vector3 WithY(this Vector3 vector, float y) => new Vector3(vector.x, y, vector.z);
+    /// <summary>
+    /// Returns a new Vector3 with one component (x, y, or z) set to a new value.
+    /// Vector3.z = z does not work as expected in Unity, so this is a workaround.
+    /// </summary>
+    public static Vector3 WithZ(this Vector3 vector, float z) => new Vector3(vector.x, vector.y, z);
 }
 
 //For use with GameMaster.Ease()
