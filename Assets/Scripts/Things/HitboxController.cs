@@ -37,6 +37,30 @@ public class HitboxController : MonoBehaviour
         }
     }
 
+    ///A way to setup a hitbox made mid-game. Used by ThingController.AddHitbox
+    public void Setup(HitboxTypes h,ThingController t)
+    {
+        Type = h;
+        SetTeam(t.Info.Team);
+        Body = t.Body;
+        Who = t;
+        switch (h)
+        {
+            case HitboxTypes.Attack:
+            case HitboxTypes.Zone:
+            case HitboxTypes.Vision:
+            {
+                Coll.isTrigger = true;
+                break;
+            }
+            case HitboxTypes.Body:
+            {
+                Coll.isTrigger = false;
+                break;
+            }
+        }
+        Audit();
+    }
     
     public void SetTeam(GameTeams t)
     {
@@ -56,6 +80,7 @@ public class HitboxController : MonoBehaviour
             }
         }
         if(Type == HitboxTypes.Neutral) layer = "Neutral";
+        else if (Type == HitboxTypes.Vision) layer = "Vision";
         gameObject.layer = LayerMask.NameToLayer(layer);
     }
     
@@ -96,6 +121,24 @@ public class HitboxController : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D other)
     {
+        //Vision hitboxes only hit your NoClip collider
+        if (Type == HitboxTypes.Vision)
+        {
+            //If they somehow hit an object without a ThingController, something broke
+            ThingController o = other.gameObject.transform.parent?.GetComponent<ThingController>();
+            if (o == null)
+            {
+                God.LogWarning("Somehow had a vision zone see a non-thing: " + Who.Info + " / " + other.gameObject + ".");
+                return;
+            }
+            //If they aren't already seeing this thing, add them as seen and start the see events
+            if (!Touching.Contains(o))
+            {
+                Touching.Add(o);
+                Who.SeeBegin(o.Info);
+            }
+            return;
+        }
         HitboxController hb = other.GetComponent<HitboxController>();
         if (hb == null)
         {
@@ -110,6 +153,22 @@ public class HitboxController : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
+        if (Type == HitboxTypes.Vision)
+        {
+            ThingController o = other.gameObject.transform.parent?.GetComponent<ThingController>();
+            if (o == null)
+            {
+                God.LogWarning("Somehow had a vision zone see a non-thing: " + Who.Info + " / " + other.gameObject + ".");
+                return;
+            }
+
+            if (Touching.Contains(o))
+            {
+                Touching.Remove(o);
+                Who.SeeEnd(o.Info);
+            }
+            return;
+        }
         HitboxController hb = other.GetComponent<HitboxController>();
         if (hb == null) return;
         GameCollision col = new GameCollision(hb, this);
@@ -127,6 +186,8 @@ public class HitboxController : MonoBehaviour
             Debug.Log("Body Hitbox Set To Trigger: " + Who.Info + " / " + this);
         if((Type == HitboxTypes.Attack || Type == HitboxTypes.Zone) && !Coll.isTrigger)
             Debug.Log("Intangible Hitbox Set To Collider: " + Who.Info + " / " + this);
+        if((Type == HitboxTypes.Vision) && !Coll.isTrigger)
+            Debug.Log("Intangible Hitbox Set To Collider: " + Who.Info + " / " + this);
     }
 }
 
@@ -139,6 +200,7 @@ public enum HitboxTypes
     Projectile=4, //Like an attack, but for a stand-alone object. Hits only other teams
     Neutral=5,    //Ignores teams and always hits everything
     Friendly=6,   //Only hits things on the same team
+    Vision=7,     //Used to know what you can see
 }
 
 public class GameCollision

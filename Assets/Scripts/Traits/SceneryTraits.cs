@@ -50,7 +50,7 @@ public class DamageZoneTrait : Trait
 
                 // Debug.Log("INSIDE LAVA: " + timer + " / " + dmg);
                 HitboxController hb = e.GetHitbox();
-                foreach (ThingController tc in hb.Touching)
+                foreach (ThingController tc in hb.Touching.ToArray())
                 {
                     ThingInfo t = tc.Info;
                     if (knb != 0)

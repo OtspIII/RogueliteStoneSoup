@@ -12,18 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4679cc75b2c8be74e8b047318fa062ea, type: 3}
   m_Name: Player
   m_EditorClassIdentifier: Assembly-CSharp::CharacterOption
-  Name: 
-  Author: 0
-  Team: 1
-  Body: {fileID: 0}
-  Art: {fileID: 0}
-  Color: {r: 1, g: 1, b: 1, a: 1}
+  Name: Player
+  Author: 25
+  Team: 2
+  Body: {fileID: 629948465317790645, guid: acf0e760b28c7b046ad7d511fb87a1d3, type: 3}
+  Art: {fileID: 3083089168873209362, guid: 686df7d4d5faf074eb3b4867fc9296a4, type: 3}
+  Color: {r: 0.9924528, g: 0.77501935, b: 0.47001058, a: 1}
   Size: 1
   Tags: []
   LevelRange: {x: 0, y: 0}
   Trait: []
-  HP: 0
-  Speed: 5
-  Held: {fileID: 0}
+  HP: 10
+  Speed: 4
+  Held: {fileID: 11400000, guid: 7fc77b878c3f272478de54b35b2fb3a3, type: 2}
   DefaultAction: 201
   DefaultChaseAction: 202

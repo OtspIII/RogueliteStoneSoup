@@ -12,17 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a47d2194617e47469e601e558e7b8b4, type: 3}
   m_Name: Katana
   m_EditorClassIdentifier: Assembly-CSharp::ItemOption
-  Name: 
-  Author: 0
+  Name: Katana
+  Author: 25
   Team: 1
-  Body: {fileID: 0}
-  Art: {fileID: 0}
+  Body: {fileID: 629948465317790645, guid: b4fa405680f33044abe2c4567ecf147f, type: 3}
+  Art: {fileID: -5155165372582812192, guid: 2caee219d8843fd4b9e104f26d6ba6d1, type: 3}
   Color: {r: 1, g: 1, b: 1, a: 1}
-  Size: 1
+  Size: 4
   Tags: []
   LevelRange: {x: 0, y: 0}
   Trait: []
-  DefaultAttack: 0
+  DefaultAttack: 101
   ToSpawn:
     Fixed: {fileID: 0}
     Mandatory: []
@@ -31,7 +31,7 @@ MonoBehaviour:
     Author: 0
   FloorBody: {fileID: 0}
   FloorArt: {fileID: 0}
-  Damage: 0
-  IdealRange: 1.5
+  Damage: 6
+  IdealRange: 2
   SpeedMult: 1
   ActDuration: 0

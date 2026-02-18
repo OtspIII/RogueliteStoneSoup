@@ -38,8 +38,8 @@ public class ActorTrait : Trait
                 float spd = i.Get(NumInfo.Speed,5);
                 i.Who.CurrentSpeed = spd;
                 if (spd > 0) i.Who.Thing.AddRB();
-                if(i.Who != God.Player)
-                    i.Who.Target = God.Player;
+                // if(i.Who != God.Player)
+                //     i.Who.Target = God.Player;
                 DoAction(i);
                 break;
             }
@@ -151,6 +151,11 @@ public class ActorTrait : Trait
         Actions defaultAct = t.Get(ActionInfo.DefaultAction);
         if (a == Actions.DefaultAttack)
         {
+            if (t.Who.CurrentHeld == null)
+            {
+                God.LogWarning("Tried to do default attack with no held item: " + t.Who.Name + " ("+t.Who.Type.Author+")");
+                return;
+            }
             // Debug.Log(t.Who.Name + ": " + t.Who.CurrentWeapon);
             // Debug.Log(t.Who.CurrentWeapon.Trait);
             EventInfo atk = t.Who.CurrentHeld.Ask(EventTypes.GetDefaultAttack);

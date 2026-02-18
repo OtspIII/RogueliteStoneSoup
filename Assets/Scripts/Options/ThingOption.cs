@@ -18,6 +18,7 @@ public class ThingOption : GameOption //A generic class for anything that might 
     ///Called when the thing is first created. Makes its ThingInfo, but not its ThingController. That's done by ThingInfo.Spawn()
     public virtual ThingInfo Create()
     {
+        God.DebugTxt = "Creating " + Name + " (" + Author + ")";
         //Make a new ThinInfo using this option as a seed
         ThingInfo r = new ThingInfo(this);
         //Copy over our info
@@ -34,11 +35,13 @@ public class ThingOption : GameOption //A generic class for anything that might 
                 ts.Options.Add(n.Type != OptionInfo.None ? n.Type : OptionInfo.Default,n.Value);
             foreach (InfoAction n in t.Acts)
                 ts.Acts.Add(n.Type != ActionInfo.None ? n.Type : ActionInfo.Default,n.Act);
+            if (t.OtherTrait != Traits.None)
+                ts.Set(t.OtherTrait);
             ts.SpawnReq = t.SpawnReq;
             //Once the info is all transcribed, tell the Thing to add the Trait to itself
             r.AddTrait(t.Trait, ts);
         }
-        
+        God.DebugTxt = "";
         //Return a link to the ThingInfo we just made
         return r;
     }

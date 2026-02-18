@@ -60,6 +60,11 @@ public class LevelBuilder
         int w = 2 + Mathf.FloorToInt(l/3);
         //Height starts at 2, and every other level grows by 1
         int h = 2 + Mathf.FloorToInt(l/2);
+        if (l == -1)
+        {
+            w = 1;
+            h = 2;
+        }
         Size = new Vector2Int(w, h);
         //If we haven't created a player yet for this playthrough, make one.
         if (God.Session.Player == null)
@@ -182,7 +187,7 @@ public class LevelBuilder
                 //If it has no neighbors, something's wrong and we should throw an error
                 if (maybe.Count == 0)
                 {
-                    Debug.LogError("TILE BOTH LINKLESS AND UNCONNECTABLE: " + g);
+                    God.LogError("TILE BOTH LINKLESS AND UNCONNECTABLE: " + g);
                     continue;
                 }
                 //Up/down links are more level-design-fun than left/right ones, and up/down are returned first in the list
@@ -193,7 +198,7 @@ public class LevelBuilder
                 GeoTile other = g.Neighbor(d);
                 if (other == null)
                 {
-                    Debug.LogWarning("POTENTIAL LINK NULL: " + g + " / " + d + " / " + other);
+                    God.LogWarning("POTENTIAL LINK NULL: " + g + " / " + d + " / " + other);
                     continue;
                 }
                 //If the tile we're connecting to is reachable, connect to it and mark yourself as reachable
@@ -232,7 +237,7 @@ public class LevelBuilder
             //If it didn't find a room option, don't spawn anything and throw a warning
             if (g.RoomType == null)
             {
-                Debug.LogWarning("GeoTile couldn't find room: " + g);
+                God.LogWarning("GeoTile couldn't find room: " + g);
                 continue;
             }
             //Have the RoomOption spawn the room for us
@@ -240,7 +245,7 @@ public class LevelBuilder
             //If that somehow failed, throw an error but move on
             if (g.Room == null)
             {
-                Debug.LogError("Room Failed To Spawn Prefab: " + g + " / " + g.RoomType);
+                God.LogError("Room Failed To Spawn Prefab: " + g + " / " + g.RoomType);
                 continue;
             }
             //Add the room to the GameManager's list, just so it knows it exists
@@ -259,6 +264,7 @@ public class LevelBuilder
     ///Decide how much stuff to spawn per level
     public virtual void FindQuotas()
     {
+        if (God.Session.Level == -1) return;
         //We're going to add a bunch of SpawnRequests to our queue
         //First we calculate how many (non-start/non-end) rooms we have. . .
         float rms = AllGeo.Count - 2;
@@ -306,7 +312,7 @@ public class LevelBuilder
         //Otherwise, throw warning and spawn the player in the room's center
         else
         {
-            Debug.LogWarning("ERROR: Player Spawn Room has no spawners for a player: " + PlayerSpawn.Room);
+            God.LogWarning("ERROR: Player Spawn Room has no spawners for a player: " + PlayerSpawn.Room);
             God.Session.Player.Spawn(PlayerSpawn.Room.transform.position);
         }
         //Jot down how many things we wanted to spawn and how many spawn points exist, mostly for error data gathering
@@ -318,7 +324,7 @@ public class LevelBuilder
             //If we ran out of spawn points, give up but also throw a warning
             if (SpawnPoints.Count == 0)
             {
-                Debug.LogWarning("Ran out of spawn points ("+totalSpawns+")! " + ToSpawn.Count+"/"+totalToSpawn + " items left to spawn.");
+                God.LogWarning("Ran out of spawn points ("+totalSpawns+")! " + ToSpawn.Count+"/"+totalToSpawn + " items left to spawn.");
                 break;
             }
             //Pick a random thing to spawn
@@ -366,7 +372,7 @@ public class LevelBuilder
                 i.Spawn(here);
             }
             else //If we tried all of the spawn points twice and found nothing, throw a warning
-                Debug.LogWarning("Thing couldn't find a place to spawn: " + o.Name);
+                God.LogWarning("Thing couldn't find a place to spawn: " + o.Name);
         }
         //For each spawn point that just spawns one specific thing, let it spawn its thing
         foreach (SpawnPointController s in SpawnPointsFixed)

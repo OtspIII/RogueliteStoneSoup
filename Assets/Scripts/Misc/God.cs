@@ -19,6 +19,7 @@ public static class God
     public static KeyCode InfoKey = KeyCode.LeftShift;
     public static List<KeyCode> InvKeys = new List<KeyCode>() { KeyCode.Alpha1,KeyCode.Alpha2,KeyCode.Alpha3,
         KeyCode.Alpha4,KeyCode.Alpha5,KeyCode.Alpha6,KeyCode.Alpha7,KeyCode.Alpha8,KeyCode.Alpha9,KeyCode.Alpha0 };
+    public static string DebugTxt = "";
 
     public static Vector2 RoomSize = new Vector2(10, 10);
 
@@ -26,6 +27,16 @@ public static class God
     {
         if (!DebugText && !force) return;
         Debug.Log(txt);
+    }
+    
+    public static void LogWarning(string txt)
+    {
+        Debug.LogWarning(txt + (DebugTxt != "" ? "\n"+DebugTxt:""));
+    }
+    
+    public static void LogError(string txt)
+    {
+        Debug.LogWarning(txt + (DebugTxt != "" ? "\n"+DebugTxt:""));
     }
     
     public static EventInfo E(EventTypes e=EventTypes.TraitInfo)
@@ -37,7 +48,7 @@ public static class God
     {
         if (God.GM == null)
         {
-            Debug.LogError("Tried to call God.C outside of the gameplay scene!");
+            God.LogError("Tried to call God.C outside of the gameplay scene!");
             return null;
         }
         return God.GM.StartCoroutine(c);
@@ -235,7 +246,21 @@ public static class God
         return w * n;
     } 
     
-    
+    /// <summary>
+    /// Returns a new Vector3 with one component (x, y, or z) set to a new value.
+    /// Vector3.x = x does not work as expected in Unity, so this is a workaround.
+    /// </summary>
+    public static Vector3 WithX(this Vector3 vector, float x) => new Vector3(x, vector.y, vector.z);
+    /// <summary>
+    /// Returns a new Vector3 with one component (x, y, or z) set to a new value.
+    /// Vector3.z = z does not work as expected in Unity, so this is a workaround.
+    /// </summary>
+    public static Vector3 WithY(this Vector3 vector, float y) => new Vector3(vector.x, y, vector.z);
+    /// <summary>
+    /// Returns a new Vector3 with one component (x, y, or z) set to a new value.
+    /// Vector3.z = z does not work as expected in Unity, so this is a workaround.
+    /// </summary>
+    public static Vector3 WithZ(this Vector3 vector, float z) => new Vector3(vector.x, vector.y, z);
 }
 
 //For use with GameMaster.Ease()

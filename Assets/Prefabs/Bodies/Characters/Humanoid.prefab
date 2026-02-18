@@ -81,7 +81,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Anim: {fileID: 8557504186364581760}
   ItemHolder: {fileID: 6170431907369145471}
-  Weapon: {fileID: 0}
+  Held: {fileID: 0}
   Who: {fileID: 0}
   Hitbox: {fileID: 2524095723970103520}
   Size: 1

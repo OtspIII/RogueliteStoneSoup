@@ -22,7 +22,7 @@ MonoBehaviour:
   Tags:
   - Common: 102
     Custom: 
-    W: 50
+    W: 1
   LevelRange: {x: 0, y: 0}
   Trait:
   - Trait: 301
@@ -38,7 +38,7 @@ MonoBehaviour:
   - Trait: 312
     Numbers:
     - Type: 1
-      Value: 5
+      Value: 2
     Prefabs: []
     Acts: []
     SpawnReq:

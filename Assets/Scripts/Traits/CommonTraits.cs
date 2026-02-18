@@ -40,7 +40,7 @@ public class HealthTrait : Trait
                 if (i.Who.Thing != null) //If I still exist, spray blood
                 {
                     Vector2 where = i.Who.Thing.transform.position;
-                    if (i.Collision != null) where = i.Collision.Where;
+                    if (e.Collision != null) where = e.Collision.Where;
                     God.Library.GetGnome("Blood").Spawn(where, amt * 3);
                 }
                 float hp = i.Change(-amt); //Lower my health by the amount
@@ -169,6 +169,111 @@ public class DespawnTrait : Trait
                 dur -= Time.deltaTime;
                 if(dur <= 0) i.Who.Destruct();
                 i.Set(NumInfo.Default, dur);
+                break;
+            }
+        }
+    }
+
+}
+
+
+public class RageTrait : Trait
+{
+    public float DamageMultiplier = 1.5f; // 50% buff
+
+    public RageTrait()
+    {
+        Type = Traits.Rage;
+        AddListen(EventTypes.Damage); 
+    }
+
+    public override void TakeEvent(TraitInfo i, EventInfo e)
+    {
+        switch (e.Type)
+        {
+            case EventTypes.Damage:
+            {
+                // GET THE BASE DAMAGE //
+                float baseDamage = e.GetN();       
+                float buffedDamage = baseDamage * DamageMultiplier; // 50% DAMAGE BUFF
+                e.Set(NumInfo.Default, buffedDamage);
+                Debug.Log($"{i.Who.Name} RageTrait: damage buffed by 50% from {baseDamage} to {buffedDamage}");
+                break;
+            }
+        }
+    }
+}
+
+
+
+
+
+public class DashTrait : Trait
+{
+    //THIS IS HOW FAR I WANT TO MOVE//
+    public float DashDistance = 3f;  
+
+    //HOW LONG THE DASH SHOULD BE//
+    public float DashDuration = 0.2f;
+
+    private bool isDashing = false;
+    private Vector3 dashDirection;
+    private float dashTimer = 0f;
+
+    public DashTrait()
+    {
+        Type = Traits.Dash;
+        AddListen(EventTypes.Update); // Check input each frame
+    }
+
+    public override void TakeEvent(TraitInfo i, EventInfo e)
+    {
+        switch (e.Type)
+        {
+            case EventTypes.Update:
+            {
+                //CHECKS IF THE THING IN THE SCENE EXISTS AT ALL//
+                if (i.Who.Thing == null) break;
+
+                //GET THE INPUT FROM THE PLAYER TO BE ABLE TO DASH VERTICALLY AND HORIZONTALLY//
+                float HorizontalInput = Input.GetAxisRaw("Horizontal");
+
+                float VerticalInput = Input.GetAxisRaw("Vertical");
+
+                
+
+                // START DASH IF KEY PRESSED AND NOT DASHING
+                if (Input.GetKeyDown(KeyCode.Space) && !isDashing)
+                {
+
+                    //CAN DASH//
+                    isDashing = true;
+
+                    //QUICK DASH OF 0.2 SECONDS//
+                    dashTimer = DashDuration;
+                   
+                    //CARRIES OUT THE DASHING//
+                    dashDirection = new Vector3(HorizontalInput, VerticalInput, 0).normalized;
+                }
+
+                // Move while dashing
+                if (isDashing)
+                {
+                    //DIVIDE DASHDISTANCE BY DASHDURATION TO GET HOW MUCH TO MOVE IN THE 0.2 SECONDS, 
+                    //THEN MULTIPLY BY TIME.DELTATIME TO FIND HOW MUCH TO MOVE EACH FRAME//
+
+                    //HOW MUCH TO MOVE IN THE CURRENT FRAME//
+                    float MoveinSmallsteps = (DashDistance/DashDuration) * Time.deltaTime;
+                   
+
+                    //ACCESS THE TRANSFORM OF THE THING AND MULTIPLY SMALLSTEPS BY THE DASHDIRECION//
+                    i.Who.Thing.transform.position += dashDirection * MoveinSmallsteps;
+
+                    dashTimer -= Time.deltaTime;
+                    if (dashTimer <= 0f)
+                        isDashing = false; // stop dash
+                }
+
                 break;
             }
         }

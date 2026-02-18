@@ -32,6 +32,28 @@ public static class Parser
         TraitDict.Add(Traits.Despawn,new DespawnTrait());
         TraitDict.Add(Traits.LimitedUse,new LimitedUseTrait());
         TraitDict.Add(Traits.Stackable,new StackableTrait());
+        TraitDict.Add(Traits.Hostile,new HostileTrait());
+        // AdamD Traits
+        // AlejandroM Traits
+        // ElioR Traits
+        // JaidenB Traits
+        // Julius Traits
+        TraitDict.Add(Traits.Rage, new RageTrait());
+        TraitDict.Add(Traits.Dash, new DashTrait());
+        // MazK Traits
+        // MichaelT Traits
+        // QixiangD Traits
+        // RaphaelC Traits
+        // SabahE Traits
+        // Samson W. Traits
+        TraitDict.Add(Traits.TeleportRandomRoom,new TeleportRandomRoomTrait());
+        TraitDict.Add(Traits.DamageReflect,new DamageReflectTrait());
+        // SarahS Traits
+        // TracyH Traits
+        // WesleyP Traits
+        // YuChen Traits
+        
+
     }
     
     public static ActionScript Get(Actions act,ThingInfo who,EventInfo e=null)
@@ -47,14 +69,14 @@ public static class Parser
             case Actions.Chase: return new ChaseAction(who,e);
             case Actions.Use: return new UseAction(who, e);
         }
-        Debug.Log("UNCAUGHT ACTION: " + act);
+        God.LogError("UNCAUGHT ACTION: " + act);
         return new IdleAction(who,e);
     }
     
     public static Trait Get(Traits t)
     {
         if (TraitDict.TryGetValue(t, out Trait r)) return r;
-        Debug.Log("ERROR MISSING TRAIT: " + t+"\nMust add to TraitManager");
+        God.LogError("ERROR MISSING TRAIT: " + t+"\nMust add to TraitManager");
         return null;
     }
 
@@ -115,6 +137,7 @@ public enum Traits
     Drop            =0003,//Spawn Thing On Death
     Despawn         =0004,//Vanish After Time Passes
     Player          =0100,//Read Keyboard/Mouse
+    Hostile         =0101,//Attacks the player if they see them
     Exit            =0200,//Win Game Upon Touching
     DamageZone      =0201,//Deal Damage Upon Touching
     Tool            =0300,//Can Be Used When Held
@@ -137,6 +160,8 @@ public enum Traits
     JaidenB1        =3501,
     //JuliusP       =40##,
     JuliusP1        =4001,
+    Rage            =4002, 
+    Dash            =4003,
     //MazK          =45##,
     MazK1           =4501,
     //MichaelT      =50##,
@@ -149,6 +174,8 @@ public enum Traits
     SabahE1         =6501,
     //SamsonW       =70##,
     SamsonW1        =7001,
+    TeleportRandomRoom=7002, //Use to teleport user to random room that isnt own room
+    DamageReflect   =7003, //Reflects damage, thornmail effect
     //SarahS        =75##,
     SarahS1         =7501,
     //TracyH        =80##,

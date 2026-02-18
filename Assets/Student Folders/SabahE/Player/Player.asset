@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4679cc75b2c8be74e8b047318fa062ea, type: 3}
+  m_Name: Player
+  m_EditorClassIdentifier: Assembly-CSharp::CharacterOption
+  Name: Player
+  Author: 65
+  Team: 2
+  Body: {fileID: 629948465317790645, guid: acf0e760b28c7b046ad7d511fb87a1d3, type: 3}
+  Art: {fileID: -6930072583179015400, guid: 466134fd5ef0c8346910fe7179d8e3a2, type: 3}
+  Color: {r: 0, g: 0.09766126, b: 1, a: 1}
+  Size: 1
+  Tags:
+  - Common: 1
+    Custom: 
+    W: 1
+  LevelRange: {x: 0, y: 0}
+  Trait:
+  - Trait: 100
+    Numbers: []
+    Prefabs: []
+    Acts: []
+    SpawnReq:
+      Fixed: {fileID: 0}
+      Mandatory: []
+      Any: []
+      Level: 0
+      Author: 0
+  HP: 5
+  Speed: 8
+  Held: {fileID: 11400000, guid: 7fc77b878c3f272478de54b35b2fb3a3, type: 2}
+  DefaultAction: 1
+  DefaultChaseAction: 1
