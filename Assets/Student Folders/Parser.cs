@@ -172,6 +172,7 @@ public enum Traits
     RaphaelC1       =6001,
     //SabahE        =65##,
     SabahE1         =6501,
+    SpeedUpSabahE   =6502, //Speedup for 10s when you get hit
     //SamsonW       =70##,
     SamsonW1        =7001,
     TeleportRandomRoom=7002, //Use to teleport user to random room that isnt own room
