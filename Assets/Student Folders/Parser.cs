@@ -34,8 +34,10 @@ public static class Parser
         TraitDict.Add(Traits.Stackable,new StackableTrait());
         TraitDict.Add(Traits.Hostile,new HostileTrait());
         // AdamD Traits
+        TraitDict.Add(Traits.statusEffectOnProjectile, new StatusEffectOnProjectileTrait_AdamD());
         // AlejandroM Traits
         // ElioR Traits
+        TraitDict.Add(Traits.Barrier, new BarrierTrait_ElioR());
         // JaidenB Traits
         TraitDict.Add(Traits.InvertControls, new InvertControlsTrait());
         // Julius Traits
@@ -153,10 +155,12 @@ public enum Traits
     Misha1          =1101,
     //AdamD         =20##,
     AdamD1          =2001,
+    statusEffectOnProjectile=2002,
     //AlejandroM    =25##,
     AlejandroM1     =2501,
     //ElioR         =30##,
     ElioR1          =3001,
+    Barrier         =3002, //this will negate one instance of taken damage taken.
     //JaidenB       =35##,
     JaidenB1        =3501,
     InvertControls  =3502,
