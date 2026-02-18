@@ -37,6 +37,7 @@ public static class Parser
         TraitDict.Add(Traits.statusEffectOnProjectile, new StatusEffectOnProjectileTrait_AdamD());
         // AlejandroM Traits
         // ElioR Traits
+        TraitDict.Add(Traits.Barrier, new BarrierTrait_ElioR());
         // JaidenB Traits
         // Julius Traits
         TraitDict.Add(Traits.Rage, new RageTrait());
@@ -158,6 +159,7 @@ public enum Traits
     AlejandroM1     =2501,
     //ElioR         =30##,
     ElioR1          =3001,
+    Barrier         =3002, //this will negate one instance of taken damage taken.
     //JaidenB       =35##,
     JaidenB1        =3501,
     //JuliusP       =40##,
