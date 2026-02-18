@@ -33,6 +33,8 @@ public static class Parser
         TraitDict.Add(Traits.LimitedUse,new LimitedUseTrait());
         TraitDict.Add(Traits.Stackable,new StackableTrait());
         TraitDict.Add(Traits.Hostile,new HostileTrait());
+        // MishaF Traits
+        TraitDict.Add(Traits.Ally_Misha,new AllyTrait_Misha());
         // AdamD Traits
         // AlejandroM Traits
         // ElioR Traits
@@ -164,7 +166,7 @@ public enum Traits
     Projectile      =0400,//Flies In A Direction
     OnFire          =0500,//I Didn't Finish This Yet
     //Misha Traits:  11##
-    Misha1          =1101,
+    Ally_Misha      =1101,
     //AdamD         =20##,
     AdamD1          =2001,
     //AlejandroM    =25##,
@@ -184,7 +186,7 @@ public enum Traits
     //QixiangD      =55##,
     QixiangD1       =5501,
     //RaphaelC      =60##,
-    RaphaelC1       =6001,
+    Lighting_RaphaelC       =6001,
     //SabahE        =65##,
     SabahE1         =6501,
     //SamsonW       =70##,
@@ -194,7 +196,7 @@ public enum Traits
     //SarahS        =75##,
     SarahS1         =7501,
     //TracyH        =80##,
-    TracyH1         =8001,
+    Teleport         =8001,
     //WesleyP       =90##,
     WesleyP1        =9001,
     //YuChen        =95##,
