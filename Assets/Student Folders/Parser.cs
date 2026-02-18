@@ -33,8 +33,12 @@ public static class Parser
         TraitDict.Add(Traits.LimitedUse,new LimitedUseTrait());
         TraitDict.Add(Traits.Stackable,new StackableTrait());
         TraitDict.Add(Traits.Hostile,new HostileTrait());
+<<<<<<< Updated upstream
         TraitDict.Add(Traits.Lighting_RaphaelC,new Lighting_RaphaelC());
         TraitDict.Add(Traits.Teleport, new TeleportTrait());
+=======
+        TraitDict.Add(Traits.SarahS1, new ProximityExplode_SarahS());
+>>>>>>> Stashed changes
     }
     
     public static ActionScript Get(Actions act,ThingInfo who,EventInfo e=null)
