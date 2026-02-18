@@ -34,6 +34,7 @@ public static class Parser
         TraitDict.Add(Traits.Stackable,new StackableTrait());
         TraitDict.Add(Traits.Hostile,new HostileTrait());
         // AdamD Traits
+        TraitDict.Add(Traits.statusEffectOnProjectile, new StatusEffectOnProjectileTrait_AdamD());
         // AlejandroM Traits
         // ElioR Traits
         // JaidenB Traits
@@ -152,6 +153,7 @@ public enum Traits
     Misha1          =1101,
     //AdamD         =20##,
     AdamD1          =2001,
+    statusEffectOnProjectile=2002,
     //AlejandroM    =25##,
     AlejandroM1     =2501,
     //ElioR         =30##,
