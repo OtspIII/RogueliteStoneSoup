@@ -10,47 +10,35 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4679cc75b2c8be74e8b047318fa062ea, type: 3}
-  m_Name: MoneyDude
+  m_Name: Archer
   m_EditorClassIdentifier: Assembly-CSharp::CharacterOption
-  Name: MoneyDude
-  Author: 35
-  Team: 1
-  Body: {fileID: 629948465317790645, guid: c5227d51ccfec934db9e0058624b573e, type: 3}
-  Art: {fileID: -8316685958486051841, guid: f45dec987f41d4d40bcd08af6a5b9588, type: 3}
-  Color: {r: 1, g: 0.9686994, b: 0.36320752, a: 1}
-  Size: 1
+  Name: Archer
+  Author: 65
+  Team: 3
+  Body: {fileID: 0}
+  Art: {fileID: 3083089168873209362, guid: 686df7d4d5faf074eb3b4867fc9296a4, type: 3}
+  Color: {r: 0.44025147, g: 0, b: 0, a: 1}
+  Size: 2
   Tags:
   - Common: 102
     Custom: 
     W: 1
   LevelRange: {x: 0, y: 0}
   Trait:
-  - Trait: 1
-    Numbers: []
-    Prefabs: []
-    Acts:
-    - Type: 3
-      Act: 201
-    SpawnReq:
-      Fixed: {fileID: 0}
-      Mandatory: []
-      Any: []
-      Level: 0
-      Author: 35
   - Trait: 3
-    Numbers: []
-    Prefabs: []
-    Acts:
+    Numbers:
     - Type: 0
-      Act: 201
+      Value: 0
+    Prefabs: []
+    Acts: []
     SpawnReq:
       Fixed: {fileID: 0}
       Mandatory: []
       Any: []
       Level: 0
-      Author: 35
-  HP: 20
-  Speed: 5
-  Held: {fileID: 0}
+      Author: 0
+  HP: 1
+  Speed: 4
+  Held: {fileID: 11400000, guid: ad13ac6261f013b45ab35c13a6699b50, type: 2}
   DefaultAction: 201
-  DefaultChaseAction: 201
+  DefaultChaseAction: 202
