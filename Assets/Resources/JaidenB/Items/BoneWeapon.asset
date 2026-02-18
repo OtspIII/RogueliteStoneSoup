@@ -10,19 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a47d2194617e47469e601e558e7b8b4, type: 3}
-  m_Name: FakeCoin
+  m_Name: BoneWeapon
   m_EditorClassIdentifier: Assembly-CSharp::ItemOption
-  Name: FakeCoin
+  Name: BoneWeapon
   Author: 35
-  Team: 2
-  Body: {fileID: 629948465317790645, guid: 0f8734e4b4d2c3a449506fe0c78c1110, type: 3}
-  Art: {fileID: -2322180950842035098, guid: 38af7f6f611a7064b87743a25c742649, type: 3}
-  Color: {r: 0.1509434, g: 0.1509434, b: 0.1509434, a: 1}
-  Size: 1
+  Team: 1
+  Body: {fileID: 629948465317790645, guid: b4fa405680f33044abe2c4567ecf147f, type: 3}
+  Art: {fileID: 4010562923862242353, guid: 71c4b8a53e699934faf44fa57be9e694, type: 3}
+  Color: {r: 1, g: 1, b: 1, a: 1}
+  Size: 0.5
   Tags:
-  - Common: 200
+  - Common: 201
     Custom: 
-    W: 3
+    W: 5
   LevelRange: {x: 0, y: 0}
   Trait:
   - Trait: 301
@@ -35,16 +35,16 @@ MonoBehaviour:
       Any: []
       Level: 0
       Author: 0
-  DefaultAttack: 0
+  DefaultAttack: 103
   ToSpawn:
-    Fixed: {fileID: 11400000, guid: ca56f92e20547cb4ea56089f5b03de5f, type: 2}
+    Fixed: {fileID: 11400000, guid: 130638cfe7af2a444b2c13c8698eae8f, type: 2}
     Mandatory: []
     Any: []
     Level: 0
     Author: 35
   FloorBody: {fileID: 0}
   FloorArt: {fileID: 0}
-  Damage: 1
-  IdealRange: 1.5
-  SpeedMult: 1
-  ActDuration: 0
+  Damage: 5
+  IdealRange: 1
+  SpeedMult: 5
+  ActDuration: 1
