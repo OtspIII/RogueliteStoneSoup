@@ -34,6 +34,7 @@ public static class Parser
         TraitDict.Add(Traits.Stackable,new StackableTrait());
         TraitDict.Add(Traits.Hostile,new HostileTrait());
         TraitDict.Add(Traits.Lighting_RaphaelC,new Lighting_RaphaelC());
+        TraitDict.Add(Traits.Teleport, new TeleportTrait());
     }
     
     public static ActionScript Get(Actions act,ThingInfo who,EventInfo e=null)
@@ -156,6 +157,7 @@ public enum Traits
     SarahS1         =7501,
     //TracyH        =80##,
     TracyH1         =8001,
+    Teleport        =8002,
     //WesleyP       =90##,
     WesleyP1        =9001,
     //YuChen        =95##,
