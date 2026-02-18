@@ -34,8 +34,12 @@ public static class Parser
         TraitDict.Add(Traits.Stackable,new StackableTrait());
         TraitDict.Add(Traits.Hostile,new HostileTrait());
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         TraitDict.Add(Traits.Lighting_RaphaelC,new Lighting_RaphaelC());
         TraitDict.Add(Traits.Teleport, new TeleportTrait());
+=======
+        TraitDict.Add(Traits.SarahS1, new ProximityExplode_SarahS());
+>>>>>>> Stashed changes
 =======
         TraitDict.Add(Traits.SarahS1, new ProximityExplode_SarahS());
 >>>>>>> Stashed changes
