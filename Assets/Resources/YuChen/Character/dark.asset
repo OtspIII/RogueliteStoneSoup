@@ -25,10 +25,22 @@ MonoBehaviour:
     W: 0
   LevelRange: {x: 0, y: 0}
   Trait:
+  - Trait: 9502
+    Numbers: []
+    Prefabs: []
+    Acts: []
+    OtherTrait: 0
+    SpawnReq:
+      Fixed: {fileID: 0}
+      Mandatory: []
+      Any: []
+      Level: 0
+      Author: 0
   - Trait: 100
     Numbers: []
     Prefabs: []
     Acts: []
+    OtherTrait: 0
     SpawnReq:
       Fixed: {fileID: 0}
       Mandatory: []
@@ -37,6 +49,7 @@ MonoBehaviour:
       Author: 0
   HP: 20
   Speed: 10
+  VisionRange: 4
   Held: {fileID: 11400000, guid: 4b2540dd2b711fc4e98bbad7d33007c5, type: 2}
   DefaultAction: 1
   DefaultChaseAction: 1

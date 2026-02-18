@@ -27,6 +27,7 @@ MonoBehaviour:
   Trait: []
   HP: 30
   Speed: 2
-  Held: {fileID: 0}
+  VisionRange: 4
+  Held: {fileID: 11400000, guid: 3daff65a98cafdd41a3ae3f0b7dffb2e, type: 2}
   DefaultAction: 201
   DefaultChaseAction: 202

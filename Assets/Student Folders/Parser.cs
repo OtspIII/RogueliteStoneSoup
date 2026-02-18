@@ -37,6 +37,10 @@ public static class Parser
         // Samson W. Traits
         TraitDict.Add(Traits.TeleportRandomRoom,new TeleportRandomRoomTrait());
         TraitDict.Add(Traits.DamageReflect,new DamageReflectTrait());
+
+
+        //yuchen
+        TraitDict.Add(Traits.Criticaldamage,new CriticaldamageTrait());
     }
     
     public static ActionScript Get(Actions act,ThingInfo who,EventInfo e=null)
@@ -165,6 +169,7 @@ public enum Traits
     WesleyP1        =9001,
     //YuChen        =95##,
     YuChen1         =9501,
+    Criticaldamage=9502, //20% to get double damage
 }
 
 public enum Actions
