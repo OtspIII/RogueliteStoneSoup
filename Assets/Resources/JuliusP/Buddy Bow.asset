@@ -24,7 +24,31 @@ MonoBehaviour:
     Custom: 
     W: 1
   LevelRange: {x: 0, y: 0}
-  Trait: []
+  Trait:
+  - Trait: 312
+    Numbers:
+    - Type: 0
+      Value: 2
+    Prefabs: []
+    Acts: []
+    SpawnReq:
+      Fixed: {fileID: 0}
+      Mandatory: []
+      Any: []
+      Level: 0
+      Author: 0
+  - Trait: 313
+    Numbers:
+    - Type: 0
+      Value: 2
+    Prefabs: []
+    Acts: []
+    SpawnReq:
+      Fixed: {fileID: 0}
+      Mandatory: []
+      Any: []
+      Level: 0
+      Author: 0
   DefaultAttack: 103
   ToSpawn:
     Fixed: {fileID: 11400000, guid: eebdde4760e79408cb6d17391e5e300d, type: 2}
@@ -34,7 +58,7 @@ MonoBehaviour:
     Author: 0
   FloorBody: {fileID: 0}
   FloorArt: {fileID: 0}
-  Damage: 1
+  Damage: 0
   IdealRange: 1.5
   SpeedMult: 2.95
   ActDuration: 0

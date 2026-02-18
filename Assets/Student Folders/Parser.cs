@@ -33,10 +33,27 @@ public static class Parser
         TraitDict.Add(Traits.LimitedUse,new LimitedUseTrait());
         TraitDict.Add(Traits.Stackable,new StackableTrait());
         TraitDict.Add(Traits.Hostile,new HostileTrait());
-        
+        // AdamD Traits
+        // AlejandroM Traits
+        // ElioR Traits
+        // JaidenB Traits
+        // Julius Traits
+        TraitDict.Add(Traits.Rage, new RageTrait());
+        TraitDict.Add(Traits.Dash, new DashTrait());
+        // MazK Traits
+        // MichaelT Traits
+        // QixiangD Traits
+        // RaphaelC Traits
+        // SabahE Traits
         // Samson W. Traits
         TraitDict.Add(Traits.TeleportRandomRoom,new TeleportRandomRoomTrait());
         TraitDict.Add(Traits.DamageReflect,new DamageReflectTrait());
+        // SarahS Traits
+        // TracyH Traits
+        // WesleyP Traits
+        // YuChen Traits
+        
+
     }
     
     public static ActionScript Get(Actions act,ThingInfo who,EventInfo e=null)
@@ -143,6 +160,8 @@ public enum Traits
     JaidenB1        =3501,
     //JuliusP       =40##,
     JuliusP1        =4001,
+    Rage            =4002, 
+    Dash            =4003,
     //MazK          =45##,
     MazK1           =4501,
     //MichaelT      =50##,

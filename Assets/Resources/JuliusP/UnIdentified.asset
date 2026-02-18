@@ -38,7 +38,7 @@ MonoBehaviour:
   - Trait: 312
     Numbers:
     - Type: 1
-      Value: 5
+      Value: 2
     Prefabs: []
     Acts: []
     SpawnReq:
