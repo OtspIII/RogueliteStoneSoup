@@ -37,6 +37,7 @@ public static class Parser
         // AlejandroM Traits
         // ElioR Traits
         // JaidenB Traits
+        TraitDict.Add(Traits.InvertControls, new InvertControlsTrait());
         // Julius Traits
         TraitDict.Add(Traits.Rage, new RageTrait());
         TraitDict.Add(Traits.Dash, new DashTrait());
@@ -158,6 +159,7 @@ public enum Traits
     ElioR1          =3001,
     //JaidenB       =35##,
     JaidenB1        =3501,
+    InvertControls  =3502,
     //JuliusP       =40##,
     JuliusP1        =4001,
     Rage            =4002, 
