@@ -152,7 +152,6 @@ public class HostileTrait : Trait
         Type = Traits.Hostile;
         AddListen(EventTypes.OnSee);
         AddListen(EventTypes.OnTargetDie);
-        AddListen(EventTypes.OnKill);
     }
 
     public override void TakeEvent(TraitInfo i, EventInfo e)
@@ -161,10 +160,41 @@ public class HostileTrait : Trait
         {
             case EventTypes.OnSee:
             {
-                if (e.GetThing() == God.Player)
-                    i.Who.SetTarget(e.GetThing());
+                ThingInfo t = e.GetThing();
+                //If the thing I saw is a valid target, and also I either don't have a target or I can't see my target. . . 
+                if (IsTarget(i,t) && (i.Who.Target == null || !i.Who.CanSee(i.Who.Target)))
+                {
+                    i.Who.Target = t;
+                }
+                break;
+            }
+            case EventTypes.OnTargetDie:
+            {
+                ThingInfo targ = e.GetThing();               //Who died
+                ThingInfo killer = e.Get(ThingEInfo.Source); //Who killed them
+                Vector3 deathSite = e.GetVector();        //Where did they die
+                //Make a list of things I might target next
+                List<ThingInfo> newTarg = new List<ThingInfo>();
+                //Look at everything I can see and see if they're a valid target
+                foreach (ThingInfo t in i.Who.Thing.SeenThings)
+                {
+                    if(IsTarget(i,t)) newTarg.Add(t);
+                }
+                //If I see any valid targets, pick a new random one to attack
+                if (newTarg.Count > 0)
+                    i.Who.Target = newTarg.Random();
+                
                 break;
             }
         }
+    }
+
+    public virtual bool IsTarget(TraitInfo i,ThingInfo t)
+    {
+        if (i.Who.Team == GameTeams.Neutral) return true;
+        GameTeams opp = i.Who.Team == GameTeams.Enemy ? GameTeams.Player : GameTeams.Enemy;
+        if (t.Team == opp) return true;
+        if (t.Team == GameTeams.Neutral && t.Has(Traits.Hostile)) return true;
+        return false;
     }
 }

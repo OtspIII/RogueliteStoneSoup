@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a47d2194617e47469e601e558e7b8b4, type: 3}
   m_Name: Minion Wand
   m_EditorClassIdentifier: 
-  Name: Wand
-  Author: 0
+  Name: Minion Wand
+  Author: 11
   Team: 1
   Body: {fileID: 629948465317790645, guid: b4fa405680f33044abe2c4567ecf147f, type: 3}
   Art: {fileID: -4421300922047078791, guid: 4bf70cedee363fb4b9048f89e88c9ddc, type: 3}
-  Color: {r: 1, g: 1, b: 1, a: 1}
+  Color: {r: 0, g: 0, b: 0, a: 1}
   Size: 1
   Tags:
   - Common: 202
@@ -31,6 +31,7 @@ MonoBehaviour:
       Value: 3
     Prefabs: []
     Acts: []
+    OtherTrait: 0
     SpawnReq:
       Fixed: {fileID: 0}
       Mandatory: []
@@ -39,8 +40,11 @@ MonoBehaviour:
       Author: 0
   DefaultAttack: 103
   ToSpawn:
-    Fixed: {fileID: 11400000, guid: 69ef23eaac7508d43a5ae431368fbf0d, type: 2}
-    Mandatory: []
+    Fixed: {fileID: 0}
+    Mandatory:
+    - Common: 0
+      Custom: Wand_Minion
+      W: 1
     Any: []
     Level: 0
     Author: 0

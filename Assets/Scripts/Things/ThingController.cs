@@ -20,7 +20,7 @@ public class ThingController : MonoBehaviour
     [Header("Movement Bookkeeping")]
     public Vector2 ActualMove;
     public Vector2 Knockback;
-    public List<ThingInfo> CanSee; //A list of all the Things you can currently see
+    public List<ThingInfo> SeenThings; //A list of all the Things you can currently see
     public List<RoomScript> CurrentRooms;
     [Header("Debug Info")]
     public Vector3 StartSpot;     //I write down where I first spawned, just so I know
@@ -343,16 +343,16 @@ public class ThingController : MonoBehaviour
     ///Called when an object enters a Vision Hitbox owned by the character
     public void SeeBegin(ThingInfo who)
     {
-        if (CanSee.Contains(who)) return;
-        CanSee.Add(who);
+        if (SeenThings.Contains(who)) return;
+        SeenThings.Add(who);
         TakeEvent(God.E(EventTypes.OnSee).Set(who));
     }
     
     ///Called when an object leaves a Vision Hitbox owned by the character
     public void SeeEnd(ThingInfo who)
     {
-        if (!CanSee.Contains(who)) return;
-        CanSee.Remove(who);
+        if (!SeenThings.Contains(who)) return;
+        SeenThings.Remove(who);
         TakeEvent(God.E(EventTypes.OnSeeEnd).Set(who));
     }
 
@@ -384,4 +384,11 @@ public class ThingController : MonoBehaviour
             rm.SendEvent(God.E(EventTypes.ExitRoom).Set(Info).Set(rm).Set(transform.position));
         }
     }
+
+    ///Returns true if you can see a thing or false if you can't
+    public bool CanSee(ThingInfo t)
+    {
+        return SeenThings.Contains(t);
+    }
+    public bool CanSee(ThingController t) { return CanSee(t.Info); }
 }

@@ -25,7 +25,7 @@ MonoBehaviour:
     W: 1
   LevelRange: {x: 0, y: 0}
   Trait:
-  - Trait: 1101
+  - Trait: 101
     Numbers: []
     Prefabs: []
     Acts: []

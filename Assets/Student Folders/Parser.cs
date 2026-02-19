@@ -34,7 +34,7 @@ public static class Parser
         TraitDict.Add(Traits.Stackable,new StackableTrait());
         TraitDict.Add(Traits.Hostile,new HostileTrait());
         // MishaF Traits
-        TraitDict.Add(Traits.Ally_Misha,new AllyTrait_Misha());
+        
         // AdamD Traits
         TraitDict.Add(Traits.statusEffectOnProjectile, new StatusEffectOnProjectileTrait_AdamD());
         TraitDict.Add(Traits.StatusResist, new StatusResist());
@@ -168,7 +168,7 @@ public enum Traits
     Projectile      =0400,//Flies In A Direction
     OnFire          =0500,//I Didn't Finish This Yet
     //Misha Traits:  11##
-    Ally_Misha      =1101,
+    MishaF1         =1101,
     //AdamD         =20##,
     AdamD1          =2001,
     statusEffectOnProjectile=2002,
