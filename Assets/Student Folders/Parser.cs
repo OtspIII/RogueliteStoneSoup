@@ -37,6 +37,7 @@ public static class Parser
         TraitDict.Add(Traits.Ally_Misha,new AllyTrait_Misha());
         // AdamD Traits
         TraitDict.Add(Traits.statusEffectOnProjectile, new StatusEffectOnProjectileTrait_AdamD());
+        TraitDict.Add(Traits.StatusResist, new StatusResist());
         // AlejandroM Traits
         // ElioR Traits
         // JaidenB Traits
@@ -171,6 +172,7 @@ public enum Traits
     //AdamD         =20##,
     AdamD1          =2001,
     statusEffectOnProjectile=2002,
+    StatusResist=2003, 
     //AlejandroM    =25##,
     AlejandroM1     =2501,
     //ElioR         =30##,
