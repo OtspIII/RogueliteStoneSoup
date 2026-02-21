@@ -48,6 +48,7 @@ public static class Parser
         // MichaelT Traits
         // QixiangD Traits
         // RaphaelC Traits
+        TraitDict.Add(Traits.Lighting_RaphaelC,new Lighting_RaphaelC());
         // SabahE Traits
         // Samson W. Traits
         TraitDict.Add(Traits.TeleportRandomRoom,new TeleportRandomRoomTrait());
