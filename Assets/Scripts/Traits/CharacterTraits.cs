@@ -170,6 +170,7 @@ public class HostileTrait : Trait
             }
             case EventTypes.OnTargetDie:
             {
+                if (i.Who.Thing == null) return;
                 ThingInfo targ = e.GetThing();               //Who died
                 ThingInfo killer = e.Get(ThingEInfo.Source); //Who killed them
                 Vector3 deathSite = e.GetVector();        //Where did they die
