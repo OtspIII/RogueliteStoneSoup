@@ -126,7 +126,7 @@ public class ActorTrait : Trait
                 //Who hurt me?
                 ThingInfo src = e.GetThing();
                 //If it was someone, and it wasn't me, attack them!
-                if(src != null && src != i.Who) i.Who.SetTarget(src);
+                if(src != null && src != i.Who && src.Has(Traits.Health)) i.Who.SetTarget(src);
                 break;
             }
         }
