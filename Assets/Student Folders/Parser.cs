@@ -46,6 +46,7 @@ public static class Parser
         // Julius Traits
         TraitDict.Add(Traits.Rage, new RageTrait());
         TraitDict.Add(Traits.Dash, new DashTrait());
+        TraitDict.Add(Traits.SelfDestruct_JuliusP, new SelfDestruction());
         // MazK Traits
         // MichaelT Traits
         // QixiangD Traits
@@ -188,6 +189,7 @@ public enum Traits
     JuliusP1        =4001,
     Rage            =4002, 
     Dash            =4003,
+    SelfDestruct_JuliusP = 4004,
     //MazK          =45##,
     MazK1           =4501,
     //MichaelT      =50##,

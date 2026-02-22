@@ -29,6 +29,7 @@ MonoBehaviour:
     Numbers: []
     Prefabs: []
     Acts: []
+    OtherTrait: 0
     SpawnReq:
       Fixed: {fileID: 0}
       Mandatory: []
@@ -39,6 +40,7 @@ MonoBehaviour:
     Numbers: []
     Prefabs: []
     Acts: []
+    OtherTrait: 0
     SpawnReq:
       Fixed: {fileID: 0}
       Mandatory: []
@@ -47,6 +49,7 @@ MonoBehaviour:
       Author: 0
   HP: 10
   Speed: 5.03
+  VisionRange: 4
   Held: {fileID: 11400000, guid: 7fc77b878c3f272478de54b35b2fb3a3, type: 2}
   DefaultAction: 201
   DefaultChaseAction: 202
