@@ -39,11 +39,14 @@ public static class Parser
         TraitDict.Add(Traits.statusEffectOnProjectile, new StatusEffectOnProjectileTrait_AdamD());
         TraitDict.Add(Traits.StatusResist, new StatusResist());
         // AlejandroM Traits
+        TraitDict.Add(Traits.ShieldPotion_AlejandroM, new ShieldPotion_AlejandroM());
+        TraitDict.Add(Traits.SpeedPotion_AlejandroM, new SpeedPotion_AlejandroM());
         // ElioR Traits
         // JaidenB Traits
         // Julius Traits
         TraitDict.Add(Traits.Rage, new RageTrait());
         TraitDict.Add(Traits.Dash, new DashTrait());
+        TraitDict.Add(Traits.SelfDestruct_JuliusP, new SelfDestruction());
         // MazK Traits
         // MichaelT Traits
         // QixiangD Traits
@@ -176,6 +179,8 @@ public enum Traits
     StatusResist=2003, 
     //AlejandroM    =25##,
     AlejandroM1     =2501,
+    ShieldPotion_AlejandroM = 2502,
+    SpeedPotion_AlejandroM = 2503,
     //ElioR         =30##,
     ElioR1          =3001,
     //JaidenB       =35##,
@@ -184,6 +189,7 @@ public enum Traits
     JuliusP1        =4001,
     Rage            =4002, 
     Dash            =4003,
+    SelfDestruct_JuliusP = 4004,
     //MazK          =45##,
     MazK1           =4501,
     //MichaelT      =50##,

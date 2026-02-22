@@ -21,15 +21,13 @@ public class StatusEffectOnProjectileTrait_AdamD : Trait //Should make this "scr
         switch (e.Type) //I guess this is supposed to be a switch statement. don't know what it exactly is... im guessing it just switches the 
             //e or something? like the type of event, dunno
         {
-            case EventTypes.OnDestroy: //I guess when this event happens, do this in code?
-                {
-                    /*e.OnDestroy.
-                    e.GetTrait.*/
-                    break;
-                }
             case EventTypes.OnTouch:
                 {
-                   /* e.Collision = e.GetTrait(OnFireTrait);*/
+                    e.Collision.Other.Info.AddTrait(Traits.OnFire,new EventInfo().Set(3).Set(NumInfo.Time,5));// right now sets people on fire. use multiple .Set() to add multiple parameters
+                    //will eventually be able to add different kinds of traits
+                    //use numinfo/boolinfo/stringinfo/thinginfo to set different kinds of parameters
+                    //Maybe add different stacks of the status effect as a parameter?
+                    e.Collision.Other.TakeEvent(God.E(EventTypes.StartAction).Set(ActionInfo.Action, Actions.Stun));//take an event, then start an action (in this case, stun)
                     break;
                 }
         }
