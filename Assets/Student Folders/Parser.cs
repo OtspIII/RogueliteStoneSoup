@@ -60,9 +60,10 @@ public static class Parser
         TraitDict.Add(Traits.DamageReflect,new DamageReflectTrait());
         // SarahS Traits
         // TracyH Traits
+        TraitDict.Add(Traits.Teleport_TracyH, new TeleportTrait_TracyH());
         // WesleyP Traits
         // YuChen Traits
-        
+
 
     }
     
@@ -211,7 +212,7 @@ public enum Traits
     //SarahS        =75##,
     SarahS1         =7501,
     //TracyH        =80##,
-    Teleport         =8001,
+    Teleport_TracyH =8001, //Teleport player between radius or nearby room. Can be placed on held item or zone
     //WesleyP       =90##,
     WesleyP1        =9001,
     //YuChen        =95##,
