@@ -14,8 +14,13 @@ public class InvertControlsTrait : Trait
         {
             case EventTypes.OnPickup:
                 {
-                    Debug.Log("Invert test");
+                   // Vector2 vel = Vector2.zero;
+                   // i.vel.x = -1;
+                   // i.vel.x = 1;
+                   // i.vel.y = -1;
+                   // i.vel.y = 1;
                 }
+                break;
         }
     }
 
