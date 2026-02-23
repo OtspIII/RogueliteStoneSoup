@@ -13,8 +13,37 @@ public class ThingOption : GameOption //A generic class for anything that might 
     public float Size = 1;                     //Changes the size of the thing
     public List<Tag> Tags;             //The traits the thing has. Includes slots for customization
     public Vector2Int LevelRange = new Vector2Int(0,0); //Selects what levels the thing is valid to spawn in.                  //A list of tags this thing has. Used to know what's valid to spawn
-    public List<TraitBuilder> Trait; 
-    
+    public List<TraitBuilder> Trait;
+
+    public void OnValidate()
+    {
+        foreach (TraitBuilder t in Trait)
+        {
+            int cnt = t.Builder.Count;
+            if (cnt > 0) return;
+            int old = t.Numbers.Count + t.Prefabs.Count+t.Acts.Count+(t.OtherTrait != Traits.None ? 1 : 0)+
+                   (t.SpawnReq.Fixed != null || t.SpawnReq.Any.Count > 0 || t.SpawnReq.Mandatory.Count > 0 ? 1 : 0);
+            if (cnt == old || old == 0) return;
+            Debug.Log("BUILD TR: " + Name + " / " + t.Trait);
+            t.Builder.Clear();
+            foreach (InfoNumber n in t.Numbers)
+                t.Builder.Add(new TraitPicker(n.Type,n.Value));
+            foreach (InfoOption n in t.Prefabs)
+                t.Builder.Add(new TraitPicker(n.Type,n.Value));
+            foreach (InfoAction n in t.Acts)
+                t.Builder.Add(new TraitPicker(n.Type,n.Act));
+            if (t.OtherTrait != Traits.None)
+                t.Builder.Add(new TraitPicker(t.OtherTrait));
+            if (t.SpawnReq.Fixed != null || t.SpawnReq.Any.Count > 0 || t.SpawnReq.Mandatory.Count > 0)
+                t.Builder.Add(new TraitPicker(t.SpawnReq));
+            t.Numbers.Clear();
+            t.Prefabs.Clear();
+            t.Acts.Clear();
+            t.OtherTrait = Traits.None;
+            t.SpawnReq = new SpawnRequest();
+        }
+    }
+
     ///Called when the thing is first created. Makes its ThingInfo, but not its ThingController. That's done by ThingInfo.Spawn()
     public virtual ThingInfo Create()
     {
@@ -29,15 +58,17 @@ public class ThingOption : GameOption //A generic class for anything that might 
         {
             //This is the was of info that will be given to the trait to let it set itself up
             EventInfo ts = new EventInfo();
-            foreach(InfoNumber n in t.Numbers)
-                ts.Numbers.Add(n.Type != NumInfo.None ? n.Type : NumInfo.Default,n.Value);
-            foreach(InfoOption n in t.Prefabs)
-                ts.Options.Add(n.Type != OptionInfo.None ? n.Type : OptionInfo.Default,n.Value);
-            foreach (InfoAction n in t.Acts)
-                ts.Acts.Add(n.Type != ActionInfo.None ? n.Type : ActionInfo.Default,n.Act);
-            if (t.OtherTrait != Traits.None)
-                ts.Set(t.OtherTrait);
-            ts.SpawnReq = t.SpawnReq;
+            // foreach(InfoNumber n in t.Numbers)
+            //     ts.Numbers.Add(n.Type != NumInfo.None ? n.Type : NumInfo.Default,n.Value);
+            // foreach(InfoOption n in t.Prefabs)
+            //     ts.Options.Add(n.Type != OptionInfo.None ? n.Type : OptionInfo.Default,n.Value);
+            // foreach (InfoAction n in t.Acts)
+            //     ts.Acts.Add(n.Type != ActionInfo.None ? n.Type : ActionInfo.Default,n.Act);
+            // if (t.OtherTrait != Traits.None)
+            //     ts.Set(t.OtherTrait);
+            // ts.SpawnReq = t.SpawnReq;
+            foreach (TraitPicker tp in t.Builder)
+                tp.Apply(ts);
             //Once the info is all transcribed, tell the Thing to add the Trait to itself
             r.AddTrait(t.Trait, ts);
         }

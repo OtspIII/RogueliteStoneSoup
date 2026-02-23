@@ -1,39 +1,46 @@
-using Unity.VisualScripting;
 using UnityEngine;
-
+using System.Collections.Generic;
 public class Lighting_RaphaelC : Trait
 {
     public Lighting_RaphaelC()
     {
         Type = Traits.Lighting_RaphaelC;
         AddListen(EventTypes.OnUseStart);
+        //AddListen(EventTypes.OnTargetDie);
     }
     public override void TakeEvent(TraitInfo i, EventInfo e)
     {
-        switch (e.Type)
+        if (e.Type == EventTypes.OnUseStart)
         {
-            case EventTypes.OnUseStart:
+            ThingInfo player = i.Who;
+            if (player.Thing == null)
             {
-                float range = i.Get(NumInfo.Default, 11);
-                float dmg = i.Get(NumInfo.Default,1);
-
-                Vector3 center = i.Who.Thing.transform.position;
-                Collider2D[] hits = Physics2D.OverlapCircleAll(center, range);
-                foreach (Collider2D hit in hits)
-                {
-                    ThingController tc = hit.GetComponent<ThingController>();
-                    if (tc != null)
-                    {
-                        ThingInfo t = tc.Info;
-                        if (t.Has(Traits.Player))
-                            continue;
-                        
-                        tc.Info.TakeEvent(God.E(EventTypes.Damage).Set(dmg).Set(i.Who));
-                    }
-                }
-                return;
+                player = e.Get(ThingEInfo.Default);
             }
-            default: return;
+
+            float LightningRange = i.Get(NumInfo.Default, 3);
+            float LightningDmg = i.Get(NumInfo.Default, 1);
+            Vector3 center = player.Thing.transform.position;
+
+            Collider2D[] hits = Physics2D.OverlapCircleAll(center, LightningRange);        
+            List<ThingInfo> alreadyHit = new List<ThingInfo>();            
+            
+            foreach (Collider2D hit in hits)
+            {
+                ThingController tc = hit.GetComponentInParent<ThingController>(); 
+
+                if (tc != null && tc.Info != null)
+                {
+                    ThingInfo target = tc.Info;
+
+                    if (target == player || alreadyHit.Contains(target)) continue;
+                    if (target.Has(Traits.Player)) continue;
+
+                    alreadyHit.Add(target);
+                    
+                    target.TakeEvent(God.E(EventTypes.Damage).Set(LightningDmg).Set(player));
+                }
+            }
         }
     }
 }

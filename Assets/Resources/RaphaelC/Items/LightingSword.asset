@@ -36,6 +36,19 @@ MonoBehaviour:
       Any: []
       Level: 0
       Author: 0
+  - Trait: 312
+    Numbers:
+    - Type: 1
+      Value: 1
+    Prefabs: []
+    Acts: []
+    OtherTrait: 0
+    SpawnReq:
+      Fixed: {fileID: 0}
+      Mandatory: []
+      Any: []
+      Level: 0
+      Author: 0
   DefaultAttack: 101
   ToSpawn:
     Fixed: {fileID: 0}
