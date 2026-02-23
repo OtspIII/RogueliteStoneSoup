@@ -82,6 +82,7 @@ public static class Parser
             // ElioR=30,
             // JaidenB=35,
             // JuliusP=40,
+            case Actions.BarrierShield_JuliusP:return new BarrierShieldAction_JuliusP(who,e);
             // MichaelT=50,
             // QixiangD=55,
             // RaphaelC=60,
@@ -244,6 +245,7 @@ public enum Actions
     JaidenB1        =3501,
     //JuliusP       =40##,
     JuliusP1        =4001,
+    BarrierShield_JuliusP = 4002,
     //MazK          =45##,
     MazK1           =4501,
     //MichaelT      =50##,
