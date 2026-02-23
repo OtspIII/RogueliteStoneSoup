@@ -22,7 +22,7 @@ public class EventInfo
     public Dictionary<HitboxInfo, HitboxController> Hitboxes = new Dictionary<HitboxInfo, HitboxController>();
     public GameCollision Collision;
     public SpawnRequest SpawnReq;
-    public Traits TraitI;
+    public List<Traits> TraitI = new List<Traits>();
     public RoomScript Room;
 
     public EventInfo(){ }
@@ -55,7 +55,7 @@ public class EventInfo
         // Seed = i.Seed;
         Collision = i.Collision;
         SpawnReq = i.SpawnReq;
-        TraitI = i.TraitI;
+        foreach(Traits n in i.TraitI) TraitI.Add(n);
         Room = i.Room;
     }
     
@@ -163,11 +163,21 @@ public class EventInfo
     
     public EventInfo Set(Traits v)
     {
-        TraitI = v;
+        TraitI.Add(v);
+        return this;
+    }
+    public EventInfo Remove(Traits v)
+    {
+        TraitI.Remove(v);
         return this;
     }
 
-    public Traits GetTrait()
+    public Traits GetTrait(int index=0)
+    {
+        return TraitI.Count >= index ? TraitI[index] : Traits.None;
+    }
+    
+    public List<Traits> GetAllTraits()
     {
         return TraitI;
     }
