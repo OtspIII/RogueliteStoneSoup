@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BarrierTrait_ElioR : Trait
@@ -28,6 +29,7 @@ public class BarrierTrait_ElioR : Trait
             case EventTypes.Damage:
             {
                 e.Abort = true;
+                i.Who.RemoveTrait(i.Trait);
                 
                 break;
             }

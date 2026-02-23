@@ -33,9 +33,14 @@ public static class Parser
         TraitDict.Add(Traits.LimitedUse,new LimitedUseTrait());
         TraitDict.Add(Traits.Stackable,new StackableTrait());
         TraitDict.Add(Traits.Hostile,new HostileTrait());
+        // MishaF Traits
+        
         // AdamD Traits
         TraitDict.Add(Traits.statusEffectOnProjectile, new StatusEffectOnProjectileTrait_AdamD());
+        TraitDict.Add(Traits.StatusResist, new StatusResist());
         // AlejandroM Traits
+        TraitDict.Add(Traits.ShieldPotion_AlejandroM, new ShieldPotion_AlejandroM());
+        TraitDict.Add(Traits.SpeedPotion_AlejandroM, new SpeedPotion_AlejandroM());
         // ElioR Traits
         TraitDict.Add(Traits.Barrier, new BarrierTrait_ElioR());
         // JaidenB Traits
@@ -43,10 +48,12 @@ public static class Parser
         // Julius Traits
         TraitDict.Add(Traits.Rage, new RageTrait());
         TraitDict.Add(Traits.Dash, new DashTrait());
+        TraitDict.Add(Traits.SelfDestruct_JuliusP, new SelfDestruction());
         // MazK Traits
         // MichaelT Traits
         // QixiangD Traits
         // RaphaelC Traits
+        TraitDict.Add(Traits.Lighting_RaphaelC,new Lighting_RaphaelC());
         // SabahE Traits
         // Samson W. Traits
         TraitDict.Add(Traits.TeleportRandomRoom,new TeleportRandomRoomTrait());
@@ -71,6 +78,21 @@ public static class Parser
             case Actions.Patrol: return new PatrolAction(who,e);
             case Actions.Chase: return new ChaseAction(who,e);
             case Actions.Use: return new UseAction(who, e);
+            // MazK=12,
+            // AdamD=20,
+            // AlejandroM=25,
+            // ElioR=30,
+            // JaidenB=35,
+            // JuliusP=40,
+            // MichaelT=50,
+            // QixiangD=55,
+            // RaphaelC=60,
+            // SabahE=65,
+            // SamsonW=70,
+            // SarahS=75,
+            // TracyH=80,
+            // WesleyP=90,
+            // YuChen=95,
         }
         God.LogError("UNCAUGHT ACTION: " + act);
         return new IdleAction(who,e);
@@ -152,12 +174,15 @@ public enum Traits
     Projectile      =0400,//Flies In A Direction
     OnFire          =0500,//I Didn't Finish This Yet
     //Misha Traits:  11##
-    Misha1          =1101,
+    MishaF1         =1101,
     //AdamD         =20##,
     AdamD1          =2001,
     statusEffectOnProjectile=2002,
+    StatusResist=2003, 
     //AlejandroM    =25##,
     AlejandroM1     =2501,
+    ShieldPotion_AlejandroM = 2502,
+    SpeedPotion_AlejandroM = 2503,
     //ElioR         =30##,
     ElioR1          =3001,
     Barrier         =3002, //this will negate one instance of taken damage taken.
@@ -168,6 +193,7 @@ public enum Traits
     JuliusP1        =4001,
     Rage            =4002, 
     Dash            =4003,
+    SelfDestruct_JuliusP = 4004,
     //MazK          =45##,
     MazK1           =4501,
     //MichaelT      =50##,
@@ -175,7 +201,7 @@ public enum Traits
     //QixiangD      =55##,
     QixiangD1       =5501,
     //RaphaelC      =60##,
-    RaphaelC1       =6001,
+    Lighting_RaphaelC       =6001,
     //SabahE        =65##,
     SabahE1         =6501,
     //SamsonW       =70##,
@@ -185,7 +211,7 @@ public enum Traits
     //SarahS        =75##,
     SarahS1         =7501,
     //TracyH        =80##,
-    TracyH1         =8001,
+    Teleport         =8001,
     //WesleyP       =90##,
     WesleyP1        =9001,
     //YuChen        =95##,
