@@ -42,7 +42,9 @@ public static class Parser
         TraitDict.Add(Traits.ShieldPotion_AlejandroM, new ShieldPotion_AlejandroM());
         TraitDict.Add(Traits.SpeedPotion_AlejandroM, new SpeedPotion_AlejandroM());
         // ElioR Traits
+        TraitDict.Add(Traits.Barrier, new BarrierTrait_ElioR());
         // JaidenB Traits
+        TraitDict.Add(Traits.InvertControls, new InvertControlsTrait());
         // Julius Traits
         TraitDict.Add(Traits.Rage, new RageTrait());
         TraitDict.Add(Traits.Dash, new DashTrait());
@@ -183,8 +185,10 @@ public enum Traits
     SpeedPotion_AlejandroM = 2503,
     //ElioR         =30##,
     ElioR1          =3001,
+    Barrier         =3002, //this will negate one instance of taken damage taken.
     //JaidenB       =35##,
     JaidenB1        =3501,
+    InvertControls  =3502,
     //JuliusP       =40##,
     JuliusP1        =4001,
     Rage            =4002, 
