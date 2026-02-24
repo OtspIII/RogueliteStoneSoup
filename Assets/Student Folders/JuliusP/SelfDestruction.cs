@@ -46,7 +46,7 @@ public class SelfDestruction : Trait
                         //APPLY 5 DAMAGE//
 
                         EventInfo dmg = God.E(EventTypes.Damage);
-                        dmg.Set(NumInfo.Default, 5f);  
+                        dmg.Set(NumInfo.Default, 1f);  
 
                         //WHO CAUSED THE DAMAGE//     
                         dmg.Set(ThingEInfo.Source, i.Who);  

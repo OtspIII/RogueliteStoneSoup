@@ -26,9 +26,7 @@ MonoBehaviour:
   LevelRange: {x: 0, y: 0}
   Trait:
   - Trait: 2
-    Numbers:
-    - Type: 0
-      Value: 5
+    Numbers: []
     Prefabs: []
     Acts: []
     OtherTrait: 0
@@ -38,3 +36,23 @@ MonoBehaviour:
       Any: []
       Level: 0
       Author: 0
+    Builder:
+    - Type: 0
+      NumType: 1
+      Num: 2
+      StrType: 0
+      Str: 
+      ActType: 0
+      Act: 0
+      BoolType: 0
+      Bool: 0
+      OptionType: 0
+      Option: {fileID: 0}
+      VectorType: 0
+      Vector: {x: 0, y: 0}
+      Fixed: {fileID: 0}
+      Mandatory: 
+      MandatoryW: 0
+      Any: 
+      AnyW: 0
+      Trait: 0

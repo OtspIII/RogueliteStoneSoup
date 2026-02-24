@@ -49,6 +49,7 @@ public static class Parser
         TraitDict.Add(Traits.Rage, new RageTrait());
         TraitDict.Add(Traits.Dash, new DashTrait());
         TraitDict.Add(Traits.SelfDestruct_JuliusP, new SelfDestruction());
+        TraitDict.Add(Traits.IgnoreDamage_JuliusP, new IgnoreDamage());
         // MazK Traits
         // MichaelT Traits
         // QixiangD Traits
@@ -196,6 +197,7 @@ public enum Traits
     Rage            =4002, 
     Dash            =4003,
     SelfDestruct_JuliusP = 4004,
+    IgnoreDamage_JuliusP = 4005,
     //MazK          =45##,
     MazK1           =4501,
     //MichaelT      =50##,

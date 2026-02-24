@@ -22,7 +22,7 @@ MonoBehaviour:
   Tags:
   - Common: 1
     Custom: 
-    W: 50
+    W: 1
   LevelRange: {x: 0, y: 0}
   Trait:
   - Trait: 100
@@ -36,6 +36,7 @@ MonoBehaviour:
       Any: []
       Level: 0
       Author: 0
+    Builder: []
   - Trait: 4003
     Numbers: []
     Prefabs: []
@@ -47,9 +48,10 @@ MonoBehaviour:
       Any: []
       Level: 0
       Author: 0
-  HP: 10
-  Speed: 5.03
+    Builder: []
+  HP: 3
+  Speed: 5
   VisionRange: 4
   Held: {fileID: 11400000, guid: 7fc77b878c3f272478de54b35b2fb3a3, type: 2}
-  DefaultAction: 0
-  DefaultChaseAction: 0
+  DefaultAction: 1
+  DefaultChaseAction: 1
