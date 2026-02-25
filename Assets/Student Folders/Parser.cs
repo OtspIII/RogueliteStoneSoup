@@ -36,7 +36,7 @@ public static class Parser
         // MishaF Traits
         
         // AdamD Traits
-        TraitDict.Add(Traits.statusEffectOnProjectile, new StatusEffectOnProjectileTrait_AdamD());
+        TraitDict.Add(Traits.statusEffectOnProjectile, new StatusEffectOnProjectileTrait_AdamD("stuff", 5));
         TraitDict.Add(Traits.StatusResist, new StatusResist());
         // AlejandroM Traits
         TraitDict.Add(Traits.ShieldPotion_AlejandroM, new ShieldPotion_AlejandroM());
