@@ -24,6 +24,7 @@ public class SpeedUpTrait_SabahE : Trait
 
             case EventTypes.Damage:
                 {
+                    // Start / refresh speed boost for 10 seconds
                     float baseSpeed = i.GetFloat(NumInfo.Max, i.GetFloat(NumInfo.Speed, 5f));
                     float boostAmount = i.GetFloat(NumInfo.Default, 5f); 
                     i.Set(NumInfo.Speed, baseSpeed + boostAmount);
