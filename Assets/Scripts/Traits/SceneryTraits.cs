@@ -17,7 +17,7 @@ public class ExitTrait : Trait
         {
             case EventTypes.OnSpawn:
             {
-                God.GM.Exit
+                God.GM.Exit = i.Who;
                 break;
             }
             case EventTypes.OnTouch:
