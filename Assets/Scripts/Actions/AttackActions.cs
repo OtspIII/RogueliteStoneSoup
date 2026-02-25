@@ -28,7 +28,7 @@ public class AttackAction : UseAction
         // Debug.Log("TAKE DAMAGE: " + hit.gameObject);
         hit.TakeEvent(new EventInfo(EventTypes.Damage).Set(NumInfo.Default,GetDamage()).Set(Who));
         // hit.TakeDamage(GetDamage());
-        hit.DoAction(Actions.Stun,God.E().Set(10.5f).Set(NumInfo.Priority,3));
+        hit.DoAction(Actions.Stun,God.E().Set(0.5f).Set(NumInfo.Priority,3));
         hit.TakeKnockback(Who.Thing.transform.position,Knockback);
     }
 }
