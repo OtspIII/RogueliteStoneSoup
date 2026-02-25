@@ -54,7 +54,7 @@ public class ActionScript
     
     public virtual void HandleMove()
     {
-        if (Who.Thing.RB == null) return;
+        if (Who.Thing?.RB == null) return;
         Who.Thing.ActualMove = (MoveMult * Who.CurrentSpeed * Who.DesiredMove.normalized);
         // Who.Thing.RB.linearVelocity = (MoveMult * Who.CurrentSpeed * Who.DesiredMove.normalized) + Who.Knockback;
     }
