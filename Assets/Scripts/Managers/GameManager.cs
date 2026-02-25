@@ -35,6 +35,7 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public List<RoomScript> Rooms;
     [HideInInspector] public List<ThingController> Things;
     [HideInInspector] public List<SfXGnome> Gnomes;
+    [HideInInspector] public ThingInfo Exit;
     //Keeps track of the text that InfoTxt needs to display. See SetUI().
     private Dictionary<string, UIText> UIInfo = new Dictionary<string, UIText>();
 
