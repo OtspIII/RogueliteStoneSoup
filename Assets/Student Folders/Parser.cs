@@ -56,6 +56,7 @@ public static class Parser
         // RaphaelC Traits
         TraitDict.Add(Traits.Lighting_RaphaelC,new Lighting_RaphaelC());
         // SabahE Traits
+        TraitDict.Add(Traits.SpeedUpSabahE, new SpeedUpTrait_SabahE());
         // Samson W. Traits
         TraitDict.Add(Traits.TeleportRandomRoom,new TeleportRandomRoomTrait());
         TraitDict.Add(Traits.DamageReflect,new DamageReflectTrait());

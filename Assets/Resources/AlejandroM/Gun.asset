@@ -18,8 +18,11 @@ MonoBehaviour:
   Body: {fileID: 629948465317790645, guid: b4fa405680f33044abe2c4567ecf147f, type: 3}
   Art: {fileID: 4541016762436489944, guid: 8c19feeb531242a468cce904b2d2db89, type: 3}
   Color: {r: 1, g: 1, b: 1, a: 1}
-  Size: 1
-  Tags: []
+  Size: 5
+  Tags:
+  - Common: 201
+    Custom: 
+    W: 0
   LevelRange: {x: 0, y: 0}
   Trait: []
   DefaultAttack: 103
