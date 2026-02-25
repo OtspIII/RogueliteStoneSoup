@@ -16,13 +16,13 @@ MonoBehaviour:
   Author: 35
   Team: 1
   Body: {fileID: 629948465317790645, guid: c5227d51ccfec934db9e0058624b573e, type: 3}
-  Art: {fileID: -7232521027535748977, guid: c6f4397142421a04a8f0b2840f748f65, type: 3}
+  Art: {fileID: -8316685958486051841, guid: f45dec987f41d4d40bcd08af6a5b9588, type: 3}
   Color: {r: 1, g: 0.9686994, b: 0.36320752, a: 1}
-  Size: 1.1
+  Size: 1
   Tags:
   - Common: 102
     Custom: 
-    W: 0
+    W: 1
   LevelRange: {x: 0, y: 0}
   Trait:
   - Trait: 1
@@ -53,4 +53,4 @@ MonoBehaviour:
   Speed: 5
   Held: {fileID: 0}
   DefaultAction: 201
-  DefaultChaseAction: 202
+  DefaultChaseAction: 201

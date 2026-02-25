@@ -370,6 +370,12 @@ public class ThingInfo //The class that handles all the core info for all non-wa
         }
         DestroyForm();
     }
+    
+    public bool CanSee(ThingInfo t)
+    {
+        if (Thing == null) return false;
+        return Thing.SeenThings.Contains(t);
+    }
 
     public override string ToString()
     {

@@ -29,14 +29,29 @@ MonoBehaviour:
     Numbers: []
     Prefabs: []
     Acts: []
+    OtherTrait: 0
     SpawnReq:
       Fixed: {fileID: 0}
       Mandatory: []
       Any: []
       Level: 0
       Author: 0
-  HP: 10
+    Builder: []
+  - Trait: 4003
+    Numbers: []
+    Prefabs: []
+    Acts: []
+    OtherTrait: 0
+    SpawnReq:
+      Fixed: {fileID: 0}
+      Mandatory: []
+      Any: []
+      Level: 0
+      Author: 0
+    Builder: []
+  HP: 3
   Speed: 5
+  VisionRange: 4
   Held: {fileID: 11400000, guid: 5b4c233167bce4469bdf3df5734f82d4, type: 2}
   DefaultAction: 0
   DefaultChaseAction: 103

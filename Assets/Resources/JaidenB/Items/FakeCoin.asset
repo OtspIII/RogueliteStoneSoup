@@ -17,21 +17,34 @@ MonoBehaviour:
   Team: 2
   Body: {fileID: 629948465317790645, guid: 0f8734e4b4d2c3a449506fe0c78c1110, type: 3}
   Art: {fileID: -2322180950842035098, guid: 38af7f6f611a7064b87743a25c742649, type: 3}
-  Color: {r: 0.4245283, g: 0.4245283, b: 0.4245283, a: 1}
+  Color: {r: 0.1509434, g: 0.1509434, b: 0.1509434, a: 1}
   Size: 1
-  Tags: []
+  Tags:
+  - Common: 200
+    Custom: 
+    W: 3
   LevelRange: {x: 0, y: 0}
-  Trait: []
+  Trait:
+  - Trait: 301
+    Numbers: []
+    Prefabs: []
+    Acts: []
+    SpawnReq:
+      Fixed: {fileID: 0}
+      Mandatory: []
+      Any: []
+      Level: 0
+      Author: 0
   DefaultAttack: 0
   ToSpawn:
-    Fixed: {fileID: 0}
+    Fixed: {fileID: 11400000, guid: ca56f92e20547cb4ea56089f5b03de5f, type: 2}
     Mandatory: []
     Any: []
     Level: 0
-    Author: 0
+    Author: 35
   FloorBody: {fileID: 0}
   FloorArt: {fileID: 0}
-  Damage: 0
+  Damage: 1
   IdealRange: 1.5
   SpeedMult: 1
   ActDuration: 0

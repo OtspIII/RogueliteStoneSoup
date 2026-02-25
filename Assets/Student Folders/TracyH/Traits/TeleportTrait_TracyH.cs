@@ -8,11 +8,11 @@ using UnityEngine;
 //Distance : scattered unit inside destination room
 //Zone only 
 //Speed : how often pad triggers
-public class TeleportTrait : Trait
+public class TeleportTrait_TracyH : Trait
 {
-    public TeleportTrait()
+    public TeleportTrait_TracyH()
     {
-        Type = Traits.Teleport;
+        Type = Traits.Teleport_TracyH;
         AddListen(EventTypes.OnUse);
         AddListen(EventTypes.OnTouch);
         AddListen(EventTypes.OnInside);

@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Blood
   m_EditorClassIdentifier: Assembly-CSharp::GnomeOption
   Name: Blood
+  Author: 0
   Particles: {fileID: 3258444191953189773, guid: 48419f014a7d5514896945c37830b4be, type: 3}
   ParticleBlast: 0
   Audio: {fileID: 0}

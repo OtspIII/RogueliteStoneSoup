@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "GnomeOption", menuName = "Scriptable Objects/GnomeOption")]

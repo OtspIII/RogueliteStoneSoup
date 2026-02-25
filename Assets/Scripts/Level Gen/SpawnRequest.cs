@@ -12,6 +12,11 @@ public class SpawnRequest
     public int Level = 0;
     public Authors Author;
 
+    public SpawnRequest()
+    {
+        
+    }
+    
     public SpawnRequest(ThingOption o)
     {
         if(God.Session != null)
