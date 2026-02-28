@@ -56,7 +56,7 @@ public static class Parser
         // RaphaelC Traits
         TraitDict.Add(Traits.Lighting_RaphaelC,new Lighting_RaphaelC());
         // SabahE Traits
-        TraitDict.Add(Traits.SpeedUpSabahE, new SpeedUpTrait_SabahE());
+        //TraitDict.Add(Traits.SpeedUpSabahE, new SpeedUpTrait_SabahE());
         // Samson W. Traits
         TraitDict.Add(Traits.TeleportRandomRoom,new TeleportRandomRoomTrait());
         TraitDict.Add(Traits.DamageReflect,new DamageReflectTrait());
@@ -88,6 +88,8 @@ public static class Parser
             // JaidenB=35,
             // JuliusP=40,
             case Actions.BarrierShield_JuliusP:return new BarrierShieldAction_JuliusP(who,e);
+            case Actions.Cloak_JuliusP:return new InvisbilityAction(who, e);
+            case Actions.TradeHp_JuliusP:return new TradeHp(who, e);
             // MichaelT=50,
             // QixiangD=55,
             // RaphaelC=60,
@@ -255,6 +257,10 @@ public enum Actions
     //JuliusP       =40##,
     JuliusP1        =4001,
     BarrierShield_JuliusP = 4002,
+    Cloak_JuliusP = 4003,
+    TradeHp_JuliusP = 4004,
+
+
     //MazK          =45##,
     MazK1           =4501,
     //MichaelT      =50##,

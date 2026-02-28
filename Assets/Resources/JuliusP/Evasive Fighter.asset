@@ -22,7 +22,7 @@ MonoBehaviour:
   Tags:
   - Common: 1
     Custom: 
-    W: 1
+    W: 90
   LevelRange: {x: 0, y: 0}
   Trait:
   - Trait: 100
@@ -49,7 +49,7 @@ MonoBehaviour:
       Level: 0
       Author: 0
     Builder: []
-  HP: 3
+  HP: 10
   Speed: 5
   VisionRange: 4
   Held: {fileID: 11400000, guid: 7fc77b878c3f272478de54b35b2fb3a3, type: 2}

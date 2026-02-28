@@ -176,38 +176,65 @@ public class DespawnTrait : Trait
 
 }
 
-
 public class RageTrait : Trait
 {
-    public float DamageMultiplier = 1.5f; // 50% buff
-
     public RageTrait()
     {
+        // SETS THE TRAIT TYPE TO RAGE
         Type = Traits.Rage;
-        AddListen(EventTypes.Damage); 
+
+        // LISTENS FOR DAMAGE MULTIPLIER EVENTS
+        AddListen(EventTypes.DamageMult);
     }
 
     public override void TakeEvent(TraitInfo i, EventInfo e)
     {
         switch (e.Type)
         {
-            case EventTypes.Damage:
-            {
-                // GET THE BASE DAMAGE //
-                float baseDamage = e.GetN();       
-                float buffedDamage = baseDamage * DamageMultiplier; // 50% DAMAGE BUFF
-                e.Set(NumInfo.Default, buffedDamage);
-                Debug.Log($"{i.Who.Name} RageTrait: damage buffed by 50% from {baseDamage} to {buffedDamage}");
+            case EventTypes.DamageMult:
+                
+                // GETS THE ATTACKER WHO IS CAUSING THE DAMAGE
+                ThingInfo attacker = e.GetThing();
+               
+                // RETURN IF ATTACKER IS NULL OR DOSENT EXIST
+                if (attacker == null) break;
+
+                // THIS GETS THE ATTACKER'S HEALTH TRAIT TO CHECK//
+                TraitInfo health = attacker.Get(Traits.Health);
+                
+                // THIS WILL RETURN IF HEALTH TRAIT DOES NOT EXIST
+                if (health == null) break;
+
+                // GET THE ATTACKER THING'S CURRENT HP
+                float current = health.GetN();
+               
+                // GET THE ATTACKER THING'S MAX HP
+                float max = health.Get(NumInfo.Max);
+
+                // CHECK IF THE ATTACKER'S HP IS 50% OR LESS
+                if (current / max <= 0.5f)
+                {
+                    // GET THE WEAPON THE ATTACKER IS CURRENTLY HOLDING
+                    ThingInfo weapon = attacker.CurrentHeld;
+                    
+                    // RETURNS IF NO WEAPON IS HELD
+                    if (weapon == null) break;
+
+                    // GET THE TOOL TRAIT FROM THE WEAPON (WHERE DAMAGE MULTIPLIER IS STORED)
+                    TraitInfo tool = weapon.Get(Traits.Tool);
+                    
+                    // SAFETY CHECK: RETURN IF THE TOOL TRAIT DOES NOT EXIST
+                    if (tool == null) break;
+
+                    // SET THE WEAPON'S DAMAGE TO 2//
+                    tool.Set(2f);
+                
+               
+                }
                 break;
-            }
         }
     }
 }
-
-
-
-
-
 public class DashTrait : Trait
 {
     //THIS IS HOW FAR I WANT TO MOVE//
