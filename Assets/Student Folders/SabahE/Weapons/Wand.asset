@@ -10,25 +10,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a47d2194617e47469e601e558e7b8b4, type: 3}
-  m_Name: Buddy Bow
-  m_EditorClassIdentifier: Assembly-CSharp::ItemOption
-  Name: Buddy Bow
-  Author: 40
-  Team: 1
+  m_Name: Wand
+  m_EditorClassIdentifier: 
+  Name: Wand
+  Author: 65
+  Team: 2
   Body: {fileID: 629948465317790645, guid: b4fa405680f33044abe2c4567ecf147f, type: 3}
-  Art: {fileID: 21300000, guid: cb8312002cf474c4688fa76c7caea0a3, type: 3}
-  Color: {r: 1, g: 1, b: 1, a: 1}
+  Art: {fileID: -4421300922047078791, guid: 4bf70cedee363fb4b9048f89e88c9ddc, type: 3}
+  Color: {r: 0.043906372, g: 0.1630509, b: 0.9308176, a: 1}
   Size: 1
   Tags:
-  - Common: 201
+  - Common: 202
     Custom: 
     W: 1
   LevelRange: {x: 0, y: 0}
   Trait:
   - Trait: 312
     Numbers:
-    - Type: 0
-      Value: 2
+    - Type: 1
+      Value: 3
     Prefabs: []
     Acts: []
     SpawnReq:
@@ -37,10 +37,10 @@ MonoBehaviour:
       Any: []
       Level: 0
       Author: 0
-  - Trait: 313
+  - Trait: 312
     Numbers:
-    - Type: 0
-      Value: 2
+    - Type: 1
+      Value: 3
     Prefabs: []
     Acts: []
     SpawnReq:
@@ -51,14 +51,14 @@ MonoBehaviour:
       Author: 0
   DefaultAttack: 103
   ToSpawn:
-    Fixed: {fileID: 11400000, guid: eebdde4760e79408cb6d17391e5e300d, type: 2}
+    Fixed: {fileID: 11400000, guid: 69ef23eaac7508d43a5ae431368fbf0d, type: 2}
     Mandatory: []
     Any: []
     Level: 0
     Author: 0
   FloorBody: {fileID: 0}
   FloorArt: {fileID: 0}
-  Damage: 0
-  IdealRange: 1.5
-  SpeedMult: 2.95
-  ActDuration: 0
+  Damage: 4
+  IdealRange: 5
+  SpeedMult: 1
+  ActDuration: 1
