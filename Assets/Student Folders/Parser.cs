@@ -53,6 +53,8 @@ public static class Parser
         // MazK Traits
         // MichaelT Traits
         // QixiangD Traits
+        TraitDict.Add(Traits.Sneaky_qixiangdong, new Sneaky_qixiangdong());
+        TraitDict.Add(Traits.Thrill_qixiangdong, new Thrill_qixiangdong());
         // RaphaelC Traits
         TraitDict.Add(Traits.Lighting_RaphaelC,new Lighting_RaphaelC());
         // SabahE Traits
@@ -95,6 +97,7 @@ public static class Parser
             // MichaelT=50,
             // QixiangD=55,
             // RaphaelC=60,
+            case Actions.CurveChase_RaphaelC:return new CurveChaseAction_RaphaelC(who,e);
             // SabahE=65,
             // SamsonW=70,
             // SarahS=75,
@@ -209,6 +212,8 @@ public enum Traits
     MichaelT1       =5001,
     //QixiangD      =55##,
     QixiangD1       =5501,
+    Sneaky_qixiangdong = 5502,
+    Thrill_qixiangdong = 5503,
     //RaphaelC      =60##,
     Lighting_RaphaelC       =6001,
     //SabahE        =65##,
@@ -273,6 +278,7 @@ public enum Actions
     QixiangD1       =5501,
     //RaphaelC      =60##,
     RaphaelC1       =6001,
+    CurveChase_RaphaelC = 6002,
     //SabahE        =65##,
     SabahE1         =6501,
     //SamsonW       =70##,

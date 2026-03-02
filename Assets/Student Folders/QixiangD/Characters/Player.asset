@@ -10,19 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4679cc75b2c8be74e8b047318fa062ea, type: 3}
-  m_Name: PlayerCat
+  m_Name: Player
   m_EditorClassIdentifier: Assembly-CSharp::CharacterOption
-  Name: Cat Player
-  Author: 60
+  Name: Player
+  Author: 55
   Team: 2
   Body: {fileID: 629948465317790645, guid: acf0e760b28c7b046ad7d511fb87a1d3, type: 3}
-  Art: {fileID: -7232521027535748977, guid: c6f4397142421a04a8f0b2840f748f65, type: 3}
-  Color: {r: 1, g: 1, b: 1, a: 1}
-  Size: 0.75
+  Art: {fileID: 6005008538062400051, guid: 6b94876af2f4daa4dbef6aebff1ec0d9, type: 3}
+  Color: {r: 0.004494493, g: 0.33150688, b: 0.9528302, a: 1}
+  Size: 1
   Tags:
   - Common: 1
     Custom: 
-    W: 1
+    W: 0
   LevelRange: {x: 0, y: 0}
   Trait:
   - Trait: 100
@@ -37,9 +37,21 @@ MonoBehaviour:
       Level: 0
       Author: 0
     Builder: []
-  HP: 5
-  Speed: 7
+  - Trait: 5503
+    Numbers: []
+    Prefabs: []
+    Acts: []
+    OtherTrait: 0
+    SpawnReq:
+      Fixed: {fileID: 0}
+      Mandatory: []
+      Any: []
+      Level: 0
+      Author: 0
+    Builder: []
+  HP: 0
+  Speed: 5
   VisionRange: 4
-  Held: {fileID: 11400000, guid: 7fc77b878c3f272478de54b35b2fb3a3, type: 2}
-  DefaultAction: 1
-  DefaultChaseAction: 1
+  Held: {fileID: 11400000, guid: d8535ae3107c2184ab8fc49f1318f904, type: 2}
+  DefaultAction: 201
+  DefaultChaseAction: 202
