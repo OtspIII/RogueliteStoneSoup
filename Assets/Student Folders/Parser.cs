@@ -36,7 +36,7 @@ public static class Parser
         // MishaF Traits
         
         // AdamD Traits
-        TraitDict.Add(Traits.statusEffectOnProjectile, new StatusEffectOnProjectileTrait_AdamD());
+        TraitDict.Add(Traits.statusEffectOnProjectile, new StatusEffectOnProjectileTrait_AdamD("stuff", 5));
         TraitDict.Add(Traits.StatusResist, new StatusResist());
         // AlejandroM Traits
         TraitDict.Add(Traits.ShieldPotion_AlejandroM, new ShieldPotion_AlejandroM());
@@ -53,10 +53,12 @@ public static class Parser
         // MazK Traits
         // MichaelT Traits
         // QixiangD Traits
+        TraitDict.Add(Traits.Sneaky_qixiangdong, new Sneaky_qixiangdong());
+        TraitDict.Add(Traits.Thrill_qixiangdong, new Thrill_qixiangdong());
         // RaphaelC Traits
         TraitDict.Add(Traits.Lighting_RaphaelC,new Lighting_RaphaelC());
         // SabahE Traits
-        TraitDict.Add(Traits.SpeedUpSabahE, new SpeedUpTrait_SabahE());
+        //TraitDict.Add(Traits.SpeedUpSabahE, new SpeedUpTrait_SabahE());
         // Samson W. Traits
         TraitDict.Add(Traits.TeleportRandomRoom,new TeleportRandomRoomTrait());
         TraitDict.Add(Traits.DamageReflect,new DamageReflectTrait());
@@ -83,14 +85,19 @@ public static class Parser
             case Actions.Use: return new UseAction(who, e);
             // MazK=12,
             // AdamD=20,
+            case Actions.DefendAction_AdamD:return new DefendAction(who,e);
+            case Actions.RestAction_AdamD:return new RestAction(who,e);
             // AlejandroM=25,
             // ElioR=30,
             // JaidenB=35,
             // JuliusP=40,
             case Actions.BarrierShield_JuliusP:return new BarrierShieldAction_JuliusP(who,e);
+            case Actions.Cloak_JuliusP:return new InvisbilityAction(who, e);
+            case Actions.TradeHp_JuliusP:return new TradeHp(who, e);
             // MichaelT=50,
             // QixiangD=55,
             // RaphaelC=60,
+            case Actions.CurveChase_RaphaelC:return new CurveChaseAction_RaphaelC(who,e);
             // SabahE=65,
             // SamsonW=70,
             // SarahS=75,
@@ -205,6 +212,8 @@ public enum Traits
     MichaelT1       =5001,
     //QixiangD      =55##,
     QixiangD1       =5501,
+    Sneaky_qixiangdong = 5502,
+    Thrill_qixiangdong = 5503,
     //RaphaelC      =60##,
     Lighting_RaphaelC       =6001,
     //SabahE        =65##,
@@ -246,6 +255,8 @@ public enum Actions
     //Student Actions
     //AdamD         =20##,
     AdamD1          =2001,
+    RestAction_AdamD=2002,
+    DefendAction_AdamD=2003,
     //AlejandroM    =25##,
     AlejandroM1     =2501,
     //ElioR         =30##,
@@ -255,6 +266,10 @@ public enum Actions
     //JuliusP       =40##,
     JuliusP1        =4001,
     BarrierShield_JuliusP = 4002,
+    Cloak_JuliusP = 4003,
+    TradeHp_JuliusP = 4004,
+
+
     //MazK          =45##,
     MazK1           =4501,
     //MichaelT      =50##,
@@ -263,6 +278,7 @@ public enum Actions
     QixiangD1       =5501,
     //RaphaelC      =60##,
     RaphaelC1       =6001,
+    CurveChase_RaphaelC = 6002,
     //SabahE        =65##,
     SabahE1         =6501,
     //SamsonW       =70##,

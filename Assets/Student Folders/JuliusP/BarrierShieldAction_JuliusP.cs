@@ -99,8 +99,7 @@ public class BarrierShieldAction_JuliusP : ActionScript
         // STARTS THE NEXT ACTION
         Who.Thing.DoAction(next);
 
-        // LOG FOR DEBUGGING
-        Debug.Log("All shields destroyed — returning to default/chase action");
+
     }
 
     // FUNCTION TO SPAWN SHIELDS AROUND CHARACTER

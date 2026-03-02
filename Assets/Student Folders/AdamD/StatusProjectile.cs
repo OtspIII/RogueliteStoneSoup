@@ -4,7 +4,7 @@ using UnityEngine;
 public class StatusEffectOnProjectileTrait_AdamD : Trait //Should make this "script" inherit from the "trait" class
 {
 
-    public StatusEffectOnProjectileTrait_AdamD() //I guess this is a constructor.. 
+    public StatusEffectOnProjectileTrait_AdamD(string Status, float duration) //I guess this is a constructor.. 
     {
         Type = Traits.statusEffectOnProjectile; //connects this trait/enum to the parser script, so "the class knows what enum it's attached to"
         AddListen(EventTypes.OnDestroy);//Makes it listen for that specific event, on destroy
@@ -23,7 +23,10 @@ public class StatusEffectOnProjectileTrait_AdamD : Trait //Should make this "scr
         {
             case EventTypes.OnTouch:
                 {
-                    e.Collision.Other.Info.AddTrait(Traits.OnFire,new EventInfo().Set(3).Set(NumInfo.Time,5));// right now sets people on fire. use multiple .Set() to add multiple parameters
+                    Traits t = i.GetTrait();
+                    float n = i.GetFloat();
+                    e.Collision.Other.Info.AddTrait(t,i /*new EventInfo().Set(n).Set(NumInfo.Time,5)*/);// right now sets people on fire. use multiple .Set() to add multiple parameters
+                    //if  the num type isn't set, this would work; if the num is set to time, make sure to add "time" into the get float
                     //will eventually be able to add different kinds of traits
                     //use numinfo/boolinfo/stringinfo/thinginfo to set different kinds of parameters
                     //Maybe add different stacks of the status effect as a parameter?
