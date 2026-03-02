@@ -83,6 +83,8 @@ public static class Parser
             case Actions.Use: return new UseAction(who, e);
             // MazK=12,
             // AdamD=20,
+            case Actions.DefendAction_AdamD:return new DefendAction(who,e);
+            case Actions.RestAction_AdamD:return new RestAction(who,e);
             // AlejandroM=25,
             // ElioR=30,
             // JaidenB=35,
@@ -248,6 +250,8 @@ public enum Actions
     //Student Actions
     //AdamD         =20##,
     AdamD1          =2001,
+    RestAction_AdamD=2002,
+    DefendAction_AdamD=2003,
     //AlejandroM    =25##,
     AlejandroM1     =2501,
     //ElioR         =30##,
