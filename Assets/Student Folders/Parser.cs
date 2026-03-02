@@ -59,9 +59,11 @@ public static class Parser
         TraitDict.Add(Traits.Lighting_RaphaelC,new Lighting_RaphaelC());
         // SabahE Traits
         //TraitDict.Add(Traits.SpeedUpSabahE, new SpeedUpTrait_SabahE());
-        // Samson W. Traits
+        // SamsonW Traits
         TraitDict.Add(Traits.TeleportRandomRoom,new TeleportRandomRoomTrait());
         TraitDict.Add(Traits.DamageReflect,new DamageReflectTrait());
+        TraitDict.Add(Traits.HealZone,new HealZoneTrait());
+        TraitDict.Add(Traits.DelayedActionAfterStartingAction,new DelayedActionAfterStartingAction());
         // SarahS Traits
         // TracyH Traits
         TraitDict.Add(Traits.Teleport_TracyH, new TeleportTrait_TracyH());
@@ -100,6 +102,7 @@ public static class Parser
             case Actions.CurveChase_RaphaelC:return new CurveChaseAction_RaphaelC(who,e);
             // SabahE=65,
             // SamsonW=70,
+            case Actions.SelfKill: return new SelfKillAction(who, e);
             // SarahS=75,
             // TracyH=80,
             // WesleyP=90,
@@ -223,6 +226,8 @@ public enum Traits
     SamsonW1        =7001,
     TeleportRandomRoom=7002, //Use to teleport user to random room that isnt own room
     DamageReflect   =7003, //Reflects damage, thornmail effect
+    HealZone        =7004, //Heals player when standing inside zone
+    DelayedActionAfterStartingAction=7005, //Switches action after X secs after entering an action
     //SarahS        =75##,
     SarahS1         =7501,
     //TracyH        =80##,
@@ -283,6 +288,7 @@ public enum Actions
     SabahE1         =6501,
     //SamsonW       =70##,
     SamsonW1        =7001,
+    SelfKill        =7002, // Immediately kills thing on enter after 1 frame
     //SarahS        =75##,
     SarahS1         =7501,
     //TracyH        =80##,

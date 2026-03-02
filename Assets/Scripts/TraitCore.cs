@@ -20,6 +20,7 @@ public class TraitInfo : EventInfo
         if (t == null)
         {
             God.LogError("TRAIT DOESN'T EXIST: " + Trait + " / " + Who);
+            return;
         }
         t.Init(this);
     }
