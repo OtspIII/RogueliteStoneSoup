@@ -53,6 +53,8 @@ public static class Parser
         // MazK Traits
         // MichaelT Traits
         // QixiangD Traits
+        TraitDict.Add(Traits.Sneaky_qixiangdong, new Sneaky_qixiangdong());
+        TraitDict.Add(Traits.Thrill_qixiangdong, new Thrill_qixiangdong());
         // RaphaelC Traits
         TraitDict.Add(Traits.Lighting_RaphaelC,new Lighting_RaphaelC());
         // SabahE Traits
@@ -207,6 +209,8 @@ public enum Traits
     MichaelT1       =5001,
     //QixiangD      =55##,
     QixiangD1       =5501,
+    Sneaky_qixiangdong = 5502,
+    Thrill_qixiangdong = 5503,
     //RaphaelC      =60##,
     Lighting_RaphaelC       =6001,
     //SabahE        =65##,
