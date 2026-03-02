@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 /// <summary>
 /// Requires:
@@ -8,17 +9,22 @@
 /// </summary>
 public class DelayedActionAfterStartingAction : Trait
 {
-    private float delayDuration;
-    private float delayTimer;
-    private bool isTimerStarted;
-    private Actions targetAction;
-    private ThingInfo targetThingInfo;
+    public class DelayedActionData
+    {
+        public float duration;
+        public float timer;
+        public Actions targetAction;
+    }
+
+    private Dictionary<ThingInfo, DelayedActionData> delayedActionDict = new();
     
     public DelayedActionAfterStartingAction()
     {
         Type = Traits.DelayedActionAfterStartingAction;
         AddListen(EventTypes.StartAction);
         AddListen(EventTypes.Update);
+        
+        Debug.Log($"Instance of {GetType().Name} created");
     }
 
     public override void TakeEvent(TraitInfo i, EventInfo e)
@@ -27,7 +33,7 @@ public class DelayedActionAfterStartingAction : Trait
         {
             case EventTypes.StartAction:
                 // Try get delay first
-                delayDuration = i.GetFloat();
+                float delayDuration = i.GetFloat();
                 if (delayDuration < 0)
                 {
                     Debug.LogError($"{GetType()} on {i.Who.Thing.gameObject.name} requires valid delay number");
@@ -35,7 +41,7 @@ public class DelayedActionAfterStartingAction : Trait
                 }
                 
                 Actions sourceAction = i.GetAction(ActionInfo.Source);
-                targetAction = i.GetAction(ActionInfo.Target);
+                Actions targetAction = i.GetAction(ActionInfo.Target);
 
                 // See if the action started matches our source
                 Actions startedAction = e.GetAction(ActionInfo.Action);
@@ -46,33 +52,46 @@ public class DelayedActionAfterStartingAction : Trait
                 }
 
                 // Can't interrupt existing
-                if (isTimerStarted)
+                if (delayedActionDict.ContainsKey(i.Who))
                     return;
-                
-                isTimerStarted = true;
-                delayTimer = 0f;
 
-                targetThingInfo = i.Who;
+                DelayedActionData newDelayedActionData = new();
+                newDelayedActionData.duration = delayDuration;
+                newDelayedActionData.timer = 0f;
+                newDelayedActionData.targetAction = targetAction;
                 
-                // Debug.Log($"Detected {sourceAction}. Switching to {targetAction} after {delayDuration} seconds.");
+                delayedActionDict.Add(i.Who, newDelayedActionData);
+                
+                // Debug.Log($"Detected {sourceAction} on {i.Who.Thing.gameObject.name}. Switching to {targetAction} after {delayDuration} seconds.");
                 break;
             case EventTypes.Update:
-                if (!isTimerStarted)
+                if (delayedActionDict == null)
                     return;
 
-                delayTimer += Time.deltaTime;
-                if (delayTimer >= delayDuration)
+                if (delayedActionDict.Count == 0)
+                    return;
+
+                // Loop through copy since we are modifying collection inside loop
+                foreach (var kvp in new Dictionary<ThingInfo, DelayedActionData>(delayedActionDict))
                 {
-                    isTimerStarted = false;
-                    OnDelayFinished();
+                    ThingInfo who = kvp.Key;
+                    DelayedActionData delayedActionData = kvp.Value;
+
+                    if (who.Thing == null)
+                    {
+                        delayedActionDict.Remove(who);
+                        continue;
+                    }
+                    
+                    delayedActionData.timer += Time.deltaTime;
+                    if (delayedActionData.timer >= delayedActionData.duration)
+                    {
+                        Debug.Log($"{GetType()}: Delay is over for {who.Thing.gameObject.name}, attempting to switch to {delayedActionData.targetAction}");
+                        who.TakeEvent(God.E(EventTypes.StartAction).Set(ActionInfo.Action, delayedActionData.targetAction));
+                        delayedActionDict.Remove(who);
+                    }
                 }
                 break;
         }
-    }
-
-    private void OnDelayFinished()
-    {
-        Debug.Log($"Delay is over, attempting to switch to {targetAction}");
-        targetThingInfo.TakeEvent(God.E(EventTypes.StartAction).Set(ActionInfo.Action, targetAction));
     }
 }
