@@ -98,6 +98,7 @@ public static class Parser
             case Actions.TradeHp_JuliusP:return new TradeHp(who, e);
             // MichaelT=50,
             // QixiangD=55,
+            case Actions.Sidestep_qixiangdong: return new Sidestep_qixiangdong(who,e);
             // RaphaelC=60,
             case Actions.CurveChase_RaphaelC:return new CurveChaseAction_RaphaelC(who,e);
             // SabahE=65,
@@ -280,7 +281,7 @@ public enum Actions
     //MichaelT      =50##,
     MichaelT1       =5001,
     //QixiangD      =55##,
-    QixiangD1       =5501,
+    Sidestep_qixiangdong = 5501,
     //RaphaelC      =60##,
     RaphaelC1       =6001,
     CurveChase_RaphaelC = 6002,
