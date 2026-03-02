@@ -466,12 +466,15 @@ public class LevelBuilder
             if (l > o.LevelRange.y && o.LevelRange.y > 0) return 0;
         }
         float w = 1;
+        float cost = 0;
         foreach(Tag t in sr.Mandatory)
-            if (o.HasTag(t.Value, out float tw))
+            if (o.HasTag(t.Value, out float tw, out float cst))
             {
                 w = God.MergeWeight(w,tw);
+                cost = Mathf.Max(cost, cst);
             }
             else return 0;
+        if (sr.MaxCost > 0 && sr.MaxCost < cost) return 0;
         if (sr.Any.Count > 0)
         {
             bool any = false;
@@ -486,7 +489,6 @@ public class LevelBuilder
             if(!any)
                 return 0;
         }
-
         return w;
     }
 
