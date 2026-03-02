@@ -110,4 +110,18 @@ public class ThingOption : GameOption //A generic class for anything that might 
         w = 0;
         return false;
     }
+
+    public Tag GetTag(GameTags t)
+    {
+        return GetTag(t.ToString());
+    }
+    public Tag GetTag(string t)
+    {
+        foreach (Tag g in Tags)
+        {
+            if (g.Value == t) return g;
+        }
+
+        return null;
+    }
 }
