@@ -22,11 +22,12 @@ MonoBehaviour:
   Tags:
   - Common: 102
     Custom: 
-    W: 0.5
+    W: 1
   LevelRange: {x: 0, y: 0}
   Trait: []
-  HP: 3
+  HP: 8
   Speed: 2
+  VisionRange: 4
   Held: {fileID: 11400000, guid: 682fd5ac9d88f8640b6463bda8c0a3c6, type: 2}
   DefaultAction: 103
   DefaultChaseAction: 202

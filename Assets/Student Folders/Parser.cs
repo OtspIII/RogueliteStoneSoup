@@ -97,6 +97,7 @@ public static class Parser
             // MichaelT=50,
             // QixiangD=55,
             // RaphaelC=60,
+            case Actions.CurveChase_RaphaelC:return new CurveChaseAction_RaphaelC(who,e);
             // SabahE=65,
             // SamsonW=70,
             // SarahS=75,
@@ -277,6 +278,7 @@ public enum Actions
     QixiangD1       =5501,
     //RaphaelC      =60##,
     RaphaelC1       =6001,
+    CurveChase_RaphaelC = 6002,
     //SabahE        =65##,
     SabahE1         =6501,
     //SamsonW       =70##,
