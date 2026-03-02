@@ -14,11 +14,13 @@ public class InvertControlsTrait : Trait
         {
             case EventTypes.OnPickup:
                 {
-                   // Vector2 vel = Vector2.zero;
-                   // i.vel.x = -1;
-                   // i.vel.x = 1;
-                   // i.vel.y = -1;
-                   // i.vel.y = 1;
+                    // Vector2 vel = Vector2.zero;
+                    // i.vel.x = -1;
+                    // i.vel.x = 1;
+                    // i.vel.y = -1;
+                    // i.vel.y = 1;
+
+                    //ThingInfo.DesiredMove(0, 0);
                 }
                 break;
         }
