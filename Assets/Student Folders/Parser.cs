@@ -102,6 +102,7 @@ public static class Parser
             case Actions.CurveChase_RaphaelC:return new CurveChaseAction_RaphaelC(who,e);
             // SabahE=65,
             // SamsonW=70,
+            case Actions.SelfKill: return new SelfKillAction(who, e);
             // SarahS=75,
             // TracyH=80,
             // WesleyP=90,
@@ -287,6 +288,7 @@ public enum Actions
     SabahE1         =6501,
     //SamsonW       =70##,
     SamsonW1        =7001,
+    SelfKill        =7002, // Immediately kills thing on enter after 1 frame
     //SarahS        =75##,
     SarahS1         =7501,
     //TracyH        =80##,

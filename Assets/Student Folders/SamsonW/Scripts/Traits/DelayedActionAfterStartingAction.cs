@@ -30,7 +30,7 @@ public class DelayedActionAfterStartingAction : Trait
                 delayDuration = i.GetFloat();
                 if (delayDuration < 0)
                 {
-                    God.LogError($"{GetType()} on {i.Who.Thing.gameObject.name} requires valid delay number");
+                    Debug.LogError($"{GetType()} on {i.Who.Thing.gameObject.name} requires valid delay number");
                     return;
                 }
                 
@@ -41,17 +41,20 @@ public class DelayedActionAfterStartingAction : Trait
                 Actions startedAction = e.GetAction(ActionInfo.Action);
                 if (startedAction != sourceAction)
                 {
-                    God.Log($"Detected {startedAction}, but does not match {sourceAction}");
+                    // Debug.Log($"Detected {startedAction}, but does not match {sourceAction}");
                     return;
                 }
+
+                // Can't interrupt existing
+                if (isTimerStarted)
+                    return;
                 
-                // Switch after validating inputs
                 isTimerStarted = true;
                 delayTimer = 0f;
 
                 targetThingInfo = i.Who;
                 
-                God.Log($"Detected {sourceAction}. Switching to {targetAction} after {delayDuration} seconds.");
+                // Debug.Log($"Detected {sourceAction}. Switching to {targetAction} after {delayDuration} seconds.");
                 break;
             case EventTypes.Update:
                 if (!isTimerStarted)
@@ -69,7 +72,7 @@ public class DelayedActionAfterStartingAction : Trait
 
     private void OnDelayFinished()
     {
-        God.Log($"Delay is over, attempting to switch to {targetAction}");
+        Debug.Log($"Delay is over, attempting to switch to {targetAction}");
         targetThingInfo.TakeEvent(God.E(EventTypes.StartAction).Set(ActionInfo.Action, targetAction));
     }
 }

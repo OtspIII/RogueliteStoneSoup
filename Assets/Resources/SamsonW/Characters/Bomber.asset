@@ -89,7 +89,7 @@ MonoBehaviour:
     Builder:
     - Type: 0
       NumType: 1
-      Num: 2
+      Num: 4
       StrType: 0
       Str: 
       ActType: 2
@@ -131,7 +131,7 @@ MonoBehaviour:
       StrType: 0
       Str: 
       ActType: 9
-      Act: 2
+      Act: 7002
       BoolType: 0
       Bool: 0
       OptionType: 0
