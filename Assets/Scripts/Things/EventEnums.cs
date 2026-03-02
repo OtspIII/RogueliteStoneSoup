@@ -104,7 +104,9 @@ public enum ActionInfo
     DefaultChaseAction=4,
     D=5,
     E=6,
-    F=7
+    F=7,
+    Source=8,
+    Target=9,
 }
 
 public enum BoolInfo
