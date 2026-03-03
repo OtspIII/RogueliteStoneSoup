@@ -34,18 +34,12 @@ public class Trait
 
     public void Init(TraitInfo i)
     {
-        // Debug.Log("INIT TRAIT: " + Type + " / " + i.Who.Name);
         foreach (EventTypes e in PreListen.Keys)
             i.Who.AddListen(e,Type,true);
         foreach (EventTypes e in TakeListen.Keys)
             i.Who.AddListen(e,Type,false);
-        // Setup(i);
     }
     
-    // protected virtual void Setup(TraitInfo i)
-    // {
-    //     //Called when a trait first gets added to an actor
-    // }
 
     public virtual void ReUp(TraitInfo old,EventInfo n)
     {
@@ -80,13 +74,6 @@ public class Trait
         
     }
     
-    // public EventInfo Ask(TraitInfo i,EventTypes e)
-    // {
-    //     EventInfo r = God.E(e);
-    //     TakeEvent(i,r);
-    //     return r;
-    // }
-
     public void AddListen(EventTypes e, float prio = 3)
     {
         TakeListen.Add(e,prio);
