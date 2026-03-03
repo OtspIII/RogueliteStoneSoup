@@ -14,6 +14,8 @@ public class DefendAction : ActionScript
     public override void OnRun()
     {
         base.OnRun();
+
+        //nuclearthrone
     }
     //Can't move. Reduce dmg taken/ignore dmg, has a cooldown to how long this action can be used. Can be interrupted by other actions like move
     //maybe next action if clicking launches a regular attack as a block counter
