@@ -12,19 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a47d2194617e47469e601e558e7b8b4, type: 3}
   m_Name: Ninjastar
   m_EditorClassIdentifier: Assembly-CSharp::ItemOption
-  Name: 
-  Author: 0
+  Name: Ninja Star
+  Author: 55
   Team: 1
-  Body: {fileID: 0}
-  Art: {fileID: 0}
+  Body: {fileID: 629948465317790645, guid: b4fa405680f33044abe2c4567ecf147f, type: 3}
+  Art: {fileID: -4345462867533152315, guid: 2c810fd9bc2051848b2dacb4073b428b, type: 3}
   Color: {r: 1, g: 1, b: 1, a: 1}
-  Size: 1
+  Size: 0.3
   Tags: []
   LevelRange: {x: 0, y: 0}
   Trait: []
   DefaultAttack: 103
   ToSpawn:
-    Fixed: {fileID: 0}
+    Fixed: {fileID: 11400000, guid: f6333004a64e5154587906e2b018a835, type: 2}
     Mandatory: []
     Any: []
     Level: 0
@@ -32,6 +32,6 @@ MonoBehaviour:
   FloorBody: {fileID: 0}
   FloorArt: {fileID: 0}
   Damage: 1
-  IdealRange: 1.5
+  IdealRange: 5
   SpeedMult: 1
   ActDuration: 0

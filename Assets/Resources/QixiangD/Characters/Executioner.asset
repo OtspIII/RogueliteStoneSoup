@@ -19,12 +19,16 @@ MonoBehaviour:
   Art: {fileID: -2609838360558021987, guid: 252a994dd5c8fba4286c4c354732d66b, type: 3}
   Color: {r: 1, g: 1, b: 1, a: 1}
   Size: 0.2
-  Tags: []
+  Tags:
+  - Common: 102
+    Custom: 
+    W: 0
+    Cost: 1
   LevelRange: {x: 0, y: 0}
   Trait: []
   HP: 3
   Speed: 5
   VisionRange: 4
   Held: {fileID: 11400000, guid: 991da1e4d4748fd4c911c0b368799cc7, type: 2}
-  DefaultAction: 201
-  DefaultChaseAction: 202
+  DefaultAction: 202
+  DefaultChaseAction: 5502

@@ -58,7 +58,8 @@ public static class Parser
         // RaphaelC Traits
         TraitDict.Add(Traits.Lighting_RaphaelC,new Lighting_RaphaelC());
         // SabahE Traits
-        //TraitDict.Add(Traits.SpeedUpSabahE, new SpeedUpTrait_SabahE());
+        TraitDict.Add(Traits.SpeedUpSabahE, new SpeedUpTrait_SabahE());
+        TraitDict.Add(Traits.RallySabahE, new RallyTrait_SabahE());
         // SamsonW Traits
         TraitDict.Add(Traits.TeleportRandomRoom,new TeleportRandomRoomTrait());
         TraitDict.Add(Traits.DamageReflect,new DamageReflectTrait());
@@ -98,16 +99,20 @@ public static class Parser
             case Actions.TradeHp_JuliusP:return new TradeHp(who, e);
             // MichaelT=50,
             // QixiangD=55,
+
+            case Actions.Charging_qixiangdong: return new Charging_qixiangdong(who, e);
             case Actions.Sidestep_qixiangdong: return new Sidestep_qixiangdong(who,e);
             // RaphaelC=60,
             case Actions.CurveChase_RaphaelC:return new CurveChaseAction_RaphaelC(who,e);
             // SabahE=65,
+            case Actions.Dash_SabahE: return new Dash_SabahE(who, e);
+            case Actions.GroundSlam_SabahE: return new GroundSlam_SabahE(who, e);
             // SamsonW=70,
             case Actions.SelfKill: return new SelfKillAction(who, e);
             // SarahS=75,
             // TracyH=80,
             // WesleyP=90,
-            // YuChen=95,
+
         }
         God.LogError("UNCAUGHT ACTION: " + act);
         return new IdleAction(who,e);
@@ -223,6 +228,7 @@ public enum Traits
     //SabahE        =65##,
     SabahE1         =6501,
     SpeedUpSabahE   =6502, //Speedup for 10s when you get hit
+    RallySabahE     =6503,
     //SamsonW       =70##,
     SamsonW1        =7001,
     TeleportRandomRoom=7002, //Use to teleport user to random room that isnt own room
@@ -281,12 +287,17 @@ public enum Actions
     //MichaelT      =50##,
     MichaelT1       =5001,
     //QixiangD      =55##,
-    Sidestep_qixiangdong = 5501,
+    QixiangD1       =5501,
+    Charging_qixiangdong=5502,
+    Sidestep_qixiangdong = 5503,
+
     //RaphaelC      =60##,
-    RaphaelC1       =6001,
+    RaphaelC1 = 6001,
     CurveChase_RaphaelC = 6002,
     //SabahE        =65##,
     SabahE1         =6501,
+    Dash_SabahE     =6502,
+    GroundSlam_SabahE =6503,
     //SamsonW       =70##,
     SamsonW1        =7001,
     SelfKill        =7002, // Immediately kills thing on enter after 1 frame

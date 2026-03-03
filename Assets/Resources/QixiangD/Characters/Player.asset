@@ -13,20 +13,19 @@ MonoBehaviour:
   m_Name: Player
   m_EditorClassIdentifier: Assembly-CSharp::CharacterOption
   Name: Player
-  Author: 65
+  Author: 55
   Team: 2
   Body: {fileID: 629948465317790645, guid: acf0e760b28c7b046ad7d511fb87a1d3, type: 3}
-  Art: {fileID: -6930072583179015400, guid: 466134fd5ef0c8346910fe7179d8e3a2, type: 3}
-  Color: {r: 0, g: 0.09766126, b: 1, a: 1}
+  Art: {fileID: 6005008538062400051, guid: 6b94876af2f4daa4dbef6aebff1ec0d9, type: 3}
+  Color: {r: 0.004494493, g: 0.33150688, b: 0.9528302, a: 1}
   Size: 1
   Tags:
   - Common: 1
     Custom: 
     W: 1
-    Cost: 1
   LevelRange: {x: 0, y: 0}
   Trait:
-  - Trait: 6502
+  - Trait: 100
     Numbers: []
     Prefabs: []
     Acts: []
@@ -37,11 +36,29 @@ MonoBehaviour:
       Any: []
       Level: 0
       Author: 0
-      MaxCost: 0
-    Builder: []
-  HP: 5
-  Speed: 8
+    Builder:
+    - Type: 7
+      NumType: 0
+      Num: 0
+      StrType: 0
+      Str: 
+      ActType: 0
+      Act: 0
+      BoolType: 0
+      Bool: 0
+      OptionType: 0
+      Option: {fileID: 0}
+      VectorType: 0
+      Vector: {x: 0, y: 0}
+      Fixed: {fileID: 0}
+      Mandatory: 
+      MandatoryW: 0
+      Any: 
+      AnyW: 0
+      Trait: 5503
+  HP: 20
+  Speed: 5
   VisionRange: 4
-  Held: {fileID: 11400000, guid: 7fc77b878c3f272478de54b35b2fb3a3, type: 2}
+  Held: {fileID: 11400000, guid: d8535ae3107c2184ab8fc49f1318f904, type: 2}
   DefaultAction: 201
   DefaultChaseAction: 202
