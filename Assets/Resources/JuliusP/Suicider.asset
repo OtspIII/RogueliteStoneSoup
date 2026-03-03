@@ -22,7 +22,8 @@ MonoBehaviour:
   Tags:
   - Common: 102
     Custom: 
-    W: 50
+    W: 1
+    Cost: 1
   LevelRange: {x: 0, y: 0}
   Trait:
   - Trait: 4004
@@ -36,6 +37,8 @@ MonoBehaviour:
       Any: []
       Level: 0
       Author: 0
+      MaxCost: 0
+    Builder: []
   HP: 5
   Speed: 5
   VisionRange: 15.69

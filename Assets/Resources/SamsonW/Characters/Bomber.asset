@@ -27,18 +27,126 @@ MonoBehaviour:
   Trait:
   - Trait: 3
     Numbers: []
-    Prefabs:
-    - Type: 1
-      Value: {fileID: 11400000, guid: fa9fd6eea68462e47818ec67068d8b08, type: 2}
+    Prefabs: []
     Acts: []
+    OtherTrait: 0
     SpawnReq:
-      Fixed: {fileID: 11400000, guid: fa9fd6eea68462e47818ec67068d8b08, type: 2}
+      Fixed: {fileID: 0}
       Mandatory: []
       Any: []
       Level: 0
       Author: 0
+    Builder:
+    - Type: 4
+      NumType: 0
+      Num: 0
+      StrType: 0
+      Str: 
+      ActType: 0
+      Act: 0
+      BoolType: 0
+      Bool: 0
+      OptionType: 1
+      Option: {fileID: 11400000, guid: fa9fd6eea68462e47818ec67068d8b08, type: 2}
+      VectorType: 0
+      Vector: {x: 0, y: 0}
+      Fixed: {fileID: 0}
+      Mandatory: 
+      MandatoryW: 0
+      Any: 
+      AnyW: 0
+      Trait: 0
+    - Type: 6
+      NumType: 0
+      Num: 0
+      StrType: 0
+      Str: 
+      ActType: 0
+      Act: 0
+      BoolType: 0
+      Bool: 0
+      OptionType: 0
+      Option: {fileID: 0}
+      VectorType: 0
+      Vector: {x: 0, y: 0}
+      Fixed: {fileID: 11400000, guid: fa9fd6eea68462e47818ec67068d8b08, type: 2}
+      Mandatory: 
+      MandatoryW: 0
+      Any: 
+      AnyW: 0
+      Trait: 0
+  - Trait: 7005
+    Numbers: []
+    Prefabs: []
+    Acts: []
+    OtherTrait: 0
+    SpawnReq:
+      Fixed: {fileID: 0}
+      Mandatory: []
+      Any: []
+      Level: 0
+      Author: 0
+    Builder:
+    - Type: 0
+      NumType: 1
+      Num: 5
+      StrType: 0
+      Str: 
+      ActType: 2
+      Act: 202
+      BoolType: 0
+      Bool: 0
+      OptionType: 0
+      Option: {fileID: 0}
+      VectorType: 0
+      Vector: {x: 0, y: 0}
+      Fixed: {fileID: 0}
+      Mandatory: 
+      MandatoryW: 0
+      Any: 
+      AnyW: 0
+      Trait: 0
+    - Type: 2
+      NumType: 0
+      Num: 0
+      StrType: 0
+      Str: 
+      ActType: 8
+      Act: 202
+      BoolType: 0
+      Bool: 0
+      OptionType: 0
+      Option: {fileID: 0}
+      VectorType: 0
+      Vector: {x: 0, y: 0}
+      Fixed: {fileID: 0}
+      Mandatory: 
+      MandatoryW: 0
+      Any: 
+      AnyW: 0
+      Trait: 0
+    - Type: 2
+      NumType: 0
+      Num: 0
+      StrType: 0
+      Str: 
+      ActType: 9
+      Act: 7002
+      BoolType: 0
+      Bool: 0
+      OptionType: 0
+      Option: {fileID: 0}
+      VectorType: 0
+      Vector: {x: 0, y: 0}
+      Fixed: {fileID: 0}
+      Mandatory: 
+      MandatoryW: 0
+      Any: 
+      AnyW: 0
+      Trait: 0
   HP: 2
   Speed: 4
-  Held: {fileID: 11400000, guid: 9a233c4eaacd8f34ab51fbf722049d26, type: 2}
+  VisionRange: 4
+  Held: {fileID: 0}
   DefaultAction: 201
   DefaultChaseAction: 202

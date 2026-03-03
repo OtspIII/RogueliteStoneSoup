@@ -31,7 +31,7 @@ MonoBehaviour:
     Author: 60
   FloorBody: {fileID: 0}
   FloorArt: {fileID: 0}
-  Damage: 1
+  Damage: 2
   IdealRange: 7
-  SpeedMult: 0.4
+  SpeedMult: 0.5
   ActDuration: 0

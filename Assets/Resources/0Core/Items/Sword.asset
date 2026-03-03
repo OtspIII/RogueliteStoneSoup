@@ -13,20 +13,30 @@ MonoBehaviour:
   m_Name: Sword
   m_EditorClassIdentifier: 
   Name: Sword
+  Author: 0
   Team: 1
   Body: {fileID: 629948465317790645, guid: b4fa405680f33044abe2c4567ecf147f, type: 3}
   Art: {fileID: 21300000, guid: 6c7f9cbfcc8f8d145913c8ae22c5bd51, type: 3}
   Color: {r: 1, g: 1, b: 1, a: 1}
+  Size: 1
   Tags:
   - Common: 201
     Custom: 
+    W: 1
+    Cost: 1
+  LevelRange: {x: 0, y: 0}
   Trait: []
-  Size: 1
-  Damage: 1
+  DefaultAttack: 101
+  ToSpawn:
+    Fixed: {fileID: 0}
+    Mandatory: []
+    Any: []
+    Level: 0
+    Author: 0
+    MaxCost: 0
+  FloorBody: {fileID: 0}
+  FloorArt: {fileID: 0}
+  Damage: 2
   IdealRange: 1.5
   SpeedMult: 1
   ActDuration: 0
-  DefaultAttack: 101
-  Projectile: {fileID: 0}
-  FloorBody: {fileID: 0}
-  FloorArt: {fileID: 0}

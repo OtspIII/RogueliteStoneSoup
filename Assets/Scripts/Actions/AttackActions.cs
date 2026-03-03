@@ -30,6 +30,8 @@ public class AttackAction : UseAction
         // hit.TakeDamage(GetDamage());
         hit.DoAction(Actions.Stun,God.E().Set(0.5f).Set(NumInfo.Priority,3));
         hit.TakeKnockback(Who.Thing.transform.position,Knockback);
+
+
     }
 }
 

@@ -53,13 +53,17 @@ public static class Parser
         // MazK Traits
         // MichaelT Traits
         // QixiangD Traits
+        TraitDict.Add(Traits.Sneaky_qixiangdong, new Sneaky_qixiangdong());
+        TraitDict.Add(Traits.Thrill_qixiangdong, new Thrill_qixiangdong());
         // RaphaelC Traits
         TraitDict.Add(Traits.Lighting_RaphaelC,new Lighting_RaphaelC());
         // SabahE Traits
-        TraitDict.Add(Traits.SpeedUpSabahE, new SpeedUpTrait_SabahE());
-        // Samson W. Traits
+        //TraitDict.Add(Traits.SpeedUpSabahE, new SpeedUpTrait_SabahE());
+        // SamsonW Traits
         TraitDict.Add(Traits.TeleportRandomRoom,new TeleportRandomRoomTrait());
         TraitDict.Add(Traits.DamageReflect,new DamageReflectTrait());
+        TraitDict.Add(Traits.HealZone,new HealZoneTrait());
+        TraitDict.Add(Traits.DelayedActionAfterStartingAction,new DelayedActionAfterStartingAction());
         // SarahS Traits
         // TracyH Traits
         TraitDict.Add(Traits.Teleport_TracyH, new TeleportTrait_TracyH());
@@ -83,20 +87,38 @@ public static class Parser
             case Actions.Use: return new UseAction(who, e);
             // MazK=12,
             // AdamD=20,
+            case Actions.DefendAction_AdamD:return new DefendAction(who,e);
+            case Actions.RestAction_AdamD:return new RestAction(who,e);
             // AlejandroM=25,
             // ElioR=30,
             // JaidenB=35,
             // JuliusP=40,
             case Actions.BarrierShield_JuliusP:return new BarrierShieldAction_JuliusP(who,e);
+            case Actions.Cloak_JuliusP:return new InvisbilityAction(who, e);
+            case Actions.TradeHp_JuliusP:return new TradeHp(who, e);
             // MichaelT=50,
             // QixiangD=55,
+
+            case Actions.Charging_qixiangdong: return new Charging_qixiangdong(who, e);
+            case Actions.Sidestep_qixiangdong: return new Sidestep_qixiangdong(who,e);
             // RaphaelC=60,
+            case Actions.CurveChase_RaphaelC:return new CurveChaseAction_RaphaelC(who,e);
             // SabahE=65,
             // SamsonW=70,
+            case Actions.SelfKill: return new SelfKillAction(who, e);
             // SarahS=75,
             // TracyH=80,
             // WesleyP=90,
-            // YuChen=95,
+
+           
+                // RaphaelC=60,
+                // SabahE=65,
+                // SamsonW=70,
+                // SarahS=75,
+                // TracyH=80,
+                // WesleyP=90,
+                // YuChen=95,
+
         }
         God.LogError("UNCAUGHT ACTION: " + act);
         return new IdleAction(who,e);
@@ -205,6 +227,8 @@ public enum Traits
     MichaelT1       =5001,
     //QixiangD      =55##,
     QixiangD1       =5501,
+    Sneaky_qixiangdong = 5502,
+    Thrill_qixiangdong = 5503,
     //RaphaelC      =60##,
     Lighting_RaphaelC       =6001,
     //SabahE        =65##,
@@ -214,6 +238,8 @@ public enum Traits
     SamsonW1        =7001,
     TeleportRandomRoom=7002, //Use to teleport user to random room that isnt own room
     DamageReflect   =7003, //Reflects damage, thornmail effect
+    HealZone        =7004, //Heals player when standing inside zone
+    DelayedActionAfterStartingAction=7005, //Switches action after X secs after entering an action
     //SarahS        =75##,
     SarahS1         =7501,
     //TracyH        =80##,
@@ -246,6 +272,8 @@ public enum Actions
     //Student Actions
     //AdamD         =20##,
     AdamD1          =2001,
+    RestAction_AdamD=2002,
+    DefendAction_AdamD=2003,
     //AlejandroM    =25##,
     AlejandroM1     =2501,
     //ElioR         =30##,
@@ -255,18 +283,26 @@ public enum Actions
     //JuliusP       =40##,
     JuliusP1        =4001,
     BarrierShield_JuliusP = 4002,
+    Cloak_JuliusP = 4003,
+    TradeHp_JuliusP = 4004,
+
+
     //MazK          =45##,
     MazK1           =4501,
     //MichaelT      =50##,
     MichaelT1       =5001,
     //QixiangD      =55##,
     QixiangD1       =5501,
+    Charging_qixiangdong=5502,
+    Sidestep_qixiangdong = 5503,
     //RaphaelC      =60##,
-    RaphaelC1       =6001,
+    RaphaelC1 = 6001,
+    CurveChase_RaphaelC = 6002,
     //SabahE        =65##,
     SabahE1         =6501,
     //SamsonW       =70##,
     SamsonW1        =7001,
+    SelfKill        =7002, // Immediately kills thing on enter after 1 frame
     //SarahS        =75##,
     SarahS1         =7501,
     //TracyH        =80##,
