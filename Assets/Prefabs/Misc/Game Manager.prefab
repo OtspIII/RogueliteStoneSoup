@@ -122,8 +122,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4e6a35f2ee40aa46a25e832e60e8fbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurrentAuthor: 0
+  CurrentAuthor: 11
   DebugSpawn: {fileID: 0}
+  DebugSpawnAlt: {fileID: 0}
+  DebugSpawnEnd: {fileID: 0}
   LevelOverride: 0
   Fader: {fileID: 4497842725835829419}
   InfoTxt: {fileID: 6799186917877728896}
@@ -132,6 +134,22 @@ MonoBehaviour:
   Rooms: []
   Things: []
   Gnomes: []
+  Exit:
+    Name: 
+    Thing: {fileID: 0}
+    Type: {fileID: 0}
+    Team: 0
+    MidEvent: 0
+    Setup: 0
+    Destroyed: 0
+    TargetedBy: []
+    AttackRange: 0
+    VisionRange: 0
+    CurrentSpeed: 0
+    DesiredMove: {x: 0, y: 0}
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &1505889798978773429
 GameObject:
   m_ObjectHideFlags: 0
