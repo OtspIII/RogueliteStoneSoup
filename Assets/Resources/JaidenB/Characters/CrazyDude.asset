@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4679cc75b2c8be74e8b047318fa062ea, type: 3}
-  m_Name: Stalker
+  m_Name: CrazyDude
   m_EditorClassIdentifier: Assembly-CSharp::CharacterOption
   Name: Stalker
   Author: 35
   Team: 1
   Body: {fileID: 629948465317790645, guid: c5227d51ccfec934db9e0058624b573e, type: 3}
-  Art: {fileID: -6948560220386916374, guid: d758578365c69f940ba350d20a3e89da, type: 3}
+  Art: {fileID: -6663905626272520177, guid: 443ff9c1b0904354db723cf9cffe6bc7, type: 3}
   Color: {r: 1, g: 1, b: 1, a: 1}
   Size: 1
   Tags:
