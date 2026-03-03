@@ -1,9 +1,9 @@
-/**using UnityEngine;
+using UnityEngine;
 
 public class Sidestep_qixiangdong : ActionScript
 {
     private Vector2 sideDir;
-    private float sideSpeedMult = 2.5f;
+    private float sideSpeedMult = 1.5f;
     private float sideDuration = 0.5f;
 
     public Sidestep_qixiangdong(ThingInfo who,EventInfo e = null){
@@ -12,19 +12,21 @@ public class Sidestep_qixiangdong : ActionScript
         MoveMult = sideSpeedMult;
         HaltMomentum =true;
         Duration = sideDuration;
-        CAnRotate = false;
-        Prior = 2;
+        CanRotate = false;
+        Priority = 2;
     }
 
     public override void Begin(){
-        target = who.Target;
+        base.Begin();
 
-        if (target == null){
+        if (Who.Target == null){
             Complete();
             return;
         }
+        Vector2 myPos = Who.Thing.transform.position;
+        Vector2 targetPos = Who.Target.Thing.transform.position;
 
-        Vector2 toTarget = (Who.Target.Pos - Who.Pos).normalized;
+        Vector2 toTarget = (targetPos - myPos).normalized;
 
         sideDir = new Vector2(-toTarget.y,toTarget.x);
 
@@ -37,13 +39,14 @@ public class Sidestep_qixiangdong : ActionScript
         if(Who.Thing == null){
             return;
         }
-        if(Who.Thing.RB = null){
+        if(Who.Thing.RB == null){
             return;
         }
 
         Who.DesiredMove = sideDir;
         Who.Thing.ActualMove =MoveMult * Who.CurrentSpeed * sideDir;
     }
+
 
     public override void End(){
         Who.DesiredMove = Vector2.zero;
@@ -53,4 +56,3 @@ public class Sidestep_qixiangdong : ActionScript
 
     
 }
-**/

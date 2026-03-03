@@ -110,15 +110,6 @@ public static class Parser
             // TracyH=80,
             // WesleyP=90,
 
-           
-                // RaphaelC=60,
-                // SabahE=65,
-                // SamsonW=70,
-                // SarahS=75,
-                // TracyH=80,
-                // WesleyP=90,
-                // YuChen=95,
-
         }
         God.LogError("UNCAUGHT ACTION: " + act);
         return new IdleAction(who,e);
@@ -295,6 +286,7 @@ public enum Actions
     QixiangD1       =5501,
     Charging_qixiangdong=5502,
     Sidestep_qixiangdong = 5503,
+
     //RaphaelC      =60##,
     RaphaelC1 = 6001,
     CurveChase_RaphaelC = 6002,

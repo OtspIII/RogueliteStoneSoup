@@ -10,24 +10,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4679cc75b2c8be74e8b047318fa062ea, type: 3}
-  m_Name: Ninja
+  m_Name: Executioner
   m_EditorClassIdentifier: Assembly-CSharp::CharacterOption
-  Name: Ninja
+  Name: Executioner
   Author: 55
   Team: 3
   Body: {fileID: 629948465317790645, guid: acf0e760b28c7b046ad7d511fb87a1d3, type: 3}
-  Art: {fileID: -2759152716061183957, guid: 5f0263e43c197a448809521bd33cd8bb, type: 3}
+  Art: {fileID: -2609838360558021987, guid: 252a994dd5c8fba4286c4c354732d66b, type: 3}
   Color: {r: 1, g: 1, b: 1, a: 1}
   Size: 0.2
   Tags:
   - Common: 102
     Custom: 
     W: 0
+    Cost: 1
   LevelRange: {x: 0, y: 0}
   Trait: []
-  HP: 5
+  HP: 3
   Speed: 5
   VisionRange: 4
-  Held: {fileID: 11400000, guid: 00296ea537f877848a6ed623f263e157, type: 2}
-  DefaultAction: 201
-  DefaultChaseAction: 202
+  Held: {fileID: 11400000, guid: 991da1e4d4748fd4c911c0b368799cc7, type: 2}
+  DefaultAction: 202
+  DefaultChaseAction: 5502
