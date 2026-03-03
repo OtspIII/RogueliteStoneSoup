@@ -14,11 +14,20 @@ public class TraitInfo : EventInfo
         Set(ThingEInfo.Source, who);
     }
 
-    public void Init() { Parser.Get(Trait).Init(this); }
-    public void ReUp(EventInfo i) { Parser.Get(Trait).ReUp(this,i); }
-    public void Remove(EventInfo e) { Parser.Get(Trait).Remove(this,e); }
-    public void PreEvent(EventInfo e) { Parser.Get(Trait).PreEvent(this,e); }
-    public void TakeEvent(EventInfo e) { Parser.Get(Trait).TakeEvent(this,e); }
+    public void Init()
+    {
+        Trait t = Parser.Get(Trait);
+        if (t == null)
+        {
+            God.LogError("TRAIT DOESN'T EXIST: " + Trait + " / " + Who);
+            return;
+        }
+        t.Init(this);
+    }
+    public void ReUp(EventInfo i) { Parser.Get(Trait)?.ReUp(this,i); }
+    public void Remove(EventInfo e) { Parser.Get(Trait)?.Remove(this,e); }
+    public void PreEvent(EventInfo e) { Parser.Get(Trait)?.PreEvent(this,e); }
+    public void TakeEvent(EventInfo e) { Parser.Get(Trait)?.TakeEvent(this,e); }
 
     public override string ToString()
     {

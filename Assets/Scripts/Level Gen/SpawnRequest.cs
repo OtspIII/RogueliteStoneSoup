@@ -11,6 +11,7 @@ public class SpawnRequest
     public List<Tag> Any = new List<Tag>();
     public int Level = 0;
     public Authors Author;
+    public float MaxCost = 0;
 
     public SpawnRequest()
     {
@@ -127,26 +128,30 @@ public class Tag
     public string Custom="";
     public string Value { get { return Custom != "" ? Custom : Common.ToString() ; } }
     public float W = 1;
+    public float Cost = 1;
 
     public Tag()
     {
         W = 1;
+        Cost = 1;
     }
     
-    public Tag(GameTags t, float w=1)
+    public Tag(GameTags t, float w=1,float cost=1)
     {
         Common = t;
         W = w;
+        Cost = cost;
     }
 
-    public Tag(string t, float w=1)
+    public Tag(string t, float w=1,float cost=1)
     {
         Custom = t;
         W = w;
+        Cost = cost;
     }
 
     public override string ToString()
     {
-        return Value+"("+W+")";
+        return Value+"("+W+"/"+Cost+")";
     }
 }
