@@ -64,6 +64,7 @@ public static class Parser
         TraitDict.Add(Traits.DamageReflect,new DamageReflectTrait());
         TraitDict.Add(Traits.HealZone,new HealZoneTrait());
         TraitDict.Add(Traits.DelayedActionAfterStartingAction,new DelayedActionAfterStartingAction());
+        TraitDict.Add(Traits.GrappleHook,new GrappleHook());
         // SarahS Traits
         // TracyH Traits
         TraitDict.Add(Traits.Teleport_TracyH, new TeleportTrait_TracyH());
@@ -106,6 +107,7 @@ public static class Parser
             // SabahE=65,
             // SamsonW=70,
             case Actions.SelfKill: return new SelfKillAction(who, e);
+            case Actions.Grapple: return new GrappleAction(who, e);
             // SarahS=75,
             // TracyH=80,
             // WesleyP=90,
@@ -231,6 +233,7 @@ public enum Traits
     DamageReflect   =7003, //Reflects damage, thornmail effect
     HealZone        =7004, //Heals player when standing inside zone
     DelayedActionAfterStartingAction=7005, //Switches action after X secs after entering an action
+    GrappleHook     =7006, //Pulls the projectile shooter to the projectile location on drop
     //SarahS        =75##,
     SarahS1         =7501,
     //TracyH        =80##,
@@ -295,6 +298,7 @@ public enum Actions
     //SamsonW       =70##,
     SamsonW1        =7001,
     SelfKill        =7002, // Immediately kills thing on enter after 1 frame
+    Grapple         =7003, // Lunges thing towards a target thing
     //SarahS        =75##,
     SarahS1         =7501,
     //TracyH        =80##,
