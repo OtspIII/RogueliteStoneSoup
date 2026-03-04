@@ -58,7 +58,8 @@ public static class Parser
         // RaphaelC Traits
         TraitDict.Add(Traits.Lighting_RaphaelC,new Lighting_RaphaelC());
         // SabahE Traits
-        //TraitDict.Add(Traits.SpeedUpSabahE, new SpeedUpTrait_SabahE());
+        TraitDict.Add(Traits.SpeedUpSabahE, new SpeedUpTrait_SabahE());
+        TraitDict.Add(Traits.RallySabahE, new RallyTrait_SabahE());
         // SamsonW Traits
         TraitDict.Add(Traits.TeleportRandomRoom,new TeleportRandomRoomTrait());
         TraitDict.Add(Traits.DamageReflect,new DamageReflectTrait());
@@ -66,6 +67,8 @@ public static class Parser
         TraitDict.Add(Traits.DelayedActionAfterStartingAction,new DelayedActionAfterStartingAction());
         TraitDict.Add(Traits.GrappleHook,new GrappleHook());
         // SarahS Traits
+        TraitDict.Add(Traits.SarahS1, new ProximityExplode_SarahS());
+        TraitDict.Add(Traits.SloMo, new SloMo_SarahS());
         // TracyH Traits
         TraitDict.Add(Traits.Teleport_TracyH, new TeleportTrait_TracyH());
         // WesleyP Traits
@@ -104,7 +107,11 @@ public static class Parser
             case Actions.Sidestep_qixiangdong: return new Sidestep_qixiangdong(who,e);
             // RaphaelC=60,
             case Actions.CurveChase_RaphaelC:return new CurveChaseAction_RaphaelC(who,e);
+            case Actions.Action2_RaphaelC:return new Action2_RaphaelC(who,e);
+            case Actions.Action3_RaphaelC:return new Action3_RaphaelC(who,e);   
             // SabahE=65,
+            case Actions.Dash_SabahE: return new Dash_SabahE(who, e);
+            case Actions.GroundSlam_SabahE: return new GroundSlam_SabahE(who, e);
             // SamsonW=70,
             case Actions.SelfKill: return new SelfKillAction(who, e);
             case Actions.Grapple: return new GrappleAction(who, e);
@@ -227,6 +234,7 @@ public enum Traits
     //SabahE        =65##,
     SabahE1         =6501,
     SpeedUpSabahE   =6502, //Speedup for 10s when you get hit
+    RallySabahE     =6503,
     //SamsonW       =70##,
     SamsonW1        =7001,
     TeleportRandomRoom=7002, //Use to teleport user to random room that isnt own room
@@ -236,8 +244,9 @@ public enum Traits
     GrappleHook     =7006, //Pulls the projectile shooter to the projectile location on drop
     //SarahS        =75##,
     SarahS1         =7501,
+    SloMo           =7502,
     //TracyH        =80##,
-    Teleport_TracyH =8001, //Teleport player between radius or nearby room. Can be placed on held item or zone
+    Teleport_TracyH =8002, //Teleport player between radius or nearby room. Can be placed on held item or zone
     //WesleyP       =90##,
     WesleyP1        =9001,
     //YuChen        =95##,
@@ -293,8 +302,12 @@ public enum Actions
     //RaphaelC      =60##,
     RaphaelC1 = 6001,
     CurveChase_RaphaelC = 6002,
+    Action2_RaphaelC = 6003,
+    Action3_RaphaelC = 6004,
     //SabahE        =65##,
     SabahE1         =6501,
+    Dash_SabahE     =6502,
+    GroundSlam_SabahE =6503,
     //SamsonW       =70##,
     SamsonW1        =7001,
     SelfKill        =7002, // Immediately kills thing on enter after 1 frame
