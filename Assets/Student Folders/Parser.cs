@@ -220,7 +220,7 @@ public enum Traits
     MazK1           =4501,
     //MichaelT      =50##,
     MichaelT1       =5001,
-    Bleed_MichaelT = 5002,
+    Bleed_MichaelT = 5002, //Ticks Damage for 1 second 
     //QixiangD      =55##,
     QixiangD1       =5501,
     Sneaky_qixiangdong = 5502,
