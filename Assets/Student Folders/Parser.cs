@@ -106,6 +106,8 @@ public static class Parser
             case Actions.Sidestep_qixiangdong: return new Sidestep_qixiangdong(who,e);
             // RaphaelC=60,
             case Actions.CurveChase_RaphaelC:return new CurveChaseAction_RaphaelC(who,e);
+            case Actions.Action2_RaphaelC:return new Action2_RaphaelC(who,e);
+            case Actions.Action3_RaphaelC:return new Action3_RaphaelC(who,e);   
             // SabahE=65,
             case Actions.Dash_SabahE: return new Dash_SabahE(who, e);
             case Actions.GroundSlam_SabahE: return new GroundSlam_SabahE(who, e);
@@ -241,7 +243,7 @@ public enum Traits
     SarahS1         =7501,
     SloMo           =7502,
     //TracyH        =80##,
-    Teleport_TracyH =8001, //Teleport player between radius or nearby room. Can be placed on held item or zone
+    Teleport_TracyH =8002, //Teleport player between radius or nearby room. Can be placed on held item or zone
     //WesleyP       =90##,
     WesleyP1        =9001,
     //YuChen        =95##,
@@ -297,6 +299,8 @@ public enum Actions
     //RaphaelC      =60##,
     RaphaelC1 = 6001,
     CurveChase_RaphaelC = 6002,
+    Action2_RaphaelC = 6003,
+    Action3_RaphaelC = 6004,
     //SabahE        =65##,
     SabahE1         =6501,
     Dash_SabahE     =6502,
