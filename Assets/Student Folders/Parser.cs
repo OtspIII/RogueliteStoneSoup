@@ -52,6 +52,7 @@ public static class Parser
         TraitDict.Add(Traits.IgnoreDamage_JuliusP, new IgnoreDamage());
         // MazK Traits
         // MichaelT Traits
+        TraitDict.Add(Traits.Bleed_MichaelT, new BleedTrait_MichaelT());
         // QixiangD Traits
         TraitDict.Add(Traits.Sneaky_qixiangdong, new Sneaky_qixiangdong());
         TraitDict.Add(Traits.Thrill_qixiangdong, new Thrill_qixiangdong());
@@ -219,6 +220,7 @@ public enum Traits
     MazK1           =4501,
     //MichaelT      =50##,
     MichaelT1       =5001,
+    Bleed_MichaelT = 5002,
     //QixiangD      =55##,
     QixiangD1       =5501,
     Sneaky_qixiangdong = 5502,
@@ -286,6 +288,7 @@ public enum Actions
     MazK1           =4501,
     //MichaelT      =50##,
     MichaelT1       =5001,
+    Bleed_MichaelT = 5002,
     //QixiangD      =55##,
     QixiangD1       =5501,
     Charging_qixiangdong=5502,
