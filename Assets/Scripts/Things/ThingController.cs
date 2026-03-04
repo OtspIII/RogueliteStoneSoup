@@ -140,7 +140,6 @@ public class ThingController : MonoBehaviour
             float d = Distance(targ);
             if (d < thresh)
             {
-                
                 if (d < thresh - 1)
                     Info.DesiredMove = transform.position - targ;
                 else

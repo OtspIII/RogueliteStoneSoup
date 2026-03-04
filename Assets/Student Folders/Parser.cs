@@ -88,6 +88,8 @@ public static class Parser
             case Actions.Patrol: return new PatrolAction(who,e);
             case Actions.Chase: return new ChaseAction(who,e);
             case Actions.Use: return new UseAction(who, e);
+            case Actions.MishaTestAct1: return new TestAction1_Misha(who, e);
+            case Actions.MishaTestAct2: return new TestAction2_Misha(who, e);
             // MazK=12,
             // AdamD=20,
             case Actions.DefendAction_AdamD:return new DefendAction(who,e);
@@ -268,6 +270,8 @@ public enum Actions
     Chase          =0202,//Run At A Target
     
     //Student Actions
+    MishaTestAct1   =0900,
+    MishaTestAct2   =0901,
     //AdamD         =20##,
     AdamD1          =2001,
     RestAction_AdamD=2002,
