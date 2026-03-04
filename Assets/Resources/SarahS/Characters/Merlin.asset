@@ -24,7 +24,22 @@ MonoBehaviour:
     Custom: 
     W: 0
   LevelRange: {x: 0, y: 0}
-  Trait: []
+  Trait:
+  - Trait: 7501
+    Numbers:
+    - Type: 10
+      Value: 2
+    - Type: 1
+      Value: 3
+    Prefabs: []
+    Acts: []
+    OtherTrait: 0
+    SpawnReq:
+      Fixed: {fileID: 0}
+      Mandatory: []
+      Any: []
+      Level: 0
+      Author: 0
   HP: 0
   Speed: 3
   VisionRange: 4
