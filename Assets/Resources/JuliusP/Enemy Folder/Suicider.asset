@@ -40,8 +40,8 @@ MonoBehaviour:
       MaxCost: 0
     Builder: []
   HP: 5
-  Speed: 5
-  VisionRange: 15.69
+  Speed: 3
+  VisionRange: 1.32
   Held: {fileID: 0}
   DefaultAction: 202
   DefaultChaseAction: 202

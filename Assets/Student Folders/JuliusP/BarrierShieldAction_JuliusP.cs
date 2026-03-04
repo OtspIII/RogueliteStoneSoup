@@ -106,7 +106,7 @@ public class BarrierShieldAction_JuliusP : ActionScript
     void SpawnShields()
     {
         // FINDS AND LOADS THE BARRIER SHIELD IN THE FOLDER IT'S IN//
-        ThingOption Shield = Resources.Load<ThingOption>("JuliusP/BarrierShield");
+        ThingOption Shield = Resources.Load<ThingOption>("JuliusP/Things With Actions/BarrierShield");
 
         // MAKE 8 SHIELDS SPAWN AROUND THE THING LIKE A PROTECTIVE BARRIER//
         int numberOfShields = 8;

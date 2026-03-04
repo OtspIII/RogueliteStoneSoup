@@ -50,6 +50,7 @@ public static class Parser
         TraitDict.Add(Traits.Dash, new DashTrait());
         TraitDict.Add(Traits.SelfDestruct_JuliusP, new SelfDestruction());
         TraitDict.Add(Traits.IgnoreDamage_JuliusP, new IgnoreDamage());
+        TraitDict.Add(Traits.StunNegation_JuliusP, new StunCancel());
         // MazK Traits
         // MichaelT Traits
         // QixiangD Traits
@@ -64,6 +65,7 @@ public static class Parser
         TraitDict.Add(Traits.DamageReflect,new DamageReflectTrait());
         TraitDict.Add(Traits.HealZone,new HealZoneTrait());
         TraitDict.Add(Traits.DelayedActionAfterStartingAction,new DelayedActionAfterStartingAction());
+        TraitDict.Add(Traits.TemporaryStunImmunity_JuliusP, new StunDrink());
         // SarahS Traits
         // TracyH Traits
         TraitDict.Add(Traits.Teleport_TracyH, new TeleportTrait_TracyH());
@@ -98,7 +100,7 @@ public static class Parser
             case Actions.TradeHp_JuliusP:return new TradeHp(who, e);
             // MichaelT=50,
             // QixiangD=55,
-            case Actions.Sidestep_qixiangdong: return new Sidestep_qixiangdong(who,e);
+            //case Actions.Sidestep_qixiangdong: return new Sidestep_qixiangdong(who,e);
             // RaphaelC=60,
             case Actions.CurveChase_RaphaelC:return new CurveChaseAction_RaphaelC(who,e);
             // SabahE=65,
@@ -210,6 +212,8 @@ public enum Traits
     Dash            =4003,
     SelfDestruct_JuliusP = 4004,
     IgnoreDamage_JuliusP = 4005,
+    StunNegation_JuliusP = 4006,
+    TemporaryStunImmunity_JuliusP = 4007,
     //MazK          =45##,
     MazK1           =4501,
     //MichaelT      =50##,
@@ -274,6 +278,7 @@ public enum Actions
     BarrierShield_JuliusP = 4002,
     Cloak_JuliusP = 4003,
     TradeHp_JuliusP = 4004,
+  
 
 
     //MazK          =45##,
