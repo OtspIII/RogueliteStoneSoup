@@ -66,6 +66,8 @@ public static class Parser
         TraitDict.Add(Traits.HealZone,new HealZoneTrait());
         TraitDict.Add(Traits.DelayedActionAfterStartingAction,new DelayedActionAfterStartingAction());
         // SarahS Traits
+        TraitDict.Add(Traits.SarahS1, new ProximityExplode_SarahS());
+        TraitDict.Add(Traits.SloMo, new SloMo_SarahS());
         // TracyH Traits
         TraitDict.Add(Traits.Teleport_TracyH, new TeleportTrait_TracyH());
         // WesleyP Traits
@@ -237,6 +239,7 @@ public enum Traits
     DelayedActionAfterStartingAction=7005, //Switches action after X secs after entering an action
     //SarahS        =75##,
     SarahS1         =7501,
+    SloMo           =7502,
     //TracyH        =80##,
     Teleport_TracyH =8001, //Teleport player between radius or nearby room. Can be placed on held item or zone
     //WesleyP       =90##,
