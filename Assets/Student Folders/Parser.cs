@@ -65,6 +65,7 @@ public static class Parser
         TraitDict.Add(Traits.DamageReflect,new DamageReflectTrait());
         TraitDict.Add(Traits.HealZone,new HealZoneTrait());
         TraitDict.Add(Traits.DelayedActionAfterStartingAction,new DelayedActionAfterStartingAction());
+        TraitDict.Add(Traits.GrappleHook,new GrappleHook());
         // SarahS Traits
         TraitDict.Add(Traits.SarahS1, new ProximityExplode_SarahS());
         TraitDict.Add(Traits.SloMo, new SloMo_SarahS());
@@ -108,11 +109,14 @@ public static class Parser
             case Actions.Sidestep_qixiangdong: return new Sidestep_qixiangdong(who,e);
             // RaphaelC=60,
             case Actions.CurveChase_RaphaelC:return new CurveChaseAction_RaphaelC(who,e);
+            case Actions.Action2_RaphaelC:return new Action2_RaphaelC(who,e);
+            case Actions.Action3_RaphaelC:return new Action3_RaphaelC(who,e);   
             // SabahE=65,
             case Actions.Dash_SabahE: return new Dash_SabahE(who, e);
             case Actions.GroundSlam_SabahE: return new GroundSlam_SabahE(who, e);
             // SamsonW=70,
             case Actions.SelfKill: return new SelfKillAction(who, e);
+            case Actions.Grapple: return new GrappleAction(who, e);
             // SarahS=75,
             // TracyH=80,
             // WesleyP=90,
@@ -239,11 +243,12 @@ public enum Traits
     DamageReflect   =7003, //Reflects damage, thornmail effect
     HealZone        =7004, //Heals player when standing inside zone
     DelayedActionAfterStartingAction=7005, //Switches action after X secs after entering an action
+    GrappleHook     =7006, //Pulls the projectile shooter to the projectile location on drop
     //SarahS        =75##,
     SarahS1         =7501,
     SloMo           =7502,
     //TracyH        =80##,
-    Teleport_TracyH =8001, //Teleport player between radius or nearby room. Can be placed on held item or zone
+    Teleport_TracyH =8002, //Teleport player between radius or nearby room. Can be placed on held item or zone
     //WesleyP       =90##,
     WesleyP1        =9001,
     //YuChen        =95##,
@@ -301,6 +306,8 @@ public enum Actions
     //RaphaelC      =60##,
     RaphaelC1 = 6001,
     CurveChase_RaphaelC = 6002,
+    Action2_RaphaelC = 6003,
+    Action3_RaphaelC = 6004,
     //SabahE        =65##,
     SabahE1         =6501,
     Dash_SabahE     =6502,
@@ -308,6 +315,7 @@ public enum Actions
     //SamsonW       =70##,
     SamsonW1        =7001,
     SelfKill        =7002, // Immediately kills thing on enter after 1 frame
+    Grapple         =7003, // Lunges thing towards a target thing
     //SarahS        =75##,
     SarahS1         =7501,
     //TracyH        =80##,
