@@ -23,6 +23,7 @@ MonoBehaviour:
   - Common: 201
     Custom: 
     W: 1
+    Cost: 1
   LevelRange: {x: 0, y: 0}
   Trait:
   - Trait: 6001
@@ -36,7 +37,27 @@ MonoBehaviour:
       Any: []
       Level: 0
       Author: 0
-    Builder: []
+      MaxCost: 0
+    Builder:
+    - Type: 0
+      NumType: 1
+      Num: 3
+      StrType: 0
+      Str: 
+      ActType: 0
+      Act: 0
+      BoolType: 0
+      Bool: 0
+      OptionType: 0
+      Option: {fileID: 0}
+      VectorType: 0
+      Vector: {x: 0, y: 0}
+      Fixed: {fileID: 0}
+      Mandatory: 
+      MandatoryW: 0
+      Any: 
+      AnyW: 0
+      Trait: 0
   - Trait: 312
     Numbers:
     - Type: 1
@@ -50,7 +71,27 @@ MonoBehaviour:
       Any: []
       Level: 0
       Author: 0
-    Builder: []
+      MaxCost: 0
+    Builder:
+    - Type: 0
+      NumType: 1
+      Num: 1
+      StrType: 0
+      Str: 
+      ActType: 0
+      Act: 0
+      BoolType: 0
+      Bool: 0
+      OptionType: 0
+      Option: {fileID: 0}
+      VectorType: 0
+      Vector: {x: 0, y: 0}
+      Fixed: {fileID: 0}
+      Mandatory: 
+      MandatoryW: 0
+      Any: 
+      AnyW: 0
+      Trait: 0
   DefaultAttack: 101
   ToSpawn:
     Fixed: {fileID: 0}
@@ -58,6 +99,7 @@ MonoBehaviour:
     Any: []
     Level: 0
     Author: 60
+    MaxCost: 0
   FloorBody: {fileID: 0}
   FloorArt: {fileID: 0}
   Damage: 3

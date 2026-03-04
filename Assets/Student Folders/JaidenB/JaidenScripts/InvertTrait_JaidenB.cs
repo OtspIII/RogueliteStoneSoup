@@ -5,15 +5,16 @@ public class InvertControlsTrait : Trait
     public InvertControlsTrait() 
     {
         Type = Traits.InvertControls;
-        AddListen(EventTypes.OnPickup);
+        AddListen(EventTypes.OnTouch);
     }
 
     public override void TakeEvent(TraitInfo i, EventInfo e) 
     {
         switch (e.Type) 
         {
-            case EventTypes.OnPickup:
+            case EventTypes.OnTouch:
                 {
+                   
                     // Vector2 vel = Vector2.zero;
                     // i.vel.x = -1;
                     // i.vel.x = 1;

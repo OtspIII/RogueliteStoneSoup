@@ -47,7 +47,7 @@ public class PatrolAction : ActionScript
                 dir, Who.VisionRange, LayerMask.GetMask("Wall"));
             if (hit.collider == null)
             {
-                Who.Thing.DoAction(Actions.Chase);
+                Who.Thing.DoAction(Actions.DefaultAction);
                 return;
             }
         }
