@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 037523bd7ae983240ad1b7cc3ff106cd, type: 3}
+  m_Name: BoneThrow
+  m_EditorClassIdentifier: Assembly-CSharp::ThingOption
+  Name: BoneThrow
+  Author: 35
+  Team: 1
+  Body: {fileID: 629948465317790645, guid: 9edb53243ae32704ead177294fe49d22, type: 3}
+  Art: {fileID: 4010562923862242353, guid: 71c4b8a53e699934faf44fa57be9e694, type: 3}
+  Color: {r: 1, g: 1, b: 1, a: 1}
+  Size: 1
+  Tags:
+  - Common: 300
+    Custom: 
+    W: 0
+  LevelRange: {x: 0, y: 0}
+  Trait:
+  - Trait: 400
+    Numbers: []
+    Prefabs: []
+    Acts: []
+    SpawnReq:
+      Fixed: {fileID: 0}
+      Mandatory: []
+      Any: []
+      Level: 0
+      Author: 0
