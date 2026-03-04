@@ -79,3 +79,40 @@ public class CurveChaseAction_RaphaelC : ActionScript
         Who.Thing.ActualMove = MoveMult * dir;
     }
 }
+
+public class Action2_RaphaelC : ActionScript
+{
+    public Action2_RaphaelC(ThingInfo who,EventInfo e = null)
+    {
+        Setup(Actions.Action2_RaphaelC,who,true);
+        CanRotate = true;
+        MoveMult = 0f;
+        Duration = 1f;
+        Anim = "Shoot";
+    }
+    public override void Begin()
+    {
+        base.Begin();
+        ThingOption proj = GetHeld().Ask(EventTypes.GetProjectile).GetOption();
+        Who.Thing.Shoot(proj);
+    }
+    public override void OnRun()
+    {
+        base.OnRun();
+        if (Who.Target != null)
+        {
+            Who.Thing.LookAt(Who.Target, 0.5f);
+            Who.Thing.MoveTowards(Who.Target, Who.AttackRange);
+        }
+    }
+
+
+}
+
+public class Action3_RaphaelC : ActionScript
+{
+    public Action3_RaphaelC(ThingInfo who,EventInfo e = null)
+    {
+        Setup(Actions.Action3_RaphaelC,who,true);
+    }
+}
