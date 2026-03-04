@@ -42,9 +42,10 @@ GameObject:
   - component: {fileID: 2994115112403250605}
   - component: {fileID: 629948465317790645}
   - component: {fileID: 8557504186364581760}
+  - component: {fileID: 3462168475214004318}
   m_Layer: 0
   m_Name: Humanoid
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -109,6 +110,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &3462168475214004318
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4742179959285484603}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 435c42c9ce5319f468f3830718b8bf60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Knockback
+  knockbackForce: 10
 --- !u!1 &6054114107041684505
 GameObject:
   m_ObjectHideFlags: 0
