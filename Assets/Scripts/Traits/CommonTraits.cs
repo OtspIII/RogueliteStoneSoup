@@ -244,8 +244,10 @@ public class DashTrait : Trait
     public float DashDuration = 0.2f;
 
     private bool isDashing = false;
+    public bool pressingspace = true;
     private Vector3 dashDirection;
     private float dashTimer = 0f;
+
 
     public DashTrait()
     {
@@ -282,6 +284,7 @@ public class DashTrait : Trait
                     //CARRIES OUT THE DASHING//
                     dashDirection = new Vector3(HorizontalInput, VerticalInput, 0).normalized;
                 }
+
 
                 // Move while dashing
                 if (isDashing)

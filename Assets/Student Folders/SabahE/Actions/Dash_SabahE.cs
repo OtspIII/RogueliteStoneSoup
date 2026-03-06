@@ -7,7 +7,7 @@ public class Dash_SabahE : ActionScript
 
     public Dash_SabahE(ThingInfo who, EventInfo e = null)
     {
-        Setup(Actions.Dash_SabahE, who);
+        //Setup(Actions.Dash_SabahE, who);
 
         MoveMult = 0f;
         HaltMomentum = true;

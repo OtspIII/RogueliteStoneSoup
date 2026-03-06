@@ -51,13 +51,13 @@ public class StunCancel : Trait
     {
         switch (e.Type)
         {
-            //IF ITS A STARTACTION EVENT
+            //IF ITS A UPDATE EVENT
             case EventTypes.Update:
             {
                 timer += Time.deltaTime;
 
 
-
+            //EFFECT TIME IT LASTS
             if (timer >= 15f)
             {
                 i.Who.RemoveTrait(Traits.StunNegation_JuliusP);

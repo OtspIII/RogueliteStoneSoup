@@ -84,7 +84,7 @@ public class Action2_RaphaelC : ActionScript
 {
     public Action2_RaphaelC(ThingInfo who,EventInfo e = null)
     {
-        Setup(Actions.Action2_RaphaelC,who,true);
+       // Setup(Actions.Action2_RaphaelC,who,true);
         CanRotate = true;
         MoveMult = 0f;
         Duration = 1f;
@@ -113,6 +113,6 @@ public class Action3_RaphaelC : ActionScript
 {
     public Action3_RaphaelC(ThingInfo who,EventInfo e = null)
     {
-        Setup(Actions.Action3_RaphaelC,who,true);
+       // Setup(Actions.Action3_RaphaelC,who,true);
     }
 }

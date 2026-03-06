@@ -96,8 +96,11 @@ public static class Parser
             // JaidenB=35,
             // JuliusP=40,
             case Actions.BarrierShield_JuliusP:return new BarrierShieldAction_JuliusP(who,e);
+            case Actions.Lv2_BarrierShield_JuliusP:return new Lv2_BarrierShield_JuliusP(who,e);
             case Actions.Cloak_JuliusP:return new InvisbilityAction(who, e);
             case Actions.TradeHp_JuliusP:return new TradeHp(who, e);
+            case Actions.EvasiveJuke_JuliusP:return new EvasiveJuke(who, e);
+            
             // MichaelT=50,
             // QixiangD=55,
             //case Actions.Sidestep_qixiangdong: return new Sidestep_qixiangdong(who,e);
@@ -276,8 +279,11 @@ public enum Actions
     //JuliusP       =40##,
     JuliusP1        =4001,
     BarrierShield_JuliusP = 4002,
-    Cloak_JuliusP = 4003,
-    TradeHp_JuliusP = 4004,
+    Lv2_BarrierShield_JuliusP = 4003,
+    Cloak_JuliusP = 4004,
+    TradeHp_JuliusP = 4005,
+    EvasiveJuke_JuliusP = 4006,
+
   
 
 

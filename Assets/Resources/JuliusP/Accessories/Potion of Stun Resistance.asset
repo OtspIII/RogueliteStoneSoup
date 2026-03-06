@@ -17,16 +17,16 @@ MonoBehaviour:
   Team: 1
   Body: {fileID: 629948465317790645, guid: 7ef37acb0fdeb5849995b35a7fdca6ba, type: 3}
   Art: {fileID: -2880734798192188640, guid: f77ef968c74f7a64c86e3247520c36ec, type: 3}
-  Color: {r: 1, g: 1, b: 1, a: 1}
+  Color: {r: 1, g: 0.50181097, b: 0, a: 1}
   Size: 1
   Tags:
   - Common: 202
     Custom: 
-    W: 1
+    W: 50
     Cost: 1
   LevelRange: {x: 0, y: 0}
   Trait:
-  - Trait: 310
+  - Trait: 4007
     Numbers: []
     Prefabs: []
     Acts: []

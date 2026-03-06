@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a47d2194617e47469e601e558e7b8b4, type: 3}
-  m_Name: Sword 2.0
+  m_Name: Lv2.Sword
   m_EditorClassIdentifier: 
-  Name: Sword
+  Name: Lv2.Sword
   Author: 0
   Team: 1
   Body: {fileID: 629948465317790645, guid: b4fa405680f33044abe2c4567ecf147f, type: 3}
@@ -23,20 +23,9 @@ MonoBehaviour:
   - Common: 201
     Custom: 
     W: 1
+    Cost: 1
   LevelRange: {x: 0, y: 0}
-  Trait:
-  - Trait: 4002
-    Numbers: []
-    Prefabs: []
-    Acts: []
-    OtherTrait: 0
-    SpawnReq:
-      Fixed: {fileID: 0}
-      Mandatory: []
-      Any: []
-      Level: 0
-      Author: 0
-    Builder: []
+  Trait: []
   DefaultAttack: 101
   ToSpawn:
     Fixed: {fileID: 0}
@@ -44,9 +33,10 @@ MonoBehaviour:
     Any: []
     Level: 0
     Author: 0
+    MaxCost: 0
   FloorBody: {fileID: 0}
   FloorArt: {fileID: 0}
-  Damage: 1
+  Damage: 2
   IdealRange: 1.5
   SpeedMult: 1
   ActDuration: 0
