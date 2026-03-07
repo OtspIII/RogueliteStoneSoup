@@ -92,7 +92,7 @@ MonoBehaviour:
     Mandatory: []
     Any: []
     Level: 0
-    Author: 0
+    Author: 40
     MaxCost: 0
   FloorBody: {fileID: 629948465317790645, guid: 0f8734e4b4d2c3a449506fe0c78c1110, type: 3}
   FloorArt: {fileID: 0}

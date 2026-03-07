@@ -214,6 +214,34 @@ public class RageTrait : Trait
                 // CHECK IF THE ATTACKER'S HP IS 50% OR LESS
                 if (current / max <= 0.5f)
                 {
+
+                   if (attacker.Thing == null) break;
+
+                        //GET THE TRANSOFMR OF THE ATTACKER//
+                        Transform ThingPos = attacker.Thing.transform;
+
+                        // LOADS THE RAGEAURA PARTICLE EFFECT IN THE FOLDER//
+                        GameObject rageAura = Resources.Load<GameObject>("JuliusP/Gnomes/RageAura");
+
+                        if (rageAura != null)
+                        {
+                         // THIS SPAWNS THE AURA PARTICLE EFFECT//
+                        GameObject aura = GameObject.Instantiate(rageAura, ThingPos.position, Quaternion.identity);
+
+                        // MAKES THE AURA FOLLOW OR BE ATTACHED TO THING//
+                        aura.transform.SetParent(ThingPos);
+
+                        // KEEP THE RAGEAURA CENTERED ON THE THING//
+                        aura.transform.localPosition = Vector3.zero;
+
+                        // PLAYS THE PARTICLE SYSTEM//
+                         ParticleSystem ps = aura.GetComponent<ParticleSystem>();
+                        if (ps != null)
+                         {
+                         ps.Play();
+                         }
+                        }
+                    
                     // GET THE WEAPON THE ATTACKER IS CURRENTLY HOLDING
                     ThingInfo weapon = attacker.CurrentHeld;
                     
@@ -235,6 +263,8 @@ public class RageTrait : Trait
         }
     }
 }
+
+
 public class DashTrait : Trait
 {
     //THIS IS HOW FAR I WANT TO MOVE//
@@ -252,7 +282,7 @@ public class DashTrait : Trait
     public DashTrait()
     {
         Type = Traits.Dash;
-        AddListen(EventTypes.Update); // Check input each frame
+        AddListen(EventTypes.Update); 
     }
 
     public override void TakeEvent(TraitInfo i, EventInfo e)
@@ -301,7 +331,9 @@ public class DashTrait : Trait
 
                     dashTimer -= Time.deltaTime;
                     if (dashTimer <= 0f)
-                        isDashing = false; // stop dash
+
+                         // STOP THE DASH//
+                        isDashing = false; 
                 }
 
                 break;

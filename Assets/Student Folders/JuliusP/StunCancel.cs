@@ -67,27 +67,80 @@ public class StunCancel : Trait
             
             
             }
-
-
                 break;
                 
             }
 
-
-
-
-
         }
-
        
     }
 
+
+}
+
+
+public class TemporaryDashAbility : Trait
+{
+
+    //VARIABLES TO USE FOR TIMER AND CHECKING STATES//
+    private float DashTimer = 0f;
+    private float TimeAllowedToDash = 6.5f;
+    private bool canStartTimer = false;
+
+    public TemporaryDashAbility()
+    {
+        Type = Traits.TemporaryDash_JuliusP;
+
+        AddListen(EventTypes.OnUse);
+       // AddListen(EventTypes.Update);
+    }
+
+    public override void TakeEvent(TraitInfo i, EventInfo e)
+    {
+        // GET THE THINGINFO OF THE PLAYER//
+        ThingInfo Player = God.Session.Player;
+        
+        // SAFETY CHECK//
+        if (Player == null) return; 
+
+        switch (e.Type)
+        {
+            case EventTypes.OnUse:
+                if (!canStartTimer)
+                {
+
+                    //ADDS THE DAHS TRAIT UPON DRINKING THE POTION//
+                    Player.AddTrait(Traits.Dash);
+                    
+                    //ALLOWS TO USE/START COROUTINES
+                    God.C(RemoveDashAfterDelay(Player));
+                    
+                    Debug.Log("DashTrait added from potion");
+                }
+                break;
+
+          
+        }
+    }
+
+
+    private IEnumerator RemoveDashAfterDelay(ThingInfo player)
+    {
+        float timer = 0f;
+
+        while (timer < TimeAllowedToDash)
+        {
+            timer += Time.deltaTime;
+            yield return null; 
+        }
+
+        // IF PLAYER HAS DASH TRAIT, REMOVE IT//
+        if (player.Has(Traits.Dash))
+        {
+            player.RemoveTrait(Traits.Dash);
+            Debug.Log("DashTrait removed");
+        }
+    }
+
     
-
-
-
-
-
-
-
 }

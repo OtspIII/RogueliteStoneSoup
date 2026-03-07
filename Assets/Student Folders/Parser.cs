@@ -51,6 +51,9 @@ public static class Parser
         TraitDict.Add(Traits.SelfDestruct_JuliusP, new SelfDestruction());
         TraitDict.Add(Traits.IgnoreDamage_JuliusP, new IgnoreDamage());
         TraitDict.Add(Traits.StunNegation_JuliusP, new StunCancel());
+        TraitDict.Add(Traits.TemporaryDash_JuliusP, new TemporaryDashAbility());
+        TraitDict.Add(Traits.TemporaryStunImmunity_JuliusP, new StunDrink());
+        TraitDict.Add(Traits.TemporaryDmgResist_JuliusP, new TemporaryDamageResist());
         // MazK Traits
         // MichaelT Traits
         // QixiangD Traits
@@ -65,7 +68,6 @@ public static class Parser
         TraitDict.Add(Traits.DamageReflect,new DamageReflectTrait());
         TraitDict.Add(Traits.HealZone,new HealZoneTrait());
         TraitDict.Add(Traits.DelayedActionAfterStartingAction,new DelayedActionAfterStartingAction());
-        TraitDict.Add(Traits.TemporaryStunImmunity_JuliusP, new StunDrink());
         // SarahS Traits
         // TracyH Traits
         TraitDict.Add(Traits.Teleport_TracyH, new TeleportTrait_TracyH());
@@ -97,7 +99,9 @@ public static class Parser
             // JuliusP=40,
             case Actions.BarrierShield_JuliusP:return new BarrierShieldAction_JuliusP(who,e);
             case Actions.Lv2_BarrierShield_JuliusP:return new Lv2_BarrierShield_JuliusP(who,e);
+            case Actions.Lv3_BarrierShield_JuliusP:return  new Lv3BarrierShield(who, e);
             case Actions.Cloak_JuliusP:return new InvisbilityAction(who, e);
+           // case Actions.Lv2_Cloak_JuliusP: return new
             case Actions.TradeHp_JuliusP:return new TradeHp(who, e);
             case Actions.EvasiveJuke_JuliusP:return new EvasiveJuke(who, e);
             
@@ -217,6 +221,9 @@ public enum Traits
     IgnoreDamage_JuliusP = 4005,
     StunNegation_JuliusP = 4006,
     TemporaryStunImmunity_JuliusP = 4007,
+    TemporaryDash_JuliusP = 4008,
+    TemporaryDmgResist_JuliusP = 4009,
+
     //MazK          =45##,
     MazK1           =4501,
     //MichaelT      =50##,
@@ -280,9 +287,11 @@ public enum Actions
     JuliusP1        =4001,
     BarrierShield_JuliusP = 4002,
     Lv2_BarrierShield_JuliusP = 4003,
-    Cloak_JuliusP = 4004,
-    TradeHp_JuliusP = 4005,
-    EvasiveJuke_JuliusP = 4006,
+    Lv3_BarrierShield_JuliusP = 4004,
+    Cloak_JuliusP = 4005,
+    Lv2_Cloak_JuliusP = 4006,
+    TradeHp_JuliusP = 4007,
+    EvasiveJuke_JuliusP = 4008,
 
   
 

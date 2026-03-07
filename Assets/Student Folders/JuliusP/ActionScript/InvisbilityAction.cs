@@ -107,21 +107,26 @@ public class InvisbilityAction : ActionScript
 
     void TeleportNearPlayer()
     {
-        Vector3 playerPos = God.Session.Player.Thing.transform.position;
+    Transform player = God.Session.Player.Thing.transform;
 
-        // RANDOM OFFSETS
-        List<Vector3> RandomPos = new List<Vector3>
-        {
-            -Who.Thing.transform.right * 3.1f,
-             Who.Thing.transform.up * 3.1f,
-            -Who.Thing.transform.up * 3.1f
-        };
+    // Define offsets relative to the player
+    List<Vector3> offsets = new List<Vector3>
+    {
+        player.right * 2.5f,    // right
+        -player.right * 2.5f,   // left
+        player.up * 2.5f,       // up
+        -player.up * 2.5f        // down
+    };
 
-        // PICK RANDOM OFFSET
-        Who.Thing.transform.position = playerPos + RandomPos[Random.Range(0, RandomPos.Count)];
-        Who.Thing.LookAt(God.Session.Player.Thing, 0f);
-    }
+    // Pick a random offset
+    Vector3 randomOffset = offsets[Random.Range(0, offsets.Count)];
 
+    // Teleport relative to the player's position
+    Who.Thing.transform.position = player.position + randomOffset;
+
+    // Face the player
+    Who.Thing.LookAt(God.Session.Player.Thing, 0f);
+  }
     public override void End()
     {
         base.End();

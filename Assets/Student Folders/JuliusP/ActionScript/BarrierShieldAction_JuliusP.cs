@@ -228,20 +228,19 @@ public class BarrierShieldAction_JuliusP : ActionScript
 
 public class Lv2_BarrierShield_JuliusP : ActionScript
 {
-    // Shield orbit distance
+    //SHIELD OFFSET DISTANCE//
     float Offset = 1.4f;
 
-    // Track all shields spawned
+    // TRACK ALL SHIELDS//
     List<ThingInfo> Lv2_spawnedShields = new List<ThingInfo>();
 
-    // Track red shields
+    // TRCK THE RED SHIELDS//
     List<ThingInfo> redShields = new List<ThingInfo>();
 
     private Rigidbody2D EnemyRb;
 
     float RotateSpeed = 120f;
 
-    // Constructor
     public Lv2_BarrierShield_JuliusP(ThingInfo who, EventInfo e = null)
     {
         Setup(Actions.Lv2_BarrierShield_JuliusP, who);
@@ -251,34 +250,33 @@ public class Lv2_BarrierShield_JuliusP : ActionScript
     {
         base.Begin();
 
-        // Give damage immunity if not already present
+        // GRANT DMG RESISTANCE TRAIT//
         if (!Who.Has(Traits.IgnoreDamage_JuliusP))
             Who.AddTrait(Traits.IgnoreDamage_JuliusP);
 
-        // Spawn shields at the start
+        // SPAWN SHIELDS
         SpawnShields();
 
         EnemyRb = Who.Thing.GetComponent<Rigidbody2D>();
         EnemyRb.simulated = true;
-        
     }
 
     public override void OnRun()
     {
         base.OnRun();
 
-        // Remove destroyed shields from the lists
+        // REMOVE DESTROYED SHIELDS FROM THE LISTS//
         for (int i = Lv2_spawnedShields.Count - 1; i >= 0; i--)
         {
             ThingInfo shield = Lv2_spawnedShields[i];
             if (shield == null || shield.Get(Traits.Health)?.GetN() <= 0)
             {
                 Lv2_spawnedShields.RemoveAt(i);
-                redShields.Remove(shield); // Also remove from red shield list if it was one
+                redShields.Remove(shield); 
             }
         }
 
-        // End action if BOTH red shields are destroyed
+        // END THE ACTION IF BOTH RED SHILEDS ARE DESTORYED//
         if (redShields.Count == 0)
         {
             foreach (ThingInfo shield in Lv2_spawnedShields)
@@ -289,7 +287,7 @@ public class Lv2_BarrierShield_JuliusP : ActionScript
             return;
         }
 
-        // Orbit remaining shields around character
+        // MAKE THE SHIELDS ORBIT AROUD THE THING//
         int shieldCount = Lv2_spawnedShields.Count;
         if (shieldCount > 0)
         {
@@ -305,7 +303,7 @@ public class Lv2_BarrierShield_JuliusP : ActionScript
             }
         }
 
-        // Move slowly towards player
+        // MAKES THE THING CHASE THE PLAYER SLOWLY//
         ThingInfo targ = God.Session.Player;
         if (targ != null)
         {
@@ -325,11 +323,11 @@ public class Lv2_BarrierShield_JuliusP : ActionScript
     {
         base.End();
 
-        // Remove damage immunity
+        // REMOVE DMG IMMUNITY TRAIT//
         if (Who.Has(Traits.IgnoreDamage_JuliusP))
             Who.RemoveTrait(Traits.IgnoreDamage_JuliusP);
 
-        // Destroy any leftover shields
+        // DESTROY REMAINING SHIELDS//
         foreach (ThingInfo shield in Lv2_spawnedShields)
             if (shield != null)
                 shield.Destruct(shield);
@@ -337,69 +335,88 @@ public class Lv2_BarrierShield_JuliusP : ActionScript
         Lv2_spawnedShields.Clear();
         redShields.Clear();
 
-        // Trigger next action
+        // TRIGGERS NEXT ACTION//
         Actions next = NextAction();
         Who.Thing.DoAction(next);
     }
 
-    
-    
-    
- void SpawnShields()
+  void SpawnShields()
 {
+
+    //FIND THE SHILED THINGOPTION IN THE FOLDER IT'S IN//
     ThingOption Shield = Resources.Load<ThingOption>("JuliusP/Things With Actions/BarrierShield");
+
+    
+    //GETS THE THINGINFO OF THE PLAYER//
     ThingInfo Player = God.Session.Player;
-    ThingInfo heldItem = Player.CurrentHeld;
 
-    string heldName = "";
-    if (heldItem != null)
-        heldName = heldItem.GetName(true); // raw name
 
+    
+    // MAKE 8 SHIELDS SPAWN AROUND THE THING LIKE A PROTECTIVE BARRIER//
     int numberOfShields = 8;
+    
+
+    // THIS MAKES EACH SHIELD 45 DEGREES APART//
     float angleStep = 360f / numberOfShields;
 
+    // PICKS TWO SHIELDS TO BE THE CRIT POINTS//
     int randomIndexOne = Random.Range(0, numberOfShields);
     int randomIndexTwo;
     do
-    {
+    {   
+        //THIS MAKES SURE THAT THE TWO SHIELDS AREN'T CHOSEN TWICE//
         randomIndexTwo = Random.Range(0, numberOfShields);
     } while (randomIndexTwo == randomIndexOne);
 
     for (int i = 0; i < numberOfShields; i++)
     {
-        float angle = i * angleStep * Mathf.Deg2Rad;
-        Vector3 Shieldoffset = new Vector3(Mathf.Cos(angle), Mathf.Sin(angle), 0) * Offset;
-        Vector3 spawnPos = Who.Thing.transform.position + Shieldoffset;
+        // CALCULATES THE ANGLE IN RADIANS:
 
-        ThingInfo shieldInfo = new ThingInfo(Shield);
-        ThingController shieldController = shieldInfo.Spawn(spawnPos);
-        shieldController.transform.parent = null;
+            // IF I IS 0 -> ANGLE IS 0//
 
-        EventInfo hp = new EventInfo();
+            // IF I IS 1 -> ANGLE IS 45//
 
+            // IF I IS 2 -> ANGLE IS 90//
+            float angle = i * angleStep * Mathf.Deg2Rad;
+
+            // CALCULATES THE OFFSET USING COS FOR X, SIN FOR Y -> UNIT CIRCLE//
+            Vector3 Shieldoffset = new Vector3(Mathf.Cos(angle), Mathf.Sin(angle), 0) * Offset;
+
+            // GET FINAL SPAWN POSITION RELATIVE TO CHARACTER//
+            Vector3 spawnPos = Who.Thing.transform.position + Shieldoffset;
+
+            // THIS LINE CREATES A NEW SHIELD OBJECT//
+            ThingInfo shieldInfo = new ThingInfo(Shield);
+
+            // SPAWNS A SHIELD AT THE POSITION//
+            ThingController shieldController = shieldInfo.Spawn(spawnPos);
+
+            // MAKES THE SHIELD ATTACHED TO THE THING//
+            shieldController.transform.parent = null;
+
+            // CREATES A NEW HEALTH EVENT//
+            EventInfo hp = new EventInfo();
+
+
+        //CHECKS WHEN i IS THE RANDOM INDEXES
         if (i == randomIndexOne || i == randomIndexTwo)
         {
-            float redShieldHealth = 1f; // default weak
+            // SET THE VALUE TO BE 1 (CRIT POINTS)
+            hp.Set(NumInfo.Default, 1); 
 
-            if (!string.IsNullOrEmpty(heldName))
-            {
-                if (heldName.Contains("Sword"))
-                    redShieldHealth = Mathf.Infinity; // immune to sword
-                else if (heldName.Contains("Bow"))
-                    redShieldHealth = 1f; // vulnerable to bow
-            }
-
-            hp.Set(NumInfo.Default, redShieldHealth);
             redShields.Add(shieldInfo);
 
+            //MAKE THE CRITS APPEAR RED (VITALS)
             SpriteRenderer sr = shieldController.GetComponentInChildren<SpriteRenderer>();
             if (sr != null) sr.color = Color.red;
         }
         else
         {
+            // ALL SHIELDS ARE IMMUNE//
             hp.Set(NumInfo.Default, Mathf.Infinity);
         }
 
+        //ADD THE HEALTH TRAIT TO THE SHIELDS//
         shieldInfo.AddTrait(Traits.Health, hp);
         Lv2_spawnedShields.Add(shieldInfo);
     }
