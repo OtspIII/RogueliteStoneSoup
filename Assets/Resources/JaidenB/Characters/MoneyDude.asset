@@ -18,39 +18,81 @@ MonoBehaviour:
   Body: {fileID: 629948465317790645, guid: c5227d51ccfec934db9e0058624b573e, type: 3}
   Art: {fileID: -8316685958486051841, guid: f45dec987f41d4d40bcd08af6a5b9588, type: 3}
   Color: {r: 1, g: 0.9686994, b: 0.36320752, a: 1}
-  Size: 1
+  Size: 0.8
   Tags:
   - Common: 102
     Custom: 
     W: 1
+    Cost: 1
   LevelRange: {x: 0, y: 0}
   Trait:
   - Trait: 1
     Numbers: []
     Prefabs: []
-    Acts:
-    - Type: 3
-      Act: 201
+    Acts: []
+    OtherTrait: 0
     SpawnReq:
       Fixed: {fileID: 0}
       Mandatory: []
       Any: []
       Level: 0
-      Author: 35
+      Author: 0
+      MaxCost: 0
+    Builder:
+    - Type: 2
+      NumType: 0
+      Num: 0
+      StrType: 0
+      Str: 
+      ActType: 3
+      Act: 201
+      BoolType: 0
+      Bool: 0
+      OptionType: 0
+      Option: {fileID: 0}
+      VectorType: 0
+      Vector: {x: 0, y: 0}
+      Fixed: {fileID: 0}
+      Mandatory: 
+      MandatoryW: 0
+      Any: 
+      AnyW: 0
+      Trait: 0
   - Trait: 3
     Numbers: []
     Prefabs: []
-    Acts:
-    - Type: 0
-      Act: 201
+    Acts: []
+    OtherTrait: 0
     SpawnReq:
       Fixed: {fileID: 0}
       Mandatory: []
       Any: []
       Level: 0
-      Author: 35
+      Author: 0
+      MaxCost: 0
+    Builder:
+    - Type: 2
+      NumType: 0
+      Num: 0
+      StrType: 0
+      Str: 
+      ActType: 0
+      Act: 201
+      BoolType: 0
+      Bool: 0
+      OptionType: 0
+      Option: {fileID: 0}
+      VectorType: 0
+      Vector: {x: 0, y: 0}
+      Fixed: {fileID: 0}
+      Mandatory: 
+      MandatoryW: 0
+      Any: 
+      AnyW: 0
+      Trait: 0
   HP: 20
   Speed: 5
+  VisionRange: 4
   Held: {fileID: 0}
   DefaultAction: 201
-  DefaultChaseAction: 201
+  DefaultChaseAction: 202
