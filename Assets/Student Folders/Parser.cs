@@ -117,13 +117,10 @@ public static class Parser
             case Actions.SpinShoot_RaphaelC:return new SpinShoot_RaphaelC(who,e);
 
             // SabahE=65,
-<<<<<<< Updated upstream
-=======
             case Actions.Dash_SabahE: return new Dash_SabahE(who, e);
             case Actions.GroundSlam_SabahE: return new GroundSlam_SabahE(who, e);
             case Actions.SabahClassAction: return new SabahClassAction(who, e);
             case Actions.SabahClassAction2: return new SabahClassAction2(who, e);
->>>>>>> Stashed changes
             // SamsonW=70,
             case Actions.SelfKill: return new SelfKillAction(who, e);
             // SarahS=75,
@@ -325,13 +322,10 @@ public enum Actions
     SpinShoot_RaphaelC = 6004,
     //SabahE        =65##,
     SabahE1         =6501,
-<<<<<<< Updated upstream
-=======
     Dash_SabahE     =6502,
     GroundSlam_SabahE =6503,
     SabahClassAction =6504,
     SabahClassAction2 =6505,
->>>>>>> Stashed changes
     //SamsonW       =70##,
     SamsonW1        =7001,
     SelfKill        =7002, // Immediately kills thing on enter after 1 frame
