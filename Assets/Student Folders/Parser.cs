@@ -245,7 +245,6 @@ public enum Traits
     Teleport_TracyH =8001, //Teleport player between radius or nearby room. Can be placed on held item or zone
     //WesleyP       =90##,
     WesleyP1        =9001,
-    WesleyP1        =9001, 
     Knockback_WesleyP1 =9002, // When player is hit will be lounched back 
     //YuChen        =95##,
     YuChen1         =9501,
