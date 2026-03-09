@@ -276,6 +276,8 @@ public enum Actions
     Chase          =0202,//Run At A Target
     
     //Student Actions
+    MishaTestAct1   =1000,
+    MishaTestAct2   =1001,
     //AdamD         =20##,
     AdamD1          =2001,
     RestAction_AdamD=2002,
