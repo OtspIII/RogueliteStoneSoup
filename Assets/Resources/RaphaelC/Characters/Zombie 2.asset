@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4679cc75b2c8be74e8b047318fa062ea, type: 3}
   m_Name: Zombie 2
   m_EditorClassIdentifier: Assembly-CSharp::CharacterOption
-  Name: Zombie 2
+  Name: Invisible Maniac
   Author: 60
   Team: 3
   Body: {fileID: 629948465317790645, guid: 1ddb7a141d090174d814011c80ad968a, type: 3}
-  Art: {fileID: 2649847697073447219, guid: 10f97ce30d99ca74ca1e5c82c0be0577, type: 3}
+  Art: {fileID: 21300000, guid: 2d7e0ce399741ea4297e5d3e535c5d8c, type: 3}
   Color: {r: 1, g: 1, b: 1, a: 1}
   Size: 0.75
   Tags:
@@ -24,7 +24,7 @@ MonoBehaviour:
     Custom: 
     W: 1
     Cost: 1
-  LevelRange: {x: 0, y: 0}
+  LevelRange: {x: 7, y: 10}
   Trait: []
   HP: 3
   Speed: 0.75

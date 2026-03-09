@@ -110,8 +110,8 @@ public static class Parser
             //case Actions.Sidestep_qixiangdong: return new Sidestep_qixiangdong(who,e);
             // RaphaelC=60,
             case Actions.CurveChase_RaphaelC:return new CurveChaseAction_RaphaelC(who,e);
-            case Actions.Action2_RaphaelC:return new Action2_RaphaelC(who,e);
-            case Actions.Action3_RaphaelC:return new Action3_RaphaelC(who,e);
+            case Actions.Invisible_RaphaelC:return new Invisible_RaphaelC(who,e);
+            case Actions.SpinShoot_RaphaelC:return new SpinShoot_RaphaelC(who,e);
 
             // SabahE=65,
             // SamsonW=70,
@@ -308,8 +308,8 @@ public enum Actions
     //RaphaelC      =60##,
     RaphaelC1       =6001,
     CurveChase_RaphaelC = 6002,
-    Action2_RaphaelC = 6003,
-    Action3_RaphaelC = 6004,
+    Invisible_RaphaelC = 6003,
+    SpinShoot_RaphaelC = 6004,
     //SabahE        =65##,
     SabahE1         =6501,
     //SamsonW       =70##,

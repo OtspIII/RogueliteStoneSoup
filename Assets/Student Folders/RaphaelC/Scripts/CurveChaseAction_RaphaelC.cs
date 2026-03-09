@@ -9,6 +9,7 @@ public class CurveChaseAction_RaphaelC : ActionScript
     public float radius;
     private float duration = 2f;
     public float timer = 0f;
+    public Vector3 Target;
     public CurveChaseAction_RaphaelC(ThingInfo who,EventInfo e=null)
     {
         Setup(Actions.CurveChase_RaphaelC,who,true);
@@ -45,8 +46,12 @@ public class CurveChaseAction_RaphaelC : ActionScript
             return;
         }
 
+        if (Who.Target != null)
+        {
+            Target = Who.Target.Thing.transform.position;
+        }
         Vector3 A = Who.Thing.transform.position;
-        Vector3 B = Who.Target.Thing.transform.position;
+        Vector3 B = Target;
 
         radius = Vector3.Distance(A,B)/2;
         Vector3 Center = (A + B)/2;
@@ -80,7 +85,7 @@ public class CurveChaseAction_RaphaelC : ActionScript
     }
 }
 
-public class Action2_RaphaelC : ActionScript
+public class Invisible_RaphaelC : ActionScript
 {
     private Vector2 dir;
     public float speed = 5f;
@@ -89,9 +94,9 @@ public class Action2_RaphaelC : ActionScript
     private float duration = 2f;
     public float timer = 0f;
 
-    public Action2_RaphaelC(ThingInfo who,EventInfo e = null)
+    public Invisible_RaphaelC(ThingInfo who,EventInfo e = null)
     {
-        Setup(Actions.Action2_RaphaelC,who,true);
+        Setup(Actions.Invisible_RaphaelC,who,true);
         Setup(Actions.CurveChase_RaphaelC,who,true);
         MoveMult = speed;
         CanRotate = false;
@@ -140,11 +145,8 @@ public class Action2_RaphaelC : ActionScript
         float angle = math.PI - (t* math.PI);
 
         dir = new Vector2(Cx + radius * math.cos(angle) - A.x, Cy + radius * math.sin(angle) - A.y).normalized;
-        // x = Cx + r cos (theta)
-        // y = Cy + r sin (theta)
 
         Who.Thing.ActualMove = MoveMult * dir;
-        
         Who.Thing.LookAt(Who.Target,0.5f);
         
         if((Who.AttackRange <= 0.5f || Who.Thing.Distance(Who.Target) <= Who.AttackRange) && Who.Thing.IsFacing(Who.Target,5))
@@ -161,10 +163,34 @@ public class Action2_RaphaelC : ActionScript
     }
 }
 
-public class Action3_RaphaelC : ActionScript
-{
-    public Action3_RaphaelC(ThingInfo who,EventInfo e = null)
+public class SpinShoot_RaphaelC : ActionScript
+{    
+    private Vector2 dir;
+    private float duration;
+
+    public SpinShoot_RaphaelC(ThingInfo who,EventInfo e = null)
     {
-       Setup(Actions.Action3_RaphaelC,who,true);
+        Setup(Actions.SpinShoot_RaphaelC,who,true);
+        Anim = "SpinShoot";
+    }    
+    public override void Begin()
+    {
+        base.Begin();    
+        ThingOption proj = GetHeld().Ask(EventTypes.GetProjectile).GetOption();
+
+        if (proj != null)
+        {
+            Who.Thing.Shoot(proj);
+        }
+    }
+    public override void OnRun()
+    {
+        base.OnRun();
+        if (Who.Target == null)
+        {
+            Who.Thing.DoAction(Actions.Patrol);
+            return;
+        }
+        Who.Thing.MoveTowards(Who.Target,Who.AttackRange);
     }
 }

@@ -23,9 +23,10 @@ MonoBehaviour:
   - Common: 102
     Custom: 
     W: 1
-  LevelRange: {x: 0, y: 0}
+    Cost: 1
+  LevelRange: {x: 3, y: 10}
   Trait: []
-  HP: 10
+  HP: 7
   Speed: 2
   VisionRange: 4
   Held: {fileID: 11400000, guid: 7eef3b2d1786b6349b779d64bdad2c6e, type: 2}
