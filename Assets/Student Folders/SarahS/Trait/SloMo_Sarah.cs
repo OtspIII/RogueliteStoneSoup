@@ -4,7 +4,7 @@ public class SloMo_SarahS : Trait
 {
     public SloMo_SarahS()
     {
-        Type = Traits.SloMo;
+      // Type = Traits.SloMo;
         AddListen(EventTypes.OnSee);
         AddPreListen(EventTypes.GetActSpeed);
         AddListen(EventTypes.OnUseStart);

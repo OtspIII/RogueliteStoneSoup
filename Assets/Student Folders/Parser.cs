@@ -50,6 +50,10 @@ public static class Parser
         TraitDict.Add(Traits.Dash, new DashTrait());
         TraitDict.Add(Traits.SelfDestruct_JuliusP, new SelfDestruction());
         TraitDict.Add(Traits.IgnoreDamage_JuliusP, new IgnoreDamage());
+        TraitDict.Add(Traits.StunNegation_JuliusP, new StunCancel());
+        TraitDict.Add(Traits.TemporaryDash_JuliusP, new TemporaryDashAbility());
+        TraitDict.Add(Traits.TemporaryStunImmunity_JuliusP, new StunDrink());
+        TraitDict.Add(Traits.TemporaryDmgResist_JuliusP, new TemporaryDamageResist());
         // MazK Traits
         // MichaelT Traits
         // QixiangD Traits
@@ -58,17 +62,13 @@ public static class Parser
         // RaphaelC Traits
         TraitDict.Add(Traits.Lighting_RaphaelC,new Lighting_RaphaelC());
         // SabahE Traits
-        TraitDict.Add(Traits.SpeedUpSabahE, new SpeedUpTrait_SabahE());
-        TraitDict.Add(Traits.RallySabahE, new RallyTrait_SabahE());
+        //TraitDict.Add(Traits.SpeedUpSabahE, new SpeedUpTrait_SabahE());
         // SamsonW Traits
         TraitDict.Add(Traits.TeleportRandomRoom,new TeleportRandomRoomTrait());
         TraitDict.Add(Traits.DamageReflect,new DamageReflectTrait());
         TraitDict.Add(Traits.HealZone,new HealZoneTrait());
         TraitDict.Add(Traits.DelayedActionAfterStartingAction,new DelayedActionAfterStartingAction());
-        TraitDict.Add(Traits.GrappleHook,new GrappleHook());
         // SarahS Traits
-        TraitDict.Add(Traits.SarahS1, new ProximityExplode_SarahS());
-        TraitDict.Add(Traits.SloMo, new SloMo_SarahS());
         // TracyH Traits
         TraitDict.Add(Traits.Teleport_TracyH, new TeleportTrait_TracyH());
         // WesleyP Traits
@@ -89,8 +89,6 @@ public static class Parser
             case Actions.Patrol: return new PatrolAction(who,e);
             case Actions.Chase: return new ChaseAction(who,e);
             case Actions.Use: return new UseAction(who, e);
-            case Actions.MishaTestAct1: return new TestAction1_Misha(who, e);
-            case Actions.MishaTestAct2: return new TestAction2_Misha(who, e);
             // MazK=12,
             // AdamD=20,
             case Actions.DefendAction_AdamD:return new DefendAction(who,e);
@@ -100,27 +98,28 @@ public static class Parser
             // JaidenB=35,
             // JuliusP=40,
             case Actions.BarrierShield_JuliusP:return new BarrierShieldAction_JuliusP(who,e);
+            case Actions.Lv2_BarrierShield_JuliusP:return new Lv2_BarrierShield_JuliusP(who,e);
+            case Actions.Lv3_BarrierShield_JuliusP:return  new Lv3BarrierShield(who, e);
             case Actions.Cloak_JuliusP:return new InvisbilityAction(who, e);
+           // case Actions.Lv2_Cloak_JuliusP: return new
             case Actions.TradeHp_JuliusP:return new TradeHp(who, e);
+            case Actions.EvasiveJuke_JuliusP:return new EvasiveJuke(who, e);
+            
             // MichaelT=50,
             // QixiangD=55,
-
-            case Actions.Charging_qixiangdong: return new Charging_qixiangdong(who, e);
-            case Actions.Sidestep_qixiangdong: return new Sidestep_qixiangdong(who,e);
+            //case Actions.Sidestep_qixiangdong: return new Sidestep_qixiangdong(who,e);
             // RaphaelC=60,
             case Actions.CurveChase_RaphaelC:return new CurveChaseAction_RaphaelC(who,e);
             case Actions.Action2_RaphaelC:return new Action2_RaphaelC(who,e);
-            case Actions.Action3_RaphaelC:return new Action3_RaphaelC(who,e);   
+            case Actions.Action3_RaphaelC:return new Action3_RaphaelC(who,e);
+
             // SabahE=65,
-            case Actions.Dash_SabahE: return new Dash_SabahE(who, e);
-            case Actions.GroundSlam_SabahE: return new GroundSlam_SabahE(who, e);
             // SamsonW=70,
             case Actions.SelfKill: return new SelfKillAction(who, e);
-            case Actions.Grapple: return new GrappleAction(who, e);
             // SarahS=75,
             // TracyH=80,
             // WesleyP=90,
-
+            // YuChen=95,
         }
         God.LogError("UNCAUGHT ACTION: " + act);
         return new IdleAction(who,e);
@@ -223,6 +222,11 @@ public enum Traits
     Dash            =4003,
     SelfDestruct_JuliusP = 4004,
     IgnoreDamage_JuliusP = 4005,
+    StunNegation_JuliusP = 4006,
+    TemporaryStunImmunity_JuliusP = 4007,
+    TemporaryDash_JuliusP = 4008,
+    TemporaryDmgResist_JuliusP = 4009,
+
     //MazK          =45##,
     MazK1           =4501,
     //MichaelT      =50##,
@@ -236,19 +240,16 @@ public enum Traits
     //SabahE        =65##,
     SabahE1         =6501,
     SpeedUpSabahE   =6502, //Speedup for 10s when you get hit
-    RallySabahE     =6503,
     //SamsonW       =70##,
     SamsonW1        =7001,
     TeleportRandomRoom=7002, //Use to teleport user to random room that isnt own room
     DamageReflect   =7003, //Reflects damage, thornmail effect
     HealZone        =7004, //Heals player when standing inside zone
     DelayedActionAfterStartingAction=7005, //Switches action after X secs after entering an action
-    GrappleHook     =7006, //Pulls the projectile shooter to the projectile location on drop
     //SarahS        =75##,
     SarahS1         =7501,
-    SloMo           =7502,
     //TracyH        =80##,
-    Teleport_TracyH =8002, //Teleport player between radius or nearby room. Can be placed on held item or zone
+    Teleport_TracyH =8001, //Teleport player between radius or nearby room. Can be placed on held item or zone
     //WesleyP       =90##,
     WesleyP1        =9001,
     //YuChen        =95##,
@@ -275,8 +276,6 @@ public enum Actions
     Chase          =0202,//Run At A Target
     
     //Student Actions
-    MishaTestAct1   =0900,
-    MishaTestAct2   =0901,
     //AdamD         =20##,
     AdamD1          =2001,
     RestAction_AdamD=2002,
@@ -290,8 +289,14 @@ public enum Actions
     //JuliusP       =40##,
     JuliusP1        =4001,
     BarrierShield_JuliusP = 4002,
-    Cloak_JuliusP = 4003,
-    TradeHp_JuliusP = 4004,
+    Lv2_BarrierShield_JuliusP = 4003,
+    Lv3_BarrierShield_JuliusP = 4004,
+    Cloak_JuliusP = 4005,
+    Lv2_Cloak_JuliusP = 4006,
+    TradeHp_JuliusP = 4007,
+    EvasiveJuke_JuliusP = 4008,
+
+  
 
 
     //MazK          =45##,
@@ -299,23 +304,17 @@ public enum Actions
     //MichaelT      =50##,
     MichaelT1       =5001,
     //QixiangD      =55##,
-    QixiangD1       =5501,
-    Charging_qixiangdong=5502,
-    Sidestep_qixiangdong = 5503,
-
+    Sidestep_qixiangdong = 5501,
     //RaphaelC      =60##,
-    RaphaelC1 = 6001,
+    RaphaelC1       =6001,
     CurveChase_RaphaelC = 6002,
     Action2_RaphaelC = 6003,
     Action3_RaphaelC = 6004,
     //SabahE        =65##,
     SabahE1         =6501,
-    Dash_SabahE     =6502,
-    GroundSlam_SabahE =6503,
     //SamsonW       =70##,
     SamsonW1        =7001,
     SelfKill        =7002, // Immediately kills thing on enter after 1 frame
-    Grapple         =7003, // Lunges thing towards a target thing
     //SarahS        =75##,
     SarahS1         =7501,
     //TracyH        =80##,

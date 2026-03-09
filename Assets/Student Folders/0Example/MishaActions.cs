@@ -6,7 +6,7 @@ public class TestAction1_Misha : ActionScript
 {
     public TestAction1_Misha(ThingInfo who,EventInfo e=null)
     {
-        Setup(Actions.MishaTestAct1,who,true);
+       // Setup(Actions.MishaTestAct1,who,true);
     }
 
     public override void OnRun()
@@ -29,6 +29,6 @@ public class TestAction2_Misha : ActionScript
 {
     public TestAction2_Misha(ThingInfo who,EventInfo e=null)
     {
-        Setup(Actions.MishaTestAct1,who);
+        //Setup(Actions.MishaTestAct1,who);
     }
 }

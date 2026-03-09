@@ -8,7 +8,7 @@ public class Charging_qixiangdong : ActionScript
 
     public Charging_qixiangdong(ThingInfo who, EventInfo e = null)
     {
-        Setup(Actions.Charging_qixiangdong, who);
+        //Setup(Actions.Charging_qixiangdong, who);
 
         MoveMult = 0f;
         HaltMomentum = true;

@@ -7,7 +7,7 @@ public class GroundSlam_SabahE : ActionScript
 
     public GroundSlam_SabahE(ThingInfo who, EventInfo e = null)
     {
-        Setup(Actions.GroundSlam_SabahE, who);
+        //Setup(Actions.GroundSlam_SabahE, who);
 
         MoveMult = 0f;
         HaltMomentum = true;
