@@ -379,6 +379,11 @@ public class ThingInfo //The class that handles all the core info for all non-wa
         return Thing.SeenThings.Contains(t);
     }
 
+    public void DoAction(Actions a)
+    {
+        TakeEvent(God.E(EventTypes.StartAction).Set(ActionInfo.Action,a));
+    }
+
     public override string ToString()
     {
         string tr = "";
