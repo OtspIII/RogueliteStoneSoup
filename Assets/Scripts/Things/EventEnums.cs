@@ -54,7 +54,7 @@ public enum EventTypes{
     //Questions
     ShownHP         =9001,
     ShownName       =9002,
-    GetDamage       =9007,
+    DamageMult      =9007,
     GetProjectile   =9008,
     GetScore        =9009,
     GetCurrentAction=9100,

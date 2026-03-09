@@ -19,7 +19,10 @@ MonoBehaviour:
   Art: {fileID: -8318091268651075069, guid: 23bbe1f88cd61234c9ca8092c5eea4b1, type: 3}
   Color: {r: 1, g: 1, b: 1, a: 1}
   Size: 3
-  Tags: []
+  Tags:
+  - Common: 300
+    Custom: 
+    W: 0
   LevelRange: {x: 0, y: 0}
   Trait: []
   Damage: 3

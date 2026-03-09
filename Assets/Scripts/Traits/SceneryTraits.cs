@@ -7,6 +7,7 @@ public class ExitTrait : Trait
     public ExitTrait()
     {
         Type = Traits.Exit;
+        AddListen(EventTypes.OnSpawn);
         AddListen(EventTypes.OnTouch);
     }
 
@@ -14,6 +15,11 @@ public class ExitTrait : Trait
     {
         switch (e.Type)
         {
+            case EventTypes.OnSpawn:
+            {
+                God.GM.Exit = i.Who;
+                break;
+            }
             case EventTypes.OnTouch:
             {
                 GameCollision col = e.Collision;

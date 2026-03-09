@@ -14,7 +14,7 @@ public class AttackAction : UseAction
 
     public virtual float GetDamage()
     {
-        return Who.CurrentHeld.Ask(God.E(EventTypes.GetDamage).Set(Type).Set(Who)).GetFloat() * Damage;
+        return Who.CurrentHeld.Ask(God.E(EventTypes.DamageMult).Set(Type).Set(Who)).GetFloat() * Damage;
     }
 
     public override void HitBegin(GameCollision col)
@@ -28,8 +28,10 @@ public class AttackAction : UseAction
         // Debug.Log("TAKE DAMAGE: " + hit.gameObject);
         hit.TakeEvent(new EventInfo(EventTypes.Damage).Set(NumInfo.Default,GetDamage()).Set(Who));
         // hit.TakeDamage(GetDamage());
-        hit.DoAction(Actions.Stun,God.E().Set(10.5f).Set(NumInfo.Priority,3));
+        hit.DoAction(Actions.Stun,God.E().Set(0.5f).Set(NumInfo.Priority,3));
         hit.TakeKnockback(Who.Thing.transform.position,Knockback);
+
+
     }
 }
 

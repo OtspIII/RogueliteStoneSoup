@@ -40,7 +40,7 @@ public class PatrolAction : ActionScript
     public override void OnRun()
     {
         base.OnRun();
-        if (Who.Target != null && Who.Thing.CanSee.Contains(Who.Target))
+        if (Who.Target != null && Who.Thing.SeenThings.Contains(Who.Target))
         {
             Vector2 dir = Who.Target.Thing.transform.position - Who.Thing.transform.position;
             RaycastHit2D hit = Physics2D.Raycast(Who.Thing.transform.position,

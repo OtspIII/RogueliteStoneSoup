@@ -8,7 +8,7 @@ public class ToolTrait : Trait
         Type = Traits.Tool;
         AddListen(EventTypes.GetDefaultAttack);
         AddListen(EventTypes.OnUse);
-        AddListen(EventTypes.GetDamage);
+        AddListen(EventTypes.DamageMult);
         AddListen(EventTypes.GetProjectile);
         AddListen(EventTypes.OnHoldStart);
         AddListen(EventTypes.GetActSpeed);
@@ -28,7 +28,7 @@ public class ToolTrait : Trait
                 e.GetThing().TakeEvent(God.E(EventTypes.StartAction).Set(ActionInfo.Action,Actions.DefaultAttack));
                 break;
             }
-            case EventTypes.GetDamage:
+            case EventTypes.DamageMult:
             {
                 e.Set(i.GetFloat());
                 break;

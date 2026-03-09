@@ -33,18 +33,30 @@ public static class Parser
         TraitDict.Add(Traits.LimitedUse,new LimitedUseTrait());
         TraitDict.Add(Traits.Stackable,new StackableTrait());
         TraitDict.Add(Traits.Hostile,new HostileTrait());
+        // MishaF Traits
+        
         // AdamD Traits
+        TraitDict.Add(Traits.statusEffectOnProjectile, new StatusEffectOnProjectileTrait_AdamD("stuff", 5));
+        TraitDict.Add(Traits.StatusResist, new StatusResist());
         // AlejandroM Traits
+        TraitDict.Add(Traits.ShieldPotion_AlejandroM, new ShieldPotion_AlejandroM());
+        TraitDict.Add(Traits.SpeedPotion_AlejandroM, new SpeedPotion_AlejandroM());
         // ElioR Traits
+        TraitDict.Add(Traits.Barrier, new BarrierTrait_ElioR());
         // JaidenB Traits
+        TraitDict.Add(Traits.InvertControls, new InvertControlsTrait());
         // Julius Traits
         TraitDict.Add(Traits.Rage, new RageTrait());
         TraitDict.Add(Traits.Dash, new DashTrait());
+        TraitDict.Add(Traits.SelfDestruct_JuliusP, new SelfDestruction());
+        TraitDict.Add(Traits.IgnoreDamage_JuliusP, new IgnoreDamage());
         // MazK Traits
         // MichaelT Traits
         // QixiangD Traits
         // RaphaelC Traits
+        TraitDict.Add(Traits.Lighting_RaphaelC,new Lighting_RaphaelC());
         // SabahE Traits
+        //TraitDict.Add(Traits.SpeedUpSabahE, new SpeedUpTrait_SabahE());
         // Samson W. Traits
         TraitDict.Add(Traits.TeleportRandomRoom,new TeleportRandomRoomTrait());
         TraitDict.Add(Traits.DamageReflect,new DamageReflectTrait());
@@ -55,10 +67,15 @@ public static class Parser
 
         // SarahS Traits
         // TracyH Traits
+        TraitDict.Add(Traits.Teleport_TracyH, new TeleportTrait_TracyH());
         // WesleyP Traits
         // YuChen Traits
+<<<<<<< HEAD
         TraitDict.Add(Traits.Criticaldamage,new CriticaldamageTrait());
         
+=======
+
+>>>>>>> 8ed8fa0410ffbbd80d455ae108881031e6ebf6c2
 
 
     }
@@ -75,6 +92,24 @@ public static class Parser
             case Actions.Patrol: return new PatrolAction(who,e);
             case Actions.Chase: return new ChaseAction(who,e);
             case Actions.Use: return new UseAction(who, e);
+            // MazK=12,
+            // AdamD=20,
+            // AlejandroM=25,
+            // ElioR=30,
+            // JaidenB=35,
+            // JuliusP=40,
+            case Actions.BarrierShield_JuliusP:return new BarrierShieldAction_JuliusP(who,e);
+            case Actions.Cloak_JuliusP:return new InvisbilityAction(who, e);
+            case Actions.TradeHp_JuliusP:return new TradeHp(who, e);
+            // MichaelT=50,
+            // QixiangD=55,
+            // RaphaelC=60,
+            // SabahE=65,
+            // SamsonW=70,
+            // SarahS=75,
+            // TracyH=80,
+            // WesleyP=90,
+            // YuChen=95,
         }
         God.LogError("UNCAUGHT ACTION: " + act);
         return new IdleAction(who,e);
@@ -156,19 +191,27 @@ public enum Traits
     Projectile      =0400,//Flies In A Direction
     OnFire          =0500,//I Didn't Finish This Yet
     //Misha Traits:  11##
-    Misha1          =1101,
+    MishaF1         =1101,
     //AdamD         =20##,
     AdamD1          =2001,
+    statusEffectOnProjectile=2002,
+    StatusResist=2003, 
     //AlejandroM    =25##,
     AlejandroM1     =2501,
+    ShieldPotion_AlejandroM = 2502,
+    SpeedPotion_AlejandroM = 2503,
     //ElioR         =30##,
     ElioR1          =3001,
+    Barrier         =3002, //this will negate one instance of taken damage taken.
     //JaidenB       =35##,
     JaidenB1        =3501,
+    InvertControls  =3502,
     //JuliusP       =40##,
     JuliusP1        =4001,
     Rage            =4002, 
     Dash            =4003,
+    SelfDestruct_JuliusP = 4004,
+    IgnoreDamage_JuliusP = 4005,
     //MazK          =45##,
     MazK1           =4501,
     //MichaelT      =50##,
@@ -176,9 +219,10 @@ public enum Traits
     //QixiangD      =55##,
     QixiangD1       =5501,
     //RaphaelC      =60##,
-    RaphaelC1       =6001,
+    Lighting_RaphaelC       =6001,
     //SabahE        =65##,
     SabahE1         =6501,
+    SpeedUpSabahE   =6502, //Speedup for 10s when you get hit
     //SamsonW       =70##,
     SamsonW1        =7001,
     TeleportRandomRoom=7002, //Use to teleport user to random room that isnt own room
@@ -186,7 +230,7 @@ public enum Traits
     //SarahS        =75##,
     SarahS1         =7501,
     //TracyH        =80##,
-    TracyH1         =8001,
+    Teleport_TracyH =8001, //Teleport player between radius or nearby room. Can be placed on held item or zone
     //WesleyP       =90##,
     WesleyP1        =9001,
     //YuChen        =95##,
@@ -224,6 +268,11 @@ public enum Actions
     JaidenB1        =3501,
     //JuliusP       =40##,
     JuliusP1        =4001,
+    BarrierShield_JuliusP = 4002,
+    Cloak_JuliusP = 4003,
+    TradeHp_JuliusP = 4004,
+
+
     //MazK          =45##,
     MazK1           =4501,
     //MichaelT      =50##,

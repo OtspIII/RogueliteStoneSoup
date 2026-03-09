@@ -20,6 +20,7 @@ public class ActorTrait : Trait
         AddListen(EventTypes.UseHeld);
         AddListen(EventTypes.UseHeldStart);
         AddListen(EventTypes.UseHeldEnd);
+        AddListen(EventTypes.Damage);
     }
 
     public override void TakeEvent(TraitInfo i, EventInfo e)
@@ -120,6 +121,14 @@ public class ActorTrait : Trait
                 if(i.Who.CurrentHeld != null) i.Who.CurrentHeld.TakeEvent(God.E(EventTypes.OnUseEnd).Set(i.Who));
                 break;
             }
+            case EventTypes.Damage:
+            {
+                //Who hurt me?
+                ThingInfo src = e.GetThing();
+                //If it was someone, and it wasn't me, attack them!
+                if(src != null && src != i.Who && src.Has(Traits.Health)) i.Who.SetTarget(src);
+                break;
+            }
         }
     }
     
@@ -161,7 +170,7 @@ public class ActorTrait : Trait
             EventInfo atk = t.Who.CurrentHeld.Ask(EventTypes.GetDefaultAttack);
             a = atk.Get(ActionInfo.DefaultAction);
         }
-        ActionScript act = Parser.Get(a == Actions.None ? defaultAct : a,t.Who);
+        ActionScript act = Parser.Get(a == Actions.None ? defaultAct : a,t.Who,e);
         DoAction(t,act,e);
     }
 }
