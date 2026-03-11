@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Knockback : MonoBehaviour
+public class Knockback :Triat
 {
     [SerializeField] private float knockbackForce = 10f;
     private void OnCollisionEnter2D(Collision2D collision)
