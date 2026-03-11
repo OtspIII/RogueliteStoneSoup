@@ -9,7 +9,7 @@ public class Dash_SabahE : ActionScript
     {
         //Setup(Actions.Dash_SabahE, who);
 
-        MoveMult = 0f;
+        MoveMult = 3f;
         HaltMomentum = true;
         Priority = 2;
         CanRotate = false;
