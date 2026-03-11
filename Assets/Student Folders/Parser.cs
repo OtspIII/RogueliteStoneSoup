@@ -54,6 +54,8 @@ public static class Parser
         TraitDict.Add(Traits.TemporaryDash_JuliusP, new TemporaryDashAbility());
         TraitDict.Add(Traits.TemporaryStunImmunity_JuliusP, new StunDrink());
         TraitDict.Add(Traits.TemporaryDmgResist_JuliusP, new TemporaryDamageResist());
+        TraitDict.Add(Traits.GainInvis_JuliusP, new GainInvisibility());
+      
         // MazK Traits
         // MichaelT Traits
         // QixiangD Traits
@@ -62,7 +64,8 @@ public static class Parser
         // RaphaelC Traits
         TraitDict.Add(Traits.Lighting_RaphaelC,new Lighting_RaphaelC());
         // SabahE Traits
-        //TraitDict.Add(Traits.SpeedUpSabahE, new SpeedUpTrait_SabahE());
+        TraitDict.Add(Traits.SpeedUpSabahE, new SpeedUpTrait_SabahE());
+        TraitDict.Add(Traits.RallySabahE, new RallyTrait_SabahE());
         // SamsonW Traits
         TraitDict.Add(Traits.TeleportRandomRoom,new TeleportRandomRoomTrait());
         TraitDict.Add(Traits.DamageReflect,new DamageReflectTrait());
@@ -104,7 +107,7 @@ public static class Parser
             case Actions.Lv2_BarrierShield_JuliusP:return new Lv2_BarrierShield_JuliusP(who,e);
             case Actions.Lv3_BarrierShield_JuliusP:return  new Lv3BarrierShield(who, e);
             case Actions.Cloak_JuliusP:return new InvisbilityAction(who, e);
-           // case Actions.Lv2_Cloak_JuliusP: return new
+            case Actions.Lv2_Cloak_JuliusP: return new Lv2Invis(who, e);
             case Actions.TradeHp_JuliusP:return new TradeHp(who, e);
             case Actions.EvasiveJuke_JuliusP:return new EvasiveJuke(who, e);
             
@@ -233,6 +236,9 @@ public enum Traits
     TemporaryStunImmunity_JuliusP = 4007,
     TemporaryDash_JuliusP = 4008,
     TemporaryDmgResist_JuliusP = 4009,
+    GainInvis_JuliusP = 4010,
+ 
+  
 
     //MazK          =45##,
     MazK1           =4501,
@@ -247,6 +253,7 @@ public enum Traits
     //SabahE        =65##,
     SabahE1         =6501,
     SpeedUpSabahE   =6502, //Speedup for 10s when you get hit
+    RallySabahE = 6503,
     //SamsonW       =70##,
     SamsonW1        =7001,
     TeleportRandomRoom=7002, //Use to teleport user to random room that isnt own room

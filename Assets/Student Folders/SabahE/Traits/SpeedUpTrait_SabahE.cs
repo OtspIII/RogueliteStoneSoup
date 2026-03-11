@@ -26,7 +26,7 @@ public class SpeedUpTrait_SabahE : Trait
                 {
                     
                     float baseSpeed = i.GetFloat(NumInfo.Max, i.GetFloat(NumInfo.Speed, 5f));
-                    float boostAmount = i.GetFloat(NumInfo.Default, 5f); 
+                    float boostAmount = i.GetFloat(NumInfo.Default, 10f); 
                     i.Set(NumInfo.Speed, baseSpeed + boostAmount);
                     i.Set(NumInfo.Time, 10f);
                     break;
