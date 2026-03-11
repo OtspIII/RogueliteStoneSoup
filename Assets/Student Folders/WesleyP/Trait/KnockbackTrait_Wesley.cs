@@ -2,40 +2,30 @@ using UnityEngine;
 
 public class KnockbackTrait_Wesley : Trait
 {
-    public float Knockback = 10f;
-
-    Type = Traits.Knockback;
-    AddListen(EvenTypes.Update);
-    public override void TakeEvent(TraitInfo i, EvenInfo e)
+    public class AttackAction : UseAction
     {
-        switch (e.Type)
-        {
-            case EventTypes.Updates:
-                {
-                    Debug.log("Knockback");
-                    break;
-                }
-        }
-
-        base.TakeEvent(i, e);
-        hit.TakeKnockback(Who.Thing.transform.position, Knockback);
-
-
-        //Reference the AttackAction kncokback
-        //ref the lunge script
-
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
+        public float Knockback = 10;
     }
-
-    public LungeAction(ThingInfo who, EventInfo e = null)
+    public class LungeAction : AttackAction
     {
-        Setup(Actions.Lunge, who);
-        Anim = "Lunge";
-        MoveMult = 0;
-        Knockback = 34f;
+        public LungeAction(ThingInfo who, EventInfo e = null)
+        {
+            Setup(Actions.Lunge, who);
+            Anim = "Lunge";
+            MoveMult = 0;
+            Knockback = 0;
+        }
+        public override void OnRun()
+        {
+            base.OnRun();
+            if (Phase == 0)
+            {
+                MoveMult = Who.AttackRange;
+                Who.Thing.MoveForwards();
+            }
+            else
+                MoveMult = 0;
+        }
     }
 }
+
