@@ -62,7 +62,8 @@ public static class Parser
         // RaphaelC Traits
         TraitDict.Add(Traits.Lighting_RaphaelC,new Lighting_RaphaelC());
         // SabahE Traits
-        //TraitDict.Add(Traits.SpeedUpSabahE, new SpeedUpTrait_SabahE());
+        TraitDict.Add(Traits.SpeedUpSabahE, new SpeedUpTrait_SabahE());
+        TraitDict.Add(Traits.RallySabahE, new RallyTrait_SabahE());
         // SamsonW Traits
         TraitDict.Add(Traits.TeleportRandomRoom,new TeleportRandomRoomTrait());
         TraitDict.Add(Traits.DamageReflect,new DamageReflectTrait());
@@ -247,6 +248,7 @@ public enum Traits
     //SabahE        =65##,
     SabahE1         =6501,
     SpeedUpSabahE   =6502, //Speedup for 10s when you get hit
+    RallySabahE = 6503,
     //SamsonW       =70##,
     SamsonW1        =7001,
     TeleportRandomRoom=7002, //Use to teleport user to random room that isnt own room
