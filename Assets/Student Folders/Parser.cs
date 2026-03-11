@@ -54,6 +54,8 @@ public static class Parser
         TraitDict.Add(Traits.TemporaryDash_JuliusP, new TemporaryDashAbility());
         TraitDict.Add(Traits.TemporaryStunImmunity_JuliusP, new StunDrink());
         TraitDict.Add(Traits.TemporaryDmgResist_JuliusP, new TemporaryDamageResist());
+        TraitDict.Add(Traits.GainInvis_JuliusP, new GainInvisibility());
+      
         // MazK Traits
         // MichaelT Traits
         // QixiangD Traits
@@ -105,7 +107,7 @@ public static class Parser
             case Actions.Lv2_BarrierShield_JuliusP:return new Lv2_BarrierShield_JuliusP(who,e);
             case Actions.Lv3_BarrierShield_JuliusP:return  new Lv3BarrierShield(who, e);
             case Actions.Cloak_JuliusP:return new InvisbilityAction(who, e);
-           // case Actions.Lv2_Cloak_JuliusP: return new
+            case Actions.Lv2_Cloak_JuliusP: return new Lv2Invis(who, e);
             case Actions.TradeHp_JuliusP:return new TradeHp(who, e);
             case Actions.EvasiveJuke_JuliusP:return new EvasiveJuke(who, e);
             
@@ -234,6 +236,9 @@ public enum Traits
     TemporaryStunImmunity_JuliusP = 4007,
     TemporaryDash_JuliusP = 4008,
     TemporaryDmgResist_JuliusP = 4009,
+    GainInvis_JuliusP = 4010,
+ 
+  
 
     //MazK          =45##,
     MazK1           =4501,
