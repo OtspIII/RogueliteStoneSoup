@@ -55,6 +55,7 @@ public static class Parser
         TraitDict.Add(Traits.TemporaryStunImmunity_JuliusP, new StunDrink());
         TraitDict.Add(Traits.TemporaryDmgResist_JuliusP, new TemporaryDamageResist());
         TraitDict.Add(Traits.GainInvis_JuliusP, new GainInvisibility());
+
       
         // MazK Traits
         // MichaelT Traits
@@ -237,6 +238,7 @@ public enum Traits
     TemporaryDash_JuliusP = 4008,
     TemporaryDmgResist_JuliusP = 4009,
     GainInvis_JuliusP = 4010,
+    
  
   
 

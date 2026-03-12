@@ -6,6 +6,8 @@ public class GainInvisibility : Trait
     SpriteRenderer[] Sr;
     bool PrepareInvis = false;
 
+    
+
     public GainInvisibility()
     {
         Type = Traits.GainInvis_JuliusP;
@@ -27,7 +29,8 @@ public class GainInvisibility : Trait
                     // GET ALL SPRITE RENDERERS/
                     Sr = i.Who.Thing.gameObject.GetComponentsInChildren<SpriteRenderer>();
 
-                    God.C(GraduallyDisappear(2f));
+                    //MAKE THE THING GRADUALLY DISAPPEAR//
+                    God.C(GraduallyDisappear(0.33f));
                 }
 
                 break;
@@ -37,13 +40,8 @@ public class GainInvisibility : Trait
             {
               
                 //REAPPEAR WHEN DAMAGED//
-                foreach(SpriteRenderer sr in Sr)
-                {
-                    Color c = sr.color;
-                    c.a = 1f;
-                    sr.color = c;
-                }
-
+                God.C(Reappear());
+               
                 break;
             }
         }
@@ -68,5 +66,31 @@ public class GainInvisibility : Trait
 
             yield return null;
         }
+    }
+
+
+    //FUNCTION TO APPEAR//
+
+    IEnumerator Reappear()
+    {
+       
+        
+        yield return new WaitForSeconds(0f);
+        //REAPPEAR WHEN DAMAGED//
+         foreach(SpriteRenderer sr in Sr)
+          {
+
+               Color c = sr.color;
+               c.a = 1f;
+               sr.color = c;
+          }
+
+
+         yield return new WaitForSeconds(0.2f);
+
+        //MAKE THE THING GRADUALLY DISAPPEAR//
+        God.C(GraduallyDisappear(0.5f));
+
+
     }
 }
