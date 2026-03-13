@@ -13,6 +13,7 @@ public class GainInvisibility : Trait
         Type = Traits.GainInvis_JuliusP;
 
         AddListen(EventTypes.Update);
+        AddListen(EventTypes.LoseTrait);
         AddListen(EventTypes.Damage);
     }
 
@@ -30,13 +31,13 @@ public class GainInvisibility : Trait
                     Sr = i.Who.Thing.gameObject.GetComponentsInChildren<SpriteRenderer>();
 
                     //MAKE THE THING GRADUALLY DISAPPEAR//
-                    God.C(GraduallyDisappear(0.33f));
+                    God.C(GraduallyDisappear(0.23f));
                 }
 
                 break;
             }
 
-            case EventTypes.Damage:
+            case EventTypes.LoseTrait:
             {
               
                 //REAPPEAR WHEN DAMAGED//
@@ -44,6 +45,18 @@ public class GainInvisibility : Trait
                
                 break;
             }
+
+
+            case EventTypes.Damage:
+            {
+                    
+            God.C(ReappearTemporarily());
+
+            break;
+
+            }
+        
+        
         }
     }
 
@@ -69,9 +82,8 @@ public class GainInvisibility : Trait
     }
 
 
-    //FUNCTION TO APPEAR//
-
-    IEnumerator Reappear()
+    //FUNCTION THAT MAKES THE THING APPEAR TEMPORARILY WHEN DAMAGED//
+    IEnumerator ReappearTemporarily()
     {
        
         
@@ -90,6 +102,27 @@ public class GainInvisibility : Trait
 
         //MAKE THE THING GRADUALLY DISAPPEAR//
         God.C(GraduallyDisappear(0.5f));
+
+
+    }
+
+
+    //FUNCTION TO APPEAR//
+
+    IEnumerator Reappear()
+    {
+       
+        
+        yield return new WaitForSeconds(0f);
+        //REAPPEAR WHEN DAMAGED//
+         foreach(SpriteRenderer sr in Sr)
+          {
+
+               Color c = sr.color;
+               c.a = 1f;
+               sr.color = c;
+          }
+
 
 
     }

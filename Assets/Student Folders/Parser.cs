@@ -109,6 +109,7 @@ public static class Parser
             case Actions.Lv3_BarrierShield_JuliusP:return  new Lv3BarrierShield(who, e);
             case Actions.Cloak_JuliusP:return new InvisbilityAction(who, e);
             case Actions.Lv2_Cloak_JuliusP: return new Lv2Invis(who, e);
+            case Actions.Lv3_Cloak_JuliusP: return new Lv3Invis(who, e);
             case Actions.TradeHp_JuliusP:return new TradeHp(who, e);
             case Actions.EvasiveJuke_JuliusP:return new EvasiveJuke(who, e);
             
@@ -312,8 +313,9 @@ public enum Actions
     Lv3_BarrierShield_JuliusP = 4004,
     Cloak_JuliusP = 4005,
     Lv2_Cloak_JuliusP = 4006,
-    TradeHp_JuliusP = 4007,
-    EvasiveJuke_JuliusP = 4008,
+    Lv3_Cloak_JuliusP = 4007,
+    TradeHp_JuliusP = 4008,
+    EvasiveJuke_JuliusP = 4009,
 
   
 

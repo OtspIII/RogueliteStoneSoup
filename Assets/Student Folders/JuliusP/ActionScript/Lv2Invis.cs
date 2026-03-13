@@ -3,16 +3,6 @@ using System.Collections;
 
 public class Lv2Invis : ActionScript
 {
-    //STEPS FOR ACTIONS;
-
-    // 1. Enemy teleports behind player
-    // 2. Enemy prepares to strike
-    // 3. Player hits stunning the enemy 
-    // 4. Enemy cant take damage while stunned
-    // 5. Enemy dissapeaes
-    // 6. Enemy teleports to random location and is invisible when near it reappears and prepares to attack
-    // 7. After two times stunned it fully attacks
-
     
     SpriteRenderer[] SRS;
     float timer = 0f;
@@ -94,8 +84,7 @@ public class Lv2Invis : ActionScript
     float Distance = Who.Thing.Distance(Player);
 
 
-    Debug.Log(Distance);
-
+   
 
     //DIST CHECK//
 
