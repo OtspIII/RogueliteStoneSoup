@@ -55,6 +55,7 @@ public static class Parser
         TraitDict.Add(Traits.TemporaryStunImmunity_JuliusP, new StunDrink());
         TraitDict.Add(Traits.TemporaryDmgResist_JuliusP, new TemporaryDamageResist());
         TraitDict.Add(Traits.GainInvis_JuliusP, new GainInvisibility());
+        TraitDict.Add(Traits.MonadoArts_JuliusP, new MonadoPower());
 
       
         // MazK Traits
@@ -112,6 +113,7 @@ public static class Parser
             case Actions.Lv3_Cloak_JuliusP: return new Lv3Invis(who, e);
             case Actions.TradeHp_JuliusP:return new TradeHp(who, e);
             case Actions.EvasiveJuke_JuliusP:return new EvasiveJuke(who, e);
+         
             
             // MichaelT=50,
             // QixiangD=55,
@@ -239,6 +241,7 @@ public enum Traits
     TemporaryDash_JuliusP = 4008,
     TemporaryDmgResist_JuliusP = 4009,
     GainInvis_JuliusP = 4010,
+    MonadoArts_JuliusP = 4011,
     
  
   
@@ -316,6 +319,7 @@ public enum Actions
     Lv3_Cloak_JuliusP = 4007,
     TradeHp_JuliusP = 4008,
     EvasiveJuke_JuliusP = 4009,
+    EnemyMonadoArts_JuliusP = 4010,
 
   
 

@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4679cc75b2c8be74e8b047318fa062ea, type: 3}
-  m_Name: SwordFighter
+  m_Name: Shulk
   m_EditorClassIdentifier: Assembly-CSharp::CharacterOption
-  Name: Sword Fighter
+  Name: Shulk
   Author: 40
   Team: 2
   Body: {fileID: 629948465317790645, guid: acf0e760b28c7b046ad7d511fb87a1d3, type: 3}
@@ -22,7 +22,7 @@ MonoBehaviour:
   Tags:
   - Common: 1
     Custom: 
-    W: 1
+    W: 100
     Cost: 1
   LevelRange: {x: 0, y: 0}
   Trait:
@@ -39,9 +39,22 @@ MonoBehaviour:
       Author: 0
       MaxCost: 0
     Builder: []
+  - Trait: 4011
+    Numbers: []
+    Prefabs: []
+    Acts: []
+    OtherTrait: 0
+    SpawnReq:
+      Fixed: {fileID: 0}
+      Mandatory: []
+      Any: []
+      Level: 0
+      Author: 0
+      MaxCost: 0
+    Builder: []
   HP: 10
   Speed: 5
   VisionRange: 4
-  Held: {fileID: 11400000, guid: 26769a297c5f041b7941964fcdd12a47, type: 2}
-  DefaultAction: 1
+  Held: {fileID: 11400000, guid: 161696946c6a74cf9acb969e3bff66e9, type: 2}
+  DefaultAction: 4010
   DefaultChaseAction: 1
