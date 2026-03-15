@@ -6,7 +6,7 @@ public class Thrill_qixiangdong : Trait
     private float thrillTimer = 0f;
 
     private float thrillDuration = 4f;
-    private float speedBoost = 10f;
+    private float speedBoost = 5f;
 
     private float originalSpeed;
 
@@ -35,7 +35,8 @@ public class Thrill_qixiangdong : Trait
                     if (killer == i.Who)
                     {
                         Debug.Log("player killed something");
-                        EnterThrill(i);
+                        Thrilled = true;
+                        thrillTimer = thrillDuration;
                     }
                     break;
                 }
@@ -45,30 +46,15 @@ public class Thrill_qixiangdong : Trait
                     if(Thrilled)
                     {
                         thrillTimer -= Time.deltaTime;
+                        i.Who.CurrentSpeed = originalSpeed + speedBoost;
                         if(thrillTimer <= 0f)
                         {
-                            ExitThrill(i);
+                            Thrilled = false;
+                            i.Who.CurrentSpeed = originalSpeed;
                         }
                     }
                     break;
                 }
         }
-    }
-
-    private void EnterThrill(TraitInfo i)
-    {
-        thrillTimer = thrillDuration;
-
-        if(!Thrilled)
-        {
-            Thrilled = true;
-            originalSpeed = i.Who.CurrentSpeed;
-            i.Who.CurrentSpeed += speedBoost;
-        }
-    }
-    private void ExitThrill(TraitInfo i)
-    {
-        Thrilled = false;
-        i.Who.CurrentSpeed = originalSpeed;
     }
 }
