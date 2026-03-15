@@ -135,6 +135,7 @@ public static class Parser
             // SamsonW=70,
             case Actions.SelfKill: return new SelfKillAction(who, e);
             // SarahS=75,
+            case Actions.JumpHover_SarahS: return new JumpHover_SarahS(who,e);
             // TracyH=80,
             // WesleyP=90,
             // YuChen=95,
@@ -353,7 +354,7 @@ public enum Actions
     SamsonW1        =7001,
     SelfKill        =7002, // Immediately kills thing on enter after 1 frame
     //SarahS        =75##,
-    SarahS1         =7501,
+    JumpHover_SarahS=7501,
     //TracyH        =80##,
     TracyH1         =8001,
     //WesleyP       =90##,
