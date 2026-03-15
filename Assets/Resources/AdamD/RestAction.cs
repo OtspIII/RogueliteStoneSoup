@@ -6,5 +6,13 @@ public class RestAction : ActionScript
     public RestAction(ThingInfo who, EventInfo e = null)
     {
         Setup(Actions.RestAction_AdamD, who);
+        MoveMult = 0;
+        HaltMomentum = true;
+        Priority = 0;
+        //heals hp, and if has a mana bar, refills that too
+    }
+    public override void OnRun()
+    {
+        base.OnRun();
     }
 }
