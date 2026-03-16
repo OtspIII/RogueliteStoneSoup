@@ -103,7 +103,8 @@ public static class Parser
             // AlejandroM=25,
             // ElioR=30,
             // JaidenB=35,
-            //case Actions.ExplodeAction_JaidenB:return new ExplodeAction_JaidenB(who, e);
+            case Actions.ExplodeAction_JaidenB:return new ExplodeAction_JaidenB(who, e);
+            case Actions.RobAction_JaidenB: return new RobAction_JaidenB(who, e);
             // JuliusP=40,
             case Actions.BarrierShield_JuliusP:return new BarrierShieldAction_JuliusP(who,e);
             case Actions.Lv2_BarrierShield_JuliusP:return new Lv2_BarrierShield_JuliusP(who,e);
@@ -309,6 +310,7 @@ public enum Actions
     //JaidenB       =35##,
     JaidenB1        =3501,
     ExplodeAction_JaidenB = 3502,
+    RobAction_JaidenB = 3503,
     //JuliusP       =40##,
     JuliusP1        =4001,
     BarrierShield_JuliusP = 4002,
