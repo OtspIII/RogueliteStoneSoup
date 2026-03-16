@@ -43,6 +43,7 @@ public static class Parser
         TraitDict.Add(Traits.SpeedPotion_AlejandroM, new SpeedPotion_AlejandroM());
         // ElioR Traits
         TraitDict.Add(Traits.Barrier, new BarrierTrait_ElioR());
+        TraitDict.Add(Traits.ParryTrait_ElioR, new ParryTrait());
         // JaidenB Traits
         TraitDict.Add(Traits.InvertControls, new InvertControlsTrait());
         // Julius Traits
@@ -102,6 +103,7 @@ public static class Parser
             case Actions.RestAction_AdamD:return new RestAction(who,e);
             // AlejandroM=25,
             // ElioR=30,
+            case Actions.ParryAction_ElioR: return new ParryAction(who,e);
             // JaidenB=35,
             //case Actions.ExplodeAction_JaidenB:return new ExplodeAction_JaidenB(who, e);
             // JuliusP=40,
@@ -227,6 +229,7 @@ public enum Traits
     //ElioR         =30##,
     ElioR1          =3001,
     Barrier         =3002, //this will negate one instance of taken damage taken.
+    ParryTrait_ElioR = 3003,
     //JaidenB       =35##,
     JaidenB1        =3501,
     InvertControls  =3502,
@@ -306,6 +309,7 @@ public enum Actions
     AlejandroM1     =2501,
     //ElioR         =30##,
     ElioR1          =3001,
+    ParryAction_ElioR     =3002,
     //JaidenB       =35##,
     JaidenB1        =3501,
     ExplodeAction_JaidenB = 3502,
