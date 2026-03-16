@@ -15,7 +15,7 @@ public class ParryAction: ActionScript
     {
         ThingController Hit = collision.Other;
         Hit.TakeKnockback(Who.Thing.transform.position, knockback);
-        Who.TakeKnockback(Who.Thing.transform.position, knockback);
+       // Who.TakeKnockback(Who.Thing.transform.position, knockback);
         
     }
     public override void End()

@@ -16,7 +16,7 @@ public class ParryTrait: Trait
             case EventTypes.Update:
             if(CanParry && Input.GetKeyDown(KeyCode.P))
                 {
-                    ThingController.DoAction(Actions.ParryAction_ElioR, e);
+                    //ThingController.DoAction(Actions.ParryAction_ElioR);
                 }
                 break;
         }
