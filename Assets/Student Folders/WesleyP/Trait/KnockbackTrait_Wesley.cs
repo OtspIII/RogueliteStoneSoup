@@ -12,8 +12,8 @@ public class KnockbackTrait_Wesley : Trait
         {
             Setup(Actions.Lunge, who);
             Anim = "Lunge";
-            MoveMult = 0;
-            Knockback = 0;
+            MoveMult = 1;
+            Knockback = 12;
         }
         public override void OnRun()
         {

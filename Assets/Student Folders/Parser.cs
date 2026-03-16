@@ -81,6 +81,7 @@ public static class Parser
         TraitDict.Add(Traits.Teleport_TracyH, new TeleportTrait_TracyH());
         // WesleyP Traits
         TraitDict.Add(Traits.Knockback_WesleyP1, new KnockbackTrait_Wesley());
+        TraitDict.Add(Traits.CharacterSwap_WesleyP1, new CharacterSwapTrait_Wesley());
         // YuChen Traits
 
 
@@ -282,6 +283,7 @@ public enum Traits
     //WesleyP       =90##,
     WesleyP1        =9001,
     Knockback_WesleyP1 =9002, // When player is hit will be lounched back 
+    CharacterSwap_WesleyP1 = 9003, // When press key player swaps
     //YuChen        =95##,
     YuChen1         =9501,
 }
