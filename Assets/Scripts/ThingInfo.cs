@@ -48,7 +48,7 @@ public class ThingInfo //The class that handles all the core info for all non-wa
     { return Spawn(where.transform.position, where.transform.rotation.eulerAngles.z); }
     public ThingController Spawn(Vector3 pos)
     { return Spawn(pos, 0); }
-    public ThingController Spawn(Vector3 pos, float rot)
+    public ThingController Spawn(Vector3 pos, float rot, ThingInfo spawnerThing = null)
     {
         //If anything goes wrong, it's useful to know who we were spawning when things bugged out.
         God.DebugTxt = "Spawning " + Name + " / " + Type.Author;
@@ -76,7 +76,9 @@ public class ThingInfo //The class that handles all the core info for all non-wa
         if(VisionRange > 0)
             Thing.AddHitbox(HitboxTypes.Vision, VisionRange);
         //Tell our traits we just spawned a GameObject!
-        TakeEvent(EventTypes.OnSpawn);
+        EventInfo spawnEvent = God.E(EventTypes.OnSpawn);
+        if (spawnerThing != null) spawnEvent.SetThing(ThingEInfo.Source, spawnerThing); // Set the source of the spawned object
+        TakeEvent(spawnEvent);
         //Mark us as having been setup, so we don't do setup things twice
         Setup = true;
         God.DebugTxt = "";
@@ -375,6 +377,11 @@ public class ThingInfo //The class that handles all the core info for all non-wa
     {
         if (Thing == null) return false;
         return Thing.SeenThings.Contains(t);
+    }
+
+    public void DoAction(Actions a)
+    {
+        TakeEvent(God.E(EventTypes.StartAction).Set(ActionInfo.Action,a));
     }
 
     public override string ToString()

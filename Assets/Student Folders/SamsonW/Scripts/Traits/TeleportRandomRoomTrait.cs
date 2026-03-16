@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class TeleportRandomRoomTrait : Trait
 {
     public TeleportRandomRoomTrait()
     {
-        Type = Traits.TeleportRandomRoom;
+        //Type = Traits.TeleportRandomRoom;
         AddListen(EventTypes.OnUse);
     }
     
@@ -37,3 +38,5 @@ public class TeleportRandomRoomTrait : Trait
         }
     }
 }
+
+

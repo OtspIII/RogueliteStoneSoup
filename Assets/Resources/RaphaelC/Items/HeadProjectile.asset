@@ -33,6 +33,7 @@ MonoBehaviour:
       Any: []
       Level: 0
       Author: 0
+      MaxCost: 0
     Builder:
     - Type: 0
       NumType: 2
