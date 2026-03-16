@@ -3,20 +3,12 @@ using System.Collections;
 
 public class Lv2Invis : ActionScript
 {
-    //STEPS FOR ACTIONS;
-
-    // 1. Enemy teleports behind player
-    // 2. Enemy prepares to strike
-    // 3. Player hits stunning the enemy 
-    // 4. Enemy cant take damage while stunned
-    // 5. Enemy dissapeaes
-    // 6. Enemy teleports to random location and is invisible when near it reappears and prepares to attack
-    // 7. After two times stunned it fully attacks
-
     
     SpriteRenderer[] SRS;
     float timer = 0f;
     bool started = false;
+
+    bool Teleported = false;
 
     public int timesFound = 0;
 
@@ -58,7 +50,7 @@ public class Lv2Invis : ActionScript
     {
         Setup(Actions.Lv2_BarrierShield_JuliusP, who, true);
         HaltMomentum = false;
-        MoveMult = 0.5f;
+        MoveMult = 0.2f;
         Duration = Mathf.Infinity;
 
         
@@ -66,7 +58,9 @@ public class Lv2Invis : ActionScript
 
     public override void Begin()
     {
-      Who.AddTrait(Traits.GainInvis_JuliusP);
+     
+
+      
     }
 
     public override void OnRun()
@@ -81,64 +75,109 @@ public class Lv2Invis : ActionScript
 
 
 
-    void MoveTowardPlayerWhileCloak()
+   void MoveTowardPlayerWhileCloak()
+   {
+    
+    ThingInfo Player = God.Session.Player;
+
+   
+    float Distance = Who.Thing.Distance(Player);
+
+
+   
+
+    //DIST CHECK//
+
+    if(Distance <= 2.5)
     {
+ 
 
-
-
-    
-      SRS = Who.Thing.gameObject.GetComponentsInChildren<SpriteRenderer>(true);
-     
-    
-      ThingInfo Player = God.Session.Player;
+     //GIVE THE THING A CHANCE TO TELEPORT//
+     God.C(ChanceToTeleport());
 
     
-      float Distance = Who.Thing.Distance(Player);
-
-
-      if(Distance < 7f)
-      {
-            
-        Debug.Log("Hi");
-
-       // God.C(GraduallyDisappear(1f));
-
-       Who.Thing.MoveTowards(Player);
-
-
-      }
-     
-       
-       
-      // Who.DoAction(Actions.Chase);
-
 
 
     }
-
-
-
-//FUNCTION THAT DECREASES ALPHA OF SPRITE//
-
-IEnumerator GraduallyDisappear(float duration)
-{
-    float time = 0f;
-
-    while (time < duration)
+  
+    //ADD INVISBILITY TRAIT WHEN CLOSE//
+    if(Distance < 4.5f && !Who.Has(Traits.GainInvis_JuliusP))
     {
-        time += Time.deltaTime;
-        float alpha = Mathf.Lerp(1f, 0f, time / duration);
 
-        foreach (SpriteRenderer sr in SRS)
+
+        //MAKE THE THING MOVE TOWARDS PLAYER//
+        Who.Thing.MoveTowards(Player);
+
+        //MAKE THE THING LOOK AT THE PLAYER//
+        Who.Thing.LookAt(Player);
+    
+        //ADD THE INVSISIBILITY TRAIT TO THE THING//    
+        Who.AddTrait(Traits.GainInvis_JuliusP);
+
+        
+
+    }
+
+   
+   
+   }
+
+
+    //FINCTION THAT MAKES THE THING TELEPORT (RANDOM CHANCE)//
+    IEnumerator ChanceToTeleport()
+    {
+
+        yield return new WaitForSeconds(0.19f);
+        
+        //40% CHANCE TO TELEPORT//
+        float TeleportChance = 0.25f;
+
+        //GET THIINGINFO OF PLAYER//
+        ThingInfo Player = God.Session.Player;
+
+        //DISTANCE TO THE PLAYER//
+        float Dist = Who.Thing.Distance(Player);
+
+
+        //IF DIST IS LESS THAN 2.1, RANDOM CHANCE VALUE GREATER THAN 0.4, AND HASNT TELEPORTED YET//
+        if(Dist <= 2.49f  && Random.value > TeleportChance && !Teleported)
         {
-            Color c = sr.color;
-            c.a = alpha;
-            sr.color = c;
+            
+        
+        //GET THE PLAYER'S POSITION//
+        Vector2 playerPos = God.Session.Player.Thing.transform.position;
+
+
+        //GET A RANDOM POINT ON THE CIRCLE//
+        Vector2 RandomPos = UnityEngine.Random.insideUnitCircle * 4f;
+
+
+        //TELEPORT TO LOCATION//
+        Vector2 TeleportPos = playerPos + RandomPos;
+
+
+        //ACTUALLY TELEPORT TO THE POSITION//
+        Who.Thing.transform.position = TeleportPos;
+
+
+        //SET TO TRUE, TO ONLY TELEPORT ONCE//
+        Teleported = true;
+
+
+        yield return new WaitForSeconds(1f);
+
+        Complete();
+
+
+
+
+
         }
 
-        yield return null;
+
+        
     }
-}
+
 
 
     public override void End()

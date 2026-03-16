@@ -26,7 +26,7 @@ MonoBehaviour:
     Cost: 1
   LevelRange: {x: 3, y: 10}
   Trait: []
-  HP: 7
+  HP: 5
   Speed: 2
   VisionRange: 4
   Held: {fileID: 11400000, guid: 7eef3b2d1786b6349b779d64bdad2c6e, type: 2}

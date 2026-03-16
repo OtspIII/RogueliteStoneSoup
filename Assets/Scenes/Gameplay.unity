@@ -194,19 +194,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2520416158583824974, guid: 1406ee7445a27a44e8384a3c5752e102, type: 3}
       propertyPath: CurrentAuthor
-      value: 20
+      value: 65
       objectReference: {fileID: 0}
     - target: {fileID: 2520416158583824974, guid: 1406ee7445a27a44e8384a3c5752e102, type: 3}
       propertyPath: DebugSpawnAlt
       value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 2520416158583824974, guid: 1406ee7445a27a44e8384a3c5752e102, type: 3}
-      propertyPath: LevelOverride
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2520416158583824974, guid: 1406ee7445a27a44e8384a3c5752e102, type: 3}
-      propertyPath: LevelOverride
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2520416158583824974, guid: 1406ee7445a27a44e8384a3c5752e102, type: 3}
       propertyPath: LevelOverride

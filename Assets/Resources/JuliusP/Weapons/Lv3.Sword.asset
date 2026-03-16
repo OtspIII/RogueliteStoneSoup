@@ -10,41 +10,33 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a47d2194617e47469e601e558e7b8b4, type: 3}
-  m_Name: BoneWeapon
-  m_EditorClassIdentifier: Assembly-CSharp::ItemOption
-  Name: BoneWeapon
-  Author: 35
+  m_Name: Lv3.Sword
+  m_EditorClassIdentifier: 
+  Name: Sword of Demise
+  Author: 0
   Team: 1
   Body: {fileID: 629948465317790645, guid: b4fa405680f33044abe2c4567ecf147f, type: 3}
-  Art: {fileID: 4010562923862242353, guid: 71c4b8a53e699934faf44fa57be9e694, type: 3}
+  Art: {fileID: 21300000, guid: 6c7f9cbfcc8f8d145913c8ae22c5bd51, type: 3}
   Color: {r: 1, g: 1, b: 1, a: 1}
-  Size: 0.5
+  Size: 1
   Tags:
   - Common: 201
     Custom: 
-    W: 5
+    W: 1
+    Cost: 1
   LevelRange: {x: 0, y: 0}
-  Trait:
-  - Trait: 301
-    Numbers: []
-    Prefabs: []
-    Acts: []
-    SpawnReq:
-      Fixed: {fileID: 0}
-      Mandatory: []
-      Any: []
-      Level: 0
-      Author: 0
-  DefaultAttack: 103
+  Trait: []
+  DefaultAttack: 101
   ToSpawn:
-    Fixed: {fileID: 11400000, guid: 130638cfe7af2a444b2c13c8698eae8f, type: 2}
+    Fixed: {fileID: 0}
     Mandatory: []
     Any: []
     Level: 0
-    Author: 35
+    Author: 0
+    MaxCost: 0
   FloorBody: {fileID: 0}
   FloorArt: {fileID: 0}
-  Damage: 5
-  IdealRange: 1
-  SpeedMult: 5
-  ActDuration: 1
+  Damage: 2
+  IdealRange: 1.5
+  SpeedMult: 1
+  ActDuration: 0

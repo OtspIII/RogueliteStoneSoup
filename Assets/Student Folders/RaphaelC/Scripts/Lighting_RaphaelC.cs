@@ -44,3 +44,26 @@ public class Lighting_RaphaelC : Trait
         }
     }
 }
+
+public class Trait2_RaphaelC : Trait
+{
+    public Trait2_RaphaelC()
+    {
+        Type = Traits.Trait2_RaphaelC;
+        AddListen(EventTypes.OnKill);
+    }
+    public override void TakeEvent(TraitInfo i, EventInfo e)
+    {
+        if (e.Type == EventTypes.OnKill)
+        {
+            ThingInfo target = e.Get(ThingEInfo.Target);
+            ThingInfo player = i.Who;
+
+            if (target == null || player == null) return;
+            if (target.Has(Traits.Player)) return;
+
+            float HealAmount = i.Get(NumInfo.Default, 1);
+            player.TakeEvent(God.E(EventTypes.Healing).Set(HealAmount).Set(player));
+        }
+    }
+}
