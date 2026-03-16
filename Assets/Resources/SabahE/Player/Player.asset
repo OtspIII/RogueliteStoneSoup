@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Player
   m_EditorClassIdentifier: Assembly-CSharp::CharacterOption
   Name: Player
-  Author: 65
+  Author: 0
   Team: 2
   Body: {fileID: 629948465317790645, guid: acf0e760b28c7b046ad7d511fb87a1d3, type: 3}
   Art: {fileID: -6930072583179015400, guid: 466134fd5ef0c8346910fe7179d8e3a2, type: 3}
-  Color: {r: 0, g: 0.09766126, b: 1, a: 1}
+  Color: {r: 0.21960786, g: 0.21960786, b: 0.21960786, a: 1}
   Size: 1
   Tags:
   - Common: 1
@@ -26,7 +26,7 @@ MonoBehaviour:
     Cost: 1
   LevelRange: {x: 0, y: 0}
   Trait:
-  - Trait: 6502
+  - Trait: 100
     Numbers: []
     Prefabs: []
     Acts: []
@@ -39,9 +39,9 @@ MonoBehaviour:
       Author: 0
       MaxCost: 0
     Builder: []
-  HP: 5
-  Speed: 8
+  HP: 10
+  Speed: 5
   VisionRange: 4
   Held: {fileID: 11400000, guid: 7fc77b878c3f272478de54b35b2fb3a3, type: 2}
-  DefaultAction: 201
-  DefaultChaseAction: 202
+  DefaultAction: 1
+  DefaultChaseAction: 1

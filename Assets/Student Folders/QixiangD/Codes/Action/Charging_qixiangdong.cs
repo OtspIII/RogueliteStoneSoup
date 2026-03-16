@@ -8,7 +8,7 @@ public class Charging_qixiangdong : ActionScript
 
     public Charging_qixiangdong(ThingInfo who, EventInfo e = null)
     {
-        Setup(Actions.Charging_qixiangdong, who);
+        //Setup(Actions.Charging_qixiangdong, who);
 
         MoveMult = 0f;
         HaltMomentum = true;
@@ -51,6 +51,20 @@ public class Charging_qixiangdong : ActionScript
 
 
         Who.Thing.ActualMove = chargeDirection * chargeSpeed;
+    }
+    public override void OnRun()
+    {
+        base.OnRun();
+
+        if (Who.Target == null)
+        {
+            return;
+        }
+        Who.Thing.LookAt(Who.Target, 0.5f);
+
+        Who.TakeEvent(God.E(EventTypes.StartAction).Set(ActionInfo.Action, Actions.DefaultAttack));
+
+
     }
 
     public override void End()

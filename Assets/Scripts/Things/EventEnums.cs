@@ -154,7 +154,8 @@ public enum VectorInfo
     C=4,
     D=5,
     E=6,
-    F=7
+    F=7,
+    Position=8
 }
 
 

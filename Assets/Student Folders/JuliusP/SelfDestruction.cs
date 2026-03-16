@@ -31,7 +31,7 @@ public class SelfDestruction : Trait
                     Vector2 location = i.Who.Thing.transform.position;
                    
                     //RADIUS OF EXPLSOION//
-                    float radius = 1.4f;
+                    float radius = 0.4f;
 
                     // GET ALL THINGS WITHIN EXPLOSION RADIUS
                     List<ThingInfo> possibleHits = God.GM.CollideCircle(location, radius);
@@ -43,7 +43,7 @@ public class SelfDestruction : Trait
                         //SKIPS IF IT FINDS THE ENTITY WITH THE TRAIT//
                         if (Ti == null || Ti == i.Who) continue; 
 
-                        //APPLY 5 DAMAGE//
+                        //APPLY 1 DAMAGE//
 
                         EventInfo dmg = God.E(EventTypes.Damage);
                         dmg.Set(NumInfo.Default, 1f);  
@@ -58,10 +58,16 @@ public class SelfDestruction : Trait
 
                     // SELF-DESTRUCT AFTER DAMAGING THOSE AROUND IT//
                     i.Who.Destruct();
+
+
+                    
                 }
 
                 break;
             }
         }
     }
+
+
+    
 }

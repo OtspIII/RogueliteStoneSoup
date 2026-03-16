@@ -140,7 +140,6 @@ public class ThingController : MonoBehaviour
             float d = Distance(targ);
             if (d < thresh)
             {
-                
                 if (d < thresh - 1)
                     Info.DesiredMove = transform.position - targ;
                 else
@@ -267,7 +266,7 @@ public class ThingController : MonoBehaviour
         i.ChildOf = Info;
         i.Team = Info.Team;
         float rot = Body.Held.transform.rotation.eulerAngles.z - 90;
-        i.Spawn(Body.Held.transform.position,rot);
+        i.Spawn(Body.Held.transform.position,rot,Info);
         return i;
     }
 
