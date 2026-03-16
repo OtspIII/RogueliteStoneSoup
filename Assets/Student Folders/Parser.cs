@@ -66,6 +66,7 @@ public static class Parser
         TraitDict.Add(Traits.Thrill_qixiangdong, new Thrill_qixiangdong());
         // RaphaelC Traits
         TraitDict.Add(Traits.Lighting_RaphaelC,new Lighting_RaphaelC());
+        TraitDict.Add(Traits.Trait2_RaphaelC,new Trait2_RaphaelC());
         // SabahE Traits
         TraitDict.Add(Traits.SpeedUpSabahE, new SpeedUpTrait_SabahE());
         TraitDict.Add(Traits.RallySabahE, new RallyTrait_SabahE());
@@ -260,6 +261,7 @@ public enum Traits
     Thrill_qixiangdong = 5503,
     //RaphaelC      =60##,
     Lighting_RaphaelC       =6001,
+    Trait2_RaphaelC         =6002,
     //SabahE        =65##,
     SabahE1         =6501,
     SpeedUpSabahE   =6502, //Speedup for 10s when you get hit

@@ -26,9 +26,9 @@ MonoBehaviour:
     Cost: 1
   LevelRange: {x: 7, y: 10}
   Trait: []
-  HP: 3
-  Speed: 0.75
-  VisionRange: 10
+  HP: 6
+  Speed: 1
+  VisionRange: 3
   Held: {fileID: 11400000, guid: d8535ae3107c2184ab8fc49f1318f904, type: 2}
   DefaultAction: 201
   DefaultChaseAction: 6003
