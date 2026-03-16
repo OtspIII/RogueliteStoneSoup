@@ -76,6 +76,8 @@ public static class Parser
         TraitDict.Add(Traits.HealZone,new HealZoneTrait());
         TraitDict.Add(Traits.DelayedActionAfterStartingAction,new DelayedActionAfterStartingAction());
         // SarahS Traits
+        TraitDict.Add(Traits.ProximityExplodeSarahS,new ProximityExplode_SarahS());
+        TraitDict.Add(Traits.SlowMoSarahS,new SlowMo_SarahS());
         // TracyH Traits
         TraitDict.Add(Traits.Teleport_TracyH, new TeleportTrait_TracyH());
         // WesleyP Traits
@@ -135,6 +137,7 @@ public static class Parser
             // SamsonW=70,
             case Actions.SelfKill: return new SelfKillAction(who, e);
             // SarahS=75,
+            case Actions.JumpHover_SarahS: return new JumpHover_SarahS(who,e);
             // TracyH=80,
             // WesleyP=90,
             // YuChen=95,
@@ -273,7 +276,8 @@ public enum Traits
     HealZone        =7004, //Heals player when standing inside zone
     DelayedActionAfterStartingAction=7005, //Switches action after X secs after entering an action
     //SarahS        =75##,
-    SarahS1         =7501,
+    ProximityExplodeSarahS  =7501,
+    SlowMoSarahS    =7502,
     //TracyH        =80##,
     Teleport_TracyH =8001, //Teleport player between radius or nearby room. Can be placed on held item or zone
     //WesleyP       =90##,
@@ -353,7 +357,7 @@ public enum Actions
     SamsonW1        =7001,
     SelfKill        =7002, // Immediately kills thing on enter after 1 frame
     //SarahS        =75##,
-    SarahS1         =7501,
+    JumpHover_SarahS=7501,
     //TracyH        =80##,
     TracyH1         =8001,
     //WesleyP       =90##,

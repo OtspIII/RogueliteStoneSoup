@@ -4,7 +4,7 @@ public class ProximityExplode_SarahS : Trait
 {
     public ProximityExplode_SarahS()
     {
-        Type = Traits.SarahS1;
+        Type = Traits.ProximityExplodeSarahS;
         
         AddListen(EventTypes.OnSee);
     }
