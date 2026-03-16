@@ -10,35 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4679cc75b2c8be74e8b047318fa062ea, type: 3}
-  m_Name: Arthur
+  m_Name: The Hunter
   m_EditorClassIdentifier: Assembly-CSharp::CharacterOption
-  Name: Arthur
+  Name: The Hunter
   Author: 75
-  Team: 2
+  Team: 1
   Body: {fileID: 629948465317790645, guid: acf0e760b28c7b046ad7d511fb87a1d3, type: 3}
-  Art: {fileID: 9183382434615233273, guid: ce7ae796c54402f41bf8753d6ec49110, type: 3}
+  Art: {fileID: 0}
   Color: {r: 1, g: 1, b: 1, a: 1}
-  Size: 0.9
+  Size: 1
   Tags:
-  - Common: 1
+  - Common: 102
     Custom: 
     W: 0
+    Cost: 0
   LevelRange: {x: 0, y: 0}
-  Trait:
-  - Trait: 1
-    Numbers: []
-    Prefabs: []
-    Acts:
-    - Type: 0
-      Act: 0
-    OtherTrait: 100
-    SpawnReq:
-      Fixed: {fileID: 0}
-      Mandatory: []
-      Any: []
-      Level: 0
-      Author: 0
-  HP: 20
+  Trait: []
+  HP: 0
   Speed: 5
   VisionRange: 4
   Held: {fileID: 0}

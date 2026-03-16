@@ -10,25 +10,26 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a47d2194617e47469e601e558e7b8b4, type: 3}
-  m_Name: HoldableOption
+  m_Name: Unassuming Old Journal
   m_EditorClassIdentifier: Assembly-CSharp::ItemOption
   Name: 
   Author: 75
-  Team: 3
+  Team: 2
   Body: {fileID: 0}
-  Art: {fileID: -4421300922047078791, guid: 4bf70cedee363fb4b9048f89e88c9ddc, type: 3}
+  Art: {fileID: 0}
   Color: {r: 1, g: 1, b: 1, a: 1}
   Size: 1
   Tags: []
   LevelRange: {x: 0, y: 0}
   Trait: []
-  DefaultAttack: 101
+  DefaultAttack: 0
   ToSpawn:
     Fixed: {fileID: 0}
     Mandatory: []
     Any: []
     Level: 0
     Author: 0
+    MaxCost: 0
   FloorBody: {fileID: 0}
   FloorArt: {fileID: 0}
   Damage: 0
