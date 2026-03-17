@@ -57,6 +57,7 @@ public static class Parser
         TraitDict.Add(Traits.TemporaryDmgResist_JuliusP, new TemporaryDamageResist());
         TraitDict.Add(Traits.GainInvis_JuliusP, new GainInvisibility());
         TraitDict.Add(Traits.MonadoArts_JuliusP, new MonadoPower());
+        TraitDict.Add(Traits.Slowed_JuliusP, new Slowed());
 
       
         // MazK Traits
@@ -250,6 +251,7 @@ public enum Traits
     TemporaryDmgResist_JuliusP = 4009,
     GainInvis_JuliusP = 4010,
     MonadoArts_JuliusP = 4011,
+    Slowed_JuliusP = 4012,
     
  
   
