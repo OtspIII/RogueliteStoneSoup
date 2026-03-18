@@ -123,6 +123,7 @@ public static class Parser
          
             
             // MichaelT=50,
+            case Actions.BleedSwingAction: return new BleedSwingAction(who, e); 
             // QixiangD=55,
             //case Actions.Sidestep_qixiangdong: return new Sidestep_qixiangdong(who,e);
             // RaphaelC=60,
