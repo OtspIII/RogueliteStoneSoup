@@ -18,6 +18,9 @@ public class Slowed : Trait
         Type = Traits.Slowed_JuliusP;
 
         AddListen(EventTypes.Update);
+
+
+        
     }
 
     public override void TakeEvent(TraitInfo i, EventInfo e)
@@ -37,7 +40,7 @@ public class Slowed : Trait
                 }
 
                 // SLOW THE THING DOWN
-                thing.CurrentSpeed = 1.5f;
+                thing.CurrentSpeed = 0.5f;
 
                 // COUNT DOWN TIMER
                 timer -= Time.deltaTime;
@@ -52,10 +55,19 @@ public class Slowed : Trait
 
                     // REMOVE THE SLOW TRAIT
                     thing.RemoveTrait(Traits.Slowed_JuliusP);
+
+                    // Abort this trait to stop it from running again
+                    i.Abort = true;
+        }
+               
                 }
 
                 break;
             }
-        }
+            
+
+
+
+          }
     }
-}
+    

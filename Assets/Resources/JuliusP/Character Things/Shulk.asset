@@ -22,7 +22,7 @@ MonoBehaviour:
   Tags:
   - Common: 1
     Custom: 
-    W: 100
+    W: 1
     Cost: 1
   LevelRange: {x: 0, y: 0}
   Trait:
@@ -40,19 +40,6 @@ MonoBehaviour:
       MaxCost: 0
     Builder: []
   - Trait: 4011
-    Numbers: []
-    Prefabs: []
-    Acts: []
-    OtherTrait: 0
-    SpawnReq:
-      Fixed: {fileID: 0}
-      Mandatory: []
-      Any: []
-      Level: 0
-      Author: 0
-      MaxCost: 0
-    Builder: []
-  - Trait: 4012
     Numbers: []
     Prefabs: []
     Acts: []
