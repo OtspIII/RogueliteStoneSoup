@@ -2,6 +2,13 @@ using UnityEngine;
 
 public class CharacterSwapTrait_Wesley : Trait
 {
+    
+    public BodyController Held;
+    public ThingController Who;
+    public HitboxController Hitbox;
+
+
+
     public CharacterSwapTrait_Wesley()
     {
         AddListen(EventTypes.OnSpawn,5);

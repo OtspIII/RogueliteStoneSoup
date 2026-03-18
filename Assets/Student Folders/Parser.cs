@@ -283,6 +283,7 @@ public enum Traits
     //WesleyP       =90##,
     WesleyP1        =9001,
     Knockback_WesleyP1 =9002, // When player is hit will be lounched back 
+    NewPlayerAlly_WesleyP1 =9003, //When Player summon ally main player body disspawn
     CharacterSwap_WesleyP1 = 9003, // When press key player swaps
     //YuChen        =95##,
     YuChen1         =9501,
@@ -365,6 +366,7 @@ public enum Actions
     TracyH1         =8001,
     //WesleyP       =90##,
     WesleyP1        =9001,
+    NewPlayerAlly_WesleyP =9001, 
     //YuChen        =95##,
     YuChen1         =9501,
     

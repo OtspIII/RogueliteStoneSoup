@@ -9,20 +9,28 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 037523bd7ae983240ad1b7cc3ff106cd, type: 3}
+  m_Script: {fileID: 11500000, guid: 4679cc75b2c8be74e8b047318fa062ea, type: 3}
   m_Name: CR1
-  m_EditorClassIdentifier: Assembly-CSharp::ThingOption
-  Name: Cr1
-  Author: 0
-  Team: 1
-  Body: {fileID: 0}
-  Art: {fileID: -8335318719858845397, guid: 8d93e9f3167202648ad2cd2374e1a252, type: 3}
+  m_EditorClassIdentifier: Assembly-CSharp::CharacterOption
+  Name: CR1
+  Author: 1
+  Team: 2
+  Body: {fileID: 629948465317790645, guid: acf0e760b28c7b046ad7d511fb87a1d3, type: 3}
+  Art: {fileID: -183446788379000519, guid: 8d93e9f3167202648ad2cd2374e1a252, type: 3}
   Color: {r: 1, g: 1, b: 1, a: 1}
   Size: 1
-  Tags: []
+  Tags:
+  - Common: 1
+    Custom: 
+    W: 1
+    Cost: 1
+  - Common: 102
+    Custom: 
+    W: 1
+    Cost: 0
   LevelRange: {x: 0, y: 0}
   Trait:
-  - Trait: 0
+  - Trait: 100
     Numbers: []
     Prefabs: []
     Acts: []
@@ -35,3 +43,9 @@ MonoBehaviour:
       Author: 0
       MaxCost: 0
     Builder: []
+  HP: 25
+  Speed: 4
+  VisionRange: 4
+  Held: {fileID: 11400000, guid: d8535ae3107c2184ab8fc49f1318f904, type: 2}
+  DefaultAction: 1
+  DefaultChaseAction: 1
