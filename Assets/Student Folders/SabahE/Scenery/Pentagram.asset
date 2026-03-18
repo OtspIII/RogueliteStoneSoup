@@ -23,21 +23,76 @@ MonoBehaviour:
   - Common: 400
     Custom: 
     W: 1
+    Cost: 1
   LevelRange: {x: 0, y: 0}
   Trait:
-  - Trait: 2
-    Numbers:
-    - Type: 0
-      Value: 0
-    Prefabs:
-    - Type: 0
-      Value: {fileID: 0}
-    Acts:
-    - Type: 0
-      Act: 0
+  - Trait: 7004
+    Numbers: []
+    Prefabs: []
+    Acts: []
+    OtherTrait: 0
     SpawnReq:
       Fixed: {fileID: 0}
       Mandatory: []
       Any: []
       Level: 0
       Author: 0
+      MaxCost: 0
+    Builder:
+    - Type: 0
+      NumType: 0
+      Num: 0
+      StrType: 0
+      Str: 
+      ActType: 0
+      Act: 0
+      BoolType: 0
+      Bool: 0
+      OptionType: 0
+      Option: {fileID: 0}
+      VectorType: 0
+      Vector: {x: 0, y: 0}
+      Fixed: {fileID: 0}
+      Mandatory: 
+      MandatoryW: 0
+      Any: 
+      AnyW: 0
+      Trait: 0
+    - Type: 4
+      NumType: 0
+      Num: 0
+      StrType: 0
+      Str: 
+      ActType: 0
+      Act: 0
+      BoolType: 0
+      Bool: 0
+      OptionType: 0
+      Option: {fileID: 0}
+      VectorType: 0
+      Vector: {x: 0, y: 0}
+      Fixed: {fileID: 0}
+      Mandatory: 
+      MandatoryW: 0
+      Any: 
+      AnyW: 0
+      Trait: 0
+    - Type: 2
+      NumType: 0
+      Num: 0
+      StrType: 0
+      Str: 
+      ActType: 0
+      Act: 0
+      BoolType: 0
+      Bool: 0
+      OptionType: 0
+      Option: {fileID: 0}
+      VectorType: 0
+      Vector: {x: 0, y: 0}
+      Fixed: {fileID: 0}
+      Mandatory: 
+      MandatoryW: 0
+      Any: 
+      AnyW: 0
+      Trait: 0
