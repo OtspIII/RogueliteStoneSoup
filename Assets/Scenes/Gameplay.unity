@@ -194,7 +194,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: ca75a5b780d3db048b2dd8769746d0aa, type: 2}
     - target: {fileID: 2520416158583824974, guid: 1406ee7445a27a44e8384a3c5752e102, type: 3}
       propertyPath: CurrentAuthor
-      value: 20
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2520416158583824974, guid: 1406ee7445a27a44e8384a3c5752e102, type: 3}
       propertyPath: LevelOverride
