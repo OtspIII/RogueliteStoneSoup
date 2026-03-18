@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 443b08c4c8cbe114a8394077da127f21, type: 3}
   m_Name: Exit Room
   m_EditorClassIdentifier: Assembly-CSharp::RoomOption
-  Name: 
-  Author: 0
-  Prefab: {fileID: 0}
-  Tags: 
+  Name: Exit Room
+  Author: 25
+  Prefab: {fileID: 909659412286494541, guid: 8d9b5d99ecb74cc4895250bd22ac9bdd, type: 3}
+  Tags: 03000000
