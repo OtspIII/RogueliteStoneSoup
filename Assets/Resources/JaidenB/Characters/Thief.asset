@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4679cc75b2c8be74e8b047318fa062ea, type: 3}
-  m_Name: BombHead
+  m_Name: Thief
   m_EditorClassIdentifier: Assembly-CSharp::CharacterOption
-  Name: BombHead
+  Name: Thief
   Author: 35
   Team: 3
   Body: {fileID: 629948465317790645, guid: c5227d51ccfec934db9e0058624b573e, type: 3}
-  Art: {fileID: 6200118337827907677, guid: ee4ed15bb21f3144a99a9925ecbff4f2, type: 3}
+  Art: {fileID: 9183382434615233273, guid: ce7ae796c54402f41bf8753d6ec49110, type: 3}
   Color: {r: 1, g: 1, b: 1, a: 1}
   Size: 1
   Tags:
@@ -58,41 +58,9 @@ MonoBehaviour:
       Any: 
       AnyW: 0
       Trait: 0
-  - Trait: 0
-    Numbers: []
-    Prefabs: []
-    Acts: []
-    OtherTrait: 0
-    SpawnReq:
-      Fixed: {fileID: 0}
-      Mandatory: []
-      Any: []
-      Level: 0
-      Author: 0
-      MaxCost: 0
-    Builder:
-    - Type: 2
-      NumType: 0
-      Num: 0
-      StrType: 0
-      Str: 
-      ActType: 0
-      Act: 201
-      BoolType: 0
-      Bool: 0
-      OptionType: 0
-      Option: {fileID: 0}
-      VectorType: 0
-      Vector: {x: 0, y: 0}
-      Fixed: {fileID: 0}
-      Mandatory: 
-      MandatoryW: 0
-      Any: 
-      AnyW: 0
-      Trait: 0
-  HP: 1
+  HP: 2
   Speed: 5
-  VisionRange: 7
+  VisionRange: 4
   Held: {fileID: 0}
   DefaultAction: 201
   DefaultChaseAction: 202

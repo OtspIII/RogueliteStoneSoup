@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a47d2194617e47469e601e558e7b8b4, type: 3}
-  m_Name: LolipopWeapon
+  m_Name: StealBag
   m_EditorClassIdentifier: Assembly-CSharp::ItemOption
   Name: LolipopWeapon
   Author: 35
