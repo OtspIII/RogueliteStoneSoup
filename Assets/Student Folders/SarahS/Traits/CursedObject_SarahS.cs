@@ -53,8 +53,7 @@ public class CursedObject_SarahS : Trait
                     float damage = i.GetFloat(NumInfo.Max, 1f);
                     holder.TakeEvent(God.E(EventTypes.Damage)
                         .Set(damage)
-                        .Set(i.Who)
-                        .Set(StrInfo.DType, "Curse"));
+                        .Set(i.Who));
 
                     float drainInterval = i.GetFloat(NumInfo.Min, 1f);
                     i.SetFloat(NumInfo.Speed, drainInterval);

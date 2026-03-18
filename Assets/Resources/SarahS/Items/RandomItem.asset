@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a47d2194617e47469e601e558e7b8b4, type: 3}
-  m_Name: Unloaded Gun
+  m_Name: RandomItem
   m_EditorClassIdentifier: Assembly-CSharp::ItemOption
   Name: 
-  Author: 75
-  Team: 2
+  Author: 0
+  Team: 1
   Body: {fileID: 0}
   Art: {fileID: 0}
   Color: {r: 1, g: 1, b: 1, a: 1}
