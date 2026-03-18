@@ -33,6 +33,7 @@ MonoBehaviour:
       Any: []
       Level: 0
       Author: 0
+      MaxCost: 0
     Builder:
     - Type: 7
       NumType: 0
@@ -52,7 +53,7 @@ MonoBehaviour:
       MandatoryW: 0
       Any: 
       AnyW: 0
-      Trait: 4002
+      Trait: 2502
     - Type: 0
       NumType: 0
       Num: 3
