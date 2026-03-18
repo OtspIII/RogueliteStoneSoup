@@ -56,9 +56,8 @@ public class Slowed : Trait
                     // REMOVE THE SLOW TRAIT
                     thing.RemoveTrait(Traits.Slowed_JuliusP);
 
-                    // Abort this trait to stop it from running again
-                    i.Abort = true;
-        }
+
+                }
                
                 }
 

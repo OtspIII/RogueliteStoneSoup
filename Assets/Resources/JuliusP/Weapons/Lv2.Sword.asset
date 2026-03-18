@@ -32,7 +32,7 @@ MonoBehaviour:
     Mandatory: []
     Any: []
     Level: 0
-    Author: 0
+    Author: 40
     MaxCost: 0
   FloorBody: {fileID: 0}
   FloorArt: {fileID: 0}

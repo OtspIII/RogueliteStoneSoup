@@ -22,7 +22,7 @@ MonoBehaviour:
   Tags:
   - Common: 202
     Custom: 
-    W: 1000
+    W: 100
     Cost: 1
   LevelRange: {x: 0, y: 0}
   Trait:
@@ -77,7 +77,7 @@ MonoBehaviour:
     Mandatory: []
     Any: []
     Level: 0
-    Author: 0
+    Author: 40
     MaxCost: 0
   FloorBody: {fileID: 0}
   FloorArt: {fileID: 0}

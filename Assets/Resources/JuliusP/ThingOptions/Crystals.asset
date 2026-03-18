@@ -20,7 +20,7 @@ MonoBehaviour:
   Color: {r: 0, g: 0.9353576, b: 1, a: 1}
   Size: 0.33
   Tags:
-  - Common: 2
+  - Common: 300
     Custom: 
     W: 100
     Cost: 0

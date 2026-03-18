@@ -46,7 +46,7 @@ public override void HitBegin(GameCollision col)
     ThingOption Turret = Resources.Load<ThingOption>("JuliusP/ThingOptions/Bleak Turret");
 
 
-    ThingInfo Turretinfo = new ThingInfo(Turret);
+    ThingInfo Turretinfo = Turret.Create();
 
    
 
@@ -69,7 +69,7 @@ public override void HitBegin(GameCollision col)
 
 
     // SHOTOT AFTER LANDING//
-    God.C(TurretShootRoutine(TurretController));
+    God.C(TurretShoot(TurretController));
 
 
     // TURRET LASTS FOR 10 SECONDS//
@@ -78,7 +78,7 @@ public override void HitBegin(GameCollision col)
 }
 
 
-IEnumerator TurretShootRoutine(ThingController turret)
+IEnumerator TurretShoot(ThingController turret)
 {
     ThingOption projectile = Resources.Load<ThingOption>("JuliusP/ThingOptions/Crystals");
 
@@ -89,11 +89,12 @@ IEnumerator TurretShootRoutine(ThingController turret)
         {
             Vector3 spawnPos = turret.transform.position + turret.transform.up * 1f;
 
-            ThingInfo projectileInfo = new ThingInfo(projectile);
+            ThingInfo projectileInfo = projectile.Create();
+            
             ThingController projController = projectileInfo.Spawn(spawnPos);
 
             //SLOWS ON HIT//
-            projectileInfo.AddTrait(Traits.SlowOnhit_JuliusP);
+             projectileInfo.AddTrait(Traits.SlowOnhit_JuliusP);
 
             //PROJECTILE LASTS FOR 2 SECONDS//
             God.C(DestroyTurret(projectileInfo, 2f)); 
@@ -103,11 +104,11 @@ IEnumerator TurretShootRoutine(ThingController turret)
             projController.AddRB();
             
 
-            yield return new WaitForSeconds(5f); // wait 2 seconds before next projectile
+            yield return new WaitForSeconds(0.98f); // wait 2 seconds before next projectile
         }
 
         // Optional: pause before next burst
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.9f);
     }
 }
 
@@ -122,12 +123,20 @@ IEnumerator TurretShootRoutine(ThingController turret)
         if (thing != null && thing.Thing != null)
         {
             thing.DestroyForm(); // destroys the GameObject and clears reference
-            Debug.Log("Destroyed " + thing + " after " + duration + " seconds");
-
-       
+          
         }
     }
+
+
+
+     public override Actions NextAction()
+    {
+        return Actions.DefaultAttack;
+    }
 }
+
+
+
 
 
 
@@ -154,7 +163,7 @@ public class SlowingProjectileTrait : Trait
                 ThingController projController = projectile.Thing;
 
                 // DETECTION RADIUS//
-                float range = 2f;
+                float range = 10f;
 
                 // SPEED OF THE PROJECTILE//
                 float speed = 5f;
@@ -183,6 +192,7 @@ public class SlowingProjectileTrait : Trait
                     // CALCULATE DISTANCE FROM THE PROJECTILE TO THIS THING
                     float dist = Vector2.Distance(projController.transform.position,t.Thing.transform.position);
 
+                   
                     // IF THIS DISTANCE IS CLOSER THAN ANYTHING FOUND BEFORE, SAVE IT
                     if (dist < closestDist)
                     {
