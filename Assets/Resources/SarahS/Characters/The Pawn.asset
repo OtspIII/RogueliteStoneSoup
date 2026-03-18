@@ -10,25 +10,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4679cc75b2c8be74e8b047318fa062ea, type: 3}
-  m_Name: Stalker
+  m_Name: The Pawn
   m_EditorClassIdentifier: Assembly-CSharp::CharacterOption
-  Name: Stalker
-  Author: 35
-  Team: 3
-  Body: {fileID: 629948465317790645, guid: c5227d51ccfec934db9e0058624b573e, type: 3}
-  Art: {fileID: -6948560220386916374, guid: d758578365c69f940ba350d20a3e89da, type: 3}
+  Name: The Pawn
+  Author: 75
+  Team: 1
+  Body: {fileID: 629948465317790645, guid: acf0e760b28c7b046ad7d511fb87a1d3, type: 3}
+  Art: {fileID: 0}
   Color: {r: 1, g: 1, b: 1, a: 1}
-  Size: 0.4
+  Size: 1
   Tags:
   - Common: 102
     Custom: 
-    W: 3
-    Cost: 1
+    W: 0
+    Cost: 0
   LevelRange: {x: 0, y: 0}
   Trait: []
-  HP: 3
+  HP: 0
   Speed: 5
   VisionRange: 4
-  Held: {fileID: 11400000, guid: bd1d3b73b8fa8ae43b99cd32a508630e, type: 2}
+  Held: {fileID: 0}
   DefaultAction: 201
   DefaultChaseAction: 202

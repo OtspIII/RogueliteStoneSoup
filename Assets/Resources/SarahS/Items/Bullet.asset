@@ -10,20 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a47d2194617e47469e601e558e7b8b4, type: 3}
-  m_Name: JuiceWeapon
+  m_Name: Bullet
   m_EditorClassIdentifier: Assembly-CSharp::ItemOption
-  Name: JuiceWeapon
-  Author: 35
+  Name: 
+  Author: 75
   Team: 1
-  Body: {fileID: 629948465317790645, guid: b4fa405680f33044abe2c4567ecf147f, type: 3}
-  Art: {fileID: -7982031551607544281, guid: fbbc3d9675b7e364989c8dda2ade168a, type: 3}
+  Body: {fileID: 0}
+  Art: {fileID: 0}
   Color: {r: 1, g: 1, b: 1, a: 1}
   Size: 1
-  Tags:
-  - Common: 201
-    Custom: 
-    W: 5
-    Cost: 1
+  Tags: []
   LevelRange: {x: 0, y: 0}
   Trait:
   - Trait: 0
@@ -39,17 +35,17 @@ MonoBehaviour:
       Author: 0
       MaxCost: 0
     Builder: []
-  DefaultAttack: 103
+  DefaultAttack: 0
   ToSpawn:
-    Fixed: {fileID: 11400000, guid: 848751710f9cb9a4399f32676d33d914, type: 2}
+    Fixed: {fileID: 0}
     Mandatory: []
     Any: []
     Level: 0
-    Author: 35
+    Author: 0
     MaxCost: 0
   FloorBody: {fileID: 0}
   FloorArt: {fileID: 0}
-  Damage: 5
-  IdealRange: 1
-  SpeedMult: 5
-  ActDuration: 1
+  Damage: 0
+  IdealRange: 1.5
+  SpeedMult: 1
+  ActDuration: 0

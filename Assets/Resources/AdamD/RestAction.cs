@@ -14,5 +14,16 @@ public class RestAction : ActionScript
     public override void OnRun()
     {
         base.OnRun();
+        
+    }
+    public override void Begin()
+    {
+        base.Begin();
+        Who.TakeEvent(God.E(EventTypes.GainTrait).Set(Traits.Barrier));
+    }
+    public override void End()
+    {
+        base.End();
+        Who.TakeEvent(God.E(EventTypes.LoseTrait).Set(Traits.Barrier));
     }
 }

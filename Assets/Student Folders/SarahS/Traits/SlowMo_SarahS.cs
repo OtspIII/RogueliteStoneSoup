@@ -1,10 +1,10 @@
 using UnityEngine;
 
-public class SloMo_SarahS : Trait
+public class SlowMo_SarahS : Trait
 {
-    public SloMo_SarahS()
+    public SlowMo_SarahS()
     {
-      // Type = Traits.SloMo;
+        Type = Traits.SlowMoSarahS;
         AddListen(EventTypes.OnSee);
         AddPreListen(EventTypes.GetActSpeed);
         AddListen(EventTypes.OnUseStart);
