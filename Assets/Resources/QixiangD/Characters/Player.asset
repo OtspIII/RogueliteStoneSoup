@@ -23,6 +23,7 @@ MonoBehaviour:
   - Common: 1
     Custom: 
     W: 1
+    Cost: 1
   LevelRange: {x: 0, y: 0}
   Trait:
   - Trait: 100
@@ -36,26 +37,21 @@ MonoBehaviour:
       Any: []
       Level: 0
       Author: 0
-    Builder:
-    - Type: 7
-      NumType: 0
-      Num: 0
-      StrType: 0
-      Str: 
-      ActType: 0
-      Act: 0
-      BoolType: 0
-      Bool: 0
-      OptionType: 0
-      Option: {fileID: 0}
-      VectorType: 0
-      Vector: {x: 0, y: 0}
+      MaxCost: 0
+    Builder: []
+  - Trait: 5503
+    Numbers: []
+    Prefabs: []
+    Acts: []
+    OtherTrait: 0
+    SpawnReq:
       Fixed: {fileID: 0}
-      Mandatory: 
-      MandatoryW: 0
-      Any: 
-      AnyW: 0
-      Trait: 5503
+      Mandatory: []
+      Any: []
+      Level: 0
+      Author: 0
+      MaxCost: 0
+    Builder: []
   HP: 20
   Speed: 5
   VisionRange: 4

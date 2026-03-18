@@ -41,7 +41,7 @@ MonoBehaviour:
     Builder: []
   DefaultAttack: 103
   ToSpawn:
-    Fixed: {fileID: 11400000, guid: 130638cfe7af2a444b2c13c8698eae8f, type: 2}
+    Fixed: {fileID: 11400000, guid: 848751710f9cb9a4399f32676d33d914, type: 2}
     Mandatory: []
     Any: []
     Level: 0

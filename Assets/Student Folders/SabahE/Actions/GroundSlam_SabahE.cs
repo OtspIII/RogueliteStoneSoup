@@ -7,13 +7,14 @@ public class GroundSlam_SabahE : ActionScript
 
     public GroundSlam_SabahE(ThingInfo who, EventInfo e = null)
     {
-        //Setup(Actions.GroundSlam_SabahE, who);
+        Setup(Actions.GroundSlam_SabahE, who);
 
         MoveMult = 3f;
         HaltMomentum = true;
-        Priority = 2;
+        Priority = 2; 
         CanRotate = false;
-
+//Misha Message: if you're wondering why you get stunned once you take damage,
+// it's because your player option has GroundSlam as your Chase action. It should be idle
         Duration = 0.4f;
     }
 

@@ -27,7 +27,7 @@ MonoBehaviour:
   LevelRange: {x: 0, y: 0}
   Trait: []
   HP: 10
-  Speed: 5
+  Speed: 1
   VisionRange: 4
   Held: {fileID: 11400000, guid: 9864691d8be6649c59a0571c46625df0, type: 2}
   DefaultAction: 201

@@ -6,8 +6,10 @@ public class Sidestep_qixiangdong : ActionScript
     private float sideSpeedMult = 1.5f;
     private float sideDuration = 0.5f;
 
+   
+
     public Sidestep_qixiangdong(ThingInfo who,EventInfo e = null){
-        Setup(Actions.Sidestep_qixiangdong, who);
+        Setup(Actions.Sidestep_qixiangdong, who,true);
 
         MoveMult = sideSpeedMult;
         HaltMomentum =true;
@@ -35,6 +37,19 @@ public class Sidestep_qixiangdong : ActionScript
         }
     }
 
+    public override void OnRun(){
+        base.OnRun();
+
+        if (Who.Target == null)
+        {
+            return;
+        }
+        Who.Thing.LookAt(Who.Target,0.5f);
+
+        Who.TakeEvent(God.E(EventTypes.StartAction).Set(ActionInfo.Action, Actions.DefaultAttack));
+        
+
+    }
     public override void HandleMove(){
         if(Who.Thing == null){
             return;

@@ -4,7 +4,7 @@ public class RallyTrait_SabahE : Trait
 {
     public RallyTrait_SabahE()
     {
-      //  Type = Traits.RallySabahE;
+        Type = Traits.RallySabahE;
         AddListen(EventTypes.Damage);
         AddListen(EventTypes.Update);
         AddListen(EventTypes.OnKill);
