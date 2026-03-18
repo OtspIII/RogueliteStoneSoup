@@ -72,7 +72,7 @@ public class GameLibrary : MonoBehaviour
     }
     
     ///Finds an appropriate thing to spawn in response to a SpawnRequest
-    public ThingOption GetThing(SpawnRequest sr,LevelBuilder b=null)
+    public ThingOption GetThing(SpawnRequest sr,LevelBuilder b=null,bool backup=true)
     {
         //There's an option on the GameManager to set a debug thing to spawn in the player's room
         //If we have something like that set, any spawner set to spawn 'Debug' will spawn that object
@@ -94,7 +94,7 @@ public class GameLibrary : MonoBehaviour
         }
         //If we get zero results, do a fallback where we don't care about the author.
         //Maybe you just don't have anything with this tag yet
-        if (opts.Keys.Count == 0)
+        if (opts.Keys.Count == 0 && backup)
         {
             foreach (ThingOption o in ThingOptions)
             {
@@ -104,7 +104,7 @@ public class GameLibrary : MonoBehaviour
             }
         }
         //If there was nothing that could be spawned, throw a warning. You might need to make more things!
-        if (opts.Keys.Count == 0)
+        if (opts.Keys.Count == 0 && backup)
         {
             God.LogWarning("NO VALID THINGS: " + sr);
             return null;

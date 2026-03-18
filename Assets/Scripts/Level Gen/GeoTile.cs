@@ -77,8 +77,9 @@ public class GeoTile
         None=0,
         PlayerStart=1,
         Exit=2,
-        MainPath=3,
-        Connected=4,
-        Unreachable=5
+        Boss=3,
+        MainPath=4,
+        Connected=5,
+        Unreachable=6,
     }
 }
