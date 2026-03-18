@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+
 public class Lighting_RaphaelC : Trait
 {
     public Lighting_RaphaelC()
@@ -50,20 +51,37 @@ public class Trait2_RaphaelC : Trait
     public Trait2_RaphaelC()
     {
         Type = Traits.Trait2_RaphaelC;
+        AddListen(EventTypes.OnUse);
+    }
+    public override void TakeEvent(TraitInfo i, EventInfo e)
+    {
+        if (e.Type == EventTypes.OnUse)
+        {
+            int amt = i.GetInt(NumInfo.Default, 1);
+            EventInfo heal = God.E(EventTypes.Healing).Set(amt);
+            e.GetThing().TakeEvent(heal,true);
+            
+        } 
+    }
+}
+
+public class Trait3_RaphaelC : Trait
+{
+    public Trait3_RaphaelC()
+    {
+        //Type = Traits.Trait3_RaphaelC;
         AddListen(EventTypes.OnKill);
     }
     public override void TakeEvent(TraitInfo i, EventInfo e)
     {
         if (e.Type == EventTypes.OnKill)
         {
-            ThingInfo target = e.Get(ThingEInfo.Target);
+            //teleport random
+            //OR you just get big for a second
+            Debug.Log("Teleport");
             ThingInfo player = i.Who;
-
-            if (target == null || player == null) return;
-            if (target.Has(Traits.Player)) return;
-
-            float HealAmount = i.Get(NumInfo.Default, 1);
-            player.TakeEvent(God.E(EventTypes.Healing).Set(HealAmount).Set(player));
+            //player.Thing.transform.position.x += Random.Range(0, 3);
+            //player.Thing.transform.position.x += Random.Range(0, 3);
         }
     }
 }
