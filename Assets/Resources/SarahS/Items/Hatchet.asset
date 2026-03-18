@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a47d2194617e47469e601e558e7b8b4, type: 3}
   m_Name: Hatchet
   m_EditorClassIdentifier: Assembly-CSharp::ItemOption
-  Name: 
+  Name: Hatchet
   Author: 75
   Team: 1
   Body: {fileID: 0}
@@ -22,19 +22,6 @@ MonoBehaviour:
   Tags: []
   LevelRange: {x: 0, y: 0}
   Trait:
-  - Trait: 301
-    Numbers: []
-    Prefabs: []
-    Acts: []
-    OtherTrait: 0
-    SpawnReq:
-      Fixed: {fileID: 0}
-      Mandatory: []
-      Any: []
-      Level: 0
-      Author: 0
-      MaxCost: 0
-    Builder: []
   - Trait: 301
     Numbers: []
     Prefabs: []
