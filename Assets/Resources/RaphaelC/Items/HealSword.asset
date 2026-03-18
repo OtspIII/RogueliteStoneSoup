@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a47d2194617e47469e601e558e7b8b4, type: 3}
-  m_Name: LightingSword
+  m_Name: HealSword
   m_EditorClassIdentifier: 
-  Name: Lightning Sword
+  Name: HealSword
   Author: 60
   Team: 1
   Body: {fileID: 629948465317790645, guid: b4fa405680f33044abe2c4567ecf147f, type: 3}
@@ -24,44 +24,10 @@ MonoBehaviour:
     Custom: 
     W: 1
     Cost: 1
-  LevelRange: {x: 3, y: 10}
+  LevelRange: {x: 5, y: 10}
   Trait:
-  - Trait: 6001
+  - Trait: 6002
     Numbers: []
-    Prefabs: []
-    Acts: []
-    OtherTrait: 0
-    SpawnReq:
-      Fixed: {fileID: 0}
-      Mandatory: []
-      Any: []
-      Level: 0
-      Author: 0
-      MaxCost: 0
-    Builder:
-    - Type: 0
-      NumType: 1
-      Num: 2
-      StrType: 0
-      Str: 
-      ActType: 0
-      Act: 0
-      BoolType: 0
-      Bool: 0
-      OptionType: 0
-      Option: {fileID: 0}
-      VectorType: 0
-      Vector: {x: 0, y: 0}
-      Fixed: {fileID: 0}
-      Mandatory: 
-      MandatoryW: 0
-      Any: 
-      AnyW: 0
-      Trait: 0
-  - Trait: 312
-    Numbers:
-    - Type: 1
-      Value: 1
     Prefabs: []
     Acts: []
     OtherTrait: 0
@@ -92,6 +58,19 @@ MonoBehaviour:
       Any: 
       AnyW: 0
       Trait: 0
+  - Trait: 312
+    Numbers: []
+    Prefabs: []
+    Acts: []
+    OtherTrait: 0
+    SpawnReq:
+      Fixed: {fileID: 0}
+      Mandatory: []
+      Any: []
+      Level: 0
+      Author: 0
+      MaxCost: 0
+    Builder:
     - Type: 0
       NumType: 1
       Num: 1
@@ -112,9 +91,7 @@ MonoBehaviour:
       AnyW: 0
       Trait: 0
   - Trait: 313
-    Numbers:
-    - Type: 1
-      Value: 1
+    Numbers: []
     Prefabs: []
     Acts: []
     OtherTrait: 0

@@ -37,6 +37,11 @@ public class AttackAction : UseAction
 
 public class SwingAction : AttackAction
 {
+    public SwingAction()
+    {
+        
+    }
+
     public SwingAction(ThingInfo who,EventInfo e=null)
     {
         Setup(Actions.Swing,who);
