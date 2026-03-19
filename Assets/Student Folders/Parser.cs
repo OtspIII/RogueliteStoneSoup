@@ -144,7 +144,7 @@ public static class Parser
             // SamsonW=70,
             case Actions.SelfKill: return new SelfKillAction(who, e);
             // SarahS=75,
-            case Actions.JumpHover_SarahS: return new JumpHover_SarahS(who,e);
+            
             // TracyH=80,
             // WesleyP=90,
             // YuChen=95,
