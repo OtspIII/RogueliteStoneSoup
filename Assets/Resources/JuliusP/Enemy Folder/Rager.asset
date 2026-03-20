@@ -24,11 +24,11 @@ MonoBehaviour:
     Custom: 
     W: 1
     Cost: 1
-  LevelRange: {x: 0, y: 0}
+  LevelRange: {x: 5, y: 9}
   Trait: []
   HP: 10
   Speed: 1
   VisionRange: 4
-  Held: {fileID: 11400000, guid: 9864691d8be6649c59a0571c46625df0, type: 2}
+  Held: {fileID: 11400000, guid: 161696946c6a74cf9acb969e3bff66e9, type: 2}
   DefaultAction: 201
   DefaultChaseAction: 202
