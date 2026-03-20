@@ -2,25 +2,14 @@ using UnityEngine;
 
 public class Slowed : Trait
 {
-
-    //TIMER FOR SLOW EFFECT//
     float timer = 5f;
-
-    //SAVE ORIGINAL SPEED//
     float originalSpeed;
-    
-
-    //BOOL TO TRACK IF ORIGINAL SPEED WAS SAVED//
     bool OgSpeedSaved = false;
 
     public Slowed()
     {
         Type = Traits.Slowed_JuliusP;
-
         AddListen(EventTypes.Update);
-
-
-        
     }
 
     public override void TakeEvent(TraitInfo i, EventInfo e)
@@ -29,44 +18,35 @@ public class Slowed : Trait
         {
             case EventTypes.Update:
             {
-                //GET THINGINFO OF THE THING THAT OWNS THE TRAIT//
                 ThingInfo thing = i.Who;
+                if (thing == null || thing.Thing == null) return;
 
-                // STORE ORIGINAL SPEED ONCE
+                // SAVE ORIGINAL SPEED IMMEDIATELY
                 if (!OgSpeedSaved)
                 {
-                    originalSpeed = thing.CurrentSpeed;
+                    originalSpeed = thing.CurrentSpeed; // save original speed before slowing
                     OgSpeedSaved = true;
                 }
 
-                // SLOW THE THING DOWN
+                // APPLY SLOW
                 thing.CurrentSpeed = 0.5f;
 
-                // COUNT DOWN TIMER
+                // COUNTDOWN
                 timer -= Time.deltaTime;
 
-                // WHEN DONE
+                // RESTORE SPEED WHEN DONE
                 if (timer <= 0)
                 {
-                    // RESTORE SPEED
                     thing.CurrentSpeed = originalSpeed;
-
                     Debug.Log("Back to normal");
 
-                    // REMOVE THE SLOW TRAIT
+                    // REMOVE THIS TRAIT
                     thing.RemoveTrait(Traits.Slowed_JuliusP);
-
-
-                }
-               
                 }
 
                 break;
             }
-            
-
-
-
-          }
+        }
     }
+}
     

@@ -31,7 +31,7 @@ public class GainInvisibility : Trait
                     Sr = i.Who.Thing.gameObject.GetComponentsInChildren<SpriteRenderer>();
 
                     //MAKE THE THING GRADUALLY DISAPPEAR//
-                    God.C(GraduallyDisappear(0.23f));
+                    God.C(GraduallyDisappear(0.14f));
                 }
 
                 break;
@@ -72,6 +72,8 @@ public class GainInvisibility : Trait
 
             foreach (SpriteRenderer sr in Sr)
             {
+                //SAFETY MEASURES//
+                if (sr == null) continue; 
                 Color c = sr.color;
                 c.a = alpha;
                 sr.color = c;
@@ -91,7 +93,8 @@ public class GainInvisibility : Trait
         //REAPPEAR WHEN DAMAGED//
          foreach(SpriteRenderer sr in Sr)
           {
-
+               //SAFETY MEASURES//
+               if (sr == null) continue; 
                Color c = sr.color;
                c.a = 1f;
                sr.color = c;
@@ -117,7 +120,8 @@ public class GainInvisibility : Trait
         //REAPPEAR WHEN DAMAGED//
          foreach(SpriteRenderer sr in Sr)
           {
-
+               //SAFETY MEASURES//
+               if (sr == null) continue; 
                Color c = sr.color;
                c.a = 1f;
                sr.color = c;

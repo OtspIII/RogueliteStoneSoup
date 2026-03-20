@@ -26,7 +26,7 @@ MonoBehaviour:
     Cost: 1
   LevelRange: {x: 0, y: 0}
   Trait:
-  - Trait: 4007
+  - Trait: 4008
     Numbers: []
     Prefabs: []
     Acts: []

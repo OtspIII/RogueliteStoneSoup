@@ -52,6 +52,7 @@ public static class Parser
         TraitDict.Add(Traits.SelfDestruct_JuliusP, new SelfDestruction());
         TraitDict.Add(Traits.IgnoreDamage_JuliusP, new IgnoreDamage());
         TraitDict.Add(Traits.StunNegation_JuliusP, new StunCancel());
+        TraitDict.Add(Traits.NoTimerStunNegation_JuliusP, new FullStunNegation());
         TraitDict.Add(Traits.TemporaryDash_JuliusP, new TemporaryDashAbility());
         TraitDict.Add(Traits.TemporaryStunImmunity_JuliusP, new StunDrink());
         TraitDict.Add(Traits.TemporaryDmgResist_JuliusP, new TemporaryDamageResist());
@@ -59,6 +60,7 @@ public static class Parser
         TraitDict.Add(Traits.MonadoArts_JuliusP, new MonadoPower());
         TraitDict.Add(Traits.Slowed_JuliusP, new Slowed());
         TraitDict.Add(Traits.SlowOnhit_JuliusP, new SlowingProjectileTrait());
+    
 
 
       
@@ -126,8 +128,7 @@ public static class Parser
             case Actions.EvasiveJuke_JuliusP:return new EvasiveJuke(who, e);
             case Actions.BleakWatcher_JuliusP: return new BleakWatcher(who, e);
             
-         
-            
+        
             // MichaelT=50,
             // QixiangD=55,
             //case Actions.Sidestep_qixiangdong: return new Sidestep_qixiangdong(who,e);
@@ -252,13 +253,15 @@ public enum Traits
     SelfDestruct_JuliusP = 4004,
     IgnoreDamage_JuliusP = 4005,
     StunNegation_JuliusP = 4006,
-    TemporaryStunImmunity_JuliusP = 4007,
-    TemporaryDash_JuliusP = 4008,
-    TemporaryDmgResist_JuliusP = 4009,
-    GainInvis_JuliusP = 4010,
-    MonadoArts_JuliusP = 4011,
-    Slowed_JuliusP = 4012,
-    SlowOnhit_JuliusP = 4013,
+    NoTimerStunNegation_JuliusP = 4007,
+    TemporaryStunImmunity_JuliusP = 4008,
+    TemporaryDash_JuliusP = 4009,
+    TemporaryDmgResist_JuliusP = 4010,
+    GainInvis_JuliusP = 4011,
+    MonadoArts_JuliusP = 4012,
+    Slowed_JuliusP = 4013,
+    SlowOnhit_JuliusP = 4014,
+   
     
     
  

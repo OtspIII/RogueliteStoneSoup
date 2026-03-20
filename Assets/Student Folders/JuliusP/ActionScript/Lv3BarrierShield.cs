@@ -150,24 +150,29 @@ public class Lv3BarrierShield : ActionScript
             }
         }
 
-        // MOVE ENEMY TOWARD PLAYER
-        ThingInfo player = God.Session.Player;
-        if (player != null)
-        {
-            // CALCULATES THE DIRECTION TO PLAYER
-            Vector3 dir = (player.Thing.transform.position - Who.Thing.transform.position).normalized;
+        // MAKES THE THING CHASE THE PLAYER SLOWLY//
+         ThingInfo targ = God.Session.Player;
 
-            // SET THE MOVEMENT SPEED TO USE//
+        if (targ != null && targ.Thing != null)
+        {
+            Vector3 dir = (targ.Thing.transform.position - Who.Thing.transform.position).normalized;
+
             float speed = 13f;
 
-            // MOVE THE THING USING RIGIDBODY IF EXISTS
+           
             if (EnemyRb != null)
             {
-                EnemyRb.MovePosition(Who.Thing.transform.position + dir * speed * Time.deltaTime);
+             EnemyRb.MovePosition(Who.Thing.transform.position + dir * speed * Time.deltaTime);
+            }
+           
+            else
+            {
+             Who.Thing.transform.position += dir * speed * Time.deltaTime;
             }
 
-            // ROTATE ENEMY TO FACE PLAYER
-            Who.Thing.LookAt(player);
+            
+             Who.Thing.LookAt(targ);
+        
         }
     }
 
@@ -235,7 +240,7 @@ public class Lv3BarrierShield : ActionScript
             Vector3 spawnPos = Who.Thing.transform.position + ShieldOffset;
 
             // CREATE THE SHIELD OBJECT
-            ThingInfo shieldInfo = new ThingInfo(Shield);
+            ThingInfo shieldInfo = Shield.Create();
             ThingController shieldController = shieldInfo.Spawn(spawnPos);
             shieldController.transform.parent = null;
 

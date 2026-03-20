@@ -26,25 +26,34 @@ public class StunCancel : Trait
             //IF ITS A STARTACTION EVENT
             case EventTypes.StartAction:
             {
-                // CHECK IF THE ACTION IS A STUN ACTION//
-                if (e.Get(ActionInfo.Action) == Actions.Stun)
-                {
-                    //CANCEL THE STUN ACTION FROM HAPPENING
-                    e.Abort = true;
-                    Debug.Log("Stun canceled by StunNegationTrait!");
-                }
-                break;
-                
+
+    
+        if (e.Get(ActionInfo.Action) == Actions.Stun)
+        {
+            // Cancel the stun
+            e.Abort = true;
+
+            // Reset velocity so the NPC doesn't fly around
+            if (i.Who != null && i.Who.Thing != null)
+            {
+                //i.Who.Thing.ActualMove = Vector2.zero; // stop movement from knockback
+                //i.Who.Thing.Knockback = Vector2.zero; // clear knockback vector
             }
 
+            Debug.Log("Stun canceled and knockback prevented!");
+        }
 
+        break;
+        }   
 
+    
+        }
 
 
         }
 
        
-    }
+    
 
 
      public override void TakeEvent(TraitInfo i, EventInfo e)
@@ -143,4 +152,49 @@ public class TemporaryDashAbility : Trait
     }
 
     
+}
+
+
+public class FullStunNegation:Trait
+{
+
+
+    
+    public FullStunNegation()
+    {
+        Type = Traits.NoTimerStunNegation_JuliusP;
+        AddPreListen(EventTypes.StartAction);
+
+    }
+  
+
+    public override void PreEvent(TraitInfo i, EventInfo e)
+    {
+        switch (e.Type)
+        {
+   
+           
+            //IF ITS A STARTACTION EVENT
+            case EventTypes.StartAction:
+            {
+                // CHECK IF THE ACTION IS A STUN ACTION//
+                if (e.Get(ActionInfo.Action) == Actions.Stun)
+                {
+                    ThingInfo Player = God.Session.Player;
+                    //CANCEL THE STUN ACTION FROM HAPPENING
+                    e.Abort = true;
+
+                    //TAKE NO KNOCKBACK//
+                    i.Who.Thing.TakeKnockback(Player, 0f);
+                    Debug.Log("NO STUN");
+                }
+                break;
+                
+            }
+
+        }
+
+       
+    }
+
 }

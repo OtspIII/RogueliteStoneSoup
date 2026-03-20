@@ -41,7 +41,7 @@ MonoBehaviour:
     Builder: []
   HP: 5
   Speed: 3
-  VisionRange: 1.32
+  VisionRange: 3.33
   Held: {fileID: 0}
-  DefaultAction: 202
-  DefaultChaseAction: 202
+  DefaultAction: 1
+  DefaultChaseAction: 1

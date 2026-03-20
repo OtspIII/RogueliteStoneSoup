@@ -22,9 +22,9 @@ MonoBehaviour:
   Tags:
   - Common: 1
     Custom: 
-    W: 1
+    W: 100
     Cost: 1
-  LevelRange: {x: 0, y: 0}
+  LevelRange: {x: 0, y: 10}
   Trait:
   - Trait: 100
     Numbers: []

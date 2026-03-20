@@ -4,11 +4,15 @@ using System.Collections;
 public class Lv2Invis : ActionScript
 {
     
-    SpriteRenderer[] SRS;
+  
     float timer = 0f;
     bool started = false;
 
     bool Teleported = false;
+
+    bool CanTeleport = false;
+
+    bool canGoInvis = false;
 
     public int timesFound = 0;
 
@@ -53,6 +57,7 @@ public class Lv2Invis : ActionScript
         MoveMult = 0.2f;
         Duration = Mathf.Infinity;
 
+
         
     }
 
@@ -71,111 +76,83 @@ public class Lv2Invis : ActionScript
 
       MoveTowardPlayerWhileCloak();
 
+
     }
 
+
+
+    IEnumerator ChanceToGoInvis()
+    {
+        yield return new WaitForSeconds(0.6f);
+        
+
+  
+      Who.AddTrait(Traits.GainInvis_JuliusP);
+
+
+
+
+    }
 
 
    void MoveTowardPlayerWhileCloak()
    {
-    
-    ThingInfo Player = God.Session.Player;
-
    
+
+     if (God.Session.Player == null || Who == null || Who.Thing == null)
+        return;
+
+    ThingInfo Player = God.Session.Player;
     float Distance = Who.Thing.Distance(Player);
 
+    Who.Thing.LookAt(Player, 0f);
 
-   
-
-    //DIST CHECK//
-
-    if(Distance <= 2.5)
-    {
- 
-
-     //GIVE THE THING A CHANCE TO TELEPORT//
-     God.C(ChanceToTeleport());
 
     
 
-
-    }
-  
-    //ADD INVISBILITY TRAIT WHEN CLOSE//
-    if(Distance < 4.5f && !Who.Has(Traits.GainInvis_JuliusP))
+    // Only move if within a certain range
+    if (Distance < 4.5f) // Adjust as needed
     {
-
-
-        //MAKE THE THING MOVE TOWARDS PLAYER//
         Who.Thing.MoveTowards(Player);
 
-        //MAKE THE THING LOOK AT THE PLAYER//
-        Who.Thing.LookAt(Player);
-    
-        //ADD THE INVSISIBILITY TRAIT TO THE THING//    
-        Who.AddTrait(Traits.GainInvis_JuliusP);
-
-        
-
+        God.C(ChanceToGoInvis());
     }
 
-   
-   
-   }
 
+
+    // Optional: attack / teleport logic
+    if (Distance <= Who.AttackRange)
+    {
+        Who.Thing.ActualMove = Vector2.zero; // stop moving
+        Complete(); // allow NextAction() to run
+    }
+   } 
 
     //FINCTION THAT MAKES THE THING TELEPORT (RANDOM CHANCE)//
     IEnumerator ChanceToTeleport()
     {
+    
+    yield return new WaitForSeconds(0.19f);
 
-        yield return new WaitForSeconds(0.19f);
-        
-        //40% CHANCE TO TELEPORT//
-        float TeleportChance = 0.25f;
+    float TeleportChance = 0.25f;
+    ThingInfo Player = God.Session.Player;
+    float Dist = Who.Thing.Distance(Player);
 
-        //GET THIINGINFO OF PLAYER//
-        ThingInfo Player = God.Session.Player;
-
-        //DISTANCE TO THE PLAYER//
-        float Dist = Who.Thing.Distance(Player);
-
-
-        //IF DIST IS LESS THAN 2.1, RANDOM CHANCE VALUE GREATER THAN 0.4, AND HASNT TELEPORTED YET//
-        if(Dist <= 2.49f  && Random.value > TeleportChance && !Teleported)
-        {
-            
-        
-        //GET THE PLAYER'S POSITION//
-        Vector2 playerPos = God.Session.Player.Thing.transform.position;
-
-
-        //GET A RANDOM POINT ON THE CIRCLE//
+   
+    if (Dist <= 2.49f && Random.value > TeleportChance)
+    {
+        Vector2 playerPos = Player.Thing.transform.position;
         Vector2 RandomPos = UnityEngine.Random.insideUnitCircle * 4f;
-
-
-        //TELEPORT TO LOCATION//
         Vector2 TeleportPos = playerPos + RandomPos;
 
-
-        //ACTUALLY TELEPORT TO THE POSITION//
         Who.Thing.transform.position = TeleportPos;
-
-
-        //SET TO TRUE, TO ONLY TELEPORT ONCE//
-        Teleported = true;
-
 
         yield return new WaitForSeconds(1f);
 
         Complete();
-
-
-
-
-
-        }
-
-
-        
+    }
+    
+    
     }
 
 

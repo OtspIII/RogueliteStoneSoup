@@ -9,11 +9,6 @@ public class BleakWatcher : ActionScript
 
     bool DetectedHit = false;
 
-
-    
-
-
-
     public BleakWatcher(ThingInfo who, EventInfo e = null)
     {
         Setup(Actions.BleakWatcher_JuliusP, who, true);
@@ -23,98 +18,87 @@ public class BleakWatcher : ActionScript
 
     public override void OnRun()
     {
+        Debug.Log("BleakWatcher OnRun called");
+
+        base.OnRun();
         if (Input.GetKeyDown(KeyCode.B) && !CanOnlyspawnOne)
         {
             SpawnBleakWatcherTurret();
             CanOnlyspawnOne = true;
-      
         }
     }
 
-public override void HitBegin(GameCollision col)
-{
-    Debug.Log("Hi!!!!");
-
-
-    
-}
+    public override void HitBegin(GameCollision col)
+    {
+        Debug.Log("Hi!!!!");
+    }
     
     void SpawnBleakWatcherTurret()
     {
-    //LOAD THE TURRET FORM THE FOLDER//
+        //LOAD THE TURRET FORM THE FOLDER//
+        ThingOption Turret = Resources.Load<ThingOption>("JuliusP/ThingOptions/Bleak Turret");
 
-    ThingOption Turret = Resources.Load<ThingOption>("JuliusP/ThingOptions/Bleak Turret");
+        ThingInfo Turretinfo = Turret.Create();
 
+        //SPAWN POS OF TURRET//
+        Vector3 SpawnPos = Who.Thing.transform.position + Who.Thing.transform.up * 1.5f;
 
-    ThingInfo Turretinfo = Turret.Create();
+        ThingController TurretController = Turretinfo.Spawn(SpawnPos);
 
-   
+        //ADD A RIGIDBODY TO IT FOR THROWING//
+        TurretController.AddRB();
 
-    //SPAWN POS OF TURRET//
-    Vector3 SpawnPos = Who.Thing.transform.position + Who.Thing.transform.up * 1.5f;
+        //THROW FORCE//
+        float ThrowForce = 3f;
 
+        TurretController.TakeKnockback(Who.Thing, ThrowForce);
 
-    ThingController TurretController = Turretinfo.Spawn(SpawnPos);
+        // SHOT AFTER LANDING//
+        God.C(TurretShoot(TurretController));
 
-
-    //ADD A RIGIDBODY TO IT FOR THROWING//
-    TurretController.AddRB();
-
-
-    //THROW FORCE//
-    float ThrowForce = 3f;
-
-
-    TurretController.TakeKnockback(Who.Thing, ThrowForce);
-
-
-    // SHOTOT AFTER LANDING//
-    God.C(TurretShoot(TurretController));
-
-
-    // TURRET LASTS FOR 10 SECONDS//
-    God.C(DestroyTurret(Turretinfo, 9f));
-
-}
-
-
-IEnumerator TurretShoot(ThingController turret)
-{
-    ThingOption projectile = Resources.Load<ThingOption>("JuliusP/ThingOptions/Crystals");
-
-    while (turret != null) // keep shooting while turret exists
-    {
-        // Shoot 3 projectiles in a burst
-        for (int i = 0; i < 3; i++)
-        {
-            Vector3 spawnPos = turret.transform.position + turret.transform.up * 1f;
-
-            ThingInfo projectileInfo = projectile.Create();
-            
-            ThingController projController = projectileInfo.Spawn(spawnPos);
-
-            //SLOWS ON HIT//
-             projectileInfo.AddTrait(Traits.SlowOnhit_JuliusP);
-
-            //PROJECTILE LASTS FOR 2 SECONDS//
-            God.C(DestroyTurret(projectileInfo, 2f)); 
-            
-            
-            // ADD RIGIDBODY TO STASIS PROJECTILE//
-            projController.AddRB();
-            
-
-            yield return new WaitForSeconds(0.98f); // wait 2 seconds before next projectile
-        }
-
-        // Optional: pause before next burst
-        yield return new WaitForSeconds(0.9f);
+        // TURRET LASTS FOR 10 SECONDS//
+        God.C(DestroyTurret(Turretinfo, 9f));
     }
-}
 
+    IEnumerator TurretShoot(ThingController turret)
+    {
+        // WAIT BEFORE FIRST SHOT
+        yield return new WaitForSeconds(1f); // change 1f to whatever delay you want
 
-//Coroutine to destroy a projectile safely
+        ThingOption projectile = Resources.Load<ThingOption>("JuliusP/ThingOptions/Crystals");
 
+        while (turret != null) // keep shooting while turret exists
+        {
+            // Shoot 3 projectiles in a burst
+            for (int i = 0; i < 3; i++)
+            {
+                // SAFETY CHECK TO AVOID NULL REFERENCE
+                if (turret == null || turret.transform == null) yield break;
+
+                Vector3 spawnPos = turret.transform.position + turret.transform.up * 1f;
+
+                ThingInfo projectileInfo = projectile.Create();
+
+                ThingController projController = projectileInfo.Spawn(spawnPos);
+
+                //SLOWS ON HIT//
+                projectileInfo.AddTrait(Traits.SlowOnhit_JuliusP);
+
+                //PROJECTILE LASTS FOR 2 SECONDS//
+                God.C(DestroyTurret(projectileInfo, 2f));
+
+                // ADD RIGIDBODY TO STASIS PROJECTILE//
+                projController.AddRB();
+
+                yield return new WaitForSeconds(0.98f); // wait 2 seconds before next projectile
+            }
+
+            // Optional: pause before next burst
+            yield return new WaitForSeconds(0.9f);
+        }
+    }
+
+    //Coroutine to destroy a projectile safely
     // Safely destroys a ThingInfo after a duration
     IEnumerator DestroyTurret(ThingInfo thing, float duration)
     {
@@ -123,22 +107,14 @@ IEnumerator TurretShoot(ThingController turret)
         if (thing != null && thing.Thing != null)
         {
             thing.DestroyForm(); // destroys the GameObject and clears reference
-          
         }
     }
 
-
-
-     public override Actions NextAction()
+    public override Actions NextAction()
     {
         return Actions.DefaultAttack;
     }
 }
-
-
-
-
-
 
 public class SlowingProjectileTrait : Trait
 {
@@ -162,6 +138,9 @@ public class SlowingProjectileTrait : Trait
                 // GET THINGCONTROLLER OF STATSIS CRYSTAL//
                 ThingController projController = projectile.Thing;
 
+                // SAFETY CHECK: make sure projectile exists
+                if (projController == null || projController.transform == null) return;
+
                 // DETECTION RADIUS//
                 float range = 10f;
 
@@ -183,6 +162,9 @@ public class SlowingProjectileTrait : Trait
                 // LOOP THROUGH EVERY THING FOUND IN THE COLLISION RADIUS
                 foreach (var t in hits)
                 {
+                    // SAFETY CHECK: skip null or destroyed objects
+                    if (t == null || t.Thing == null) continue;
+
                     // IGNORE THE STASIS CRYSTAL//
                     if (t == projectile) continue;
 
@@ -190,36 +172,34 @@ public class SlowingProjectileTrait : Trait
                     if (t.Team == projectile.Team) continue;
 
                     // CALCULATE DISTANCE FROM THE PROJECTILE TO THIS THING
-                    float dist = Vector2.Distance(projController.transform.position,t.Thing.transform.position);
+                    float dist = Vector2.Distance(projController.transform.position, t.Thing.transform.position);
 
-                   
                     // IF THIS DISTANCE IS CLOSER THAN ANYTHING FOUND BEFORE, SAVE IT
                     if (dist < closestDist)
                     {
                         //THIS IS THE CLOSEST TARGET
-                        closest = t; 
+                        closest = t;
 
-                        //THIS SAVES THE CLOSEST DISTANCE//     
-                        closestDist = dist; 
+                        //THIS SAVES THE CLOSEST DISTANCE//
+                        closestDist = dist;
                     }
-    
-                 }
+                }
 
-                   //IF THE CLOSEST EXISTS AND IS A THING//
-                    if (closest != null)
-                    {
-                         // CALCULATE THE NORMALIZED DIRECTION VECTOR FROM PROJECTILE TO TARGET
-                        Vector2 dir = (closest.Thing.transform.position - projController.transform.position).normalized;
+                //IF THE CLOSEST EXISTS AND IS A THING//
+                if (closest != null && closest.Thing != null)
+                {
+                    // CALCULATE THE NORMALIZED DIRECTION VECTOR FROM PROJECTILE TO TARGET
+                    Vector2 dir = (closest.Thing.transform.position - projController.transform.position).normalized;
 
-                         // SMOOTHLY ADJUST THE PROJECTILE'S VELOCITY TOWARD THE TARGET
-                        // THIS LERP CAUSES THE PROJECTILE TO CURVE TOWARD THE TARGET
-                         projController.ActualMove = Vector2.Lerp(projController.ActualMove, dir * speed,Time.deltaTime * turnSpeed);
+                    // SMOOTHLY ADJUST THE PROJECTILE'S VELOCITY TOWARD THE TARGET
+                    // THIS LERP CAUSES THE PROJECTILE TO CURVE TOWARD THE TARGET
+                    projController.ActualMove = Vector2.Lerp(projController.ActualMove, dir * speed, Time.deltaTime * turnSpeed);
 
-                        // ROTATE THE PROJECTILE TO FACE THE DIRECTION IT IS MOVING
-                        projController.transform.up = projController.ActualMove.normalized;
-                    }
+                    // ROTATE THE PROJECTILE TO FACE THE DIRECTION IT IS MOVING
+                    projController.transform.up = projController.ActualMove.normalized;
+                }
 
-                     break; 
+                break; 
             }
 
             case EventTypes.OnTouch:
