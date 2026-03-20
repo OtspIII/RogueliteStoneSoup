@@ -12,15 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 666e3856c5664c242bde2f0f953b72bc, type: 3}
   m_Name: Slime
   m_EditorClassIdentifier: Assembly-CSharp::ProjectileOption
-  Name: 
-  Author: 0
-  Team: 1
-  Body: {fileID: 0}
+  Name: Slime
+  Author: 75
+  Team: 3
+  Body: {fileID: 629948465317790645, guid: 9edb53243ae32704ead177294fe49d22, type: 3}
   Art: {fileID: 0}
   Color: {r: 1, g: 1, b: 1, a: 1}
   Size: 1
-  Tags: []
+  Tags:
+  - Common: 300
+    Custom: 
+    W: 0
+    Cost: 0
   LevelRange: {x: 0, y: 0}
   Trait: []
-  Damage: 0
-  Speed: 0
+  Damage: 2
+  Speed: 2
