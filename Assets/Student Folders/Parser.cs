@@ -91,6 +91,8 @@ public static class Parser
         // WesleyP Traits
         TraitDict.Add(Traits.Knockback_WesleyP1, new KnockbackTrait_Wesley());
         TraitDict.Add(Traits.CharacterSwap_WesleyP1, new CharacterSwapTrait_Wesley());
+        TraitDict.Add(Traits.HealingAlly_WesleyP1, new HealingAllyTrait_Wesley());
+
         // YuChen Traits
 
 
@@ -304,6 +306,7 @@ public enum Traits
     Knockback_WesleyP1 =9002, // When player is hit will be lounched back 
     NewPlayerAlly_WesleyP1 =9003, //When Player summon ally main player body disspawn
     CharacterSwap_WesleyP1 = 9003, // When press key player swaps
+    HealingAlly_WesleyP1 = 9004, // Heal ally when standing in zone
     //YuChen        =95##,
     YuChen1         =9501,
 }
