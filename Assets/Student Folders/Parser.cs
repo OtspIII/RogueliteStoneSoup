@@ -123,7 +123,7 @@ public static class Parser
          
             
             // MichaelT=50,
-            case Actions.BleedSwingAction: return new BleedSwingAction(who, e); 
+            case Actions.BleedAttack_MichaelT: return new BleedAttackAction_MichaelT(who, e);
             // QixiangD=55,
             //case Actions.Sidestep_qixiangdong: return new Sidestep_qixiangdong(who,e);
             // RaphaelC=60,
@@ -343,7 +343,7 @@ public enum Actions
     MazK1           =4501,
     //MichaelT      =50##,
     MichaelT1       =5001,
-    Bleed_MichaelT = 5002,
+    BleedAttack_MichaelT = 5003, //Applies Bleed Trait to Target on Hit
     //QixiangD      =55##,
     Sidestep_qixiangdong = 5501,
     //RaphaelC      =60##,
