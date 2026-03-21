@@ -86,6 +86,8 @@ public static class Parser
         TraitDict.Add(Traits.SlowMoSarahS,new SlowMo_SarahS());
         TraitDict.Add(Traits.CursedObjectSarahS,new CursedObject_SarahS());
         TraitDict.Add(Traits.MimicEnemySarahS,new MimicEnemy_SarahS());
+        TraitDict.Add(Traits.ProtectionCircleSarahS,new ProtectionCircle_SarahS());
+        TraitDict.Add(Traits.ProtectionSpellSarahS,new ProtectionSpell_SarahS());
         // TracyH Traits
         TraitDict.Add(Traits.Teleport_TracyH, new TeleportTrait_TracyH());
         // WesleyP Traits
@@ -299,6 +301,8 @@ public enum Traits
     SlowMoSarahS    =7502,
     CursedObjectSarahS    =7503,
     MimicEnemySarahS =7504,
+    ProtectionCircleSarahS =7505,
+    ProtectionSpellSarahS =7506,
     //TracyH        =80##,
     Teleport_TracyH =8001, //Teleport player between radius or nearby room. Can be placed on held item or zone
     //WesleyP       =90##,
