@@ -52,11 +52,16 @@ public static class Parser
         TraitDict.Add(Traits.SelfDestruct_JuliusP, new SelfDestruction());
         TraitDict.Add(Traits.IgnoreDamage_JuliusP, new IgnoreDamage());
         TraitDict.Add(Traits.StunNegation_JuliusP, new StunCancel());
+        TraitDict.Add(Traits.NoTimerStunNegation_JuliusP, new FullStunNegation());
         TraitDict.Add(Traits.TemporaryDash_JuliusP, new TemporaryDashAbility());
         TraitDict.Add(Traits.TemporaryStunImmunity_JuliusP, new StunDrink());
         TraitDict.Add(Traits.TemporaryDmgResist_JuliusP, new TemporaryDamageResist());
         TraitDict.Add(Traits.GainInvis_JuliusP, new GainInvisibility());
         TraitDict.Add(Traits.MonadoArts_JuliusP, new MonadoPower());
+        TraitDict.Add(Traits.Slowed_JuliusP, new Slowed());
+        TraitDict.Add(Traits.SlowOnhit_JuliusP, new SlowingProjectileTrait());
+    
+
 
       
         // MazK Traits
@@ -77,6 +82,10 @@ public static class Parser
         TraitDict.Add(Traits.HealZone,new HealZoneTrait());
         TraitDict.Add(Traits.DelayedActionAfterStartingAction,new DelayedActionAfterStartingAction());
         // SarahS Traits
+        TraitDict.Add(Traits.ProximityExplodeSarahS,new ProximityExplode_SarahS());
+        TraitDict.Add(Traits.SlowMoSarahS,new SlowMo_SarahS());
+        TraitDict.Add(Traits.CursedObjectSarahS,new CursedObject_SarahS());
+        TraitDict.Add(Traits.MimicEnemySarahS,new MimicEnemy_SarahS());
         // TracyH Traits
         TraitDict.Add(Traits.Teleport_TracyH, new TeleportTrait_TracyH());
         // WesleyP Traits
@@ -120,8 +129,9 @@ public static class Parser
             case Actions.Lv3_Cloak_JuliusP: return new Lv3Invis(who, e);
             case Actions.TradeHp_JuliusP:return new TradeHp(who, e);
             case Actions.EvasiveJuke_JuliusP:return new EvasiveJuke(who, e);
-         
+            case Actions.BleakWatcher_JuliusP: return new BleakWatcher(who, e);
             
+        
             // MichaelT=50,
             // QixiangD=55,
             //case Actions.Sidestep_qixiangdong: return new Sidestep_qixiangdong(who,e);
@@ -138,6 +148,7 @@ public static class Parser
             // SamsonW=70,
             case Actions.SelfKill: return new SelfKillAction(who, e);
             // SarahS=75,
+            
             // TracyH=80,
             // WesleyP=90,
             // YuChen=95,
@@ -245,11 +256,16 @@ public enum Traits
     SelfDestruct_JuliusP = 4004,
     IgnoreDamage_JuliusP = 4005,
     StunNegation_JuliusP = 4006,
-    TemporaryStunImmunity_JuliusP = 4007,
-    TemporaryDash_JuliusP = 4008,
-    TemporaryDmgResist_JuliusP = 4009,
-    GainInvis_JuliusP = 4010,
-    MonadoArts_JuliusP = 4011,
+    NoTimerStunNegation_JuliusP = 4007,
+    TemporaryStunImmunity_JuliusP = 4008,
+    TemporaryDash_JuliusP = 4009,
+    TemporaryDmgResist_JuliusP = 4010,
+    GainInvis_JuliusP = 4011,
+    MonadoArts_JuliusP = 4012,
+    Slowed_JuliusP = 4013,
+    SlowOnhit_JuliusP = 4014,
+   
+    
     
  
   
@@ -277,7 +293,10 @@ public enum Traits
     HealZone        =7004, //Heals player when standing inside zone
     DelayedActionAfterStartingAction=7005, //Switches action after X secs after entering an action
     //SarahS        =75##,
-    SarahS1         =7501,
+    ProximityExplodeSarahS  =7501,
+    SlowMoSarahS    =7502,
+    CursedObjectSarahS    =7503,
+    MimicEnemySarahS =7504,
     //TracyH        =80##,
     Teleport_TracyH =8001, //Teleport player between radius or nearby room. Can be placed on held item or zone
     //WesleyP       =90##,
@@ -334,7 +353,9 @@ public enum Actions
     Lv3_Cloak_JuliusP = 4007,
     TradeHp_JuliusP = 4008,
     EvasiveJuke_JuliusP = 4009,
-    EnemyMonadoArts_JuliusP = 4010,
+    BleakWatcher_JuliusP = 4010,
+    slowingproj_JuliusP = 4011,
+
 
   
 
@@ -361,7 +382,7 @@ public enum Actions
     SamsonW1        =7001,
     SelfKill        =7002, // Immediately kills thing on enter after 1 frame
     //SarahS        =75##,
-    SarahS1         =7501,
+    JumpHover_SarahS=7501,
     //TracyH        =80##,
     TracyH1         =8001,
     //WesleyP       =90##,

@@ -29,6 +29,7 @@ public class LevelBuilder
     public List<ThingOption> ToSpawn = new List<ThingOption>();
     //If a SpawnPoint can spawn "Something" it'll be okay for all of these options 
     public List<string> Somethings = new List<string>(){"NPC","Weapon","Consumable","ScoreThing"};
+    public ThingOption Boss=null;
 
     //Quotas, new system
     public List<Tag> Quotas = new List<Tag>();
@@ -72,6 +73,7 @@ public class LevelBuilder
         //If we haven't created a player yet for this playthrough, make one.
         if (God.Session.Player == null)
             God.Session.Player = God.Library.GetThing(new SpawnRequest(GameTags.Player)).Create();
+        Boss = God.Library.GetThing(new SpawnRequest(GameTags.Boss),this,false);
     }
 
     ///Build out a zoomed-out map of the level, without specific rooms
@@ -144,9 +146,27 @@ public class LevelBuilder
             }
             else
             {
-                //But if we're at the top of the map, mark our ultimate position as the exit spawn location
-                Exit = GetGeo(start, y); 
-                Exit.SetPath(GeoTile.GeoTileTypes.Exit);
+                if(Boss != null){
+                    GeoTile g = new GeoTile(start, y+1,this);
+                    if(!GeoMap.ContainsKey(start)) GeoMap.Add(start,new Dictionary<int, GeoTile>());
+                    GeoMap[start].Add(y+1,g);
+                    AllGeo.Add(g);
+                    Exit = GetGeo(start, y+1); 
+                    Exit.SetPath(GeoTile.GeoTileTypes.Exit);
+                    
+                    GeoTile boss = GetGeo(start, y); 
+                    boss.SetPath(GeoTile.GeoTileTypes.Boss);
+                    boss.Links.Add(Directions.Up);
+                    Exit.Links.Add(Directions.Down);
+                }
+                else
+                {
+                    //But if we're at the top of the map, mark our ultimate position as the exit spawn location
+                    Exit = GetGeo(start, y); 
+                    Exit.SetPath(GeoTile.GeoTileTypes.Exit);
+                }
+                
+                
             }
         }
     }
@@ -444,6 +464,7 @@ public class LevelBuilder
         RoomTags t = RoomTags.Generic;
         if (g.Path == GeoTile.GeoTileTypes.PlayerStart) t = RoomTags.PlayerStart;
         if (g.Path == GeoTile.GeoTileTypes.Exit) t = RoomTags.Exit;
+        if (g.Path == GeoTile.GeoTileTypes.Boss) t = RoomTags.Boss;
         if(o.Tags.Contains(t)) return 1;
         return 0;
     }

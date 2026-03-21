@@ -15,30 +15,52 @@ MonoBehaviour:
   Name: Avenger
   Author: 40
   Team: 3
-  Body: {fileID: 629948465317790645, guid: c5227d51ccfec934db9e0058624b573e, type: 3}
-  Art: {fileID: 21300000, guid: e81f66ce6c87d8c42b90a6f710390669, type: 3}
+  Body: {fileID: 629948465317790645, guid: acf0e760b28c7b046ad7d511fb87a1d3, type: 3}
+  Art: {fileID: -5277474506575406664, guid: b2177483a889bbc4e94ef79a38f27724, type: 3}
   Color: {r: 1, g: 0, b: 0, a: 1}
   Size: 1
   Tags:
   - Common: 102
     Custom: 
     W: 1
-  LevelRange: {x: 0, y: 0}
+    Cost: 1
+  LevelRange: {x: 3, y: 6}
   Trait:
   - Trait: 3
     Numbers: []
-    Prefabs:
-    - Type: 0
-      Value: {fileID: 11400000, guid: 216ef581bbe454a389b5d4e90030c62f, type: 2}
+    Prefabs: []
     Acts: []
+    OtherTrait: 0
     SpawnReq:
       Fixed: {fileID: 0}
       Mandatory: []
       Any: []
       Level: 0
       Author: 0
+      MaxCost: 0
+    Builder:
+    - Type: 4
+      NumType: 0
+      Num: 0
+      StrType: 0
+      Str: 
+      ActType: 0
+      Act: 0
+      BoolType: 0
+      Bool: 0
+      OptionType: 0
+      Option: {fileID: 11400000, guid: 5d877202e9e0443c6b387c9ae322fbd0, type: 2}
+      VectorType: 0
+      Vector: {x: 0, y: 0}
+      Fixed: {fileID: 0}
+      Mandatory: 
+      MandatoryW: 0
+      Any: 
+      AnyW: 0
+      Trait: 0
   HP: 10
   Speed: 5
-  Held: {fileID: 11400000, guid: 7d621acb1abd6f14fb8ce00024521ece, type: 2}
-  DefaultAction: 201
+  VisionRange: 4
+  Held: {fileID: 11400000, guid: 26769a297c5f041b7941964fcdd12a47, type: 2}
+  DefaultAction: 5
   DefaultChaseAction: 202

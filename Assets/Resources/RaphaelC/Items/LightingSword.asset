@@ -41,7 +41,7 @@ MonoBehaviour:
     Builder:
     - Type: 0
       NumType: 1
-      Num: 3
+      Num: 2
       StrType: 0
       Str: 
       ActType: 0

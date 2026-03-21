@@ -2,7 +2,8 @@ using UnityEngine;
 
 public class ParryTrait: Trait
 {
-    public bool CanParry = true;
+    
+    public float Speed = 0;
     public ParryTrait()
     {
         Type = Traits.ParryTrait_ElioR;
@@ -14,9 +15,9 @@ public class ParryTrait: Trait
         switch(e.Type)
         {
             case EventTypes.Update:
-            if(CanParry && Input.GetKeyDown(KeyCode.P))
+            if(Input.GetKeyDown(KeyCode.P))
                 {
-                    //ThingController.DoAction(Actions.ParryAction_ElioR);
+                    i.Who.DoAction(Actions.ParryAction_ElioR);
                 }
                 break;
         }

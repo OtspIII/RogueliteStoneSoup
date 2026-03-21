@@ -24,19 +24,32 @@ MonoBehaviour:
     Custom: 
     W: 1
     Cost: 1
-  LevelRange: {x: 0, y: 0}
-  Trait: []
+  LevelRange: {x: 6, y: 9}
+  Trait:
+  - Trait: 4002
+    Numbers: []
+    Prefabs: []
+    Acts: []
+    OtherTrait: 0
+    SpawnReq:
+      Fixed: {fileID: 0}
+      Mandatory: []
+      Any: []
+      Level: 0
+      Author: 0
+      MaxCost: 0
+    Builder: []
   DefaultAttack: 101
   ToSpawn:
     Fixed: {fileID: 0}
     Mandatory: []
     Any: []
     Level: 0
-    Author: 0
+    Author: 40
     MaxCost: 0
   FloorBody: {fileID: 0}
   FloorArt: {fileID: 0}
-  Damage: 2
+  Damage: 1
   IdealRange: 1.5
   SpeedMult: 1
   ActDuration: 0

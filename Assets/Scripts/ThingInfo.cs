@@ -254,7 +254,7 @@ public class ThingInfo //The class that handles all the core info for all non-wa
         TakeListen.TryGetValue(e.Type, out List<Traits> take);
         // Debug.Log("TAKE EVENT C: " + e.Type + " / " + (take == null ? "X" : take.Count));
         if(take != null)
-            foreach (Traits t in take)
+            foreach (Traits t in take.ToArray())
             {
                 Get(t).TakeEvent(e);
                 if(e.Abort) break;

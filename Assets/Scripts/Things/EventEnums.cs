@@ -188,6 +188,7 @@ public enum GameTags
     Centerpiece     =0400,
     Exit            =0401,
     Scenery         =0402,
+    Boss            =0500,
 }
 
 public enum RoomTags
@@ -196,4 +197,5 @@ public enum RoomTags
     Generic        =0001,
     PlayerStart    =0002,
     Exit           =0003,
+    Boss           =0004,
 }

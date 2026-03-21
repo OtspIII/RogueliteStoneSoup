@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Potion of Stun Resistance
   m_EditorClassIdentifier: 
   Name: Stun Resistance Potion
-  Author: 0
+  Author: 40
   Team: 1
   Body: {fileID: 629948465317790645, guid: 7ef37acb0fdeb5849995b35a7fdca6ba, type: 3}
   Art: {fileID: -2880734798192188640, guid: f77ef968c74f7a64c86e3247520c36ec, type: 3}
@@ -26,7 +26,7 @@ MonoBehaviour:
     Cost: 1
   LevelRange: {x: 0, y: 0}
   Trait:
-  - Trait: 4007
+  - Trait: 4008
     Numbers: []
     Prefabs: []
     Acts: []

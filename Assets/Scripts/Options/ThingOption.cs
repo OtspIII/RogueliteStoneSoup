@@ -24,7 +24,6 @@ public class ThingOption : GameOption //A generic class for anything that might 
             int old = t.Numbers.Count + t.Prefabs.Count+t.Acts.Count+(t.OtherTrait != Traits.None ? 1 : 0)+
                    (t.SpawnReq.Fixed != null || t.SpawnReq.Any.Count > 0 || t.SpawnReq.Mandatory.Count > 0 ? 1 : 0);
             if (cnt == old || old == 0) return;
-            Debug.Log("BUILD TR: " + Name + " / " + t.Trait);
             t.Builder.Clear();
             foreach (InfoNumber n in t.Numbers)
                 t.Builder.Add(new TraitPicker(n.Type,n.Value));

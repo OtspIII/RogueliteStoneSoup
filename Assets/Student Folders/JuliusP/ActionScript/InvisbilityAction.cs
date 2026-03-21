@@ -63,7 +63,7 @@ public class InvisbilityAction : ActionScript
             }
         }
 
-        Debug.Log("Times found: " + timesFound);
+        //Debug.Log("Times found: " + timesFound);
     }
 
     void StartInvisibility()

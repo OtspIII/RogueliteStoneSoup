@@ -15,6 +15,7 @@ public class ExplodeAction_JaidenB : ActionScript
 
         if ((Who.AttackRange <= 0.5f || Who.Thing.Distance(Who.Target) <= Who.AttackRange) && Who.Thing.IsFacing(Who.Target, 5))
             Who.DoAction(Actions.DefaultAttack);
+     
         // Who.DoAction(Who.DefaultAttackAction());
     }
 

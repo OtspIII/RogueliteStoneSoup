@@ -14,34 +14,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CharacterOption
   Name: Stalker
   Author: 35
-  Team: 1
+  Team: 3
   Body: {fileID: 629948465317790645, guid: c5227d51ccfec934db9e0058624b573e, type: 3}
   Art: {fileID: -6663905626272520177, guid: 443ff9c1b0904354db723cf9cffe6bc7, type: 3}
   Color: {r: 1, g: 1, b: 1, a: 1}
-  Size: 0.4
+  Size: 0.37
   Tags:
   - Common: 102
     Custom: 
     W: 3
     Cost: 1
   LevelRange: {x: 0, y: 0}
-  Trait:
-  - Trait: 1
-    Numbers: []
-    Prefabs: []
-    Acts: []
-    OtherTrait: 0
-    SpawnReq:
-      Fixed: {fileID: 0}
-      Mandatory: []
-      Any: []
-      Level: 0
-      Author: 0
-      MaxCost: 0
-    Builder: []
+  Trait: []
   HP: 3
   Speed: 5
-  VisionRange: 4
-  Held: {fileID: 11400000, guid: bd1d3b73b8fa8ae43b99cd32a508630e, type: 2}
+  VisionRange: 6
+  Held: {fileID: 11400000, guid: ec29b52824f2a694dacc16c1697e9a52, type: 2}
   DefaultAction: 201
-  DefaultChaseAction: 202
+  DefaultChaseAction: 103

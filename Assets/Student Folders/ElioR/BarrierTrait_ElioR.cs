@@ -9,14 +9,21 @@ public class BarrierTrait_ElioR : Trait
         Type = Traits.Barrier;
         AddPreListen(EventTypes.Damage);
         AddListen(EventTypes.Damage);
+        AddListen(EventTypes.Setup);
     }
 
     public override void TakeEvent(TraitInfo i, EventInfo e)
     {
         switch(e.Type)
         {
+            case EventTypes.Setup:
+                {
+                    Debug.Log("SETUP BARRIER");
+                    break;
+                }
            case EventTypes.Damage:
                 {
+                    Debug.Log("XXX");
                     break;
                 }
         }
@@ -28,6 +35,7 @@ public class BarrierTrait_ElioR : Trait
         {
             case EventTypes.Damage:
             {
+                Debug.Log("Success");
                 e.Abort = true;
                 i.Who.RemoveTrait(i.Trait);
                 
