@@ -110,7 +110,7 @@ public class GameLibrary : MonoBehaviour
             return null;
         }
         //Return a random option, with more liked options being more likely
-        return WRandom(opts);
+        return WRandom(opts,backup);
     }
     
     ///Finds the gnome with the given name and returns it. Nothing too complicated.
@@ -121,7 +121,7 @@ public class GameLibrary : MonoBehaviour
     }
     
     ///Takes a dictionary of options with a 'weight' and returns one random--with 'heavier' ones more likely
-    public T WRandom<T>(Dictionary<T, float> opts) where T:GameOption
+    public T WRandom<T>(Dictionary<T, float> opts,bool warnNull=true) where T:GameOption
     {
         //We're going to add up the weights of all possible options using this float
         float total = 0;
@@ -139,7 +139,8 @@ public class GameLibrary : MonoBehaviour
             if (roll <= 0) return k;
         }
         //This should never happen. Things that should never happen often happen. That's why it's good to put a warning on it.
-        God.LogWarning("Weighted Random With No Result Somehow: " + opts.Keys.Count);
+        //If you pass a 'false' to this it'll suppress this message. Just be ready to handle null results.
+        if(warnNull) God.LogWarning("Weighted Random With No Result Somehow: " + opts.Keys.Count);
         return null;
     }
 }

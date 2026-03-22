@@ -212,9 +212,15 @@ public class ThingInfo //The class that handles all the core info for all non-wa
         List<Traits> l = pre ? PreListen[e] : TakeListen[e];
         if (l.Count <= 1) return;
         Dictionary<Traits, float> prio = new Dictionary<Traits, float>();
-        foreach (Traits t in l)
+        foreach (Traits t in l.ToArray())
         {
             Trait tr = Parser.Get(t);
+            if (tr == null)
+            {
+                God.LogError("Sort Listens Null Trait: " + t + " / " + this);
+                l.Remove(t);
+                continue;
+            }
             float pr = pre ? tr.PreListen[e] : tr.TakeListen[e];
             prio.Add(t,pr);
         }

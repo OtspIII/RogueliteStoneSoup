@@ -24,7 +24,7 @@ public class DelayedActionAfterStartingAction : Trait
         AddListen(EventTypes.StartAction);
         AddListen(EventTypes.Update);
         
-        Debug.Log($"Instance of {GetType().Name} created");
+        //Debug.Log($"Instance of {GetType().Name} created");
     }
 
     public override void TakeEvent(TraitInfo i, EventInfo e)
