@@ -24,7 +24,7 @@ MonoBehaviour:
     Custom: 
     W: 1
     Cost: 1
-  LevelRange: {x: 3, y: 5}
+  LevelRange: {x: 4, y: 5}
   Trait:
   - Trait: 3
     Numbers: []
@@ -49,7 +49,7 @@ MonoBehaviour:
       BoolType: 0
       Bool: 0
       OptionType: 0
-      Option: {fileID: 11400000, guid: a2dc93f55dc904dd3b2ddf8cee36761e, type: 2}
+      Option: {fileID: 11400000, guid: 16ba755a064eb44a69334ebaa2302f10, type: 2}
       VectorType: 0
       Vector: {x: 0, y: 0}
       Fixed: {fileID: 0}
@@ -58,7 +58,7 @@ MonoBehaviour:
       Any: 
       AnyW: 0
       Trait: 0
-  HP: 3
+  HP: 5
   Speed: 2.33
   VisionRange: 4
   Held: {fileID: 11400000, guid: ad13ac6261f013b45ab35c13a6699b50, type: 2}

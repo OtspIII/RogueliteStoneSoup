@@ -36,8 +36,8 @@ public class StunCancel : Trait
             // Reset velocity so the NPC doesn't fly around
             if (i.Who != null && i.Who.Thing != null)
             {
-                //i.Who.Thing.ActualMove = Vector2.zero; // stop movement from knockback
-                //i.Who.Thing.Knockback = Vector2.zero; // clear knockback vector
+                i.Who.Thing.ActualMove = Vector2.zero; // stop movement from knockback
+                i.Who.Thing.Knockback = Vector2.zero; // clear knockback vector
             }
 
             Debug.Log("Stun canceled and knockback prevented!");

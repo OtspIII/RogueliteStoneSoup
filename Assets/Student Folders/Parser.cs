@@ -48,6 +48,7 @@ public static class Parser
         TraitDict.Add(Traits.InvertControls, new InvertControlsTrait());
         // Julius Traits
         TraitDict.Add(Traits.Rage, new RageTrait());
+        TraitDict.Add(Traits.LowHealthWarrior_JuliusP, new UltimateRage());
         TraitDict.Add(Traits.Dash, new DashTrait());
         TraitDict.Add(Traits.SelfDestruct_JuliusP, new SelfDestruction());
         TraitDict.Add(Traits.IgnoreDamage_JuliusP, new IgnoreDamage());
@@ -60,6 +61,7 @@ public static class Parser
         TraitDict.Add(Traits.MonadoArts_JuliusP, new MonadoPower());
         TraitDict.Add(Traits.Slowed_JuliusP, new Slowed());
         TraitDict.Add(Traits.SlowOnhit_JuliusP, new SlowingProjectileTrait());
+        TraitDict.Add(Traits.AlwaysRage_JuliusP, new RageAlwaysOn());
     
 
 
@@ -263,6 +265,9 @@ public enum Traits
     MonadoArts_JuliusP = 4012,
     Slowed_JuliusP = 4013,
     SlowOnhit_JuliusP = 4014,
+    LowHealthWarrior_JuliusP = 4015,
+    AlwaysRage_JuliusP = 4016,
+
    
     
     
@@ -351,7 +356,7 @@ public enum Actions
     TradeHp_JuliusP = 4008,
     EvasiveJuke_JuliusP = 4009,
     BleakWatcher_JuliusP = 4010,
-    slowingproj_JuliusP = 4011,
+ 
 
 
   

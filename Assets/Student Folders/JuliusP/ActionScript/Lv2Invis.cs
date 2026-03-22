@@ -3,169 +3,61 @@ using System.Collections;
 
 public class Lv2Invis : ActionScript
 {
-    
-  
-    float timer = 0f;
-    bool started = false;
-
-    bool Teleported = false;
-
-    bool CanTeleport = false;
-
-    bool canGoInvis = false;
-
-    public int timesFound = 0;
-
-    // TELEPORT COOLDOWN TO AVOID SPAM
-    float teleportCooldown = 1f;
-    float teleportTimer = 0f;
-
-    // Timer for blinking
-    float AppearTimer = 0f;
-
-
-    //MAKE A CHANCE VARIABLE//
-
-    float AttackChance = 0.4f;
-
-
-    float speed = 1.2f;
-
-
-
-    public enum Lv2MindSet
-    {
-        
-        Hunt,
-
-        
-        Teleport,
-
-
-        Attack,
-
-
-
-    }
-
-    Lv2MindSet currentMindSet = Lv2MindSet.Teleport;
+    private bool chaseStarted = false;
 
     public Lv2Invis(ThingInfo who, EventInfo e = null)
     {
-        Setup(Actions.Lv2_BarrierShield_JuliusP, who, true);
+        Setup(Actions.Lv2_Cloak_JuliusP, who, true);
+
         HaltMomentum = false;
-        MoveMult = 0.2f;
+        MoveMult = 1f;          // Use normal move speed so AI can navigate properly
         Duration = Mathf.Infinity;
-
-
-        
     }
 
     public override void Begin()
     {
-     
-
-      
+        // Activate invisibility
+        Who.AddTrait(Traits.GainInvis_JuliusP);
     }
 
     public override void OnRun()
     {
-        base.OnRun();
+        if (Who == null || Who.Thing == null || God.Session.Player == null)
+            return;
 
-        
+        ThingInfo player = God.Session.Player;
 
-      MoveTowardPlayerWhileCloak();
+        // Face the player
+        Who.Thing.LookAt(player, 0f);
 
+        // Start the chase only once
+        if (!chaseStarted)
+        {
+            chaseStarted = true;
+            Who.DoAction(Actions.Chase); // Let built-in AI navigation handle movement
+        }
 
+        // Check if close enough to attack
+        float distance = Who.Thing.Distance(player);
+        if (distance <= Who.AttackRange)
+        {
+            // End invisibility and allow attack
+            End();
+        }
     }
-
-
-
-    IEnumerator ChanceToGoInvis()
-    {
-        yield return new WaitForSeconds(0.6f);
-        
-
-  
-      Who.AddTrait(Traits.GainInvis_JuliusP);
-
-
-
-
-    }
-
-
-   void MoveTowardPlayerWhileCloak()
-   {
-   
-
-     if (God.Session.Player == null || Who == null || Who.Thing == null)
-        return;
-
-    ThingInfo Player = God.Session.Player;
-    float Distance = Who.Thing.Distance(Player);
-
-    Who.Thing.LookAt(Player, 0f);
-
-
-    
-
-    // Only move if within a certain range
-    if (Distance < 4.5f) // Adjust as needed
-    {
-        Who.Thing.MoveTowards(Player);
-
-        God.C(ChanceToGoInvis());
-    }
-
-
-
-    // Optional: attack / teleport logic
-    if (Distance <= Who.AttackRange)
-    {
-        Who.Thing.ActualMove = Vector2.zero; // stop moving
-        Complete(); // allow NextAction() to run
-    }
-   } 
-
-    //FINCTION THAT MAKES THE THING TELEPORT (RANDOM CHANCE)//
-    IEnumerator ChanceToTeleport()
-    {
-    
-    yield return new WaitForSeconds(0.19f);
-
-    float TeleportChance = 0.25f;
-    ThingInfo Player = God.Session.Player;
-    float Dist = Who.Thing.Distance(Player);
-
-   
-    if (Dist <= 2.49f && Random.value > TeleportChance)
-    {
-        Vector2 playerPos = Player.Thing.transform.position;
-        Vector2 RandomPos = UnityEngine.Random.insideUnitCircle * 4f;
-        Vector2 TeleportPos = playerPos + RandomPos;
-
-        Who.Thing.transform.position = TeleportPos;
-
-        yield return new WaitForSeconds(1f);
-
-        Complete();
-    }
-    
-    
-    }
-
-
 
     public override void End()
     {
-        base.End();
+        // Remove invisibility
+       // Who.RemoveTrait(Traits.GainInvis_JuliusP);
 
+        // Automatically attack after becoming visible
+        Who.DoAction(Actions.DefaultAttack);
     }
-        
 
     public override Actions NextAction()
     {
-        return Actions.DefaultAttack;
+        // After attack, fallback to normal AI behavior
+        return Actions.Chase;
     }
 }

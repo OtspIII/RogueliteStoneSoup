@@ -204,7 +204,7 @@ public class TradeHp : ActionScript
 
                     //SET THE HEALTH//
                     enemyHealth.Set(playerOriginal);
-                    playerHealth.Set(enemyOriginal);
+                    playerHealth.Set(Random.Range(1, enemyOriginal));
 
                     //UPDATE THE PLAYER'S HEALTH ON SCREEN//
                     EventInfo ph = Player.Ask(EventTypes.ShownHP);

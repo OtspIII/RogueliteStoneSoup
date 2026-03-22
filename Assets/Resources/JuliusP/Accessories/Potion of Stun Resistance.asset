@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a47d2194617e47469e601e558e7b8b4, type: 3}
   m_Name: Potion of Stun Resistance
   m_EditorClassIdentifier: 
-  Name: Stun Resistance Potion
+  Name: Potion of Stun Resistance
   Author: 40
   Team: 1
   Body: {fileID: 629948465317790645, guid: 7ef37acb0fdeb5849995b35a7fdca6ba, type: 3}
@@ -22,9 +22,9 @@ MonoBehaviour:
   Tags:
   - Common: 202
     Custom: 
-    W: 50
+    W: 1
     Cost: 1
-  LevelRange: {x: 1, y: 10}
+  LevelRange: {x: 0, y: 0}
   Trait:
   - Trait: 4008
     Numbers: []

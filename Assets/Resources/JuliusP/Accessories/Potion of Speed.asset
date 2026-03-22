@@ -22,11 +22,11 @@ MonoBehaviour:
   Tags:
   - Common: 202
     Custom: 
-    W: 50
+    W: 1
     Cost: 1
-  LevelRange: {x: 1, y: 3}
+  LevelRange: {x: 0, y: 0}
   Trait:
-  - Trait: 4008
+  - Trait: 4009
     Numbers: []
     Prefabs: []
     Acts: []

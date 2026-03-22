@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4679cc75b2c8be74e8b047318fa062ea, type: 3}
-  m_Name: Agressor
+  m_Name: Lv3 Agressor
   m_EditorClassIdentifier: Assembly-CSharp::CharacterOption
-  Name: Agressor
+  Name: Lv3.Agressor
   Author: 40
   Team: 3
   Body: {fileID: 629948465317790645, guid: c5227d51ccfec934db9e0058624b573e, type: 3}
@@ -24,7 +24,7 @@ MonoBehaviour:
     Custom: 
     W: 1
     Cost: 1
-  LevelRange: {x: 0, y: 3}
+  LevelRange: {x: 8, y: 10}
   Trait:
   - Trait: 3
     Numbers: []
@@ -58,9 +58,41 @@ MonoBehaviour:
       Any: 
       AnyW: 0
       Trait: 0
-  HP: 4
+  - Trait: 4007
+    Numbers: []
+    Prefabs: []
+    Acts: []
+    OtherTrait: 0
+    SpawnReq:
+      Fixed: {fileID: 0}
+      Mandatory: []
+      Any: []
+      Level: 0
+      Author: 0
+      MaxCost: 0
+    Builder:
+    - Type: 4
+      NumType: 0
+      Num: 0
+      StrType: 0
+      Str: 
+      ActType: 0
+      Act: 0
+      BoolType: 0
+      Bool: 0
+      OptionType: 0
+      Option: {fileID: 11400000, guid: 6ea52f9f0d1d35e48b91b53e436681ad, type: 2}
+      VectorType: 0
+      Vector: {x: 0, y: 0}
+      Fixed: {fileID: 0}
+      Mandatory: 
+      MandatoryW: 0
+      Any: 
+      AnyW: 0
+      Trait: 0
+  HP: 10
   Speed: 4.46
-  VisionRange: 4
-  Held: {fileID: 11400000, guid: 26769a297c5f041b7941964fcdd12a47, type: 2}
-  DefaultAction: 202
+  VisionRange: 3.54
+  Held: {fileID: 11400000, guid: f453391fd2223470ea13ad3d018b6dc7, type: 2}
+  DefaultAction: 201
   DefaultChaseAction: 202

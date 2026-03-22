@@ -31,7 +31,7 @@ public class InvisbilityAction : ActionScript
         float distanceToPlayer = Who.Thing.Distance(God.Session.Player.Thing);
 
         // START INVISIBILITY FIRST TIME
-        if (!started && distanceToPlayer < 2f) 
+        if (!started && distanceToPlayer < 3.5f) 
         {
             StartInvisibility();
             timesFound++;

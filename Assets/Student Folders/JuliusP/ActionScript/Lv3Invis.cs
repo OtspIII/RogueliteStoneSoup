@@ -51,7 +51,7 @@ public class Lv3Invis : ActionScript
             Who.Thing.transform.SetParent(player.Thing.transform);
 
             //OFFSET THE THING SLIGHTLY BEHIND THE PLAYER//
-            Who.Thing.transform.localPosition = new Vector3(0, -1.9f, 0);
+            Who.Thing.transform.localPosition = new Vector3(0, -1.2f, 0);
         }
     }
 
