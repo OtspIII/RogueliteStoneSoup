@@ -15,8 +15,11 @@ public class RobAction_JaidenB : SwingAction
     public override void HitBegin(GameCollision col)
     {
         base.HitBegin(col);
-        //if (col.Other.score == 0 )
-        col.Other.TakeEvent(God.E(EventTypes.AddScore).Set(-1).Set(Who), true);
+        //if (col.Other.)
+        //{
+            col.Other.TakeEvent(God.E(EventTypes.AddScore).Set(-1).Set(Who), true);
+        //}
+       // col.Other.TakeEvent(God.E(EventTypes.AddScore).Set(-1).Set(Who), true);
 
     }
     // RemoveInventory(ThingInfo) no idea what I'm going to do with this but I want to use this variable

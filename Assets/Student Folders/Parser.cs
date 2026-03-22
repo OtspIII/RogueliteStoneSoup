@@ -46,6 +46,7 @@ public static class Parser
         TraitDict.Add(Traits.ParryTrait_ElioR, new ParryTrait());
         // JaidenB Traits
         TraitDict.Add(Traits.InvertControls, new InvertControlsTrait());
+        TraitDict.Add(Traits.Freeze, new FreezeTrait());
         // Julius Traits
         TraitDict.Add(Traits.Rage, new RageTrait());
         TraitDict.Add(Traits.LowHealthWarrior_JuliusP, new UltimateRage());
@@ -250,6 +251,7 @@ public enum Traits
     //JaidenB       =35##,
     JaidenB1        =3501,
     InvertControls  =3502,
+    Freeze          =3503,
     //JuliusP       =40##,
     JuliusP1        =4001,
     Rage            =4002, 
