@@ -69,6 +69,7 @@ public static class Parser
       
         // MazK Traits
         // MichaelT Traits
+        TraitDict.Add(Traits.Bleed_MichaelT, new BleedTrait_MichaelT());
         // QixiangD Traits
         TraitDict.Add(Traits.Sneaky_qixiangdong, new Sneaky_qixiangdong());
         TraitDict.Add(Traits.Thrill_qixiangdong, new Thrill_qixiangdong());
@@ -135,6 +136,7 @@ public static class Parser
             
         
             // MichaelT=50,
+            case Actions.BleedAttack_MichaelT: return new BleedAttackAction_MichaelT(who, e);
             // QixiangD=55,
             //case Actions.Sidestep_qixiangdong: return new Sidestep_qixiangdong(who,e);
             // RaphaelC=60,
@@ -280,6 +282,7 @@ public enum Traits
     MazK1           =4501,
     //MichaelT      =50##,
     MichaelT1       =5001,
+    Bleed_MichaelT = 5002, //Ticks Damage for 1 second 
     //QixiangD      =55##,
     QixiangD1       =5501,
     Sneaky_qixiangdong = 5502,
@@ -368,6 +371,7 @@ public enum Actions
     MazK1           =4501,
     //MichaelT      =50##,
     MichaelT1       =5001,
+    BleedAttack_MichaelT = 5003, //Applies Bleed Trait to Target on Hit
     //QixiangD      =55##,
     Sidestep_qixiangdong = 5501,
     //RaphaelC      =60##,
