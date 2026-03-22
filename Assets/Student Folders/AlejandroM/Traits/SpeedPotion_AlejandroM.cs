@@ -21,12 +21,19 @@ public class SpeedPotion_AlejandroM : Trait
                     var itemThing = i.Who.Thing;
                     if (itemThing == null) return;
 
-                    // SAFELY get player through HeldBody
-                    var heldBody = itemThing.HeldBody;
-                    if (heldBody == null) return;
+                    var body = itemThing.Body;
+                    if (body == null)
+                    {
+                        Debug.Log("SpeedPotion: body is null");
+                        return;
+                    }
 
-                    var player = heldBody.Who;
-                    if (player == null) return;
+                    var player = body.Who;
+                    if (player == null)
+                    {
+                        Debug.Log("SpeedPotion: player is null");
+                        return;
+                    }
 
                     Debug.Log("SpeedPotion player = " + player.name);
 
@@ -49,18 +56,19 @@ public class SpeedPotion_AlejandroM : Trait
                     var itemThing = i.Who.Thing;
                     if (itemThing == null) return;
 
-                    var heldBody = itemThing.HeldBody;
-                    if (heldBody == null) return;
+                    var body = itemThing.Body;
+                    if (body == null) return;
 
-                    var player = heldBody.Who;
+                    var player = body.Who;
                     if (player == null) return;
 
                     if (t <= 0)
                     {
                         float originalSpeed = i.GetFloat(NumInfo.Min, player.Info.CurrentSpeed);
                         player.Info.CurrentSpeed = originalSpeed;
-
                         i.Set(NumInfo.Default, 0f);
+
+                        Debug.Log("SpeedPotion ended");
                     }
 
                     break;
