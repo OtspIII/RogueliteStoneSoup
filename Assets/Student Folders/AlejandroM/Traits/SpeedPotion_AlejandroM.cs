@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class SpeedPotion_AlejandroM : Trait
 {
@@ -15,41 +15,54 @@ public class SpeedPotion_AlejandroM : Trait
         {
             case EventTypes.Setup:
                 {
-                    // Duration of Max speed is 20 sec
-                    float duration = i.GetFloat(NumInfo.Max, 20f);
+                    float duration = i.GetFloat(NumInfo.Max, 5f);
                     i.Set(NumInfo.Default, duration);
 
-                    
-                    
-                    var who = i.Who.Thing;
-                    if (who != null)
-                    {
-                        i.Set(NumInfo.Min, who.Info.CurrentSpeed);
-                    }
+                    var itemThing = i.Who.Thing;
+                    if (itemThing == null) return;
+
+                    // SAFELY get player through HeldBody
+                    var heldBody = itemThing.HeldBody;
+                    if (heldBody == null) return;
+
+                    var player = heldBody.Who;
+                    if (player == null) return;
+
+                    Debug.Log("SpeedPotion player = " + player.name);
+
+                    float originalSpeed = player.Info.CurrentSpeed;
+                    i.Set(NumInfo.Min, originalSpeed);
+
+                    player.Info.CurrentSpeed = originalSpeed * 1.5f;
+
                     break;
                 }
 
             case EventTypes.Update:
                 {
-                    float t = i.GetFloat(NumInfo.Default);
+                    float t = i.GetFloat(NumInfo.Default, 0f);
                     if (t <= 0) return;
 
                     t -= Time.deltaTime;
                     i.Set(NumInfo.Default, t);
 
-                    var who = i.Who.Thing;
-                    if (who == null) return;
+                    var itemThing = i.Who.Thing;
+                    if (itemThing == null) return;
 
-                    float original = i.GetFloat(NumInfo.Min, who.Info.CurrentSpeed);
-                    float boosted = original * 1.5f; // increase speed 
-                    who.Info.CurrentSpeed = boosted;
+                    var heldBody = itemThing.HeldBody;
+                    if (heldBody == null) return;
 
-                    // When timer ends for the speed effect you go back to original speed 
+                    var player = heldBody.Who;
+                    if (player == null) return;
+
                     if (t <= 0)
                     {
-                        who.Info.CurrentSpeed = original;
-                        i.Set(NumInfo.Default, 0);
+                        float originalSpeed = i.GetFloat(NumInfo.Min, player.Info.CurrentSpeed);
+                        player.Info.CurrentSpeed = originalSpeed;
+
+                        i.Set(NumInfo.Default, 0f);
                     }
+
                     break;
                 }
         }
