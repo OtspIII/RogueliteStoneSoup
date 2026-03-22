@@ -31,7 +31,7 @@ public class GainInvisibility : Trait
                     Sr = i.Who.Thing.gameObject.GetComponentsInChildren<SpriteRenderer>();
 
                     //MAKE THE THING GRADUALLY DISAPPEAR//
-                    God.C(GraduallyDisappear(0.06f));
+                    God.C(GraduallyDisappear(0.19f));
                 }
 
                 break;

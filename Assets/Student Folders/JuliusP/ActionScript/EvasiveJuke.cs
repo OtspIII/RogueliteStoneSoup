@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 public class EvasiveJuke : ActionScript
 {
-    float EvadeForce = 5.6f;
+    float EvadeForce = 5f;
 
-    float JukeTimerCooldwn = 0.94f;
+    float JukeTimerCooldwn = 0.34f;
 
     float JukeTimer;
 
@@ -31,67 +31,118 @@ public class EvasiveJuke : ActionScript
     }
 
     public override void OnRun()
+   {
+    ThingInfo player = God.Session.Player;
+    if (player == null) return;
+
+    float dist = Who.Thing.Distance(player);
+
+    JukeTimer += Time.deltaTime;
+
+    // If far, chase
+    if (dist > 3f)
     {
-        ThingInfo player = God.Session.Player;
-
-        if (player == null) return;
-
-        float dist = Who.Thing.Distance(player);
-
-        JukeTimer += Time.deltaTime;
-    
-
-     
-       
-        // If close to player → juke
-        if (dist < 3f && JukeTimer >= JukeTimerCooldwn)
-        {
-            Juke();
-            timescanJuke++;
-            JukeTimer = 0;
-        }
-
-        else if(timescanJuke > 3)
-        {
-            
-           Who.Thing.DoAction(Actions.DefaultAttack);
-
-        }
-
-
-        else if(dist > 3f)
-        {
-            Chase();
-
-        }
-       
-
-
+        Chase();
+        return;
     }
 
+    // If close,  juke
+    if (JukeTimer >= JukeTimerCooldwn || dist <= 3f)
+    {
+        Juke();
+        //timescanJuke++;
+        JukeTimer = 0;
+    }
+    else
+    {
+        
+        Chase(); 
+    }
+
+    // After enough jukes → attack
+    if (timescanJuke > 3)
+    {
+        Who.Thing.DoAction(Actions.DefaultAttack);
+    }
+}
     // Juke movement
     void Juke()
     {
-        ThingInfo player = God.Session.Player;
+     ThingInfo player = God.Session.Player;
+    if (player == null) return;
 
-        if (player == null) return;
 
-        // Push away from player
-        Who.Thing.TakeKnockback(player, EvadeForce * 5);
 
-        // After juking → attack
-       // Who.Thing.DoAction(Actions.DefaultAttack);
+        float JukeChance = 0.71f;
+
+
+        if(Random.value < JukeChance)
+        {
+            
+            Who.Thing.TakeKnockback(player, EvadeForce * 5);
+            //Who.Thing.DoAction(Actions.DefaultAttack);
+
+
+
+        }
+
+        else
+        {
+            
+            Who.Thing.DoAction(Actions.Chase);
+
+        }
+
+   
+ 
     }
-
+    
     // Chase player
     void Chase()
     {
     
         ThingInfo Player = God.Session.Player;
 
+        ThingInfo Thing = Who;
+
         Who.Thing.LookAt(Player);
 
         Who.Thing.MoveTowards(Player);
+
+
+
+        ThingInfo player = God.Session.Player;
+    if (player == null) return;
+
+
+
+        float JukeChance = 0.71f;
+
+
+        if(Random.value < JukeChance)
+        {
+            
+            Who.Thing.TakeKnockback(player, EvadeForce * 5);
+            //Who.Thing.DoAction(Actions.DefaultAttack);
+
+            
+
+
+
+        }
+
+        else
+        {
+            
+            Who.Thing.DoAction(Actions.Chase);
+
+        }
+
+
+
+    
+
+    
         
     }
 }

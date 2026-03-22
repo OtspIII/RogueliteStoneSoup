@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4679cc75b2c8be74e8b047318fa062ea, type: 3}
-  m_Name: Lv1.ShieldEnemy
+  m_Name: Lv2.Vampire
   m_EditorClassIdentifier: Assembly-CSharp::CharacterOption
-  Name: Shield Enemy
+  Name: Lv2.Lost Friendly
   Author: 40
   Team: 3
   Body: {fileID: 629948465317790645, guid: acf0e760b28c7b046ad7d511fb87a1d3, type: 3}
-  Art: {fileID: 9183382434615233273, guid: ce7ae796c54402f41bf8753d6ec49110, type: 3}
+  Art: {fileID: -2043683151485635411, guid: 4635bc6e724f8564b83cba6eccc4e319, type: 3}
   Color: {r: 1, g: 1, b: 1, a: 1}
   Size: 1
   Tags:
@@ -24,11 +24,11 @@ MonoBehaviour:
     Custom: 
     W: 1
     Cost: 1
-  LevelRange: {x: 2, y: 4}
+  LevelRange: {x: 4, y: 6}
   Trait: []
-  HP: 3
-  Speed: 4
+  HP: 5
+  Speed: 5
   VisionRange: 10.6
-  Held: {fileID: 11400000, guid: 26769a297c5f041b7941964fcdd12a47, type: 2}
-  DefaultAction: 4002
-  DefaultChaseAction: 202
+  Held: {fileID: 11400000, guid: f453391fd2223470ea13ad3d018b6dc7, type: 2}
+  DefaultAction: 4008
+  DefaultChaseAction: 4009

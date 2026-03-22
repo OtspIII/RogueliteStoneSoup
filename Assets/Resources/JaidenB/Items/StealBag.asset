@@ -12,17 +12,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a47d2194617e47469e601e558e7b8b4, type: 3}
   m_Name: StealBag
   m_EditorClassIdentifier: Assembly-CSharp::ItemOption
-  Name: LolipopWeapon
+  Name: StealBag
   Author: 35
   Team: 1
   Body: {fileID: 629948465317790645, guid: b4fa405680f33044abe2c4567ecf147f, type: 3}
-  Art: {fileID: -4125220618416184578, guid: d38ac7605d40b4b46bec9ce1d313c46f, type: 3}
-  Color: {r: 1, g: 1, b: 1, a: 1}
+  Art: {fileID: 6200118337827907677, guid: ee4ed15bb21f3144a99a9925ecbff4f2, type: 3}
+  Color: {r: 1, g: 0.8708585, b: 0.5896226, a: 1}
   Size: 1
   Tags: []
   LevelRange: {x: 0, y: 0}
-  Trait: []
-  DefaultAttack: 101
+  Trait:
+  - Trait: 311
+    Numbers: []
+    Prefabs: []
+    Acts: []
+    OtherTrait: 0
+    SpawnReq:
+      Fixed: {fileID: 0}
+      Mandatory: []
+      Any: []
+      Level: 0
+      Author: 0
+      MaxCost: 0
+    Builder: []
+  DefaultAttack: 3503
   ToSpawn:
     Fixed: {fileID: 0}
     Mandatory: []
@@ -32,7 +45,7 @@ MonoBehaviour:
     MaxCost: 0
   FloorBody: {fileID: 0}
   FloorArt: {fileID: 0}
-  Damage: 2
+  Damage: 1
   IdealRange: 1
   SpeedMult: 3
-  ActDuration: 0
+  ActDuration: 1
