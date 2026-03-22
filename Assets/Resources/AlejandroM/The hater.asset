@@ -44,4 +44,4 @@ MonoBehaviour:
   VisionRange: 4
   Held: {fileID: 11400000, guid: d8535ae3107c2184ab8fc49f1318f904, type: 2}
   DefaultAction: 201
-  DefaultChaseAction: 202
+  DefaultChaseAction: 101
