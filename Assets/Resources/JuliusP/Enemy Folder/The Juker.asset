@@ -58,9 +58,9 @@ MonoBehaviour:
       Any: 
       AnyW: 0
       Trait: 0
-  HP: 10
+  HP: 4
   Speed: 5
   VisionRange: 4
-  Held: {fileID: 11400000, guid: 9864691d8be6649c59a0571c46625df0, type: 2}
+  Held: {fileID: 11400000, guid: 26769a297c5f041b7941964fcdd12a47, type: 2}
   DefaultAction: 4005
   DefaultChaseAction: 202

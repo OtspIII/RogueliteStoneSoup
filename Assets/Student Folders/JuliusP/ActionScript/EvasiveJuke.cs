@@ -40,6 +40,9 @@ public class EvasiveJuke : ActionScript
 
         JukeTimer += Time.deltaTime;
     
+
+     
+       
         // If close to player → juke
         if (dist < 3f && JukeTimer >= JukeTimerCooldwn)
         {
@@ -51,12 +54,12 @@ public class EvasiveJuke : ActionScript
         else if(timescanJuke > 3)
         {
             
-            Who.Thing.DoAction(Actions.DefaultAttack);
+           Who.Thing.DoAction(Actions.DefaultAttack);
 
         }
 
 
-        else if(dist > 2.2f)
+        else if(dist > 3f)
         {
             Chase();
 

@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a47d2194617e47469e601e558e7b8b4, type: 3}
-  m_Name: Lv3.Sword
+  m_Name: Sword of Evil Bane
   m_EditorClassIdentifier: 
-  Name: Sword of Demise
+  Name: Sword of Evil Bane
   Author: 0
   Team: 1
   Body: {fileID: 629948465317790645, guid: b4fa405680f33044abe2c4567ecf147f, type: 3}
@@ -24,9 +24,9 @@ MonoBehaviour:
     Custom: 
     W: 1
     Cost: 1
-  LevelRange: {x: 6, y: 9}
+  LevelRange: {x: 8, y: 9}
   Trait:
-  - Trait: 4002
+  - Trait: 4016
     Numbers: []
     Prefabs: []
     Acts: []
@@ -49,7 +49,7 @@ MonoBehaviour:
     MaxCost: 0
   FloorBody: {fileID: 0}
   FloorArt: {fileID: 0}
-  Damage: 2
+  Damage: 1
   IdealRange: 1.5
   SpeedMult: 1
   ActDuration: 0
