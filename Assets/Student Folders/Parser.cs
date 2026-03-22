@@ -394,6 +394,8 @@ public enum Actions
     StalkSarahS     =7501,
     RiseFromDeadSarahS =7502,
     PossessionSarahS =7503,
+    PanicRunSarahS  =7504,
+    HideSarahS      =7504,
     //TracyH        =80##,
     TracyH1         =8001,
     //WesleyP       =90##,

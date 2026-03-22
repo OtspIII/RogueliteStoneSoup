@@ -16,9 +16,9 @@ MonoBehaviour:
   Author: 75
   Team: 2
   Body: {fileID: 629948465317790645, guid: acf0e760b28c7b046ad7d511fb87a1d3, type: 3}
-  Art: {fileID: 21300000, guid: 2d7e0ce399741ea4297e5d3e535c5d8c, type: 3}
+  Art: {fileID: 21300000, guid: 216db4b92d45c4c7f804ee3642861b7e, type: 3}
   Color: {r: 1, g: 1, b: 1, a: 1}
-  Size: 0.9
+  Size: 1
   Tags:
   - Common: 1
     Custom: 
@@ -38,48 +38,23 @@ MonoBehaviour:
       Level: 0
       Author: 0
       MaxCost: 0
-    Builder:
-    - Type: 2
-      NumType: 0
-      Num: 0
-      StrType: 0
-      Str: 
-      ActType: 0
-      Act: 0
-      BoolType: 0
-      Bool: 0
-      OptionType: 0
-      Option: {fileID: 0}
-      VectorType: 0
-      Vector: {x: 0, y: 0}
+    Builder: []
+  - Trait: 100
+    Numbers: []
+    Prefabs: []
+    Acts: []
+    OtherTrait: 0
+    SpawnReq:
       Fixed: {fileID: 0}
-      Mandatory: 
-      MandatoryW: 0
-      Any: 
-      AnyW: 0
-      Trait: 0
-    - Type: 7
-      NumType: 0
-      Num: 0
-      StrType: 0
-      Str: 
-      ActType: 0
-      Act: 0
-      BoolType: 0
-      Bool: 0
-      OptionType: 0
-      Option: {fileID: 0}
-      VectorType: 0
-      Vector: {x: 0, y: 0}
-      Fixed: {fileID: 0}
-      Mandatory: 
-      MandatoryW: 0
-      Any: 
-      AnyW: 0
-      Trait: 100
+      Mandatory: []
+      Any: []
+      Level: 0
+      Author: 0
+      MaxCost: 0
+    Builder: []
   HP: 20
   Speed: 5
   VisionRange: 4
   Held: {fileID: 0}
-  DefaultAction: 201
-  DefaultChaseAction: 202
+  DefaultAction: 1
+  DefaultChaseAction: 1
