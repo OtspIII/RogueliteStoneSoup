@@ -178,7 +178,7 @@ public class FullStunNegation:Trait
             case EventTypes.StartAction:
             {
                 // CHECK IF THE ACTION IS A STUN ACTION//
-                if (e.Get(ActionInfo.Action) == Actions.Stun)
+                if (e.Get(ActionInfo.Action) == Actions.Stun && i.Who != null && i.Who.Thing != null)
                 {
                     ThingInfo Player = God.Session.Player;
                     //CANCEL THE STUN ACTION FROM HAPPENING
