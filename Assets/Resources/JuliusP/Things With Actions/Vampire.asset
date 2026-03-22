@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4679cc75b2c8be74e8b047318fa062ea, type: 3}
   m_Name: Vampire
   m_EditorClassIdentifier: Assembly-CSharp::CharacterOption
-  Name: Vampire
+  Name: Lost Friendly
   Author: 40
   Team: 3
   Body: {fileID: 629948465317790645, guid: acf0e760b28c7b046ad7d511fb87a1d3, type: 3}
@@ -24,7 +24,7 @@ MonoBehaviour:
     Custom: 
     W: 1
     Cost: 1
-  LevelRange: {x: 0, y: 0}
+  LevelRange: {x: 1, y: 10}
   Trait: []
   HP: 4
   Speed: 5

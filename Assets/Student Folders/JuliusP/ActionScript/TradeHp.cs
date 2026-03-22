@@ -136,7 +136,7 @@ public class TradeHp : ActionScript
            // Who.Thing.MoveTowards(Exit.Thing);
 
             //CHECKS DISTANCE THRESHOLD TO THE EXIT//
-            if (distanceToExit < 3f)
+            if (distanceToExit < 1f)
             {
                 //MAKE PLAYER CANT MOVE//
                 float originalSpeed = Player.CurrentSpeed;
@@ -204,10 +204,11 @@ public class TradeHp : ActionScript
 
                     //SET THE HEALTH//
                     enemyHealth.Set(playerOriginal);
-                    playerHealth.Set(Random.Range(1, enemyOriginal));
+                    playerHealth.Set(enemyOriginal);
 
                     //UPDATE THE PLAYER'S HEALTH ON SCREEN//
                     EventInfo ph = Player.Ask(EventTypes.ShownHP);
+                    
                     God.GM.SetUI("Health", ph.GetInt() + "/" + ph.GetInt(NumInfo.Max), 1);
                 }
 
