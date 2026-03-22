@@ -22,5 +22,5 @@ MonoBehaviour:
   Tags: []
   LevelRange: {x: 0, y: 0}
   Trait: []
-  Damage: 3
-  Speed: 5
+  Damage: 7
+  Speed: 6

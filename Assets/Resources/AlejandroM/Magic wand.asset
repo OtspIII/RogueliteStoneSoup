@@ -12,27 +12,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a47d2194617e47469e601e558e7b8b4, type: 3}
   m_Name: Magic wand
   m_EditorClassIdentifier: Assembly-CSharp::ItemOption
-  Name: 
-  Author: 0
+  Name: 'Magic wand '
+  Author: 25
   Team: 1
-  Body: {fileID: 0}
-  Art: {fileID: 0}
+  Body: {fileID: 629948465317790645, guid: b4fa405680f33044abe2c4567ecf147f, type: 3}
+  Art: {fileID: 8979405933268748967, guid: ebcd813270bda67479948ef3dd290963, type: 3}
   Color: {r: 1, g: 1, b: 1, a: 1}
   Size: 1
   Tags: []
-  LevelRange: {x: 0, y: 0}
+  LevelRange: {x: 0, y: 10}
   Trait: []
-  DefaultAttack: 0
+  DefaultAttack: 103
   ToSpawn:
-    Fixed: {fileID: 0}
+    Fixed: {fileID: 11400000, guid: 659e7001c98a30e4d8bd0a102ba43328, type: 2}
     Mandatory: []
     Any: []
     Level: 0
-    Author: 0
+    Author: 25
     MaxCost: 0
   FloorBody: {fileID: 0}
   FloorArt: {fileID: 0}
-  Damage: 0
+  Damage: 5
   IdealRange: 1.5
   SpeedMult: 1
   ActDuration: 0

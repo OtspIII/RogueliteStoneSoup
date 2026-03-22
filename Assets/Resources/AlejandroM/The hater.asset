@@ -12,19 +12,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4679cc75b2c8be74e8b047318fa062ea, type: 3}
   m_Name: The hater
   m_EditorClassIdentifier: Assembly-CSharp::CharacterOption
-  Name: 
-  Author: 0
-  Team: 1
-  Body: {fileID: 0}
-  Art: {fileID: 0}
+  Name: The hater
+  Author: 25
+  Team: 3
+  Body: {fileID: 629948465317790645, guid: acf0e760b28c7b046ad7d511fb87a1d3, type: 3}
+  Art: {fileID: -4321516586056154400, guid: 68e42a79747e2574b88594ac83fa3b89, type: 3}
   Color: {r: 1, g: 1, b: 1, a: 1}
-  Size: 1
-  Tags: []
-  LevelRange: {x: 0, y: 0}
-  Trait: []
-  HP: 0
+  Size: 2
+  Tags:
+  - Common: 102
+    Custom: 
+    W: 0
+    Cost: 0
+  LevelRange: {x: 0, y: 9}
+  Trait:
+  - Trait: 101
+    Numbers: []
+    Prefabs: []
+    Acts: []
+    OtherTrait: 0
+    SpawnReq:
+      Fixed: {fileID: 0}
+      Mandatory: []
+      Any: []
+      Level: 0
+      Author: 0
+      MaxCost: 0
+    Builder: []
+  HP: 10
   Speed: 5
   VisionRange: 4
-  Held: {fileID: 0}
+  Held: {fileID: 11400000, guid: d8535ae3107c2184ab8fc49f1318f904, type: 2}
   DefaultAction: 201
   DefaultChaseAction: 202

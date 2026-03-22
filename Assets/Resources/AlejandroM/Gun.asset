@@ -24,7 +24,7 @@ MonoBehaviour:
     Custom: 
     W: 0
     Cost: 1
-  LevelRange: {x: 0, y: 0}
+  LevelRange: {x: 0, y: 10}
   Trait: []
   DefaultAttack: 103
   ToSpawn:
@@ -32,11 +32,11 @@ MonoBehaviour:
     Mandatory: []
     Any: []
     Level: 0
-    Author: 0
+    Author: 25
     MaxCost: 0
   FloorBody: {fileID: 0}
   FloorArt: {fileID: 0}
-  Damage: 2
-  IdealRange: 4
+  Damage: 7
+  IdealRange: 6
   SpeedMult: 1
   ActDuration: 0
