@@ -15,14 +15,27 @@ MonoBehaviour:
   Name: Holy Book
   Author: 75
   Team: 1
-  Body: {fileID: 0}
-  Art: {fileID: 0}
+  Body: {fileID: 629948465317790645, guid: 7ef37acb0fdeb5849995b35a7fdca6ba, type: 3}
+  Art: {fileID: 21300000, guid: dc228781d2b714065ac38d101f5bfa4e, type: 3}
   Color: {r: 1, g: 1, b: 1, a: 1}
   Size: 1
   Tags: []
   LevelRange: {x: 0, y: 0}
   Trait:
   - Trait: 301
+    Numbers: []
+    Prefabs: []
+    Acts: []
+    OtherTrait: 0
+    SpawnReq:
+      Fixed: {fileID: 0}
+      Mandatory: []
+      Any: []
+      Level: 0
+      Author: 0
+      MaxCost: 0
+    Builder: []
+  - Trait: 7503
     Numbers: []
     Prefabs: []
     Acts: []

@@ -69,6 +69,7 @@ public static class Parser
       
         // MazK Traits
         // MichaelT Traits
+        TraitDict.Add(Traits.Bleed_MichaelT, new BleedTrait_MichaelT());
         // QixiangD Traits
         TraitDict.Add(Traits.Sneaky_qixiangdong, new Sneaky_qixiangdong());
         TraitDict.Add(Traits.Thrill_qixiangdong, new Thrill_qixiangdong());
@@ -135,6 +136,7 @@ public static class Parser
             
         
             // MichaelT=50,
+            case Actions.BleedAttack_MichaelT: return new BleedAttackAction_MichaelT(who, e);
             // QixiangD=55,
             //case Actions.Sidestep_qixiangdong: return new Sidestep_qixiangdong(who,e);
             // RaphaelC=60,
@@ -150,7 +152,9 @@ public static class Parser
             // SamsonW=70,
             case Actions.SelfKill: return new SelfKillAction(who, e);
             // SarahS=75,
-            
+            case Actions.StalkSarahS: return new Stalk_SarahS(who,e);
+            case Actions.RiseFromDeadSarahS: return new RiseFromDead_SarahS(who,e);
+            case Actions.PossessionSarahS: return new Possession_SarahS(who, e);
             // TracyH=80,
             // WesleyP=90,
             // YuChen=95,
@@ -280,6 +284,7 @@ public enum Traits
     MazK1           =4501,
     //MichaelT      =50##,
     MichaelT1       =5001,
+    Bleed_MichaelT = 5002, //Ticks Damage for 1 second 
     //QixiangD      =55##,
     QixiangD1       =5501,
     Sneaky_qixiangdong = 5502,
@@ -368,6 +373,7 @@ public enum Actions
     MazK1           =4501,
     //MichaelT      =50##,
     MichaelT1       =5001,
+    BleedAttack_MichaelT = 5003, //Applies Bleed Trait to Target on Hit
     //QixiangD      =55##,
     Sidestep_qixiangdong = 5501,
     //RaphaelC      =60##,
@@ -385,7 +391,11 @@ public enum Actions
     SamsonW1        =7001,
     SelfKill        =7002, // Immediately kills thing on enter after 1 frame
     //SarahS        =75##,
-    JumpHover_SarahS=7501,
+    StalkSarahS     =7501,
+    RiseFromDeadSarahS =7502,
+    PossessionSarahS =7503,
+    PanicRunSarahS  =7504,
+    HideSarahS      =7504,
     //TracyH        =80##,
     TracyH1         =8001,
     //WesleyP       =90##,

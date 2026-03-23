@@ -10,7 +10,7 @@ public class InvisbilityAction : ActionScript
     public int timesFound = 0;
 
     // TELEPORT COOLDOWN TO AVOID SPAM
-    float teleportCooldown = 1f;
+    float teleportCooldown = 0.5f;
     float teleportTimer = 0f;
 
     // Timer for blinking
@@ -44,7 +44,7 @@ public class InvisbilityAction : ActionScript
             AppearTimer += Time.deltaTime;
 
             // TELEPORT AGAIN IF PLAYER IS CLOSE AND COOLDOWN PASSED
-            if (distanceToPlayer < 2f && teleportTimer >= teleportCooldown)
+            if (distanceToPlayer < 3f && teleportTimer >= teleportCooldown)
             {
                 TeleportNearPlayer();
                 teleportTimer = 0f;
@@ -112,10 +112,10 @@ public class InvisbilityAction : ActionScript
     // Define offsets relative to the player
     List<Vector3> offsets = new List<Vector3>
     {
-        player.right * 2.5f,    // right
-        -player.right * 2.5f,   // left
-        player.up * 2.5f,       // up
-        -player.up * 2.5f        // down
+        player.right * 2.1f,    // right
+        -player.right * 2.1f,   // left
+        player.up * 2.1f,       // up
+        -player.up * 2.1f        // down
     };
 
     // Pick a random offset
