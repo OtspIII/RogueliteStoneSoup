@@ -164,8 +164,9 @@ public static class Parser
             case Actions.RiseFromDeadSarahS: return new RiseFromDead_SarahS(who,e);
             case Actions.PossessionSarahS: return new Possession_SarahS(who, e);
             // TracyH=80,
-            // WesleyP=90,
-            // YuChen=95,
+            case Actions.Charge_TracyH: return new ChargeAction_TracyH(who, e);
+                // WesleyP=90,
+                // YuChen=95,
         }
         God.LogError("UNCAUGHT ACTION: " + act);
         return new IdleAction(who,e);
@@ -415,8 +416,9 @@ public enum Actions
     HideSarahS      =7504,
     //TracyH        =80##,
     TracyH1         =8001,
+    Charge_TracyH   =8002,
     //WesleyP       =90##,
-    WesleyP1        =9001,
+    WesleyP1 = 9001,
     //YuChen        =95##,
     YuChen1         =9501,
     
