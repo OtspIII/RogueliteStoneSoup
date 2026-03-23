@@ -134,6 +134,22 @@ MonoBehaviour:
   Rooms: []
   Things: []
   Gnomes: []
+  Exit:
+    Name: 
+    Thing: {fileID: 0}
+    Type: {fileID: 0}
+    Team: 0
+    MidEvent: 0
+    Setup: 0
+    Destroyed: 0
+    TargetedBy: []
+    AttackRange: 0
+    VisionRange: 0
+    CurrentSpeed: 0
+    DesiredMove: {x: 0, y: 0}
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &1505889798978773429
 GameObject:
   m_ObjectHideFlags: 0

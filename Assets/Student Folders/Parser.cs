@@ -70,12 +70,12 @@ public static class Parser
         TraitDict.Add(Traits.Teleport_TracyH, new TeleportTrait_TracyH());
         // WesleyP Traits
         // YuChen Traits
-<<<<<<< HEAD
+
         TraitDict.Add(Traits.Criticaldamage,new CriticaldamageTrait());
         
-=======
 
->>>>>>> 8ed8fa0410ffbbd80d455ae108881031e6ebf6c2
+
+
 
 
     }

@@ -10,34 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4679cc75b2c8be74e8b047318fa062ea, type: 3}
-  m_Name: dark
+  m_Name: Ally blade
   m_EditorClassIdentifier: Assembly-CSharp::CharacterOption
-  Name: Dark
+  Name: Ally blade
   Author: 95
   Team: 2
-  Body: {fileID: 629948465317790645, guid: 0a2102bf84264a44e9e01c5e7dea2058, type: 3}
-  Art: {fileID: -2510476293373519475, guid: e3d9843f4660b7b4dad7fc7c263bb814, type: 3}
+  Body: {fileID: 629948465317790645, guid: c5227d51ccfec934db9e0058624b573e, type: 3}
+  Art: {fileID: -3685760008999291469, guid: 7796f6884a3110e479979dbdd41412df, type: 3}
   Color: {r: 1, g: 1, b: 1, a: 1}
-  Size: 0.4
+  Size: 0.6
   Tags:
-  - Common: 1
-    Custom: 
-    W: 0
-  LevelRange: {x: 0, y: 0}
+  - Common: 0
+    Custom: Wand_Minion
+    W: 1
+  LevelRange: {x: 3, y: 0}
   Trait:
-  - Trait: 100
-    Numbers: []
-    Prefabs: []
-    Acts: []
-    OtherTrait: 0
-    SpawnReq:
-      Fixed: {fileID: 0}
-      Mandatory: []
-      Any: []
-      Level: 0
-      Author: 0
-    Builder: []
-  - Trait: 7003
+  - Trait: 101
     Numbers: []
     Prefabs: []
     Acts: []
@@ -50,8 +38,8 @@ MonoBehaviour:
       Author: 0
     Builder: []
   HP: 20
-  Speed: 10
+  Speed: 6
   VisionRange: 4
-  Held: {fileID: 11400000, guid: 4b2540dd2b711fc4e98bbad7d33007c5, type: 2}
-  DefaultAction: 1
-  DefaultChaseAction: 1
+  Held: {fileID: 11400000, guid: 8e573583f9a0deb44bf345a82891d97f, type: 2}
+  DefaultAction: 201
+  DefaultChaseAction: 202

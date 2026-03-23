@@ -7,25 +7,33 @@ public class CriticaldamageTrait : Trait
     public CriticaldamageTrait() 
     { 
         Type = Traits.Criticaldamage; 
-        AddListen(EventTypes.GetDamage); 
-    }
+        AddListen(EventTypes.Damage);
+        
+}
     public override void TakeEvent(TraitInfo i, EventInfo e)
     {
         switch (e.Type)
         {
-            case EventTypes.GetDamage:
+            case EventTypes.Damage:
                 {
-                    if (e.Type != EventTypes.GetDamage)
+
+                    if (e.Type != EventTypes.Damage)
                         return;
 
-                    if (Random.value < 0.2f)
+                    if (Random.Range(0,6)>1)
                     {
-                        float multiplier = e.GetFloat();
-                        multiplier *= 2f;
 
-                        e.Set(NumInfo.Default, multiplier);
+                        
 
-                        Debug.Log("Critical Hit!");
+
+                       
+                        
+                        int doudamage = i.GetInt(NumInfo.Default, 15);
+                        EventInfo damage = God.E(EventTypes.Damage).Set(doudamage);
+                        e.GetThing().TakeEvent(damage, true);
+                        
+
+                        Debug.Log("ss");
                     }
 
                 }
