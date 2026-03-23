@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: EatenApple
   m_EditorClassIdentifier: 
   Name: Eaten Apple
-  Author: 0
+  Author: 80
   Team: 1
   Body: {fileID: 629948465317790645, guid: 7ef37acb0fdeb5849995b35a7fdca6ba, type: 3}
   Art: {fileID: 8621175409208223273, guid: 07c8a100a60580e42b84f4a8101aac27, type: 3}
   Color: {r: 1, g: 1, b: 1, a: 1}
-  Size: 1
+  Size: 0.5
   Tags:
   - Common: 202
     Custom: 
@@ -38,8 +38,27 @@ MonoBehaviour:
       Level: 0
       Author: 0
       MaxCost: 0
-    Builder: []
-  - Trait: 313
+    Builder:
+    - Type: 0
+      NumType: 1
+      Num: 1
+      StrType: 0
+      Str: 
+      ActType: 0
+      Act: 0
+      BoolType: 0
+      Bool: 0
+      OptionType: 0
+      Option: {fileID: 0}
+      VectorType: 0
+      Vector: {x: 0, y: 0}
+      Fixed: {fileID: 0}
+      Mandatory: 
+      MandatoryW: 0
+      Any: 
+      AnyW: 0
+      Trait: 0
+  - Trait: 312
     Numbers: []
     Prefabs: []
     Acts: []
@@ -51,22 +70,26 @@ MonoBehaviour:
       Level: 0
       Author: 0
       MaxCost: 0
-    Builder: []
-  - Trait: 312
-    Numbers:
-    - Type: 1
-      Value: 1
-    Prefabs: []
-    Acts: []
-    OtherTrait: 0
-    SpawnReq:
+    Builder:
+    - Type: 0
+      NumType: 1
+      Num: 1
+      StrType: 0
+      Str: 
+      ActType: 0
+      Act: 0
+      BoolType: 0
+      Bool: 0
+      OptionType: 0
+      Option: {fileID: 0}
+      VectorType: 0
+      Vector: {x: 0, y: 0}
       Fixed: {fileID: 0}
-      Mandatory: []
-      Any: []
-      Level: 0
-      Author: 0
-      MaxCost: 0
-    Builder: []
+      Mandatory: 
+      MandatoryW: 0
+      Any: 
+      AnyW: 0
+      Trait: 0
   DefaultAttack: 5
   ToSpawn:
     Fixed: {fileID: 0}
