@@ -47,6 +47,7 @@ public static class Parser
         // JaidenB Traits
         TraitDict.Add(Traits.InvertControls, new InvertControlsTrait());
         TraitDict.Add(Traits.Freeze, new FreezeTrait());
+        TraitDict.Add(Traits.MoneyDrop, new MoneyDropTrait());
         // Julius Traits
         TraitDict.Add(Traits.Rage, new RageTrait());
         TraitDict.Add(Traits.LowHealthWarrior_JuliusP, new UltimateRage());
@@ -93,6 +94,12 @@ public static class Parser
         TraitDict.Add(Traits.ProtectionSpellSarahS,new ProtectionSpell_SarahS());
         // TracyH Traits
         TraitDict.Add(Traits.Teleport_TracyH, new TeleportTrait_TracyH());
+        TraitDict.Add(Traits.Freeze_TracyH, new FreezeTrait_TracyH());
+        TraitDict.Add(Traits.FreezeProjectile_TracyH, new FreezeProjectileTrait_TracyH());
+        TraitDict.Add(Traits.Slow_TracyH, new SlowTrait_TracyH());
+        TraitDict.Add(Traits.SlowProjectile_TracyH, new SlowProjectileTrait_TracyH());
+        TraitDict.Add(Traits.SlowZone_TracyH, new SlowZoneTrait_TracyH());
+        TraitDict.Add(Traits.Homing_TracyH, new HomingTrait_TracyH());
         // WesleyP Traits
         // YuChen Traits
 
@@ -123,6 +130,7 @@ public static class Parser
             // JaidenB=35,
             case Actions.ExplodeAction_JaidenB:return new ExplodeAction_JaidenB(who, e);
             case Actions.RobAction_JaidenB: return new RobAction_JaidenB(who, e);
+            case Actions.BlasterAction_JaidenB: return new BlasterAction_JaidenB(who, e);
             // JuliusP=40,
             case Actions.BarrierShield_JuliusP:return new BarrierShieldAction_JuliusP(who,e);
             case Actions.Lv2_BarrierShield_JuliusP:return new Lv2_BarrierShield_JuliusP(who,e);
@@ -256,6 +264,7 @@ public enum Traits
     JaidenB1        =3501,
     InvertControls  =3502,
     Freeze          =3503,
+    MoneyDrop       =3504,
     //JuliusP       =40##,
     JuliusP1        =4001,
     Rage            =4002, 
@@ -310,7 +319,14 @@ public enum Traits
     ProtectionCircleSarahS =7505,
     ProtectionSpellSarahS =7506,
     //TracyH        =80##,
-    Teleport_TracyH =8001, //Teleport player between radius or nearby room. Can be placed on held item or zone
+    TracyH1 = 8001,
+    Teleport_TracyH = 8002, //Teleport player between radius or nearby room(Zone)
+    Freeze_TracyH = 8003, //Freezes target
+    FreezeProjectile_TracyH = 8004, //Applies freeze on hit 
+    Slow_TracyH = 8005, //Slows target
+    SlowProjectile_TracyH = 8006, //Applies slow on hit 
+    SlowZone_TracyH = 8007, //Applies slow on Zone
+    Homing_TracyH = 8008, //Chase player(work in progress)
     //WesleyP       =90##,
     WesleyP1        =9001,
     //YuChen        =95##,
@@ -352,6 +368,7 @@ public enum Actions
     JaidenB1        =3501,
     ExplodeAction_JaidenB = 3502,
     RobAction_JaidenB = 3503,
+    BlasterAction_JaidenB = 3504,
     //JuliusP       =40##,
     JuliusP1        =4001,
     BarrierShield_JuliusP = 4002,

@@ -18,7 +18,7 @@ MonoBehaviour:
   Body: {fileID: 629948465317790645, guid: b4fa405680f33044abe2c4567ecf147f, type: 3}
   Art: {fileID: -4125220618416184578, guid: d38ac7605d40b4b46bec9ce1d313c46f, type: 3}
   Color: {r: 1, g: 1, b: 1, a: 1}
-  Size: 1
+  Size: 1.1
   Tags: []
   LevelRange: {x: 0, y: 0}
   Trait: []
@@ -32,7 +32,7 @@ MonoBehaviour:
     MaxCost: 0
   FloorBody: {fileID: 0}
   FloorArt: {fileID: 0}
-  Damage: 2
+  Damage: 1
   IdealRange: 1
   SpeedMult: 3
-  ActDuration: 0
+  ActDuration: 0.3
