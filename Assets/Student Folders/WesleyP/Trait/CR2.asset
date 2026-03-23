@@ -22,9 +22,9 @@ MonoBehaviour:
   Tags: []
   LevelRange: {x: 0, y: 0}
   Trait: []
-  HP: 20
+  HP: 10
   Speed: 5
-  VisionRange: 4
+  VisionRange: 15
   Held: {fileID: 11400000, guid: bc61c7f26f2c52c45ac8461b945a7afb, type: 2}
   DefaultAction: 1
   DefaultChaseAction: 1
