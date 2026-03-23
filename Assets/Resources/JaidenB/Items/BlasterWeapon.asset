@@ -9,24 +9,37 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4679cc75b2c8be74e8b047318fa062ea, type: 3}
-  m_Name: BombHead
-  m_EditorClassIdentifier: Assembly-CSharp::CharacterOption
-  Name: BombHead
+  m_Script: {fileID: 11500000, guid: 9a47d2194617e47469e601e558e7b8b4, type: 3}
+  m_Name: BlasterWeapon
+  m_EditorClassIdentifier: Assembly-CSharp::ItemOption
+  Name: BlasterWeapon
   Author: 35
-  Team: 3
-  Body: {fileID: 629948465317790645, guid: c5227d51ccfec934db9e0058624b573e, type: 3}
-  Art: {fileID: -3438905571476058607, guid: 01f268e5a4650d348ab50817b4de314e, type: 3}
-  Color: {r: 0, g: 0, b: 0, a: 1}
+  Team: 1
+  Body: {fileID: 629948465317790645, guid: b4fa405680f33044abe2c4567ecf147f, type: 3}
+  Art: {fileID: -1329355790948360646, guid: 6e1ecefc7d5f873438dd140e0a942577, type: 3}
+  Color: {r: 1, g: 1, b: 1, a: 1}
   Size: 1
   Tags:
-  - Common: 102
+  - Common: 201
     Custom: 
-    W: 2
-    Cost: 1
-  LevelRange: {x: 1, y: 1}
+    W: 3
+    Cost: 0
+  LevelRange: {x: 2, y: 2}
   Trait:
-  - Trait: 1
+  - Trait: 0
+    Numbers: []
+    Prefabs: []
+    Acts: []
+    OtherTrait: 0
+    SpawnReq:
+      Fixed: {fileID: 0}
+      Mandatory: []
+      Any: []
+      Level: 0
+      Author: 0
+      MaxCost: 0
+    Builder: []
+  - Trait: 312
     Numbers: []
     Prefabs: []
     Acts: []
@@ -39,45 +52,13 @@ MonoBehaviour:
       Author: 0
       MaxCost: 0
     Builder:
-    - Type: 2
+    - Type: 0
       NumType: 0
-      Num: 0
-      StrType: 0
-      Str: 
-      ActType: 3
-      Act: 202
-      BoolType: 0
-      Bool: 0
-      OptionType: 0
-      Option: {fileID: 0}
-      VectorType: 0
-      Vector: {x: 0, y: 0}
-      Fixed: {fileID: 0}
-      Mandatory: 
-      MandatoryW: 0
-      Any: 
-      AnyW: 0
-      Trait: 0
-  - Trait: 3504
-    Numbers: []
-    Prefabs: []
-    Acts: []
-    OtherTrait: 0
-    SpawnReq:
-      Fixed: {fileID: 0}
-      Mandatory: []
-      Any: []
-      Level: 0
-      Author: 0
-      MaxCost: 0
-    Builder:
-    - Type: 2
-      NumType: 0
-      Num: 0
+      Num: 20
       StrType: 0
       Str: 
       ActType: 0
-      Act: 201
+      Act: 0
       BoolType: 0
       Bool: 0
       OptionType: 0
@@ -90,9 +71,17 @@ MonoBehaviour:
       Any: 
       AnyW: 0
       Trait: 0
-  HP: 1
-  Speed: 5
-  VisionRange: 7
-  Held: {fileID: 0}
-  DefaultAction: 201
-  DefaultChaseAction: 202
+  DefaultAttack: 3504
+  ToSpawn:
+    Fixed: {fileID: 11400000, guid: a2f28985707b2d44dbe6079f1d46d35e, type: 2}
+    Mandatory: []
+    Any: []
+    Level: 2
+    Author: 0
+    MaxCost: 0
+  FloorBody: {fileID: 0}
+  FloorArt: {fileID: 0}
+  Damage: 1
+  IdealRange: 1
+  SpeedMult: 2
+  ActDuration: 0.4
