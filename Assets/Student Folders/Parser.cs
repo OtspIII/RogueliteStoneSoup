@@ -172,6 +172,7 @@ public static class Parser
             case Actions.StalkSarahS: return new Stalk_SarahS(who,e);
             case Actions.RiseFromDeadSarahS: return new RiseFromDead_SarahS(who,e);
             case Actions.PossessionSarahS: return new Possession_SarahS(who, e);
+            case Actions.PanicRunSarahS: return new PanicRun_SarahS(who, e);
             // TracyH=80,
             case Actions.Charge_TracyH: return new ChargeAction_TracyH(who, e);
             // WesleyP=90,
@@ -436,7 +437,6 @@ public enum Actions
     RiseFromDeadSarahS =7502,
     PossessionSarahS =7503,
     PanicRunSarahS  =7504,
-    HideSarahS      =7504,
     //TracyH        =80##,
     TracyH1         =8001,
     Charge_TracyH   =8002,

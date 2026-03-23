@@ -12,7 +12,6 @@ public class RiseFromDead_SarahS : ActionScript
         Priority = 1;
         MoveMult = 0;
         CanRotate = false;
-        Anim = "Death";
     }
 
     public override void OnRun()
