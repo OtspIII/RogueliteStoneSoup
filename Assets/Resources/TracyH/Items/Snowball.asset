@@ -10,28 +10,29 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a47d2194617e47469e601e558e7b8b4, type: 3}
-  m_Name: NPCClaw
+  m_Name: Snowball
   m_EditorClassIdentifier: 
-  Name: NPC Claw
+  Name: Snowball
   Author: 80
   Team: 1
   Body: {fileID: 629948465317790645, guid: b4fa405680f33044abe2c4567ecf147f, type: 3}
-  Art: {fileID: 21300000, guid: d3f15008a964dc74b82cb3048fce4b33, type: 3}
-  Color: {r: 1, g: 1, b: 1, a: 1}
+  Art: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  Color: {r: 0, g: 0.9529412, b: 0.9254902, a: 1}
   Size: 2
   Tags: []
   LevelRange: {x: 0, y: 0}
   Trait: []
   DefaultAttack: 103
   ToSpawn:
-    Fixed: {fileID: 11400000, guid: 727206c2a0d0b5d4d845c89e7b183868, type: 2}
+    Fixed: {fileID: 11400000, guid: d96da543df377ec47bcaa882ba50baeb, type: 2}
     Mandatory: []
     Any: []
     Level: 0
     Author: 0
+    MaxCost: 0
   FloorBody: {fileID: 0}
   FloorArt: {fileID: 0}
-  Damage: 1
+  Damage: 0
   IdealRange: 4
   SpeedMult: 1
   ActDuration: 2

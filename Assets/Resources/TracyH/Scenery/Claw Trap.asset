@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 037523bd7ae983240ad1b7cc3ff106cd, type: 3}
-  m_Name: Teleport
+  m_Name: Claw Trap
   m_EditorClassIdentifier: 
-  Name: Teleport
+  Name: ClawTrap
   Author: 80
   Team: 1
   Body: {fileID: 629948465317790645, guid: a818902a553ccfa49ba9ef5810b226ca, type: 3}
-  Art: {fileID: -2604957950570420204, guid: 2ea0f4899cc081947a07896bac4ee57d, type: 3}
+  Art: {fileID: 553103467783823420, guid: 0397dc9af16778a4eac5d9ba093c5ecb, type: 3}
   Color: {r: 1, g: 1, b: 1, a: 1}
-  Size: 1
+  Size: 1.5
   Tags:
   - Common: 400
     Custom: 
@@ -28,9 +28,60 @@ MonoBehaviour:
     Custom: 
     W: 1
     Cost: 1
-  LevelRange: {x: 0, y: 0}
+  LevelRange: {x: 3, y: 0}
   Trait:
-  - Trait: 8002
+  - Trait: 8007
+    Numbers: []
+    Prefabs: []
+    Acts: []
+    OtherTrait: 0
+    SpawnReq:
+      Fixed: {fileID: 0}
+      Mandatory: []
+      Any: []
+      Level: 0
+      Author: 0
+      MaxCost: 0
+    Builder:
+    - Type: 0
+      NumType: 8
+      Num: 3
+      StrType: 0
+      Str: 
+      ActType: 0
+      Act: 0
+      BoolType: 0
+      Bool: 0
+      OptionType: 0
+      Option: {fileID: 0}
+      VectorType: 0
+      Vector: {x: 0, y: 0}
+      Fixed: {fileID: 0}
+      Mandatory: 
+      MandatoryW: 0
+      Any: 
+      AnyW: 0
+      Trait: 2001
+    - Type: 0
+      NumType: 4
+      Num: 0.5
+      StrType: 0
+      Str: 
+      ActType: 0
+      Act: 0
+      BoolType: 0
+      Bool: 0
+      OptionType: 0
+      Option: {fileID: 0}
+      VectorType: 0
+      Vector: {x: 0, y: 0}
+      Fixed: {fileID: 0}
+      Mandatory: 
+      MandatoryW: 0
+      Any: 
+      AnyW: 0
+      Trait: 0
+  - Trait: 201
     Numbers: []
     Prefabs: []
     Acts: []
@@ -61,42 +112,4 @@ MonoBehaviour:
       MandatoryW: 0
       Any: 
       AnyW: 0
-      Trait: 0
-    - Type: 0
-      NumType: 5
-      Num: 2
-      StrType: 0
-      Str: 
-      ActType: 0
-      Act: 0
-      BoolType: 0
-      Bool: 0
-      OptionType: 0
-      Option: {fileID: 0}
-      VectorType: 0
-      Vector: {x: 0, y: 0}
-      Fixed: {fileID: 0}
-      Mandatory: 
-      MandatoryW: 0
-      Any: 
-      AnyW: 0
-      Trait: 0
-    - Type: 0
-      NumType: 4
-      Num: 1
-      StrType: 0
-      Str: 
-      ActType: 0
-      Act: 0
-      BoolType: 0
-      Bool: 0
-      OptionType: 0
-      Option: {fileID: 0}
-      VectorType: 0
-      Vector: {x: 0, y: 0}
-      Fixed: {fileID: 0}
-      Mandatory: 
-      MandatoryW: 0
-      Any: 
-      AnyW: 0
-      Trait: 0
+      Trait: 2001

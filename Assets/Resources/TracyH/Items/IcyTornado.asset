@@ -10,25 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a47d2194617e47469e601e558e7b8b4, type: 3}
-  m_Name: Shovel
-  m_EditorClassIdentifier: Assembly-CSharp::ItemOption
-  Name: Shovel
+  m_Name: IcyTornado
+  m_EditorClassIdentifier: 
+  Name: Tornado
   Author: 80
   Team: 1
   Body: {fileID: 629948465317790645, guid: b4fa405680f33044abe2c4567ecf147f, type: 3}
-  Art: {fileID: -5557420877203330147, guid: f681dbcc803e9c34fa8f4003e888a385, type: 3}
-  Color: {r: 1, g: 1, b: 1, a: 1}
+  Art: {fileID: -68751727340038015, guid: cf251f49e93dbc1448d1cc819af13e16, type: 3}
+  Color: {r: 0, g: 0.9529412, b: 0.9254902, a: 1}
   Size: 1
-  Tags:
-  - Common: 201
-    Custom: 
-    W: 1
-    Cost: 1
-  LevelRange: {x: 1, y: 3}
+  Tags: []
+  LevelRange: {x: 0, y: 0}
   Trait: []
-  DefaultAttack: 101
+  DefaultAttack: 103
   ToSpawn:
-    Fixed: {fileID: 0}
+    Fixed: {fileID: 11400000, guid: 7eb6d108977dc914fac82d00403be9cc, type: 2}
     Mandatory: []
     Any: []
     Level: 0
@@ -36,7 +32,7 @@ MonoBehaviour:
     MaxCost: 0
   FloorBody: {fileID: 0}
   FloorArt: {fileID: 0}
-  Damage: 1
-  IdealRange: 1
-  SpeedMult: 1.5
-  ActDuration: 0
+  Damage: 2
+  IdealRange: 6
+  SpeedMult: 2
+  ActDuration: 2

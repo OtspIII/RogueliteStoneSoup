@@ -10,54 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a47d2194617e47469e601e558e7b8b4, type: 3}
-  m_Name: EatenApple
+  m_Name: FrozenWand
   m_EditorClassIdentifier: 
-  Name: Eaten Apple
+  Name: FrozenWand
   Author: 80
   Team: 1
-  Body: {fileID: 629948465317790645, guid: 7ef37acb0fdeb5849995b35a7fdca6ba, type: 3}
-  Art: {fileID: 8621175409208223273, guid: 07c8a100a60580e42b84f4a8101aac27, type: 3}
+  Body: {fileID: 629948465317790645, guid: b4fa405680f33044abe2c4567ecf147f, type: 3}
+  Art: {fileID: 8979405933268748967, guid: ebcd813270bda67479948ef3dd290963, type: 3}
   Color: {r: 1, g: 1, b: 1, a: 1}
-  Size: 0.5
+  Size: 2
   Tags:
-  - Common: 202
+  - Common: 201
     Custom: 
     W: 1
     Cost: 1
   LevelRange: {x: 0, y: 0}
   Trait:
-  - Trait: 310
-    Numbers: []
-    Prefabs: []
-    Acts: []
-    OtherTrait: 0
-    SpawnReq:
-      Fixed: {fileID: 0}
-      Mandatory: []
-      Any: []
-      Level: 0
-      Author: 0
-      MaxCost: 0
-    Builder:
-    - Type: 0
-      NumType: 1
-      Num: 1
-      StrType: 0
-      Str: 
-      ActType: 0
-      Act: 0
-      BoolType: 0
-      Bool: 0
-      OptionType: 0
-      Option: {fileID: 0}
-      VectorType: 0
-      Vector: {x: 0, y: 0}
-      Fixed: {fileID: 0}
-      Mandatory: 
-      MandatoryW: 0
-      Any: 
-      AnyW: 0
-      Trait: 0
   - Trait: 312
     Numbers: []
     Prefabs: []
@@ -73,7 +41,7 @@ MonoBehaviour:
     Builder:
     - Type: 0
       NumType: 1
-      Num: 1
+      Num: 5
       StrType: 0
       Str: 
       ActType: 0
@@ -90,17 +58,17 @@ MonoBehaviour:
       Any: 
       AnyW: 0
       Trait: 0
-  DefaultAttack: 5
+  DefaultAttack: 103
   ToSpawn:
-    Fixed: {fileID: 0}
+    Fixed: {fileID: 11400000, guid: 74797b6277b1a0e44b1be6a899aef748, type: 2}
     Mandatory: []
     Any: []
     Level: 0
     Author: 0
     MaxCost: 0
-  FloorBody: {fileID: 629948465317790645, guid: 0f8734e4b4d2c3a449506fe0c78c1110, type: 3}
+  FloorBody: {fileID: 0}
   FloorArt: {fileID: 0}
-  Damage: 0
-  IdealRange: 1.5
-  SpeedMult: 1
-  ActDuration: 0
+  Damage: 1
+  IdealRange: 6
+  SpeedMult: 2
+  ActDuration: 2

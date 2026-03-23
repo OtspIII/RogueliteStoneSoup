@@ -93,6 +93,12 @@ public static class Parser
         TraitDict.Add(Traits.ProtectionSpellSarahS,new ProtectionSpell_SarahS());
         // TracyH Traits
         TraitDict.Add(Traits.Teleport_TracyH, new TeleportTrait_TracyH());
+        TraitDict.Add(Traits.Freeze_TracyH, new FreezeTrait_TracyH());
+        TraitDict.Add(Traits.FreezeProjectile_TracyH, new FreezeProjectileTrait_TracyH());
+        TraitDict.Add(Traits.Slow_TracyH, new SlowTrait_TracyH());
+        TraitDict.Add(Traits.SlowProjectile_TracyH, new SlowProjectileTrait_TracyH());
+        TraitDict.Add(Traits.SlowZone_TracyH, new SlowZoneTrait_TracyH());
+        TraitDict.Add(Traits.Homing_TracyH, new HomingTrait_TracyH());
         // WesleyP Traits
         // YuChen Traits
 
@@ -308,7 +314,14 @@ public enum Traits
     ProtectionCircleSarahS =7505,
     ProtectionSpellSarahS =7506,
     //TracyH        =80##,
-    Teleport_TracyH =8001, //Teleport player between radius or nearby room. Can be placed on held item or zone
+    TracyH1 = 8001,
+    Teleport_TracyH = 8002, //Teleport player between radius or nearby room(Zone)
+    Freeze_TracyH = 8003, //Freezes target
+    FreezeProjectile_TracyH = 8004, //Applies freeze on hit 
+    Slow_TracyH = 8005, //Slows target
+    SlowProjectile_TracyH = 8006, //Applies slow on hit 
+    SlowZone_TracyH = 8007, //Applies slow on Zone
+    Homing_TracyH = 8008, //Chase player(work in progress)
     //WesleyP       =90##,
     WesleyP1        =9001,
     //YuChen        =95##,
