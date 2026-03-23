@@ -10,21 +10,38 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a47d2194617e47469e601e558e7b8b4, type: 3}
-  m_Name: Eaxe
+  m_Name: Psword
   m_EditorClassIdentifier: Assembly-CSharp::ItemOption
-  Name: Executioner Axe
+  Name: Claymore
   Author: 55
   Team: 1
   Body: {fileID: 629948465317790645, guid: b4fa405680f33044abe2c4567ecf147f, type: 3}
-  Art: {fileID: 4613829964228806264, guid: 2bdde6e9c81bf1747acf30e76a83adf0, type: 3}
-  Color: {r: 1, g: 1, b: 1, a: 1}
-  Size: 1
-  Tags: []
+  Art: {fileID: 8225250904077534322, guid: d44537cbb29d11e4da85790b734e9ca2, type: 3}
+  Color: {r: 0.0045834924, g: 0.4049533, b: 0.9716981, a: 1}
+  Size: 0.3
+  Tags:
+  - Common: 201
+    Custom: 
+    W: 1
+    Cost: 1
   LevelRange: {x: 0, y: 0}
-  Trait: []
-  DefaultAttack: 101
+  Trait:
+  - Trait: 313
+    Numbers: []
+    Prefabs: []
+    Acts: []
+    OtherTrait: 0
+    SpawnReq:
+      Fixed: {fileID: 0}
+      Mandatory: []
+      Any: []
+      Level: 0
+      Author: 0
+      MaxCost: 0
+    Builder: []
+  DefaultAttack: 103
   ToSpawn:
-    Fixed: {fileID: 0}
+    Fixed: {fileID: 11400000, guid: 942ba05c9170fa24ea801e591070ece7, type: 2}
     Mandatory: []
     Any: []
     Level: 0
@@ -32,7 +49,7 @@ MonoBehaviour:
     MaxCost: 0
   FloorBody: {fileID: 0}
   FloorArt: {fileID: 0}
-  Damage: 1
-  IdealRange: 1.5
+  Damage: 3
+  IdealRange: 2
   SpeedMult: 1
-  ActDuration: 0
+  ActDuration: 1

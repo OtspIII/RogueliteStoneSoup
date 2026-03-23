@@ -21,7 +21,7 @@ public class Sidestep_qixiangdong : ActionScript
     public override void Begin(){
         base.Begin();
 
-        if (Who.Target == null){
+        if (Who.Target == null || Who.Thing == null || Who.Target == null || Who.Target.Thing == null){
             Complete();
             return;
         }
@@ -40,18 +40,17 @@ public class Sidestep_qixiangdong : ActionScript
     public override void OnRun(){
         base.OnRun();
 
-        if (Who.Target == null)
+        if (Who.Target == null || Who.Thing == null || Who.Target == null || Who.Target.Thing == null)
         {
+            
             return;
         }
         Who.Thing.LookAt(Who.Target,0.5f);
 
         Who.TakeEvent(God.E(EventTypes.StartAction).Set(ActionInfo.Action, Actions.DefaultAttack));
-        
-
     }
     public override void HandleMove(){
-        if(Who.Thing == null){
+        if(Who.Thing == null || Who == null){
             return;
         }
         if(Who.Thing.RB == null){
@@ -61,6 +60,7 @@ public class Sidestep_qixiangdong : ActionScript
         Who.DesiredMove = sideDir;
         Who.Thing.ActualMove =MoveMult * Who.CurrentSpeed * sideDir;
     }
+    
 
 
     public override void End(){

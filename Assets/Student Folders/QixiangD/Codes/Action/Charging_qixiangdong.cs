@@ -6,9 +6,10 @@ public class Charging_qixiangdong : ActionScript
     private Vector2 chargeDirection;
     private ThingInfo target;
 
+    
     public Charging_qixiangdong(ThingInfo who, EventInfo e = null)
     {
-        //Setup(Actions.Charging_qixiangdong, who);
+        Setup(Actions.Charging_qixiangdong, who);
 
         MoveMult = 0f;
         HaltMomentum = true;
