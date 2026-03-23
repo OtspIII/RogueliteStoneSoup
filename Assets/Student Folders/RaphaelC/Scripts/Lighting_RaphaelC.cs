@@ -46,11 +46,11 @@ public class Lighting_RaphaelC : Trait
     }
 }
 
-public class Trait2_RaphaelC : Trait
+public class BasicHeal_RaphaelC : Trait
 {
-    public Trait2_RaphaelC()
+    public BasicHeal_RaphaelC()
     {
-        Type = Traits.Trait2_RaphaelC;
+        Type = Traits.BasicHeal_RaphaelC;
         AddListen(EventTypes.OnUse);
     }
     public override void TakeEvent(TraitInfo i, EventInfo e)
@@ -65,23 +65,73 @@ public class Trait2_RaphaelC : Trait
     }
 }
 
-public class Trait3_RaphaelC : Trait
+public class KillSpeedBoost : Trait
 {
-    public Trait3_RaphaelC()
+    public KillSpeedBoost()
     {
-        //Type = Traits.Trait3_RaphaelC;
+        Type = Traits.KillSpeedBoost;
         AddListen(EventTypes.OnKill);
+        AddListen(EventTypes.Update);
     }
     public override void TakeEvent(TraitInfo i, EventInfo e)
     {
-        if (e.Type == EventTypes.OnKill)
+        float duration = 1.5f;
+
+        switch (e.Type)
         {
-            //teleport random
-            //OR you just get big for a second
-            Debug.Log("Teleport");
-            ThingInfo player = i.Who;
-            //player.Thing.transform.position.x += Random.Range(0, 3);
-            //player.Thing.transform.position.x += Random.Range(0, 3);
+            case EventTypes.OnKill:
+            {
+                float timer = i.GetFloat(NumInfo.Default, 0f);
+                if (timer <= 0f)
+                {
+                    i.Who.Thing.Info.CurrentSpeed = i.Who.Thing.Info.CurrentSpeed * 2f; 
+                }
+                i.Set(NumInfo.Default, duration);
+                return;
+            }
+            case EventTypes.Update:
+            {
+                float timer = i.GetFloat(NumInfo.Default, 0f);
+               
+                if (timer > 0)
+                {
+                    timer -= Time.deltaTime;
+                    i.Set(NumInfo.Default, timer);
+                    if (timer <= 0)
+                    {
+                        i.Who.Thing.Info.CurrentSpeed = 6f;
+                        i.Set(NumInfo.Default, 0f);
+                    }
+                }
+                return;
+            }
+            default:
+                return;
+        }
+    }
+}
+
+public class WhirlPool_RaphaelC : Trait
+{
+    public WhirlPool_RaphaelC()
+    {
+        Type = Traits.WhirlPool_RaphaelC;
+        AddListen(EventTypes.OnInside);
+    }
+    public override void TakeEvent(TraitInfo i, EventInfo e)
+    {
+        if (e.Type == EventTypes.OnInside)
+        {
+            float knb = i.Get(NumInfo.Distance,5);
+            HitboxController hb = e.GetHitbox();
+            foreach (ThingController tc in hb.Touching.ToArray())
+            {
+                ThingInfo t = tc.Info;
+                Vector2 centerPos = i.Who.Thing.transform.position;
+                Vector2 targetPos = t.Thing.transform.position;
+                Vector2 kb = (targetPos - centerPos).normalized * (-knb);
+                t.TakeEvent(God.E(EventTypes.Knockback).Set(kb).Set(i.Who));
+            }
         }
     }
 }

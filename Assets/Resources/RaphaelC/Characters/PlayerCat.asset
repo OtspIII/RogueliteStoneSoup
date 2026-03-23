@@ -39,8 +39,21 @@ MonoBehaviour:
       Author: 0
       MaxCost: 0
     Builder: []
-  HP: 7
-  Speed: 7
+  - Trait: 6003
+    Numbers: []
+    Prefabs: []
+    Acts: []
+    OtherTrait: 0
+    SpawnReq:
+      Fixed: {fileID: 0}
+      Mandatory: []
+      Any: []
+      Level: 0
+      Author: 0
+      MaxCost: 0
+    Builder: []
+  HP: 10
+  Speed: 6
   VisionRange: 4
   Held: {fileID: 11400000, guid: 7fc77b878c3f272478de54b35b2fb3a3, type: 2}
   DefaultAction: 1

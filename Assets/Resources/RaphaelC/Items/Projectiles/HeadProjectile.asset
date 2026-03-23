@@ -9,24 +9,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a47d2194617e47469e601e558e7b8b4, type: 3}
-  m_Name: HealSword
+  m_Script: {fileID: 11500000, guid: 666e3856c5664c242bde2f0f953b72bc, type: 3}
+  m_Name: HeadProjectile
   m_EditorClassIdentifier: 
-  Name: HealSword
+  Name: Fireball
   Author: 60
   Team: 1
-  Body: {fileID: 629948465317790645, guid: b4fa405680f33044abe2c4567ecf147f, type: 3}
-  Art: {fileID: 21300000, guid: 6c7f9cbfcc8f8d145913c8ae22c5bd51, type: 3}
+  Body: {fileID: 629948465317790645, guid: 9edb53243ae32704ead177294fe49d22, type: 3}
+  Art: {fileID: 21300000, guid: 2d7e0ce399741ea4297e5d3e535c5d8c, type: 3}
   Color: {r: 1, g: 1, b: 1, a: 1}
-  Size: 2
-  Tags:
-  - Common: 201
-    Custom: 
-    W: 1
-    Cost: 1
-  LevelRange: {x: 0, y: 10}
+  Size: 1
+  Tags: []
+  LevelRange: {x: 0, y: 0}
   Trait:
-  - Trait: 6002
+  - Trait: 3
     Numbers: []
     Prefabs: []
     Acts: []
@@ -40,8 +36,8 @@ MonoBehaviour:
       MaxCost: 0
     Builder:
     - Type: 0
-      NumType: 1
-      Num: 1
+      NumType: 2
+      Num: 3
       StrType: 0
       Str: 
       ActType: 0
@@ -58,22 +54,28 @@ MonoBehaviour:
       Any: 
       AnyW: 0
       Trait: 0
-  - Trait: 312
-    Numbers: []
-    Prefabs: []
-    Acts: []
-    OtherTrait: 0
-    SpawnReq:
+    - Type: 4
+      NumType: 0
+      Num: 0
+      StrType: 0
+      Str: 
+      ActType: 0
+      Act: 0
+      BoolType: 0
+      Bool: 0
+      OptionType: 1
+      Option: {fileID: 11400000, guid: fa9fd6eea68462e47818ec67068d8b08, type: 2}
+      VectorType: 0
+      Vector: {x: 0, y: 0}
       Fixed: {fileID: 0}
-      Mandatory: []
-      Any: []
-      Level: 0
-      Author: 0
-      MaxCost: 0
-    Builder:
-    - Type: 0
-      NumType: 1
-      Num: 10
+      Mandatory: 
+      MandatoryW: 0
+      Any: 
+      AnyW: 0
+      Trait: 0
+    - Type: 6
+      NumType: 0
+      Num: 0
       StrType: 0
       Str: 
       ActType: 0
@@ -84,55 +86,11 @@ MonoBehaviour:
       Option: {fileID: 0}
       VectorType: 0
       Vector: {x: 0, y: 0}
-      Fixed: {fileID: 0}
+      Fixed: {fileID: 11400000, guid: fa9fd6eea68462e47818ec67068d8b08, type: 2}
       Mandatory: 
       MandatoryW: 0
       Any: 
       AnyW: 0
       Trait: 0
-  - Trait: 313
-    Numbers: []
-    Prefabs: []
-    Acts: []
-    OtherTrait: 0
-    SpawnReq:
-      Fixed: {fileID: 0}
-      Mandatory: []
-      Any: []
-      Level: 0
-      Author: 0
-      MaxCost: 0
-    Builder:
-    - Type: 0
-      NumType: 1
-      Num: 1
-      StrType: 0
-      Str: 
-      ActType: 0
-      Act: 0
-      BoolType: 0
-      Bool: 0
-      OptionType: 0
-      Option: {fileID: 0}
-      VectorType: 0
-      Vector: {x: 0, y: 0}
-      Fixed: {fileID: 0}
-      Mandatory: 
-      MandatoryW: 0
-      Any: 
-      AnyW: 0
-      Trait: 0
-  DefaultAttack: 101
-  ToSpawn:
-    Fixed: {fileID: 0}
-    Mandatory: []
-    Any: []
-    Level: 0
-    Author: 60
-    MaxCost: 0
-  FloorBody: {fileID: 0}
-  FloorArt: {fileID: 0}
-  Damage: 3
-  IdealRange: 1.5
-  SpeedMult: 1
-  ActDuration: 0
+  Damage: 2
+  Speed: 10

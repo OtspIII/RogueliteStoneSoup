@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 666e3856c5664c242bde2f0f953b72bc, type: 3}
-  m_Name: HeadProjectile
+  m_Name: DonutProjectile
   m_EditorClassIdentifier: 
   Name: Fireball
   Author: 60
   Team: 1
   Body: {fileID: 629948465317790645, guid: 9edb53243ae32704ead177294fe49d22, type: 3}
-  Art: {fileID: 21300000, guid: 2d7e0ce399741ea4297e5d3e535c5d8c, type: 3}
+  Art: {fileID: 6761164967045977113, guid: cf251f49e93dbc1448d1cc819af13e16, type: 3}
   Color: {r: 1, g: 1, b: 1, a: 1}
   Size: 1
   Tags: []
@@ -64,7 +64,7 @@ MonoBehaviour:
       BoolType: 0
       Bool: 0
       OptionType: 1
-      Option: {fileID: 11400000, guid: fa9fd6eea68462e47818ec67068d8b08, type: 2}
+      Option: {fileID: 11400000, guid: 9e8461597291fa949b88ead0a9b492f2, type: 2}
       VectorType: 0
       Vector: {x: 0, y: 0}
       Fixed: {fileID: 0}
@@ -86,11 +86,11 @@ MonoBehaviour:
       Option: {fileID: 0}
       VectorType: 0
       Vector: {x: 0, y: 0}
-      Fixed: {fileID: 11400000, guid: fa9fd6eea68462e47818ec67068d8b08, type: 2}
+      Fixed: {fileID: 11400000, guid: 9e8461597291fa949b88ead0a9b492f2, type: 2}
       Mandatory: 
       MandatoryW: 0
       Any: 
       AnyW: 0
       Trait: 0
-  Damage: 3
-  Speed: 10
+  Damage: 4
+  Speed: 8

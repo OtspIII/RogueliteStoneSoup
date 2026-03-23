@@ -18,13 +18,13 @@ MonoBehaviour:
   Body: {fileID: 629948465317790645, guid: 7ef37acb0fdeb5849995b35a7fdca6ba, type: 3}
   Art: {fileID: -4421300922047078791, guid: 4bf70cedee363fb4b9048f89e88c9ddc, type: 3}
   Color: {r: 0.6415094, g: 0.6415094, b: 0.6415094, a: 1}
-  Size: 1
+  Size: 2
   Tags:
   - Common: 201
     Custom: 
-    W: 1
+    W: 2
     Cost: 1
-  LevelRange: {x: 7, y: 10}
+  LevelRange: {x: 6, y: 10}
   Trait:
   - Trait: 312
     Numbers: []

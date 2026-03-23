@@ -1,0 +1,64 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 037523bd7ae983240ad1b7cc3ff106cd, type: 3}
+  m_Name: Small Whirlpool
+  m_EditorClassIdentifier: 
+  Name: WhirlPool
+  Author: 60
+  Team: 1
+  Body: {fileID: 629948465317790645, guid: a818902a553ccfa49ba9ef5810b226ca, type: 3}
+  Art: {fileID: -68751727340038015, guid: cf251f49e93dbc1448d1cc819af13e16, type: 3}
+  Color: {r: 0.3056603, g: 0.3056603, b: 0.3056603, a: 1}
+  Size: 5
+  Tags:
+  - Common: 400
+    Custom: 
+    W: 1
+    Cost: 1
+  - Common: 2
+    Custom: 
+    W: 1
+    Cost: 1
+  LevelRange: {x: 0, y: 0}
+  Trait:
+  - Trait: 6004
+    Numbers: []
+    Prefabs: []
+    Acts: []
+    OtherTrait: 0
+    SpawnReq:
+      Fixed: {fileID: 0}
+      Mandatory: []
+      Any: []
+      Level: 0
+      Author: 0
+      MaxCost: 0
+    Builder:
+    - Type: 0
+      NumType: 1
+      Num: 5
+      StrType: 0
+      Str: 
+      ActType: 0
+      Act: 0
+      BoolType: 0
+      Bool: 0
+      OptionType: 0
+      Option: {fileID: 0}
+      VectorType: 0
+      Vector: {x: 0, y: 0}
+      Fixed: {fileID: 0}
+      Mandatory: 
+      MandatoryW: 0
+      Any: 
+      AnyW: 0
+      Trait: 0

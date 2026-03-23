@@ -10,54 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a47d2194617e47469e601e558e7b8b4, type: 3}
-  m_Name: HealSword
+  m_Name: Whirlpool Bow
   m_EditorClassIdentifier: 
-  Name: HealSword
+  Name: Whirlpool Bow
   Author: 60
   Team: 1
   Body: {fileID: 629948465317790645, guid: b4fa405680f33044abe2c4567ecf147f, type: 3}
-  Art: {fileID: 21300000, guid: 6c7f9cbfcc8f8d145913c8ae22c5bd51, type: 3}
+  Art: {fileID: 21300000, guid: cb8312002cf474c4688fa76c7caea0a3, type: 3}
   Color: {r: 1, g: 1, b: 1, a: 1}
   Size: 2
   Tags:
-  - Common: 201
+  - Common: 0
     Custom: 
     W: 1
     Cost: 1
-  LevelRange: {x: 0, y: 10}
+  LevelRange: {x: 8, y: 0}
   Trait:
-  - Trait: 6002
-    Numbers: []
-    Prefabs: []
-    Acts: []
-    OtherTrait: 0
-    SpawnReq:
-      Fixed: {fileID: 0}
-      Mandatory: []
-      Any: []
-      Level: 0
-      Author: 0
-      MaxCost: 0
-    Builder:
-    - Type: 0
-      NumType: 1
-      Num: 1
-      StrType: 0
-      Str: 
-      ActType: 0
-      Act: 0
-      BoolType: 0
-      Bool: 0
-      OptionType: 0
-      Option: {fileID: 0}
-      VectorType: 0
-      Vector: {x: 0, y: 0}
-      Fixed: {fileID: 0}
-      Mandatory: 
-      MandatoryW: 0
-      Any: 
-      AnyW: 0
-      Trait: 0
   - Trait: 312
     Numbers: []
     Prefabs: []
@@ -72,8 +40,8 @@ MonoBehaviour:
       MaxCost: 0
     Builder:
     - Type: 0
-      NumType: 1
-      Num: 10
+      NumType: 0
+      Num: 5
       StrType: 0
       Str: 
       ActType: 0
@@ -102,29 +70,10 @@ MonoBehaviour:
       Level: 0
       Author: 0
       MaxCost: 0
-    Builder:
-    - Type: 0
-      NumType: 1
-      Num: 1
-      StrType: 0
-      Str: 
-      ActType: 0
-      Act: 0
-      BoolType: 0
-      Bool: 0
-      OptionType: 0
-      Option: {fileID: 0}
-      VectorType: 0
-      Vector: {x: 0, y: 0}
-      Fixed: {fileID: 0}
-      Mandatory: 
-      MandatoryW: 0
-      Any: 
-      AnyW: 0
-      Trait: 0
-  DefaultAttack: 101
+    Builder: []
+  DefaultAttack: 103
   ToSpawn:
-    Fixed: {fileID: 0}
+    Fixed: {fileID: 11400000, guid: a8141acc24464e74b89fab4643eb3461, type: 2}
     Mandatory: []
     Any: []
     Level: 0
@@ -132,7 +81,7 @@ MonoBehaviour:
     MaxCost: 0
   FloorBody: {fileID: 0}
   FloorArt: {fileID: 0}
-  Damage: 3
-  IdealRange: 1.5
-  SpeedMult: 1
+  Damage: 2
+  IdealRange: 7
+  SpeedMult: 5
   ActDuration: 0

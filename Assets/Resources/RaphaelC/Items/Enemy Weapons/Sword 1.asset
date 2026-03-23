@@ -10,33 +10,29 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a47d2194617e47469e601e558e7b8b4, type: 3}
-  m_Name: SpearWeapon
-  m_EditorClassIdentifier: Assembly-CSharp::ItemOption
-  Name: Spear
+  m_Name: Sword 1
+  m_EditorClassIdentifier: 
+  Name: Sword
   Author: 60
   Team: 1
   Body: {fileID: 629948465317790645, guid: b4fa405680f33044abe2c4567ecf147f, type: 3}
-  Art: {fileID: 6108012597462862368, guid: 6792965f8fd721849aee5919caff1298, type: 3}
+  Art: {fileID: 21300000, guid: 6c7f9cbfcc8f8d145913c8ae22c5bd51, type: 3}
   Color: {r: 1, g: 1, b: 1, a: 1}
-  Size: 1
-  Tags:
-  - Common: 201
-    Custom: 
-    W: 2
-    Cost: 1
-  LevelRange: {x: 2, y: 6}
+  Size: 0.5
+  Tags: []
+  LevelRange: {x: 0, y: 0}
   Trait: []
-  DefaultAttack: 102
+  DefaultAttack: 101
   ToSpawn:
     Fixed: {fileID: 0}
     Mandatory: []
     Any: []
     Level: 0
-    Author: 60
+    Author: 0
     MaxCost: 0
   FloorBody: {fileID: 0}
   FloorArt: {fileID: 0}
-  Damage: 3
-  IdealRange: 2
-  SpeedMult: 1
+  Damage: 1
+  IdealRange: 1
+  SpeedMult: 0.75
   ActDuration: 0
