@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 
-public class GrappleHook : Trait
+public class GrappleHookTrait : Trait
 {
-    public GrappleHook()
+    public GrappleHookTrait()
     {
-       // Type = Traits.GrappleHook;
+        Type = Traits.GrappleHook;
         AddListen(EventTypes.OnSpawn);
         AddListen(EventTypes.OnDestroy);
     }
@@ -24,7 +24,7 @@ public class GrappleHook : Trait
                 ThingInfo grapplerThingInfo = i.GetThing(ThingEInfo.Source);
 
                 EventInfo changeActionEvent = God.E(EventTypes.StartAction);
-               // changeActionEvent.SetAction(ActionInfo.Action, Actions.Grapple);
+                changeActionEvent.SetAction(ActionInfo.Action, Actions.Grapple);
                 changeActionEvent.SetInt(NumInfo.Priority, 100); // High priority so thing is forced into action
                 changeActionEvent.SetFloat(NumInfo.Time, i.GetFloat(NumInfo.Time)); // Set grapple duration
                 changeActionEvent.SetVector(VectorInfo.Position, e.GetVector()); // Set target hook position

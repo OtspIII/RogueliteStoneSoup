@@ -23,7 +23,8 @@ MonoBehaviour:
   - Common: 102
     Custom: 
     W: 1
-  LevelRange: {x: 0, y: 0}
+    Cost: 1
+  LevelRange: {x: 3, y: 10}
   Trait:
   - Trait: 7003
     Numbers: []
@@ -36,6 +37,27 @@ MonoBehaviour:
       Any: []
       Level: 0
       Author: 0
+      MaxCost: 0
+    Builder:
+    - Type: 0
+      NumType: 0
+      Num: 1
+      StrType: 0
+      Str: 
+      ActType: 0
+      Act: 0
+      BoolType: 0
+      Bool: 0
+      OptionType: 0
+      Option: {fileID: 0}
+      VectorType: 0
+      Vector: {x: 0, y: 0}
+      Fixed: {fileID: 0}
+      Mandatory: 
+      MandatoryW: 0
+      Any: 
+      AnyW: 0
+      Trait: 0
   HP: 2
   Speed: 4
   VisionRange: 4

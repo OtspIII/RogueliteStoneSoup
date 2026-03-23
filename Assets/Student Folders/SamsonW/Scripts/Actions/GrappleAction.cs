@@ -7,10 +7,11 @@ public class GrappleAction : ActionScript
     
     public GrappleAction(ThingInfo who,EventInfo e=null)
     {
-       // Setup(Actions.Grapple,who,true);
+        Setup(Actions.Grapple,who,true);
         Duration = e.GetFloat(NumInfo.Time, 1f);
         Priority = e.GetInt(NumInfo.Priority); // Assign priority to make this action noncancellable
         targetPosition = e.GetVector(VectorInfo.Position);
+        Anim = "";
     }
 
     public override IEnumerator Script()

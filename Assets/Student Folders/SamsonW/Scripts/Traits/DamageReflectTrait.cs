@@ -21,11 +21,12 @@ public class DamageReflectTrait : Trait
                 if (victim == null)
                     return;
                 float damageTaken = e.GetFloat();
-                Debug.Log($"DamageReflectTrait: {attacker.Thing.gameObject.name} dealt {damageTaken} to {victim.Thing.gameObject.name}");
+                float reflectAmount = i.GetFloat(NumInfo.Default, 1f); // Reflect flat dmg, defaulted to 1
                 attacker.TakeEvent(new EventInfo(EventTypes.Damage)
-                    .Set(NumInfo.Default, damageTaken)
+                    .Set(NumInfo.Default, reflectAmount) 
                     .Set(ThingEInfo.Default, victim) // Victim is the one reflecting
                 );
+                Debug.Log($"DamageReflectTrait: {attacker.Thing.gameObject.name} dealt {damageTaken} to {victim.Thing.gameObject.name}, reflecting {reflectAmount}");
                 // Possible recursion with damage calling upon damage? Will worry about later.
                 break;
             }

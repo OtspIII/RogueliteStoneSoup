@@ -7,7 +7,7 @@ using UnityEngine;
 /// Source Action for enter action to listen for
 /// Target Action for target action to switch to
 /// </summary>
-public class DelayedActionAfterStartingAction : Trait
+public class DelayedActionAfterStartingActionTrait : Trait
 {
     public class DelayedActionData
     {
@@ -18,7 +18,7 @@ public class DelayedActionAfterStartingAction : Trait
 
     private Dictionary<ThingInfo, DelayedActionData> delayedActionDict = new();
     
-    public DelayedActionAfterStartingAction()
+    public DelayedActionAfterStartingActionTrait()
     {
         Type = Traits.DelayedActionAfterStartingAction;
         AddListen(EventTypes.StartAction);
