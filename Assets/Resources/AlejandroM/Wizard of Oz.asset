@@ -58,7 +58,7 @@ MonoBehaviour:
       Any: 
       AnyW: 0
       Trait: 0
-  HP: 50
+  HP: 30
   Speed: 2
   VisionRange: 4
   Held: {fileID: 11400000, guid: 9b083b0720c8eba4fa3d6033195ec64b, type: 2}
