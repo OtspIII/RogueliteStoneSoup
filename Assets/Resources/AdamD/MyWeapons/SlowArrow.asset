@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 666e3856c5664c242bde2f0f953b72bc, type: 3}
   m_Name: SlowArrow
   m_EditorClassIdentifier: 
-  Name: Slow_Arrow2
+  Name: Slow_Arrow
   Author: 20
   Team: 1
   Body: {fileID: 629948465317790645, guid: 9edb53243ae32704ead177294fe49d22, type: 3}
@@ -73,5 +73,5 @@ MonoBehaviour:
       Any: 
       AnyW: 0
       Trait: 4002
-  Damage: 1
+  Damage: 2
   Speed: 10
