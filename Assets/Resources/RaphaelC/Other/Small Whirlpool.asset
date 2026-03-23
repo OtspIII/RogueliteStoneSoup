@@ -9,24 +9,28 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4679cc75b2c8be74e8b047318fa062ea, type: 3}
-  m_Name: Wizard of Oz
-  m_EditorClassIdentifier: Assembly-CSharp::CharacterOption
-  Name: Wizard of Oz
-  Author: 25
-  Team: 3
-  Body: {fileID: 629948465317790645, guid: acf0e760b28c7b046ad7d511fb87a1d3, type: 3}
-  Art: {fileID: 3422849895820167655, guid: fb6a34fd06a551f4fb8e85acc8dec490, type: 3}
-  Color: {r: 1, g: 1, b: 1, a: 1}
-  Size: 3
+  m_Script: {fileID: 11500000, guid: 037523bd7ae983240ad1b7cc3ff106cd, type: 3}
+  m_Name: Small Whirlpool
+  m_EditorClassIdentifier: 
+  Name: WhirlPool
+  Author: 60
+  Team: 1
+  Body: {fileID: 629948465317790645, guid: a818902a553ccfa49ba9ef5810b226ca, type: 3}
+  Art: {fileID: -68751727340038015, guid: cf251f49e93dbc1448d1cc819af13e16, type: 3}
+  Color: {r: 0.3056603, g: 0.3056603, b: 0.3056603, a: 1}
+  Size: 5
   Tags:
-  - Common: 500
+  - Common: 400
     Custom: 
-    W: 0
-    Cost: 0
-  LevelRange: {x: 10, y: 10}
+    W: 1
+    Cost: 1
+  - Common: 2
+    Custom: 
+    W: 1
+    Cost: 1
+  LevelRange: {x: 0, y: 0}
   Trait:
-  - Trait: 101
+  - Trait: 6004
     Numbers: []
     Prefabs: []
     Acts: []
@@ -40,8 +44,8 @@ MonoBehaviour:
       MaxCost: 0
     Builder:
     - Type: 0
-      NumType: 0
-      Num: 1
+      NumType: 1
+      Num: 5
       StrType: 0
       Str: 
       ActType: 0
@@ -58,9 +62,3 @@ MonoBehaviour:
       Any: 
       AnyW: 0
       Trait: 0
-  HP: 30
-  Speed: 2
-  VisionRange: 4
-  Held: {fileID: 11400000, guid: 9b083b0720c8eba4fa3d6033195ec64b, type: 2}
-  DefaultAction: 201
-  DefaultChaseAction: 103

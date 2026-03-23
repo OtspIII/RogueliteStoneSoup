@@ -130,27 +130,29 @@ public class Invisible_RaphaelC : ActionScript
             Who.Thing.DoAction(Actions.Patrol);
             return;
         }
+        if (Who.Target != null)
+        {
+            Vector3 A = Who.Thing.transform.position;
+            Vector3 B = Who.Target.Thing.transform.position;
 
-        Vector3 A = Who.Thing.transform.position;
-        Vector3 B = Who.Target.Thing.transform.position;
+            radius = Vector3.Distance(A,B)/2;
+            Vector3 Center = (A + B)/2;
 
-        radius = Vector3.Distance(A,B)/2;
-        Vector3 Center = (A + B)/2;
+            float Cx = Center.x;
+            float Cy = Center.y;
 
-        float Cx = Center.x;
-        float Cy = Center.y;
+            timer += Time.deltaTime;
+            float t = timer / duration;
+            float angle = math.PI - (t* math.PI);
 
-        timer += Time.deltaTime;
-        float t = timer / duration;
-        float angle = math.PI - (t* math.PI);
+            dir = new Vector2(Cx + radius * math.cos(angle) - A.x, Cy + radius * math.sin(angle) - A.y).normalized;
 
-        dir = new Vector2(Cx + radius * math.cos(angle) - A.x, Cy + radius * math.sin(angle) - A.y).normalized;
-
-        Who.Thing.ActualMove = MoveMult * dir;
-        Who.Thing.LookAt(Who.Target,0.5f);
-        
-        if((Who.AttackRange <= 0.5f || Who.Thing.Distance(Who.Target) <= Who.AttackRange) && Who.Thing.IsFacing(Who.Target,5))
-            Who.TakeEvent(God.E(EventTypes.StartAction).Set(ActionInfo.Action,Actions.DefaultAttack));
+            Who.Thing.ActualMove = MoveMult * dir;
+            Who.Thing.LookAt(Who.Target,0.5f);
+            
+            if((Who.AttackRange <= 0.5f || Who.Thing.Distance(Who.Target) <= Who.AttackRange) && Who.Thing.IsFacing(Who.Target,5))
+                Who.TakeEvent(God.E(EventTypes.StartAction).Set(ActionInfo.Action,Actions.DefaultAttack));
+        }
     }    
     public override void HandleMove()
     {
