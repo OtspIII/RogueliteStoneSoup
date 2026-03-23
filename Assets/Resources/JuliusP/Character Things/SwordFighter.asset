@@ -42,6 +42,6 @@ MonoBehaviour:
   HP: 5
   Speed: 5
   VisionRange: 4
-  Held: {fileID: 11400000, guid: beaf2cc9378bb4ff78f08f4b090613c1, type: 2}
+  Held: {fileID: 11400000, guid: 26769a297c5f041b7941964fcdd12a47, type: 2}
   DefaultAction: 1
   DefaultChaseAction: 1

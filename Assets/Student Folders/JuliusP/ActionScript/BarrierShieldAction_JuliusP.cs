@@ -249,6 +249,7 @@ public class Lv2_BarrierShield_JuliusP : ActionScript
         // GRANT DMG RESISTANCE TRAIT//
         if (!Who.Has(Traits.IgnoreDamage_JuliusP))
             Who.AddTrait(Traits.IgnoreDamage_JuliusP);
+           
 
         // SPAWN SHIELDS
         SpawnShields();
@@ -336,6 +337,8 @@ public class Lv2_BarrierShield_JuliusP : ActionScript
         // REMOVE DMG IMMUNITY TRAIT//
         if (Who.Has(Traits.IgnoreDamage_JuliusP))
             Who.RemoveTrait(Traits.IgnoreDamage_JuliusP);
+            
+          
 
         // DESTROY REMAINING SHIELDS//
         foreach (ThingInfo shield in Lv2_spawnedShields)
