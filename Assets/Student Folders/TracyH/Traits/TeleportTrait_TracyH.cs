@@ -13,7 +13,6 @@ public class TeleportTrait_TracyH : Trait
     public TeleportTrait_TracyH()
     {
         Type = Traits.Teleport_TracyH;
-        AddListen(EventTypes.OnUse);
         AddListen(EventTypes.OnTouch);
         AddListen(EventTypes.OnInside);
     }
@@ -22,18 +21,6 @@ public class TeleportTrait_TracyH : Trait
     {
         switch (e.Type)
         {
-            //Held item teleport 
-            case EventTypes.OnUse:
-                {
-                    ThingInfo t = e.GetThing();
-
-                    //Use the helper function to calculate the teleport destination
-                    Vector2 dest = GetTeleportDestination(i, t.Thing.transform.position);
-                    //Move Thing to new position
-                    t.Thing.transform.position = dest;
-                    return;
-                }
-
             //Zone touch teleport
             case EventTypes.OnTouch:
                 {
@@ -45,8 +32,10 @@ public class TeleportTrait_TracyH : Trait
 
                     //Use the teleport zone position as center
                     Vector2 center = i.Who.Thing.transform.position;
+
                     //Calculate the teleport destination
                     Vector2 dest = GetTeleportDestination(i, center);
+
                     //Move Thing to new position
                     t.Thing.transform.position = dest;
                     return;
@@ -57,6 +46,7 @@ public class TeleportTrait_TracyH : Trait
                 {
                     //Cooldown before trigger 
                     float timer = i.Get(NumInfo.Speed, 1);
+
                     //Find hitbox
                     HitboxController hb = e.GetHitbox();
 
@@ -70,6 +60,7 @@ public class TeleportTrait_TracyH : Trait
 
                         //Calculate the teleport destination
                         Vector2 dest = GetTeleportDestination(i, center);
+
                         //Move Thing to new position
                         t.Thing.transform.position = dest;
                     }
@@ -88,6 +79,7 @@ public class TeleportTrait_TracyH : Trait
     {
         //Mode selection
         int mode = i.GetInt(NumInfo.Default, 0);
+
         //Distance used for radius and scatter amount 
         float dist = i.Get(NumInfo.Distance, 4);
 
