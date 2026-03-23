@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a47d2194617e47469e601e558e7b8b4, type: 3}
-  m_Name: Grappling Hook
+  m_Name: Heal 3 Potion
   m_EditorClassIdentifier: 
-  Name: Grappling Hook
+  Name: Health Potion
   Author: 70
   Team: 1
-  Body: {fileID: 629948465317790645, guid: b4fa405680f33044abe2c4567ecf147f, type: 3}
-  Art: {fileID: 4541016762436489944, guid: 8c19feeb531242a468cce904b2d2db89, type: 3}
-  Color: {r: 0, g: 0, b: 0, a: 1}
-  Size: 2.5
+  Body: {fileID: 629948465317790645, guid: 7ef37acb0fdeb5849995b35a7fdca6ba, type: 3}
+  Art: {fileID: -2880734798192188640, guid: f77ef968c74f7a64c86e3247520c36ec, type: 3}
+  Color: {r: 1, g: 1, b: 1, a: 1}
+  Size: 0.75
   Tags:
   - Common: 202
     Custom: 
@@ -26,20 +26,7 @@ MonoBehaviour:
     Cost: 1
   LevelRange: {x: 0, y: 0}
   Trait:
-  - Trait: 313
-    Numbers: []
-    Prefabs: []
-    Acts: []
-    OtherTrait: 0
-    SpawnReq:
-      Fixed: {fileID: 0}
-      Mandatory: []
-      Any: []
-      Level: 0
-      Author: 0
-      MaxCost: 0
-    Builder: []
-  - Trait: 312
+  - Trait: 310
     Numbers: []
     Prefabs: []
     Acts: []
@@ -71,17 +58,64 @@ MonoBehaviour:
       Any: 
       AnyW: 0
       Trait: 0
-  DefaultAttack: 103
+  - Trait: 313
+    Numbers: []
+    Prefabs: []
+    Acts: []
+    OtherTrait: 0
+    SpawnReq:
+      Fixed: {fileID: 0}
+      Mandatory: []
+      Any: []
+      Level: 0
+      Author: 0
+      MaxCost: 0
+    Builder:
+    - Type: 0
+      NumType: 0
+      Num: 1
+      StrType: 0
+      Str: 
+      ActType: 0
+      Act: 0
+      BoolType: 0
+      Bool: 0
+      OptionType: 0
+      Option: {fileID: 0}
+      VectorType: 0
+      Vector: {x: 0, y: 0}
+      Fixed: {fileID: 0}
+      Mandatory: 
+      MandatoryW: 0
+      Any: 
+      AnyW: 0
+      Trait: 0
+  - Trait: 312
+    Numbers:
+    - Type: 1
+      Value: 1
+    Prefabs: []
+    Acts: []
+    OtherTrait: 0
+    SpawnReq:
+      Fixed: {fileID: 0}
+      Mandatory: []
+      Any: []
+      Level: 0
+      Author: 0
+      MaxCost: 0
+    Builder: []
+  DefaultAttack: 5
   ToSpawn:
-    Fixed: {fileID: 11400000, guid: c8c9313eb4238a34ba93545a7597534b, type: 2}
+    Fixed: {fileID: 0}
     Mandatory: []
     Any: []
     Level: 0
     Author: 0
     MaxCost: 0
-  FloorBody: {fileID: 0}
+  FloorBody: {fileID: 629948465317790645, guid: 0f8734e4b4d2c3a449506fe0c78c1110, type: 3}
   FloorArt: {fileID: 0}
-  Damage: 4
-  IdealRange: 5
+  Damage: 0
+  IdealRange: 1.5
   SpeedMult: 1
-  ActDuration: 1
+  ActDuration: 0

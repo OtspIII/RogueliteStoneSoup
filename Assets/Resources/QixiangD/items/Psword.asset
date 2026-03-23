@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a47d2194617e47469e601e558e7b8b4, type: 3}
-  m_Name: Grappling Hook
-  m_EditorClassIdentifier: 
-  Name: Grappling Hook
-  Author: 70
+  m_Name: Psword
+  m_EditorClassIdentifier: Assembly-CSharp::ItemOption
+  Name: Claymore
+  Author: 55
   Team: 1
   Body: {fileID: 629948465317790645, guid: b4fa405680f33044abe2c4567ecf147f, type: 3}
-  Art: {fileID: 4541016762436489944, guid: 8c19feeb531242a468cce904b2d2db89, type: 3}
-  Color: {r: 0, g: 0, b: 0, a: 1}
-  Size: 2.5
+  Art: {fileID: 8225250904077534322, guid: d44537cbb29d11e4da85790b734e9ca2, type: 3}
+  Color: {r: 0.0045834924, g: 0.4049533, b: 0.9716981, a: 1}
+  Size: 0.3
   Tags:
-  - Common: 202
+  - Common: 201
     Custom: 
     W: 1
     Cost: 1
@@ -39,41 +39,9 @@ MonoBehaviour:
       Author: 0
       MaxCost: 0
     Builder: []
-  - Trait: 312
-    Numbers: []
-    Prefabs: []
-    Acts: []
-    OtherTrait: 0
-    SpawnReq:
-      Fixed: {fileID: 0}
-      Mandatory: []
-      Any: []
-      Level: 0
-      Author: 0
-      MaxCost: 0
-    Builder:
-    - Type: 0
-      NumType: 1
-      Num: 3
-      StrType: 0
-      Str: 
-      ActType: 0
-      Act: 0
-      BoolType: 0
-      Bool: 0
-      OptionType: 0
-      Option: {fileID: 0}
-      VectorType: 0
-      Vector: {x: 0, y: 0}
-      Fixed: {fileID: 0}
-      Mandatory: 
-      MandatoryW: 0
-      Any: 
-      AnyW: 0
-      Trait: 0
   DefaultAttack: 103
   ToSpawn:
-    Fixed: {fileID: 11400000, guid: c8c9313eb4238a34ba93545a7597534b, type: 2}
+    Fixed: {fileID: 11400000, guid: 942ba05c9170fa24ea801e591070ece7, type: 2}
     Mandatory: []
     Any: []
     Level: 0
@@ -81,7 +49,7 @@ MonoBehaviour:
     MaxCost: 0
   FloorBody: {fileID: 0}
   FloorArt: {fileID: 0}
-  Damage: 4
-  IdealRange: 5
+  Damage: 3
+  IdealRange: 2
   SpeedMult: 1
   ActDuration: 1

@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a47d2194617e47469e601e558e7b8b4, type: 3}
-  m_Name: Grappling Hook
+  m_Name: Bow
   m_EditorClassIdentifier: 
-  Name: Grappling Hook
+  Name: Bow
   Author: 70
   Team: 1
   Body: {fileID: 629948465317790645, guid: b4fa405680f33044abe2c4567ecf147f, type: 3}
-  Art: {fileID: 4541016762436489944, guid: 8c19feeb531242a468cce904b2d2db89, type: 3}
-  Color: {r: 0, g: 0, b: 0, a: 1}
-  Size: 2.5
+  Art: {fileID: 21300000, guid: cb8312002cf474c4688fa76c7caea0a3, type: 3}
+  Color: {r: 1, g: 1, b: 1, a: 1}
+  Size: 1
   Tags:
   - Common: 202
     Custom: 
@@ -54,7 +54,7 @@ MonoBehaviour:
     Builder:
     - Type: 0
       NumType: 1
-      Num: 3
+      Num: 4
       StrType: 0
       Str: 
       ActType: 0
@@ -73,7 +73,7 @@ MonoBehaviour:
       Trait: 0
   DefaultAttack: 103
   ToSpawn:
-    Fixed: {fileID: 11400000, guid: c8c9313eb4238a34ba93545a7597534b, type: 2}
+    Fixed: {fileID: 11400000, guid: d05ac0ab76244cd46895ee8edc134d12, type: 2}
     Mandatory: []
     Any: []
     Level: 0
@@ -81,7 +81,7 @@ MonoBehaviour:
     MaxCost: 0
   FloorBody: {fileID: 0}
   FloorArt: {fileID: 0}
-  Damage: 4
+  Damage: 2
   IdealRange: 5
   SpeedMult: 1
-  ActDuration: 1
+  ActDuration: 0

@@ -44,6 +44,7 @@ public static class Parser
         // ElioR Traits
         TraitDict.Add(Traits.Barrier, new BarrierTrait_ElioR());
         TraitDict.Add(Traits.ParryTrait_ElioR, new ParryTrait());
+        TraitDict.Add(Traits.LifeSteal_ElioR, new LifeSteal_ElioR());
         // JaidenB Traits
         TraitDict.Add(Traits.InvertControls, new InvertControlsTrait());
         TraitDict.Add(Traits.Freeze, new FreezeTrait());
@@ -86,7 +87,9 @@ public static class Parser
         TraitDict.Add(Traits.TeleportRandomRoom,new TeleportRandomRoomTrait());
         TraitDict.Add(Traits.DamageReflect,new DamageReflectTrait());
         TraitDict.Add(Traits.HealZone,new HealZoneTrait());
-        TraitDict.Add(Traits.DelayedActionAfterStartingAction,new DelayedActionAfterStartingAction());
+        TraitDict.Add(Traits.DelayedActionAfterStartingAction,new DelayedActionAfterStartingActionTrait());
+        TraitDict.Add(Traits.GrappleHook,new GrappleHookTrait());
+        TraitDict.Add(Traits.StackableDagger,new StackableDaggerTrait());
         // SarahS Traits
         TraitDict.Add(Traits.ProximityExplodeSarahS,new ProximityExplode_SarahS());
         TraitDict.Add(Traits.SlowMoSarahS,new SlowMo_SarahS());
@@ -148,7 +151,8 @@ public static class Parser
             // MichaelT=50,
             case Actions.BleedAttack_MichaelT: return new BleedAttackAction_MichaelT(who, e);
             // QixiangD=55,
-            //case Actions.Sidestep_qixiangdong: return new Sidestep_qixiangdong(who,e);
+            case Actions.Sidestep_qixiangdong: return new Sidestep_qixiangdong(who,e);
+            case Actions.Charging_qixiangdong: return new Charging_qixiangdong(who,e);
             // RaphaelC=60,
             case Actions.CurveChase_RaphaelC:return new CurveChaseAction_RaphaelC(who,e);
             case Actions.Invisible_RaphaelC:return new Invisible_RaphaelC(who,e);
@@ -161,6 +165,7 @@ public static class Parser
             case Actions.SabahClassAction2: return new SabahClassAction2(who, e);
             // SamsonW=70,
             case Actions.SelfKill: return new SelfKillAction(who, e);
+            case Actions.Grapple: return new GrappleAction(who, e);
             // SarahS=75,
             case Actions.StalkSarahS: return new Stalk_SarahS(who,e);
             case Actions.RiseFromDeadSarahS: return new RiseFromDead_SarahS(who,e);
@@ -263,6 +268,7 @@ public enum Traits
     ElioR1          =3001,
     Barrier         =3002, //this will negate one instance of taken damage taken.
     ParryTrait_ElioR = 3003,
+    LifeSteal_ElioR = 3004,
     //JaidenB       =35##,
     JaidenB1        =3501,
     InvertControls  =3502,
@@ -316,6 +322,8 @@ public enum Traits
     DamageReflect   =7003, //Reflects damage, thornmail effect
     HealZone        =7004, //Heals player when standing inside zone
     DelayedActionAfterStartingAction=7005, //Switches action after X secs after entering an action
+    GrappleHook     =7006,
+    StackableDagger =7007,
     //SarahS        =75##,
     ProximityExplodeSarahS  =7501,
     SlowMoSarahS    =7502,
@@ -398,6 +406,7 @@ public enum Actions
     BleedAttack_MichaelT = 5003, //Applies Bleed Trait to Target on Hit
     //QixiangD      =55##,
     Sidestep_qixiangdong = 5501,
+    Charging_qixiangdong = 5502,
     //RaphaelC      =60##,
     RaphaelC1       =6001,
     CurveChase_RaphaelC = 6002,
@@ -412,6 +421,7 @@ public enum Actions
     //SamsonW       =70##,
     SamsonW1        =7001,
     SelfKill        =7002, // Immediately kills thing on enter after 1 frame
+    Grapple         =7003,
     //SarahS        =75##,
     StalkSarahS     =7501,
     RiseFromDeadSarahS =7502,

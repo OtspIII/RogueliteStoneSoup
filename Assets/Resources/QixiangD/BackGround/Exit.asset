@@ -10,23 +10,27 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 037523bd7ae983240ad1b7cc3ff106cd, type: 3}
-  m_Name: HealthPool
-  m_EditorClassIdentifier: 
-  Name: HealthPool
-  Author: 70
+  m_Name: Exit
+  m_EditorClassIdentifier: Assembly-CSharp::ThingOption
+  Name: Exit
+  Author: 55
   Team: 1
   Body: {fileID: 629948465317790645, guid: 073ebe890d72bac48bacd0748bd84afc, type: 3}
-  Art: {fileID: 0}
-  Color: {r: 0.31372374, g: 0.83977795, b: 0.8867924, a: 1}
-  Size: 2
+  Art: {fileID: -7886095280468031780, guid: 63d76ff2e460fd24293d95322c27e3ae, type: 3}
+  Color: {r: 1, g: 1, b: 1, a: 1}
+  Size: 0.5
   Tags:
-  - Common: 400
+  - Common: 401
     Custom: 
-    W: 1
-    Cost: 1
-  LevelRange: {x: 5, y: 10}
+    W: 0
+    Cost: 0
+  - Common: 402
+    Custom: 
+    W: 0
+    Cost: 0
+  LevelRange: {x: 0, y: 0}
   Trait:
-  - Trait: 7004
+  - Trait: 200
     Numbers: []
     Prefabs: []
     Acts: []
@@ -38,23 +42,4 @@ MonoBehaviour:
       Level: 0
       Author: 0
       MaxCost: 0
-    Builder:
-    - Type: 0
-      NumType: 1
-      Num: 1
-      StrType: 0
-      Str: 
-      ActType: 0
-      Act: 0
-      BoolType: 0
-      Bool: 0
-      OptionType: 0
-      Option: {fileID: 0}
-      VectorType: 0
-      Vector: {x: 0, y: 0}
-      Fixed: {fileID: 0}
-      Mandatory: 
-      MandatoryW: 0
-      Any: 
-      AnyW: 0
-      Trait: 0
+    Builder: []
