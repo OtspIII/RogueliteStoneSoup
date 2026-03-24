@@ -10,24 +10,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4679cc75b2c8be74e8b047318fa062ea, type: 3}
-  m_Name: flame 1
+  m_Name: magic
   m_EditorClassIdentifier: Assembly-CSharp::CharacterOption
-  Name: flame
+  Name: magic
   Author: 95
   Team: 3
   Body: {fileID: 629948465317790645, guid: 0a2102bf84264a44e9e01c5e7dea2058, type: 3}
-  Art: {fileID: -8527442550737655860, guid: f1e0f7ad4f63d7e4682a927249ffac95, type: 3}
+  Art: {fileID: -2510476293373519475, guid: b40daa6242905df459de702bb1e55664, type: 3}
   Color: {r: 1, g: 1, b: 1, a: 1}
   Size: 0.6
   Tags:
   - Common: 102
     Custom: 
     W: 0
-  LevelRange: {x: 3, y: 4}
+  LevelRange: {x: 4, y: 0}
   Trait: []
-  HP: 25
+  HP: 35
   Speed: 7
   VisionRange: 4
-  Held: {fileID: 11400000, guid: f570a24a9f3ac864ca4c7046d6804499, type: 2}
+  Held: {fileID: 11400000, guid: 32bbf4a32cd5c2344b33d77cbd302dd9, type: 2}
   DefaultAction: 201
   DefaultChaseAction: 202

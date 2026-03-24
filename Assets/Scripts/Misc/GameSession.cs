@@ -14,6 +14,7 @@ public class GameSession
     public List<ThingInfo> PlayerInventory = new List<ThingInfo>();
     public int InventoryIndex = 1;
     public string GameOverInfo = "";
+    public float Duration = 0;
 
     public GameSession(Authors a)
     {
@@ -44,6 +45,8 @@ public class GameSession
     {
         Defeat = true;
         string go = "Score: " + Player.Ask(EventTypes.GetScore).GetInt();
+        go += "\nLevel: " + Level;
+        go += "\nTime: " + Mathf.FloorToInt(Duration/60) +":"+Mathf.RoundToInt(Duration%60);
         ThingInfo src = e.GetThing();
         if (src != null)
         {

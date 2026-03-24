@@ -10,43 +10,31 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a47d2194617e47469e601e558e7b8b4, type: 3}
-  m_Name: sword+
+  m_Name: blood
   m_EditorClassIdentifier: Assembly-CSharp::ItemOption
-  Name: sword+
+  Name: blood
   Author: 95
   Team: 1
-  Body: {fileID: 629948465317790645, guid: ef672722d780ecf4e9d868d0ce938dec, type: 3}
-  Art: {fileID: 3763752930381237044, guid: 6182c182fed00e244ac4d80067b6d5db, type: 3}
+  Body: {fileID: 629948465317790645, guid: b4fa405680f33044abe2c4567ecf147f, type: 3}
+  Art: {fileID: -2510476293373519475, guid: 785f0d2aa379e9c469629106cdce1fa8, type: 3}
   Color: {r: 1, g: 1, b: 1, a: 1}
-  Size: 0.8
+  Size: 0.7
   Tags:
   - Common: 201
     Custom: 
-    W: 0
-  LevelRange: {x: 0, y: 0}
-  Trait:
-  - Trait: 9502
-    Numbers: []
-    Prefabs: []
-    Acts: []
-    OtherTrait: 0
-    SpawnReq:
-      Fixed: {fileID: 0}
-      Mandatory: []
-      Any: []
-      Level: 0
-      Author: 0
-    Builder: []
-  DefaultAttack: 101
+    W: 5
+  LevelRange: {x: 2, y: 0}
+  Trait: []
+  DefaultAttack: 103
   ToSpawn:
-    Fixed: {fileID: 0}
+    Fixed: {fileID: 11400000, guid: 21f2f00ddb5360c409b072461865b27f, type: 2}
     Mandatory: []
     Any: []
     Level: 0
-    Author: 0
+    Author: 95
   FloorBody: {fileID: 0}
   FloorArt: {fileID: 0}
-  Damage: 5
-  IdealRange: 4
-  SpeedMult: 1
-  ActDuration: 0
+  Damage: 15
+  IdealRange: 2
+  SpeedMult: 15
+  ActDuration: 1

@@ -18,15 +18,16 @@ MonoBehaviour:
   Body: {fileID: 629948465317790645, guid: 0a2102bf84264a44e9e01c5e7dea2058, type: 3}
   Art: {fileID: -6888756438569675735, guid: 11b00a8e5336e98438655d4561742345, type: 3}
   Color: {r: 1, g: 1, b: 1, a: 1}
-  Size: 0.9
+  Size: 0.6
   Tags:
   - Common: 102
     Custom: 
     W: 0
-  LevelRange: {x: 0, y: 0}
+  LevelRange: {x: 2, y: 4}
   Trait: []
   HP: 30
-  Speed: 2
-  Held: {fileID: 0}
+  Speed: 4
+  VisionRange: 4
+  Held: {fileID: 11400000, guid: 7d621acb1abd6f14fb8ce00024521ece, type: 2}
   DefaultAction: 201
   DefaultChaseAction: 202
