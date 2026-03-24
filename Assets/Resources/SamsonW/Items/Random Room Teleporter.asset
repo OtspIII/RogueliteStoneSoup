@@ -36,6 +36,7 @@ MonoBehaviour:
       Any: []
       Level: 0
       Author: 0
+    Builder: []
   - Trait: 313
     Numbers: []
     Prefabs: []
@@ -47,6 +48,7 @@ MonoBehaviour:
       Any: []
       Level: 0
       Author: 0
+    Builder: []
   - Trait: 312
     Numbers:
     - Type: 1
@@ -60,19 +62,7 @@ MonoBehaviour:
       Any: []
       Level: 0
       Author: 0
-  - Trait: 312
-    Numbers:
-    - Type: 1
-      Value: 1
-    Prefabs: []
-    Acts: []
-    OtherTrait: 0
-    SpawnReq:
-      Fixed: {fileID: 0}
-      Mandatory: []
-      Any: []
-      Level: 0
-      Author: 0
+    Builder: []
   DefaultAttack: 5
   ToSpawn:
     Fixed: {fileID: 0}

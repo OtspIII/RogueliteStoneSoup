@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4679cc75b2c8be74e8b047318fa062ea, type: 3}
   m_Name: Necromancer
   m_EditorClassIdentifier: Assembly-CSharp::CharacterOption
-  Name: Sworder
+  Name: Necromancer
   Author: 60
   Team: 3
   Body: {fileID: 629948465317790645, guid: acf0e760b28c7b046ad7d511fb87a1d3, type: 3}
@@ -22,10 +22,11 @@ MonoBehaviour:
   Tags:
   - Common: 102
     Custom: 
-    W: 1
-  LevelRange: {x: 0, y: 0}
+    W: 2
+    Cost: 1
+  LevelRange: {x: 5, y: 10}
   Trait: []
-  HP: 3
+  HP: 10
   Speed: 1
   VisionRange: 5
   Held: {fileID: 11400000, guid: 208b51eb500c2b64db2e40861ca46f4a, type: 2}

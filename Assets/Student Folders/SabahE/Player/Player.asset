@@ -23,9 +23,14 @@ MonoBehaviour:
   - Common: 1
     Custom: 
     W: 1
+    Cost: 1
   LevelRange: {x: 0, y: 0}
   Trait:
+<<<<<<< HEAD
   - Trait: 6502
+=======
+  - Trait: 6503
+>>>>>>> WesleyBranch
     Numbers: []
     Prefabs: []
     Acts: []
@@ -36,6 +41,10 @@ MonoBehaviour:
       Any: []
       Level: 0
       Author: 0
+<<<<<<< HEAD
+=======
+      MaxCost: 0
+>>>>>>> WesleyBranch
     Builder: []
   HP: 5
   Speed: 8

@@ -104,7 +104,9 @@ public enum ActionInfo
     DefaultChaseAction=4,
     D=5,
     E=6,
-    F=7
+    F=7,
+    Source=8,
+    Target=9,
 }
 
 public enum BoolInfo
@@ -152,7 +154,8 @@ public enum VectorInfo
     C=4,
     D=5,
     E=6,
-    F=7
+    F=7,
+    Position=8
 }
 
 
@@ -185,6 +188,7 @@ public enum GameTags
     Centerpiece     =0400,
     Exit            =0401,
     Scenery         =0402,
+    Boss            =0500,
 }
 
 public enum RoomTags
@@ -193,4 +197,5 @@ public enum RoomTags
     Generic        =0001,
     PlayerStart    =0002,
     Exit           =0003,
+    Boss           =0004,
 }

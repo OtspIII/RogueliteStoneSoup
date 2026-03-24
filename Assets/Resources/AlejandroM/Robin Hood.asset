@@ -19,11 +19,29 @@ MonoBehaviour:
   Art: {fileID: -7132172409892320828, guid: 507719f271182eb4baded25bf73a29da, type: 3}
   Color: {r: 0.94716984, g: 0.07860974, b: 0.0696973, a: 1}
   Size: 1
-  Tags: []
+  Tags:
+  - Common: 102
+    Custom: 
+    W: 0
+    Cost: 0
   LevelRange: {x: 0, y: 0}
-  Trait: []
+  Trait:
+  - Trait: 101
+    Numbers: []
+    Prefabs: []
+    Acts: []
+    OtherTrait: 0
+    SpawnReq:
+      Fixed: {fileID: 0}
+      Mandatory: []
+      Any: []
+      Level: 0
+      Author: 0
+      MaxCost: 0
+    Builder: []
   HP: 5
   Speed: 5
+  VisionRange: 4
   Held: {fileID: 11400000, guid: ad13ac6261f013b45ab35c13a6699b50, type: 2}
   DefaultAction: 201
   DefaultChaseAction: 202

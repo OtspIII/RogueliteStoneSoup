@@ -36,6 +36,7 @@ MonoBehaviour:
       Any: []
       Level: 0
       Author: 0
+    Builder: []
   HP: 20
   Speed: 5
   VisionRange: 4

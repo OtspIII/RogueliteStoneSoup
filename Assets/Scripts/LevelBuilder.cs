@@ -29,7 +29,11 @@ public class LevelBuilder
     public List<ThingOption> ToSpawn = new List<ThingOption>();
     //If a SpawnPoint can spawn "Something" it'll be okay for all of these options 
     public List<string> Somethings = new List<string>(){"NPC","Weapon","Consumable","ScoreThing"};
+    public ThingOption Boss=null;
 
+    //Quotas, new system
+    public List<Tag> Quotas = new List<Tag>();
+    
     public virtual void Build()
     {
         God.LB = this;
@@ -69,6 +73,7 @@ public class LevelBuilder
         //If we haven't created a player yet for this playthrough, make one.
         if (God.Session.Player == null)
             God.Session.Player = God.Library.GetThing(new SpawnRequest(GameTags.Player)).Create();
+        Boss = God.Library.GetThing(new SpawnRequest(GameTags.Boss),this,false);
     }
 
     ///Build out a zoomed-out map of the level, without specific rooms
@@ -141,9 +146,27 @@ public class LevelBuilder
             }
             else
             {
-                //But if we're at the top of the map, mark our ultimate position as the exit spawn location
-                Exit = GetGeo(start, y); 
-                Exit.SetPath(GeoTile.GeoTileTypes.Exit);
+                if(Boss != null){
+                    GeoTile g = new GeoTile(start, y+1,this);
+                    if(!GeoMap.ContainsKey(start)) GeoMap.Add(start,new Dictionary<int, GeoTile>());
+                    GeoMap[start].Add(y+1,g);
+                    AllGeo.Add(g);
+                    Exit = GetGeo(start, y+1); 
+                    Exit.SetPath(GeoTile.GeoTileTypes.Exit);
+                    
+                    GeoTile boss = GetGeo(start, y); 
+                    boss.SetPath(GeoTile.GeoTileTypes.Boss);
+                    boss.Links.Add(Directions.Up);
+                    Exit.Links.Add(Directions.Down);
+                }
+                else
+                {
+                    //But if we're at the top of the map, mark our ultimate position as the exit spawn location
+                    Exit = GetGeo(start, y); 
+                    Exit.SetPath(GeoTile.GeoTileTypes.Exit);
+                }
+                
+                
             }
         }
     }
@@ -271,23 +294,44 @@ public class LevelBuilder
         //We're going to spawn 1 monster per room on average, but each level the density rises
         float mons = God.RoundRand(rms * (1f + (God.Session.Level * 0.1f)));
         //Add that many monsters to the queue
-        for(float n=0;n<mons;n++) AddSpawn(GameTags.NPC);
+        Quotas.Add(new Tag(GameTags.NPC,1,mons));
+        // for(float n=0;n<mons;n++) AddSpawn(GameTags.NPC);
         //We'll have 1 weapon drop per level, plus maybe a second (odds increase with depth)
         float wpn = God.RoundRand(1 + (rms * 0.05f));
-        for(float n=0;n<wpn;n++) AddSpawn(GameTags.Weapon);
+        Quotas.Add(new Tag(GameTags.Weapon,1,wpn));
+        // for(float n=0;n<wpn;n++) AddSpawn(GameTags.Weapon);
         //One consumable per four rooms
         float con = God.RoundRand(rms * 0.25f);
-        for(float n=0;n<con;n++) AddSpawn(GameTags.Consumable);
+        Quotas.Add(new Tag(GameTags.Consumable,1,con));
+        // for(float n=0;n<con;n++) AddSpawn(GameTags.Consumable);
         //And as many piles of coins as our level number. Can you find them all before using the exit?
         float scr = God.Session.Level;
-        for(float n=0;n<scr;n++) AddSpawn(GameTags.ScoreThing);
+        Quotas.Add(new Tag(GameTags.ScoreThing,1,scr));
+        // for(float n=0;n<scr;n++) AddSpawn(GameTags.ScoreThing);
         
         //Then we take those tags and use them to decide on a list of actual things to spawn
-        foreach (SpawnRequest sr in SpawnRequests)
+        // foreach (SpawnRequest sr in SpawnRequests)
+        // {
+        //     //See JudgeThing() below for more info on how things are valued
+        //     ThingOption o = God.Library.GetThing(sr);
+        //     ToSpawn.Add(o);
+        // }
+
+        foreach (Tag t in Quotas)
         {
-            //See JudgeThing() below for more info on how things are valued
-            ThingOption o = God.Library.GetThing(sr);
-            ToSpawn.Add(o);
+            int safety = 999;
+            while (t.Cost > 0 && safety > 0)
+            {
+                safety--;
+                SpawnRequest sr = new SpawnRequest(t);
+                sr.MaxCost = t.Cost;
+                ThingOption o = God.Library.GetThing(sr);
+                if (o == null) break;
+                ToSpawn.Add(o);
+                Tag ot = o.GetTag(t.Value);
+                if (ot == null) t.Cost--;
+                else t.Cost -= ot.Cost;
+            }
         }
     }
     
@@ -420,6 +464,7 @@ public class LevelBuilder
         RoomTags t = RoomTags.Generic;
         if (g.Path == GeoTile.GeoTileTypes.PlayerStart) t = RoomTags.PlayerStart;
         if (g.Path == GeoTile.GeoTileTypes.Exit) t = RoomTags.Exit;
+        if (g.Path == GeoTile.GeoTileTypes.Boss) t = RoomTags.Boss;
         if(o.Tags.Contains(t)) return 1;
         return 0;
     }
@@ -442,12 +487,15 @@ public class LevelBuilder
             if (l > o.LevelRange.y && o.LevelRange.y > 0) return 0;
         }
         float w = 1;
+        float cost = 0;
         foreach(Tag t in sr.Mandatory)
-            if (o.HasTag(t.Value, out float tw))
+            if (o.HasTag(t.Value, out float tw, out float cst))
             {
                 w = God.MergeWeight(w,tw);
+                cost = Mathf.Max(cost, cst);
             }
             else return 0;
+        if (sr.MaxCost > 0 && sr.MaxCost < cost) return 0;
         if (sr.Any.Count > 0)
         {
             bool any = false;
@@ -462,16 +510,15 @@ public class LevelBuilder
             if(!any)
                 return 0;
         }
-
         return w;
     }
 
-    public virtual void AddSpawn(params GameTags[] t)
-    { SpawnRequests.Add(new SpawnRequest(t)); }
-    public virtual void AddSpawn(params string[] t)
-    { SpawnRequests.Add(new SpawnRequest(t)); }
-    public virtual void AddSpawn(SpawnRequest sr)
-    { SpawnRequests.Add(sr); }
+    // public virtual void AddSpawn(params GameTags[] t)
+    // { SpawnRequests.Add(new SpawnRequest(t)); }
+    // public virtual void AddSpawn(params string[] t)
+    // { SpawnRequests.Add(new SpawnRequest(t)); }
+    // public virtual void AddSpawn(SpawnRequest sr)
+    // { SpawnRequests.Add(sr); }
     
     
 }

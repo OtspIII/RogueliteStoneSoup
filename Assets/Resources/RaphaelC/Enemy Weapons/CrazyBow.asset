@@ -29,9 +29,10 @@ MonoBehaviour:
     Any: []
     Level: 0
     Author: 60
+    MaxCost: 0
   FloorBody: {fileID: 0}
   FloorArt: {fileID: 0}
   Damage: 1
   IdealRange: 7
-  SpeedMult: 0.4
+  SpeedMult: 1
   ActDuration: 0

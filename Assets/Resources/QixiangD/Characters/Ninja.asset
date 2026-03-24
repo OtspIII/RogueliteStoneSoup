@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4679cc75b2c8be74e8b047318fa062ea, type: 3}
+  m_Name: Ninja
+  m_EditorClassIdentifier: Assembly-CSharp::CharacterOption
+  Name: Ninja
+  Author: 55
+  Team: 3
+  Body: {fileID: 629948465317790645, guid: acf0e760b28c7b046ad7d511fb87a1d3, type: 3}
+  Art: {fileID: -2759152716061183957, guid: 5f0263e43c197a448809521bd33cd8bb, type: 3}
+  Color: {r: 1, g: 1, b: 1, a: 1}
+  Size: 0.2
+  Tags:
+  - Common: 102
+    Custom: 
+    W: 0
+    Cost: 1
+  LevelRange: {x: 0, y: 0}
+  Trait: []
+  HP: 5
+  Speed: 5
+  VisionRange: 4
+  Held: {fileID: 11400000, guid: 00296ea537f877848a6ed623f263e157, type: 2}
+  DefaultAction: 202
+  DefaultChaseAction: 5503

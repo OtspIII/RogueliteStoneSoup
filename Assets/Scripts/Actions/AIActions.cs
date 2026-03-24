@@ -17,8 +17,9 @@ public class ChaseAction : ActionScript
         Who.Thing.LookAt(Who.Target,0.5f);
         
         if((Who.AttackRange <= 0.5f || Who.Thing.Distance(Who.Target) <= Who.AttackRange) && Who.Thing.IsFacing(Who.Target,5))
-            Who.TakeEvent(God.E(EventTypes.StartAction).Set(ActionInfo.Action,Actions.DefaultAttack));
+            Who.DoAction(Actions.DefaultAttack);
             // Who.DoAction(Who.DefaultAttackAction());
+
     }
 }
 
@@ -47,7 +48,7 @@ public class PatrolAction : ActionScript
                 dir, Who.VisionRange, LayerMask.GetMask("Wall"));
             if (hit.collider == null)
             {
-                Who.Thing.DoAction(Actions.Chase);
+                Who.Thing.DoAction(Actions.DefaultAction);
                 return;
             }
         }
