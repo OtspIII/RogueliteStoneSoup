@@ -10,7 +10,7 @@ public class Lv2Invis : ActionScript
         Setup(Actions.Lv2_Cloak_JuliusP, who, true);
 
         HaltMomentum = false;
-        MoveMult = 1f;          // Use normal move speed so AI can navigate properly
+        MoveMult = 1f;     
         Duration = Mathf.Infinity;
     }
 
@@ -34,7 +34,7 @@ public class Lv2Invis : ActionScript
         if (!chaseStarted)
         {
             chaseStarted = true;
-            Who.DoAction(Actions.Chase); // Let built-in AI navigation handle movement
+            Who.DoAction(Actions.Chase); 
         }
 
         // Check if close enough to attack
