@@ -170,6 +170,11 @@ public class ActorTrait : Trait
             EventInfo atk = t.Who.CurrentHeld.Ask(EventTypes.GetDefaultAttack);
             a = atk.Get(ActionInfo.DefaultAction);
         }
+
+        if (a == Actions.DefaultAction)
+        {
+            a = t.Who.Ask(God.E(EventTypes.GetDefaultAction).Set(t.Who.Target)).Get(ActionInfo.DefaultAction);
+        }
         ActionScript act = Parser.Get(a == Actions.None ? defaultAct : a,t.Who,e);
         DoAction(t,act,e);
     }

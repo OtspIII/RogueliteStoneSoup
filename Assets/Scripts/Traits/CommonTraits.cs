@@ -176,65 +176,6 @@ public class DespawnTrait : Trait
 
 }
 
-public class RageTrait : Trait
-{
-    public RageTrait()
-    {
-        // SETS THE TRAIT TYPE TO RAGE
-        Type = Traits.Rage;
-
-        // LISTENS FOR DAMAGE MULTIPLIER EVENTS
-        AddListen(EventTypes.DamageMult);
-    }
-
-    public override void TakeEvent(TraitInfo i, EventInfo e)
-    {
-        switch (e.Type)
-        {
-            case EventTypes.DamageMult:
-                
-                // GETS THE ATTACKER WHO IS CAUSING THE DAMAGE
-                ThingInfo attacker = e.GetThing();
-               
-                // RETURN IF ATTACKER IS NULL OR DOSENT EXIST
-                if (attacker == null) break;
-
-                // THIS GETS THE ATTACKER'S HEALTH TRAIT TO CHECK//
-                TraitInfo health = attacker.Get(Traits.Health);
-                
-                // THIS WILL RETURN IF HEALTH TRAIT DOES NOT EXIST
-                if (health == null) break;
-
-                // GET THE ATTACKER THING'S CURRENT HP
-                float current = health.GetN();
-               
-                // GET THE ATTACKER THING'S MAX HP
-                float max = health.Get(NumInfo.Max);
-
-                // CHECK IF THE ATTACKER'S HP IS 50% OR LESS
-                if (current / max <= 0.5f)
-                {
-                    // GET THE WEAPON THE ATTACKER IS CURRENTLY HOLDING
-                    ThingInfo weapon = attacker.CurrentHeld;
-                    
-                    // RETURNS IF NO WEAPON IS HELD
-                    if (weapon == null) break;
-
-                    // GET THE TOOL TRAIT FROM THE WEAPON (WHERE DAMAGE MULTIPLIER IS STORED)
-                    TraitInfo tool = weapon.Get(Traits.Tool);
-                    
-                    // SAFETY CHECK: RETURN IF THE TOOL TRAIT DOES NOT EXIST
-                    if (tool == null) break;
-
-                    // SET THE WEAPON'S DAMAGE TO 2//
-                    tool.Set(2f);
-                
-               
-                }
-                break;
-        }
-    }
-}
 public class DashTrait : Trait
 {
     //THIS IS HOW FAR I WANT TO MOVE//
@@ -244,13 +185,15 @@ public class DashTrait : Trait
     public float DashDuration = 0.2f;
 
     private bool isDashing = false;
+    public bool pressingspace = true;
     private Vector3 dashDirection;
     private float dashTimer = 0f;
+
 
     public DashTrait()
     {
         Type = Traits.Dash;
-        AddListen(EventTypes.Update); // Check input each frame
+        AddListen(EventTypes.Update); 
     }
 
     public override void TakeEvent(TraitInfo i, EventInfo e)
@@ -283,6 +226,7 @@ public class DashTrait : Trait
                     dashDirection = new Vector3(HorizontalInput, VerticalInput, 0).normalized;
                 }
 
+
                 // Move while dashing
                 if (isDashing)
                 {
@@ -298,7 +242,9 @@ public class DashTrait : Trait
 
                     dashTimer -= Time.deltaTime;
                     if (dashTimer <= 0f)
-                        isDashing = false; // stop dash
+
+                         // STOP THE DASH//
+                        isDashing = false; 
                 }
 
                 break;

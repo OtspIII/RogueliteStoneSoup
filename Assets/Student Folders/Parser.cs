@@ -43,6 +43,7 @@ public static class Parser
         TraitDict.Add(Traits.SpeedPotion_AlejandroM, new SpeedPotion_AlejandroM());
         // ElioR Traits
         TraitDict.Add(Traits.Barrier, new BarrierTrait_ElioR());
+        TraitDict.Add(Traits.ParryTrait_ElioR, new ParryTrait());
         // JaidenB Traits
         TraitDict.Add(Traits.InvertControls, new InvertControlsTrait());
         // Julius Traits
@@ -50,36 +51,55 @@ public static class Parser
         TraitDict.Add(Traits.Dash, new DashTrait());
         TraitDict.Add(Traits.SelfDestruct_JuliusP, new SelfDestruction());
         TraitDict.Add(Traits.IgnoreDamage_JuliusP, new IgnoreDamage());
+        TraitDict.Add(Traits.StunNegation_JuliusP, new StunCancel());
+        TraitDict.Add(Traits.NoTimerStunNegation_JuliusP, new FullStunNegation());
+        TraitDict.Add(Traits.TemporaryDash_JuliusP, new TemporaryDashAbility());
+        TraitDict.Add(Traits.TemporaryStunImmunity_JuliusP, new StunDrink());
+        TraitDict.Add(Traits.TemporaryDmgResist_JuliusP, new TemporaryDamageResist());
+        TraitDict.Add(Traits.GainInvis_JuliusP, new GainInvisibility());
+        TraitDict.Add(Traits.MonadoArts_JuliusP, new MonadoPower());
+        TraitDict.Add(Traits.Slowed_JuliusP, new Slowed());
+        TraitDict.Add(Traits.SlowOnhit_JuliusP, new SlowingProjectileTrait());
+    
+
+
+      
         // MazK Traits
         // MichaelT Traits
+        TraitDict.Add(Traits.Bleed_MichaelT, new BleedTrait_MichaelT());
         // QixiangD Traits
+        TraitDict.Add(Traits.Sneaky_qixiangdong, new Sneaky_qixiangdong());
+        TraitDict.Add(Traits.Thrill_qixiangdong, new Thrill_qixiangdong());
         // RaphaelC Traits
         TraitDict.Add(Traits.Lighting_RaphaelC,new Lighting_RaphaelC());
+        TraitDict.Add(Traits.Trait2_RaphaelC,new Trait2_RaphaelC());
         // SabahE Traits
-        //TraitDict.Add(Traits.SpeedUpSabahE, new SpeedUpTrait_SabahE());
-        // Samson W. Traits
+        TraitDict.Add(Traits.SpeedUpSabahE, new SpeedUpTrait_SabahE());
+        TraitDict.Add(Traits.RallySabahE, new RallyTrait_SabahE());
+        // SamsonW Traits
         TraitDict.Add(Traits.TeleportRandomRoom,new TeleportRandomRoomTrait());
         TraitDict.Add(Traits.DamageReflect,new DamageReflectTrait());
-
-
-
-        
-
+        TraitDict.Add(Traits.HealZone,new HealZoneTrait());
+        TraitDict.Add(Traits.DelayedActionAfterStartingAction,new DelayedActionAfterStartingAction());
         // SarahS Traits
+        TraitDict.Add(Traits.ProximityExplodeSarahS,new ProximityExplode_SarahS());
+        TraitDict.Add(Traits.SlowMoSarahS,new SlowMo_SarahS());
+        TraitDict.Add(Traits.CursedObjectSarahS,new CursedObject_SarahS());
+        TraitDict.Add(Traits.MimicEnemySarahS,new MimicEnemy_SarahS());
+        TraitDict.Add(Traits.ProtectionCircleSarahS,new ProtectionCircle_SarahS());
+        TraitDict.Add(Traits.ProtectionSpellSarahS,new ProtectionSpell_SarahS());
         // TracyH Traits
         TraitDict.Add(Traits.Teleport_TracyH, new TeleportTrait_TracyH());
         // WesleyP Traits
+        TraitDict.Add(Traits.Knockback_WesleyP1, new KnockbackTrait_Wesley());
+        TraitDict.Add(Traits.CharacterSwap_WesleyP1, new CharacterSwapTrait_Wesley());
+        TraitDict.Add(Traits.HealingAlly_WesleyP1, new HealingAllyTrait_Wesley());
+
         // YuChen Traits
-
-        TraitDict.Add(Traits.Criticaldamage,new CriticaldamageTrait());
-        
-
-
-
 
 
     }
-
+    
     public static ActionScript Get(Actions act,ThingInfo who,EventInfo e=null)
     {
         switch (act)
@@ -92,21 +112,47 @@ public static class Parser
             case Actions.Patrol: return new PatrolAction(who,e);
             case Actions.Chase: return new ChaseAction(who,e);
             case Actions.Use: return new UseAction(who, e);
+            case Actions.MishaTestAct1:return new TestAction1_Misha(who, e);
+            case Actions.MishaTestAct2:return new TestAction2_Misha(who, e);
             // MazK=12,
             // AdamD=20,
+            case Actions.DefendAction_AdamD:return new DefendAction(who,e);
+            case Actions.RestAction_AdamD:return new RestAction(who,e);
             // AlejandroM=25,
             // ElioR=30,
+            case Actions.ParryAction_ElioR: return new ParryAction(who,e);
             // JaidenB=35,
+            case Actions.ExplodeAction_JaidenB:return new ExplodeAction_JaidenB(who, e);
+            case Actions.RobAction_JaidenB: return new RobAction_JaidenB(who, e);
             // JuliusP=40,
             case Actions.BarrierShield_JuliusP:return new BarrierShieldAction_JuliusP(who,e);
+            case Actions.Lv2_BarrierShield_JuliusP:return new Lv2_BarrierShield_JuliusP(who,e);
+            case Actions.Lv3_BarrierShield_JuliusP:return  new Lv3BarrierShield(who, e);
             case Actions.Cloak_JuliusP:return new InvisbilityAction(who, e);
+            case Actions.Lv2_Cloak_JuliusP: return new Lv2Invis(who, e);
+            case Actions.Lv3_Cloak_JuliusP: return new Lv3Invis(who, e);
             case Actions.TradeHp_JuliusP:return new TradeHp(who, e);
+            case Actions.EvasiveJuke_JuliusP:return new EvasiveJuke(who, e);
+            case Actions.BleakWatcher_JuliusP: return new BleakWatcher(who, e);
+            
+        
             // MichaelT=50,
             // QixiangD=55,
+            //case Actions.Sidestep_qixiangdong: return new Sidestep_qixiangdong(who,e);
             // RaphaelC=60,
+            case Actions.CurveChase_RaphaelC:return new CurveChaseAction_RaphaelC(who,e);
+            case Actions.Invisible_RaphaelC:return new Invisible_RaphaelC(who,e);
+            case Actions.SpinShoot_RaphaelC:return new SpinShoot_RaphaelC(who,e);
+
             // SabahE=65,
+            case Actions.Dash_SabahE: return new Dash_SabahE(who, e);
+            case Actions.GroundSlam_SabahE: return new GroundSlam_SabahE(who, e);
+            case Actions.SabahClassAction: return new SabahClassAction(who, e);
+            case Actions.SabahClassAction2: return new SabahClassAction2(who, e);
             // SamsonW=70,
+            case Actions.SelfKill: return new SelfKillAction(who, e);
             // SarahS=75,
+            
             // TracyH=80,
             // WesleyP=90,
             // YuChen=95,
@@ -203,6 +249,7 @@ public enum Traits
     //ElioR         =30##,
     ElioR1          =3001,
     Barrier         =3002, //this will negate one instance of taken damage taken.
+    ParryTrait_ElioR = 3003,
     //JaidenB       =35##,
     JaidenB1        =3501,
     InvertControls  =3502,
@@ -212,30 +259,60 @@ public enum Traits
     Dash            =4003,
     SelfDestruct_JuliusP = 4004,
     IgnoreDamage_JuliusP = 4005,
+    StunNegation_JuliusP = 4006,
+    NoTimerStunNegation_JuliusP = 4007,
+    TemporaryStunImmunity_JuliusP = 4008,
+    TemporaryDash_JuliusP = 4009,
+    TemporaryDmgResist_JuliusP = 4010,
+    GainInvis_JuliusP = 4011,
+    MonadoArts_JuliusP = 4012,
+    Slowed_JuliusP = 4013,
+    SlowOnhit_JuliusP = 4014,
+   
+    
+    
+ 
+  
+
     //MazK          =45##,
     MazK1           =4501,
     //MichaelT      =50##,
     MichaelT1       =5001,
+    Bleed_MichaelT = 5002, //Ticks Damage for 1 second 
     //QixiangD      =55##,
     QixiangD1       =5501,
+    Sneaky_qixiangdong = 5502,
+    Thrill_qixiangdong = 5503,
     //RaphaelC      =60##,
     Lighting_RaphaelC       =6001,
+    Trait2_RaphaelC         =6002,
     //SabahE        =65##,
     SabahE1         =6501,
     SpeedUpSabahE   =6502, //Speedup for 10s when you get hit
+    RallySabahE = 6503,
     //SamsonW       =70##,
     SamsonW1        =7001,
     TeleportRandomRoom=7002, //Use to teleport user to random room that isnt own room
     DamageReflect   =7003, //Reflects damage, thornmail effect
+    HealZone        =7004, //Heals player when standing inside zone
+    DelayedActionAfterStartingAction=7005, //Switches action after X secs after entering an action
     //SarahS        =75##,
-    SarahS1         =7501,
+    ProximityExplodeSarahS  =7501,
+    SlowMoSarahS    =7502,
+    CursedObjectSarahS    =7503,
+    MimicEnemySarahS =7504,
+    ProtectionCircleSarahS =7505,
+    ProtectionSpellSarahS =7506,
     //TracyH        =80##,
     Teleport_TracyH =8001, //Teleport player between radius or nearby room. Can be placed on held item or zone
     //WesleyP       =90##,
     WesleyP1        =9001,
+    Knockback_WesleyP1 =9002, // When player is hit will be lounched back 
+    NewPlayerAlly_WesleyP1 =9003, //When Player summon ally main player body disspawn
+    CharacterSwap_WesleyP1 = 9003, // When press key player swaps
+    HealingAlly_WesleyP1 = 9004, // Heal ally when standing in zone
     //YuChen        =95##,
     YuChen1         =9501,
-    Criticaldamage=9502, //20% to get double damage
 }
 
 public enum Actions
@@ -258,39 +335,66 @@ public enum Actions
     Chase          =0202,//Run At A Target
     
     //Student Actions
+    MishaTestAct1   =1000,
+    MishaTestAct2   =1001,
     //AdamD         =20##,
     AdamD1          =2001,
+    RestAction_AdamD=2002,
+    DefendAction_AdamD=2003,
     //AlejandroM    =25##,
     AlejandroM1     =2501,
     //ElioR         =30##,
     ElioR1          =3001,
+    ParryAction_ElioR     =3002,
     //JaidenB       =35##,
     JaidenB1        =3501,
+    ExplodeAction_JaidenB = 3502,
+    RobAction_JaidenB = 3503,
     //JuliusP       =40##,
     JuliusP1        =4001,
     BarrierShield_JuliusP = 4002,
-    Cloak_JuliusP = 4003,
-    TradeHp_JuliusP = 4004,
+    Lv2_BarrierShield_JuliusP = 4003,
+    Lv3_BarrierShield_JuliusP = 4004,
+    Cloak_JuliusP = 4005,
+    Lv2_Cloak_JuliusP = 4006,
+    Lv3_Cloak_JuliusP = 4007,
+    TradeHp_JuliusP = 4008,
+    EvasiveJuke_JuliusP = 4009,
+    BleakWatcher_JuliusP = 4010,
+    slowingproj_JuliusP = 4011,
+
+
+  
 
 
     //MazK          =45##,
     MazK1           =4501,
     //MichaelT      =50##,
     MichaelT1       =5001,
+    Bleed_MichaelT = 5002,
     //QixiangD      =55##,
-    QixiangD1       =5501,
+    Sidestep_qixiangdong = 5501,
     //RaphaelC      =60##,
     RaphaelC1       =6001,
+    CurveChase_RaphaelC = 6002,
+    Invisible_RaphaelC = 6003,
+    SpinShoot_RaphaelC = 6004,
     //SabahE        =65##,
     SabahE1         =6501,
+    Dash_SabahE     =6502,
+    GroundSlam_SabahE =6503,
+    SabahClassAction =6504,
+    SabahClassAction2 =6505,
     //SamsonW       =70##,
     SamsonW1        =7001,
+    SelfKill        =7002, // Immediately kills thing on enter after 1 frame
     //SarahS        =75##,
-    SarahS1         =7501,
+    JumpHover_SarahS=7501,
     //TracyH        =80##,
     TracyH1         =8001,
     //WesleyP       =90##,
     WesleyP1        =9001,
+    NewPlayerAlly_WesleyP =9001, 
     //YuChen        =95##,
     YuChen1         =9501,
     

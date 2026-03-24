@@ -26,11 +26,7 @@ MonoBehaviour:
     Cost: 1
   LevelRange: {x: 0, y: 0}
   Trait:
-<<<<<<< HEAD
-  - Trait: 6502
-=======
   - Trait: 6503
->>>>>>> WesleyBranch
     Numbers: []
     Prefabs: []
     Acts: []
@@ -41,14 +37,11 @@ MonoBehaviour:
       Any: []
       Level: 0
       Author: 0
-<<<<<<< HEAD
-=======
       MaxCost: 0
->>>>>>> WesleyBranch
     Builder: []
   HP: 5
   Speed: 8
   VisionRange: 4
   Held: {fileID: 11400000, guid: 7fc77b878c3f272478de54b35b2fb3a3, type: 2}
-  DefaultAction: 6501
+  DefaultAction: 1
   DefaultChaseAction: 1

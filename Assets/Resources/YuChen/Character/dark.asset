@@ -18,7 +18,7 @@ MonoBehaviour:
   Body: {fileID: 629948465317790645, guid: 0a2102bf84264a44e9e01c5e7dea2058, type: 3}
   Art: {fileID: -2510476293373519475, guid: e3d9843f4660b7b4dad7fc7c263bb814, type: 3}
   Color: {r: 1, g: 1, b: 1, a: 1}
-  Size: 0.4
+  Size: 0.9
   Tags:
   - Common: 1
     Custom: 
@@ -29,29 +29,14 @@ MonoBehaviour:
     Numbers: []
     Prefabs: []
     Acts: []
-    OtherTrait: 0
     SpawnReq:
       Fixed: {fileID: 0}
       Mandatory: []
       Any: []
       Level: 0
       Author: 0
-    Builder: []
-  - Trait: 7003
-    Numbers: []
-    Prefabs: []
-    Acts: []
-    OtherTrait: 0
-    SpawnReq:
-      Fixed: {fileID: 0}
-      Mandatory: []
-      Any: []
-      Level: 0
-      Author: 0
-    Builder: []
   HP: 20
   Speed: 10
-  VisionRange: 4
   Held: {fileID: 11400000, guid: 4b2540dd2b711fc4e98bbad7d33007c5, type: 2}
   DefaultAction: 1
   DefaultChaseAction: 1

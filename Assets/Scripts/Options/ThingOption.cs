@@ -24,7 +24,6 @@ public class ThingOption : GameOption //A generic class for anything that might 
             int old = t.Numbers.Count + t.Prefabs.Count+t.Acts.Count+(t.OtherTrait != Traits.None ? 1 : 0)+
                    (t.SpawnReq.Fixed != null || t.SpawnReq.Any.Count > 0 || t.SpawnReq.Mandatory.Count > 0 ? 1 : 0);
             if (cnt == old || old == 0) return;
-            Debug.Log("BUILD TR: " + Name + " / " + t.Trait);
             t.Builder.Clear();
             foreach (InfoNumber n in t.Numbers)
                 t.Builder.Add(new TraitPicker(n.Type,n.Value));
@@ -91,8 +90,13 @@ public class ThingOption : GameOption //A generic class for anything that might 
         return Art;
     }
 
-    ///Returns whether or not the option has a tag, and if so what that tag's weight is. Used for spawning objects
     public virtual bool HasTag(string tag, out float w)
+    {
+        return HasTag(tag, out w, out float c);
+    }
+    
+    ///Returns whether or not the option has a tag, and if so what that tag's weight is. Used for spawning objects
+    public virtual bool HasTag(string tag, out float w, out float cost)
     {
         //The 'something' tag is special in that it just refers to any object that might spawn in a random spot
         //So if the option is a npc or item, it returns true even if it doesn't have the 'something' tag itself
@@ -103,11 +107,32 @@ public class ThingOption : GameOption //A generic class for anything that might 
             if (t.Value == tag || (something && God.LB.Somethings.Contains(t.Value)))
             {
                 w = t.W != 0 ? t.W : 1;
+                cost = t.Cost != 0 ? t.Cost : 1;
+                if (w >= 10)
+                {
+                    God.LogWarning("Super High Tag Weight: " + Name + " / " + t.Value
+                                   + " / " + t.W + " / " + Author);
+                }
                 return true;
             }
         }
         //If we looked at every tag and none were a match, return false.
         w = 0;
+        cost = 1;
         return false;
+    }
+
+    public Tag GetTag(GameTags t)
+    {
+        return GetTag(t.ToString());
+    }
+    public Tag GetTag(string t)
+    {
+        foreach (Tag g in Tags)
+        {
+            if (g.Value == t) return g;
+        }
+
+        return null;
     }
 }

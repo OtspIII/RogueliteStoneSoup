@@ -15,8 +15,6 @@ public class SelfDestruction : Trait
         {
             case EventTypes.Update:
             {
-<<<<<<< HEAD
-=======
                 // SAFETY FOR CHECKING IF THE THING IS DEAD//
                 if (i.Who == null || i.Who.Thing == null) return;
 
@@ -28,7 +26,6 @@ public class SelfDestruction : Trait
                     i.Who.Thing.LookAt(player, 0.5f); // smoothly face player
                 }
                
->>>>>>> WesleyBranch
                 // GET THE TIMER
                 float TimeUntilSelfDestruct = i.Get(NumInfo.Default, 5f);
 
@@ -39,15 +36,6 @@ public class SelfDestruction : Trait
                 i.Set(NumInfo.Default, TimeUntilSelfDestruct);
 
                 // IF TIMER HAS REACHED ZERO
-<<<<<<< HEAD
-                if (TimeUntilSelfDestruct <= 0f && i.Who != null && i.Who.Thing != null)
-                {
-                    //GET LOCATION OF THE ENTITY WITH THE SELF-DESTRUCT TRAIT//
-                    Vector2 location = i.Who.Thing.transform.position;
-                   
-                    //RADIUS OF EXPLSOION//
-                    float radius = 1.4f;
-=======
                 if (TimeUntilSelfDestruct <= 0f)
                 {
                     // SAFETY CHECK//
@@ -58,7 +46,6 @@ public class SelfDestruction : Trait
                    
                     //RADIUS OF EXPLOSION//
                     float radius = 0.4f;
->>>>>>> WesleyBranch
 
                     // GET ALL THINGS WITHIN EXPLOSION RADIUS
                     List<ThingInfo> possibleHits = God.GM.CollideCircle(location, radius);
@@ -66,29 +53,16 @@ public class SelfDestruction : Trait
                     // APPLY DAMAGE TO EACH THING WITHIN THE RADIUS//
                     foreach (ThingInfo Ti in possibleHits)
                     {
-<<<<<<< HEAD
-
-                        //SKIPS IF IT FINDS THE ENTITY WITH THE TRAIT//
-                        if (Ti == null || Ti == i.Who) continue; 
-
-                        //APPLY 5 DAMAGE//
-
-=======
                         //SKIPS IF IT FINDS THE ENTITY WITH THE TRAIT//
                         if (Ti == null || Ti == i.Who) continue; 
 
                         //APPLY 1 DAMAGE//
->>>>>>> WesleyBranch
                         EventInfo dmg = God.E(EventTypes.Damage);
                         dmg.Set(NumInfo.Default, 1f);  
 
                         //WHO CAUSED THE DAMAGE//     
                         dmg.Set(ThingEInfo.Source, i.Who);  
 
-<<<<<<< HEAD
-
-=======
->>>>>>> WesleyBranch
                         //CARRY OUT THE DAMAGE EVENT TO THOSE IN THE RADIUS//
                         Ti.TakeEvent(dmg, true);           
                     }

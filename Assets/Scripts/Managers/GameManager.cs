@@ -59,11 +59,6 @@ public class GameManager : MonoBehaviour
         God.LB = Parser.GetLB(God.Session.Author);
         God.LB.Build();
     }
-
-    void Update()
-    {
-        if (God.Session != null) God.Session.Duration += Time.deltaTime;
-    }
     
     ///Fades the screen in or out. Just a wrapper for a coroutine
     public Coroutine Fade(bool fadeOut=true)

@@ -141,11 +141,6 @@ public class Tag
         Common = t;
         W = w;
         Cost = cost;
-        if (Cost == 0)
-        {
-            God.LogWarning("Error: Zero Cost on a Tag means it can spawn infinitely. " + t);
-            Cost = 1;
-        }
     }
 
     public Tag(string t, float w=1,float cost=1)
@@ -153,11 +148,6 @@ public class Tag
         Custom = t;
         W = w;
         Cost = cost;
-        if (Cost == 0)
-        {
-            God.LogWarning("Error: Zero Cost on a Tag means it can spawn infinitely. " + t);
-            Cost = 1;
-        }
     }
 
     public override string ToString()
