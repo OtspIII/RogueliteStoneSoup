@@ -44,14 +44,10 @@ public static class Parser
         // ElioR Traits
         TraitDict.Add(Traits.Barrier, new BarrierTrait_ElioR());
         TraitDict.Add(Traits.ParryTrait_ElioR, new ParryTrait());
-        TraitDict.Add(Traits.LifeSteal_ElioR, new LifeSteal_ElioR());
         // JaidenB Traits
         TraitDict.Add(Traits.InvertControls, new InvertControlsTrait());
-        TraitDict.Add(Traits.Freeze, new FreezeTrait());
-        TraitDict.Add(Traits.MoneyDrop, new MoneyDropTrait());
         // Julius Traits
         TraitDict.Add(Traits.Rage, new RageTrait());
-        TraitDict.Add(Traits.LowHealthWarrior_JuliusP, new UltimateRage());
         TraitDict.Add(Traits.Dash, new DashTrait());
         TraitDict.Add(Traits.SelfDestruct_JuliusP, new SelfDestruction());
         TraitDict.Add(Traits.IgnoreDamage_JuliusP, new IgnoreDamage());
@@ -64,7 +60,6 @@ public static class Parser
         TraitDict.Add(Traits.MonadoArts_JuliusP, new MonadoPower());
         TraitDict.Add(Traits.Slowed_JuliusP, new Slowed());
         TraitDict.Add(Traits.SlowOnhit_JuliusP, new SlowingProjectileTrait());
-        TraitDict.Add(Traits.AlwaysRage_JuliusP, new RageAlwaysOn());
     
 
 
@@ -77,9 +72,7 @@ public static class Parser
         TraitDict.Add(Traits.Thrill_qixiangdong, new Thrill_qixiangdong());
         // RaphaelC Traits
         TraitDict.Add(Traits.Lighting_RaphaelC,new Lighting_RaphaelC());
-        TraitDict.Add(Traits.BasicHeal_RaphaelC,new BasicHeal_RaphaelC());
-        TraitDict.Add(Traits.KillSpeedBoost, new KillSpeedBoost());
-        TraitDict.Add(Traits.WhirlPool_RaphaelC, new WhirlPool_RaphaelC());
+        TraitDict.Add(Traits.Trait2_RaphaelC,new Trait2_RaphaelC());
         // SabahE Traits
         TraitDict.Add(Traits.SpeedUpSabahE, new SpeedUpTrait_SabahE());
         TraitDict.Add(Traits.RallySabahE, new RallyTrait_SabahE());
@@ -87,9 +80,7 @@ public static class Parser
         TraitDict.Add(Traits.TeleportRandomRoom,new TeleportRandomRoomTrait());
         TraitDict.Add(Traits.DamageReflect,new DamageReflectTrait());
         TraitDict.Add(Traits.HealZone,new HealZoneTrait());
-        TraitDict.Add(Traits.DelayedActionAfterStartingAction,new DelayedActionAfterStartingActionTrait());
-        TraitDict.Add(Traits.GrappleHook,new GrappleHookTrait());
-        TraitDict.Add(Traits.StackableDagger,new StackableDaggerTrait());
+        TraitDict.Add(Traits.DelayedActionAfterStartingAction,new DelayedActionAfterStartingAction());
         // SarahS Traits
         TraitDict.Add(Traits.ProximityExplodeSarahS,new ProximityExplode_SarahS());
         TraitDict.Add(Traits.SlowMoSarahS,new SlowMo_SarahS());
@@ -99,15 +90,14 @@ public static class Parser
         TraitDict.Add(Traits.ProtectionSpellSarahS,new ProtectionSpell_SarahS());
         // TracyH Traits
         TraitDict.Add(Traits.Teleport_TracyH, new TeleportTrait_TracyH());
-        TraitDict.Add(Traits.Freeze_TracyH, new FreezeTrait_TracyH());
-        TraitDict.Add(Traits.FreezeProjectile_TracyH, new FreezeProjectileTrait_TracyH());
-        TraitDict.Add(Traits.Slow_TracyH, new SlowTrait_TracyH());
-        TraitDict.Add(Traits.SlowProjectile_TracyH, new SlowProjectileTrait_TracyH());
-        TraitDict.Add(Traits.SlowZone_TracyH, new SlowZoneTrait_TracyH());
-        TraitDict.Add(Traits.Homing_TracyH, new HomingTrait_TracyH());
         // WesleyP Traits
+        TraitDict.Add(Traits.Knockback_WesleyP1, new KnockbackTrait_Wesley());
+        TraitDict.Add(Traits.CharacterSwap_WesleyP1, new CharacterSwapTrait_Wesley());
+        TraitDict.Add(Traits.HealingAlly_WesleyP1, new HealingAllyTrait_Wesley());
+
         // YuChen Traits
 
+        TraitDict.Add(Traits.Criticaldamage, new CriticaldamageTrait());
 
     }
     
@@ -135,7 +125,6 @@ public static class Parser
             // JaidenB=35,
             case Actions.ExplodeAction_JaidenB:return new ExplodeAction_JaidenB(who, e);
             case Actions.RobAction_JaidenB: return new RobAction_JaidenB(who, e);
-            case Actions.BlasterAction_JaidenB: return new BlasterAction_JaidenB(who, e);
             // JuliusP=40,
             case Actions.BarrierShield_JuliusP:return new BarrierShieldAction_JuliusP(who,e);
             case Actions.Lv2_BarrierShield_JuliusP:return new Lv2_BarrierShield_JuliusP(who,e);
@@ -149,10 +138,8 @@ public static class Parser
             
         
             // MichaelT=50,
-            case Actions.BleedAttack_MichaelT: return new BleedAttackAction_MichaelT(who, e);
             // QixiangD=55,
-            case Actions.Sidestep_qixiangdong: return new Sidestep_qixiangdong(who,e);
-            case Actions.Charging_qixiangdong: return new Charging_qixiangdong(who,e);
+            //case Actions.Sidestep_qixiangdong: return new Sidestep_qixiangdong(who,e);
             // RaphaelC=60,
             case Actions.CurveChase_RaphaelC:return new CurveChaseAction_RaphaelC(who,e);
             case Actions.Invisible_RaphaelC:return new Invisible_RaphaelC(who,e);
@@ -165,15 +152,11 @@ public static class Parser
             case Actions.SabahClassAction2: return new SabahClassAction2(who, e);
             // SamsonW=70,
             case Actions.SelfKill: return new SelfKillAction(who, e);
-            case Actions.Grapple: return new GrappleAction(who, e);
             // SarahS=75,
-            case Actions.StalkSarahS: return new Stalk_SarahS(who,e);
-            case Actions.RiseFromDeadSarahS: return new RiseFromDead_SarahS(who,e);
-            case Actions.PossessionSarahS: return new Possession_SarahS(who, e);
+            
             // TracyH=80,
-            case Actions.Charge_TracyH: return new ChargeAction_TracyH(who, e);
-                // WesleyP=90,
-                // YuChen=95,
+            // WesleyP=90,
+            // YuChen=95,
         }
         God.LogError("UNCAUGHT ACTION: " + act);
         return new IdleAction(who,e);
@@ -268,12 +251,9 @@ public enum Traits
     ElioR1          =3001,
     Barrier         =3002, //this will negate one instance of taken damage taken.
     ParryTrait_ElioR = 3003,
-    LifeSteal_ElioR = 3004,
     //JaidenB       =35##,
     JaidenB1        =3501,
     InvertControls  =3502,
-    Freeze          =3503,
-    MoneyDrop       =3504,
     //JuliusP       =40##,
     JuliusP1        =4001,
     Rage            =4002, 
@@ -289,9 +269,6 @@ public enum Traits
     MonadoArts_JuliusP = 4012,
     Slowed_JuliusP = 4013,
     SlowOnhit_JuliusP = 4014,
-    LowHealthWarrior_JuliusP = 4015,
-    AlwaysRage_JuliusP = 4016,
-
    
     
     
@@ -308,10 +285,8 @@ public enum Traits
     Sneaky_qixiangdong = 5502,
     Thrill_qixiangdong = 5503,
     //RaphaelC      =60##,
-    Lighting_RaphaelC =6001,
-    BasicHeal_RaphaelC =6002,
-    KillSpeedBoost = 6003,
-    WhirlPool_RaphaelC = 6004,
+    Lighting_RaphaelC       =6001,
+    Trait2_RaphaelC         =6002,
     //SabahE        =65##,
     SabahE1         =6501,
     SpeedUpSabahE   =6502, //Speedup for 10s when you get hit
@@ -322,8 +297,6 @@ public enum Traits
     DamageReflect   =7003, //Reflects damage, thornmail effect
     HealZone        =7004, //Heals player when standing inside zone
     DelayedActionAfterStartingAction=7005, //Switches action after X secs after entering an action
-    GrappleHook     =7006,
-    StackableDagger =7007,
     //SarahS        =75##,
     ProximityExplodeSarahS  =7501,
     SlowMoSarahS    =7502,
@@ -332,18 +305,16 @@ public enum Traits
     ProtectionCircleSarahS =7505,
     ProtectionSpellSarahS =7506,
     //TracyH        =80##,
-    TracyH1 = 8001,
-    Teleport_TracyH = 8002, //Teleport player between radius or nearby room(Zone)
-    Freeze_TracyH = 8003, //Freezes target
-    FreezeProjectile_TracyH = 8004, //Applies freeze on hit 
-    Slow_TracyH = 8005, //Slows target
-    SlowProjectile_TracyH = 8006, //Applies slow on hit 
-    SlowZone_TracyH = 8007, //Applies slow on Zone
-    Homing_TracyH = 8008, //Chase player(work in progress)
+    Teleport_TracyH =8001, //Teleport player between radius or nearby room. Can be placed on held item or zone
     //WesleyP       =90##,
     WesleyP1        =9001,
+    Knockback_WesleyP1 =9002, // When player is hit will be lounched back 
+    NewPlayerAlly_WesleyP1 =9003, //When Player summon ally main player body disspawn
+    CharacterSwap_WesleyP1 = 9003, // When press key player swaps
+    HealingAlly_WesleyP1 = 9004, // Heal ally when standing in zone
     //YuChen        =95##,
     YuChen1         =9501,
+    Criticaldamage  =9502,
 }
 
 public enum Actions
@@ -381,7 +352,6 @@ public enum Actions
     JaidenB1        =3501,
     ExplodeAction_JaidenB = 3502,
     RobAction_JaidenB = 3503,
-    BlasterAction_JaidenB = 3504,
     //JuliusP       =40##,
     JuliusP1        =4001,
     BarrierShield_JuliusP = 4002,
@@ -393,7 +363,7 @@ public enum Actions
     TradeHp_JuliusP = 4008,
     EvasiveJuke_JuliusP = 4009,
     BleakWatcher_JuliusP = 4010,
- 
+    slowingproj_JuliusP = 4011,
 
 
   
@@ -403,10 +373,9 @@ public enum Actions
     MazK1           =4501,
     //MichaelT      =50##,
     MichaelT1       =5001,
-    BleedAttack_MichaelT = 5003, //Applies Bleed Trait to Target on Hit
+    Bleed_MichaelT = 5002,
     //QixiangD      =55##,
     Sidestep_qixiangdong = 5501,
-    Charging_qixiangdong = 5502,
     //RaphaelC      =60##,
     RaphaelC1       =6001,
     CurveChase_RaphaelC = 6002,
@@ -421,18 +390,13 @@ public enum Actions
     //SamsonW       =70##,
     SamsonW1        =7001,
     SelfKill        =7002, // Immediately kills thing on enter after 1 frame
-    Grapple         =7003,
     //SarahS        =75##,
-    StalkSarahS     =7501,
-    RiseFromDeadSarahS =7502,
-    PossessionSarahS =7503,
-    PanicRunSarahS  =7504,
-    HideSarahS      =7504,
+    JumpHover_SarahS=7501,
     //TracyH        =80##,
     TracyH1         =8001,
-    Charge_TracyH   =8002,
     //WesleyP       =90##,
-    WesleyP1 = 9001,
+    WesleyP1        =9001,
+    NewPlayerAlly_WesleyP =9001, 
     //YuChen        =95##,
     YuChen1         =9501,
     
