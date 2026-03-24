@@ -97,6 +97,7 @@ public static class Parser
 
         // YuChen Traits
 
+        TraitDict.Add(Traits.Criticaldamage, new CriticaldamageTrait());
 
     }
     
@@ -313,6 +314,7 @@ public enum Traits
     HealingAlly_WesleyP1 = 9004, // Heal ally when standing in zone
     //YuChen        =95##,
     YuChen1         =9501,
+    Criticaldamage  =9502,
 }
 
 public enum Actions
