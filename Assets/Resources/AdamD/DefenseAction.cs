@@ -16,12 +16,13 @@ public class DefendAction : ActionScript
     public override void Begin()
     {
         base.Begin();
-        Who.TakeEvent(God.E(EventTypes.GainTrait).Set(Traits.Barrier));
+        Who.TakeEvent(God.E(EventTypes.GainTrait).Set(Traits.IgnoreDamage_JuliusP));
+        
     }
     public override void End()
     {
         base.End();
-        Who.TakeEvent(God.E(EventTypes.LoseTrait).Set(Traits.Barrier));
+        Who.TakeEvent(God.E(EventTypes.LoseTrait).Set(Traits.IgnoreDamage_JuliusP));
     }
 
     //Can't move. Reduce dmg taken/ignore dmg, has a cooldown to how long this action can be used. Can be interrupted by other actions like move
