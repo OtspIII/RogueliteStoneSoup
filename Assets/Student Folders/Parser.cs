@@ -173,8 +173,9 @@ public static class Parser
             case Actions.PossessionSarahS: return new Possession_SarahS(who, e);
             // TracyH=80,
             case Actions.Charge_TracyH: return new ChargeAction_TracyH(who, e);
-                // WesleyP=90,
-                // YuChen=95,
+            // WesleyP=90,
+            // YuChen=95,
+            case Actions.spinAction_Yu: return new SpinAction_Yuchen(who, e);
         }
         God.LogError("UNCAUGHT ACTION: " + act);
         return new IdleAction(who,e);
@@ -443,7 +444,7 @@ public enum Actions
     NewPlayerAlly_WesleyP =9001, 
     //YuChen        =95##,
     YuChen1         =9501,
-    
+    spinAction_Yu = 9502,
     
     Grapple=9999,
     
