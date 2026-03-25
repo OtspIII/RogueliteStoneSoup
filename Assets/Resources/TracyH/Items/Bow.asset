@@ -9,28 +9,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 037523bd7ae983240ad1b7cc3ff106cd, type: 3}
-  m_Name: Treat
+  m_Script: {fileID: 11500000, guid: 9a47d2194617e47469e601e558e7b8b4, type: 3}
+  m_Name: Bow
   m_EditorClassIdentifier: 
-  Name: Suspicious Crate
-  Author: 60
+  Name: Bow
+  Author: 80
   Team: 1
-  Body: {fileID: 629948465317790645, guid: 37c4754857b78e24995335d45e308e0b, type: 3}
-  Art: {fileID: -1362058913294850930, guid: f7ed4d06ee2bd2f4c97d3e34fa915bd9, type: 3}
-  Color: {r: 0.3056603, g: 0.3056603, b: 0.3056603, a: 1}
-  Size: 1.5
+  Body: {fileID: 629948465317790645, guid: b4fa405680f33044abe2c4567ecf147f, type: 3}
+  Art: {fileID: 21300000, guid: cb8312002cf474c4688fa76c7caea0a3, type: 3}
+  Color: {r: 1, g: 1, b: 1, a: 1}
+  Size: 1
   Tags:
-  - Common: 400
+  - Common: 202
     Custom: 
     W: 1
     Cost: 1
-  - Common: 2
-    Custom: 
-    W: 1
-    Cost: 1
-  LevelRange: {x: 0, y: 0}
+  LevelRange: {x: 4, y: 0}
   Trait:
-  - Trait: 2
+  - Trait: 312
     Numbers: []
     Prefabs: []
     Acts: []
@@ -45,7 +41,7 @@ MonoBehaviour:
     Builder:
     - Type: 0
       NumType: 1
-      Num: 1
+      Num: 10
       StrType: 0
       Str: 
       ActType: 0
@@ -62,7 +58,7 @@ MonoBehaviour:
       Any: 
       AnyW: 0
       Trait: 0
-  - Trait: 201
+  - Trait: 313
     Numbers: []
     Prefabs: []
     Acts: []
@@ -74,23 +70,18 @@ MonoBehaviour:
       Level: 0
       Author: 0
       MaxCost: 0
-    Builder:
-    - Type: 6
-      NumType: 0
-      Num: 0
-      StrType: 0
-      Str: 
-      ActType: 0
-      Act: 0
-      BoolType: 0
-      Bool: 0
-      OptionType: 0
-      Option: {fileID: 0}
-      VectorType: 0
-      Vector: {x: 0, y: 0}
-      Fixed: {fileID: 0}
-      Mandatory: 
-      MandatoryW: 0
-      Any: Weapon
-      AnyW: 0
-      Trait: 0
+    Builder: []
+  DefaultAttack: 103
+  ToSpawn:
+    Fixed: {fileID: 11400000, guid: 69eb96a61128eca438bc4b662b2b33b1, type: 2}
+    Mandatory: []
+    Any: []
+    Level: 0
+    Author: 0
+    MaxCost: 0
+  FloorBody: {fileID: 0}
+  FloorArt: {fileID: 0}
+  Damage: 2
+  IdealRange: 5
+  SpeedMult: 1
+  ActDuration: 0

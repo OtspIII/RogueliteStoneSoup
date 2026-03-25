@@ -9,24 +9,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a47d2194617e47469e601e558e7b8b4, type: 3}
-  m_Name: FrozenWand
-  m_EditorClassIdentifier: 
-  Name: Frozen Wand
+  m_Script: {fileID: 11500000, guid: 4679cc75b2c8be74e8b047318fa062ea, type: 3}
+  m_Name: Trick 1
+  m_EditorClassIdentifier: Assembly-CSharp::CharacterOption
+  Name: TrickorTreat
   Author: 80
-  Team: 1
-  Body: {fileID: 629948465317790645, guid: b4fa405680f33044abe2c4567ecf147f, type: 3}
-  Art: {fileID: -4421300922047078791, guid: 4bf70cedee363fb4b9048f89e88c9ddc, type: 3}
+  Team: 3
+  Body: {fileID: 629948465317790645, guid: c5227d51ccfec934db9e0058624b573e, type: 3}
+  Art: {fileID: -1362058913294850930, guid: f7ed4d06ee2bd2f4c97d3e34fa915bd9, type: 3}
   Color: {r: 1, g: 1, b: 1, a: 1}
-  Size: 2
+  Size: 1.5
   Tags:
-  - Common: 202
+  - Common: 102
     Custom: 
-    W: 4
+    W: 1
     Cost: 1
-  LevelRange: {x: 4, y: 0}
+  LevelRange: {x: 0, y: 4}
   Trait:
-  - Trait: 312
+  - Trait: 3
     Numbers: []
     Prefabs: []
     Acts: []
@@ -39,40 +39,8 @@ MonoBehaviour:
       Author: 0
       MaxCost: 0
     Builder:
-    - Type: 0
-      NumType: 1
-      Num: 5
-      StrType: 0
-      Str: 
-      ActType: 0
-      Act: 0
-      BoolType: 0
-      Bool: 0
-      OptionType: 0
-      Option: {fileID: 0}
-      VectorType: 0
-      Vector: {x: 0, y: 0}
-      Fixed: {fileID: 0}
-      Mandatory: 
-      MandatoryW: 0
-      Any: 
-      AnyW: 0
-      Trait: 0
-  - Trait: 313
-    Numbers: []
-    Prefabs: []
-    Acts: []
-    OtherTrait: 0
-    SpawnReq:
-      Fixed: {fileID: 0}
-      Mandatory: []
-      Any: []
-      Level: 0
-      Author: 0
-      MaxCost: 0
-    Builder:
-    - Type: 0
-      NumType: 1
+    - Type: 4
+      NumType: 0
       Num: 0
       StrType: 0
       Str: 
@@ -81,26 +49,50 @@ MonoBehaviour:
       BoolType: 0
       Bool: 0
       OptionType: 0
-      Option: {fileID: 0}
+      Option: {fileID: 11400000, guid: 09e758862c15a0845b9ef5ab5b4c7104, type: 2}
       VectorType: 0
       Vector: {x: 0, y: 0}
-      Fixed: {fileID: 0}
-      Mandatory: 
+      Fixed: {fileID: 11400000, guid: 897bf9b16e2494af7b879f27b5b76a5c, type: 2}
+      Mandatory: 1
       MandatoryW: 0
       Any: 
       AnyW: 0
       Trait: 0
-  DefaultAttack: 103
-  ToSpawn:
-    Fixed: {fileID: 11400000, guid: 74797b6277b1a0e44b1be6a899aef748, type: 2}
-    Mandatory: []
-    Any: []
-    Level: 0
-    Author: 0
-    MaxCost: 0
-  FloorBody: {fileID: 0}
-  FloorArt: {fileID: 0}
-  Damage: 1
-  IdealRange: 6
-  SpeedMult: 2
-  ActDuration: 0
+  - Trait: 201
+    Numbers: []
+    Prefabs: []
+    Acts: []
+    OtherTrait: 0
+    SpawnReq:
+      Fixed: {fileID: 0}
+      Mandatory: []
+      Any: []
+      Level: 0
+      Author: 0
+      MaxCost: 0
+    Builder:
+    - Type: 0
+      NumType: 1
+      Num: 1
+      StrType: 0
+      Str: 
+      ActType: 0
+      Act: 0
+      BoolType: 0
+      Bool: 0
+      OptionType: 0
+      Option: {fileID: 11400000, guid: 09e758862c15a0845b9ef5ab5b4c7104, type: 2}
+      VectorType: 0
+      Vector: {x: 0, y: 0}
+      Fixed: {fileID: 11400000, guid: 897bf9b16e2494af7b879f27b5b76a5c, type: 2}
+      Mandatory: 1
+      MandatoryW: 0
+      Any: 
+      AnyW: 0
+      Trait: 0
+  HP: 2
+  Speed: 7
+  VisionRange: 4
+  Held: {fileID: 11400000, guid: 2d3acaf3dc2e1fe438fa010901e60e04, type: 2}
+  DefaultAction: 1
+  DefaultChaseAction: 8002

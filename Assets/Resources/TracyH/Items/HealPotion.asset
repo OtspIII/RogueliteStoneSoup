@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a47d2194617e47469e601e558e7b8b4, type: 3}
   m_Name: HealPotion
   m_EditorClassIdentifier: 
-  Name: HealPotion
+  Name: EnhancedPotion
   Author: 80
   Team: 1
   Body: {fileID: 629948465317790645, guid: 7ef37acb0fdeb5849995b35a7fdca6ba, type: 3}
@@ -22,7 +22,7 @@ MonoBehaviour:
   Tags:
   - Common: 202
     Custom: 
-    W: 1
+    W: 3
     Cost: 1
   LevelRange: {x: 5, y: 6}
   Trait:
@@ -41,26 +41,7 @@ MonoBehaviour:
     Builder:
     - Type: 0
       NumType: 1
-      Num: 1
-      StrType: 0
-      Str: 
-      ActType: 0
-      Act: 0
-      BoolType: 0
-      Bool: 0
-      OptionType: 0
-      Option: {fileID: 0}
-      VectorType: 0
-      Vector: {x: 0, y: 0}
-      Fixed: {fileID: 0}
-      Mandatory: 
-      MandatoryW: 0
-      Any: 
-      AnyW: 0
-      Trait: 0
-    - Type: 0
-      NumType: 1
-      Num: 1
+      Num: 2
       StrType: 0
       Str: 
       ActType: 0
@@ -93,6 +74,38 @@ MonoBehaviour:
     - Type: 0
       NumType: 1
       Num: 1
+      StrType: 0
+      Str: 
+      ActType: 0
+      Act: 0
+      BoolType: 0
+      Bool: 0
+      OptionType: 0
+      Option: {fileID: 0}
+      VectorType: 0
+      Vector: {x: 0, y: 0}
+      Fixed: {fileID: 0}
+      Mandatory: 
+      MandatoryW: 0
+      Any: 
+      AnyW: 0
+      Trait: 0
+  - Trait: 2503
+    Numbers: []
+    Prefabs: []
+    Acts: []
+    OtherTrait: 0
+    SpawnReq:
+      Fixed: {fileID: 0}
+      Mandatory: []
+      Any: []
+      Level: 0
+      Author: 0
+      MaxCost: 0
+    Builder:
+    - Type: 0
+      NumType: 8
+      Num: 3
       StrType: 0
       Str: 
       ActType: 0

@@ -10,23 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a47d2194617e47469e601e558e7b8b4, type: 3}
-  m_Name: Axe
-  m_EditorClassIdentifier: Assembly-CSharp::ItemOption
-  Name: Axe
+  m_Name: Charge
+  m_EditorClassIdentifier: 
+  Name: Charge
   Author: 80
   Team: 1
-  Body: {fileID: 629948465317790645, guid: b4fa405680f33044abe2c4567ecf147f, type: 3}
-  Art: {fileID: 21300000, guid: 2f72d33e7840d7d43b6255a9a1ef745c, type: 3}
+  Body: {fileID: 629948465317790645, guid: 0dbb6610376380d4393be62d6ec50ffc, type: 3}
+  Art: {fileID: 0}
   Color: {r: 1, g: 1, b: 1, a: 1}
-  Size: 1.5
-  Tags:
-  - Common: 201
-    Custom: 
-    W: 4
-    Cost: 1
-  LevelRange: {x: 4, y: 6}
+  Size: 1
+  Tags: []
+  LevelRange: {x: 0, y: 0}
   Trait: []
-  DefaultAttack: 101
+  DefaultAttack: 8002
   ToSpawn:
     Fixed: {fileID: 0}
     Mandatory: []
@@ -36,7 +32,7 @@ MonoBehaviour:
     MaxCost: 0
   FloorBody: {fileID: 0}
   FloorArt: {fileID: 0}
-  Damage: 3
-  IdealRange: 5
-  SpeedMult: 0.4
+  Damage: 1
+  IdealRange: 1.5
+  SpeedMult: 1
   ActDuration: 0

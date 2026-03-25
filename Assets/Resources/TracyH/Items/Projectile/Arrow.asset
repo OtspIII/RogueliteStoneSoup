@@ -10,32 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 666e3856c5664c242bde2f0f953b72bc, type: 3}
-  m_Name: Bomb
+  m_Name: Arrow
   m_EditorClassIdentifier: 
-  Name: Snowball1
+  Name: Arrow
   Author: 80
   Team: 1
   Body: {fileID: 629948465317790645, guid: 9edb53243ae32704ead177294fe49d22, type: 3}
-  Art: {fileID: 6761164967045977113, guid: cf251f49e93dbc1448d1cc819af13e16, type: 3}
-  Color: {r: 0, g: 0.9496855, b: 0.92418534, a: 1}
-  Size: 0.9
+  Art: {fileID: 0}
+  Color: {r: 1, g: 1, b: 1, a: 1}
+  Size: 1
   Tags: []
   LevelRange: {x: 0, y: 0}
   Trait:
-  - Trait: 400
-    Numbers: []
-    Prefabs: []
-    Acts: []
-    OtherTrait: 0
-    SpawnReq:
-      Fixed: {fileID: 0}
-      Mandatory: []
-      Any: []
-      Level: 0
-      Author: 0
-      MaxCost: 0
-    Builder: []
-  - Trait: 201
+  - Trait: 4014
     Numbers: []
     Prefabs: []
     Acts: []
@@ -48,32 +35,13 @@ MonoBehaviour:
       Author: 0
       MaxCost: 0
     Builder:
-    - Type: 2
-      NumType: 6
-      Num: 2
-      StrType: 0
-      Str: 
-      ActType: 2
-      Act: 8002
-      BoolType: 0
-      Bool: 0
-      OptionType: 0
-      Option: {fileID: 0}
-      VectorType: 0
-      Vector: {x: 0, y: 0}
-      Fixed: {fileID: 0}
-      Mandatory: 
-      MandatoryW: 0
-      Any: 
-      AnyW: 0
-      Trait: 0
     - Type: 0
-      NumType: 6
-      Num: 2
+      NumType: 1
+      Num: 1
       StrType: 0
       Str: 
-      ActType: 2
-      Act: 8002
+      ActType: 0
+      Act: 0
       BoolType: 0
       Bool: 0
       OptionType: 0
@@ -86,5 +54,5 @@ MonoBehaviour:
       Any: 
       AnyW: 0
       Trait: 0
-  Damage: 2
+  Damage: 1
   Speed: 10

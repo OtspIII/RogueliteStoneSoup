@@ -1,66 +1,69 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class ChargeAction_TracyH : ActionScript
+public class ChargeAction_TracyH : AttackAction
 {
-    private Vector2 dir;
-    public float speed = 10f;
+    public ChargeAction_TracyH() { }
 
     public ChargeAction_TracyH(ThingInfo who, EventInfo e = null)
     {
-        Setup(Actions.Charge_TracyH, who, true);
-        MoveMult = speed;
-        CanRotate = false;
-        Priority = 2;
-        Duration = 0.8f;
+        Setup(Actions.Charge_TracyH, who);
         Anim = "Charge";
+        MoveMult = 0;
+        Knockback = 10;
+        Duration = 0.4f;
+        CanRotate = true;
     }
 
     public override void Begin()
     {
         base.Begin();
 
-        if (Who == null || Who.Thing == null)
-        {
-            Complete();
-            return;
-        }
-
-        if (Who.Target == null)
-        {
-            Complete();
-            return;
-        }
-
-        dir = (Who.Target.Thing.transform.position - Who.Thing.transform.position).normalized;
+        if (Who.Target != null)
+            Who.Thing.LookAt(Who.Target, 1f);
     }
 
     public override void OnRun()
     {
         base.OnRun();
 
-        if (Who == null || Who.Thing == null)
-        {
-            Complete();
-            return;
-        }
+        if (Who.Target != null)
+            Who.Thing.LookAt(Who.Target, 1f);
 
-        if (Who.Target == null)
+        if (Phase == 0)
         {
-            Who.Thing.DoAction(Actions.Patrol);
-            return;
+            MoveMult = Who.AttackRange;
+            Who.Thing.MoveForwards();
         }
-
-        Who.Thing.ActualMove = MoveMult * dir;
+        else
+            MoveMult = 0;
     }
 
-    public override void HandleMove()
+    public override void HitBegin(GameCollision col)
     {
-        if (Who.Thing == null)
-        {
-            return;
-        }
+        if (Who.Thing == null) return;
+        if (God.OneOf(col.HBMe.Type, HitboxTypes.Body, HitboxTypes.Friendly)) return;
 
-        Who.DesiredMove = dir;
-        Who.Thing.ActualMove = MoveMult * dir;
+        ThingController hit = col.Other;
+        if (hit == null) return;
+        if (AlreadyHit.Contains(hit)) return;
+
+        AlreadyHit.Add(hit);
+
+        EventInfo hpEvent = God.E(EventTypes.ShownHP);
+        hit.TakeEvent(hpEvent);
+        float hp = hpEvent.GetFloat();
+
+        float halfDamage = hp * 0.5f;
+
+        hit.TakeEvent(
+            God.E(EventTypes.Damage)
+                .Set(NumInfo.Default, halfDamage)
+                .Set(Who)
+        );
+
+        hit.DoAction(Actions.Stun, God.E().Set(0.5f).Set(NumInfo.Priority, 3));
+        hit.TakeKnockback(Who.Thing.transform.position, Knockback);
     }
 }
