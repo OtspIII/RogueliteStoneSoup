@@ -16,9 +16,9 @@ MonoBehaviour:
   Author: 65
   Team: 3
   Body: {fileID: 629948465317790645, guid: acf0e760b28c7b046ad7d511fb87a1d3, type: 3}
-  Art: {fileID: 4652590142891508640, guid: f37a2d799dd01504faa074166101387a, type: 3}
+  Art: {fileID: -6948560220386916374, guid: d758578365c69f940ba350d20a3e89da, type: 3}
   Color: {r: 0.44025147, g: 0, b: 0, a: 1}
-  Size: 2
+  Size: 1
   Tags:
   - Common: 102
     Custom: 

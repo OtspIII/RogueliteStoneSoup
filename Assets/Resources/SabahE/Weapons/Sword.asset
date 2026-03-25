@@ -16,22 +16,24 @@ MonoBehaviour:
   Author: 65
   Team: 2
   Body: {fileID: 629948465317790645, guid: b4fa405680f33044abe2c4567ecf147f, type: 3}
-  Art: {fileID: 21300000, guid: 6c7f9cbfcc8f8d145913c8ae22c5bd51, type: 3}
+  Art: {fileID: 4982956992057361663, guid: a4c9277b3f4c0234eb54ee3b0dd7a9e2, type: 3}
   Color: {r: 0.61635214, g: 0, b: 0, a: 1}
   Size: 1
   Tags:
   - Common: 201
     Custom: 
     W: 1
+    Cost: 1
   LevelRange: {x: 0, y: 0}
   Trait: []
-  DefaultAttack: 102
+  DefaultAttack: 101
   ToSpawn:
     Fixed: {fileID: 0}
     Mandatory: []
     Any: []
     Level: 0
     Author: 0
+    MaxCost: 0
   FloorBody: {fileID: 0}
   FloorArt: {fileID: 0}
   Damage: 100
