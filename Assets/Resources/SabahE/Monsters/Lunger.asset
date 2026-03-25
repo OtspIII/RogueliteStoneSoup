@@ -25,7 +25,20 @@ MonoBehaviour:
     W: 1
     Cost: 0.5
   LevelRange: {x: 0, y: 0}
-  Trait: []
+  Trait:
+  - Trait: 4002
+    Numbers: []
+    Prefabs: []
+    Acts: []
+    OtherTrait: 0
+    SpawnReq:
+      Fixed: {fileID: 0}
+      Mandatory: []
+      Any: []
+      Level: 0
+      Author: 0
+      MaxCost: 0
+    Builder: []
   HP: 1
   Speed: 6
   VisionRange: 4
