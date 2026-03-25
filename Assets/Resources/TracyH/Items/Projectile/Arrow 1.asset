@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 666e3856c5664c242bde2f0f953b72bc, type: 3}
-  m_Name: Arrow
+  m_Name: Arrow 1
   m_EditorClassIdentifier: 
   Name: Arrow
   Author: 80
@@ -22,7 +22,7 @@ MonoBehaviour:
   Tags: []
   LevelRange: {x: 0, y: 0}
   Trait:
-  - Trait: 4014
+  - Trait: 8006
     Numbers: []
     Prefabs: []
     Acts: []
@@ -37,7 +37,26 @@ MonoBehaviour:
     Builder:
     - Type: 0
       NumType: 1
-      Num: 1
+      Num: 0.7
+      StrType: 0
+      Str: 
+      ActType: 0
+      Act: 0
+      BoolType: 0
+      Bool: 0
+      OptionType: 0
+      Option: {fileID: 0}
+      VectorType: 0
+      Vector: {x: 0, y: 0}
+      Fixed: {fileID: 0}
+      Mandatory: 
+      MandatoryW: 0
+      Any: 
+      AnyW: 0
+      Trait: 0
+    - Type: 0
+      NumType: 8
+      Num: 2
       StrType: 0
       Str: 
       ActType: 0
