@@ -26,7 +26,7 @@ MonoBehaviour:
     Cost: 1
   LevelRange: {x: 5, y: 5}
   Trait:
-  - Trait: 4013
+  - Trait: 4014
     Numbers: []
     Prefabs: []
     Acts: []

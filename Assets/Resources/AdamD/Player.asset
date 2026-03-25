@@ -39,7 +39,7 @@ MonoBehaviour:
       Author: 0
       MaxCost: 0
     Builder: []
-  HP: 5
+  HP: 10
   Speed: 5
   VisionRange: 4
   Held: {fileID: 11400000, guid: 1a85378dbddeba443b0b6213a67bdf36, type: 2}

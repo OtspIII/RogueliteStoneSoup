@@ -23,7 +23,7 @@ MonoBehaviour:
   - Common: 202
     Custom: 
     W: 1
-    Cost: 1
+    Cost: 3
   LevelRange: {x: 0, y: 0}
   Trait:
   - Trait: 312
