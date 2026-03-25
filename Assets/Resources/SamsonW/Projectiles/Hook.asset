@@ -22,7 +22,7 @@ MonoBehaviour:
   Tags: []
   LevelRange: {x: 0, y: 0}
   Trait:
-  - Trait: 7006
+  - Trait: 7007
     Numbers: []
     Prefabs: []
     Acts: []
@@ -37,7 +37,7 @@ MonoBehaviour:
     Builder:
     - Type: 0
       NumType: 8
-      Num: 1
+      Num: 2
       StrType: 0
       Str: 
       ActType: 0
