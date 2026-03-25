@@ -71,6 +71,19 @@ MonoBehaviour:
       Author: 0
       MaxCost: 0
     Builder: []
+  - Trait: 8008
+    Numbers: []
+    Prefabs: []
+    Acts: []
+    OtherTrait: 0
+    SpawnReq:
+      Fixed: {fileID: 0}
+      Mandatory: []
+      Any: []
+      Level: 0
+      Author: 0
+      MaxCost: 0
+    Builder: []
   HP: 15
   Speed: 1
   VisionRange: 5

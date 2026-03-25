@@ -26,7 +26,7 @@ MonoBehaviour:
     Cost: 1
   LevelRange: {x: 10, y: 10}
   Trait:
-  - Trait: 4014
+  - Trait: 4016
     Numbers: []
     Prefabs: []
     Acts: []
@@ -40,19 +40,6 @@ MonoBehaviour:
       MaxCost: 0
     Builder: []
   - Trait: 4003
-    Numbers: []
-    Prefabs: []
-    Acts: []
-    OtherTrait: 0
-    SpawnReq:
-      Fixed: {fileID: 0}
-      Mandatory: []
-      Any: []
-      Level: 0
-      Author: 0
-      MaxCost: 0
-    Builder: []
-  - Trait: 4002
     Numbers: []
     Prefabs: []
     Acts: []
@@ -84,7 +71,20 @@ MonoBehaviour:
       Any: 
       AnyW: 0
       Trait: 0
-  - Trait: 4002
+  - Trait: 0
+    Numbers: []
+    Prefabs: []
+    Acts: []
+    OtherTrait: 0
+    SpawnReq:
+      Fixed: {fileID: 0}
+      Mandatory: []
+      Any: []
+      Level: 0
+      Author: 0
+      MaxCost: 0
+    Builder: []
+  - Trait: 7005
     Numbers: []
     Prefabs: []
     Acts: []
@@ -100,6 +100,6 @@ MonoBehaviour:
   HP: 30
   Speed: 2.5
   VisionRange: 4
-  Held: {fileID: 11400000, guid: 626c4ceacf9d3534981128dc2ce6acf1, type: 2}
+  Held: {fileID: 11400000, guid: 3daff65a98cafdd41a3ae3f0b7dffb2e, type: 2}
   DefaultAction: 201
   DefaultChaseAction: 202
