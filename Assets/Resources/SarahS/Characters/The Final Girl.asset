@@ -22,8 +22,8 @@ MonoBehaviour:
   Tags:
   - Common: 1
     Custom: 
-    W: 0
-    Cost: 1
+    W: 1
+    Cost: 0
   LevelRange: {x: 0, y: 0}
   Trait:
   - Trait: 1
@@ -52,9 +52,22 @@ MonoBehaviour:
       Author: 0
       MaxCost: 0
     Builder: []
+  - Trait: 7506
+    Numbers: []
+    Prefabs: []
+    Acts: []
+    OtherTrait: 0
+    SpawnReq:
+      Fixed: {fileID: 0}
+      Mandatory: []
+      Any: []
+      Level: 0
+      Author: 0
+      MaxCost: 0
+    Builder: []
   HP: 20
-  Speed: 5
+  Speed: 3
   VisionRange: 4
   Held: {fileID: 0}
   DefaultAction: 1
-  DefaultChaseAction: 1
+  DefaultChaseAction: 202

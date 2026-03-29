@@ -29,7 +29,6 @@ public class RiseFromDead_SarahS : ActionScript
                 if (dist < detectionRange)
                 {
                     hasRisen = true;
-                    Who.Thing.PlayAnim("Attack", 2f);
                     Duration = 0.5f;
                     
                     Who.Thing.MoveTowards(thing, 0);

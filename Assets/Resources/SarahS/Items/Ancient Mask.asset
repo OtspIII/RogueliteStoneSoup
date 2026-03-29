@@ -15,13 +15,30 @@ MonoBehaviour:
   Name: Ancient Mask
   Author: 75
   Team: 1
-  Body: {fileID: 0}
-  Art: {fileID: 0}
-  Color: {r: 1, g: 1, b: 1, a: 1}
+  Body: {fileID: 629948465317790645, guid: 7ef37acb0fdeb5849995b35a7fdca6ba, type: 3}
+  Art: {fileID: 21300000, guid: 7c62a6fd7973745c987ba3024c30ff28, type: 3}
+  Color: {r: 0.9622642, g: 0.25872195, b: 0.25872195, a: 1}
   Size: 1
-  Tags: []
+  Tags:
+  - Common: 2
+    Custom: 
+    W: 0
+    Cost: 0
   LevelRange: {x: 0, y: 0}
-  Trait: []
+  Trait:
+  - Trait: 7503
+    Numbers: []
+    Prefabs: []
+    Acts: []
+    OtherTrait: 0
+    SpawnReq:
+      Fixed: {fileID: 0}
+      Mandatory: []
+      Any: []
+      Level: 0
+      Author: 0
+      MaxCost: 0
+    Builder: []
   DefaultAttack: 0
   ToSpawn:
     Fixed: {fileID: 0}
@@ -32,7 +49,7 @@ MonoBehaviour:
     MaxCost: 0
   FloorBody: {fileID: 0}
   FloorArt: {fileID: 0}
-  Damage: 0
+  Damage: 1
   IdealRange: 1.5
   SpeedMult: 1
-  ActDuration: 0
+  ActDuration: 5
