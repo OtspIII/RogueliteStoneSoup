@@ -47,7 +47,10 @@ public class Sidestep_qixiangdong : ActionScript
         }
         Who.Thing.LookAt(Who.Target,0.5f);
 
-        Who.TakeEvent(God.E(EventTypes.StartAction).Set(ActionInfo.Action, Actions.DefaultAttack));
+        if (Who.Thing.Distance(Who.Target) <= Who.AttackRange)
+        {
+            Who.DoAction(Actions.DefaultAttack);
+        }
     }
     public override void HandleMove(){
         if(Who.Thing == null || Who == null){

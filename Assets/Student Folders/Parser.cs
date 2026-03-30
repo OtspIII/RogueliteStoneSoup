@@ -154,7 +154,8 @@ public static class Parser
             // MichaelT=50,
             case Actions.BleedAttack_MichaelT: return new BleedAttackAction_MichaelT(who, e);
             // QixiangD=55,
-            //case Actions.Sidestep_qixiangdong: return new Sidestep_qixiangdong(who,e);
+            case Actions.Sidestep_qixiangdong: return new Sidestep_qixiangdong(who,e);
+            case Actions.Charging_qixiangdong: return new Charging_qixiangdong(who,e);
             // RaphaelC=60,
             case Actions.CurveChase_RaphaelC:return new CurveChaseAction_RaphaelC(who,e);
             case Actions.Invisible_RaphaelC:return new Invisible_RaphaelC(who,e);
