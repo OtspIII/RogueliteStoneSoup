@@ -23,6 +23,7 @@ MonoBehaviour:
   - Common: 1
     Custom: 
     W: 0
+    Cost: 1
   LevelRange: {x: 0, y: 0}
   Trait:
   - Trait: 100
@@ -36,6 +37,7 @@ MonoBehaviour:
       Any: []
       Level: 0
       Author: 0
+      MaxCost: 0
     Builder: []
   - Trait: 7003
     Numbers: []
@@ -48,10 +50,11 @@ MonoBehaviour:
       Any: []
       Level: 0
       Author: 0
+      MaxCost: 0
     Builder: []
   HP: 20
   Speed: 10
   VisionRange: 4
-  Held: {fileID: 11400000, guid: 4b2540dd2b711fc4e98bbad7d33007c5, type: 2}
+  Held: {fileID: 11400000, guid: 280bda14946abdc46b9ae424e5140422, type: 2}
   DefaultAction: 1
   DefaultChaseAction: 1
