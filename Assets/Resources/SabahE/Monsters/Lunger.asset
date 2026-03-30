@@ -16,7 +16,7 @@ MonoBehaviour:
   Author: 0
   Team: 3
   Body: {fileID: 629948465317790645, guid: c5227d51ccfec934db9e0058624b573e, type: 3}
-  Art: {fileID: 0}
+  Art: {fileID: -6663905626272520177, guid: 443ff9c1b0904354db723cf9cffe6bc7, type: 3}
   Color: {r: 1, g: 1, b: 1, a: 1}
   Size: 0.5
   Tags:
@@ -25,7 +25,20 @@ MonoBehaviour:
     W: 1
     Cost: 0.5
   LevelRange: {x: 0, y: 0}
-  Trait: []
+  Trait:
+  - Trait: 4002
+    Numbers: []
+    Prefabs: []
+    Acts: []
+    OtherTrait: 0
+    SpawnReq:
+      Fixed: {fileID: 0}
+      Mandatory: []
+      Any: []
+      Level: 0
+      Author: 0
+      MaxCost: 0
+    Builder: []
   HP: 1
   Speed: 6
   VisionRange: 4

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a47d2194617e47469e601e558e7b8b4, type: 3}
   m_Name: FrozenWand
   m_EditorClassIdentifier: 
-  Name: FrozenWand
+  Name: Frozen Wand
   Author: 80
   Team: 1
   Body: {fileID: 629948465317790645, guid: b4fa405680f33044abe2c4567ecf147f, type: 3}
@@ -20,11 +20,11 @@ MonoBehaviour:
   Color: {r: 1, g: 1, b: 1, a: 1}
   Size: 2
   Tags:
-  - Common: 201
+  - Common: 202
     Custom: 
-    W: 1
+    W: 4
     Cost: 1
-  LevelRange: {x: 0, y: 0}
+  LevelRange: {x: 4, y: 0}
   Trait:
   - Trait: 312
     Numbers: []
@@ -58,6 +58,38 @@ MonoBehaviour:
       Any: 
       AnyW: 0
       Trait: 0
+  - Trait: 313
+    Numbers: []
+    Prefabs: []
+    Acts: []
+    OtherTrait: 0
+    SpawnReq:
+      Fixed: {fileID: 0}
+      Mandatory: []
+      Any: []
+      Level: 0
+      Author: 0
+      MaxCost: 0
+    Builder:
+    - Type: 0
+      NumType: 1
+      Num: 0
+      StrType: 0
+      Str: 
+      ActType: 0
+      Act: 0
+      BoolType: 0
+      Bool: 0
+      OptionType: 0
+      Option: {fileID: 0}
+      VectorType: 0
+      Vector: {x: 0, y: 0}
+      Fixed: {fileID: 0}
+      Mandatory: 
+      MandatoryW: 0
+      Any: 
+      AnyW: 0
+      Trait: 0
   DefaultAttack: 103
   ToSpawn:
     Fixed: {fileID: 11400000, guid: 74797b6277b1a0e44b1be6a899aef748, type: 2}
@@ -71,4 +103,4 @@ MonoBehaviour:
   Damage: 1
   IdealRange: 6
   SpeedMult: 2
-  ActDuration: 2
+  ActDuration: 0

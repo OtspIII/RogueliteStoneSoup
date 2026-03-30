@@ -15,10 +15,27 @@ MonoBehaviour:
   Name: Bear Trap
   Author: 75
   Team: 1
-  Body: {fileID: 0}
+  Body: {fileID: 629948465317790645, guid: acdd466902c6fe044a9f3b738deceb68, type: 3}
   Art: {fileID: 553103467783823420, guid: 0397dc9af16778a4eac5d9ba093c5ecb, type: 3}
   Color: {r: 1, g: 1, b: 1, a: 1}
   Size: 1
-  Tags: []
+  Tags:
+  - Common: 402
+    Custom: 
+    W: 0
+    Cost: 0
   LevelRange: {x: 0, y: 0}
-  Trait: []
+  Trait:
+  - Trait: 201
+    Numbers: []
+    Prefabs: []
+    Acts: []
+    OtherTrait: 0
+    SpawnReq:
+      Fixed: {fileID: 0}
+      Mandatory: []
+      Any: []
+      Level: 0
+      Author: 0
+      MaxCost: 0
+    Builder: []

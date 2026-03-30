@@ -50,7 +50,7 @@ MonoBehaviour:
     Builder:
     - Type: 0
       NumType: 8
-      Num: 1.5
+      Num: 3
       StrType: 0
       Str: 
       ActType: 0

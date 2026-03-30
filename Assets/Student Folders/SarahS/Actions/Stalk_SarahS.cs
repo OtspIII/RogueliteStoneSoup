@@ -9,7 +9,6 @@ public class Stalk_SarahS : ActionScript
         Priority = 2;
         MoveMult = 0.4f;
         CanRotate = true;
-        Anim = "walk";
     }
 
     public override void OnRun()

@@ -16,19 +16,19 @@ MonoBehaviour:
   Author: 75
   Team: 1
   Body: {fileID: 629948465317790645, guid: acf0e760b28c7b046ad7d511fb87a1d3, type: 3}
-  Art: {fileID: 21300000, guid: 24cb7e3d002284e1a96436f8567b343f, type: 3}
+  Art: {fileID: 21300000, guid: a41abc3f9ad2941cbadb5c44500a96a5, type: 3}
   Color: {r: 1, g: 1, b: 1, a: 1}
   Size: 1
   Tags:
   - Common: 102
     Custom: 
-    W: 0
+    W: 1
     Cost: 0
   LevelRange: {x: 0, y: 0}
   Trait: []
   HP: 10
-  Speed: 3
+  Speed: 2
   VisionRange: 4
   Held: {fileID: 0}
   DefaultAction: 1
-  DefaultChaseAction: 101
+  DefaultChaseAction: 7504

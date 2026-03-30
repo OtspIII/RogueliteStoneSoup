@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 037523bd7ae983240ad1b7cc3ff106cd, type: 3}
-  m_Name: Claw Trap
+  m_Name: BearTrap
   m_EditorClassIdentifier: 
-  Name: ClawTrap
+  Name: Bear Trap
   Author: 80
   Team: 1
   Body: {fileID: 629948465317790645, guid: a818902a553ccfa49ba9ef5810b226ca, type: 3}
@@ -22,11 +22,11 @@ MonoBehaviour:
   Tags:
   - Common: 400
     Custom: 
-    W: 1
+    W: 3
     Cost: 1
   - Common: 402
     Custom: 
-    W: 1
+    W: 3
     Cost: 1
   LevelRange: {x: 3, y: 0}
   Trait:
