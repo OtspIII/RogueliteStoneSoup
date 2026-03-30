@@ -52,7 +52,7 @@ MonoBehaviour:
       Author: 0
       MaxCost: 0
     Builder: []
-  - Trait: 7506
+  - Trait: 7507
     Numbers: []
     Prefabs: []
     Acts: []
@@ -65,7 +65,7 @@ MonoBehaviour:
       Author: 0
       MaxCost: 0
     Builder: []
-  HP: 20
+  HP: 5
   Speed: 3
   VisionRange: 4
   Held: {fileID: 0}

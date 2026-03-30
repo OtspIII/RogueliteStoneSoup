@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 0f9678b1880de467e92d8c1fa4d3c0a2
+guid: a56f571556faa40309fd28d270caadc8
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8481240422596150996
-    second: the-commune.jpg 1_0
+      213: -8465975155184538089
+    second: "\u2014Pngtree\u2014horror ghost_6045851_0"
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -51,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 600
+  spritePixelsToUnits: 1000
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: the-commune.jpg 1_0
+      name: "\u2014Pngtree\u2014horror ghost_6045851_0"
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 1247
-        height: 642
+        x: 122
+        y: 202
+        width: 984
+        height: 780
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c29f87c65c49c4a80800000000000000
-      internalID: -8481240422596150996
+      spriteID: 71e61f57370d28a80800000000000000
+      internalID: -8465975155184538089
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      the-commune.jpg 1_0: -8481240422596150996
+      "\u2014Pngtree\u2014horror ghost_6045851_0": -8465975155184538089
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

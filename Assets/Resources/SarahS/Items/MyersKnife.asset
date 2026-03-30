@@ -10,23 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a47d2194617e47469e601e558e7b8b4, type: 3}
-  m_Name: Ancient Mask
+  m_Name: MyersKnife
   m_EditorClassIdentifier: Assembly-CSharp::ItemOption
-  Name: Ancient Mask
+  Name: MyersKnife
   Author: 75
-  Team: 1
-  Body: {fileID: 629948465317790645, guid: 7ef37acb0fdeb5849995b35a7fdca6ba, type: 3}
-  Art: {fileID: 21300000, guid: 7c62a6fd7973745c987ba3024c30ff28, type: 3}
-  Color: {r: 0.9622642, g: 0.25872195, b: 0.25872195, a: 1}
-  Size: 1
+  Team: 3
+  Body: {fileID: 629948465317790645, guid: b4fa405680f33044abe2c4567ecf147f, type: 3}
+  Art: {fileID: 21300000, guid: a6812e6eacb784fb19168b748b86a860, type: 3}
+  Color: {r: 1, g: 1, b: 1, a: 1}
+  Size: 0.8
   Tags:
-  - Common: 2
+  - Common: 201
     Custom: 
     W: 0
     Cost: 0
   LevelRange: {x: 0, y: 0}
   Trait:
-  - Trait: 7503
+  - Trait: 301
     Numbers: []
     Prefabs: []
     Acts: []
@@ -39,7 +39,7 @@ MonoBehaviour:
       Author: 0
       MaxCost: 0
     Builder: []
-  DefaultAttack: 0
+  DefaultAttack: 101
   ToSpawn:
     Fixed: {fileID: 0}
     Mandatory: []
@@ -52,4 +52,4 @@ MonoBehaviour:
   Damage: 1
   IdealRange: 1.5
   SpeedMult: 1
-  ActDuration: 5
+  ActDuration: 0

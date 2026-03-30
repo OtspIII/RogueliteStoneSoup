@@ -15,17 +15,15 @@ public class ProximityExplode_SarahS : Trait
         {
             case EventTypes.OnTouch:
             {
-                float range = i.Get(NumInfo.MiscA, 2f);
-                float damage = i.Get(NumInfo.Default, 3f);
+                if (e.Collision == null || e.Collision.Other == null) return;
+                ThingInfo bumper = e.Collision.Other.Info;
 
                 if (i.Who == null || i.Who.Thing == null) return;
-
-                ThingInfo bumber = e.GetThing(ThingEInfo.Source);
-                if (bumber == null) return;
-
-
-                if (bumber.Team == GameTeams.Enemy) 
-                    i.Who.Destruct(i.Who);
+                if (bumper.Team == GameTeams.Neutral)
+                {
+                    God.Library.GetGnome("Blood").Spawn(bumper.Thing.transform.position, 15);
+                    bumper.TakeEvent(God.E(EventTypes.Death).Set(i.Who));
+                }
 
                 break;
             }

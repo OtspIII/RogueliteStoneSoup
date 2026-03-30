@@ -97,6 +97,8 @@ public static class Parser
         TraitDict.Add(Traits.MimicEnemySarahS,new MimicEnemy_SarahS());
         TraitDict.Add(Traits.ProtectionCircleSarahS,new ProtectionCircle_SarahS());
         TraitDict.Add(Traits.ProtectionSpellSarahS,new ProtectionSpell_SarahS());
+        TraitDict.Add(Traits.DamageFlashSarahS,new DamageFlash_SarahS());
+        TraitDict.Add(Traits.FleeSarahS,new Flee_SarahS());
         // TracyH Traits
         TraitDict.Add(Traits.Teleport_TracyH, new TeleportTrait_TracyH());
         TraitDict.Add(Traits.Freeze_TracyH, new FreezeTrait_TracyH());
@@ -174,6 +176,8 @@ public static class Parser
             case Actions.RiseFromDeadSarahS: return new RiseFromDead_SarahS(who,e);
             case Actions.PossessionSarahS: return new Possession_SarahS(who, e);
             case Actions.PanicRunSarahS: return new PanicRun_SarahS(who, e);
+            case Actions.HopSarahS: return new Hop_SarahS(who, e);
+            case Actions.RepelSarahS: return new Repel_SarahS(who, e);
             // TracyH=80,
             case Actions.Charge_TracyH: return new ChargeAction_TracyH(who, e);
             // WesleyP=90,
@@ -337,6 +341,8 @@ public enum Traits
     MimicEnemySarahS =7504,
     ProtectionCircleSarahS =7505,
     ProtectionSpellSarahS =7506,
+    DamageFlashSarahS =7507,
+    FleeSarahS    =7508,
     //TracyH        =80##,
     TracyH1 = 8001,
     Teleport_TracyH = 8002, //Teleport player between radius or nearby room(Zone)
@@ -438,6 +444,8 @@ public enum Actions
     RiseFromDeadSarahS =7502,
     PossessionSarahS =7503,
     PanicRunSarahS  =7504,
+    HopSarahS     =7505,
+    RepelSarahS     =7506,
     //TracyH        =80##,
     TracyH1         =8001,
     Charge_TracyH   =8002,

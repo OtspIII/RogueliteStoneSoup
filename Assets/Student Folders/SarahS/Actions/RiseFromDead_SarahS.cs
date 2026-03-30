@@ -3,7 +3,7 @@ using UnityEngine;
 public class RiseFromDead_SarahS : ActionScript
 {
     private bool hasRisen = false;
-    private float detectionRange = 3f;
+    private float detectionRange = 1f;
 
     public RiseFromDead_SarahS(ThingInfo who, EventInfo e = null)
     {
@@ -36,7 +36,7 @@ public class RiseFromDead_SarahS : ActionScript
 
                     if (dist < 1.5f)
                     {
-                        thing.Info.TakeEvent(God.E(EventTypes.Damage).Set(3f).Set(Who).Set(StrInfo.DType, "Ambush"));
+                        thing.Info.TakeEvent(God.E(EventTypes.Damage).Set(1f).Set(Who).Set(StrInfo.DType, "Ambush"));
                     }
 
                     break;
