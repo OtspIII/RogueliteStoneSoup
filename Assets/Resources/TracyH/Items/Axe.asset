@@ -18,46 +18,14 @@ MonoBehaviour:
   Body: {fileID: 629948465317790645, guid: b4fa405680f33044abe2c4567ecf147f, type: 3}
   Art: {fileID: 21300000, guid: 2f72d33e7840d7d43b6255a9a1ef745c, type: 3}
   Color: {r: 1, g: 1, b: 1, a: 1}
-  Size: 3
+  Size: 1.5
   Tags:
   - Common: 201
     Custom: 
-    W: 1
+    W: 4
     Cost: 1
   LevelRange: {x: 4, y: 6}
-  Trait:
-  - Trait: 312
-    Numbers: []
-    Prefabs: []
-    Acts: []
-    OtherTrait: 0
-    SpawnReq:
-      Fixed: {fileID: 0}
-      Mandatory: []
-      Any: []
-      Level: 0
-      Author: 0
-      MaxCost: 0
-    Builder:
-    - Type: 0
-      NumType: 1
-      Num: 5
-      StrType: 0
-      Str: 
-      ActType: 0
-      Act: 0
-      BoolType: 0
-      Bool: 0
-      OptionType: 0
-      Option: {fileID: 0}
-      VectorType: 0
-      Vector: {x: 0, y: 0}
-      Fixed: {fileID: 0}
-      Mandatory: 
-      MandatoryW: 0
-      Any: 
-      AnyW: 0
-      Trait: 0
+  Trait: []
   DefaultAttack: 101
   ToSpawn:
     Fixed: {fileID: 0}
@@ -68,7 +36,7 @@ MonoBehaviour:
     MaxCost: 0
   FloorBody: {fileID: 0}
   FloorArt: {fileID: 0}
-  Damage: 1
-  IdealRange: 2
-  SpeedMult: 0.5
+  Damage: 3
+  IdealRange: 5
+  SpeedMult: 0.4
   ActDuration: 0

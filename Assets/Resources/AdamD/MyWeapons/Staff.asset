@@ -16,14 +16,14 @@ MonoBehaviour:
   Author: 20
   Team: 1
   Body: {fileID: 629948465317790645, guid: b4fa405680f33044abe2c4567ecf147f, type: 3}
-  Art: {fileID: 3763752930381237044, guid: 6182c182fed00e244ac4d80067b6d5db, type: 3}
+  Art: {fileID: 4982956992057361663, guid: a4c9277b3f4c0234eb54ee3b0dd7a9e2, type: 3}
   Color: {r: 1, g: 1, b: 1, a: 1}
   Size: 1
   Tags:
   - Common: 202
     Custom: 
     W: 1
-    Cost: 1
+    Cost: 3
   LevelRange: {x: 0, y: 0}
   Trait:
   - Trait: 0

@@ -16,7 +16,7 @@ MonoBehaviour:
   Author: 75
   Team: 1
   Body: {fileID: 629948465317790645, guid: 7ef37acb0fdeb5849995b35a7fdca6ba, type: 3}
-  Art: {fileID: 21300000, guid: dc228781d2b714065ac38d101f5bfa4e, type: 3}
+  Art: {fileID: 21300000, guid: ea0eb0d64db1c4c2b9e619721687b838, type: 3}
   Color: {r: 1, g: 1, b: 1, a: 1}
   Size: 1
   Tags: []

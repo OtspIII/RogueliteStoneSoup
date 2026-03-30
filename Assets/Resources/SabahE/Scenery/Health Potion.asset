@@ -9,28 +9,37 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 037523bd7ae983240ad1b7cc3ff106cd, type: 3}
-  m_Name: Treat
+  m_Script: {fileID: 11500000, guid: 9a47d2194617e47469e601e558e7b8b4, type: 3}
+  m_Name: Health Potion
   m_EditorClassIdentifier: 
-  Name: Suspicious Crate
-  Author: 60
+  Name: Health Potion
+  Author: 0
   Team: 1
-  Body: {fileID: 629948465317790645, guid: 37c4754857b78e24995335d45e308e0b, type: 3}
-  Art: {fileID: -1362058913294850930, guid: f7ed4d06ee2bd2f4c97d3e34fa915bd9, type: 3}
-  Color: {r: 0.3056603, g: 0.3056603, b: 0.3056603, a: 1}
-  Size: 1.5
+  Body: {fileID: 629948465317790645, guid: 7ef37acb0fdeb5849995b35a7fdca6ba, type: 3}
+  Art: {fileID: -2880734798192188640, guid: f77ef968c74f7a64c86e3247520c36ec, type: 3}
+  Color: {r: 1, g: 1, b: 1, a: 1}
+  Size: 1
   Tags:
-  - Common: 400
-    Custom: 
-    W: 1
-    Cost: 1
-  - Common: 2
+  - Common: 202
     Custom: 
     W: 1
     Cost: 1
   LevelRange: {x: 0, y: 0}
   Trait:
-  - Trait: 2
+  - Trait: 310
+    Numbers: []
+    Prefabs: []
+    Acts: []
+    OtherTrait: 0
+    SpawnReq:
+      Fixed: {fileID: 0}
+      Mandatory: []
+      Any: []
+      Level: 0
+      Author: 0
+      MaxCost: 0
+    Builder: []
+  - Trait: 313
     Numbers: []
     Prefabs: []
     Acts: []
@@ -44,7 +53,7 @@ MonoBehaviour:
       MaxCost: 0
     Builder:
     - Type: 0
-      NumType: 1
+      NumType: 0
       Num: 1
       StrType: 0
       Str: 
@@ -62,8 +71,10 @@ MonoBehaviour:
       Any: 
       AnyW: 0
       Trait: 0
-  - Trait: 201
-    Numbers: []
+  - Trait: 312
+    Numbers:
+    - Type: 1
+      Value: 1
     Prefabs: []
     Acts: []
     OtherTrait: 0
@@ -74,23 +85,18 @@ MonoBehaviour:
       Level: 0
       Author: 0
       MaxCost: 0
-    Builder:
-    - Type: 6
-      NumType: 0
-      Num: 0
-      StrType: 0
-      Str: 
-      ActType: 0
-      Act: 0
-      BoolType: 0
-      Bool: 0
-      OptionType: 0
-      Option: {fileID: 0}
-      VectorType: 0
-      Vector: {x: 0, y: 0}
-      Fixed: {fileID: 0}
-      Mandatory: 
-      MandatoryW: 0
-      Any: Weapon
-      AnyW: 0
-      Trait: 0
+    Builder: []
+  DefaultAttack: 5
+  ToSpawn:
+    Fixed: {fileID: 0}
+    Mandatory: []
+    Any: []
+    Level: 0
+    Author: 0
+    MaxCost: 0
+  FloorBody: {fileID: 629948465317790645, guid: 0f8734e4b4d2c3a449506fe0c78c1110, type: 3}
+  FloorArt: {fileID: 0}
+  Damage: 0
+  IdealRange: 1.5
+  SpeedMult: 1
+  ActDuration: 0

@@ -12,7 +12,6 @@ public class RiseFromDead_SarahS : ActionScript
         Priority = 1;
         MoveMult = 0;
         CanRotate = false;
-        Anim = "Death";
     }
 
     public override void OnRun()
@@ -30,7 +29,6 @@ public class RiseFromDead_SarahS : ActionScript
                 if (dist < detectionRange)
                 {
                     hasRisen = true;
-                    Who.Thing.PlayAnim("Attack", 2f);
                     Duration = 0.5f;
                     
                     Who.Thing.MoveTowards(thing, 0);

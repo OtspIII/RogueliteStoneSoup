@@ -23,7 +23,8 @@ MonoBehaviour:
   - Common: 102
     Custom: 
     W: 0
-  LevelRange: {x: 1, y: 2}
+    Cost: 1
+  LevelRange: {x: 0, y: 2}
   Trait: []
   HP: 10
   Speed: 5

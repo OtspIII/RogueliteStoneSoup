@@ -20,9 +20,10 @@ MonoBehaviour:
   Color: {r: 0.043906372, g: 0.1630509, b: 0.9308176, a: 1}
   Size: 1
   Tags:
-  - Common: 202
+  - Common: 201
     Custom: 
     W: 1
+    Cost: 1
   LevelRange: {x: 0, y: 0}
   Trait:
   - Trait: 312
@@ -36,6 +37,7 @@ MonoBehaviour:
       Any: []
       Level: 0
       Author: 0
+      MaxCost: 0
     Builder:
     - Type: 0
       NumType: 1
@@ -63,6 +65,7 @@ MonoBehaviour:
     Any: []
     Level: 0
     Author: 0
+    MaxCost: 0
   FloorBody: {fileID: 0}
   FloorArt: {fileID: 0}
   Damage: 4

@@ -20,14 +20,14 @@ MonoBehaviour:
   Color: {r: 1, g: 1, b: 1, a: 1}
   Size: 1
   Tags:
-  - Common: 0
-    Custom: Enemy
+  - Common: 102
+    Custom: 
     W: 0
     Cost: 0
   LevelRange: {x: 0, y: 0}
   Trait: []
   HP: 5
-  Speed: 3
+  Speed: 0.8
   VisionRange: 4
   Held: {fileID: 0}
   DefaultAction: 7503

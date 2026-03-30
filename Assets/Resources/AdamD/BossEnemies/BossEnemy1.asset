@@ -26,7 +26,7 @@ MonoBehaviour:
     Cost: 1
   LevelRange: {x: 5, y: 5}
   Trait:
-  - Trait: 4013
+  - Trait: 4014
     Numbers: []
     Prefabs: []
     Acts: []
@@ -59,6 +59,19 @@ MonoBehaviour:
       AnyW: 0
       Trait: 0
   - Trait: 4004
+    Numbers: []
+    Prefabs: []
+    Acts: []
+    OtherTrait: 0
+    SpawnReq:
+      Fixed: {fileID: 0}
+      Mandatory: []
+      Any: []
+      Level: 0
+      Author: 0
+      MaxCost: 0
+    Builder: []
+  - Trait: 8008
     Numbers: []
     Prefabs: []
     Acts: []

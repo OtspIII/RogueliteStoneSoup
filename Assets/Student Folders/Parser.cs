@@ -168,14 +168,17 @@ public static class Parser
             case Actions.SabahClassAction2: return new SabahClassAction2(who, e);
             // SamsonW=70,
             case Actions.SelfKill: return new SelfKillAction(who, e);
+            case Actions.Grapple: return new GrappleAction(who, e);
             // SarahS=75,
             case Actions.StalkSarahS: return new Stalk_SarahS(who,e);
             case Actions.RiseFromDeadSarahS: return new RiseFromDead_SarahS(who,e);
             case Actions.PossessionSarahS: return new Possession_SarahS(who, e);
+            case Actions.PanicRunSarahS: return new PanicRun_SarahS(who, e);
             // TracyH=80,
             case Actions.Charge_TracyH: return new ChargeAction_TracyH(who, e);
-                // WesleyP=90,
-                // YuChen=95,
+            // WesleyP=90,
+            // YuChen=95,
+            case Actions.spinAction_Yu: return new SpinAction_Yuchen(who, e);
         }
         God.LogError("UNCAUGHT ACTION: " + act);
         return new IdleAction(who,e);
@@ -325,6 +328,8 @@ public enum Traits
     DamageReflect   =7003, //Reflects damage, thornmail effect
     HealZone        =7004, //Heals player when standing inside zone
     DelayedActionAfterStartingAction=7005, //Switches action after X secs after entering an action
+    StackableDagger =7006, //Buffs dagger for each stack equipped
+    GrappleHook     =7007, //Triggers grappling action on collision
     //SarahS        =75##,
     ProximityExplodeSarahS  =7501,
     SlowMoSarahS    =7502,
@@ -349,10 +354,6 @@ public enum Traits
     //YuChen        =95##,
     YuChen1         =9501,
     Criticaldamage=9502,
-    
-    StackableDagger=9998,
-    GrappleHook=9999,
-    
 }
 
 public enum Actions
@@ -431,12 +432,12 @@ public enum Actions
     //SamsonW       =70##,
     SamsonW1        =7001,
     SelfKill        =7002, // Immediately kills thing on enter after 1 frame
+    Grapple         =7003,
     //SarahS        =75##,
     StalkSarahS     =7501,
     RiseFromDeadSarahS =7502,
     PossessionSarahS =7503,
     PanicRunSarahS  =7504,
-    HideSarahS      =7504,
     //TracyH        =80##,
     TracyH1         =8001,
     Charge_TracyH   =8002,
@@ -444,8 +445,5 @@ public enum Actions
     NewPlayerAlly_WesleyP =9001, 
     //YuChen        =95##,
     YuChen1         =9501,
-    
-    
-    Grapple=9999,
-    
+    spinAction_Yu = 9502,
 }

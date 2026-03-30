@@ -16,7 +16,7 @@ public class StatusResist : Trait
                 {
 
                     Traits t = i.GetTrait();
-                    if (t == Traits.OnFire) { e.Abort = true; }   //rn resists on fire/specific traits. without out, other traits wouldn't apply either (Traits. is the enums;
+                    if (t == Traits.Slowed_JuliusP) { e.Abort = true; }   //rn resists on fire/specific traits. without out, other traits wouldn't apply either (Traits. is the enums;
                     i.TakeEvent(God.E(EventTypes.StartAction).Set(ActionInfo.Action, Actions.Idle));
                     Debug.Log("Status Effect:" + e + "resisted!");
                     break;

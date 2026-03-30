@@ -24,7 +24,7 @@ MonoBehaviour:
     Custom: 
     W: 0
     Cost: 0
-  LevelRange: {x: 0, y: 0}
+  LevelRange: {x: 4, y: 0}
   Trait:
   - Trait: 7505
     Numbers: []

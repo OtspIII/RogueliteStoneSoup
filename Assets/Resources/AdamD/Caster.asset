@@ -41,7 +41,7 @@ MonoBehaviour:
     Builder: []
   HP: 2
   Speed: 1
-  VisionRange: 4
-  Held: {fileID: 11400000, guid: 1db64d26610cabf41a7a265467d4a904, type: 2}
+  VisionRange: 5
+  Held: {fileID: 11400000, guid: 3119b1d4b41c20c4cba15b955e1c9738, type: 2}
   DefaultAction: 201
   DefaultChaseAction: 202

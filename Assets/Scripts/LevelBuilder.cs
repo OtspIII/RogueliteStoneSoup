@@ -469,7 +469,7 @@ public class LevelBuilder
         return 0;
     }
     
-    public float JudgeThing(SpawnRequest sr, ThingOption o,bool backup=false)
+    public virtual float JudgeThing(SpawnRequest sr, ThingOption o,bool backup=false)
     {
         if (!backup)
         {
