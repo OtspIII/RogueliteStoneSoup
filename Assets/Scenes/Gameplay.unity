@@ -119,33 +119,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &522453806 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1180588031038330619, guid: 1406ee7445a27a44e8384a3c5752e102, type: 3}
-  m_PrefabInstance: {fileID: 2040850909}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &522453809
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 522453806}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 20bdb736eccf36c4fb6438a581f11c54, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &545801762
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -215,14 +188,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Game Manager
       objectReference: {fileID: 0}
-    - target: {fileID: 2520416158583824974, guid: 1406ee7445a27a44e8384a3c5752e102, type: 3}
-      propertyPath: CurrentAuthor
-<<<<<<< HEAD
-      value: 95
-=======
-      value: 1
->>>>>>> b1dc731a2cb56d23789f8bbdd8d60f1ca5e6cd27
-      objectReference: {fileID: 0}
     - target: {fileID: 3213306233608880512, guid: 1406ee7445a27a44e8384a3c5752e102, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -266,10 +231,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1180588031038330619, guid: 1406ee7445a27a44e8384a3c5752e102, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 522453809}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1406ee7445a27a44e8384a3c5752e102, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
