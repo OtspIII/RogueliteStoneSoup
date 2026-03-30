@@ -10,21 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a47d2194617e47469e601e558e7b8b4, type: 3}
-  m_Name: sword+
+  m_Name: blue 1
   m_EditorClassIdentifier: Assembly-CSharp::ItemOption
-  Name: sword+
+  Name: blue
   Author: 95
   Team: 1
   Body: {fileID: 629948465317790645, guid: ef672722d780ecf4e9d868d0ce938dec, type: 3}
-  Art: {fileID: 3763752930381237044, guid: 6182c182fed00e244ac4d80067b6d5db, type: 3}
+  Art: {fileID: 4982956992057361663, guid: a4c9277b3f4c0234eb54ee3b0dd7a9e2, type: 3}
   Color: {r: 1, g: 1, b: 1, a: 1}
-  Size: 1
+  Size: 2
   Tags:
   - Common: 201
     Custom: 
     W: 0
-    Cost: 1
-  LevelRange: {x: 0, y: 0}
+  LevelRange: {x: 2, y: 4}
   Trait: []
   DefaultAttack: 101
   ToSpawn:
@@ -32,11 +31,10 @@ MonoBehaviour:
     Mandatory: []
     Any: []
     Level: 0
-    Author: 0
-    MaxCost: 0
+    Author: 95
   FloorBody: {fileID: 0}
   FloorArt: {fileID: 0}
-  Damage: 5
+  Damage: 15
   IdealRange: 4
-  SpeedMult: 1
+  SpeedMult: 2
   ActDuration: 0

@@ -6,37 +6,39 @@ public class CriticaldamageTrait : Trait
 {
     public CriticaldamageTrait() 
     { 
-        Type = Traits.Criticaldamage; 
-        AddListen(EventTypes.Damage);
-        
-}
+        Type = Traits.Criticaldamage;
+        AddListen(EventTypes.DamageMult);
+
+    }
     public override void TakeEvent(TraitInfo i, EventInfo e)
     {
         switch (e.Type)
         {
-            case EventTypes.Damage:
-                {
+            case EventTypes.DamageMult:
+                
 
-                    if (e.Type != EventTypes.Damage)
+             if (e.Type != EventTypes.DamageMult)
                         return;
+                ThingInfo attacker = e.GetThing();
+                if (attacker == null) return;
 
-                    if (Random.Range(0,6)>1)
-                    {
+
+                if (Random.value < 0.25f)
+                {
+                    ThingInfo weapon = attacker.CurrentHeld;
+                    if (weapon == null) return;
+
+                    TraitInfo tool = weapon.Get(Traits.Tool);
+                    if (tool == null) return;
+
+                    float StartDamage = tool.GetN();
+
+                    tool.Set(StartDamage * 2f);
 
                         
-
-
-                       
-                        
-                        int doudamage = i.GetInt(NumInfo.Default, 15);
-                        EventInfo damage = God.E(EventTypes.Damage).Set(doudamage);
-                        e.GetThing().TakeEvent(damage, true);
-                        
-
-                        Debug.Log("ss");
                     }
 
-                }
+                
                     break;
                 
         }
