@@ -20,15 +20,28 @@ MonoBehaviour:
   Color: {r: 1, g: 1, b: 1, a: 1}
   Size: 1
   Tags:
-  - Common: 0
-    Custom: Enemy
+  - Common: 102
+    Custom: 
     W: 0
     Cost: 0
-  LevelRange: {x: 0, y: 0}
-  Trait: []
+  LevelRange: {x: 8, y: 0}
+  Trait:
+  - Trait: 0
+    Numbers: []
+    Prefabs: []
+    Acts: []
+    OtherTrait: 0
+    SpawnReq:
+      Fixed: {fileID: 0}
+      Mandatory: []
+      Any: []
+      Level: 0
+      Author: 0
+      MaxCost: 0
+    Builder: []
   HP: 5
-  Speed: 3
+  Speed: 1
   VisionRange: 4
   Held: {fileID: 0}
-  DefaultAction: 7503
-  DefaultChaseAction: 202
+  DefaultAction: 7505
+  DefaultChaseAction: 7505

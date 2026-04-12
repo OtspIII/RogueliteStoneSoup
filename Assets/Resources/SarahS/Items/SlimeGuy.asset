@@ -10,38 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a47d2194617e47469e601e558e7b8b4, type: 3}
-  m_Name: RandomItem
+  m_Name: SlimeGuy
   m_EditorClassIdentifier: Assembly-CSharp::ItemOption
-  Name: Random
+  Name: SlimeThing
   Author: 75
-  Team: 1
-  Body: {fileID: 0}
-  Art: {fileID: 0}
+  Team: 3
+  Body: {fileID: 629948465317790645, guid: 9edb53243ae32704ead177294fe49d22, type: 3}
+  Art: {fileID: 21300000, guid: 759a967b8356f4120bbcf541c06c0f2b, type: 3}
   Color: {r: 1, g: 1, b: 1, a: 1}
-  Size: 1
-  Tags:
-  - Common: 201
-    Custom: 
-    W: 0
-    Cost: 0
+  Size: 0.5
+  Tags: []
   LevelRange: {x: 0, y: 0}
-  Trait:
-  - Trait: 7501
-    Numbers: []
-    Prefabs: []
-    Acts: []
-    OtherTrait: 0
-    SpawnReq:
-      Fixed: {fileID: 0}
-      Mandatory: []
-      Any: []
-      Level: 0
-      Author: 0
-      MaxCost: 0
-    Builder: []
-  DefaultAttack: 0
+  Trait: []
+  DefaultAttack: 103
   ToSpawn:
-    Fixed: {fileID: 0}
+    Fixed: {fileID: 11400000, guid: b01a0d1d27f814796a39df67f69a7d98, type: 2}
     Mandatory: []
     Any: []
     Level: 0
@@ -49,7 +32,7 @@ MonoBehaviour:
     MaxCost: 0
   FloorBody: {fileID: 0}
   FloorArt: {fileID: 0}
-  Damage: 0
-  IdealRange: 1.5
+  Damage: 1
+  IdealRange: 5
   SpeedMult: 1
   ActDuration: 0

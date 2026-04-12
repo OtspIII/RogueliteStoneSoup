@@ -295,15 +295,27 @@ public class LevelBuilder
         float mons = God.RoundRand(rms * (1f + (God.Session.Level * 0.1f)));
         //Add that many monsters to the queue
         Quotas.Add(new Tag(GameTags.NPC,1,mons));
+        // for(float n=0;n<mons;n++) AddSpawn(GameTags.NPC);
         //We'll have 1 weapon drop per level, plus maybe a second (odds increase with depth)
         float wpn = God.RoundRand(1 + (rms * 0.05f));
         Quotas.Add(new Tag(GameTags.Weapon,1,wpn));
+        // for(float n=0;n<wpn;n++) AddSpawn(GameTags.Weapon);
         //One consumable per four rooms
         float con = God.RoundRand(rms * 0.25f);
         Quotas.Add(new Tag(GameTags.Consumable,1,con));
+        // for(float n=0;n<con;n++) AddSpawn(GameTags.Consumable);
         //And as many piles of coins as our level number. Can you find them all before using the exit?
         float scr = God.Session.Level;
         Quotas.Add(new Tag(GameTags.ScoreThing,1,scr));
+        // for(float n=0;n<scr;n++) AddSpawn(GameTags.ScoreThing);
+        
+        //Then we take those tags and use them to decide on a list of actual things to spawn
+        // foreach (SpawnRequest sr in SpawnRequests)
+        // {
+        //     //See JudgeThing() below for more info on how things are valued
+        //     ThingOption o = God.Library.GetThing(sr);
+        //     ToSpawn.Add(o);
+        // }
 
         foreach (Tag t in Quotas)
         {
@@ -412,32 +424,24 @@ public class LevelBuilder
             s.Spawn();
         }
     }
-    
+    //#######BOOKMARK########
     ///Do a flood of all the room slots in the dungeon and return a list of all that aren't connected 
     public List<GeoTile> UnconnectedTest()
     {
         //Make a flood to see if all the rooms are connected
-        //Start with a list of all the tiles--if we can tell a tile is connected to the main path we'll remove it from here
+        //Start with a list of all the tiles
         List<GeoTile> unc = new List<GeoTile>();
         unc.AddRange(AllGeo);
-        //Make lists to track which tiles we've fully looked at and which we're about to look at (pending)
         List<GeoTile> done = new List<GeoTile>();
         List<GeoTile> pend = new List<GeoTile>(){PlayerSpawn};
-        //Keep doing this until we run out of connected tiles we haven't already looked at
         while (pend.Count > 0)
         {
-            //Pick a random pending tile
             GeoTile chosen = God.Random(pend);
-            //Move it from pending to the list of tiles we've looked at
             pend.Remove(chosen);
             done.Add(chosen);
-            //Remove it from the list of potentially unconnected tiles
             unc.Remove(chosen);
-            //Mark it as connected
             chosen.SetPath(GeoTile.GeoTileTypes.Connected);
-            //Get a list of all their adjacent neighbors
             List<GeoTile> neigh = chosen.Neighbors(true);
-            //For each neighor, make sure they aren't already checked--if not, add them to the pending list
             foreach (GeoTile n in neigh)
             {
                 if (done.Contains(n)) continue;
@@ -445,43 +449,30 @@ public class LevelBuilder
                 pend.Add(n);
             }
         }
-        //Say something in debug.log if any tiles aren't connected
         God.Log("FLOATERS: " + unc.Count);
         return unc;
     }
 
-    ///Returns the GeoTile in a specific coordinate of the map
     public GeoTile GetGeo(int x, int y)
     {
         if (!GeoMap.ContainsKey(x)) return null;
         return GeoMap[x].ContainsKey(y) ? GeoMap[x][y] : null;
     }
 
-    ///Judges how desirable a room is to fill a given geotile
-    /// Returns a number that corresponds to the weight of change this room will be used
-    public virtual float JudgeRoom(GeoTile g, RoomOption o)
+    public float JudgeRoom(GeoTile g, RoomOption o)
     {
-        //Most room slots will take any generic room
         RoomTags t = RoomTags.Generic;
-        //But there are a few slots that need a specific one--player start, exit, and boss room
         if (g.Path == GeoTile.GeoTileTypes.PlayerStart) t = RoomTags.PlayerStart;
         if (g.Path == GeoTile.GeoTileTypes.Exit) t = RoomTags.Exit;
         if (g.Path == GeoTile.GeoTileTypes.Boss) t = RoomTags.Boss;
-        //If the room has a tag that matches the type of tile this is, it's okay
         if(o.Tags.Contains(t)) return 1;
-        //Otherwise, there should be 0 chance it gets picked
         return 0;
     }
     
-    ///Judges how desirable an option is to fill a given spawn request
-    /// Returns a number that corresponds to the weight of change this option will be used
     public virtual float JudgeThing(SpawnRequest sr, ThingOption o,bool backup=false)
     {
-        //If backup is true, we've already failed to find any options once, so we won't be as picky
-        //If it's false, though, we want to only use content from the level's default author
         if (!backup)
         {
-            //Who's the author? If the Spawn Request gives one, use that. Otherwise we use the session's author
             Authors sra = sr.Author == Authors.None ? God.Session.Author : sr.Author;
             //Make sure it's the right author. If either the option or the game is universal, it's okay
             if (sra != Authors.Universal && o.Author != Authors.Universal && sra != Authors.None && o.Author != sra) return 0;
@@ -495,42 +486,39 @@ public class LevelBuilder
             if (l < o.LevelRange.x && o.LevelRange.x > 0) return 0;
             if (l > o.LevelRange.y && o.LevelRange.y > 0) return 0;
         }
-        //W is weight--how likely this is to get picked
         float w = 1;
-        //Some Options can have higher or lower costs--you can spawn two 0.5 cost monsters for the price of one 
         float cost = 0;
-        //Look at the tags that the Spawn Request says are mandatory for the option to have
         foreach(Tag t in sr.Mandatory)
             if (o.HasTag(t.Value, out float tw, out float cst))
             {
-                //If they have the tag, update the weight to be the target's tag weight and cost to be target's cost
                 w = God.MergeWeight(w,tw);
                 cost = Mathf.Max(cost, cst);
             }
-            else return 0; //Otherwise return a '0 chance of using this option' answer
-        //If the option costs more than the spawn request is okay with, return a 'no chance' answer
+            else return 0;
         if (sr.MaxCost > 0 && sr.MaxCost < cost) return 0;
-        //If the spawn request has any tags that it wants at least one of. . .
         if (sr.Any.Count > 0)
         {
-            //Did we find a good option? Starts out as false
             bool any = false;
-            //Look at each tag on the request
             foreach (Tag t in sr.Any)
             {
-                //If the option has that tag. . .
                 if (o.HasTag(t.Value, out float tw))
                 {
-                    //Factor that into the request's weight, and also say that we did find at least one matching tag
                     w = God.MergeWeight(w, tw);
                     any = true;
                 }
             }
-            //If we didn't find any matching tags, return 0 chance
             if(!any)
                 return 0;
         }
-        //Return the weight we found via looking at tags above
         return w;
     }
+
+    // public virtual void AddSpawn(params GameTags[] t)
+    // { SpawnRequests.Add(new SpawnRequest(t)); }
+    // public virtual void AddSpawn(params string[] t)
+    // { SpawnRequests.Add(new SpawnRequest(t)); }
+    // public virtual void AddSpawn(SpawnRequest sr)
+    // { SpawnRequests.Add(sr); }
+    
+    
 }

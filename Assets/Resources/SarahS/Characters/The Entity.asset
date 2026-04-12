@@ -20,28 +20,15 @@ MonoBehaviour:
   Color: {r: 1, g: 1, b: 1, a: 1}
   Size: 1
   Tags:
-  - Common: 0
-    Custom: Enemy
+  - Common: 102
+    Custom: 
     W: 0
     Cost: 0
   LevelRange: {x: 3, y: 0}
-  Trait:
-  - Trait: 7501
-    Numbers: []
-    Prefabs: []
-    Acts: []
-    OtherTrait: 0
-    SpawnReq:
-      Fixed: {fileID: 0}
-      Mandatory: []
-      Any: []
-      Level: 0
-      Author: 0
-      MaxCost: 0
-    Builder: []
-  HP: 0
-  Speed: 3
+  Trait: []
+  HP: 5
+  Speed: 1
   VisionRange: 4
-  Held: {fileID: 0}
+  Held: {fileID: 11400000, guid: 5ac85db6d02964b9493438750ca1d758, type: 2}
   DefaultAction: 201
   DefaultChaseAction: 202

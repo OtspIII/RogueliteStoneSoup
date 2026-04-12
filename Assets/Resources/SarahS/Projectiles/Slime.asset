@@ -39,5 +39,5 @@ MonoBehaviour:
       Author: 0
       MaxCost: 0
     Builder: []
-  Damage: 2
-  Speed: 5
+  Damage: 1
+  Speed: 0.5

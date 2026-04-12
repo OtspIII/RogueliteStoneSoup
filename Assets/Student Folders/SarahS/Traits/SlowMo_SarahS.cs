@@ -2,64 +2,69 @@ using UnityEngine;
 
 public class SlowMo_SarahS : Trait
 {
+    private float trapRadius = 1.5f;
+    private float slowMult = 0.1f;
+    private bool playerSlowed = false;
     public SlowMo_SarahS()
     {
         Type = Traits.SlowMoSarahS;
-        AddListen(EventTypes.OnSee);
-        AddPreListen(EventTypes.GetActSpeed);
-        AddListen(EventTypes.OnUseStart);
+        AddListen(EventTypes.OnSpawn);
+        AddListen(EventTypes.Update);
+        AddListen(EventTypes.OnDestroy);
     }
-
-    public override void ReUp(TraitInfo old, EventInfo n)
-    {
-        if (n == null || !n.GetBool(BoolInfo.Default)) return;
-        old.SetFloat(NumInfo.Time, n.GetFloat(NumInfo.Time, 5f));
-        old.SetFloat(NumInfo.Speed, n.GetFloat(NumInfo.Speed, 0.5f));
-    }
-
+    
     public override void TakeEvent(TraitInfo i, EventInfo e)
     {
         switch (e.Type)
         {
-            case EventTypes.OnSee:
+            case EventTypes.OnSpawn:
             {
-                if (i.GetBool(BoolInfo.Default)) return;
+                if (i.Who.Thing != null && i.Who.Thing.Body != null)
+                {
+                    Collider2D[] colliders = i.Who.Thing.Body.gameObject.GetComponentsInChildren<Collider2D>();
+                    foreach (Collider2D col in colliders)
+                    {
+                        col.isTrigger = true;
+                    }
+                }
 
-                ThingInfo target = e.GetThing(ThingEInfo.Target);
-                if (target == null) return;
-
-                EventInfo slowInfo = new EventInfo();
-                slowInfo.SetFloat(NumInfo.Time, i.GetFloat(NumInfo.Time, 5f));
-                slowInfo.SetFloat(NumInfo.Speed, i.GetFloat(NumInfo.Speed, 0.5f));
-                slowInfo.SetBool(BoolInfo.Default, true);
-                
-                target.AddTrait(Type, slowInfo);
                 break;
             }
 
             case EventTypes.Update:
-            { 
-                if (i.GetBool(BoolInfo.Default)) return;
-                
-                float timeLeft = i.GetFloat(NumInfo.Time, 0f);
-                timeLeft -= Time.deltaTime;
-                i.SetFloat(NumInfo.Time, timeLeft);
+            {
+                if (i.Who.Thing == null || God.Player == null || God.Player.Thing == null) return;
+                float dist = Vector2.Distance(i.Who.Thing.transform.position, God.Player.Thing.transform.position);
+                if (dist < trapRadius)
+                {
+                    if (!playerSlowed)
+                    {
+                        God.Player.CurrentSpeed *= slowMult;
+                        playerSlowed = true;
+                        Debug.Log("player slowed");
+                    }
+                }
+                else
+                {
+                    if (playerSlowed)
+                    {
+                        God.Player.CurrentSpeed /= slowMult;
+                        playerSlowed = false;
+                        Debug.Log("player sped up");
+                    }
+                }
 
-                if (timeLeft <= 0)
-                    i.Who.RemoveTrait(Type);
+                break;
+            }
+            case EventTypes.OnDestroy:
+            {
+                if (playerSlowed && God.Player != null)
+                {
+                    God.Player.CurrentSpeed /= slowMult;
+                }
+
                 break;
             }
         }
-    }
-
-    public override void PreEvent(TraitInfo i, EventInfo e)
-    {
-        if (e.Type != EventTypes.GetActSpeed) return;
-        
-        if (!i.GetBool(BoolInfo.Default)) return;
-        
-        float slowMult  = i.GetFloat(NumInfo.Speed, 0.5f);
-        float currentMult = e.GetFloat(NumInfo.Default, 1f);
-        e.SetFloat(NumInfo.Default, currentMult * slowMult);
     }
 }

@@ -22,12 +22,12 @@ MonoBehaviour:
   Tags:
   - Common: 102
     Custom: 
-    W: 0
+    W: 1
     Cost: 0
   LevelRange: {x: 0, y: 0}
   Trait: []
   HP: 5
-  Speed: 2
+  Speed: 1
   VisionRange: 4
   Held: {fileID: 0}
   DefaultAction: 201

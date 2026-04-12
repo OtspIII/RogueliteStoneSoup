@@ -2,14 +2,14 @@ using UnityEngine;
 
 public class Stalk_SarahS : ActionScript
 {
+    private float huntTimer = 0f;
     public Stalk_SarahS(ThingInfo who, EventInfo e = null)
     {
-        Setup(Actions.StalkSarahS,who);
+        Setup(Actions.StalkSarahS,who, true);
         Type = Actions.StalkSarahS;
-        Priority = 2;
         MoveMult = 0.4f;
         CanRotate = true;
-        Anim = "walk";
+        Duration = 0f;
     }
 
     public override void OnRun()
@@ -31,12 +31,25 @@ public class Stalk_SarahS : ActionScript
             Who.Thing.MoveTowards(Who.Target);
             Who.Thing.LookAt(Who.Target, 0.5f);
 
-            float huntTime = Timer;
-            MoveMult = Mathf.Min(0.4f + (huntTime * 0.05f), 1.2f);
+            huntTimer += Time.deltaTime;
+            MoveMult = Mathf.Min(0.4f + (huntTimer * 0.05f), 1.2f);
 
-            if (Who.Thing.Distance(Who.Target) < Who.AttackRange)
+            float distance = Who.Thing.Distance(Who.Target);
+            if (distance <= Who.AttackRange)
             {
+                if (Who.Thing.HeldBody != null)
+                {
+                    Who.Thing.HeldBody.gameObject.SetActive(true);
+                }
+                
                 Who.DoAction(Actions.DefaultAttack);
+            }
+            else
+            {
+                if (Who.Thing.HeldBody != null)
+                {
+                    Who.Thing.HeldBody.gameObject.SetActive(false);
+                }
             }
         }
         else
@@ -45,9 +58,10 @@ public class Stalk_SarahS : ActionScript
         }
     }
 
-    public override void HitBegin(GameCollision col)
+    public override void Reset()
     {
-        
+        base.Reset();
+        huntTimer = 0f;
     }
 
     public override Actions NextAction()

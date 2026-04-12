@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4679cc75b2c8be74e8b047318fa062ea, type: 3}
   m_Name: The Killer
   m_EditorClassIdentifier: Assembly-CSharp::CharacterOption
-  Name: the Hunter
+  Name: The Killer
   Author: 75
   Team: 3
   Body: {fileID: 629948465317790645, guid: acf0e760b28c7b046ad7d511fb87a1d3, type: 3}
@@ -20,15 +20,15 @@ MonoBehaviour:
   Color: {r: 1, g: 1, b: 1, a: 1}
   Size: 1
   Tags:
-  - Common: 0
-    Custom: Enemy
+  - Common: 102
+    Custom: 
     W: 0
     Cost: 0
   LevelRange: {x: 0, y: 0}
   Trait: []
   HP: 5
-  Speed: 2
+  Speed: 1
   VisionRange: 4
-  Held: {fileID: 0}
+  Held: {fileID: 11400000, guid: 5d975fe2e9ae7449aa5028410b913571, type: 2}
   DefaultAction: 7501
   DefaultChaseAction: 7501

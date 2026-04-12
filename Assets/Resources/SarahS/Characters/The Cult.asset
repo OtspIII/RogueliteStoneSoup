@@ -9,16 +9,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 037523bd7ae983240ad1b7cc3ff106cd, type: 3}
-  m_Name: Bear Trap
-  m_EditorClassIdentifier: Assembly-CSharp::ThingOption
-  Name: Bear Trap
-  Author: 75
+  m_Script: {fileID: 11500000, guid: 4679cc75b2c8be74e8b047318fa062ea, type: 3}
+  m_Name: The Cult
+  m_EditorClassIdentifier: Assembly-CSharp::CharacterOption
+  Name: 
+  Author: 0
   Team: 1
   Body: {fileID: 0}
-  Art: {fileID: 553103467783823420, guid: 0397dc9af16778a4eac5d9ba093c5ecb, type: 3}
+  Art: {fileID: 0}
   Color: {r: 1, g: 1, b: 1, a: 1}
   Size: 1
   Tags: []
   LevelRange: {x: 0, y: 0}
   Trait: []
+  HP: 0
+  Speed: 5
+  VisionRange: 4
+  Held: {fileID: 0}
+  DefaultAction: 201
+  DefaultChaseAction: 202
