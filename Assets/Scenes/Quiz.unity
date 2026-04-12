@@ -148,7 +148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d09ac204ff6f0f409ff7ff4df77f917, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  Type: 2
+  Type: 10
   Author: 11
   OutputText: []
   Text: {fileID: 1771376708}
@@ -236,8 +236,8 @@ MonoBehaviour:
   m_fontSize: 8
   m_fontSizeBase: 8
   m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 3
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 1

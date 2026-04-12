@@ -33,6 +33,7 @@ public class Quiz_WesleyP : QuizScript
         int safety = 999;
         while (safety > 0) //Needs an &&
         {
+            safety--;
             //Insert Sort Code Here
         }
         return r;

@@ -151,6 +151,7 @@ public class QuizManager : MonoBehaviour
 
     public bool AuditFilterEven(List<int> l)
     {
+        if (l.Count == 0) return false;
         foreach(int n in l)
             if (n % 2 != 0)
             {
@@ -172,6 +173,7 @@ public class QuizManager : MonoBehaviour
     
     public bool AuditSort(List<int> l)
     {
+        if (l.Count == 0) return false;
         for (int n = 0; n < l.Count - 1; n++)
         {
             if (l[n] < l[n + 1])
