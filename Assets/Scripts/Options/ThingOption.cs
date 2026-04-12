@@ -90,6 +90,11 @@ public class ThingOption : GameOption //A generic class for anything that might 
         return Art;
     }
 
+    public virtual bool HasTag(string tag)
+    {
+        return HasTag(tag, out float w, out float c);
+    }
+    
     public virtual bool HasTag(string tag, out float w)
     {
         return HasTag(tag, out w, out float c);
