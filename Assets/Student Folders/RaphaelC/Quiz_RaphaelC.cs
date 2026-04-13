@@ -14,15 +14,26 @@ public class Quiz_RaphaelC : QuizScript
     {
         List<int> r = new List<int>();
         //Insert Filter Code Here
+
+        foreach (int n in l) 
+        {
+            if (n % 2 <= 0)
+            {
+                r.Add(n);
+            }
+        }
         return r;
     }
     
-    public override int FindBest(List<int> l)
+    public override int FindBest(List<int> l) 
     {
         int r = -999;
         foreach (int n in l)
-        {
-            //Insert Find Best Code Here
+        {   
+            if (n > r)
+            {
+                r = n;
+            }
         }
         return r;
     }
@@ -31,17 +42,29 @@ public class Quiz_RaphaelC : QuizScript
     {
         List<int> r = new List<int>();
         int safety = 999;
-        while (safety > 0) //Needs an &&
+        while (safety > 0 && l.Count > 0) //Needs an &&
         {
             safety--;
             //Insert Sort Code Here
+
+            int highest = int.MinValue;
+            foreach (int n in l)
+            {
+                if (n > highest)
+                {
+                    highest = n;
+                }
+            }
+
+            r.Add(highest);
+            l.Remove(highest);
         }
         return r;
     }
 
     public override int ReturnRandom(List<int> l)
     {
-        return l[0];
+        return l[Random.Range(0, l.Count)];
     }
 
     public override void RandomForEach(List<int> l)
@@ -50,6 +73,10 @@ public class Quiz_RaphaelC : QuizScript
         while (safety > 0 && l.Count > 0)
         {
             safety--;
+            //foreach (r in l.Count)
+            //{
+
+            //}
         }
     }
 

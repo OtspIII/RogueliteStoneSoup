@@ -24,7 +24,7 @@ MonoBehaviour:
     Custom: 
     W: 0
     Cost: 0
-  LevelRange: {x: 0, y: 0}
+  LevelRange: {x: 8, y: 10}
   Trait:
   - Trait: 400
     Numbers: []
@@ -40,4 +40,4 @@ MonoBehaviour:
       MaxCost: 0
     Builder: []
   Damage: 1
-  Speed: 0.5
+  Speed: 0.2

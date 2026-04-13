@@ -14,15 +14,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ItemOption
   Name: Old Journal
   Author: 75
-  Team: 2
-  Body: {fileID: 0}
+  Team: 1
+  Body: {fileID: 629948465317790645, guid: 7ef37acb0fdeb5849995b35a7fdca6ba, type: 3}
   Art: {fileID: 21300000, guid: 669d272c237ba4b6683e9c98adb64f81, type: 3}
   Color: {r: 1, g: 1, b: 1, a: 1}
   Size: 1
-  Tags: []
-  LevelRange: {x: 0, y: 0}
+  Tags:
+  - Common: 202
+    Custom: 
+    W: 0
+    Cost: 0
+  LevelRange: {x: 8, y: 10}
   Trait:
-  - Trait: 301
+  - Trait: 313
     Numbers: []
     Prefabs: []
     Acts: []
@@ -35,7 +39,7 @@ MonoBehaviour:
       Author: 0
       MaxCost: 0
     Builder: []
-  - Trait: 7503
+  - Trait: 312
     Numbers: []
     Prefabs: []
     Acts: []
@@ -47,8 +51,27 @@ MonoBehaviour:
       Level: 0
       Author: 0
       MaxCost: 0
-    Builder: []
-  DefaultAttack: 0
+    Builder:
+    - Type: 0
+      NumType: 1
+      Num: 2
+      StrType: 0
+      Str: 
+      ActType: 0
+      Act: 0
+      BoolType: 0
+      Bool: 0
+      OptionType: 0
+      Option: {fileID: 0}
+      VectorType: 0
+      Vector: {x: 0, y: 0}
+      Fixed: {fileID: 0}
+      Mandatory: 
+      MandatoryW: 0
+      Any: 
+      AnyW: 0
+      Trait: 0
+  DefaultAttack: 7506
   ToSpawn:
     Fixed: {fileID: 0}
     Mandatory: []
@@ -61,4 +84,4 @@ MonoBehaviour:
   Damage: 0
   IdealRange: 1.5
   SpeedMult: 1
-  ActDuration: 2
+  ActDuration: 0

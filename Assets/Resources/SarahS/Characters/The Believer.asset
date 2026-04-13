@@ -24,11 +24,24 @@ MonoBehaviour:
     Custom: 
     W: 0
     Cost: 0
-  LevelRange: {x: 0, y: 0}
-  Trait: []
+  LevelRange: {x: 8, y: 10}
+  Trait:
+  - Trait: 7504
+    Numbers: []
+    Prefabs: []
+    Acts: []
+    OtherTrait: 0
+    SpawnReq:
+      Fixed: {fileID: 0}
+      Mandatory: []
+      Any: []
+      Level: 0
+      Author: 0
+      MaxCost: 0
+    Builder: []
   HP: 5
   Speed: 0.5
   VisionRange: 3
-  Held: {fileID: 11400000, guid: e77df0d0f0c7b446fae84ad77c8f904d, type: 2}
+  Held: {fileID: 0}
   DefaultAction: 201
   DefaultChaseAction: 202

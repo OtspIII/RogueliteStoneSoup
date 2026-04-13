@@ -24,9 +24,9 @@ MonoBehaviour:
     Custom: 
     W: 0
     Cost: 0
-  LevelRange: {x: 8, y: 0}
+  LevelRange: {x: 8, y: 10}
   Trait:
-  - Trait: 0
+  - Trait: 7501
     Numbers: []
     Prefabs: []
     Acts: []

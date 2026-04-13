@@ -22,10 +22,23 @@ MonoBehaviour:
   Tags:
   - Common: 102
     Custom: 
-    W: 1
+    W: 0
     Cost: 0
-  LevelRange: {x: 0, y: 0}
-  Trait: []
+  LevelRange: {x: 5, y: 8}
+  Trait:
+  - Trait: 7504
+    Numbers: []
+    Prefabs: []
+    Acts: []
+    OtherTrait: 0
+    SpawnReq:
+      Fixed: {fileID: 0}
+      Mandatory: []
+      Any: []
+      Level: 0
+      Author: 0
+      MaxCost: 0
+    Builder: []
   HP: 5
   Speed: 1
   VisionRange: 4

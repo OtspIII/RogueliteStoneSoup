@@ -24,21 +24,8 @@ MonoBehaviour:
     Custom: 
     W: 0
     Cost: 0
-  LevelRange: {x: 0, y: 0}
-  Trait:
-  - Trait: 301
-    Numbers: []
-    Prefabs: []
-    Acts: []
-    OtherTrait: 0
-    SpawnReq:
-      Fixed: {fileID: 0}
-      Mandatory: []
-      Any: []
-      Level: 0
-      Author: 0
-      MaxCost: 0
-    Builder: []
+  LevelRange: {x: 0, y: 3}
+  Trait: []
   DefaultAttack: 101
   ToSpawn:
     Fixed: {fileID: 0}
