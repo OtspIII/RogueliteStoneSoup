@@ -20,7 +20,7 @@ MonoBehaviour:
   Color: {r: 1, g: 1, b: 1, a: 1}
   Size: 0.5
   Tags: []
-  LevelRange: {x: 0, y: 0}
+  LevelRange: {x: 8, y: 10}
   Trait: []
   DefaultAttack: 103
   ToSpawn:

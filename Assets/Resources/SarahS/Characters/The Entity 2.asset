@@ -16,7 +16,7 @@ MonoBehaviour:
   Author: 75
   Team: 3
   Body: {fileID: 629948465317790645, guid: acf0e760b28c7b046ad7d511fb87a1d3, type: 3}
-  Art: {fileID: 21300000, guid: 4d5aff4ef616e404cae4ebc421cafa91, type: 3}
+  Art: {fileID: 21300000, guid: a56f571556faa40309fd28d270caadc8, type: 3}
   Color: {r: 1, g: 1, b: 1, a: 1}
   Size: 1
   Tags:
@@ -24,11 +24,24 @@ MonoBehaviour:
     Custom: 
     W: 0
     Cost: 0
-  LevelRange: {x: 3, y: 0}
-  Trait: []
+  LevelRange: {x: 5, y: 0}
+  Trait:
+  - Trait: 0
+    Numbers: []
+    Prefabs: []
+    Acts: []
+    OtherTrait: 0
+    SpawnReq:
+      Fixed: {fileID: 0}
+      Mandatory: []
+      Any: []
+      Level: 0
+      Author: 0
+      MaxCost: 0
+    Builder: []
   HP: 5
   Speed: 1
   VisionRange: 4
-  Held: {fileID: 11400000, guid: 5ac85db6d02964b9493438750ca1d758, type: 2}
-  DefaultAction: 201
-  DefaultChaseAction: 202
+  Held: {fileID: 0}
+  DefaultAction: 7502
+  DefaultChaseAction: 7502
