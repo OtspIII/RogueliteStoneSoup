@@ -14,6 +14,7 @@ public class Quiz_JaidenB : QuizScript
     {
         List<int> r = new List<int>();
         //Insert Filter Code Here
+        foreach (int n in l) { Debug.Log(n%3); }
         return r;
     }
     
@@ -41,6 +42,7 @@ public class Quiz_JaidenB : QuizScript
 
     public override int ReturnRandom(List<int> l)
     {
+
         return l[0];
     }
 

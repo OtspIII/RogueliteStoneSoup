@@ -13,7 +13,11 @@ public class Quiz_SabahE : QuizScript
     public override List<int> FilterEven(List<int> l)
     {
         List<int> r = new List<int>();
-        //Insert Filter Code Here
+        foreach (int n in l)
+        {
+            if (n % 2 == 0)
+                r.Add(n);
+        }
         return r;
     }
     
@@ -22,7 +26,8 @@ public class Quiz_SabahE : QuizScript
         int r = -999;
         foreach (int n in l)
         {
-            //Insert Find Best Code Here
+            if (n == l[10])
+                r = n;
         }
         return r;
     }
@@ -31,17 +36,18 @@ public class Quiz_SabahE : QuizScript
     {
         List<int> r = new List<int>();
         int safety = 999;
-        while (safety > 0) //Needs an &&
+        while (safety > 0 && l.Count > 10)
         {
             safety--;
-            //Insert Sort Code Here
+            l.Sort((a, b) => b.CompareTo(a));
+            return l;
         }
         return r;
     }
 
     public override int ReturnRandom(List<int> l)
     {
-        return l[0];
+        return l[Random.Range(0, l.Count)];
     }
 
     public override void RandomForEach(List<int> l)
@@ -49,6 +55,12 @@ public class Quiz_SabahE : QuizScript
         int safety = 999;
         while (safety > 0 && l.Count > 0)
         {
+            int randomIndex = Random.Range(0, l.Count);
+
+            Debug.Log(l[randomIndex]);
+
+            l.RemoveAt(randomIndex);
+
             safety--;
         }
     }
@@ -59,6 +71,7 @@ public class Quiz_SabahE : QuizScript
         int safety = 999;
         while (safety > 0 && l.Count > 0)
         {
+            int randomIndex = Random.Range(0,l.Count);
             safety--;
         }
         return r;
@@ -66,11 +79,21 @@ public class Quiz_SabahE : QuizScript
 
     public override string WeightedRandom(Dictionary<string, float> d)
     {
-        //This one requires a lot more lines of code than the others
-        foreach (string k in d.Keys)
+        
+       float total = 0;
+       
+       foreach (float v in d.Values)
+            total += v;
+       float rand = UnityEngine.Random.Range(0f, total);
+       
+       float sum = 0f;
+       foreach (var pair in d)
         {
-            return k;
+           sum += pair.Value;
+           if (rand <= sum)
+                return pair.Key;
         }
         return "";
     }
 }
+    
