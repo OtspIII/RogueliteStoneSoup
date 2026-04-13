@@ -22,7 +22,7 @@ MonoBehaviour:
   Tags:
   - Common: 402
     Custom: 
-    W: 0
+    W: 1
     Cost: 0
   LevelRange: {x: 4, y: 0}
   Trait:

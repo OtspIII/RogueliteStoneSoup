@@ -24,7 +24,7 @@ MonoBehaviour:
     Custom: 
     W: 0
     Cost: 0
-  LevelRange: {x: 0, y: 0}
+  LevelRange: {x: 0, y: 3}
   Trait: []
   HP: 5
   Speed: 1
