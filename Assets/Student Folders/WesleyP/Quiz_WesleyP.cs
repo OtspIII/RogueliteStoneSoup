@@ -13,6 +13,13 @@ public class Quiz_WesleyP : QuizScript
     public override List<int> FilterEven(List<int> l)
     {
         List<int> r = new List<int>();
+        foreach (int i in l) 
+        {
+            float t = Random.Range(0.0f, 1.0f); r.Add(i);
+            r.Add(i);
+            Debug.Log(4%2);
+            r.Add(5%2);
+        }
         //Insert Filter Code Here
         return r;
     }
@@ -22,7 +29,13 @@ public class Quiz_WesleyP : QuizScript
         int r = -999;
         foreach (int n in l)
         {
-            //Insert Find Best Code Here
+        {
+            float t = Random.Range(999f, -999f);
+            {
+                r = r*r;
+                return n;
+            }
+                //Insert Find Best Code Here
         }
         return r;
     }
@@ -67,8 +80,15 @@ public class Quiz_WesleyP : QuizScript
     public override string WeightedRandom(Dictionary<string, float> d)
     {
         //This one requires a lot more lines of code than the others
+        List<int>deck = new List<int>();
         foreach (string k in d.Keys)
         {
+            float w=d[k];
+            for (int n = 0;  n < d.Count; n++)
+            {
+                deck.Add(n);
+            }
+            float h=d[k+1];
             return k;
         }
         return "";

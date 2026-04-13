@@ -13,7 +13,13 @@ public class Quiz_QixiangD : QuizScript
     public override List<int> FilterEven(List<int> l)
     {
         List<int> r = new List<int>();
-        //Insert Filter Code Here
+        foreach (int i in l)
+        {
+            if (i % 2 == 0)
+            {
+                r.Add(i);
+            }
+        }
         return r;
     }
     
@@ -22,8 +28,12 @@ public class Quiz_QixiangD : QuizScript
         int r = -999;
         foreach (int n in l)
         {
-            //Insert Find Best Code Here
+            if (n >= r)
+            {
+                r = n;
+            }
         }
+
         return r;
     }
 
@@ -31,10 +41,20 @@ public class Quiz_QixiangD : QuizScript
     {
         List<int> r = new List<int>();
         int safety = 999;
-        while (safety > 0) //Needs an &&
+        while (safety > 0 && l.Count > 0) //Needs an &&
         {
             safety--;
-            //Insert Sort Code Here
+            int value = l[0];
+            l.RemoveAt(0);
+
+            int i= 0;
+            while(i<r.Count && value <= r[i])
+            {
+                i++;
+            }
+            r.Insert(i, value);
+                
+            
         }
         return r;
     }
@@ -74,3 +94,4 @@ public class Quiz_QixiangD : QuizScript
         return "";
     }
 }
+// my computer broke down during class 
