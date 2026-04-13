@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using Random = UnityEngine.Random;
+using System; 
 
 public class Quiz_YuChen : QuizScript
 {
@@ -13,7 +14,13 @@ public class Quiz_YuChen : QuizScript
     public override List<int> FilterEven(List<int> l)
     {
         List<int> r = new List<int>();
-        //Insert Filter Code Here
+        foreach (int n in l)
+        {
+            if(n % 2 == 0)
+            {
+                r.Add(n);
+            }
+        }
         return r;
     }
     
@@ -22,7 +29,10 @@ public class Quiz_YuChen : QuizScript
         int r = -999;
         foreach (int n in l)
         {
-            //Insert Find Best Code Here
+            if (n > r)
+            {
+                r = n;
+            }
         }
         return r;
     }
@@ -31,17 +41,22 @@ public class Quiz_YuChen : QuizScript
     {
         List<int> r = new List<int>();
         int safety = 999;
-        while (safety > 0) //Needs an &&
+        while (safety > 0 && l.Count > 0) //Needs an &&
         {
+           
             safety--;
-            //Insert Sort Code Here
+            r.Sort((a, b) => b.CompareTo(a));
+
         }
         return r;
     }
 
+
     public override int ReturnRandom(List<int> l)
     {
-        return l[0];
+
+        random num = new Random();
+        return l[num.Next(l.Count)];
     }
 
     public override void RandomForEach(List<int> l)
