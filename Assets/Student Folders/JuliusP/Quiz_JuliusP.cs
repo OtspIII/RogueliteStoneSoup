@@ -14,6 +14,22 @@ public class Quiz_JuliusP : QuizScript
     {
         List<int> r = new List<int>();
         //Insert Filter Code Here
+
+        foreach(int num in l)
+        {
+            
+            if(num % 2 == 0)
+            {
+                
+              r.Add(num); 
+
+
+            }
+
+         
+
+
+        }
         return r;
     }
     
@@ -22,7 +38,20 @@ public class Quiz_JuliusP : QuizScript
         int r = -999;
         foreach (int n in l)
         {
+            
             //Insert Find Best Code Here
+
+            if(n > r)
+            {
+
+               r = n; 
+
+
+
+            }
+
+           
+        
         }
         return r;
     }
@@ -41,7 +70,12 @@ public class Quiz_JuliusP : QuizScript
 
     public override int ReturnRandom(List<int> l)
     {
-        return l[0];
+       
+        
+        return Random.Range(0, l.Count);
+
+
+    
     }
 
     public override void RandomForEach(List<int> l)
@@ -50,16 +84,38 @@ public class Quiz_JuliusP : QuizScript
         while (safety > 0 && l.Count > 0)
         {
             safety--;
+
+            
+            int RandomIndex = Random.Range(0, l.Count);
+
+            int value = l[RandomIndex];
+
+            Debug.Log(value);
+
+            l.RemoveAt(RandomIndex);
+
+
+
+
+
         }
     }
 
     public override List<int> Shuffle(List<int> l)
     {
         List<int> r = new List<int>();
+       
         int safety = 999;
+
         while (safety > 0 && l.Count > 0)
         {
             safety--;
+
+            //int index = rand.Next(l.Count);
+       
+            //r.Add(l[index]);
+        
+            //l.RemoveAt(index);
         }
         return r;
     }
@@ -69,6 +125,18 @@ public class Quiz_JuliusP : QuizScript
         //This one requires a lot more lines of code than the others
         foreach (string k in d.Keys)
         {
+
+           // float v = k[s];
+
+
+            //for(int i = 0; i < v; i++)
+            {
+                
+
+
+
+
+            }
             return k;
         }
         return "";
