@@ -29,7 +29,6 @@ public class Quiz_WesleyP : QuizScript
         int r = -999;
         foreach (int n in l)
         {
-        {
             float t = Random.Range(999f, -999f);
             {
                 r = r*r;

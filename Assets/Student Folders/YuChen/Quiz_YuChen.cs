@@ -54,9 +54,9 @@ public class Quiz_YuChen : QuizScript
 
     public override int ReturnRandom(List<int> l)
     {
-
-        random num = new Random();
-        return l[num.Next(l.Count)];
+        return 0;
+        // Random num = new Random();
+        // return l[num.Next(l.Count)];
     }
 
     public override void RandomForEach(List<int> l)
