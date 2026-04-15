@@ -70,18 +70,24 @@ public class Quiz_AdamD : QuizScript
 
     public override int ReturnRandom(List<int> l)
     {
-        return l[Random.Range(0, l.Count)];
+        return l[Random.Range(0, l.Count)]; //done in class
     }
 
     public override void RandomForEach(List<int> l)
     {
+
+        List<int> r = new List<int>();
         int safety = 999;
         while (safety > 0 && l.Count > 0)
         {
-            safety--;/*
-            l.Add[Random.Range(0, l.Count)];*/
+            safety--;
+            int RandomInt = l[Random.Range(0, l.Count)]; ;
+            r.Add(RandomInt);
+            l.Remove(RandomInt);
+            
             //should scramble the list's order in the debug log
         }
+        Debug.Log(r); //i guess this should also be done
     }
 
     public override List<int> Shuffle(List<int> l)
@@ -91,9 +97,12 @@ public class Quiz_AdamD : QuizScript
         while (safety > 0 && l.Count > 0)
         {
             safety--;
-
+            int RandomInt= l[Random.Range(0, l.Count)]; ;
+            r.Add(RandomInt);
+            l.Remove(RandomInt);
         }
         return r;
+        //should be done..?
     }
 
     public override string WeightedRandom(Dictionary<string, float> d)
