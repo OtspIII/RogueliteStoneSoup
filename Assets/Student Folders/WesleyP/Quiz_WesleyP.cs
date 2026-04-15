@@ -15,15 +15,7 @@ public class Quiz_WesleyP : QuizScript
         List<int> r = new List<int>();
         foreach (int n in l)
         {
-            if (n % 3 == 0)
-            {
-                r.Add(n);
-            }
-        }
-        List<int> o = new List<int>();
-        foreach (int n in l)
-        {
-            if (n % 4 == 0)
+            if (n % 2 == 0)
             {
                 r.Add(n);
             }
