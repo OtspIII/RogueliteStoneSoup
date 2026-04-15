@@ -13,7 +13,13 @@ public class Quiz_MichaelT : QuizScript
     public override List<int> FilterEven(List<int> l)
     {
         List<int> r = new List<int>();
-        //Insert Filter Code Here
+        foreach (int n in l)
+        {
+            if (n % 2 == 0)
+            {
+                r.Add(n);
+            }
+        }
         return r;
     }
     
@@ -22,7 +28,10 @@ public class Quiz_MichaelT : QuizScript
         int r = -999;
         foreach (int n in l)
         {
-            //Insert Find Best Code Here
+            if (n > r)
+            {
+                r = n;
+            }
         }
         return r;
     }
@@ -31,17 +40,24 @@ public class Quiz_MichaelT : QuizScript
     {
         List<int> r = new List<int>();
         int safety = 999;
-        while (safety > 0) //Needs an &&
+        while (safety > 0 && l.Count > 0)
         {
             safety--;
-            //Insert Sort Code Here
+            int best = FindBest(l); 
+            r.Add(best);
+            l.Remove(best);
         }
         return r;
     }
 
     public override int ReturnRandom(List<int> l)
     {
-        return l[0];
+        if (l.Count == 0)
+        {
+            return -1;
+        }
+        int index = Random.Range(0, l.Count);
+        return l[index];
     }
 
     public override void RandomForEach(List<int> l)
@@ -50,6 +66,9 @@ public class Quiz_MichaelT : QuizScript
         while (safety > 0 && l.Count > 0)
         {
             safety--;
+            int vaL = ReturnRandom(l);
+            Debug.Log(vaL);
+            l.Remove(vaL);
         }
     }
 
@@ -60,17 +79,30 @@ public class Quiz_MichaelT : QuizScript
         while (safety > 0 && l.Count > 0)
         {
             safety--;
+            int vaL = ReturnRandom(l);
+            r.Add(vaL);
+            l.Remove(vaL);
         }
         return r;
     }
 
     public override string WeightedRandom(Dictionary<string, float> d)
     {
-        //This one requires a lot more lines of code than the others
+        float totalWeight = 0f;
+        foreach (float v in d.Values)
+        {
+            totalWeight += v;
+        }
+        float randomWeight = Random.Range(0f, totalWeight);
+        float cumulativeWeight = 0f;
         foreach (string k in d.Keys)
         {
-            return k;
-        }
+            cumulativeWeight += d[k];
+            if (randomWeight <= cumulativeWeight)
+            {
+                return k;
+            }
+        }   
         return "";
     }
 }
