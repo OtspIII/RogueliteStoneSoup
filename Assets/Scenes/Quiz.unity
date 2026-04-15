@@ -149,7 +149,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   Type: 10
+<<<<<<< HEAD
   Author: 0
+=======
+  Author: 90
+>>>>>>> WesleyBranch
   OutputText: []
   Text: {fileID: 1771376708}
 --- !u!4 &1432110592

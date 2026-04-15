@@ -61,7 +61,7 @@ public class Quiz_QixiangD : QuizScript
 
     public override int ReturnRandom(List<int> l)
     {
-        return l[0];
+        return l[Random.Range(0,l.Count)];
     }
 
     public override void RandomForEach(List<int> l)
@@ -70,6 +70,10 @@ public class Quiz_QixiangD : QuizScript
         while (safety > 0 && l.Count > 0)
         {
             safety--;
+
+            int index = Random.Range(0, l.Count);
+            Debug.Log(l[index]);
+            l.RemoveAt(index);
         }
     }
 
@@ -80,6 +84,9 @@ public class Quiz_QixiangD : QuizScript
         while (safety > 0 && l.Count > 0)
         {
             safety--;
+            int index = Random.Range(0, l.Count);
+            r.Add(l[index]);
+            l.RemoveAt(index);
         }
         return r;
     }
@@ -87,9 +94,21 @@ public class Quiz_QixiangD : QuizScript
     public override string WeightedRandom(Dictionary<string, float> d)
     {
         //This one requires a lot more lines of code than the others
+        float totat = 0f;
         foreach (string k in d.Keys)
         {
-            return k;
+            totat += d[k];
+        }
+
+        float r = Random.Range(0f, totat);
+        float current = 0f;
+        foreach (string k in d.Keys)
+        {
+            current += d[k];
+            if (r <= current)
+            {
+                return k;
+            }
         }
         return "";
     }
