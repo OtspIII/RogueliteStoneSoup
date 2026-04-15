@@ -75,18 +75,22 @@ public class Quiz_SarahS : QuizScript
         {
             safety--;
             int randomIdx = Random.Range(0, temp.Count);
-            Debug.Log(temp[randomIdx]);
+            Debug.Log("Random Number: " + temp[randomIdx]);
             temp.RemoveAt(temp.Count - 1);
         }
     }
 
     public override List<int> Shuffle(List<int> l)
     {
+        List <int> temp = new List<int>(l);
         List<int> r = new List<int>();
         int safety = 999;
-        while (safety > 0 && l.Count > 0)
+        while (safety > 0 && temp.Count > 0)
         {
             safety--;
+            int randomIdx = Random.Range(0, temp.Count);
+            r.Add(temp[randomIdx]);
+            temp.RemoveAt(randomIdx);
         }
         return r;
     }
@@ -94,9 +98,22 @@ public class Quiz_SarahS : QuizScript
     public override string WeightedRandom(Dictionary<string, float> d)
     {
         //This one requires a lot more lines of code than the others
-        foreach (string k in d.Keys)
+        float totalWeight = 0;
+        foreach (var item in d)
         {
-            return k;
+            totalWeight += item.Value;
+        }
+        
+        float randomPick = Random.Range(0, totalWeight);
+        float currentWeight = 0;
+        foreach (var item in d)
+        {
+            currentWeight += item.Value;
+
+            if (randomPick <= currentWeight)
+            {
+                return item.Key;
+            }
         }
         return "";
     }

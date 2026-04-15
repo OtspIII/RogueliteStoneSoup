@@ -45,7 +45,18 @@ public class Quiz_YuChen : QuizScript
         {
            
             safety--;
-            r.Sort((a, b) => b.CompareTo(a));
+
+            int Lnum = int.MinValue;
+            foreach (int n in l)
+            {
+                if (n > Lnum)
+                {
+                    Lnum = n;
+                }
+            }
+
+            r.Add(Lnum);
+            l.Remove(Lnum);
 
         }
         return r;
@@ -54,9 +65,15 @@ public class Quiz_YuChen : QuizScript
 
     public override int ReturnRandom(List<int> l)
     {
+<<<<<<< HEAD
 
-        random num = new Random();
-        return l[num.Next(l.Count)];
+        return l[Random.Range(0, l.Count)];
+
+=======
+        return 0;
+        // Random num = new Random();
+        // return l[num.Next(l.Count)];
+>>>>>>> 00285dd777037938f92028c1553e989eab2665b2
     }
 
     public override void RandomForEach(List<int> l)
@@ -65,6 +82,12 @@ public class Quiz_YuChen : QuizScript
         while (safety > 0 && l.Count > 0)
         {
             safety--;
+            int numindex = l[Random.Range(0, l.Count)];
+            Debug.Log(numindex);
+            l.RemoveAt(numindex);
+
+
+
         }
     }
 
@@ -75,6 +98,11 @@ public class Quiz_YuChen : QuizScript
         while (safety > 0 && l.Count > 0)
         {
             safety--;
+            int rnum = l[Random.Range(0, l.Count)];
+            r.Add(l[rnum]);
+            l.RemoveAt(rnum);
+
+
         }
         return r;
     }
