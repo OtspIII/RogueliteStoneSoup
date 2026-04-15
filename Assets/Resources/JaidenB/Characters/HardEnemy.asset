@@ -12,19 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4679cc75b2c8be74e8b047318fa062ea, type: 3}
   m_Name: HardEnemy
   m_EditorClassIdentifier: Assembly-CSharp::CharacterOption
-  Name: Haunter
+  Name: HardEnemy
   Author: 35
   Team: 3
   Body: {fileID: 629948465317790645, guid: c5227d51ccfec934db9e0058624b573e, type: 3}
-  Art: {fileID: 6005008538062400051, guid: 6b94876af2f4daa4dbef6aebff1ec0d9, type: 3}
-  Color: {r: 0.1981132, g: 0.1981132, b: 0.1981132, a: 1}
-  Size: 0.6
+  Art: {fileID: -7232521027535748977, guid: c6f4397142421a04a8f0b2840f748f65, type: 3}
+  Color: {r: 0, g: 0, b: 0, a: 1}
+  Size: 2.5
   Tags:
   - Common: 102
     Custom: 
-    W: 3
+    W: 1
     Cost: 1
-  LevelRange: {x: 4, y: 4}
+  LevelRange: {x: 8, y: 10}
   Trait:
   - Trait: 0
     Numbers: []
@@ -39,8 +39,8 @@ MonoBehaviour:
       Author: 0
       MaxCost: 0
     Builder: []
-  HP: 5
-  Speed: 5
+  HP: 3
+  Speed: 2
   VisionRange: 5
   Held: {fileID: 11400000, guid: e2e2d529f15f4cc458d0f581d3ca9201, type: 2}
   DefaultAction: 201

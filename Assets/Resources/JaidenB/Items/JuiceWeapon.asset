@@ -26,7 +26,7 @@ MonoBehaviour:
     Cost: 1
   LevelRange: {x: 0, y: 0}
   Trait:
-  - Trait: 0
+  - Trait: 312
     Numbers: []
     Prefabs: []
     Acts: []
@@ -38,7 +38,26 @@ MonoBehaviour:
       Level: 0
       Author: 0
       MaxCost: 0
-    Builder: []
+    Builder:
+    - Type: 0
+      NumType: 0
+      Num: 1
+      StrType: 0
+      Str: 
+      ActType: 0
+      Act: 0
+      BoolType: 0
+      Bool: 0
+      OptionType: 0
+      Option: {fileID: 0}
+      VectorType: 0
+      Vector: {x: 0, y: 0}
+      Fixed: {fileID: 0}
+      Mandatory: 
+      MandatoryW: 0
+      Any: 
+      AnyW: 0
+      Trait: 0
   DefaultAttack: 103
   ToSpawn:
     Fixed: {fileID: 11400000, guid: 0a536df78b0fe7e4a8c09d937c84fb72, type: 2}
@@ -49,7 +68,7 @@ MonoBehaviour:
     MaxCost: 0
   FloorBody: {fileID: 0}
   FloorArt: {fileID: 0}
-  Damage: 5
+  Damage: 1
   IdealRange: 1
   SpeedMult: 5
-  ActDuration: 1
+  ActDuration: 3

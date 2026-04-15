@@ -14,7 +14,13 @@ public class Quiz_JaidenB : QuizScript
     {
         List<int> r = new List<int>();
         //Insert Filter Code Here
-        foreach (int n in l) { Debug.Log(n%3); }
+        foreach (int n in l)
+        {
+            if (n % 2 == 0)
+            { 
+                r.Add(n);
+            }
+        }
         return r;
     }
     
@@ -24,6 +30,10 @@ public class Quiz_JaidenB : QuizScript
         foreach (int n in l)
         {
             //Insert Find Best Code Here
+            if (n > r) 
+            {
+                r = n; // Replacing the r interger with the value from the list
+            }
         }
         return r;
     }
@@ -32,10 +42,15 @@ public class Quiz_JaidenB : QuizScript
     {
         List<int> r = new List<int>();
         int safety = 999;
-        while (safety > 0) //Needs an &&
+        
+        while (safety > 0 && l.Count > 0) //Needs an && || just used the && from the future questions
         {
+            int SortCount = FindBest(l); // Calling the previous function
             safety--;
             //Insert Sort Code Here
+
+            r.Add(SortCount);
+            l.Remove(SortCount);
         }
         return r;
     }
@@ -43,7 +58,7 @@ public class Quiz_JaidenB : QuizScript
     public override int ReturnRandom(List<int> l)
     {
 
-        return l[0];
+        return l[Random.Range(0, l.Count)];
     }
 
     public override void RandomForEach(List<int> l)
@@ -52,6 +67,9 @@ public class Quiz_JaidenB : QuizScript
         while (safety > 0 && l.Count > 0)
         {
             safety--;
+            //int RandomCount = l[Random.Range(0, l.Count)];
+            //Debug.Log(RandomCount);
+            //l.Remove(RandomCount);
         }
     }
 
@@ -62,6 +80,11 @@ public class Quiz_JaidenB : QuizScript
         while (safety > 0 && l.Count > 0)
         {
             safety--;
+
+            int RandomCount = l[Random.Range(0, l.Count)];
+
+            r.Add(RandomCount);
+            l.Remove(RandomCount);
         }
         return r;
     }
