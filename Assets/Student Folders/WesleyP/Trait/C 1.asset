@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: C 1
   m_EditorClassIdentifier: Assembly-CSharp::ThingOption
   Name: Cr1
-  Author: 90
+  Author: 1
   Team: 2
   Body: {fileID: 0}
   Art: {fileID: -8335318719858845397, guid: 8d93e9f3167202648ad2cd2374e1a252, type: 3}

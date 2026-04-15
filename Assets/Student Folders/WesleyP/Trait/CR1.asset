@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: CR1
   m_EditorClassIdentifier: Assembly-CSharp::CharacterOption
   Name: CR1
-  Author: 90
+  Author: 1
   Team: 2
   Body: {fileID: 629948465317790645, guid: acf0e760b28c7b046ad7d511fb87a1d3, type: 3}
   Art: {fileID: -183446788379000519, guid: 8d93e9f3167202648ad2cd2374e1a252, type: 3}
@@ -24,7 +24,7 @@ MonoBehaviour:
     Custom: 
     W: 1
     Cost: 1
-  - Common: 102
+  - Common: 1
     Custom: 
     W: 1
     Cost: 0
