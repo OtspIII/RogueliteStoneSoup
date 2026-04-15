@@ -15,6 +15,10 @@ public class Quiz_WesleyP : QuizScript
         List<int> r = new List<int>();
         foreach (int n in l)
         {
+            if (n % 4 == 0)
+            {
+                r.Add(n);
+            }
             if (n % 2 == 0)
             {
                 r.Add(n);
@@ -80,7 +84,6 @@ public class Quiz_WesleyP : QuizScript
         {
             safety--;
             int vaL = ReturnRandom(l);
-            r.Add(vaL);
             l.Remove(vaL);
         }
         return r;
