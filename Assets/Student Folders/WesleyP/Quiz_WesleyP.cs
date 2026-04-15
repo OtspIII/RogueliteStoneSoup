@@ -38,11 +38,8 @@ public class Quiz_WesleyP : QuizScript
         int r = -999;
         foreach (int n in l)
         {
-<<<<<<< HEAD
             float t = Random.Range(999f, -999f);
-=======
             if (n > r)
->>>>>>> WesleyBranch
             {
                 r = r*r;
                 return n;
@@ -53,7 +50,7 @@ public class Quiz_WesleyP : QuizScript
         return r;
     }
 
-    public override List<int> SortHighToLow(List<int> l)
+    // public override List<int> SortHighToLow(List<int> l)
     public override List<int> SortHighToLow(List<int> k)
     {
         List<int> r = new List<int>();
