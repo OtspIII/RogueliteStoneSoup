@@ -21,6 +21,8 @@ public class Quiz_JuliusP : QuizScript
             if(num % 2 == 0)
             {
                 
+              //ADDS THE EVEN NUMBERS TO THE LIST//
+
               r.Add(num); 
 
 
@@ -60,13 +62,56 @@ public class Quiz_JuliusP : QuizScript
     {
         List<int> r = new List<int>();
         int safety = 999;
-        while (safety > 0) //Needs an &&
+
+   
+        while (safety > 0 && l.Count > 0) //Needs an &&
         {
             safety--;
             //Insert Sort Code Here
+
+            int Max = l[0];
+
+            int MaxIndex = 0;
+
+           
+            for(int i = 0; i<l.Count; i++)
+            {
+                
+
+              //START WITH FIRST NUMBER FOR COMPARING//
+               int max = l[0];
+
+
+               if(l[i] > Max)
+                {
+                    
+                    //SET THE MAX TO BE THE CURRENT MAX//
+                    l[i] = Max;
+
+                    //SAVE THE INDXE OF WHERE THE MAX NUMBER IS IN//
+                    MaxIndex = i;
+
+
+
+
+
+                }
+
+            }
+
+
+        //ADD THE MAX VALUE TO THE LIST//
+        r.Add(Max);
+
+
+        //REMOVE THE VALUE FROM THE L LIST OF WHERE THE MAX VALUE APPEARED//
+        l.RemoveAt(MaxIndex);
+
         }
         return r;
-    }
+        
+        }
+    
 
     public override int ReturnRandom(List<int> l)
     {
@@ -83,16 +128,14 @@ public class Quiz_JuliusP : QuizScript
         int safety = 999;
         while (safety > 0 && l.Count > 0)
         {
+            
             safety--;
 
-            
-            int RandomIndex = Random.Range(0, l.Count);
+            int RandomNum = Random.Range(0, l.Count);
 
-            int value = l[RandomIndex];
+            Debug.Log(l[RandomNum]);
 
-            Debug.Log(value);
-
-            l.RemoveAt(RandomIndex);
+            l.RemoveAt(RandomNum);
 
 
 
@@ -111,34 +154,41 @@ public class Quiz_JuliusP : QuizScript
         {
             safety--;
 
-            //int index = rand.Next(l.Count);
+            int RandIndex = Random.Range(0, l.Count);
        
-            //r.Add(l[index]);
+            r.Add(l[RandIndex]);
         
-            //l.RemoveAt(index);
+            l.RemoveAt(RandIndex);
         }
         return r;
     }
 
     public override string WeightedRandom(Dictionary<string, float> d)
     {
+        List<string> WeightedList= new List<string>();
         //This one requires a lot more lines of code than the others
         foreach (string k in d.Keys)
         {
 
-           // float v = k[s];
+           float v = d[k];
 
 
-            //for(int i = 0; i < v; i++)
+            for(int i = 0; i < v; i++)
             {
                 
 
+                WeightedList.Add(k);
 
 
 
             }
-            return k;
+           
+        
         }
-        return "";
+
+
+         int index = Random.Range(0, WeightedList.Count);
+         return WeightedList[index];
+    
     }
 }
