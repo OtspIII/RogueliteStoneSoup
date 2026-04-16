@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: CR2
   m_EditorClassIdentifier: Assembly-CSharp::CharacterOption
   Name: AllyKat
-  Author: 90
+  Author: 1
   Team: 2
   Body: {fileID: 629948465317790645, guid: acf0e760b28c7b046ad7d511fb87a1d3, type: 3}
   Art: {fileID: 21300000, guid: 9831dbe312cc7d14d9af6795d0a672a3, type: 2}

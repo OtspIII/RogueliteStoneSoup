@@ -200,7 +200,21 @@ public static class Parser
         if (a == Authors.Universal) a = AllAuthors[Random.Range(0,AllAuthors.Count)];
         switch (a)
         {
-            case Authors.MishaF: return new LevelBuilder();
+            case Authors.MishaF: return new Level_MishaF();
+            case Authors.AdamD: return new Level_AdamD();
+            case Authors.AlejandroM: return new Level_AlejandroM();
+            case Authors.ElioR: return new Level_ElioR();
+            case Authors.JaidenB: return new Level_JaidenB();
+            case Authors.JuliusP: return new Level_JuliusP();
+            case Authors.MichaelT: return new Level_MichaelT();
+            case Authors.QixiangD: return new Level_QixiangD();
+            case Authors.RaphaelC: return new Level_RaphaelC();
+            case Authors.SabahE: return new Level_SabahE();
+            case Authors.SamsonW: return new Level_SamsonW();
+            case Authors.SarahS: return new Level_SarahS();
+            case Authors.TracyH: return new Level_TracyH();
+            case Authors.WesleyP: return new Level_WesleyP();
+            case Authors.YuChen: return new Level_YuChen();
             default: return new LevelBuilder();
         }
     }
@@ -241,6 +255,7 @@ public enum Authors
     TracyH=80,
     WesleyP=90,
     YuChen=95,
+    Demo=100,
 }
 
 public enum Traits
