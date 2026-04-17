@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class LevelBuilder
 {
+    public Authors Author = Authors.Universal;
     //These are variables meant to be set in Customize as desired
     //How big should the level be?
     public Vector2Int Size;
@@ -143,6 +144,7 @@ public class LevelBuilder
                 GeoTile b = GetGeo(start, y+1);
                 a.Links.Add(Directions.Up);
                 b.Links.Add(Directions.Down);
+                b.SetPath(GeoTile.GeoTileTypes.MainPath);
             }
             else
             {
@@ -201,10 +203,14 @@ public class LevelBuilder
         //But only do this while loop 99 times (more than we need but not infinite), in case we cause an infinite loop
         while (uncon.Count > 0 && safety > 0)
         {
+            List<GeoTile> unconTemp = new List<GeoTile>();
+            unconTemp.AddRange(uncon);
             safety--;
             //For each tile that's not connected to anyone. . .
-            foreach (GeoTile g in uncon)
+            while(unconTemp.Count > 0)
             {
+                GeoTile g = unconTemp[Random.Range(0, unconTemp.Count)];
+                unconTemp.Remove(g);
                 //Get a list of all four of its neighbors
                 List<Directions> maybe = g.PotentialLinks(false);
                 //If it has no neighbors, something's wrong and we should throw an error

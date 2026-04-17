@@ -22,7 +22,7 @@ MonoBehaviour:
   Tags: []
   LevelRange: {x: 0, y: 0}
   Trait:
-  - Trait: 3502
+  - Trait: 4014
     Numbers: []
     Prefabs: []
     Acts: []
@@ -36,4 +36,4 @@ MonoBehaviour:
       MaxCost: 0
     Builder: []
   Damage: 1
-  Speed: 10
+  Speed: 5

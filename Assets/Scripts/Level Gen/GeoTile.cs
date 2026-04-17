@@ -14,6 +14,7 @@ public class GeoTile
     public LevelBuilder Builder;  //Just a link to the LevelBuilder that made me
     public RoomOption RoomType;  //A link to the room type that will spawn in my slot
     public RoomScript Room;  //A link to the actual room that spawned in my slot
+    public string DebugColor = "";
     
     ///Constructor, at first all I know is where I am and in what level
     public GeoTile(int x, int y, LevelBuilder b)
@@ -68,12 +69,13 @@ public class GeoTile
     }
 
     ///Updates the type of slot I am--on the path, player spawn, exit, boss, off the path, or unreachable
-    public void SetPath(GeoTileTypes t)
+    public void SetPath(GeoTileTypes t,bool force=false)
     {
         //If you're telling me to be something less specific than what I already am, do nothing
         //Ie--if I'm 'on the path' and you tell me to be 'connected to the path' do nothing
-        if ((int)t < (int)Path)
+        if ((int)t < (int)Path || force)
             Path = t;
+        DebugColor = "";
     }
 
     //Overrides what I look like when you put me in a Debug.Log
@@ -92,5 +94,6 @@ public class GeoTile
         MainPath=4,    //Part of the 'default' path the player can take to get to the exit from their start point
         Connected=5,   //Reachable from the player start point, but not on the main path
         Unreachable=6, //Not reachable by the player at all
+        // Target=7,      //Just used for visualization
     }
 }

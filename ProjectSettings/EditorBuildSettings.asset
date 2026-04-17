@@ -14,5 +14,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/YouLose.unity
     guid: b16fc672aa2ab9d45a869ae234ec1955
+  - enabled: 1
+    path: Assets/Scenes/TileDemo.unity
+    guid: d0e9fd7a6a984404a8921b7256b92b60
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0
