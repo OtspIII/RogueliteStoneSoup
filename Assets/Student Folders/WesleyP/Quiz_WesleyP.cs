@@ -28,10 +28,7 @@ public class Quiz_WesleyP : QuizScript
     {
         int r = -999;
         foreach (int n in l)
-<<<<<<< HEAD
-        
-=======
->>>>>>> 00285dd777037938f92028c1553e989eab2665b2
+
         {
             float t = Random.Range(999f, -999f);
             {

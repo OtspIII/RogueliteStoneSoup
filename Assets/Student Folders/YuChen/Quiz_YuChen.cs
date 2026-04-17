@@ -65,15 +65,13 @@ public class Quiz_YuChen : QuizScript
 
     public override int ReturnRandom(List<int> l)
     {
-<<<<<<< HEAD
+
 
         return l[Random.Range(0, l.Count)];
 
-=======
-        return 0;
-        // Random num = new Random();
-        // return l[num.Next(l.Count)];
->>>>>>> 00285dd777037938f92028c1553e989eab2665b2
+
+
+
     }
 
     public override void RandomForEach(List<int> l)
@@ -110,8 +108,11 @@ public class Quiz_YuChen : QuizScript
     public override string WeightedRandom(Dictionary<string, float> d)
     {
         //This one requires a lot more lines of code than the others
+        List<string>r = new List<string>();
         foreach (string k in d.Keys)
         {
+         
+
             return k;
         }
         return "";
