@@ -189,6 +189,8 @@ public enum GameTags
     Exit            =0401,
     Scenery         =0402,
     Boss            =0500,
+    Wall            =0600,
+    Floor           =0601,
 }
 
 public enum RoomTags

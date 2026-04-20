@@ -94,8 +94,7 @@ public class LevelBuilder
         for (int y = 0; y < Size.y; y++)
         {
             //Spawn a blank room slot into the position 
-            GeoTile g = new GeoTile(x, y,this);
-            AddGeo(g);
+            AddGeo(new GeoTile(x, y,this));
         }
     }
 

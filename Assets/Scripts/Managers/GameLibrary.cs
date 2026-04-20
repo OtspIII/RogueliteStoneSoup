@@ -11,6 +11,8 @@ public class GameLibrary : MonoBehaviour
     public ThingController ActorPrefab;
     //Equippable items have two bodies--one on the ground and one when held. Unless specified, they use this on the ground
     public BodyController PickupDefaultBody;
+    //A room prefab with no walls or anything for text setup
+    public RoomScript EmptyRoom;
     //A generic gnome that gets customized when spawned
     public SfXGnome GnomePrefab;
     //A generic hitbox used by ThingController.AddHitbox

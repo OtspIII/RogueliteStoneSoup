@@ -12,13 +12,15 @@ public class RoomScript : MonoBehaviour
     public BoxCollider2D Coll;
     [SerializeReference] public List<ThingController> Contents = new List<ThingController>();
     // public List<RoomTags> Tags;
-    
-    public void Setup(GeoTile g)
+
+    public void SetupText(GeoTile g)
     {
-        Geo = g;
-        transform.parent = God.GM.LevelHolder;
-        if (SpawnerHolder == null) SpawnerHolder = transform;
-        if (DoorHolder == null) DoorHolder = transform;
+        Setup(g);
+    }
+
+    public void SetupPrefab(GeoTile g)
+    {
+        Setup(g);
         for(int n = 0;n < SpawnerHolder.childCount;n++)
         {
             SpawnPointController s = SpawnerHolder.GetChild(n).GetComponent<SpawnPointController>();
@@ -49,6 +51,15 @@ public class RoomScript : MonoBehaviour
         if (Coll == null) God.LogWarning("ROOM SET UP WITH NO COLLIDER: " + this);
         else if (!Coll.isTrigger) God.LogWarning("ROOM SET UP WITH NON-TRIGGER COLLIDER: " + this);
         else if (Coll.gameObject.layer != LayerMask.NameToLayer("Room")) God.LogWarning("ROOM SET UP WITH NON-ROOM LAYER ON COLLIDER: " + this);
+    }
+    
+    public void Setup(GeoTile g)
+    {
+        Geo = g;
+        transform.parent = God.GM.LevelHolder;
+        if (SpawnerHolder == null) SpawnerHolder = transform;
+        if (DoorHolder == null) DoorHolder = transform;
+        
     }
 
     private void OnTriggerEnter2D(Collider2D other)
