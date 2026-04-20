@@ -59,6 +59,8 @@ public class LevelBuilder
     ///Does the specific level we're on change any basic info (Size/LinkOdds/etc)? Do that here
     public virtual void Customize()
     {
+        //If we haven't created a player yet for this playthrough, make one.
+        SpawnPlayer();
         //As you go deeper the map gets bigger
         int l = God.Session.Level;
         //Width starts at 2, and every third level grows by 1
@@ -73,11 +75,15 @@ public class LevelBuilder
         }
         //Set the size we calculated
         Size = new Vector2Int(w, h);
+        //Pick a boss. If this isn't null, it'll spawn a boss room.
+        Boss = God.Library.GetThing(new SpawnRequest(GameTags.Boss),this,false); //the false means 'its okay if you dont find one'
+    }
+
+    public virtual void SpawnPlayer()
+    {
         //If we haven't created a player yet for this playthrough, make one.
         if (God.Session.Player == null)
             God.Session.Player = God.Library.GetThing(new SpawnRequest(GameTags.Player)).Create();
-        //Pick a boss. If this isn't null, it'll spawn a boss room.
-        Boss = God.Library.GetThing(new SpawnRequest(GameTags.Boss),this,false); //the false means 'its okay if you dont find one'
     }
 
     ///Build out a zoomed-out map of the level, without specific rooms
@@ -178,23 +184,7 @@ public class LevelBuilder
     public virtual void ConnectAllGeos()
     {
         //Open up a bunch of random links between rooms
-        //For each room slot that exists. . .
-        foreach (GeoTile g in AllGeo)
-        {
-            //Get a list of the slots above it and to its right
-            List<Directions> maybe = g.PotentialLinks();
-            //For each possible link. . .
-            foreach (Directions d in maybe)
-            {
-                //Flip a (weighted) coin. If it comes up false, don't link the room slots
-                if (!God.CoinFlip(LinkOdds)) continue;
-                //But if it came up true, and its neighbor actually exists, connect them!
-                GeoTile other = g.Neighbor(d);
-                if (other == null) continue;
-                g.Links.Add(d);
-                other.Links.Add(God.OppositeDir(d));
-            }
-        }
+        RunLinkOdds();
 
         //Do we have any isolated rooms you can't get to?
         //If so, open some more links
@@ -243,6 +233,28 @@ public class LevelBuilder
             }
             //Alright, maybe we got them all! Do another flood to see if we still have unconnected tiles
             uncon = UnconnectedTest();
+        }
+    }
+
+    ///Open up a bunch of random links between rooms
+    public virtual void RunLinkOdds()
+    {
+        //For each room slot that exists. . .
+        foreach (GeoTile g in AllGeo)
+        {
+            //Get a list of the slots above it and to its right
+            List<Directions> maybe = g.PotentialLinks();
+            //For each possible link. . .
+            foreach (Directions d in maybe)
+            {
+                //Flip a (weighted) coin. If it comes up false, don't link the room slots
+                if (!God.CoinFlip(LinkOdds)) continue;
+                //But if it came up true, and its neighbor actually exists, connect them!
+                GeoTile other = g.Neighbor(d);
+                if (other == null) continue;
+                g.Links.Add(d);
+                other.Links.Add(God.OppositeDir(d));
+            }
         }
     }
     
