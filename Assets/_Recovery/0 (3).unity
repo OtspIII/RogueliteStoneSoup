@@ -149,8 +149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   Type: 10
-  Author: 0
-
+  Author: 20
   OutputText: []
   Text: {fileID: 1771376708}
 --- !u!4 &1432110592

@@ -45,7 +45,18 @@ public class Quiz_YuChen : QuizScript
         {
            
             safety--;
-            r.Sort((a, b) => b.CompareTo(a));
+
+            int Lnum = int.MinValue;
+            foreach (int n in l)
+            {
+                if (n > Lnum)
+                {
+                    Lnum = n;
+                }
+            }
+
+            r.Add(Lnum);
+            l.Remove(Lnum);
 
         }
         return r;
@@ -54,9 +65,13 @@ public class Quiz_YuChen : QuizScript
 
     public override int ReturnRandom(List<int> l)
     {
-        return 0;
-        // Random num = new Random();
-        // return l[num.Next(l.Count)];
+
+
+        return l[Random.Range(0, l.Count)];
+
+
+
+
     }
 
     public override void RandomForEach(List<int> l)
@@ -65,6 +80,12 @@ public class Quiz_YuChen : QuizScript
         while (safety > 0 && l.Count > 0)
         {
             safety--;
+            int numindex = l[Random.Range(0, l.Count)];
+            Debug.Log(numindex);
+            l.RemoveAt(numindex);
+
+
+
         }
     }
 
@@ -75,6 +96,11 @@ public class Quiz_YuChen : QuizScript
         while (safety > 0 && l.Count > 0)
         {
             safety--;
+            int rnum = l[Random.Range(0, l.Count)];
+            r.Add(l[rnum]);
+            l.RemoveAt(rnum);
+
+
         }
         return r;
     }
@@ -82,8 +108,11 @@ public class Quiz_YuChen : QuizScript
     public override string WeightedRandom(Dictionary<string, float> d)
     {
         //This one requires a lot more lines of code than the others
+        List<string>r = new List<string>();
         foreach (string k in d.Keys)
         {
+         
+
             return k;
         }
         return "";
