@@ -288,7 +288,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 538cd0cc2333ae443ae02c2259aba377, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  Author: 40
+  Author: 1
   Level: 3
   GeoPrefab: {fileID: 2554443116808275469, guid: 1ee0942092b09d443b8b443302ff506c, type: 3}
   Cam: {fileID: 575433856}
