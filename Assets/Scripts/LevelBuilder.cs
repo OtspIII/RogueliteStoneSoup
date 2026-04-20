@@ -65,31 +65,31 @@ public class LevelBuilder
         int w = 2 + Mathf.FloorToInt(l/3);
         //Height starts at 2, and every other level grows by 1
         int h = 2 + Mathf.FloorToInt(l/2);
+        //If this is a test level, make it just be 1x2 so the exit touches the start point
         if (l == -1)
         {
             w = 1;
             h = 2;
         }
+        //Set the size we calculated
         Size = new Vector2Int(w, h);
         //If we haven't created a player yet for this playthrough, make one.
         if (God.Session.Player == null)
             God.Session.Player = God.Library.GetThing(new SpawnRequest(GameTags.Player)).Create();
-        Boss = God.Library.GetThing(new SpawnRequest(GameTags.Boss),this,false);
+        //Pick a boss. If this isn't null, it'll spawn a boss room.
+        Boss = God.Library.GetThing(new SpawnRequest(GameTags.Boss),this,false); //the false means 'its okay if you dont find one'
     }
 
     ///Build out a zoomed-out map of the level, without specific rooms
     public virtual void BuildGeoMap()
     {
         //Two nested for loops lets us build a grid of room slots at our desired size
-        for (int x = 0; x < Size.x; x++)for (int y = 0; y < Size.y; y++)
+        for (int x = 0; x < Size.x; x++)
+        for (int y = 0; y < Size.y; y++)
         {
             //Spawn a blank room slot into the position 
             GeoTile g = new GeoTile(x, y,this);
-            //If our dictionary doesn't have this X-row added, add it
-            if(!GeoMap.ContainsKey(x)) GeoMap.Add(x,new Dictionary<int, GeoTile>());
-            //Add it to the dictionary and list of slots
-            GeoMap[x].Add(y,g);
-            AllGeo.Add(g);
+            AddGeo(g);
         }
     }
 
@@ -138,26 +138,21 @@ public class LevelBuilder
             //Mark our end point as the start of the path on the next row
             start = end;
             //Move up row up and repeat, linking to the slot below
-            if (y < Size.y - 1)
+            //If I'm on the top row. . .
+            if (y == Size.y - 1)
             {
-                GeoTile a = GetGeo(start, y);
-                GeoTile b = GetGeo(start, y+1);
-                a.Links.Add(Directions.Up);
-                b.Links.Add(Directions.Down);
-                b.SetPath(GeoTile.GeoTileTypes.MainPath);
-            }
-            else
-            {
+                //If we picked a boss, we need to make them a room
                 if(Boss != null){
+                    //Make a new tile above the current exit
                     GeoTile g = new GeoTile(start, y+1,this);
-                    if(!GeoMap.ContainsKey(start)) GeoMap.Add(start,new Dictionary<int, GeoTile>());
-                    GeoMap[start].Add(y+1,g);
-                    AllGeo.Add(g);
+                    AddGeo(g);
+                    //And move the exit to that new tile
                     Exit = GetGeo(start, y+1); 
                     Exit.SetPath(GeoTile.GeoTileTypes.Exit);
-                    
+                    //Then take the current tile and make it the boss tile
                     GeoTile boss = GetGeo(start, y); 
                     boss.SetPath(GeoTile.GeoTileTypes.Boss);
+                    //Link the boss and exit rooms
                     boss.Links.Add(Directions.Up);
                     Exit.Links.Add(Directions.Down);
                 }
@@ -167,8 +162,14 @@ public class LevelBuilder
                     Exit = GetGeo(start, y); 
                     Exit.SetPath(GeoTile.GeoTileTypes.Exit);
                 }
-                
-                
+            }
+            else //If I'm not on the top row. . .
+            {
+                GeoTile a = GetGeo(start, y);
+                GeoTile b = GetGeo(start, y+1);
+                a.Links.Add(Directions.Up);
+                b.Links.Add(Directions.Down);
+                b.SetPath(GeoTile.GeoTileTypes.MainPath);
             }
         }
     }
@@ -430,7 +431,7 @@ public class LevelBuilder
             s.Spawn();
         }
     }
-    //#######BOOKMARK########
+    
     ///Do a flood of all the room slots in the dungeon and return a list of all that aren't connected 
     public List<GeoTile> UnconnectedTest()
     {
@@ -438,43 +439,74 @@ public class LevelBuilder
         //Start with a list of all the tiles
         List<GeoTile> unc = new List<GeoTile>();
         unc.AddRange(AllGeo);
+        //Keep a list of the tiles we've looked at closely
         List<GeoTile> done = new List<GeoTile>();
+        //Keep a list of the tiles we know are connected to our start but that we haven't looked at yet
         List<GeoTile> pend = new List<GeoTile>(){PlayerSpawn};
+        //For as long as we have connected tiles we haven't looked at yet. . .
         while (pend.Count > 0)
         {
+            //Pick one at random
             GeoTile chosen = God.Random(pend);
+            //Move it from pending to 'looked at'
             pend.Remove(chosen);
             done.Add(chosen);
+            //Remove it from the list of unconnected tiles--we know it's connected
             unc.Remove(chosen);
+            //Set it to be connected. If it's already on the MainPath, this does nothing
             chosen.SetPath(GeoTile.GeoTileTypes.Connected);
+            //Get a list of all its adjacent tiles
             List<GeoTile> neigh = chosen.Neighbors(true);
+            //For each of those neighbors. . .
             foreach (GeoTile n in neigh)
             {
+                //If we've already added it to a list, don't do anything
                 if (done.Contains(n)) continue;
                 if (pend.Contains(n)) continue;
+                //But if it's new, add it to the 'to look at' list
                 pend.Add(n);
             }
         }
-        God.Log("FLOATERS: " + unc.Count);
+        //Return the list of unconnected tiles. Any tile connected to the player start has been removed
         return unc;
     }
 
+    ///Returns the GeoTile at a set coordinate
     public GeoTile GetGeo(int x, int y)
     {
         if (!GeoMap.ContainsKey(x)) return null;
         return GeoMap[x].ContainsKey(y) ? GeoMap[x][y] : null;
     }
 
-    public float JudgeRoom(GeoTile g, RoomOption o)
+    public virtual void AddGeo(GeoTile g)
     {
+        //If our dictionary doesn't have this X-row added, add it
+        if(!GeoMap.ContainsKey(g.X)) GeoMap.Add(g.X,new Dictionary<int, GeoTile>());
+        //Add it to the dictionary and list of slots
+        GeoMap[g.X].Add(g.Y,g);
+        AllGeo.Add(g);
+    }
+
+    ///Takes a tile, judges if an option is good enough to fit it
+    ///This is on LevelBuilder so you can override it
+    public virtual float JudgeRoom(GeoTile g, RoomOption o)
+    {
+        //By default, any room with the Generic tag is good
         RoomTags t = RoomTags.Generic;
+        //But if this is the player start tile, it should have the player start tag
         if (g.Path == GeoTile.GeoTileTypes.PlayerStart) t = RoomTags.PlayerStart;
+        //And if it's the exit, it should have the exit tag
         if (g.Path == GeoTile.GeoTileTypes.Exit) t = RoomTags.Exit;
+        //And if it's the boss room, it should have the boss tag
         if (g.Path == GeoTile.GeoTileTypes.Boss) t = RoomTags.Boss;
+        //If it has the tag we picked above, it's good to go
+        //Note that if you returned a bigger number, it would be more likely to be picked
         if(o.Tags.Contains(t)) return 1;
+        //If not, there should be 0 chance of picking it
         return 0;
     }
     
+    //#######BOOKMARK########
     public virtual float JudgeThing(SpawnRequest sr, ThingOption o,bool backup=false)
     {
         if (!backup)
@@ -519,12 +551,5 @@ public class LevelBuilder
         return w;
     }
 
-    // public virtual void AddSpawn(params GameTags[] t)
-    // { SpawnRequests.Add(new SpawnRequest(t)); }
-    // public virtual void AddSpawn(params string[] t)
-    // { SpawnRequests.Add(new SpawnRequest(t)); }
-    // public virtual void AddSpawn(SpawnRequest sr)
-    // { SpawnRequests.Add(sr); }
-    
     
 }
