@@ -160,6 +160,8 @@ public class Quiz_JuliusP : QuizScript
         
             l.RemoveAt(RandIndex);
         }
+
+
         return r;
     }
 
