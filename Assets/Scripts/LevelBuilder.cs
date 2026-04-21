@@ -21,11 +21,11 @@ public class LevelBuilder
     //What tile does the exit spawn at?
     public GeoTile Exit;
     //A list of all the spawn points in the game you can spawn stuff at
-    public List<SpawnPointController> SpawnPoints = new List<SpawnPointController>();
+    public List<SpawnRequest> SpawnPoints = new List<SpawnRequest>();
     //A list of all the spawn points that just want to spawn their own thing
-    public List<SpawnPointController> SpawnPointsFixed = new List<SpawnPointController>();
-    //A list of all the types of things we want to spawn somewhere in the level
-    public List<SpawnRequest> SpawnRequests = new List<SpawnRequest>();
+    public List<SpawnRequest> SpawnPointsFixed = new List<SpawnRequest>();
+    //A list of all the spawn points that might spawn a player
+    public List<SpawnRequest> SpawnPointsPlayer = new List<SpawnRequest>();
     //A list of all the specific things we want to spawn in the level
     public List<ThingOption> ToSpawn = new List<ThingOption>();
     //If a SpawnPoint can spawn "Something" it'll be okay for all of these options 
@@ -296,8 +296,14 @@ public class LevelBuilder
             {
                 //If the spawn point always spawns a fixed item, add it to a different list;
                 //Tt's not a valid one to spawn other stuff at
-                if(spc.AlwaysSpawn) SpawnPointsFixed.Add(spc);
-                else SpawnPoints.Add(spc);
+                if (spc.AlwaysSpawn)
+                {
+                    if (spc.ToSpawn.HasTag(GameTags.Player))
+                        SpawnPointsPlayer.Add(spc.ToSpawn.SetPos(spc.transform.position));
+                    else
+                        SpawnPointsFixed.Add(spc.ToSpawn.SetPos(spc.transform.position));
+                }
+                else SpawnPoints.Add(spc.ToSpawn.SetPos(spc.transform.position));
             }
         }
     }
@@ -357,20 +363,17 @@ public class LevelBuilder
     public virtual void SpawnThings()
     {
         //First, we spawn the player. Find the spawn point in the player start room that spawns the player
-        SpawnPointController playerStart = null;
-        foreach (SpawnPointController s in PlayerSpawn.Room.Spawners)
+        SpawnRequest pl = null;
+        if (SpawnPointsPlayer.Count > 0)
+            pl = SpawnPointsPlayer.Random();
+        else if (SpawnPoints.Count > 0)
         {
-            if (s.ToSpawn.HasTag(GameTags.Player))
-            {
-                playerStart = s;
-                //Don't use this spawn for anything else
-                SpawnPoints.Remove(s);
-                SpawnPointsFixed.Remove(s);
-                break;
-            }
+            pl = SpawnPoints.Random();
+            SpawnPoints.Remove(pl);
         }
         //If we found a spawn point for the player, spawn them there. 
-        if (playerStart != null) God.Session.Player.Spawn(playerStart);
+        if(pl != null)
+            God.Session.Player.Spawn(pl);
         //Otherwise, throw warning and spawn the player in the room's center
         else
         {
@@ -393,14 +396,14 @@ public class LevelBuilder
             ThingOption o = ToSpawn.Random();
             ToSpawn.Remove(o);
             //Make a new list of all the unused spawn points, so we can mess with it without changing the original
-            List<SpawnPointController> s = new List<SpawnPointController>();
+            List<SpawnRequest> s = new List<SpawnRequest>();
             s.AddRange(SpawnPoints);
-            SpawnPointController here = null;
+            SpawnRequest here = null;
             //For as long as we have possible spawns to try. . .
             while (s.Count > 0)
             {
                 //Pick a random spawn point, remove it from the list, and see if it can spawn this type of thing
-                SpawnPointController chosen = s.Random();
+                SpawnRequest chosen = s.Random();
                 s.Remove(chosen);
                 //If you can, then mark it as the one we're using
                 if (chosen.CanSpawn(o,this))
@@ -416,7 +419,7 @@ public class LevelBuilder
                 s.AddRange(SpawnPoints);
                 while (s.Count > 0)
                 {
-                    SpawnPointController chosen = s.Random();
+                    SpawnRequest chosen = s.Random();
                     s.Remove(chosen);
                     //That 'true' means that we're accepting work by other authors as a backup plan
                     if (chosen.CanSpawn(o,this,true))
@@ -437,8 +440,9 @@ public class LevelBuilder
                 God.LogWarning("Thing couldn't find a place to spawn: " + o.Name);
         }
         //For each spawn point that just spawns one specific thing, let it spawn its thing
-        foreach (SpawnPointController s in SpawnPointsFixed)
+        foreach (SpawnRequest s in SpawnPointsFixed)
         {
+            Debug.Log("SPF: " + s);
             s.Spawn();
         }
     }

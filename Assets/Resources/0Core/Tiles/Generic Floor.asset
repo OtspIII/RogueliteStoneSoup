@@ -17,7 +17,7 @@ MonoBehaviour:
   Team: 1
   Body: {fileID: -7003572734060779326, guid: b70c9929269440041a75e729dc544a99, type: 3}
   Art: {fileID: 0}
-  Color: {r: 0.6, g: 0.6, b: 0.6, a: 1}
+  Color: {r: 0, g: 0.6, b: 0.6, a: 1}
   Size: 1
   Tags:
   - Common: 601

@@ -13,8 +13,48 @@ public class RoomScript : MonoBehaviour
     [SerializeReference] public List<ThingController> Contents = new List<ThingController>();
     // public List<RoomTags> Tags;
 
-    public void SetupText(GeoTile g)
+    public void SetupText(GeoTile g,TextRoomOption o)
     {
+        ThingOption w = God.Library.GetThing(new SpawnRequest(GameTags.Wall));
+        ThingOption f = God.Library.GetThing(new SpawnRequest(GameTags.Floor));
+        string[] lines = o.Map.text.Split("\n");
+        Vector2 size = new Vector2(0, lines.Length+1);
+        foreach (string s in lines) size.x = Mathf.Max(size.x, s.Length);
+        for (int y = 0; y < lines.Length; y++)
+        {
+            for (int x = 0; x < lines[y].Length; x++)
+            {
+                char l = lines[y][x];
+                if (x == lines[y].Length - 1 && l != 'x') continue;
+                string tag = God.Library.GetJSONTile(l,o.JSON);
+                switch (tag) 
+                {
+                    case "Left": tag = g.Links.Contains(Directions.Left) ? "Floor" : "Wall"; break;
+                    case "Right": tag = g.Links.Contains(Directions.Right) ? "Floor" : "Wall"; break;
+                    case "Up": tag = g.Links.Contains(Directions.Down) ? "Floor" : "Wall"; break;
+                    case "Down": tag = g.Links.Contains(Directions.Up) ? "Floor" : "Wall"; break;
+                }
+
+                if (tag == "Wall")
+                {
+                    ThingInfo wi = w.Create();
+                    wi.Spawn(transform,GetPos(x,y,size)).gameObject.isStatic = true;
+                    continue;
+                }
+                //Spawn a floor
+                ThingInfo fi = f.Create();
+                Vector3 where = GetPos(x, y, size, 50);
+                fi.Spawn(transform,where).gameObject.isStatic = true;
+                // Debug.Log("TILE: " + tag + " / " + x+"."+y);
+                where.z = 0;
+                if (tag == "Floor" && (int)g.Path > 3)
+                    God.LB.SpawnPoints.Add(new SpawnRequest().SetPos(where));
+                if (tag == "" || tag == "Floor") continue;
+                if(tag == "Player") God.LB.SpawnPointsPlayer.Add(new SpawnRequest(new Tag(tag)).SetPos(where));
+                else God.LB.SpawnPointsFixed.Add(new SpawnRequest(new Tag(tag)).SetPos(where));
+                
+            }
+        }
         Setup(g);
     }
 
@@ -91,4 +131,9 @@ public class RoomScript : MonoBehaviour
     //     foreach(SpawnPointController s in Spawners)
     //         s.Spawn();
     // }
+    public Vector3 GetPos(int x, int y, Vector2 size,float z=0)
+    {
+        return transform.position+new Vector3(x - ((size.x - 2) / 2), y - ((size.y - 2) / 2), z);
+    }
+    
 }
