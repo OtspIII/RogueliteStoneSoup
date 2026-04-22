@@ -11,10 +11,14 @@ public class GameLibrary : MonoBehaviour
     public ThingController ActorPrefab;
     //Equippable items have two bodies--one on the ground and one when held. Unless specified, they use this on the ground
     public BodyController PickupDefaultBody;
+    //A room prefab with no walls or anything for text setup
+    public RoomScript EmptyRoom;
     //A generic gnome that gets customized when spawned
     public SfXGnome GnomePrefab;
     //A generic hitbox used by ThingController.AddHitbox
     public HitboxController Hitbox;
+    //Generic JSON Parser
+    public TextAsset GenericJSON;
     //We don't need to load our Resources folder more than once, so let's have a bool that says once we've done it
     public static bool Setup = false;
     //A list of all the possible spawnable rooms/actors/gnomes the procgen system can pull from.
@@ -24,6 +28,9 @@ public class GameLibrary : MonoBehaviour
     private static List<GnomeOption> GnomeOptions = new List<GnomeOption>();
     //I also sort the gnomes by name to make them easy to find
     private static Dictionary<string, GnomeOption> GnomeDict = new Dictionary<string, GnomeOption>();
+
+    public static Dictionary<TextAsset, Dictionary<char, string>> JSON =
+        new Dictionary<TextAsset, Dictionary<char, string>>();
 
     private void Awake()
     {
@@ -36,7 +43,10 @@ public class GameLibrary : MonoBehaviour
         foreach (ThingOption o in Resources.LoadAll<ThingOption>("/"))
             ThingOptions.Add(o);
         foreach (RoomOption o in Resources.LoadAll<RoomOption>("/"))
+        {
+            o.Audited = false;
             RoomOptions.Add(o);
+        }
         foreach (GnomeOption o in Resources.LoadAll<GnomeOption>("/"))
         {
             GnomeOptions.Add(o);
@@ -118,6 +128,29 @@ public class GameLibrary : MonoBehaviour
     {
         if (GnomeDict.TryGetValue(g, out GnomeOption r)) return r;
         return null;
+    }
+
+    public Dictionary<char,string> AddJSON(TextAsset t)
+    {
+        if (JSON.TryGetValue(t, out Dictionary<char, string> dic)) return dic;
+        RoomJSON Pairs = JSONReader.ParseJSON(t.text);
+        Dictionary<char, string> r = new Dictionary<char, string>();
+        foreach (JSONPair p in Pairs.Pairs)
+        {
+            if (p.K.Length == 0 || r.ContainsKey(p.K[0])) continue;
+            r.Add(p.K[0], p.V);
+        }
+        JSON.Add(t,r);
+        return r;
+    }
+
+    public string GetJSONTile(char l, TextAsset json = null)
+    {
+        if (json == null) json = GenericJSON;
+        Dictionary<char, string> j = AddJSON(json);
+        if (j.TryGetValue(l, out string r))
+            return r;
+        return "Floor";
     }
     
     ///Takes a dictionary of options with a 'weight' and returns one random--with 'heavier' ones more likely

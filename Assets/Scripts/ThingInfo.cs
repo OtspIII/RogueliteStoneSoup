@@ -44,10 +44,18 @@ public class ThingInfo //The class that handles all the core info for all non-wa
     }
     
     //Spawns the GameObject of the Thing at a point chosen and sets it up
-    public ThingController Spawn(SpawnPointController where)
-    { return Spawn(where.transform.position, where.transform.rotation.eulerAngles.z); }
+    public ThingController Spawn(SpawnRequest where)
+    { return Spawn(where.Where, 0); }
     public ThingController Spawn(Vector3 pos)
     { return Spawn(pos, 0); }
+
+    public ThingController Spawn(Transform par, Vector3 pos )
+    {
+        ThingController r = Spawn(pos, 0);
+        r.transform.parent = par;
+        r.transform.position = pos;
+        return r;
+    }
     public ThingController Spawn(Vector3 pos, float rot, ThingInfo spawnerThing = null)
     {
         //If anything goes wrong, it's useful to know who we were spawning when things bugged out.
