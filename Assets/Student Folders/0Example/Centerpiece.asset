@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 443b08c4c8cbe114a8394077da127f21, type: 3}
-  m_Name: PlayerStart
+  m_Name: Centerpiece
   m_EditorClassIdentifier: 
-  Prefab: {fileID: 909659412286494541, guid: 4f7feb5fdcdcfc14099db85606f24d48, type: 3}
-  Tags: 02000000
+  Prefab: {fileID: 909659412286494541, guid: 547e851fa4c0a514b9ef672f16675d5a, type: 3}
+  Tags: 01000000

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using NUnit.Framework;
+using Unity.Mathematics;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -94,11 +95,21 @@ public class Quiz_ElioR : QuizScript
     public override string WeightedRandom(Dictionary<string, float> d)
     {
         //This one requires a lot more lines of code than the others
+        List<string> bruh = new List<string>();
         List<string> Deck = new List<string>();
-        foreach (string k in d.Keys)
+       foreach (string k in d.Keys)
         {
-            return k;
+            float mult = d[k];
+            while (mult > 0)
+            {
+                Deck.Add(k);
+                mult--;
+                
+            }
+            
         }
-        return "";
+        
+       
+        return(Deck[Random.Range(0,Deck.Count)]);
     }
 }

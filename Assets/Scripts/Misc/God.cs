@@ -21,7 +21,6 @@ public static class God
         KeyCode.Alpha4,KeyCode.Alpha5,KeyCode.Alpha6,KeyCode.Alpha7,KeyCode.Alpha8,KeyCode.Alpha9,KeyCode.Alpha0 };
     public static string DebugTxt = "";
 
-    public static Vector2 RoomSize = new Vector2(10, 10);
 
     public static void Log(string txt,bool force=false)
     {
