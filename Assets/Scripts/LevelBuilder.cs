@@ -10,6 +10,7 @@ public class LevelBuilder
     public Vector2Int Size;
     //What is the % chance that any two adjacent rooms that don't need to be are connected
     public float LinkOdds = 0.1f;
+    public Vector2Int RoomSize = new Vector2Int(11, 11);
     
     //And here are the variables that are just bookkeeping for the level dev process
     //A grid of tiles, lets you find a tile by its x/y coordinate
@@ -442,7 +443,6 @@ public class LevelBuilder
         //For each spawn point that just spawns one specific thing, let it spawn its thing
         foreach (SpawnRequest s in SpawnPointsFixed)
         {
-            Debug.Log("SPF: " + s);
             s.Spawn();
         }
     }
@@ -506,17 +506,21 @@ public class LevelBuilder
     ///This is on LevelBuilder so you can override it
     public virtual float JudgeRoom(GeoTile g, RoomOption o)
     {
+        //Let the option calculate how big it is/etc
+        o.Audit();
+        //The map should only build rooms that are the same size as the level wants
+        if (RoomSize != o.MapSize) return 0;
         //By default, any room with the Generic tag is good
-        RoomTags t = RoomTags.Generic;
+        GameTags t = GameTags.Generic;
         //But if this is the player start tile, it should have the player start tag
-        if (g.Path == GeoTile.GeoTileTypes.PlayerStart) t = RoomTags.PlayerStart;
+        if (g.Path == GeoTile.GeoTileTypes.PlayerStart) t = GameTags.Player;
         //And if it's the exit, it should have the exit tag
-        if (g.Path == GeoTile.GeoTileTypes.Exit) t = RoomTags.Exit;
+        if (g.Path == GeoTile.GeoTileTypes.Exit) t = GameTags.Exit;
         //And if it's the boss room, it should have the boss tag
-        if (g.Path == GeoTile.GeoTileTypes.Boss) t = RoomTags.Boss;
+        if (g.Path == GeoTile.GeoTileTypes.Boss) t = GameTags.Boss;
         //If it has the tag we picked above, it's good to go
         //Note that if you returned a bigger number, it would be more likely to be picked
-        if(o.Tags.Contains(t)) return 1;
+        if(o.HasTag(t.ToString())) return 1;
         //If not, there should be 0 chance of picking it
         return 0;
     }

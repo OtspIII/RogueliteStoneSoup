@@ -11,7 +11,6 @@ public class ThingOption : GameOption //A generic class for anything that might 
     public Sprite Art;                         //If this isn't null, override the body's art with this sprite
     public Color Color = Color.white;        //Dye the body's spriterenderer with this color
     public float Size = 1;                     //Changes the size of the thing
-    public List<Tag> Tags;             //The traits the thing has. Includes slots for customization
     public Vector2Int LevelRange = new Vector2Int(0,0); //Selects what levels the thing is valid to spawn in.                  //A list of tags this thing has. Used to know what's valid to spawn
     public List<TraitBuilder> Trait;
 
@@ -90,54 +89,5 @@ public class ThingOption : GameOption //A generic class for anything that might 
         return Art;
     }
 
-    public virtual bool HasTag(string tag)
-    {
-        return HasTag(tag, out float w, out float c);
-    }
     
-    public virtual bool HasTag(string tag, out float w)
-    {
-        return HasTag(tag, out w, out float c);
-    }
-    
-    ///Returns whether or not the option has a tag, and if so what that tag's weight is. Used for spawning objects
-    public virtual bool HasTag(string tag, out float w, out float cost)
-    {
-        //The 'something' tag is special in that it just refers to any object that might spawn in a random spot
-        //So if the option is a npc or item, it returns true even if it doesn't have the 'something' tag itself
-        bool something = tag ==  GameTags.Something.ToString();
-        //Look at each tag on the option. If it's the tag the function is looking for, return 'true' and set w to be its weight 
-        foreach (Tag t in Tags)
-        {
-            if (t.Value == tag || (something && God.LB.Somethings.Contains(t.Value)))
-            {
-                w = t.W != 0 ? t.W : 1;
-                cost = t.Cost != 0 ? t.Cost : 1;
-                if (w >= 10)
-                {
-                    God.LogWarning("Super High Tag Weight: " + Name + " / " + t.Value
-                                   + " / " + t.W + " / " + Author);
-                }
-                return true;
-            }
-        }
-        //If we looked at every tag and none were a match, return false.
-        w = 0;
-        cost = 1;
-        return false;
-    }
-
-    public Tag GetTag(GameTags t)
-    {
-        return GetTag(t.ToString());
-    }
-    public Tag GetTag(string t)
-    {
-        foreach (Tag g in Tags)
-        {
-            if (g.Value == t) return g;
-        }
-
-        return null;
-    }
 }

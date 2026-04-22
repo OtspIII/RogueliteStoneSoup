@@ -17,15 +17,13 @@ public class RoomScript : MonoBehaviour
     {
         ThingOption w = God.Library.GetThing(new SpawnRequest(GameTags.Wall));
         ThingOption f = God.Library.GetThing(new SpawnRequest(GameTags.Floor));
-        string[] lines = o.Map.text.Split("\n");
-        Vector2 size = new Vector2(0, lines.Length+1);
-        foreach (string s in lines) size.x = Mathf.Max(size.x, s.Length);
-        for (int y = 0; y < lines.Length; y++)
+        
+        for (int y = 0; y < o.MapText.Length; y++)
         {
-            for (int x = 0; x < lines[y].Length; x++)
+            for (int x = 0; x < o.MapText[y].Length; x++)
             {
-                char l = lines[y][x];
-                if (x == lines[y].Length - 1 && l != 'x') continue;
+                char l = o.MapText[y][x];
+                if (x == o.MapText[y].Length - 1 && l != 'x') continue;
                 string tag = God.Library.GetJSONTile(l,o.JSON);
                 switch (tag) 
                 {
@@ -38,12 +36,12 @@ public class RoomScript : MonoBehaviour
                 if (tag == "Wall")
                 {
                     ThingInfo wi = w.Create();
-                    wi.Spawn(transform,GetPos(x,y,size)).gameObject.isStatic = true;
+                    wi.Spawn(transform,GetPos(x,y,o.MapSize)).gameObject.isStatic = true;
                     continue;
                 }
                 //Spawn a floor
                 ThingInfo fi = f.Create();
-                Vector3 where = GetPos(x, y, size, 50);
+                Vector3 where = GetPos(x, y, o.MapSize, 50);
                 fi.Spawn(transform,where).gameObject.isStatic = true;
                 // Debug.Log("TILE: " + tag + " / " + x+"."+y);
                 where.z = 0;

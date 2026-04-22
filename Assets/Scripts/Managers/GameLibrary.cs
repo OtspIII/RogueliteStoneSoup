@@ -43,7 +43,10 @@ public class GameLibrary : MonoBehaviour
         foreach (ThingOption o in Resources.LoadAll<ThingOption>("/"))
             ThingOptions.Add(o);
         foreach (RoomOption o in Resources.LoadAll<RoomOption>("/"))
+        {
+            o.Audited = false;
             RoomOptions.Add(o);
+        }
         foreach (GnomeOption o in Resources.LoadAll<GnomeOption>("/"))
         {
             GnomeOptions.Add(o);
@@ -131,8 +134,6 @@ public class GameLibrary : MonoBehaviour
     {
         if (JSON.TryGetValue(t, out Dictionary<char, string> dic)) return dic;
         RoomJSON Pairs = JSONReader.ParseJSON(t.text);
-        Debug.Log(t.text);
-        Debug.Log(Pairs.Pairs + " / " + Pairs.Name);
         Dictionary<char, string> r = new Dictionary<char, string>();
         foreach (JSONPair p in Pairs.Pairs)
         {

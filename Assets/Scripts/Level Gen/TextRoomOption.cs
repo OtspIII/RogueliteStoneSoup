@@ -6,33 +6,25 @@ public class TextRoomOption : RoomOption
 {
     public TextAsset Map;
     public TextAsset JSON;
-    public RoomJSON Pairs;
-    public Dictionary<char, string> TileTypes = new Dictionary<char, string>();
+    [HideInInspector] public string[] MapText;
+
 
     public override RoomScript Build(GeoTile g, LevelBuilder b)
     {
-        ParseJSON();
-        RoomScript r = Instantiate(God.Library.EmptyRoom, new Vector3(g.X * God.RoomSize.x, g.Y * God.RoomSize.y, 0), Quaternion.identity);
+        RoomScript r = Instantiate(God.Library.EmptyRoom, new Vector3(g.X * (b.RoomSize.x-1), g.Y * (b.RoomSize.y-1), 0), Quaternion.identity);
         r.gameObject.name = "[" + g.X + "." + g.Y + "] " + Name;
         r.SetupText(g,this);
         return r;
     }
 
-    
-
-    public void ParseJSON()
+    public override void Audit()
     {
-        if (Pairs != null && Pairs.Pairs != null && Pairs.Pairs.Length > 0) return;
-        Pairs = JSONReader.ParseJSON(JSON.text);
-        Debug.Log(JSON.text);
-        Debug.Log(Pairs.Pairs + " / " + Pairs.Name);
-        foreach (JSONPair p in Pairs.Pairs)
-        {
-            if (p.K.Length == 0 || TileTypes.ContainsKey(p.K[0])) continue;
-            TileTypes.Add(p.K[0], p.V);
-        }
+        if (Audited) return;
+        Audited = true;
+        MapText = Map.text.Split("\n");
+        MapSize = new Vector2Int(0, MapText.Length);
+        foreach (string s in MapText) MapSize.x = Mathf.Max(MapSize.x, s.Length-1);
     }
-
 }
 
 public static class JSONReader
@@ -46,7 +38,6 @@ public static class JSONReader
 [System.Serializable]
 public class RoomJSON
 {
-    public string Name;
     public JSONPair[] Pairs;
 }
 
