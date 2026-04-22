@@ -29,10 +29,14 @@ public class RoomScript : MonoBehaviour
                 {
                     case "Left": tag = g.Links.Contains(Directions.Left) ? "Floor" : "Wall"; break;
                     case "Right": tag = g.Links.Contains(Directions.Right) ? "Floor" : "Wall"; break;
-                    case "Up": tag = g.Links.Contains(Directions.Down) ? "Floor" : "Wall"; break;
-                    case "Down": tag = g.Links.Contains(Directions.Up) ? "Floor" : "Wall"; break;
+                    case "Up": tag = g.Links.Contains(Directions.Up) ? "Floor" : "Wall"; break;
+                    case "Down": tag = g.Links.Contains(Directions.Down) ? "Floor" : "Wall"; break;
                 }
 
+                if (tag == "Empty")
+                {
+                    continue;
+                }
                 if (tag == "Wall")
                 {
                     ThingInfo wi = w.Create();
@@ -131,7 +135,7 @@ public class RoomScript : MonoBehaviour
     // }
     public Vector3 GetPos(int x, int y, Vector2 size,float z=0)
     {
-        return transform.position+new Vector3(x - ((size.x - 2) / 2), y - ((size.y - 2) / 2), z);
+        return transform.position+new Vector3(x + ((size.x - 2) / 2), (((size.y - 2) / 2))-y, z);
     }
     
 }

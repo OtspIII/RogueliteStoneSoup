@@ -10,19 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1a173895f2109b44097a501cb76e88f5, type: 3}
-  m_Name: Player
+  m_Name: Exit
   m_EditorClassIdentifier: Assembly-CSharp::TextRoomOption
-  Name: Player Start
+  Name: Exit
   Author: 11
   Tags:
-  - Common: 1
+  - Common: 401
     Custom: 
     W: 0
     Cost: 0
   Prefab: {fileID: 0}
   Audited: 1
   MapSize: {x: 11, y: 11}
-  Map: {fileID: 4900000, guid: c161ed52a2c2c3d459a4dbc6e5197023, type: 3}
+  Map: {fileID: 4900000, guid: 8c0ac0581b4020444afb75b3800a7a3f, type: 3}
   JSON: {fileID: 4900000, guid: c27f9322ebb1a8c4ba263321c9f50f6b, type: 3}
   MapText:
   - "xxxxuuuxxxx\r"
