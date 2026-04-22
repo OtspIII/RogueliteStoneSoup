@@ -821,6 +821,7 @@ MonoBehaviour:
     Depth: 0
     RoomType: {fileID: 0}
     Room: {fileID: 0}
+    DebugColor: 
   SpawnerHolder: {fileID: 2353098262368716552}
   DoorHolder: {fileID: 3899709892671216710}
   Spawners: []

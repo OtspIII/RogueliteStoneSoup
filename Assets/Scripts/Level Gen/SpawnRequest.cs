@@ -12,6 +12,7 @@ public class SpawnRequest
     public int Level = 0;
     public Authors Author;
     public float MaxCost = 0;
+    public Vector3 Where = new Vector3(999, 999, 999);
 
     public SpawnRequest()
     {
@@ -90,6 +91,36 @@ public class SpawnRequest
         Author = a;
         return this;
     }
+    
+    public SpawnRequest SetPos(Vector3 pos)
+    {
+        Where = pos;
+        return this;
+    }
+    
+    public bool CanSpawn(ThingOption o,LevelBuilder b=null,bool backup=false)
+    {
+        if (b == null) b = God.LB;
+        return (b != null ? b : God.LB).JudgeThing(this,o,backup) > 0;
+    }
+    
+    public void Spawn()
+    {
+        if (HasTag(GameTags.Player)) return;
+        // ToSpawn.Refine();
+        ThingOption chosen = FindThing();
+        if (chosen == null)
+        {
+            if(!HasTag(GameTags.Debug) && !HasTag(GameTags.DebugAlt) && !HasTag(GameTags.DebugEnd))
+                God.LogWarning("Tried to spawn but couldn't: " + this);
+            return;
+        }
+        
+        ThingInfo i = chosen.Create();
+        i.Spawn(this);
+    }
+    
+    
     
     
 
