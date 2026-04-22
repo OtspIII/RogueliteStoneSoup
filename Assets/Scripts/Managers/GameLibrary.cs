@@ -59,7 +59,7 @@ public class GameLibrary : MonoBehaviour
     }
 
     ///Finds an appropriate room to fill a GeoTile during level generation
-    public RoomOption GetRoom(GeoTile g,LevelBuilder b)
+    public RoomOption GetRoom(GeoTile g,LevelBuilder b,bool backup=true)
     {
         //We're going to record how likely each room is to appear
         Dictionary<RoomOption, float> opts = new Dictionary<RoomOption, float>();
@@ -70,6 +70,17 @@ public class GameLibrary : MonoBehaviour
             float w = b.JudgeRoom(g, rs);
             //If it has any chance, add it to the dictionary
             if(w > 0) opts.Add(rs,w);
+        }
+        Debug.Log(opts.Keys.Count + " / " + backup);
+        if (opts.Keys.Count == 0 && backup)
+        {
+            Debug.Log("BACKUP TRY" + g);
+            foreach (RoomOption rs in RoomOptions)
+            {
+                //By setting this override true it'll ignore authors of Options
+                float w = b.JudgeRoom(g,rs,true);
+                if(w > 0) opts.Add(rs,w);
+            }
         }
         //If we didn't find any valid options, throw a warning. You might need to make more room types
         if (opts.Count == 0)

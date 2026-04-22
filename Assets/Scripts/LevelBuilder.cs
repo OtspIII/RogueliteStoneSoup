@@ -504,8 +504,14 @@ public class LevelBuilder
 
     ///Takes a tile, judges if an option is good enough to fit it
     ///This is on LevelBuilder so you can override it
-    public virtual float JudgeRoom(GeoTile g, RoomOption o)
+    public virtual float JudgeRoom(GeoTile g, RoomOption o,bool backup=false)
     {
+        if (!backup)
+        {
+            Authors sra = o.Author == Authors.None ? God.Session.Author : o.Author;
+            //Make sure it's the right author. If either the option or the game is universal, it's okay
+            if (sra != Authors.Universal && o.Author != Authors.Universal && sra != Authors.None && o.Author != sra) return 0;
+        }
         //Let the option calculate how big it is/etc
         o.Audit();
         //The map should only build rooms that are the same size as the level wants
