@@ -181,6 +181,7 @@ public static class Parser
             // TracyH=80,
             case Actions.Charge_TracyH: return new ChargeAction_TracyH(who, e);
             // WesleyP=90,
+           
             // YuChen=95,
             case Actions.spinAction_Yu: return new SpinAction_Yuchen(who, e);
         }
@@ -465,7 +466,9 @@ public enum Actions
     TracyH1         =8001,
     Charge_TracyH   =8002,
     //WesleyP       =90##,
-    NewPlayerAlly_WesleyP =9001, 
+    WesleyP1        =9001,
+    CharacterSwap_WesleyP =9002, 
+    HealingAlly_WesleyP =9003,
     //YuChen        =95##,
     YuChen1         =9501,
     spinAction_Yu = 9502,
