@@ -242,8 +242,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameLibrary
   ActorPrefab: {fileID: 0}
   PickupDefaultBody: {fileID: 0}
+  EmptyRoom: {fileID: 0}
   GnomePrefab: {fileID: 0}
   Hitbox: {fileID: 0}
+  GenericJSON: {fileID: 0}
 --- !u!4 &860513862
 Transform:
   m_ObjectHideFlags: 0

@@ -189,13 +189,16 @@ public enum GameTags
     Exit            =0401,
     Scenery         =0402,
     Boss            =0500,
+    Wall            =0600,
+    Floor           =0601,
+    Generic         =0700,
 }
 
-public enum RoomTags
-{
-    None           =0000,
-    Generic        =0001,
-    PlayerStart    =0002,
-    Exit           =0003,
-    Boss           =0004,
-}
+// public enum RoomTags
+// {
+//     None           =0000,
+//     Generic        =0001,
+//     PlayerStart    =0002,
+//     Exit           =0003,
+//     Boss           =0004,
+// }

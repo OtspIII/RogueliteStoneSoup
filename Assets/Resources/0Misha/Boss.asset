@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a173895f2109b44097a501cb76e88f5, type: 3}
+  m_Name: Boss
+  m_EditorClassIdentifier: Assembly-CSharp::TextRoomOption
+  Name: Boss
+  Author: 11
+  Tags:
+  - Common: 500
+    Custom: 
+    W: 0
+    Cost: 0
+  Prefab: {fileID: 0}
+  Audited: 1
+  MapSize: {x: 11, y: 11}
+  Map: {fileID: 4900000, guid: 6e5821392dadcf3468496181ffc17f07, type: 3}
+  JSON: {fileID: 4900000, guid: c27f9322ebb1a8c4ba263321c9f50f6b, type: 3}
+  MapText:
+  - "xxxxuuuxxxx\r"
+  - "xF       Fx\r"
+  - "x         x\r"
+  - "x         x\r"
+  - "l         r\r"
+  - "l    P    r\r"
+  - "l         r\r"
+  - "x         x\r"
+  - "x         x\r"
+  - "xF       Fx\r"
+  - xxxxdddxxxx

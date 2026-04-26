@@ -10,6 +10,7 @@ public class LevelBuilder
     public Vector2Int Size;
     //What is the % chance that any two adjacent rooms that don't need to be are connected
     public float LinkOdds = 0.1f;
+    public Vector2Int RoomSize = new Vector2Int(11, 11);
     
     //And here are the variables that are just bookkeeping for the level dev process
     //A grid of tiles, lets you find a tile by its x/y coordinate
@@ -21,11 +22,11 @@ public class LevelBuilder
     //What tile does the exit spawn at?
     public GeoTile Exit;
     //A list of all the spawn points in the game you can spawn stuff at
-    public List<SpawnPointController> SpawnPoints = new List<SpawnPointController>();
+    public List<SpawnRequest> SpawnPoints = new List<SpawnRequest>();
     //A list of all the spawn points that just want to spawn their own thing
-    public List<SpawnPointController> SpawnPointsFixed = new List<SpawnPointController>();
-    //A list of all the types of things we want to spawn somewhere in the level
-    public List<SpawnRequest> SpawnRequests = new List<SpawnRequest>();
+    public List<SpawnRequest> SpawnPointsFixed = new List<SpawnRequest>();
+    //A list of all the spawn points that might spawn a player
+    public List<SpawnRequest> SpawnPointsPlayer = new List<SpawnRequest>();
     //A list of all the specific things we want to spawn in the level
     public List<ThingOption> ToSpawn = new List<ThingOption>();
     //If a SpawnPoint can spawn "Something" it'll be okay for all of these options 
@@ -94,8 +95,7 @@ public class LevelBuilder
         for (int y = 0; y < Size.y; y++)
         {
             //Spawn a blank room slot into the position 
-            GeoTile g = new GeoTile(x, y,this);
-            AddGeo(g);
+            AddGeo(new GeoTile(x, y,this));
         }
     }
 
@@ -267,7 +267,11 @@ public class LevelBuilder
             //Pick a random room that fits its tags and tell the slot about it
             //See JudgeRoom() below for more details on how this gets done
             g.RoomType = God.Library.GetRoom(g, this);
+
+            
         }
+
+        
     }
 
     ///Actually spawn the rooms
@@ -297,8 +301,14 @@ public class LevelBuilder
             {
                 //If the spawn point always spawns a fixed item, add it to a different list;
                 //Tt's not a valid one to spawn other stuff at
-                if(spc.AlwaysSpawn) SpawnPointsFixed.Add(spc);
-                else SpawnPoints.Add(spc);
+                if (spc.AlwaysSpawn)
+                {
+                    if (spc.ToSpawn.HasTag(GameTags.Player))
+                        SpawnPointsPlayer.Add(spc.ToSpawn.SetPos(spc.transform.position));
+                    else
+                        SpawnPointsFixed.Add(spc.ToSpawn.SetPos(spc.transform.position));
+                }
+                else SpawnPoints.Add(spc.ToSpawn.SetPos(spc.transform.position));
             }
         }
     }
@@ -358,20 +368,17 @@ public class LevelBuilder
     public virtual void SpawnThings()
     {
         //First, we spawn the player. Find the spawn point in the player start room that spawns the player
-        SpawnPointController playerStart = null;
-        foreach (SpawnPointController s in PlayerSpawn.Room.Spawners)
+        SpawnRequest pl = null;
+        if (SpawnPointsPlayer.Count > 0)
+            pl = SpawnPointsPlayer.Random();
+        else if (SpawnPoints.Count > 0)
         {
-            if (s.ToSpawn.HasTag(GameTags.Player))
-            {
-                playerStart = s;
-                //Don't use this spawn for anything else
-                SpawnPoints.Remove(s);
-                SpawnPointsFixed.Remove(s);
-                break;
-            }
+            pl = SpawnPoints.Random();
+            SpawnPoints.Remove(pl);
         }
         //If we found a spawn point for the player, spawn them there. 
-        if (playerStart != null) God.Session.Player.Spawn(playerStart);
+        if(pl != null)
+            God.Session.Player.Spawn(pl);
         //Otherwise, throw warning and spawn the player in the room's center
         else
         {
@@ -394,14 +401,14 @@ public class LevelBuilder
             ThingOption o = ToSpawn.Random();
             ToSpawn.Remove(o);
             //Make a new list of all the unused spawn points, so we can mess with it without changing the original
-            List<SpawnPointController> s = new List<SpawnPointController>();
+            List<SpawnRequest> s = new List<SpawnRequest>();
             s.AddRange(SpawnPoints);
-            SpawnPointController here = null;
+            SpawnRequest here = null;
             //For as long as we have possible spawns to try. . .
             while (s.Count > 0)
             {
                 //Pick a random spawn point, remove it from the list, and see if it can spawn this type of thing
-                SpawnPointController chosen = s.Random();
+                SpawnRequest chosen = s.Random();
                 s.Remove(chosen);
                 //If you can, then mark it as the one we're using
                 if (chosen.CanSpawn(o,this))
@@ -417,7 +424,7 @@ public class LevelBuilder
                 s.AddRange(SpawnPoints);
                 while (s.Count > 0)
                 {
-                    SpawnPointController chosen = s.Random();
+                    SpawnRequest chosen = s.Random();
                     s.Remove(chosen);
                     //That 'true' means that we're accepting work by other authors as a backup plan
                     if (chosen.CanSpawn(o,this,true))
@@ -438,7 +445,7 @@ public class LevelBuilder
                 God.LogWarning("Thing couldn't find a place to spawn: " + o.Name);
         }
         //For each spawn point that just spawns one specific thing, let it spawn its thing
-        foreach (SpawnPointController s in SpawnPointsFixed)
+        foreach (SpawnRequest s in SpawnPointsFixed)
         {
             s.Spawn();
         }
@@ -501,19 +508,29 @@ public class LevelBuilder
 
     ///Takes a tile, judges if an option is good enough to fit it
     ///This is on LevelBuilder so you can override it
-    public virtual float JudgeRoom(GeoTile g, RoomOption o)
+    public virtual float JudgeRoom(GeoTile g, RoomOption o,bool backup=false)
     {
+        if (!backup)
+        {
+            Authors sra = o.Author == Authors.None ? God.Session.Author : o.Author;
+            //Make sure it's the right author. If either the option or the game is universal, it's okay
+            if (sra != Authors.Universal && o.Author != Authors.Universal && sra != Authors.None && o.Author != sra) return 0;
+        }
+        //Let the option calculate how big it is/etc
+        o.Audit();
+        //The map should only build rooms that are the same size as the level wants
+        if (RoomSize != o.MapSize) return 0;
         //By default, any room with the Generic tag is good
-        RoomTags t = RoomTags.Generic;
+        GameTags t = GameTags.Generic;
         //But if this is the player start tile, it should have the player start tag
-        if (g.Path == GeoTile.GeoTileTypes.PlayerStart) t = RoomTags.PlayerStart;
+        if (g.Path == GeoTile.GeoTileTypes.PlayerStart) t = GameTags.Player;
         //And if it's the exit, it should have the exit tag
-        if (g.Path == GeoTile.GeoTileTypes.Exit) t = RoomTags.Exit;
+        if (g.Path == GeoTile.GeoTileTypes.Exit) t = GameTags.Exit;
         //And if it's the boss room, it should have the boss tag
-        if (g.Path == GeoTile.GeoTileTypes.Boss) t = RoomTags.Boss;
+        if (g.Path == GeoTile.GeoTileTypes.Boss) t = GameTags.Boss;
         //If it has the tag we picked above, it's good to go
         //Note that if you returned a bigger number, it would be more likely to be picked
-        if(o.Tags.Contains(t)) return 1;
+        if(o.HasTag(t.ToString())) return 1;
         //If not, there should be 0 chance of picking it
         return 0;
     }

@@ -1,0 +1,15 @@
+{
+    "Pairs": [{"K":"x","V":"Wall"},
+        {"K":" ","V":"Floor"},
+        {"K":".","V":""},
+        {"K":"P","V":"Player"},
+        {"K":"C","V":"Centerpiece"},
+        {"K":"E","V":"Exit"},
+        {"K":"B","V":"Boss"},
+        {"K":"l","V":"Left"},
+        {"K":"r","V":"Right"},
+        {"K":"u","V":"Up"},
+        {"K":"d","V":"Down"},
+        {"K":"F","V":"Fire"}
+    ]
+}

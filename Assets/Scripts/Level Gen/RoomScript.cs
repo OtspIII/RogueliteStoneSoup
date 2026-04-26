@@ -12,13 +12,57 @@ public class RoomScript : MonoBehaviour
     public BoxCollider2D Coll;
     [SerializeReference] public List<ThingController> Contents = new List<ThingController>();
     // public List<RoomTags> Tags;
-    
-    public void Setup(GeoTile g)
+
+    public void SetupText(GeoTile g,TextRoomOption o)
     {
-        Geo = g;
-        transform.parent = God.GM.LevelHolder;
-        if (SpawnerHolder == null) SpawnerHolder = transform;
-        if (DoorHolder == null) DoorHolder = transform;
+        ThingOption w = God.Library.GetThing(new SpawnRequest(GameTags.Wall));
+        ThingOption f = God.Library.GetThing(new SpawnRequest(GameTags.Floor));
+        
+        for (int y = 0; y < o.MapText.Length; y++)
+        {
+            for (int x = 0; x < o.MapText[y].Length; x++)
+            {
+                char l = o.MapText[y][x];
+                if (x == o.MapText[y].Length - 1 && l != 'x') continue;
+                string tag = God.Library.GetJSONTile(l,o.JSON);
+                switch (tag) 
+                {
+                    case "Left": tag = g.Links.Contains(Directions.Left) ? "Floor" : "Wall"; break;
+                    case "Right": tag = g.Links.Contains(Directions.Right) ? "Floor" : "Wall"; break;
+                    case "Up": tag = g.Links.Contains(Directions.Up) ? "Floor" : "Wall"; break;
+                    case "Down": tag = g.Links.Contains(Directions.Down) ? "Floor" : "Wall"; break;
+                }
+
+                if (tag == "Empty")
+                {
+                    continue;
+                }
+                if (tag == "Wall")
+                {
+                    ThingInfo wi = w.Create();
+                    wi.Spawn(transform,GetPos(x,y,o.MapSize)).gameObject.isStatic = true;
+                    continue;
+                }
+                //Spawn a floor
+                ThingInfo fi = f.Create();
+                Vector3 where = GetPos(x, y, o.MapSize, 50);
+                fi.Spawn(transform,where).gameObject.isStatic = true;
+                // Debug.Log("TILE: " + tag + " / " + x+"."+y);
+                where.z = 0;
+                if (tag == "Floor" && (int)g.Path > 3)
+                    God.LB.SpawnPoints.Add(new SpawnRequest().SetPos(where));
+                if (tag == "" || tag == "Floor") continue;
+                if(tag == "Player") God.LB.SpawnPointsPlayer.Add(new SpawnRequest(new Tag(tag)).SetPos(where));
+                else God.LB.SpawnPointsFixed.Add(new SpawnRequest(new Tag(tag)).SetPos(where));
+                
+            }
+        }
+        Setup(g);
+    }
+
+    public void SetupPrefab(GeoTile g)
+    {
+        Setup(g);
         for(int n = 0;n < SpawnerHolder.childCount;n++)
         {
             SpawnPointController s = SpawnerHolder.GetChild(n).GetComponent<SpawnPointController>();
@@ -50,6 +94,15 @@ public class RoomScript : MonoBehaviour
         else if (!Coll.isTrigger) God.LogWarning("ROOM SET UP WITH NON-TRIGGER COLLIDER: " + this);
         else if (Coll.gameObject.layer != LayerMask.NameToLayer("Room")) God.LogWarning("ROOM SET UP WITH NON-ROOM LAYER ON COLLIDER: " + this);
     }
+    
+    public void Setup(GeoTile g)
+    {
+        Geo = g;
+        transform.parent = God.GM.LevelHolder;
+        if (SpawnerHolder == null) SpawnerHolder = transform;
+        if (DoorHolder == null) DoorHolder = transform;
+        
+    }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -80,4 +133,9 @@ public class RoomScript : MonoBehaviour
     //     foreach(SpawnPointController s in Spawners)
     //         s.Spawn();
     // }
+    public Vector3 GetPos(int x, int y, Vector2 size,float z=0)
+    {
+        return transform.position+new Vector3(x + ((size.x - 2) / 2), (((size.y - 2) / 2))-y, z);
+    }
+    
 }
