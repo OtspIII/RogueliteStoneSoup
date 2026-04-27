@@ -283,6 +283,7 @@ public class LevelBuilder
                 continue;
             }
             //Have the RoomOption spawn the room for us
+            //Note that the new system uses TextRoomOption.Build for most rooms
             g.Room = g.RoomType.Build(g, this);
             //If that somehow failed, throw an error but move on
             if (g.Room == null)
@@ -292,20 +293,6 @@ public class LevelBuilder
             }
             //Add the room to the GameManager's list, just so it knows it exists
             God.GM.Rooms.Add(g.Room);
-            //Collect a list of all the spawn points in the room, so we can spawn things at them later
-            foreach (SpawnPointController spc in g.Room.Spawners)
-            {
-                //If the spawn point always spawns a fixed item, add it to a different list;
-                //Tt's not a valid one to spawn other stuff at
-                if (spc.AlwaysSpawn)
-                {
-                    if (spc.ToSpawn.HasTag(GameTags.Player))
-                        SpawnPointsPlayer.Add(spc.ToSpawn.SetPos(spc.transform.position));
-                    else
-                        SpawnPointsFixed.Add(spc.ToSpawn.SetPos(spc.transform.position));
-                }
-                else SpawnPoints.Add(spc.ToSpawn.SetPos(spc.transform.position));
-            }
         }
     }
     
@@ -320,41 +307,41 @@ public class LevelBuilder
         float mons = God.RoundRand(rms * (1f + (God.Session.Level * 0.1f)));
         //Add that many monsters to the queue
         Quotas.Add(new Tag(GameTags.NPC,1,mons));
-        // for(float n=0;n<mons;n++) AddSpawn(GameTags.NPC);
         //We'll have 1 weapon drop per level, plus maybe a second (odds increase with depth)
         float wpn = God.RoundRand(1 + (rms * 0.05f));
         Quotas.Add(new Tag(GameTags.Weapon,1,wpn));
-        // for(float n=0;n<wpn;n++) AddSpawn(GameTags.Weapon);
         //One consumable per four rooms
         float con = God.RoundRand(rms * 0.25f);
         Quotas.Add(new Tag(GameTags.Consumable,1,con));
-        // for(float n=0;n<con;n++) AddSpawn(GameTags.Consumable);
         //And as many piles of coins as our level number. Can you find them all before using the exit?
         float scr = God.Session.Level;
         Quotas.Add(new Tag(GameTags.ScoreThing,1,scr));
-        // for(float n=0;n<scr;n++) AddSpawn(GameTags.ScoreThing);
         
-        //Then we take those tags and use them to decide on a list of actual things to spawn
-        // foreach (SpawnRequest sr in SpawnRequests)
-        // {
-        //     //See JudgeThing() below for more info on how things are valued
-        //     ThingOption o = God.Library.GetThing(sr);
-        //     ToSpawn.Add(o);
-        // }
+        //Actually make a list of all the ThingOptions we want to spawn somewhere
+        FindThings();
+    }
 
+    public void FindThings()
+    {
+        //Look at each tag we want to spawn some things of
         foreach (Tag t in Quotas)
         {
             int safety = 999;
+            //Cost is how many of them we want to spawn
             while (t.Cost > 0 && safety > 0)
             {
                 safety--;
+                //Make a spawn request for the tag we want and submit it to the library
                 SpawnRequest sr = new SpawnRequest(t);
+                //The cost of the thing spawning shouldn't be bigger than our remaining budget
                 sr.MaxCost = t.Cost;
                 ThingOption o = God.Library.GetThing(sr);
                 if (o == null) break;
+                //Add the thing we found to the list of stuff to spawn
                 ToSpawn.Add(o);
+                //And reduce our budget by how much it cost
                 Tag ot = o.GetTag(t.Value);
-                if (ot == null) t.Cost--;
+                if (ot == null) t.Cost--; //If no cost is listed, it cost 1
                 else t.Cost -= ot.Cost;
             }
         }
@@ -531,11 +518,11 @@ public class LevelBuilder
         return 0;
     }
     
-    //#######BOOKMARK########
     public virtual float JudgeThing(SpawnRequest sr, ThingOption o,bool backup=false)
     {
         if (!backup)
         {
+            //If the spawn request set a specific author, we use that. Otherwise we use this session's author.
             Authors sra = sr.Author == Authors.None ? God.Session.Author : sr.Author;
             //Make sure it's the right author. If either the option or the game is universal, it's okay
             if (sra != Authors.Universal && o.Author != Authors.Universal && sra != Authors.None && o.Author != sra) return 0;
@@ -549,30 +536,40 @@ public class LevelBuilder
             if (l < o.LevelRange.x && o.LevelRange.x > 0) return 0;
             if (l > o.LevelRange.y && o.LevelRange.y > 0) return 0;
         }
+        //W is for 'weight'. It's how likely this is to spawn. It's what we'll return at the end of this function.
         float w = 1;
+        //If we want to spawn only 1 more object, we need to make sure we don't pick an object with a cost of 2+.
         float cost = 0;
-        foreach(Tag t in sr.Mandatory)
+        //Spawn Requests can list tags that they MUST have.
+        foreach(Tag t in sr.Mandatory) //Look at each and see if the option has that tag
             if (o.HasTag(t.Value, out float tw, out float cst))
             {
+                //If it does, make the weight the weight of that tag. Same with cost.
                 w = God.MergeWeight(w,tw);
                 cost = Mathf.Max(cost, cst);
-            }
+            } //Otherwise, return 0 (not a valid choice)
             else return 0;
+        //If the cost is over our budget, return 0.
         if (sr.MaxCost > 0 && sr.MaxCost < cost) return 0;
+        //SpawnRequests can also have a list of tags that they must have one or more of
         if (sr.Any.Count > 0)
         {
+            //Does this option have any of these options? False until we find one that it does have
             bool any = false;
             foreach (Tag t in sr.Any)
             {
+                //If it has this tag, set any to true and add the weight.
                 if (o.HasTag(t.Value, out float tw))
                 {
                     w = God.MergeWeight(w, tw);
                     any = true;
                 }
             }
+            //If it doesn't have any, this isn't a valid option
             if(!any)
                 return 0;
         }
+        //Return the calculated weight.
         return w;
     }
 
