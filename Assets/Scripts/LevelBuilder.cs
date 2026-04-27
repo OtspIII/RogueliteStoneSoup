@@ -267,7 +267,11 @@ public class LevelBuilder
             //Pick a random room that fits its tags and tell the slot about it
             //See JudgeRoom() below for more details on how this gets done
             g.RoomType = God.Library.GetRoom(g, this);
+
+            
         }
+
+        
     }
 
     ///Actually spawn the rooms
