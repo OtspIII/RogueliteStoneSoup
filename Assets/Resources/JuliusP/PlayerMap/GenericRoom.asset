@@ -10,29 +10,29 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1a173895f2109b44097a501cb76e88f5, type: 3}
-  m_Name: Hallway
+  m_Name: GenericRoom
   m_EditorClassIdentifier: Assembly-CSharp::TextRoomOption
-  Name: Hallway
-  Author: 0
+  Name: Generic
+  Author: 40
   Tags:
   - Common: 700
     Custom: 
     W: 0
     Cost: 0
   Prefab: {fileID: 0}
-  Audited: 0
-  MapSize: {x: 11, y: 11}
-  Map: {fileID: 4900000, guid: ac91a081101bc254894295fe9cfc8652, type: 3}
+  Audited: 1
+  MapSize: {x: 10, y: 11}
+  Map: {fileID: 4900000, guid: f2383b44565054e21bfb4bc0a0cc4d0e, type: 3}
   JSON: {fileID: 0}
   MapText:
-  - "xxxxuuuxxxx\r"
-  - "xxxxuuuxxxx\r"
-  - "xxxxuuuxxxx\r"
-  - "xxxxuuuxxxx\r"
-  - "llll   rrrr\r"
-  - "llll   rrrr\r"
-  - "llll   rrrr\r"
-  - "xxxxdddxxxx\r"
-  - "xxxxdddxxxx\r"
-  - "xxxxdddxxxx\r"
-  - xxxxdddxxxx
+  - xxxxuuxxxxx
+  - x         x
+  - x         x
+  - x         x
+  - x         x
+  - x         x
+  - x         x
+  - x         x
+  - x         x
+  - x         x
+  - xxxxxxxxxxx

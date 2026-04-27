@@ -14,6 +14,20 @@ public class RoomOption : GameOption
         RoomScript r = Instantiate(Prefab, new Vector3(g.X * (b.RoomSize.x-1), g.Y * (b.RoomSize.y-1), 0), Quaternion.identity);
         r.gameObject.name = "[" + g.X + "." + g.Y + "] " + r.gameObject.name;
         r.SetupPrefab(g);
+        //Collect a list of all the spawn points in the room, so we can spawn things at them later
+        foreach (SpawnPointController spc in g.Room.Spawners)
+        {
+            //If the spawn point always spawns a fixed item, add it to a different list;
+            //Tt's not a valid one to spawn other stuff at
+            if (spc.AlwaysSpawn)
+            {
+                if (spc.ToSpawn.HasTag(GameTags.Player))
+                    b.SpawnPointsPlayer.Add(spc.ToSpawn.SetPos(spc.transform.position));
+                else
+                    b.SpawnPointsFixed.Add(spc.ToSpawn.SetPos(spc.transform.position));
+            }
+            else b.SpawnPoints.Add(spc.ToSpawn.SetPos(spc.transform.position));
+        }
         return r;
     }
 

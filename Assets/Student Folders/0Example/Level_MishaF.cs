@@ -13,6 +13,7 @@ public class Level_MishaF : LevelBuilder
         SpawnPlayer();
         Size = new Vector2Int(4, 4);
         LinkOdds = 1;
+        RoomSize = new Vector2Int(15, 15);
     }
 
     public override void BuildGeoMap()

@@ -291,6 +291,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   Author: 95
+  Author: 40
   Level: 3
   GeoPrefab: {fileID: 2554443116808275469, guid: 1ee0942092b09d443b8b443302ff506c, type: 3}
   Cam: {fileID: 575433856}
