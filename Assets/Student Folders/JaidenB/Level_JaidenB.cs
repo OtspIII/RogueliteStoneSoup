@@ -17,6 +17,8 @@ public class Level_JaidenB : LevelBuilder
 
     public override void BuildGeoMap()
     {
+        AddGeo(new GeoTile(0, 0, this));
+        AddGeo(new GeoTile(0, 1, this));
         AddGeo(new GeoTile(1, 1, this));
         AddGeo(new GeoTile(1, 2, this));
         AddGeo(new GeoTile(1, 3, this));
@@ -27,7 +29,9 @@ public class Level_JaidenB : LevelBuilder
 
     public override void BuildMainPath()
     {
-
-        Exit = GetGeo(1, 1 + 1);
+        PlayerSpawn = GetGeo(0, 1);
+        PlayerSpawn.SetPath(GeoTile.GeoTileTypes.PlayerStart);
+        Exit = GetGeo(2, 4);
+        Exit.SetPath(GeoTile.GeoTileTypes.Exit);
     }
 }
