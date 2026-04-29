@@ -21,6 +21,10 @@ public class Level_MishaF : LevelBuilder
         AddGeo(new GeoTile(0, 0,this));
         AddGeo(new GeoTile(0, 1,this));
         AddGeo(new GeoTile(0, 2,this));
+        return;
+        AddGeo(new GeoTile(0, 0,this));
+        AddGeo(new GeoTile(0, 1,this));
+        AddGeo(new GeoTile(0, 2,this));
         AddGeo(new GeoTile(-1, 2,this));
         AddGeo(new GeoTile(1, 2,this));
     }
@@ -29,7 +33,16 @@ public class Level_MishaF : LevelBuilder
     {
         PlayerSpawn = GetGeo(0, 0);
         PlayerSpawn.SetPath(GeoTile.GeoTileTypes.PlayerStart);
-        Exit = GetGeo(1, 2); 
+        GetGeo(0, 1).Tag = "MishaTest";
+        Exit = GetGeo(0, 2); 
         Exit.SetPath(GeoTile.GeoTileTypes.Exit);
+    }
+
+    public override void FindQuotas()
+    {
+        // AddQuota(GameTags.Weapon,5);
+        // AddQuota("Fire",10);
+        
+        FindThings();
     }
 }

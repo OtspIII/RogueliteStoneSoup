@@ -267,11 +267,7 @@ public class LevelBuilder
             //Pick a random room that fits its tags and tell the slot about it
             //See JudgeRoom() below for more details on how this gets done
             g.RoomType = God.Library.GetRoom(g, this);
-
-            
         }
-
-        
     }
 
     ///Actually spawn the rooms
@@ -323,6 +319,15 @@ public class LevelBuilder
         
         //Actually make a list of all the ThingOptions we want to spawn somewhere
         FindThings();
+    }
+
+    public void AddQuota(GameTags tag, float amt)
+    {
+        Quotas.Add(new Tag(tag,1,amt));
+    }
+    public void AddQuota(string tag, float amt)
+    {
+        Quotas.Add(new Tag(tag,1,amt));
     }
 
     public void FindThings()
@@ -517,6 +522,12 @@ public class LevelBuilder
         if (g.Path == GeoTile.GeoTileTypes.Boss) t = GameTags.Boss;
         //If it has the tag we picked above, it's good to go
         //Note that if you returned a bigger number, it would be more likely to be picked
+        if (g.Tag != "" && !backup)
+        {
+            if(o.HasTag(g.Tag)) return 1;
+            God.LogWarning("NO ROOM WITH TAG: " + g.Tag);
+            return 0;
+        }
         if(o.HasTag(t.ToString())) return 1;
         //If not, there should be 0 chance of picking it
         return 0;

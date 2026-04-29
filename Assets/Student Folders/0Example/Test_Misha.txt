@@ -1,0 +1,15 @@
+xxxxxxuuuxxxxxx
+x             x
+x             x
+x             x
+x             x
+x             x
+l             r
+l      T      r
+l             r
+x             x
+x             x
+x             x
+x             x
+x             x
+xxxxxxdddxxxxxx

@@ -91,6 +91,11 @@ public class GameLibrary : MonoBehaviour
         //Return a random option
         return WRandom(opts);
     }
+
+    public ThingOption GetThing(string tag,LevelBuilder b=null,bool backup=true)
+    {
+        return GetThing(new SpawnRequest(tag), b, backup);
+    }
     
     ///Finds an appropriate thing to spawn in response to a SpawnRequest
     public ThingOption GetThing(SpawnRequest sr,LevelBuilder b=null,bool backup=true)
