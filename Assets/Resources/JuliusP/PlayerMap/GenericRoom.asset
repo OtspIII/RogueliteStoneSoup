@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a173895f2109b44097a501cb76e88f5, type: 3}
   m_Name: GenericRoom
   m_EditorClassIdentifier: Assembly-CSharp::TextRoomOption
-  Name: Generic
+  Name: Generic Room
   Author: 40
   Tags:
   - Common: 700
@@ -21,18 +21,19 @@ MonoBehaviour:
     Cost: 0
   Prefab: {fileID: 0}
   Audited: 1
-  MapSize: {x: 10, y: 11}
+  MapSize: {x: 11, y: 12}
   Map: {fileID: 4900000, guid: f2383b44565054e21bfb4bc0a0cc4d0e, type: 3}
   JSON: {fileID: 0}
   MapText:
-  - xxxxuuxxxxx
-  - x         x
-  - x         x
-  - x         x
-  - x         x
-  - x         x
-  - x         x
-  - x         x
-  - x         x
-  - x         x
-  - xxxxxxxxxxx
+  - xxxxxxxxxxxx
+  - xxxxxxxxxxxx
+  - xxxxxxxxxxxx
+  - xxxxxxxxxxxx
+  - xxxxxxxxxxxx
+  - xxxxxxxxxxxx
+  - xxxxxxxxxxxx
+  - xxxxxxxxxxxx
+  - l          r
+  - l          r
+  - l          r
+  - xxxxxddxxxxx

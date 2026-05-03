@@ -14,16 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Dash Potion
   Author: 40
-  Team: 1
-  Body: {fileID: 629948465317790645, guid: 7ef37acb0fdeb5849995b35a7fdca6ba, type: 3}
-  Art: {fileID: -2880734798192188640, guid: f77ef968c74f7a64c86e3247520c36ec, type: 3}
-  Color: {r: 1, g: 0.9584457, b: 0, a: 1}
-  Size: 1
   Tags:
   - Common: 202
     Custom: 
     W: 1
     Cost: 1
+  Team: 1
+  Body: {fileID: 629948465317790645, guid: 7ef37acb0fdeb5849995b35a7fdca6ba, type: 3}
+  Art: {fileID: -2880734798192188640, guid: f77ef968c74f7a64c86e3247520c36ec, type: 3}
+  Color: {r: 1, g: 0.9584457, b: 0, a: 1}
+  Size: 1
   LevelRange: {x: 0, y: 0}
   Trait:
   - Trait: 4009
@@ -38,6 +38,7 @@ MonoBehaviour:
       Level: 0
       Author: 0
       MaxCost: 0
+      Where: {x: 999, y: 999, z: 999}
     Builder: []
   - Trait: 313
     Numbers: []
@@ -51,6 +52,7 @@ MonoBehaviour:
       Level: 0
       Author: 0
       MaxCost: 0
+      Where: {x: 999, y: 999, z: 999}
     Builder:
     - Type: 0
       NumType: 0
@@ -85,6 +87,7 @@ MonoBehaviour:
       Level: 0
       Author: 0
       MaxCost: 0
+      Where: {x: 999, y: 999, z: 999}
     Builder: []
   DefaultAttack: 5
   ToSpawn:
@@ -94,6 +97,7 @@ MonoBehaviour:
     Level: 0
     Author: 40
     MaxCost: 0
+    Where: {x: 999, y: 999, z: 999}
   FloorBody: {fileID: 629948465317790645, guid: 0f8734e4b4d2c3a449506fe0c78c1110, type: 3}
   FloorArt: {fileID: 0}
   Damage: 0

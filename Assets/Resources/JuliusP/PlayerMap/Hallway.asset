@@ -10,30 +10,30 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1a173895f2109b44097a501cb76e88f5, type: 3}
-  m_Name: PlayerRoom
+  m_Name: Hallway
   m_EditorClassIdentifier: Assembly-CSharp::TextRoomOption
-  Name: PlayerRoom
+  Name: Hallway
   Author: 40
   Tags:
-  - Common: 1
-    Custom: 
+  - Common: 700
+    Custom: Hall
     W: 0
     Cost: 0
   Prefab: {fileID: 0}
   Audited: 1
   MapSize: {x: 11, y: 12}
-  Map: {fileID: 4900000, guid: 4644de092f0db4df593589f7042e9daa, type: 3}
-  JSON: {fileID: 4900000, guid: 15b9788a32ffc4888b73727fe69f7b39, type: 3}
+  Map: {fileID: 4900000, guid: c34b41a0decca4897b0361a2d313c1b5, type: 3}
+  JSON: {fileID: 0}
   MapText:
-  - '     uu    x'
-  - l          x
-  - l          x
-  - x          x
-  - x          x
-  - x          x
-  - x          x
-  - x          x
-  - x          x
-  - x          x
-  - x     P    x
-  - xxxxxddxxxxx
+  - xxxxuuuuxxxx
+  - xxxxuuuuxxxx
+  - xxxxuuuuxxxx
+  - xxxxuuuuxxxx
+  - '            '
+  - '            '
+  - '            '
+  - '            '
+  - '            '
+  - '            '
+  - '            '
+  - xxxxxxxxxxxx

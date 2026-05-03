@@ -70,74 +70,219 @@ public class Level_JuliusP : LevelBuilder
    public override void Customize()
     {
         SpawnPlayer();
-        Size = new Vector2Int(2, 4);
+
+        int l = God.Session.Level;
+        
+        //SCALES THE WIDTH EVERY 2 LEVELS//
+        int width = 4;
+        
+        //SCALES THE HEIGHT EVERY 3 LEVELS//
+        int height = 4;
+       
+        Size = new Vector2Int(width,height);
         LinkOdds = 1f;
-        RoomSize = new Vector2Int(11, 11);
+        RoomSize = new Vector2Int(12, 12);
     }
 
 
-    public override void BuildGeoMap()
-    {
-       for (int x = 0; x < Size.x; x++)
-       for (int y = 0; y < Size.y; y++)
-        {
-        AddGeo(new GeoTile(x, y, this));
-        }
-    }
-
-  public override void BuildMainPath()
+public override void BuildGeoMap()
 {
-    // SET UP PLAYER TILE //
-    PlayerSpawn = GetGeo(1, 0);
+    int centerX = 3;
+    int centerY = 3;
+
+    int CurrentLevel = God.Session.Level;
+        
+
+    // WHERE THE PLAYER ROOM TILE IS AT//
+    AddGeo(new GeoTile(centerX, centerY, this));
+
+    
+    //GO UP FROM PLAYER ROOM//
+    for(int i = 1; i<4; i++)
+    {
+            
+    AddGeo(new GeoTile(centerX, centerY + i, this));
+
+    } 
+
+
+    //GO DOWN FROM PLAYER ROOM//
+    //STOPS AT Y = 1//
+    for(int i = 1; i<3; i++)
+    {
+            
+
+
+     AddGeo(new GeoTile(centerX, centerY - i, this));
+
+
+            
+    }
+
+
+    //AT (3,1), MOVE RIGHT//
+    for(int i = 1; i<4; i++)
+    {
+            
+
+     AddGeo(new GeoTile(centerX + i, 1, this));
+
+
+    }
+
+
+
+    //AT (3,1), MOVE LEFT//
+    for(int i = 1; i<4; i++)
+    {
+            
+
+     AddGeo(new GeoTile(centerX - i, 1, this));
+
+
+    }
+
+
+}
+
+
+
+    
+
+
+   
+    public override void ConnectAllGeos()
+    {
+        
+        base.ConnectAllGeos();
+
+    }
+
+
+public override void BuildMainPath()
+{
+    // PLAYER START
+    int centerX = 3;
+    int centerY = 3;
+    PlayerSpawn = GetGeo(centerX, centerY);
     PlayerSpawn.SetPath(GeoTile.GeoTileTypes.PlayerStart);
 
-    // GETS REFERECNE TO TILES//
-    GeoTile up1 = GetGeo(1, 1);
-    GeoTile up2 = GetGeo(1, 2);
-    GeoTile up3 = GetGeo(1, 3);
+    GeoTile prev = PlayerSpawn;
 
-    // SETS UP THE EXIT
-    Exit = up3;
+    // 1️⃣ Vertical column UP to exit
+    for (int y = centerY + 1; y <= 6; y++)
+    {
+        GeoTile next = GetGeo(centerX, y);
+        if (next == null) continue;
+
+        prev.Links.Add(Directions.Up);
+        next.Links.Add(Directions.Down);
+
+        next.SetPath(GeoTile.GeoTileTypes.MainPath);
+        prev = next;
+    }
+
+    // Exit at top
+    Exit = GetGeo(centerX, 6);
     Exit.SetPath(GeoTile.GeoTileTypes.Exit);
 
-   
-
-    //ADDS LINKS//
-    PlayerSpawn.Links.Add(Directions.Up);
-    up1.Links.Add(Directions.Down);
-    up1.SetPath(GeoTile.GeoTileTypes.MainPath);
-
-   
-    up1.Links.Add(Directions.Up);
-    up2.Links.Add(Directions.Down);
-    up2.SetPath(GeoTile.GeoTileTypes.MainPath);
-
-   
-    up2.Links.Add(Directions.Up);
-    up3.Links.Add(Directions.Down);
-}
-    public override float JudgeRoom(GeoTile g, RoomOption o, bool backup = false)
+    // 2️⃣ Vertical column DOWN
+    prev = PlayerSpawn;
+    for (int y = centerY - 1; y >= 1; y--)
     {
-        o.Audit();
+        GeoTile next = GetGeo(centerX, y);
+        if (next == null) continue;
 
-        // SET TO MY ROOMS//
-        if (o.Author != Authors.JuliusP && o.Author != Authors.Universal)
-            return 0;
+        prev.Links.Add(Directions.Down);
+        next.Links.Add(Directions.Up);
 
-        GameTags t = GameTags.Generic;
-
-        if (g.Path == GeoTile.GeoTileTypes.PlayerStart)
-            t = GameTags.Player;
-
-        if (g.Path == GeoTile.GeoTileTypes.Exit)
-            t = GameTags.Exit;
-
-        if (g.Path == GeoTile.GeoTileTypes.Boss)
-            t = GameTags.Boss;
-
-        if (o.HasTag(t.ToString()))
-            return 1;
-
-        return 0;
+        next.SetPath(GeoTile.GeoTileTypes.MainPath);
+        prev = next;
     }
+
+    // 3️⃣ Horizontal branch RIGHT from (3,1)
+    GeoTile hub = GetGeo(centerX, 1);
+    prev = hub;
+    for (int x = centerX + 1; x <= 5; x++)
+    {
+        GeoTile next = GetGeo(x, 1);
+        if (next == null) continue;
+
+        prev.Links.Add(Directions.Right);
+        next.Links.Add(Directions.Left);
+
+        next.SetPath(GeoTile.GeoTileTypes.MainPath);
+        prev = next;
+    }
+
+    // 4️⃣ Horizontal branch LEFT from (3,1)
+    prev = hub;
+    for (int x = centerX - 1; x >= 0; x--)
+    {
+        GeoTile next = GetGeo(x, 1);
+        if (next == null) continue;
+
+        prev.Links.Add(Directions.Left);
+        next.Links.Add(Directions.Right);
+
+        next.SetPath(GeoTile.GeoTileTypes.MainPath);
+        prev = next;
+    }
+}
+ 
+ public override float JudgeRoom(GeoTile g, RoomOption o, bool backup = false)
+{
+    o.Audit();
+
+    if (o.Author != Authors.JuliusP && o.Author != Authors.Universal)
+        return 0;
+
+    GameTags t = GameTags.Generic;
+
+    if (g.Path == GeoTile.GeoTileTypes.PlayerStart)
+        t = GameTags.Player;
+
+    if (g.Path == GeoTile.GeoTileTypes.Exit)
+        t = GameTags.Exit;
+
+    if (g.Path == GeoTile.GeoTileTypes.Boss)
+        t = GameTags.Boss;
+
+    
+   // ⭐ SPECIAL HALL LINE from (0,1) to (5,1)
+    if (g.Y == 1 && g.X >= 0 && g.X <= 4)
+    {   
+        return o.HasTag("Hall") ? 999 : 0;
+    }
+
+
+    //AT (6,1), SPAWN THE FIRE ROOM//
+    if(g.Y == 1 && g.X == 6)
+    {
+            
+        
+        return o.HasTag("FireRoom") ? 999 : 0; 
+
+
+    }
+
+    
+    //AT (5,1), SPAWN THE HALLWAY TO FIRE ROOM//
+    if(g.Y == 1 && g.X == 5)
+    {
+            
+        
+        return o.HasTag("HallwayToFire") ? 999 : 0; 
+
+
+    }
+
+
+
+   
+
+
+    // ✅ NORMAL ROOMS
+    return o.HasTag(t.ToString()) ? 1 : 0;
+}
 }
