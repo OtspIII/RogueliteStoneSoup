@@ -90,6 +90,8 @@ public override void BuildGeoMap()
     int centerX = 3;
     int centerY = 3;
 
+    int leftsideY = -2;
+
     int CurrentLevel = God.Session.Level;
         
 
@@ -143,6 +145,46 @@ public override void BuildGeoMap()
     }
 
 
+
+    //GO DOWN FROM (6,1)//
+    AddGeo(new GeoTile(6,0, this));
+
+
+    //GO DOWN FROM (0,1)//
+    for(int i = 3; i<6; i++)
+     {
+            
+        AddGeo(new GeoTile(0, centerY - i, this));
+
+
+    }
+
+
+    //GO LEFT FROM (0,-2)//
+    for(int i = 4; i<7; i++)
+    {
+            
+        AddGeo(new GeoTile(centerX - i, -2, this));
+
+
+
+    }
+
+    //GO UP FROM (-3,-2)//
+
+    for(int i = 1; i<3; i++)
+    {
+            
+        AddGeo(new GeoTile(-3, leftsideY + i, this));
+
+
+
+    }
+
+
+    
+
+
 }
 
 
@@ -169,7 +211,7 @@ public override void BuildMainPath()
 
     GeoTile prev = PlayerSpawn;
 
-    // 1️⃣ Vertical column UP to exit
+    //  Vertical column UP to exit
     for (int y = centerY + 1; y <= 6; y++)
     {
         GeoTile next = GetGeo(centerX, y);
@@ -186,7 +228,7 @@ public override void BuildMainPath()
     Exit = GetGeo(centerX, 6);
     Exit.SetPath(GeoTile.GeoTileTypes.Exit);
 
-    // 2️⃣ Vertical column DOWN
+    // Vertical column DOWN
     prev = PlayerSpawn;
     for (int y = centerY - 1; y >= 1; y--)
     {
@@ -200,7 +242,7 @@ public override void BuildMainPath()
         prev = next;
     }
 
-    // 3️⃣ Horizontal branch RIGHT from (3,1)
+    // RIGHT FROM (3,1)
     GeoTile hub = GetGeo(centerX, 1);
     prev = hub;
     for (int x = centerX + 1; x <= 5; x++)
@@ -215,7 +257,7 @@ public override void BuildMainPath()
         prev = next;
     }
 
-    // 4️⃣ Horizontal branch LEFT from (3,1)
+    // LEFT FROM (3,1)
     prev = hub;
     for (int x = centerX - 1; x >= 0; x--)
     {
@@ -229,7 +271,8 @@ public override void BuildMainPath()
         prev = next;
     }
 }
- 
+
+
  public override float JudgeRoom(GeoTile g, RoomOption o, bool backup = false)
 {
     o.Audit();
@@ -249,7 +292,7 @@ public override void BuildMainPath()
         t = GameTags.Boss;
 
     
-   // ⭐ SPECIAL HALL LINE from (0,1) to (5,1)
+   //  HALL//
     if (g.Y == 1 && g.X >= 0 && g.X <= 4)
     {   
         return o.HasTag("Hall") ? 999 : 0;
@@ -278,11 +321,24 @@ public override void BuildMainPath()
     }
 
 
+    //SPAWN THE LOOT ROOM//
+    if(g.Y == 0 && g.X == 6)
+     {
+            
+        return o.HasTag("Loot") ? 999 : 0;
+
+
+
+    }
+
+
+ 
+
 
    
 
 
-    // ✅ NORMAL ROOMS
+  
     return o.HasTag(t.ToString()) ? 1 : 0;
 }
 }

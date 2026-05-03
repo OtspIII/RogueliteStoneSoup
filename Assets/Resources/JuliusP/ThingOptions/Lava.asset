@@ -39,4 +39,23 @@ MonoBehaviour:
       Author: 0
       MaxCost: 0
       Where: {x: 999, y: 999, z: 999}
-    Builder: []
+    Builder:
+    - Type: 0
+      NumType: 0
+      Num: 10
+      StrType: 0
+      Str: 
+      ActType: 0
+      Act: 0
+      BoolType: 0
+      Bool: 0
+      OptionType: 0
+      Option: {fileID: 0}
+      VectorType: 0
+      Vector: {x: 0, y: 0}
+      Fixed: {fileID: 0}
+      Mandatory: 
+      MandatoryW: 0
+      Any: 
+      AnyW: 0
+      Trait: 0
