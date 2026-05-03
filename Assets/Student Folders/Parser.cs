@@ -150,6 +150,7 @@ public static class Parser
             case Actions.Lv2_Cloak_JuliusP: return new Lv2Invis(who, e);
             case Actions.Lv3_Cloak_JuliusP: return new Lv3Invis(who, e);
             case Actions.TradeHp_JuliusP:return new TradeHp(who, e);
+            case Actions.GiveItem_JuliusP:return new GiveItem(who,e);
             case Actions.EvasiveJuke_JuliusP:return new EvasiveJuke(who, e);
             case Actions.BleakWatcher_JuliusP: return new BleakWatcher(who, e);
             
@@ -423,9 +424,10 @@ public enum Actions
     Lv2_Cloak_JuliusP = 4006,
     Lv3_Cloak_JuliusP = 4007,
     TradeHp_JuliusP = 4008,
-    EvasiveJuke_JuliusP = 4009,
-    BleakWatcher_JuliusP = 4010,
-    slowingproj_JuliusP = 4011,
+    GiveItem_JuliusP = 4009,
+    EvasiveJuke_JuliusP = 4010,
+    BleakWatcher_JuliusP = 4011,
+    slowingproj_JuliusP = 4012,
  
 
 

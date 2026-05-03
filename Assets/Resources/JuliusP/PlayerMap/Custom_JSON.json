@@ -13,7 +13,9 @@
         {"K":",","V":"Empty"},
         {"K":"H","V":"Heal"},
         {"K":"L","V":"Lava"},
-        {"K":"A","V":"NPC"},
-        {"K":"M","V":"Resist"}
+        {"K":"A","V":"Ally"},
+        {"K":"M","V":"Resist"},
+        {"K":"S","V":"Shield"},
+        {"K":"W","V":"Lv1Bow"}
     ]
 }

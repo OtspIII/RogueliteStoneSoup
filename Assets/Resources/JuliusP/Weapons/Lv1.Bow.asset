@@ -14,16 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Lv1.Bow
   Author: 0
+  Tags:
+  - Common: 202
+    Custom: Lv1Bow
+    W: 1
+    Cost: 1
   Team: 1
   Body: {fileID: 629948465317790645, guid: b4fa405680f33044abe2c4567ecf147f, type: 3}
   Art: {fileID: 21300000, guid: cb8312002cf474c4688fa76c7caea0a3, type: 3}
   Color: {r: 1, g: 1, b: 1, a: 1}
   Size: 1
-  Tags:
-  - Common: 202
-    Custom: 
-    W: 1
-    Cost: 1
   LevelRange: {x: 0, y: 10}
   Trait:
   - Trait: 312
@@ -38,6 +38,7 @@ MonoBehaviour:
       Level: 0
       Author: 0
       MaxCost: 0
+      Where: {x: 999, y: 999, z: 999}
     Builder:
     - Type: 0
       NumType: 1
@@ -70,6 +71,7 @@ MonoBehaviour:
       Level: 0
       Author: 0
       MaxCost: 0
+      Where: {x: 999, y: 999, z: 999}
     Builder: []
   DefaultAttack: 103
   ToSpawn:
@@ -79,6 +81,7 @@ MonoBehaviour:
     Level: 0
     Author: 40
     MaxCost: 0
+    Where: {x: 999, y: 999, z: 999}
   FloorBody: {fileID: 0}
   FloorArt: {fileID: 0}
   Damage: 1

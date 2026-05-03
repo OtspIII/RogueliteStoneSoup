@@ -151,7 +151,7 @@ public override void BuildGeoMap()
 
 
     //GO DOWN FROM (0,1)//
-    for(int i = 3; i<6; i++)
+    for(int i = 3; i<5; i++)
      {
             
         AddGeo(new GeoTile(0, centerY - i, this));
@@ -160,11 +160,11 @@ public override void BuildGeoMap()
     }
 
 
-    //GO LEFT FROM (0,-2)//
-    for(int i = 4; i<7; i++)
+    //GO LEFT FROM (0,-1)//
+    for(int i = 4; i<6; i++)
     {
             
-        AddGeo(new GeoTile(centerX - i, -2, this));
+        AddGeo(new GeoTile(centerX - i, -1, this));
 
 
 
@@ -206,12 +206,16 @@ public override void BuildMainPath()
     // PLAYER START
     int centerX = 3;
     int centerY = 3;
+
+    //START AT (3,3)
     PlayerSpawn = GetGeo(centerX, centerY);
     PlayerSpawn.SetPath(GeoTile.GeoTileTypes.PlayerStart);
 
+
+
     GeoTile prev = PlayerSpawn;
 
-    //  Vertical column UP to exit
+    // THIS MOVES UP FROM (3,3)//
     for (int y = centerY + 1; y <= 6; y++)
     {
         GeoTile next = GetGeo(centerX, y);
@@ -228,7 +232,7 @@ public override void BuildMainPath()
     Exit = GetGeo(centerX, 6);
     Exit.SetPath(GeoTile.GeoTileTypes.Exit);
 
-    // Vertical column DOWN
+    // THIS MOVES DOWN FROM (3,3)//
     prev = PlayerSpawn;
     for (int y = centerY - 1; y >= 1; y--)
     {
@@ -243,8 +247,8 @@ public override void BuildMainPath()
     }
 
     // RIGHT FROM (3,1)
-    GeoTile hub = GetGeo(centerX, 1);
-    prev = hub;
+    GeoTile RightTile= GetGeo(centerX, 1);
+    prev = RightTile;
     for (int x = centerX + 1; x <= 5; x++)
     {
         GeoTile next = GetGeo(x, 1);
@@ -258,7 +262,7 @@ public override void BuildMainPath()
     }
 
     // LEFT FROM (3,1)
-    prev = hub;
+    prev = RightTile;
     for (int x = centerX - 1; x >= 0; x--)
     {
         GeoTile next = GetGeo(x, 1);
@@ -270,6 +274,44 @@ public override void BuildMainPath()
         next.SetPath(GeoTile.GeoTileTypes.MainPath);
         prev = next;
     }
+
+
+    //DOWN FROM (0,1)
+    
+    prev = GetGeo(0, 1);
+
+    for (int y = 0; y >= -2; y--)
+    {   
+       GeoTile next = GetGeo(0, y);
+       if (next == null) continue;
+
+       prev.Links.Add(Directions.Down);
+       next.Links.Add(Directions.Up);
+
+       next.SetPath(GeoTile.GeoTileTypes.MainPath);
+       prev = next;
+    }
+
+
+
+// TO THE LEFT OF (0, -1) -> STOP AT (-3, -1)
+
+    prev = GetGeo(0, -1);
+
+   for (int x = -1; x >= -3; x--)
+   {
+      GeoTile next = GetGeo(x, -1);
+   
+      if (next == null) continue;
+
+     prev.Links.Add(Directions.Left);
+     next.Links.Add(Directions.Right);
+
+     next.SetPath(GeoTile.GeoTileTypes.MainPath);
+     prev = next;
+    
+   }
+
 }
 
 
@@ -292,10 +334,17 @@ public override void BuildMainPath()
         t = GameTags.Boss;
 
     
-   //  HALL//
-    if (g.Y == 1 && g.X >= 0 && g.X <= 4)
+   //  HALL -> BETWEEN 1 AND 4//
+    if (g.Y == 1 && g.X >= 1 && g.X <= 4)
     {   
         return o.HasTag("Hall") ? 999 : 0;
+    }
+
+    //AT (0,1), SPAWN THE CORNER HALL//
+    
+     if (g.Y == 1 && g.X == 0)
+    {   
+        return o.HasTag("HallCorner") ? 999 : 0;
     }
 
 
@@ -332,7 +381,63 @@ public override void BuildMainPath()
     }
 
 
+    //FROM -1 TO -2 ON THE X//
+
+
+    if (g.X >= -2 && g.X <= -1 && g.Y == -1)
+    {
+            
+        return o.HasTag("Hall") ? 999 : 0;
+
+
+
+    }
+
+
+
+    //ROOM AT (0, -1)
+
+
+     if (g.X == 0 && g.Y == -1)
+    {
+            
+        return o.HasTag("CornerBottom") ? 999 : 0;
+
+
+
+    }
+
+
+
+
+    //BOSS ROOM AT -3,-1//
+
+
+     if (g.X == -3 && g.Y == -1)
+    {
+            
+        return o.HasTag("Boss") ? 999 : 0;
+
+
+
+    }
  
+
+    //BOSS LOOT ROOM AT (-3,0)//
+
+
+
+     if (g.X == -3 && g.Y == 0)
+    {
+            
+        return o.HasTag("LootBoss") ? 999 : 0;
+
+
+
+    }
+ 
+
+
 
 
    

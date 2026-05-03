@@ -10,30 +10,30 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1a173895f2109b44097a501cb76e88f5, type: 3}
-  m_Name: GenericRoom
+  m_Name: GenericRoom 1
   m_EditorClassIdentifier: Assembly-CSharp::TextRoomOption
-  Name: Generic Room
+  Name: CornerBottom
   Author: 40
   Tags:
   - Common: 700
-    Custom: 
+    Custom: CornerBottom
     W: 0
     Cost: 0
   Prefab: {fileID: 0}
   Audited: 1
   MapSize: {x: 11, y: 12}
-  Map: {fileID: 4900000, guid: f2383b44565054e21bfb4bc0a0cc4d0e, type: 3}
+  Map: {fileID: 4900000, guid: 5bacd0c428ba34a3bb6e85c1c7d9fb11, type: 3}
   JSON: {fileID: 0}
   MapText:
+  - xxxxuuuuxxxx
+  - xxxxuuuuxxxx
+  - xxxxuuuuxxxx
+  - xxxxuuuuxxxx
+  - '    uuuuxxxx'
+  - '        xxxx'
+  - '        xxxx'
+  - '        xxxx'
+  - '        xxxx'
   - xxxxxxxxxxxx
   - xxxxxxxxxxxx
   - xxxxxxxxxxxx
-  - xxxxxxxxxxxx
-  - xxxxxxxxxxxx
-  - xxxxxxxxxxxx
-  - xxxxxxxxxxxx
-  - xxxxxxxxxxxx
-  - l          r
-  - l          r
-  - l          r
-  - xxxxxddxxxxx
