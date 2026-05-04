@@ -16,7 +16,7 @@ MonoBehaviour:
   Author: 40
   Tags:
   - Common: 102
-    Custom: 
+    Custom: Shield
     W: 1
     Cost: 0
   Team: 3
@@ -24,7 +24,7 @@ MonoBehaviour:
   Art: {fileID: 9183382434615233273, guid: ce7ae796c54402f41bf8753d6ec49110, type: 3}
   Color: {r: 1, g: 1, b: 1, a: 1}
   Size: 1
-  LevelRange: {x: 4, y: 6}
+  LevelRange: {x: 2, y: 4}
   Trait: []
   HP: 5
   Speed: 4

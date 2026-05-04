@@ -17,9 +17,9 @@ MonoBehaviour:
   Tags:
   - Common: 102
     Custom: Ally
-    W: 60
+    W: 1
     Cost: 1
-  Team: 3
+  Team: 1
   Body: {fileID: 629948465317790645, guid: acf0e760b28c7b046ad7d511fb87a1d3, type: 3}
   Art: {fileID: -8335318719858845397, guid: 8d93e9f3167202648ad2cd2374e1a252, type: 3}
   Color: {r: 1, g: 1, b: 1, a: 1}
@@ -30,5 +30,5 @@ MonoBehaviour:
   Speed: 5
   VisionRange: 10.6
   Held: {fileID: 11400000, guid: f453391fd2223470ea13ad3d018b6dc7, type: 2}
-  DefaultAction: 4008
+  DefaultAction: 4009
   DefaultChaseAction: 202

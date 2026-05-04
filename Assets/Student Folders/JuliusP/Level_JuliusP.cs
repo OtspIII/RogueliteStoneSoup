@@ -5,6 +5,8 @@ public class Level_JuliusP : LevelBuilder
 {
     public Vector2Int OriginalLvlSize;
 
+    public bool CanLinkToLootRoom = false;
+
     public float SpecialRoomChance = 0.3f;
 
     public Level_JuliusP()
@@ -89,105 +91,23 @@ public override void BuildGeoMap()
 {
     int centerX = 3;
     int centerY = 3;
-
     int leftsideY = -2;
 
     int CurrentLevel = God.Session.Level;
-        
 
-    // WHERE THE PLAYER ROOM TILE IS AT//
-    AddGeo(new GeoTile(centerX, centerY, this));
-
-    
-    //GO UP FROM PLAYER ROOM//
-    for(int i = 1; i<4; i++)
+    if (CurrentLevel == 1)
     {
-            
-    AddGeo(new GeoTile(centerX, centerY + i, this));
+        BuildLevel1(centerX, centerY, leftsideY);
+    }
 
-    } 
-
-
-    //GO DOWN FROM PLAYER ROOM//
-    //STOPS AT Y = 1//
-    for(int i = 1; i<3; i++)
+    else if(CurrentLevel == 2)
     {
             
 
-
-     AddGeo(new GeoTile(centerX, centerY - i, this));
-
-
-            
-    }
-
-
-    //AT (3,1), MOVE RIGHT//
-    for(int i = 1; i<4; i++)
-    {
-            
-
-     AddGeo(new GeoTile(centerX + i, 1, this));
-
+        BuildLevel2(centerX, centerY, leftsideY);
 
     }
-
-
-
-    //AT (3,1), MOVE LEFT//
-    for(int i = 1; i<4; i++)
-    {
-            
-
-     AddGeo(new GeoTile(centerX - i, 1, this));
-
-
-    }
-
-
-
-    //GO DOWN FROM (6,1)//
-    AddGeo(new GeoTile(6,0, this));
-
-
-    //GO DOWN FROM (0,1)//
-    for(int i = 3; i<5; i++)
-     {
-            
-        AddGeo(new GeoTile(0, centerY - i, this));
-
-
-    }
-
-
-    //GO LEFT FROM (0,-1)//
-    for(int i = 4; i<6; i++)
-    {
-            
-        AddGeo(new GeoTile(centerX - i, -1, this));
-
-
-
-    }
-
-    //GO UP FROM (-3,-2)//
-
-    for(int i = 1; i<3; i++)
-    {
-            
-        AddGeo(new GeoTile(-3, leftsideY + i, this));
-
-
-
-    }
-
-
-    
-
-
 }
-
-
 
     
 
@@ -200,22 +120,19 @@ public override void BuildGeoMap()
 
     }
 
-
 public override void BuildMainPath()
 {
     // PLAYER START
     int centerX = 3;
     int centerY = 3;
 
-    //START AT (3,3)
+    // START AT (3,3)
     PlayerSpawn = GetGeo(centerX, centerY);
     PlayerSpawn.SetPath(GeoTile.GeoTileTypes.PlayerStart);
 
-
-
     GeoTile prev = PlayerSpawn;
 
-    // THIS MOVES UP FROM (3,3)//
+    // THIS MOVES UP FROM (3,3) TO (3,6)
     for (int y = centerY + 1; y <= 6; y++)
     {
         GeoTile next = GetGeo(centerX, y);
@@ -228,11 +145,11 @@ public override void BuildMainPath()
         prev = next;
     }
 
-    // Exit at top
+    // SET THE EXIT AT (3,6)
     Exit = GetGeo(centerX, 6);
     Exit.SetPath(GeoTile.GeoTileTypes.Exit);
 
-    // THIS MOVES DOWN FROM (3,3)//
+    // THIS MOVES DOWN FROM (3,3) TO (3,1) 
     prev = PlayerSpawn;
     for (int y = centerY - 1; y >= 1; y--)
     {
@@ -246,8 +163,8 @@ public override void BuildMainPath()
         prev = next;
     }
 
-    // RIGHT FROM (3,1)
-    GeoTile RightTile= GetGeo(centerX, 1);
+    // THIS MOVES RIGHT FROM (3,1) TO (5,1) 
+    GeoTile RightTile = GetGeo(centerX, 1);
     prev = RightTile;
     for (int x = centerX + 1; x <= 5; x++)
     {
@@ -261,7 +178,7 @@ public override void BuildMainPath()
         prev = next;
     }
 
-    // LEFT FROM (3,1)
+    // THIS MOVES LEFT FROM (3,1) TO (0,1)
     prev = RightTile;
     for (int x = centerX - 1; x >= 0; x--)
     {
@@ -275,45 +192,47 @@ public override void BuildMainPath()
         prev = next;
     }
 
-
-    //DOWN FROM (0,1)
-    
+    // THIS MOVES DOWN FROM (0,1) TO (0,-2)
     prev = GetGeo(0, 1);
 
     for (int y = 0; y >= -2; y--)
-    {   
-       GeoTile next = GetGeo(0, y);
-       if (next == null) continue;
+    {
+        GeoTile next = GetGeo(0, y);
+        if (next == null) continue;
 
-       prev.Links.Add(Directions.Down);
-       next.Links.Add(Directions.Up);
+        prev.Links.Add(Directions.Down);
+        next.Links.Add(Directions.Up);
 
-       next.SetPath(GeoTile.GeoTileTypes.MainPath);
-       prev = next;
+        next.SetPath(GeoTile.GeoTileTypes.MainPath);
+        prev = next;
     }
 
-
-
-// TO THE LEFT OF (0, -1) -> STOP AT (-3, -1)
-
+    // THIS MOVES LEFT FROM (0,-1) TO (-3,-1) 
     prev = GetGeo(0, -1);
 
-   for (int x = -1; x >= -3; x--)
-   {
-      GeoTile next = GetGeo(x, -1);
-   
-      if (next == null) continue;
+    for (int x = -1; x >= -3; x--)
+    {
+        GeoTile next = GetGeo(x, -1);
 
-     prev.Links.Add(Directions.Left);
-     next.Links.Add(Directions.Right);
+        if (next == null) continue;
 
-     next.SetPath(GeoTile.GeoTileTypes.MainPath);
-     prev = next;
-    
-   }
+        prev.Links.Add(Directions.Left);
+        next.Links.Add(Directions.Right);
 
+        next.SetPath(GeoTile.GeoTileTypes.MainPath);
+        prev = next;
+    }
+
+    // THIS CONNECTS (6,0) DOWN TO (6,1)
+    GeoTile a = GetGeo(6, 0);
+    GeoTile b = GetGeo(6, 1);
+
+    if (a != null && b != null && CanLinkToLootRoom)
+    {
+        a.Links.Add(Directions.Down);
+        b.Links.Add(Directions.Up);
+    }
 }
-
 
  public override float JudgeRoom(GeoTile g, RoomOption o, bool backup = false)
 {
@@ -437,13 +356,160 @@ public override void BuildMainPath()
     }
  
 
-
-
-
-   
-
-
   
     return o.HasTag(t.ToString()) ? 1 : 0;
 }
+
+void BuildLevel1(int centerX, int centerY, int leftsideY)
+{
+    // WHERE THE PLAYER ROOM TILE IS AT//
+    AddGeo(new GeoTile(centerX, centerY, this));
+
+    //GO UP FROM PLAYER ROOM//
+    for(int i = 1; i<4; i++)
+    {
+        AddGeo(new GeoTile(centerX, centerY + i, this));
+    }
+
+    //GO DOWN FROM PLAYER ROOM//
+    //STOPS AT Y = 1//
+    for(int i = 1; i<3; i++)
+    {
+        AddGeo(new GeoTile(centerX, centerY - i, this));
+    }
+
+    //AT (3,1), MOVE RIGHT//
+    for(int i = 1; i<4; i++)
+    {
+        AddGeo(new GeoTile(centerX + i, 1, this));
+    }
+
+    //AT (3,1), MOVE LEFT//
+    for(int i = 1; i<4; i++)
+    {
+        AddGeo(new GeoTile(centerX - i, 1, this));
+    }
+
+    //GO DOWN FROM (6,1)//
+    AddGeo(new GeoTile(6,0, this));
+
+    //GO DOWN FROM (0,1)//
+    for(int i = 3; i<5; i++)
+    {
+        AddGeo(new GeoTile(0, centerY - i, this));
+    }
+
+    //GO LEFT FROM (0,-1)//
+    for(int i = 4; i<6; i++)
+    {
+        AddGeo(new GeoTile(centerX - i, -1, this));
+    }
+
+    //GO UP FROM (-3,-2)//
+    for(int i = 1; i<3; i++)
+    {
+        AddGeo(new GeoTile(-3, leftsideY + i, this));
+    }
+}
+
+
+void BuildLevel2(int centerX, int centerY, int leftsideY)
+{
+   // WHERE THE PLAYER ROOM TILE IS AT//
+    AddGeo(new GeoTile(centerX, centerY, this));
+
+    //GO UP FROM PLAYER ROOM//
+    for(int i = 1; i<4; i++)
+    {
+        AddGeo(new GeoTile(centerX, centerY + i, this));
+    }
+
+    //GO DOWN FROM PLAYER ROOM//
+    //STOPS AT Y = 1//
+    for(int i = 1; i<3; i++)
+    {
+        AddGeo(new GeoTile(centerX, centerY - i, this));
+    }
+
+    //AT (3,1), MOVE RIGHT//
+    for(int i = 1; i<4; i++)
+    {
+        AddGeo(new GeoTile(centerX + i, 1, this));
+    }
+
+    //AT (3,1), MOVE LEFT//
+    for(int i = 1; i<4; i++)
+    {
+        AddGeo(new GeoTile(centerX - i, 1, this));
+    }
+
+    //GO DOWN FROM (6,1)//
+    AddGeo(new GeoTile(6,0, this));
+
+    //GO DOWN FROM (0,1)//
+    for(int i = 3; i<5; i++)
+    {
+        AddGeo(new GeoTile(0, centerY - i, this));
+    }
+
+    //GO LEFT FROM (0,-1)//
+    for(int i = 4; i<6; i++)
+    {
+        AddGeo(new GeoTile(centerX - i, -1, this));
+    }
+
+    //GO UP FROM (-3,-2)//
+    for(int i = 1; i<3; i++)
+    {
+        AddGeo(new GeoTile(-3, leftsideY + i, this));
+    }
+
+
+
+    //NEW ADDITIONS//
+
+
+
+    //GO LEFT FROM (3,3)-> PLAYERSPAWN//
+    for(int i = 1; i<4; i++)
+    {
+        AddGeo(new GeoTile(centerX - i, 3, this));
+    }
+
+
+    //GO RIGHT FROM (3,3)-> PLAYERSPAWN//
+    for(int i = 1; i<4; i++)
+    {
+        AddGeo(new GeoTile(centerX + i, 3, this));
+    }
+
+
+
+
+
+    //GO UP FROM (6,3)
+    for(int i = 1; i<3; i++)
+    {
+        AddGeo(new GeoTile(6, centerY + i, this));
+    }
+
+
+    //ADD TILE (7,5)
+     AddGeo(new GeoTile(7, 5, this));
+
+
+
+
+
+
+
+
+
+
+
+
+    
+   
+}
+
 }

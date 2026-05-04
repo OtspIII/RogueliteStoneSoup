@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class GiveItem : ActionScript
+public class GiveItem_Lv2 : ActionScript
 {
     bool hasStartedCoroutine = false;
     bool canFollow = false;
@@ -12,7 +12,7 @@ public class GiveItem : ActionScript
 
     Level_JuliusP LJP;
 
-    public GiveItem(ThingInfo who, EventInfo e = null)
+    public GiveItem_Lv2(ThingInfo who, EventInfo e = null)
     {
         Setup(Actions.GiveItem_JuliusP, who, true);
         HaltMomentum = false;
@@ -70,7 +70,12 @@ public class GiveItem : ActionScript
     {
         //GET THE THINGINOF OF THE THING AND THE EXIT TO ACCESS TRAITS//
         ThingInfo player = God.Session.Player;
-        ThingInfo exit = God.GM.Exit;
+        ThingInfo Exit = God.GM.Exit;
+
+
+        //CHECKS IF THE EXIT HAS THE EXIT TRAIT AND REMOVES IT, THE PLAYER CAN'T LEAVE UNTIL IT KILLS THE VAMPIRE//
+        if (Exit.Has(Traits.Exit))
+            Exit.RemoveTrait(Traits.Exit);
 
         // WHILE CAN FOLLOW IS FALSE -> HASN'T APPROACHED THE THING YET
         while (!canFollow)
@@ -110,14 +115,14 @@ public class GiveItem : ActionScript
         //WHILE CANFOLLOW IS TRUE//
         while (true)
         {
-            if (Who == null || player == null || exit == null)
+            if (Who == null || player == null || Exit == null)
             {
                 yield return null;
                 continue;
             }
 
             //IF PLAYER IS CLOSE TO THE EXIT, BREAK OUT THE LOOP//
-            if (player.Thing.Distance(exit.Thing) < 1f)
+            if (player.Thing.Distance(Exit.Thing) < 1f)
                 break;
 
             yield return null;
@@ -154,6 +159,12 @@ public class GiveItem : ActionScript
 
         if (Who.Has(Traits.NoTimerStunNegation_JuliusP))
             Who.RemoveTrait(Traits.NoTimerStunNegation_JuliusP);
+
+        //SAFETY CHECK: IF THE EXIT DOSEN'T HAVE THE EXIT TRAIT//
+        if (!Exit.Has(Traits.Exit))
+
+            //ADD THE EXIT TRAIT BACK, THE PLAYER CAN NOW LEAVE THE ROOM//
+            Exit.AddTrait(Traits.Exit);
 
         // MAKE NPC DESTROY ITSELF OR DISAPPEAR AFTER GIVING ITEM//
         Who.Destruct(Who);
