@@ -4,8 +4,8 @@ x          x
 x          x
 x          x
 x          x
-x          x
-x          x
+l          x
+l          x
 x          x
 x          x
 x     P    x

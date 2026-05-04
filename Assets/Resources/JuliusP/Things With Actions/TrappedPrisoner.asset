@@ -12,18 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4679cc75b2c8be74e8b047318fa062ea, type: 3}
   m_Name: TrappedPrisoner
   m_EditorClassIdentifier: Assembly-CSharp::CharacterOption
-  Name: Lost Friendly
+  Name: Trapped Prisoner
   Author: 40
   Tags:
   - Common: 102
-    Custom: Ally
+    Custom: 
     W: 1
     Cost: 1
   Team: 1
   Body: {fileID: 629948465317790645, guid: acf0e760b28c7b046ad7d511fb87a1d3, type: 3}
   Art: {fileID: -2311659948842064771, guid: 622fa06a71dcf6c40b7e51ff3ebad2ce, type: 3}
   Color: {r: 1, g: 1, b: 1, a: 1}
-  Size: 1
+  Size: 0.21
   LevelRange: {x: 2, y: 2}
   Trait: []
   HP: 4

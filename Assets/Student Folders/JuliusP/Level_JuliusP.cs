@@ -14,61 +14,6 @@ public class Level_JuliusP : LevelBuilder
         Author = Authors.JuliusP;
     }
 
-
-    //OVVERIDE CUSTOMIZE FUNCTION FROM LEVEL BUILDER//
-  // public override void Customize()
-  // {
-
-    //As you go deeper the map gets bigger
-
-    //CURRENT LEVEL NUMBER//
-  //  int l = God.Session.Level;
-
-   // SpawnPlayer();
-
-   // LinkOdds = 0.1f;
-
-    //WIDTH AND HEIGHT OF THE GRID//
-   // int w;
-   // int h;
-
-    //EVERY 5 LEVELS SET WIDTH TO BE 4 AND HEIGHT TO BE 5//
-   // if (l % 5 == 0)
-    //{
-      // w = 4;
-      //  h = 5;
-   // }
-
-
-    //EVERY 3 LEVELS, A SPECIAL ROOM APPEARS//
-   // else if(l % 3 == 0 && Random.value < SpecialRoomChance)
-   // {
-
-       // w = 5;
-        // h = 4;
-
-   // }
-
-   // else
-   // {
-
-        //WIDTH STARTS AT 5, AND EVERY THIRD LEVEL GROWS BY 1//
-       // w = 6 + Mathf.FloorToInt(l / 3);
-
-        //HEIGHT STARTS AT 5, AND EVERY OTHER LEVEL GROWS BY 1//
-      //  h = 5 + Mathf.FloorToInt(l / 2);
-   // }
-
-    //Size = new Vector2Int(w, h);
-
-    // if (God.Session.Player == null)
-    //     God.Session.Player = God.Library.GetThing(new SpawnRequest(GameTags.Player)).Create();
-
-    // Boss = God.Library.GetThing(new SpawnRequest(GameTags.Boss), this, false);
-
-   // }
-
-
    public override void Customize()
     {
         SpawnPlayer();
@@ -238,6 +183,8 @@ public override void BuildMainPath()
 {
     o.Audit();
 
+    int Level = God.Session.Level;
+
     if (o.Author != Authors.JuliusP && o.Author != Authors.Universal)
         return 0;
 
@@ -354,6 +301,48 @@ public override void BuildMainPath()
 
 
     }
+
+
+    //THIS SECTION IS FOR LEVEL 2 LOGIC//
+    if(Level == 2)
+    {
+            
+       if (g.X == 2 && g.Y == 3)
+        {
+            
+        
+            return o.HasTag("LavaHall") ? 999 : 0;
+
+
+
+        } 
+
+
+
+        if (g.X == 1 && g.Y == 3)
+        {
+            
+        
+            return o.HasTag("LavaCorner") ? 999 : 0;
+
+
+
+        } 
+
+
+        if (g.X == 0 && g.Y == 3)
+        {
+            
+        
+            return o.HasTag("Boss") ? 999 : 0;
+
+
+
+        } 
+
+
+
+    }
  
 
   
@@ -465,10 +454,9 @@ void BuildLevel2(int centerX, int centerY, int leftsideY)
     }
 
 
+    
 
-    //NEW ADDITIONS//
-
-
+    //NEW ADDITIONS FOR LEVEL 2//
 
     //GO LEFT FROM (3,3)-> PLAYERSPAWN//
     for(int i = 1; i<4; i++)
@@ -496,6 +484,10 @@ void BuildLevel2(int centerX, int centerY, int leftsideY)
 
     //ADD TILE (7,5)
      AddGeo(new GeoTile(7, 5, this));
+
+
+    //ADD TILE (0,4)
+     AddGeo(new GeoTile(0, 4, this));
 
 
 
