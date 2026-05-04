@@ -16,6 +16,7 @@
         {"K":"A","V":"Ally"},
         {"K":"M","V":"Resist"},
         {"K":"S","V":"Shield"},
-        {"K":"W","V":"Lv1Bow"}
+        {"K":"W","V":"Lv1Bow"},
+        {"K":"N","V":"NoStun"}
     ]
 }

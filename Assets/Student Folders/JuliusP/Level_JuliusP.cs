@@ -341,6 +341,66 @@ public override void BuildMainPath()
         } 
 
 
+        //PLAYER SPAWN//
+        if (g.X == 3 && g.Y == 3)
+        {
+            
+        
+            return o.HasTag("Lv2PlayerRoom") ? 999 : 0;
+
+
+
+        } 
+
+
+
+        //RIGHT OF THE PLAYER SPAWN IN LEVEL 2  X-> 4-5
+        if (g.X >= 4 && g.X <= 5 && g.Y == 3)
+        {
+            
+        
+            return o.HasTag("Lv2Generic") ? 999 : 0;
+
+
+
+        }
+
+
+
+        //RIGHT OF THE PLAYER SPAWN IN LEVEL 2 THE CORNER FOLLOWING THE LAVA HALLWAY  X-> 6,3
+        if (g.X == 6 && g.Y == 3)
+        {
+            
+        
+            return o.HasTag("LavaCornerTop") ? 999 : 0;
+
+
+
+        }
+
+
+
+        //RIGHT OF THE PLAYER SPAWN IN LEVEL 2 POINTS-> 6,4, 6,5
+        if (g.X == 6 && g.Y >= 4 && g.Y <= 5)
+        {
+            
+        
+            return o.HasTag("DeadlyHall") ? 999 : 0;
+
+
+
+        }
+
+
+
+
+
+        
+
+
+
+
+
 
     }
  

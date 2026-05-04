@@ -10,34 +10,34 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a47d2194617e47469e601e558e7b8b4, type: 3}
-  m_Name: Lv1.Sword
-  m_EditorClassIdentifier: 
-  Name: Lv1.Sword
+  m_Name: WolfBaneBow
+  m_EditorClassIdentifier: Assembly-CSharp::ItemOption
+  Name: blood
   Author: 40
   Tags:
   - Common: 201
     Custom: 
-    W: 1
+    W: 5
     Cost: 1
   Team: 1
   Body: {fileID: 629948465317790645, guid: b4fa405680f33044abe2c4567ecf147f, type: 3}
-  Art: {fileID: 21300000, guid: 6c7f9cbfcc8f8d145913c8ae22c5bd51, type: 3}
+  Art: {fileID: -2510476293373519475, guid: 785f0d2aa379e9c469629106cdce1fa8, type: 3}
   Color: {r: 1, g: 1, b: 1, a: 1}
   Size: 0.7
-  LevelRange: {x: 0, y: 3}
+  LevelRange: {x: 2, y: 0}
   Trait: []
-  DefaultAttack: 101
+  DefaultAttack: 103
   ToSpawn:
-    Fixed: {fileID: 0}
+    Fixed: {fileID: 11400000, guid: 21f2f00ddb5360c409b072461865b27f, type: 2}
     Mandatory: []
     Any: []
     Level: 0
-    Author: 40
+    Author: 95
     MaxCost: 0
     Where: {x: 999, y: 999, z: 999}
   FloorBody: {fileID: 0}
   FloorArt: {fileID: 0}
-  Damage: 1
-  IdealRange: 1.5
-  SpeedMult: 1
-  ActDuration: 0
+  Damage: 0
+  IdealRange: 2
+  SpeedMult: 15
+  ActDuration: 1

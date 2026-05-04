@@ -164,6 +164,7 @@ public class FullStunNegation:Trait
     {
         Type = Traits.NoTimerStunNegation_JuliusP;
         AddPreListen(EventTypes.StartAction);
+        AddListen(EventTypes.Damage);
 
     }
   
@@ -182,19 +183,43 @@ public class FullStunNegation:Trait
                 {
                     ThingInfo Player = God.Session.Player;
                     //CANCEL THE STUN ACTION FROM HAPPENING
-                    e.Abort = true;
+                    //e.Abort = true;
 
                     //TAKE NO KNOCKBACK//
-                    i.Who.Thing.TakeKnockback(Player, 0f);
+                   // i.Who.Thing.TakeKnockback(Player, 0f);
                     Debug.Log("NO STUN");
                 }
                 break;
                 
             }
 
+
+          
         }
 
        
     }
 
+
+        public override void TakeEvent(TraitInfo i, EventInfo e)
+        {
+        
+
+        switch (e.Type)
+        {
+
+            case EventTypes.Damage:
+            {
+                ThingInfo Player = God.Session.Player;  
+                
+                i.Who.Thing.TakeKnockback(Player, 55f);
+
+                Debug.Log("Damage");
+
+                break;
+             }
+
+        }
+
+}
 }
