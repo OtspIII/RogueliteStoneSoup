@@ -4,7 +4,7 @@ using System.Collections.Generic;
 public class BarrierShieldAction_JuliusP : ActionScript
 {
     // THIS SETS HOW FAR THE SHIELDS ARE//
-    float Offset = 1.4f;
+    float Offset = 1.1f;
 
     // THIS CREATES A LIST TO KEEP TRACK OF ALL SHIELDS SPAWNED
     List<ThingInfo> spawnedShields = new List<ThingInfo>();

@@ -65,6 +65,9 @@ public static class Parser
         TraitDict.Add(Traits.Slowed_JuliusP, new Slowed());
         TraitDict.Add(Traits.SlowOnhit_JuliusP, new SlowingProjectileTrait());
         TraitDict.Add(Traits.AlwaysRage_JuliusP, new RageAlwaysOn());
+        TraitDict.Add(Traits.ApplyHeavyKnockBack_JuliusP, new HeavyKnockback());
+        TraitDict.Add(Traits.DodgeInvis_JuliusP, new Dodge_invis());
+
     
 
 
@@ -154,6 +157,7 @@ public static class Parser
             case Actions.GiveItemLv2_JuliusP:return new GiveItem_Lv2(who,e);
             case Actions.EvasiveJuke_JuliusP:return new EvasiveJuke(who, e);
             case Actions.BleakWatcher_JuliusP: return new BleakWatcher(who, e);
+          
             
         
             // MichaelT=50,
@@ -318,6 +322,10 @@ public enum Traits
     SlowOnhit_JuliusP = 4014,
     LowHealthWarrior_JuliusP = 4015,
     AlwaysRage_JuliusP = 4016,
+    ApplyHeavyKnockBack_JuliusP = 4017,
+    DodgeInvis_JuliusP = 4018,
+
+
 
    
     
@@ -430,6 +438,7 @@ public enum Actions
     EvasiveJuke_JuliusP = 4011,
     BleakWatcher_JuliusP = 4012,
     slowingproj_JuliusP = 4013,
+   
  
 
 
