@@ -67,6 +67,7 @@ public static class Parser
         TraitDict.Add(Traits.AlwaysRage_JuliusP, new RageAlwaysOn());
         TraitDict.Add(Traits.ApplyHeavyKnockBack_JuliusP, new HeavyKnockback());
         TraitDict.Add(Traits.DodgeInvis_JuliusP, new Dodge_invis());
+        TraitDict.Add(Traits.RedLight, new RedGreen());
 
     
 
@@ -157,6 +158,7 @@ public static class Parser
             case Actions.GiveItemLv2_JuliusP:return new GiveItem_Lv2(who,e);
             case Actions.EvasiveJuke_JuliusP:return new EvasiveJuke(who, e);
             case Actions.BleakWatcher_JuliusP: return new BleakWatcher(who, e);
+         
           
             
         
@@ -324,6 +326,7 @@ public enum Traits
     AlwaysRage_JuliusP = 4016,
     ApplyHeavyKnockBack_JuliusP = 4017,
     DodgeInvis_JuliusP = 4018,
+    RedLight = 4019,
 
 
 
@@ -438,6 +441,8 @@ public enum Actions
     EvasiveJuke_JuliusP = 4011,
     BleakWatcher_JuliusP = 4012,
     slowingproj_JuliusP = 4013,
+
+
    
  
 

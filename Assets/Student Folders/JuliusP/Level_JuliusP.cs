@@ -47,8 +47,7 @@ public override void BuildGeoMap()
 
     else if(CurrentLevel == 2)
     {
-            
-
+        BuildLevel1(centerX, centerY, leftsideY); 
         BuildLevel2(centerX, centerY, leftsideY);
 
     }
@@ -409,6 +408,35 @@ public override void BuildMainPath()
     return o.HasTag(t.ToString()) ? 1 : 0;
 }
 
+
+//THIS FUNCTION CONTROLS ADD DENSITY//
+public override void FindQuotas()
+{
+    float rms = AllGeo.Count - 2;
+
+    float mons;
+
+    // IF LEVEL IS 2 → SPAWN FEW ENEMIES
+    if (God.Session.Level == 2)
+    {
+        mons = 5; // small number
+    }
+    else
+    {
+        mons = rms * 0.7f; // normal scaling
+    }
+
+    Quotas.Add(new Tag(GameTags.NPC, 1, mons));
+
+    Quotas.Add(new Tag(GameTags.Weapon, 1, 2));
+    Quotas.Add(new Tag(GameTags.Consumable, 1, rms * 0.2f));
+    Quotas.Add(new Tag(GameTags.ScoreThing, 1, God.Session.Level));
+
+    FindThings();
+}
+
+
+
 void BuildLevel1(int centerX, int centerY, int leftsideY)
 {
     // WHERE THE PLAYER ROOM TILE IS AT//
@@ -464,57 +492,6 @@ void BuildLevel1(int centerX, int centerY, int leftsideY)
 
 void BuildLevel2(int centerX, int centerY, int leftsideY)
 {
-   // WHERE THE PLAYER ROOM TILE IS AT//
-    AddGeo(new GeoTile(centerX, centerY, this));
-
-    //GO UP FROM PLAYER ROOM//
-    for(int i = 1; i<4; i++)
-    {
-        AddGeo(new GeoTile(centerX, centerY + i, this));
-    }
-
-    //GO DOWN FROM PLAYER ROOM//
-    //STOPS AT Y = 1//
-    for(int i = 1; i<3; i++)
-    {
-        AddGeo(new GeoTile(centerX, centerY - i, this));
-    }
-
-    //AT (3,1), MOVE RIGHT//
-    for(int i = 1; i<4; i++)
-    {
-        AddGeo(new GeoTile(centerX + i, 1, this));
-    }
-
-    //AT (3,1), MOVE LEFT//
-    for(int i = 1; i<4; i++)
-    {
-        AddGeo(new GeoTile(centerX - i, 1, this));
-    }
-
-    //GO DOWN FROM (6,1)//
-    AddGeo(new GeoTile(6,0, this));
-
-    //GO DOWN FROM (0,1)//
-    for(int i = 3; i<5; i++)
-    {
-        AddGeo(new GeoTile(0, centerY - i, this));
-    }
-
-    //GO LEFT FROM (0,-1)//
-    for(int i = 4; i<6; i++)
-    {
-        AddGeo(new GeoTile(centerX - i, -1, this));
-    }
-
-    //GO UP FROM (-3,-2)//
-    for(int i = 1; i<3; i++)
-    {
-        AddGeo(new GeoTile(-3, leftsideY + i, this));
-    }
-
-
-    
 
     //NEW ADDITIONS FOR LEVEL 2//
 
@@ -533,8 +510,6 @@ void BuildLevel2(int centerX, int centerY, int leftsideY)
 
 
 
-
-
     //GO UP FROM (6,3)
     for(int i = 1; i<3; i++)
     {
@@ -549,19 +524,5 @@ void BuildLevel2(int centerX, int centerY, int leftsideY)
     //ADD TILE (0,4)
      AddGeo(new GeoTile(0, 4, this));
 
-
-
-
-
-
-
-
-
-
-
-
-    
-   
 }
-
 }
