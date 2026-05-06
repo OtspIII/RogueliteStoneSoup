@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Level_AlejandroM : LevelBuilder
+ class Level_AlejandroM : LevelBuilder
 {
     public Level_AlejandroM()
     {
@@ -13,17 +13,17 @@ public class Level_AlejandroM : LevelBuilder
 
         Size = new Vector2Int(3, 3); //size is a 3x3
 
-        LinkOdds = 0.2f; //a chance to create more rooms to connect
+        LinkOdds = 0f; //a chance to create more rooms to connect
 
         Boss = null; // no boss yet
     }
 
     public override void BuildGeoMap()
-    {   // top row of T
+    {    // top row of T
         AddGeo(new GeoTile(0, 2, this));
         AddGeo(new GeoTile(1, 2, this));
         AddGeo(new GeoTile(2, 2, this));
-        // middle row of T
+        //middle row of T
         AddGeo(new GeoTile(1, 1, this));
         // bottom row of T
         AddGeo(new GeoTile(1, 0, this));
