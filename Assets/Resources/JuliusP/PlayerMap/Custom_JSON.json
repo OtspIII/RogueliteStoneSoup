@@ -15,8 +15,10 @@
         {"K":"L","V":"Lava"},
         {"K":"A","V":"Ally"},
         {"K":"M","V":"Resist"},
-        {"K":"S","V":"Shield"},
+        {"K":"G","V":"GreenLight"},
         {"K":"W","V":"Lv1Bow"},
-        {"K":"N","V":"NoStun"}
+        {"K":"N","V":"NoStun"}, 
+        {"K":"F","V":"Bull"}
+        
     ]
 }

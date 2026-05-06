@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Lv1.Bow
   m_EditorClassIdentifier: 
   Name: Lv1.Bow
-  Author: 0
+  Author: 40
   Tags:
   - Common: 202
-    Custom: Lv1Bow
+    Custom: 
     W: 1
     Cost: 1
   Team: 1

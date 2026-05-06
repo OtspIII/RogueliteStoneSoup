@@ -4,7 +4,7 @@ using System.Collections.Generic;
 public class BarrierShieldAction_JuliusP : ActionScript
 {
     // THIS SETS HOW FAR THE SHIELDS ARE//
-    float Offset = 1.4f;
+    float Offset = 1.1f;
 
     // THIS CREATES A LIST TO KEEP TRACK OF ALL SHIELDS SPAWNED
     List<ThingInfo> spawnedShields = new List<ThingInfo>();
@@ -14,41 +14,38 @@ public class BarrierShieldAction_JuliusP : ActionScript
     ThingInfo redShield;
     float RotateSpeed = 120f;
 
-    // CONSTRUCTOR TAKES CHARACTER AND OPTIONAL EVENT
+    bool ended = false;
+    bool locked = false;
+
     public BarrierShieldAction_JuliusP(ThingInfo who, EventInfo e = null)
     {
-        Setup(Actions.BarrierShield_JuliusP, who);
-
-    
-     
+        Setup(Actions.BarrierShield_JuliusP, who, true);
+        HaltMomentum = true;
+        MoveMult = 0f;
     }
 
-    // CALLED WHEN THE ACTION STARTS
     public override void Begin()
     {
+        if (ended || locked) return;
+
         base.Begin();
 
-        // CHECK IF CHARACTER DOES NOT HAVE DAMAGE IMMUNITY
         if (!Who.Has(Traits.IgnoreDamage_JuliusP))
-            // ADDS THW DAMAGE IMMUNITY TRAIT
             Who.AddTrait(Traits.IgnoreDamage_JuliusP);
 
-        // MAKES THE SHIELDS SPAWN AT THE BEGINNING OF THE ACTION//
         SpawnShields();
 
         EnemyRb = Who.Thing.GetComponent<Rigidbody2D>();
-
         EnemyRb.simulated = true;
-
-
     }
 
-    // CAlLS EVERY FRAME SIMILAR TO UPDATE//
     public override void OnRun()
     {
         base.OnRun();
 
-        // IF THE RED SHIELD IS DESTROYED, DESTROY ALL SHIELDS
+        if (ended) return;
+
+        // ONLY CHECK RED SHIELD (CRITICAL FIX)
         if (redShield == null || redShield.Get(Traits.Health) == null || redShield.Get(Traits.Health).GetN() <= 0)
         {
             foreach (ThingInfo shield in spawnedShields)
@@ -59,32 +56,17 @@ public class BarrierShieldAction_JuliusP : ActionScript
             return;
         }
 
-        // LOOP THROUGH ALL SHIELDS BACKWARDS
+        // REMOVE DEAD NON-RED SHIELDS (NO END CONDITION HERE)
         for (int i = spawnedShields.Count - 1; i >= 0; i--)
         {
-            // GET CURRENT SHIELD
             ThingInfo shield = spawnedShields[i];
 
-            // CHECK IF SHIELD IS DESTROYED OR DEAD
             if (shield == null || shield.Get(Traits.Health) == null || shield.Get(Traits.Health).GetN() <= 0)
             {
-                // REMOVE SHIELD FROM LIST
                 spawnedShields.RemoveAt(i);
             }
         }
 
-        // CHECK IF ALL SHIELDS HAVE BEEN DESTROYED
-        bool allShieldsGone = spawnedShields.Count == 0;
-
-        // IF NO SHIELDS ARE LEFT
-        if (allShieldsGone)
-        {
-            //ENDS THE ACTION//
-            End();
-            return;
-        }
-
-        // ORBIT SHIELDS AROUND CHARACTER
         int shieldCount = spawnedShields.Count;
         float angleStep = 360f / shieldCount;
 
@@ -98,130 +80,80 @@ public class BarrierShieldAction_JuliusP : ActionScript
             shield.Thing.transform.position = Who.Thing.transform.position + Shieldoffset;
         }
 
+        ThingInfo targ = God.Session.Player;
 
-         // MOVE TOWARDS PLAYER SLOWLY
-         ThingInfo targ = God.Session.Player;
-
-        if (targ != null && targ.Thing != null)
-        {
-            Vector3 dir = (targ.Thing.transform.position - Who.Thing.transform.position).normalized;
-
-            float speed = 13f;
-
-            if (EnemyRb != null)
-            {
-             EnemyRb.MovePosition(Who.Thing.transform.position + dir * speed * Time.deltaTime);
-            }
-            else
-            {
-             Who.Thing.transform.position += dir * speed * Time.deltaTime;
-            }
-
-             Who.Thing.LookAt(targ);
-        }
-
-        
+        if (targ != null)
+            Who.Thing.LookAt(targ);
     }
 
-    // FUNCTION TO END THE ACTION//
     public override void End()
     {
+        if (ended) return;
+
         base.End();
 
-        // CHECK IF THE THING HAS THE IMMUNE DAMAGE TRAIT//
+        ended = true;
+        locked = true;
+
         if (Who.Has(Traits.IgnoreDamage_JuliusP))
-            // REMOVE THE DAMAGE IMMUNITY TRAIT TO ALLOW FOR DAMAGE
             Who.RemoveTrait(Traits.IgnoreDamage_JuliusP);
 
-        // LOOP THROUGH ANY LEFTOVER SHIELDS
         foreach (ThingInfo shield in spawnedShields)
         {
-            // CHECK IF SHIELD EXISTS
             if (shield != null)
-                // DESTROY SHIELD
                 shield.Destruct(shield);
         }
 
-        // CLEAR THE SHIELDS LIST
         spawnedShields.Clear();
-
-        // GET THE NEXT ACTION (DEFAULT OR CHASE)
-        Actions next = NextAction();
-
-        // STARTS THE NEXT ACTION
-        Who.Thing.DoAction(next);
     }
 
-    // FUNCTION TO SPAWN SHIELDS AROUND CHARACTER
     void SpawnShields()
     {
-        // FINDS AND LOADS THE BARRIER SHIELD IN THE FOLDER IT'S IN//
         ThingOption Shield = Resources.Load<ThingOption>("JuliusP/Things With Actions/BarrierShield");
 
-        // MAKE 8 SHIELDS SPAWN AROUND THE THING LIKE A PROTECTIVE BARRIER//
-        int numberOfShields = 8;
+        int numberOfShields = 9;
 
-        // THIS MAKES EACH SHIELD 45 DEGREES APART//
         float angleStep = 360f / numberOfShields;
 
-        // LOOP THROUGH EACH SHIELD
         for (int i = 0; i < numberOfShields; i++)
         {
-
-            // CALCULATES THE ANGLE IN RADIANS:
-
-            // IF I IS 0 -> ANGLE IS 0//
-
-            // IF I IS 1 -> ANGLE IS 45//
-
-            // IF I IS 2 -> ANGLE IS 90//
             float angle = i * angleStep * Mathf.Deg2Rad;
 
-            // CALCULATES THE OFFSET USING COS FOR X, SIN FOR Y -> UNIT CIRCLE//
             Vector3 Shieldoffset = new Vector3(Mathf.Cos(angle), Mathf.Sin(angle), 0) * Offset;
 
-            // GET FINAL SPAWN POSITION RELATIVE TO CHARACTER//
             Vector3 spawnPos = Who.Thing.transform.position + Shieldoffset;
 
-            // THIS LINE CREATES A NEW SHIELD OBJECT//
             ThingInfo shieldInfo = Shield.Create();
 
-            // SPAWNS A SHIELD AT THE POSITION//
             ThingController shieldController = shieldInfo.Spawn(spawnPos);
 
-            // MAKES THE SHIELD ATTACHED TO THE THING//
             shieldController.transform.parent = null;
 
-            // CREATES A NEW HEALTH EVENT//
             EventInfo hp = new EventInfo();
 
-            if (i == 0)
-            {
-                // SETS THE HIELD HEALTH TO 1//
-                hp.Set(NumInfo.Default, 1);
-                redShield = shieldInfo;
+           if (i == 0)
+           {
+             hp.Set(NumInfo.Default, 1);
+             hp.Set(NumInfo.Max, 1);
+             hp.Set(NumInfo.Min, 1);
 
-                SpriteRenderer sr = shieldController.GetComponentInChildren<SpriteRenderer>();
-                if (sr != null) sr.color = Color.red;
+             redShield = shieldInfo;
+
+             SpriteRenderer sr = shieldController.GetComponentInChildren<SpriteRenderer>();
+            if (sr != null) sr.color = Color.red;
             }
             else
             {
-                // SETS THE HIELD HEALTH TO 20//
                 hp.Set(NumInfo.Default, Mathf.Infinity);
             }
 
-            // ADDS THE HEALTH TRAIT TO SHIELD//
             shieldInfo.AddTrait(Traits.Health, hp);
 
-            // ADDS THE SHIELD TO THE LIST TO TRACK//
             spawnedShields.Add(shieldInfo);
         }
     }
 }
-
 //FOR LEVEL2 VERSION OF THE ACTION//
-
-
 public class Lv2_BarrierShield_JuliusP : ActionScript
 {
     //SHIELD OFFSET DISTANCE//

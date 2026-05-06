@@ -117,7 +117,7 @@ public class GiveItem : ActionScript
             }
 
             //IF PLAYER IS CLOSE TO THE EXIT, BREAK OUT THE LOOP//
-            if (player.Thing.Distance(exit.Thing) < 1f)
+            if (player.Thing.Distance(exit.Thing) < 2.6f)
                 break;
 
             yield return null;
@@ -170,7 +170,7 @@ public class GiveItem : ActionScript
 
 
 
-
+ 
 
 
 }

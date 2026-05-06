@@ -10,23 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4679cc75b2c8be74e8b047318fa062ea, type: 3}
-  m_Name: Evasive Fighter
+  m_Name: RedLight
   m_EditorClassIdentifier: Assembly-CSharp::CharacterOption
-  Name: Evasive Fighter
+  Name: RedLight
   Author: 40
   Tags:
-  - Common: 1
-    Custom: 
-    W: 200
-    Cost: 1
-  Team: 2
+  - Common: 102
+    Custom: GreenLight
+    W: 0
+    Cost: 0
+  Team: 3
   Body: {fileID: 629948465317790645, guid: acf0e760b28c7b046ad7d511fb87a1d3, type: 3}
-  Art: {fileID: 4652590142891508640, guid: f37a2d799dd01504faa074166101387a, type: 3}
+  Art: {fileID: -2510476293373519475, guid: e3d9843f4660b7b4dad7fc7c263bb814, type: 3}
   Color: {r: 1, g: 1, b: 1, a: 1}
-  Size: 0.23
+  Size: 1
   LevelRange: {x: 0, y: 0}
   Trait:
-  - Trait: 100
+  - Trait: 4019
     Numbers: []
     Prefabs: []
     Acts: []
@@ -38,25 +38,11 @@ MonoBehaviour:
       Level: 0
       Author: 0
       MaxCost: 0
-      Where: {x: 999, y: 999, z: 999}
+      Where: {x: 0, y: 0, z: 0}
     Builder: []
-  - Trait: 4018
-    Numbers: []
-    Prefabs: []
-    Acts: []
-    OtherTrait: 0
-    SpawnReq:
-      Fixed: {fileID: 0}
-      Mandatory: []
-      Any: []
-      Level: 0
-      Author: 0
-      MaxCost: 0
-      Where: {x: 999, y: 999, z: 999}
-    Builder: []
-  HP: 3
+  HP: 1
   Speed: 5
   VisionRange: 4
-  Held: {fileID: 11400000, guid: 16c3f06a3c7154b799a3000778565be7, type: 2}
+  Held: {fileID: 11400000, guid: a823f1a8956d4423fb1c7f5a192fc10a, type: 2}
   DefaultAction: 1
   DefaultChaseAction: 1

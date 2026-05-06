@@ -16,9 +16,9 @@ MonoBehaviour:
   Author: 40
   Tags:
   - Common: 102
-    Custom: Shield
+    Custom: 
     W: 1
-    Cost: 1
+    Cost: 0
   Team: 3
   Body: {fileID: 629948465317790645, guid: acf0e760b28c7b046ad7d511fb87a1d3, type: 3}
   Art: {fileID: 9183382434615233273, guid: ce7ae796c54402f41bf8753d6ec49110, type: 3}
@@ -27,7 +27,7 @@ MonoBehaviour:
   LevelRange: {x: 0, y: 1}
   Trait: []
   HP: 3
-  Speed: 4
+  Speed: 1.78
   VisionRange: 10.6
   Held: {fileID: 11400000, guid: 26769a297c5f041b7941964fcdd12a47, type: 2}
   DefaultAction: 4002
