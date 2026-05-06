@@ -41,7 +41,6 @@ public class Level_AdamD : LevelBuilder
                 GeoTile g = new GeoTile(x, y, this); //where x and y refer to the tile coordinates that it spawnns
                 AddGeo(g);
             }
-        AddGeo(new GeoTile(0, 0, this)); 
     }
     public override void BuildMainPath() //you must define where the player exit and start is
     {
