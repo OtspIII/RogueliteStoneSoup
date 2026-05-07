@@ -18,7 +18,8 @@
         {"K":"G","V":"GreenLight"},
         {"K":"W","V":"Lv1Bow"},
         {"K":"N","V":"NoStun"}, 
-        {"K":"F","V":"Bull"}
+        {"K":"F","V":"Bull"},
+        {"K":"S","V":"RedLight"}
         
     ]
 }

@@ -183,10 +183,10 @@ public class FullStunNegation:Trait
                 {
                     ThingInfo Player = God.Session.Player;
                     //CANCEL THE STUN ACTION FROM HAPPENING
-                    //e.Abort = true;
+                    e.Abort = true;
 
                     //TAKE NO KNOCKBACK//
-                   // i.Who.Thing.TakeKnockback(Player, 0f);
+                    i.Who.Thing.TakeKnockback(Player, 0f);
                     Debug.Log("NO STUN");
                 }
                 break;

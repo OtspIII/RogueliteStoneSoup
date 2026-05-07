@@ -68,6 +68,9 @@ public static class Parser
         TraitDict.Add(Traits.ApplyHeavyKnockBack_JuliusP, new HeavyKnockback());
         TraitDict.Add(Traits.DodgeInvis_JuliusP, new Dodge_invis());
         TraitDict.Add(Traits.RedLight, new RedGreen());
+        TraitDict.Add(Traits.SpawnWall_JuliusP, new SpawnWall());
+        TraitDict.Add(Traits.AddTraitByScore_JuliusP, new AddTraitByScore());
+
 
     
 
@@ -327,6 +330,8 @@ public enum Traits
     ApplyHeavyKnockBack_JuliusP = 4017,
     DodgeInvis_JuliusP = 4018,
     RedLight = 4019,
+    SpawnWall_JuliusP = 4020,
+    AddTraitByScore_JuliusP = 4021,
 
 
 

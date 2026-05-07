@@ -64,6 +64,11 @@ public class GiveItem : ActionScript
   
             
         }
+
+
+         //SAFETY CHECK//
+            if (!Who.Has(Traits.IgnoreDamage_JuliusP))
+                Who.AddTrait(Traits.IgnoreDamage_JuliusP);
     }
 
     private IEnumerator GiveItemLogic()

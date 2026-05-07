@@ -1,12 +1,12 @@
 xxxxxLLxxxxx
 xxxxLLLLxxxx
 xxxLxLLxLxxx
-xLLxxLLxxLLx
+xxLLLLLLLLxx
 ............
 ............
 ......N.....
 ............
-xxLLLxxLLLxx
+xxLLLLLLLLxx
 xxxLxLLxLxxL
 xxxxLLLLxxxx
 xxxxxLLxxxxx

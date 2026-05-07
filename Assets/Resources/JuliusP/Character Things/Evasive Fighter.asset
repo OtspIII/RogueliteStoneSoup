@@ -54,6 +54,20 @@ MonoBehaviour:
       MaxCost: 0
       Where: {x: 999, y: 999, z: 999}
     Builder: []
+  - Trait: 4020
+    Numbers: []
+    Prefabs: []
+    Acts: []
+    OtherTrait: 0
+    SpawnReq:
+      Fixed: {fileID: 0}
+      Mandatory: []
+      Any: []
+      Level: 0
+      Author: 0
+      MaxCost: 0
+      Where: {x: 999, y: 999, z: 999}
+    Builder: []
   HP: 3
   Speed: 5
   VisionRange: 4

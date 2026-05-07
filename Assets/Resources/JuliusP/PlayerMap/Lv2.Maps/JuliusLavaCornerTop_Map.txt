@@ -1,11 +1,11 @@
 xxxxuuuuxxxx
-xxxx    xxxx
-xxxx    xxxx
-xxxx    xxxx
-x..........x
-l..........x
-l..........x
-x..........x
+xxxxL..Lxxxx
+xxxxL..Lxxxx
+xxxxL..Lxxxx
+xLLLL..LLLLx
+l.........Lx
+l.........Lx
+x.........Lx
 xxLxxxxxxLxx
 xxxLxLLxLxxx
 xxxxLLLLxxxx

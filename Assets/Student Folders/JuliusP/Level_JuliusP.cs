@@ -171,7 +171,7 @@ public override void BuildMainPath()
     GeoTile a = GetGeo(6, 0);
     GeoTile b = GetGeo(6, 1);
 
-    if (a != null && b != null && CanLinkToLootRoom)
+    if (a != null && b != null)
     {
         a.Links.Add(Directions.Down);
         b.Links.Add(Directions.Up);
