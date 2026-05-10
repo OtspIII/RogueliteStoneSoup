@@ -1,6 +1,6 @@
 using UnityEngine;
 
- class Level_AlejandroM : LevelBuilder
+class Level_AlejandroM : LevelBuilder
 {
     public Level_AlejandroM()
     {
@@ -11,7 +11,8 @@ using UnityEngine;
     {
         SpawnPlayer();
 
-        Size = new Vector2Int(1, 2);
+        // ONE arena room only
+        Size = new Vector2Int(1, 1);
 
         LinkOdds = 0f;
 
@@ -21,28 +22,22 @@ using UnityEngine;
     public override void BuildGeoMap()
     {
         AddGeo(new GeoTile(0, 0, this));
-        AddGeo(new GeoTile(0, 1, this));
     }
 
     public override void FindQuotas()
     {
+        // Disable professor spawn system
         Quotas.Clear();
-
-        
-        int enemyCount = God.Session.Level;
-
-        // Safety clamp so it does not get crazy
-        enemyCount = Mathf.Clamp(enemyCount, 1, 5);
-
-        Quotas.Add(new Tag("Hater", 1, enemyCount));
-
-        FindThings();
     }
 
     public override void BuildMainPath()
     {
-        // Player spawns in the room 
         PlayerSpawn = GetGeo(0, 0);
+
         PlayerSpawn.SetPath(GeoTile.GeoTileTypes.PlayerStart);
+        PlayerSpawn.SetPath(GeoTile.GeoTileTypes.MainPath);
+
+        GameObject spawnerObject = new GameObject("Arena Spawner");
+        spawnerObject.AddComponent<ArenaSpawner>();
     }
 }
