@@ -23,7 +23,7 @@ MonoBehaviour:
   Body: {fileID: 629948465317790645, guid: acf0e760b28c7b046ad7d511fb87a1d3, type: 3}
   Art: {fileID: -4321516586056154400, guid: 68e42a79747e2574b88594ac83fa3b89, type: 3}
   Color: {r: 1, g: 1, b: 1, a: 1}
-  Size: 2
+  Size: 1
   LevelRange: {x: 0, y: 0}
   Trait:
   - Trait: 101
@@ -40,9 +40,9 @@ MonoBehaviour:
       MaxCost: 0
       Where: {x: 999, y: 999, z: 999}
     Builder: []
-  HP: 10
+  HP: 1
   Speed: 5
-  VisionRange: 4
+  VisionRange: 9
   Held: {fileID: 11400000, guid: d8535ae3107c2184ab8fc49f1318f904, type: 2}
-  DefaultAction: 201
+  DefaultAction: 202
   DefaultChaseAction: 101
