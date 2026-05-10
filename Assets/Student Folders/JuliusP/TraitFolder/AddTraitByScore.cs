@@ -6,7 +6,7 @@ public class AddTraitByScore : Trait
     public AddTraitByScore()
     {
         
-        Type = AddTraitByScore.AddTraitByScore_JuliusP;
+        Type = Traits.AddTraitByScore_JuliusP;
 
         AddListen(EventTypes.GetScore);
     }
@@ -23,8 +23,8 @@ public class AddTraitByScore : Trait
             case EventTypes.GetScore:
             {
                     
-                   int score = e.GetN("Score");
-
+                   //int score = e.GetN("Score");
+                   break;
 
 
             }
