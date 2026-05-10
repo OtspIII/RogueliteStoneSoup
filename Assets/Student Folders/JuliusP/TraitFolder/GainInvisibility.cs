@@ -21,27 +21,28 @@ public class GainInvisibility : Trait
     {
         switch (e.Type)
         {
-            case EventTypes.Update:
+           case EventTypes.Update:
+           {
+            if (!PrepareInvis || Sr == null)
             {
-                if(!PrepareInvis)
-                {
-                    PrepareInvis = true;
+                 PrepareInvis = true;
 
-                    // GET ALL SPRITE RENDERERS/
-                    Sr = i.Who.Thing.gameObject.GetComponentsInChildren<SpriteRenderer>();
+                 Sr = i.Who.Thing.gameObject.GetComponentsInChildren<SpriteRenderer>();
 
-                    //MAKE THE THING GRADUALLY DISAPPEAR//
-                    God.C(GraduallyDisappear(0.19f));
-                }
+               
+                 Reappear(); 
+                 God.C(GraduallyDisappear(0.19f));
+            }
 
-                break;
+         break;
             }
 
             case EventTypes.LoseTrait:
             {
               
+                PrepareInvis = false;
                 //REAPPEAR WHEN DAMAGED//
-                God.C(Reappear());
+                Reappear();
                
                 break;
             }
@@ -50,9 +51,9 @@ public class GainInvisibility : Trait
             case EventTypes.Damage:
             {
                     
-            God.C(ReappearTemporarily());
+                Reappear();
 
-            break;
+                break;
 
             }
         
@@ -68,7 +69,7 @@ public class GainInvisibility : Trait
         while (time < duration)
         {
             time += Time.deltaTime;
-            float alpha = Mathf.Lerp(1f, 0f, time / duration);
+            float alpha = Mathf.Lerp(1f, 0.5f, time / duration);
 
             foreach (SpriteRenderer sr in Sr)
             {
@@ -111,23 +112,18 @@ public class GainInvisibility : Trait
 
 
     //FUNCTION TO APPEAR//
+   void Reappear()
+{
+    if (Sr == null) return;
 
-    IEnumerator Reappear()
+    foreach (SpriteRenderer sr in Sr)
     {
-       
-        
-        yield return new WaitForSeconds(0f);
-        //REAPPEAR WHEN DAMAGED//
-         foreach(SpriteRenderer sr in Sr)
-          {
-               //SAFETY MEASURES//
-               if (sr == null) continue; 
-               Color c = sr.color;
-               c.a = 1f;
-               sr.color = c;
-          }
-
-
-
+        if (sr == null) continue;
+        Color c = sr.color;
+        c.a = 1f;
+        sr.color = c;
     }
+}
+
+
 }

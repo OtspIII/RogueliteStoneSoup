@@ -14,10 +14,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TextRoomOption
   Name: Exit
   Author: 0
+  Tags:
+  - Common: 401
+    Custom: 
+    W: 0
+    Cost: 0
   Prefab: {fileID: 0}
-  Tags: 03000000
+  Audited: 0
+  MapSize: {x: 11, y: 11}
   Map: {fileID: 4900000, guid: 22e96833caa33444aa1e59adb847f29e, type: 3}
-  JSON: {fileID: 4900000, guid: 5c0fbb55310ad364aa32131d700b89cd, type: 3}
-  Pairs:
-    Name: 
-    Pairs: []
+  JSON: {fileID: 0}
+  MapText:
+  - "xxxxuuuxxxx\r"
+  - "x         x\r"
+  - "x         x\r"
+  - "x         x\r"
+  - "l         r\r"
+  - "l    E    r\r"
+  - "l         r\r"
+  - "x         x\r"
+  - "x         x\r"
+  - "x         x\r"
+  - xxxxdddxxxx

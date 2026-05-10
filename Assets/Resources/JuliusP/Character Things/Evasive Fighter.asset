@@ -14,16 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CharacterOption
   Name: Evasive Fighter
   Author: 40
-  Team: 2
-  Body: {fileID: 629948465317790645, guid: acf0e760b28c7b046ad7d511fb87a1d3, type: 3}
-  Art: {fileID: 21300000, guid: 2d7e0ce399741ea4297e5d3e535c5d8c, type: 3}
-  Color: {r: 1, g: 1, b: 1, a: 1}
-  Size: 1
   Tags:
   - Common: 1
     Custom: 
-    W: 1
+    W: 200
     Cost: 1
+  Team: 2
+  Body: {fileID: 629948465317790645, guid: acf0e760b28c7b046ad7d511fb87a1d3, type: 3}
+  Art: {fileID: 4652590142891508640, guid: f37a2d799dd01504faa074166101387a, type: 3}
+  Color: {r: 1, g: 1, b: 1, a: 1}
+  Size: 0.23
   LevelRange: {x: 0, y: 0}
   Trait:
   - Trait: 100
@@ -38,8 +38,9 @@ MonoBehaviour:
       Level: 0
       Author: 0
       MaxCost: 0
+      Where: {x: 999, y: 999, z: 999}
     Builder: []
-  - Trait: 4003
+  - Trait: 4018
     Numbers: []
     Prefabs: []
     Acts: []
@@ -51,10 +52,25 @@ MonoBehaviour:
       Level: 0
       Author: 0
       MaxCost: 0
+      Where: {x: 999, y: 999, z: 999}
+    Builder: []
+  - Trait: 4020
+    Numbers: []
+    Prefabs: []
+    Acts: []
+    OtherTrait: 0
+    SpawnReq:
+      Fixed: {fileID: 0}
+      Mandatory: []
+      Any: []
+      Level: 0
+      Author: 0
+      MaxCost: 0
+      Where: {x: 999, y: 999, z: 999}
     Builder: []
   HP: 3
   Speed: 5
   VisionRange: 4
-  Held: {fileID: 11400000, guid: 26769a297c5f041b7941964fcdd12a47, type: 2}
+  Held: {fileID: 11400000, guid: 16c3f06a3c7154b799a3000778565be7, type: 2}
   DefaultAction: 1
   DefaultChaseAction: 1

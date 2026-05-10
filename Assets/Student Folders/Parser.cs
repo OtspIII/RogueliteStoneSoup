@@ -34,6 +34,7 @@ public static class Parser
         TraitDict.Add(Traits.Stackable,new StackableTrait());
         TraitDict.Add(Traits.Hostile,new HostileTrait());
         // MishaF Traits
+        TraitDict.Add(Traits.TestTrait_Misha,new TestTrait_Misha());
         
         // AdamD Traits
         TraitDict.Add(Traits.statusEffectOnProjectile, new StatusEffectOnProjectileTrait_AdamD("stuff", 5));
@@ -64,6 +65,13 @@ public static class Parser
         TraitDict.Add(Traits.Slowed_JuliusP, new Slowed());
         TraitDict.Add(Traits.SlowOnhit_JuliusP, new SlowingProjectileTrait());
         TraitDict.Add(Traits.AlwaysRage_JuliusP, new RageAlwaysOn());
+        TraitDict.Add(Traits.ApplyHeavyKnockBack_JuliusP, new HeavyKnockback());
+        TraitDict.Add(Traits.DodgeInvis_JuliusP, new Dodge_invis());
+        TraitDict.Add(Traits.RedLight, new RedGreen());
+        TraitDict.Add(Traits.SpawnWall_JuliusP, new SpawnWall());
+        TraitDict.Add(Traits.AddTraitByScore_JuliusP, new AddTraitByScore());
+
+
     
 
 
@@ -149,8 +157,12 @@ public static class Parser
             case Actions.Lv2_Cloak_JuliusP: return new Lv2Invis(who, e);
             case Actions.Lv3_Cloak_JuliusP: return new Lv3Invis(who, e);
             case Actions.TradeHp_JuliusP:return new TradeHp(who, e);
+            case Actions.GiveItem_JuliusP:return new GiveItem(who,e);
+            case Actions.GiveItemLv2_JuliusP:return new GiveItem_Lv2(who,e);
             case Actions.EvasiveJuke_JuliusP:return new EvasiveJuke(who, e);
             case Actions.BleakWatcher_JuliusP: return new BleakWatcher(who, e);
+         
+          
             
         
             // MichaelT=50,
@@ -280,7 +292,7 @@ public enum Traits
     Projectile      =0400,//Flies In A Direction
     OnFire          =0500,//I Didn't Finish This Yet
     //Misha Traits:  11##
-    MishaF1         =1101,
+    TestTrait_Misha =1101,
     //AdamD         =20##,
     AdamD1          =2001,
     statusEffectOnProjectile=2002,
@@ -316,6 +328,13 @@ public enum Traits
     SlowOnhit_JuliusP = 4014,
     LowHealthWarrior_JuliusP = 4015,
     AlwaysRage_JuliusP = 4016,
+    ApplyHeavyKnockBack_JuliusP = 4017,
+    DodgeInvis_JuliusP = 4018,
+    RedLight = 4019,
+    SpawnWall_JuliusP = 4020,
+    AddTraitByScore_JuliusP = 4021,
+
+
 
    
     
@@ -423,9 +442,14 @@ public enum Actions
     Lv2_Cloak_JuliusP = 4006,
     Lv3_Cloak_JuliusP = 4007,
     TradeHp_JuliusP = 4008,
-    EvasiveJuke_JuliusP = 4009,
-    BleakWatcher_JuliusP = 4010,
-    slowingproj_JuliusP = 4011,
+    GiveItem_JuliusP = 4009,
+    GiveItemLv2_JuliusP = 4010,
+    EvasiveJuke_JuliusP = 4011,
+    BleakWatcher_JuliusP = 4012,
+    slowingproj_JuliusP = 4013,
+
+
+   
  
 
 

@@ -5,282 +5,524 @@ public class Level_JuliusP : LevelBuilder
 {
     public Vector2Int OriginalLvlSize;
 
+    public bool CanLinkToLootRoom = false;
+
     public float SpecialRoomChance = 0.3f;
+
     public Level_JuliusP()
     {
         Author = Authors.JuliusP;
     }
 
-
-
-
-    //OVVERIDE CUSTOMIZE FUNCTION FROM LEVEL BUILDER//
    public override void Customize()
-   {
-    
-    //As you go deeper the map gets bigger
-    
-    //CURRENT LEVEL NUMBER//
-    int l = God.Session.Level;
-   
-    //WIDTH AND HEIGHT OF THE GRID//
-    int w;
-    int h;
-
-    //EVERY 5 LEVELS SET WIDTH TO BE 4 AND HEIGHT TO BE 5//
-    if (l % 5 == 0)
     {
-        w = 4;
-        h = 5;
+        SpawnPlayer();
+
+        int l = God.Session.Level;
+        
+        //SCALES THE WIDTH EVERY 2 LEVELS//
+        int width = 4;
+        
+        //SCALES THE HEIGHT EVERY 3 LEVELS//
+        int height = 4;
+       
+        Size = new Vector2Int(width,height);
+        LinkOdds = 1f;
+        RoomSize = new Vector2Int(12, 12);
     }
 
-   
-    
-    //EVERY 3 LEVELS, A SPECIAL ROOM APPEARS//
-    else if(l % 3 == 0 && Random.value < SpecialRoomChance)
+
+public override void BuildGeoMap()
+{
+    int centerX = 3;
+    int centerY = 3;
+    int leftsideY = -2;
+
+    int CurrentLevel = God.Session.Level;
+
+    if (CurrentLevel == 1)
     {
+        BuildLevel1(centerX, centerY, leftsideY);
+    }
 
+    else if(CurrentLevel == 2)
+    {
+        BuildLevel1(centerX, centerY, leftsideY); 
+        BuildLevel2(centerX, centerY, leftsideY);
 
-         w = 5;
-         h = 4;       
-
-
-
-    }    
+    }
+}
 
     
+
+
    
+    public override void ConnectAllGeos()
+    {
+        
+        base.ConnectAllGeos();
+
+    }
+
+public override void BuildMainPath()
+{
+    // PLAYER START
+    int centerX = 3;
+    int centerY = 3;
+
+    // START AT (3,3)
+    PlayerSpawn = GetGeo(centerX, centerY);
+    PlayerSpawn.SetPath(GeoTile.GeoTileTypes.PlayerStart);
+
+    GeoTile prev = PlayerSpawn;
+
+    // THIS MOVES UP FROM (3,3) TO (3,6)
+    for (int y = centerY + 1; y <= 6; y++)
+    {
+        GeoTile next = GetGeo(centerX, y);
+        if (next == null) continue;
+
+        prev.Links.Add(Directions.Up);
+        next.Links.Add(Directions.Down);
+
+        next.SetPath(GeoTile.GeoTileTypes.MainPath);
+        prev = next;
+    }
+
+    // SET THE EXIT AT (3,6)
+    Exit = GetGeo(centerX, 6);
+    Exit.SetPath(GeoTile.GeoTileTypes.Exit);
+
+    // THIS MOVES DOWN FROM (3,3) TO (3,1) 
+    prev = PlayerSpawn;
+    for (int y = centerY - 1; y >= 1; y--)
+    {
+        GeoTile next = GetGeo(centerX, y);
+        if (next == null) continue;
+
+        prev.Links.Add(Directions.Down);
+        next.Links.Add(Directions.Up);
+
+        next.SetPath(GeoTile.GeoTileTypes.MainPath);
+        prev = next;
+    }
+
+    // THIS MOVES RIGHT FROM (3,1) TO (5,1) 
+    GeoTile RightTile = GetGeo(centerX, 1);
+    prev = RightTile;
+    for (int x = centerX + 1; x <= 5; x++)
+    {
+        GeoTile next = GetGeo(x, 1);
+        if (next == null) continue;
+
+        prev.Links.Add(Directions.Right);
+        next.Links.Add(Directions.Left);
+
+        next.SetPath(GeoTile.GeoTileTypes.MainPath);
+        prev = next;
+    }
+
+    // THIS MOVES LEFT FROM (3,1) TO (0,1)
+    prev = RightTile;
+    for (int x = centerX - 1; x >= 0; x--)
+    {
+        GeoTile next = GetGeo(x, 1);
+        if (next == null) continue;
+
+        prev.Links.Add(Directions.Left);
+        next.Links.Add(Directions.Right);
+
+        next.SetPath(GeoTile.GeoTileTypes.MainPath);
+        prev = next;
+    }
+
+    // THIS MOVES DOWN FROM (0,1) TO (0,-2)
+    prev = GetGeo(0, 1);
+
+    for (int y = 0; y >= -2; y--)
+    {
+        GeoTile next = GetGeo(0, y);
+        if (next == null) continue;
+
+        prev.Links.Add(Directions.Down);
+        next.Links.Add(Directions.Up);
+
+        next.SetPath(GeoTile.GeoTileTypes.MainPath);
+        prev = next;
+    }
+
+    // THIS MOVES LEFT FROM (0,-1) TO (-3,-1) 
+    prev = GetGeo(0, -1);
+
+    for (int x = -1; x >= -3; x--)
+    {
+        GeoTile next = GetGeo(x, -1);
+
+        if (next == null) continue;
+
+        prev.Links.Add(Directions.Left);
+        next.Links.Add(Directions.Right);
+
+        next.SetPath(GeoTile.GeoTileTypes.MainPath);
+        prev = next;
+    }
+
+    // THIS CONNECTS (6,0) DOWN TO (6,1)
+    GeoTile a = GetGeo(6, 0);
+    GeoTile b = GetGeo(6, 1);
+
+    if (a != null && b != null)
+    {
+        a.Links.Add(Directions.Down);
+        b.Links.Add(Directions.Up);
+    }
+}
+
+ public override float JudgeRoom(GeoTile g, RoomOption o, bool backup = false)
+{
+    o.Audit();
+
+    int Level = God.Session.Level;
+
+    if (o.Author != Authors.JuliusP && o.Author != Authors.Universal)
+        return 0;
+
+    GameTags t = GameTags.Generic;
+
+    if (g.Path == GeoTile.GeoTileTypes.PlayerStart)
+        t = GameTags.Player;
+
+    if (g.Path == GeoTile.GeoTileTypes.Exit)
+        t = GameTags.Exit;
+
+    if (g.Path == GeoTile.GeoTileTypes.Boss)
+        t = GameTags.Boss;
+
+    
+   //  HALL -> BETWEEN 1 AND 4//
+    if (g.Y == 1 && g.X >= 1 && g.X <= 4)
+    {   
+        return o.HasTag("Hall") ? 999 : 0;
+    }
+
+    //AT (0,1), SPAWN THE CORNER HALL//
+    
+     if (g.Y == 1 && g.X == 0)
+    {   
+        return o.HasTag("HallCorner") ? 999 : 0;
+    }
+
+
+    //AT (6,1), SPAWN THE FIRE ROOM//
+    if(g.Y == 1 && g.X == 6)
+    {
+            
+        
+        return o.HasTag("FireRoom") ? 999 : 0; 
+
+
+    }
+
+    
+    //AT (5,1), SPAWN THE HALLWAY TO FIRE ROOM//
+    if(g.Y == 1 && g.X == 5)
+    {
+            
+        
+        return o.HasTag("HallwayToFire") ? 999 : 0; 
+
+
+    }
+
+
+    //SPAWN THE LOOT ROOM//
+    if(g.Y == 0 && g.X == 6)
+     {
+            
+        return o.HasTag("Loot") ? 999 : 0;
+
+
+
+    }
+
+
+    //FROM -1 TO -2 ON THE X//
+
+
+    if (g.X >= -2 && g.X <= -1 && g.Y == -1)
+    {
+            
+        return o.HasTag("Hall") ? 999 : 0;
+
+
+
+    }
+
+
+
+    //ROOM AT (0, -1)
+
+
+     if (g.X == 0 && g.Y == -1)
+    {
+            
+        return o.HasTag("CornerBottom") ? 999 : 0;
+
+
+
+    }
+
+
+
+
+    //BOSS ROOM AT -3,-1//
+
+
+     if (g.X == -3 && g.Y == -1)
+    {
+            
+        return o.HasTag("Boss") ? 999 : 0;
+
+
+
+    }
+ 
+
+    //BOSS LOOT ROOM AT (-3,0)//
+
+
+
+     if (g.X == -3 && g.Y == 0)
+    {
+            
+        return o.HasTag("LootBoss") ? 999 : 0;
+
+
+
+    }
+
+
+    //THIS SECTION IS FOR LEVEL 2 LOGIC//
+    if(Level == 2)
+    {
+            
+       if (g.X == 2 && g.Y == 3)
+        {
+            
+        
+            return o.HasTag("LavaHall") ? 999 : 0;
+
+
+
+        } 
+
+
+
+        if (g.X == 1 && g.Y == 3)
+        {
+            
+        
+            return o.HasTag("LavaCorner") ? 999 : 0;
+
+
+
+        } 
+
+
+        if (g.X == 0 && g.Y == 3)
+        {
+            
+        
+            return o.HasTag("Boss") ? 999 : 0;
+
+
+
+        } 
+
+
+        //PLAYER SPAWN//
+        if (g.X == 3 && g.Y == 3)
+        {
+            
+        
+            return o.HasTag("Lv2PlayerRoom") ? 999 : 0;
+
+
+
+        } 
+
+
+
+        //RIGHT OF THE PLAYER SPAWN IN LEVEL 2  X-> 4-5
+        if (g.X >= 4 && g.X <= 5 && g.Y == 3)
+        {
+            
+        
+            return o.HasTag("Lv2Generic") ? 999 : 0;
+
+
+
+        }
+
+
+
+        //RIGHT OF THE PLAYER SPAWN IN LEVEL 2 THE CORNER FOLLOWING THE LAVA HALLWAY  X-> 6,3
+        if (g.X == 6 && g.Y == 3)
+        {
+            
+        
+            return o.HasTag("LavaCornerTop") ? 999 : 0;
+
+
+
+        }
+
+
+
+        //RIGHT OF THE PLAYER SPAWN IN LEVEL 2 POINTS-> 6,4, 6,5
+        if (g.X == 6 && g.Y >= 4 && g.Y <= 5)
+        {
+            
+        
+            return o.HasTag("DeadlyHall") ? 999 : 0;
+
+
+
+        }
+
+
+
+
+
+        
+
+
+
+
+
+
+    }
+ 
+
+  
+    return o.HasTag(t.ToString()) ? 1 : 0;
+}
+
+
+//THIS FUNCTION CONTROLS ADD DENSITY//
+public override void FindQuotas()
+{
+    float rms = AllGeo.Count - 2;
+
+    float mons;
+
+    // IF LEVEL IS 2 → SPAWN FEW ENEMIES
+    if (God.Session.Level == 2)
+    {
+        mons = 5; // small number
+    }
     else
     {
-
-        //WIDTH STARTS AT 5, AND EVERY THIRD LEVEL GROWS BY 1//
-        w = 6 + Mathf.FloorToInt(l / 3);
-       
-        //HEIGHT STARTS AT 5, AND EVERY OTHER LEVEL GROWS BY 1//
-        h = 5 + Mathf.FloorToInt(l / 2);
+        mons = rms * 0.7f; // normal scaling
     }
 
-    //VECTOR2INT HOLDS AN X && Y VALUE, WIDTH AND HEIGHT//
-   
-    //SET'S THE LEVEL'S SIZE TO BE W WIDE AND H TALL//
-    Size = new Vector2Int(w, h);
+    Quotas.Add(new Tag(GameTags.NPC, 1, mons));
 
-   
-    //If we haven't created a player yet for this playthrough, make one.
-    if (God.Session.Player == null)
-        God.Session.Player = God.Library.GetThing(new SpawnRequest(GameTags.Player)).Create();
-  
-   Boss = God.Library.GetThing(new SpawnRequest(GameTags.Boss), this, false);
-   
-   }
+    Quotas.Add(new Tag(GameTags.Weapon, 1, 2));
+    Quotas.Add(new Tag(GameTags.Consumable, 1, rms * 0.2f));
+    Quotas.Add(new Tag(GameTags.ScoreThing, 1, God.Session.Level));
+
+    FindThings();
+}
 
 
-    ///Build out a zoomed-out map of the level, without specific rooms
-    /// THIS CREATES THE MAP (NOT PHYSICALLY, BUT IN MEMORY)
-   
-    public virtual void BuildGeoMap()
+
+void BuildLevel1(int centerX, int centerY, int leftsideY)
+{
+    // WHERE THE PLAYER ROOM TILE IS AT//
+    AddGeo(new GeoTile(centerX, centerY, this));
+
+    //GO UP FROM PLAYER ROOM//
+    for(int i = 1; i<4; i++)
     {
-        //Two nested for loops lets us build a grid of room slots at our desired size
-        for (int x = 0; x < Size.x; x++)for (int y = 0; y < Size.y; y++)
-        {
-            //Spawn a blank room slot into the position 
-            GeoTile g = new GeoTile(x, y,this);
-            //If our dictionary doesn't have this X-row added, add it
-            if(!GeoMap.ContainsKey(x)) GeoMap.Add(x,new Dictionary<int, GeoTile>());
-            //Add it to the dictionary and list of slots
-            GeoMap[x].Add(y,g);
-            AllGeo.Add(g);
-
-        }
+        AddGeo(new GeoTile(centerX, centerY + i, this));
     }
 
-
-    ///Connect geomorphs to each other to make sure there's a path from player spawn to exit
-    public override void BuildMainPath()
+    //GO DOWN FROM PLAYER ROOM//
+    //STOPS AT Y = 1//
+    for(int i = 1; i<3; i++)
     {
-        //Make a safe path leading to the exit
-        //Pick the column the player spawns in (at the bottom of the level)
-
-        //ROW -> Y (ROWS)
-        //COLUMN -> X (COLUMNS)
-
-        //WHERE THE PATH BEGINS//
-
-        //START COULD BE 0, 1, 2, 3, 4 DEPENDING ON BIG THE COLUMNS ARE//
-        int start = Random.Range(0, Size.x);
-
-        //THIS FOR LOOP IS FOR EACH ROW//
-        //For each row. . .
-        for (int y = 0; y < Size.y; y++)
-        {
-            //Pick a slot to move the path towards before moving up a row
-            //WHERE THE END SHOULD BE FOR EACH COLUMN//
-            int end = Random.Range(0, Size.x);
-
-            //MAKES SURE THE END AND START ARE NOT THE SAME, IF THEY ARE RE-RANDOMIZE//
-            if(end == start) end = Random.Range(0, Size.x);
-            
-            //SETS X TO BE START//
-            int x = start;
-            
-            //Y == 0, 
-            
-            //If this is the bottom row. . .
-            if (y == 0)
-            {
-                //Then our start column is the player start point
-
-                //THE COORDINATES OF THE PLAYER SPAWN//
-
-                //THIS RETRIVES AND USES THE STARTING VALUE AND SETS IT FOR THE PLAYERSPAWN//
-                PlayerSpawn = GetGeo(x, 0);
-
-                //VISUALLY MARKS THE TILE OF WHERE THE PLAYER STARTS//
-                PlayerSpawn.SetPath(GeoTile.GeoTileTypes.PlayerStart);
-            }
-
-            //THIS IS FOR MOVING TOWARD THE SELECTED END OF A ROW//
-            //While we haven't reached out destination. . .
-            while(x != end)
-            {
-               
-                //SAVES PREVIOUS POSITION ON TILE//
-                int old = x;
-                
-                //Take a step towards the destination
-                
-                //MOVE TOWARD WHERE YOU WANT TO GO//
-                x = (int)Mathf.MoveTowards(x, end, 1);
-               
-                //Open up a connection between the tile we came from and the one we're at now
-                GeoTile a = GetGeo(old, y);
-                GeoTile b = GetGeo(x, y);
-                //And make sure it's marked as being on the main path (does nothing for now)
-                //RESPONSIBLE FOR DRAWING THE MAINPATH//
-                b.SetPath(GeoTile.GeoTileTypes.MainPath);
-                if (start > end)
-                {
-                    a.Links.Add(Directions.Left);
-                    b.Links.Add(Directions.Right);
-                }
-                else
-                {
-                    a.Links.Add(Directions.Right);
-                    b.Links.Add(Directions.Left);
-                }
-            }
-            //Mark our end point as the start of the path on the next row
-            start = end;
-
-            //FOR MOVING UP TO THE NEXT ROW//
-            //Move up row up and repeat, linking to the slot below
-            if (y < Size.y - 1)
-            {
-                GeoTile a = GetGeo(start, y);
-                GeoTile b = GetGeo(start, y+1);
-                a.Links.Add(Directions.Up);
-                b.Links.Add(Directions.Down);
-                b.SetPath(GeoTile.GeoTileTypes.MainPath);
-            }
-            else
-            {
-                if(Boss != null){
-                    GeoTile g = new GeoTile(start, y+1,this);
-                    if(!GeoMap.ContainsKey(start)) GeoMap.Add(start,new Dictionary<int, GeoTile>());
-                    GeoMap[start].Add(y+1,g);
-                    AllGeo.Add(g);
-                    Exit = GetGeo(start, y+1); 
-                    Exit.SetPath(GeoTile.GeoTileTypes.Exit);
-                    
-                    GeoTile boss = GetGeo(start, y); 
-                    boss.SetPath(GeoTile.GeoTileTypes.Boss);
-                    boss.Links.Add(Directions.Up);
-                    Exit.Links.Add(Directions.Down);
-                }
-                else
-                {
-                    //But if we're at the top of the map, mark our ultimate position as the exit spawn location
-                    Exit = GetGeo(start, y); 
-                    Exit.SetPath(GeoTile.GeoTileTypes.Exit);
-                }
-                
-                
-            }
-        }
+        AddGeo(new GeoTile(centerX, centerY - i, this));
     }
 
-
-
-     ///Open more connections between geomorphs to make sure all are accessable
-    public virtual void ConnectAllGeos()
+    //AT (3,1), MOVE RIGHT//
+    for(int i = 1; i<4; i++)
     {
-        //Open up a bunch of random links between rooms
-        //For each room slot that exists. . .
-        foreach (GeoTile g in AllGeo)
-        {
-            //Get a list of the slots above it and to its right
-            List<Directions> maybe = g.PotentialLinks();
-            //For each possible link. . .
-            foreach (Directions d in maybe)
-            {
-                //Flip a (weighted) coin. If it comes up false, don't link the room slots
-                if (!God.CoinFlip(LinkOdds)) continue;
-                //But if it came up true, and its neighbor actually exists, connect them!
-                GeoTile other = g.Neighbor(d);
-                if (other == null) continue;
-                g.Links.Add(d);
-                other.Links.Add(God.OppositeDir(d));
-            }
-        }
-
-        //Do we have any isolated rooms you can't get to?
-        //If so, open some more links
-        List<GeoTile> uncon = UnconnectedTest();
-        int safety = 99;
-        //For as long as we have unconnected tiles, keep connecting them
-        //But only do this while loop 99 times (more than we need but not infinite), in case we cause an infinite loop
-        while (uncon.Count > 0 && safety > 0)
-        {
-            List<GeoTile> unconTemp = new List<GeoTile>();
-            unconTemp.AddRange(uncon);
-            safety--;
-            //For each tile that's not connected to anyone. . .
-            while(unconTemp.Count > 0)
-            {
-                GeoTile g = unconTemp[Random.Range(0, unconTemp.Count)];
-                unconTemp.Remove(g);
-                //Get a list of all four of its neighbors
-                List<Directions> maybe = g.PotentialLinks(false);
-                //If it has no neighbors, something's wrong and we should throw an error
-                if (maybe.Count == 0)
-                {
-                    God.LogError("TILE BOTH LINKLESS AND UNCONNECTABLE: " + g);
-                    continue;
-                }
-                //Up/down links are more level-design-fun than left/right ones, and up/down are returned first in the list
-                //So roll twice and take the smaller to bias towards up/down links
-                int roll = Mathf.Min(Random.Range(0, maybe.Count), Random.Range(0, maybe.Count));
-                Directions d = maybe[roll];
-                //Find the neighbor in that direction and make sure it exists
-                GeoTile other = g.Neighbor(d);
-                if (other == null)
-                {
-                    God.LogWarning("POTENTIAL LINK NULL: " + g + " / " + d + " / " + other);
-                    continue;
-                }
-                //If the tile we're connecting to is reachable, connect to it and mark yourself as reachable
-                if (other.Path != GeoTile.GeoTileTypes.Unreachable)
-                {
-                    g.Links.Add(d);
-                    other.Links.Add(God.OppositeDir(d));
-                    g.SetPath(GeoTile.GeoTileTypes.Connected);
-                    //Mark how far the slot is from the main path (one further than the one it connected to)
-                    g.Depth = other.Depth + 1;
-                }
-            }
-            //Alright, maybe we got them all! Do another flood to see if we still have unconnected tiles
-            uncon = UnconnectedTest();
-        }
+        AddGeo(new GeoTile(centerX + i, 1, this));
     }
 
+    //AT (3,1), MOVE LEFT//
+    for(int i = 1; i<4; i++)
+    {
+        AddGeo(new GeoTile(centerX - i, 1, this));
+    }
+
+    //GO DOWN FROM (6,1)//
+    AddGeo(new GeoTile(6,0, this));
+
+    //GO DOWN FROM (0,1)//
+    for(int i = 3; i<5; i++)
+    {
+        AddGeo(new GeoTile(0, centerY - i, this));
+    }
+
+    //GO LEFT FROM (0,-1)//
+    for(int i = 4; i<6; i++)
+    {
+        AddGeo(new GeoTile(centerX - i, -1, this));
+    }
+
+    //GO UP FROM (-3,-2)//
+    for(int i = 1; i<3; i++)
+    {
+        AddGeo(new GeoTile(-3, leftsideY + i, this));
+    }
+}
+
+
+void BuildLevel2(int centerX, int centerY, int leftsideY)
+{
+
+    //NEW ADDITIONS FOR LEVEL 2//
+
+    //GO LEFT FROM (3,3)-> PLAYERSPAWN//
+    for(int i = 1; i<4; i++)
+    {
+        AddGeo(new GeoTile(centerX - i, 3, this));
+    }
+
+
+    //GO RIGHT FROM (3,3)-> PLAYERSPAWN//
+    for(int i = 1; i<4; i++)
+    {
+        AddGeo(new GeoTile(centerX + i, 3, this));
+    }
+
+
+
+    //GO UP FROM (6,3)
+    for(int i = 1; i<3; i++)
+    {
+        AddGeo(new GeoTile(6, centerY + i, this));
+    }
+
+
+    //ADD TILE (7,5)
+     AddGeo(new GeoTile(7, 5, this));
+
+
+    //ADD TILE (0,4)
+     AddGeo(new GeoTile(0, 4, this));
+
+}
 }

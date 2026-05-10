@@ -1,9 +1,43 @@
 using UnityEngine;
 
-public class Level_AlejandroM : LevelBuilder
+class Level_AlejandroM : LevelBuilder
 {
     public Level_AlejandroM()
     {
         Author = Authors.AlejandroM;
+    }
+
+    public override void Customize()
+    {
+        SpawnPlayer();
+
+        // ONE arena room only
+        Size = new Vector2Int(1, 1);
+
+        LinkOdds = 0f;
+
+        Boss = null;
+    }
+
+    public override void BuildGeoMap()
+    {
+        AddGeo(new GeoTile(0, 0, this));
+    }
+
+    public override void FindQuotas()
+    {
+        // Disable professor spawn system
+        Quotas.Clear();
+    }
+
+    public override void BuildMainPath()
+    {
+        PlayerSpawn = GetGeo(0, 0);
+
+        PlayerSpawn.SetPath(GeoTile.GeoTileTypes.PlayerStart);
+        PlayerSpawn.SetPath(GeoTile.GeoTileTypes.MainPath);
+
+        GameObject spawnerObject = new GameObject("Arena Spawner");
+        spawnerObject.AddComponent<ArenaSpawner>();
     }
 }

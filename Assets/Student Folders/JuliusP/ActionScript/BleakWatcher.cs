@@ -210,7 +210,7 @@ public class SlowingProjectileTrait : Trait
                 if (target != null && !target.Has(Traits.Slowed_JuliusP))
                 {
                     target.AddTrait(Traits.Slowed_JuliusP);
-                    Debug.Log("Slowed applied to: " + target);
+                    //Debug.Log("Slowed applied to: " + target);
                 }
 
                 i.Who.Destruct(i.Who);
