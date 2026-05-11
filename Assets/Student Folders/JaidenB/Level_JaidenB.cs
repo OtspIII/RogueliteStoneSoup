@@ -28,11 +28,14 @@ public class Level_JaidenB : LevelBuilder
         //Two nested for loops lets us build a grid of room slots at our desired size
         int RandomY = Random.Range(4, 8);
 
+        GeoTile DefaultRooms = new GeoTile(0,0, this);
+        DefaultRooms.Tag = "BasicRoom";
+
         for (int x = 0; x < Size.x; x++)
         for (int y = 0; y < RandomY; y++)
             {
                 //Spawn a blank room slot into the position 
-                AddGeo(new GeoTile(x, y, this));
+                AddGeo(new GeoTile(x, y, this, "BasicRoom"));
             }
     }
 
