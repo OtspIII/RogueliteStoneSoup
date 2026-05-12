@@ -41,7 +41,7 @@ MonoBehaviour:
       Where: {x: 999, y: 999, z: 999}
     Builder: []
   HP: 1
-  Speed: 5.7
+  Speed: 7
   VisionRange: 15
   Held: {fileID: 11400000, guid: d8535ae3107c2184ab8fc49f1318f904, type: 2}
   DefaultAction: 202
