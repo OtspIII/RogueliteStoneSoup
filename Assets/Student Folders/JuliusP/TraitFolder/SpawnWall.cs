@@ -27,6 +27,8 @@ public class SpawnWall : Trait
                     break;
                 }
 
+
+                //WHERE TO SPAWN THE WALL AT//
                 Vector2 spawnPos = new Vector2(75.96f, 5.12f);
 
                 spawnedWall = new ThingInfo(wallOpt);

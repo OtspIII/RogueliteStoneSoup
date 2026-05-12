@@ -200,26 +200,26 @@ public class FullStunNegation:Trait
        
     }
 
-
-        public override void TakeEvent(TraitInfo i, EventInfo e)
+public override void TakeEvent(TraitInfo i, EventInfo e)
+{
+    switch (e.Type)
+    {
+        case EventTypes.Damage:
         {
-        
+            if (i?.Who?.Thing == null)
+                return;
 
-        switch (e.Type)
-        {
+            ThingInfo player = God.Session.Player;
 
-            case EventTypes.Damage:
-            {
-                ThingInfo Player = God.Session.Player;  
-                
-                i.Who.Thing.TakeKnockback(Player, 55f);
+            if (player == null)
+                return;
 
-                Debug.Log("Damage");
+            //i.Who.Thing.TakeKnockback(player, 55f);
 
-                break;
-             }
+            Debug.Log("Damage");
 
+            break;
         }
-
+    }
 }
 }

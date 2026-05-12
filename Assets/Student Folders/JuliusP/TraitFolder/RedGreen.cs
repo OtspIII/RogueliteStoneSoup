@@ -17,6 +17,7 @@ public class RedGreen : Trait
 
         AddListen(EventTypes.Update);
         AddListen(EventTypes.Death); 
+        AddListen(EventTypes.OnSpawn);
     }
 
     public override void TakeEvent(TraitInfo i, EventInfo e)
@@ -28,19 +29,21 @@ public class RedGreen : Trait
                 ThingInfo self = i.Who;
                 ThingInfo player = God.Session.Player;
 
-                
+                int Level = God.Session.Level;
+               
                 if (self == null || self.Thing == null)
-                    return;
+                    //return;
 
                 
                 if (player == null || player.Thing == null)
                 {
                     ResetFloors();
                     canStart = false;
-                    return;
+                    //return;
                 }
 
                 //GET SQR DIST/
+                //GET NULL REFERENCE HERE//
                 float sqrDist = (self.Thing.transform.position - player.Thing.transform.position).sqrMagnitude;
 
 
@@ -106,6 +109,28 @@ public class RedGreen : Trait
 
                 God.GM.SetUI("PlayMessage", null , 2);
                 break;
+            }
+
+
+            case EventTypes.OnSpawn:
+            {
+                    
+                ThingInfo Player = God.Session.Player;
+
+
+                if(Player != null && !i.Who.Has(Traits.RedLight))
+                {
+                        
+                    i.Who.AddTrait(Traits.RedLight);
+
+
+                 }
+
+
+                break;
+
+
+
             }
         }
     }
