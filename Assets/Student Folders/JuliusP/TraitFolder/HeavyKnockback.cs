@@ -22,11 +22,11 @@ public class HeavyKnockback : Trait
 
                 ThingInfo projectile = i.Who;
 
-                // 🔥 GET THE REAL SOURCE (PLAYER WHO FIRED)
+               
                 ThingInfo owner = projectile.GetOwner();
 
                 // PUSH TARGET AWAY FROM OWNER
-                target.Thing.TakeKnockback(owner, 30f);
+                target.Thing.TakeKnockback(target, 30f);
 
                 break;
             }

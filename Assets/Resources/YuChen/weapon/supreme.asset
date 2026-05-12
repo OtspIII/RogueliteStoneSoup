@@ -14,15 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ItemOption
   Name: supreme
   Author: 95
+  Tags:
+  - Common: 201
+    Custom: 
+    W: 0
+    Cost: 1
   Team: 1
   Body: {fileID: 629948465317790645, guid: ef672722d780ecf4e9d868d0ce938dec, type: 3}
   Art: {fileID: -4403402291884323300, guid: 8972a1fed697a8647bde3b866e54d22f, type: 3}
   Color: {r: 1, g: 1, b: 1, a: 1}
   Size: 2
-  Tags:
-  - Common: 201
-    Custom: 
-    W: 0
   LevelRange: {x: 5, y: 8}
   Trait: []
   DefaultAttack: 101
@@ -32,6 +33,8 @@ MonoBehaviour:
     Any: []
     Level: 0
     Author: 95
+    MaxCost: 0
+    Where: {x: 999, y: 999, z: 999}
   FloorBody: {fileID: 0}
   FloorArt: {fileID: 0}
   Damage: 30

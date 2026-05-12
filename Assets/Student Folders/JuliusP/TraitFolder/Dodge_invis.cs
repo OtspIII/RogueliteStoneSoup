@@ -23,9 +23,7 @@ public class Dodge_invis : Trait
             {
                 ThingInfo me = i.Who;
 
-                // =========================
-                // PRESS SPACE TO ACTIVATE
-                // =========================
+
                 if (Input.GetKeyDown(KeyCode.Space) && canUse)
                 {
                     active = true;
@@ -41,7 +39,7 @@ public class Dodge_invis : Trait
                     // CLEAR CURRENT TARGET
                     me.SetTarget(null);
 
-                    // FORCE ALL ENEMIES TO DROP YOU
+                    // THIS SETS THE TARGET TO NOT SEE YOU//s
                     foreach (ThingController t in God.GM.Things)
                     {
                         if (t.Info.Target == me)
@@ -51,9 +49,7 @@ public class Dodge_invis : Trait
                     }
                 }
 
-                // =========================
-                // ACTIVE INVIS PHASE
-                // =========================
+              
                 if (active)
                 {
                     activeTimer += Time.deltaTime;
@@ -77,9 +73,6 @@ public class Dodge_invis : Trait
                     }
                 }
 
-                // =========================
-                // COOLDOWN PHASE
-                // =========================
                 else if (!canUse)
                 {
                     cooldownTimer += Time.deltaTime;
