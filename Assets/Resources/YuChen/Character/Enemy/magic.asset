@@ -10,25 +10,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4679cc75b2c8be74e8b047318fa062ea, type: 3}
-  m_Name: soul
+  m_Name: magic
   m_EditorClassIdentifier: Assembly-CSharp::CharacterOption
-  Name: soul
+  Name: magic
   Author: 95
-  Team: 3
-  Body: {fileID: 629948465317790645, guid: 0a2102bf84264a44e9e01c5e7dea2058, type: 3}
-  Art: {fileID: 3763752930381237044, guid: 1592435c52db9244883626690f28de3d, type: 3}
-  Color: {r: 1, g: 1, b: 1, a: 1}
-  Size: 0.6
   Tags:
   - Common: 102
     Custom: 
     W: 0
     Cost: 1
-  LevelRange: {x: 5, y: 7}
+  Team: 3
+  Body: {fileID: 629948465317790645, guid: 0a2102bf84264a44e9e01c5e7dea2058, type: 3}
+  Art: {fileID: -2510476293373519475, guid: b40daa6242905df459de702bb1e55664, type: 3}
+  Color: {r: 1, g: 1, b: 1, a: 1}
+  Size: 0.6
+  LevelRange: {x: 5, y: 10}
   Trait: []
-  HP: 20
-  Speed: 8
-  VisionRange: 8
-  Held: {fileID: 11400000, guid: 9716703b4eb836747ae5a7ac69ac6360, type: 2}
+  HP: 35
+  Speed: 7
+  VisionRange: 4
+  Held: {fileID: 11400000, guid: 32bbf4a32cd5c2344b33d77cbd302dd9, type: 2}
   DefaultAction: 201
   DefaultChaseAction: 202

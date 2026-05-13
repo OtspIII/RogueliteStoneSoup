@@ -34,9 +34,9 @@ public class CriticaldamageTrait : Trait
                     float StartDamage = tool.GetN();
 
                     tool.Set(StartDamage * 2f);
+                    Debug.Log("damage");
 
-                        
-                    }
+                }
 
                 
                     break;

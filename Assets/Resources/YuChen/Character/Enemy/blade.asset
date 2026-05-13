@@ -14,16 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CharacterOption
   Name: blade
   Author: 95
-  Team: 3
-  Body: {fileID: 629948465317790645, guid: 0a2102bf84264a44e9e01c5e7dea2058, type: 3}
-  Art: {fileID: 727837340553085557, guid: 2ff75a88d3713e944988103e8621a1d6, type: 3}
-  Color: {r: 1, g: 1, b: 1, a: 1}
-  Size: 0.6
   Tags:
   - Common: 102
     Custom: 
     W: 0
     Cost: 1
+  Team: 3
+  Body: {fileID: 629948465317790645, guid: 0a2102bf84264a44e9e01c5e7dea2058, type: 3}
+  Art: {fileID: 727837340553085557, guid: 2ff75a88d3713e944988103e8621a1d6, type: 3}
+  Color: {r: 1, g: 1, b: 1, a: 1}
+  Size: 0.6
   LevelRange: {x: 0, y: 2}
   Trait: []
   HP: 10

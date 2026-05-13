@@ -14,15 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CharacterOption
   Name: Ally blade
   Author: 95
+  Tags:
+  - Common: 0
+    Custom: Wand_Minion
+    W: 1
+    Cost: 1
   Team: 2
   Body: {fileID: 629948465317790645, guid: c5227d51ccfec934db9e0058624b573e, type: 3}
   Art: {fileID: -3685760008999291469, guid: 7796f6884a3110e479979dbdd41412df, type: 3}
   Color: {r: 1, g: 1, b: 1, a: 1}
   Size: 0.6
-  Tags:
-  - Common: 0
-    Custom: Wand_Minion
-    W: 1
   LevelRange: {x: 3, y: 0}
   Trait:
   - Trait: 101
@@ -36,6 +37,8 @@ MonoBehaviour:
       Any: []
       Level: 0
       Author: 0
+      MaxCost: 0
+      Where: {x: 999, y: 999, z: 999}
     Builder: []
   HP: 20
   Speed: 6

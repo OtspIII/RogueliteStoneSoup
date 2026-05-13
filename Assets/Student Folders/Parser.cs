@@ -121,6 +121,8 @@ public static class Parser
         TraitDict.Add(Traits.HealingAlly_WesleyP1, new HealingAllyTrait_Wesley());
         // YuChen Traits
         TraitDict.Add(Traits.Criticaldamage, new CriticaldamageTrait());
+        TraitDict.Add(Traits.SpeedIncrease_yu, new SpeedIncrease_yuTrait());
+        
 
     }
     
@@ -394,6 +396,7 @@ public enum Traits
     //YuChen        =95##,
     YuChen1         =9501,
     Criticaldamage=9502,
+    SpeedIncrease_yu = 9503
 }
 
 public enum Actions

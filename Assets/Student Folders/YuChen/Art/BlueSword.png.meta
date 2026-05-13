@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: a4c9277b3f4c0234eb54ee3b0dd7a9e2
+guid: e8b0d6397381afe42b307356b06c650c
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4982956992057361663
-    second: color-removebg-preview_0
+      213: -1613646886922424301
+    second: BlueSword_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,7 +113,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: color-removebg-preview_0
+      name: BlueSword_0
       rect:
         serializedVersion: 2
         x: 155
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ff4c0a2cbf4072540800000000000000
-      internalID: 4982956992057361663
+      spriteID: 310f210b4bc2b99e0800000000000000
+      internalID: -1613646886922424301
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      color-removebg-preview_0: 4982956992057361663
+      BlueSword_0: -1613646886922424301
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
