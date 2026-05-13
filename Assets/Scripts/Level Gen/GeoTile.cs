@@ -18,11 +18,13 @@ public class GeoTile
     public string Tag;
     
     ///Constructor, at first all I know is where I am and in what level
-    public GeoTile(int x, int y, LevelBuilder b)
+    public GeoTile(int x, int y, LevelBuilder b,string tag="")
     {
         Builder = b;
         X = x;
         Y = y;
+        if (tag != "")
+            Tag = tag;
     }
 
     ///Returns a list of all directions I might be able to connect to--ie, that don't lead off the edge of the map

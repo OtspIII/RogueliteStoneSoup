@@ -29,6 +29,9 @@ public class Level_JuliusP : LevelBuilder
         Size = new Vector2Int(width,height);
         LinkOdds = 1f;
         RoomSize = new Vector2Int(12, 12);
+
+
+       
     }
 
 
@@ -47,10 +50,25 @@ public override void BuildGeoMap()
 
     else if(CurrentLevel == 2)
     {
+        //BUILD LEVEL, KEEP MOST/ALL OF  LEVEL ONE//
         BuildLevel1(centerX, centerY, leftsideY); 
+
+        //ADD THE NEW PARTS TO LEVEL 1//
         BuildLevel2(centerX, centerY, leftsideY);
 
     }
+
+
+    else if(CurrentLevel == 3)
+    {
+            
+       
+
+        BuildLevel3(centerX, centerY, leftsideY); 
+
+
+
+     }
 }
 
     
@@ -75,6 +93,34 @@ public override void BuildMainPath()
     PlayerSpawn.SetPath(GeoTile.GeoTileTypes.PlayerStart);
 
     GeoTile prev = PlayerSpawn;
+
+    // LEVEL 3 SPECIAL PATH
+    if (God.Session.Level == 3)
+    {
+        PlayerSpawn = GetGeo(centerX, centerY);
+        PlayerSpawn.SetPath(GeoTile.GeoTileTypes.PlayerStart);
+
+        GeoTile Prev = PlayerSpawn;
+
+        for (int x = centerX + 1; x <= 8; x++)
+        {
+            GeoTile next = GetGeo(x, centerY);
+
+            if (next == null) continue;
+
+            prev.Links.Add(Directions.Right);
+            next.Links.Add(Directions.Left);
+
+            next.SetPath(GeoTile.GeoTileTypes.MainPath);
+
+            prev = next;
+        }
+
+        Exit = GetGeo(8, 3);
+        Exit.SetPath(GeoTile.GeoTileTypes.Exit);
+
+        return;
+    }
 
     // THIS MOVES UP FROM (3,3) TO (3,6)
     for (int y = centerY + 1; y <= 6; y++)
@@ -176,6 +222,9 @@ public override void BuildMainPath()
         a.Links.Add(Directions.Down);
         b.Links.Add(Directions.Up);
     }
+
+
+     
 }
 
  public override float JudgeRoom(GeoTile g, RoomOption o, bool backup = false)
@@ -329,17 +378,6 @@ public override void BuildMainPath()
         } 
 
 
-        if (g.X == 0 && g.Y == 3)
-        {
-            
-        
-            return o.HasTag("Boss") ? 999 : 0;
-
-
-
-        } 
-
-
         //PLAYER SPAWN//
         if (g.X == 3 && g.Y == 3)
         {
@@ -379,8 +417,8 @@ public override void BuildMainPath()
 
 
 
-        //RIGHT OF THE PLAYER SPAWN IN LEVEL 2 POINTS-> 6,4, 6,5
-        if (g.X == 6 && g.Y >= 4 && g.Y <= 5)
+        //RIGHT OF THE PLAYER SPAWN IN LEVEL 2 POINTS-> 6,4,
+        if (g.X == 6 && g.Y == 4)
         {
             
         
@@ -391,6 +429,42 @@ public override void BuildMainPath()
         }
 
 
+        //TOP CORNER AT (6,5) IN LEVEL 2//
+
+        if(g.X == 6 && g.Y == 5)
+        {
+                
+            return o.HasTag("DeadlyTopCorner") ? 999 : 0;
+
+
+
+        }
+
+
+        ///LAVA PUZZLE ROOM//
+        
+
+        if(g.X == 0 && g.Y == 3)
+        {
+                
+            return o.HasTag("Lava Puzzle") ? 999 : 0;
+
+
+
+        }
+
+
+        
+        //LEVEL LAYOUT FOR LEVEL 3//
+
+        if(g.X == 4 && g.Y == 3)
+        {
+                
+
+
+
+
+        }
 
 
 
@@ -439,6 +513,9 @@ public override void FindQuotas()
 
 void BuildLevel1(int centerX, int centerY, int leftsideY)
 {
+
+    int CurrentLevel = God.Session.Level;
+   
     // WHERE THE PLAYER ROOM TILE IS AT//
     AddGeo(new GeoTile(centerX, centerY, this));
 
@@ -477,6 +554,11 @@ void BuildLevel1(int centerX, int centerY, int leftsideY)
     }
 
     //GO LEFT FROM (0,-1)//
+
+    if(CurrentLevel != 2)
+    {
+            
+ }
     for(int i = 4; i<6; i++)
     {
         AddGeo(new GeoTile(centerX - i, -1, this));
@@ -518,11 +600,24 @@ void BuildLevel2(int centerX, int centerY, int leftsideY)
 
 
     //ADD TILE (7,5)
-     AddGeo(new GeoTile(7, 5, this));
+    AddGeo(new GeoTile(7, 5, this));
 
 
     //ADD TILE (0,4)
-     AddGeo(new GeoTile(0, 4, this));
+    AddGeo(new GeoTile(0, 4, this));
 
+}
+
+
+void BuildLevel3(int centerX, int centerY, int leftsideY)
+{
+    // START TILE
+    AddGeo(new GeoTile(centerX, centerY, this));
+
+    // GO RIGHT FROM (3,3)
+    for(int i = 1; i < 6; i++)
+    {
+        AddGeo(new GeoTile(centerX + i, centerY, this));
+    }
 }
 }

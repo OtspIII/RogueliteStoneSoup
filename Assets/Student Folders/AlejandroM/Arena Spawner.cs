@@ -11,9 +11,9 @@ public class ArenaSpawner : MonoBehaviour
     int lastBeatNumber = -1;
 
     float beatInterval = 60f / 98f;
-    float beatWindow = 0.25f;
+    float beatWindow = 0.25f; // Timing 
 
-    float spawnDistance = 7f;
+    float spawnDistance = 9f; // The distance the enemies spawn away from the player
     float meleeHitRange = 3f; // how close the player is 
 
     AudioSource musicSource; // Audio source used to play the level 
@@ -217,6 +217,7 @@ public class ArenaSpawner : MonoBehaviour
     void SpawnEnemy(Vector2 position)
     {
         ThingOption enemyOption = God.Library.GetThing(new SpawnRequest("Hater"));
+        
 
         if (enemyOption == null)
         {

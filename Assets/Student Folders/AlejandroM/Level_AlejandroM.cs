@@ -11,7 +11,7 @@ class Level_AlejandroM : LevelBuilder
     {
         SpawnPlayer();
 
-        // ONE arena room only
+        // one room
         Size = new Vector2Int(1, 1);
 
         LinkOdds = 0f;
@@ -26,7 +26,7 @@ class Level_AlejandroM : LevelBuilder
 
     public override void FindQuotas()
     {
-        // Disable professor spawn system
+        //Disables 
         Quotas.Clear();
     }
 
