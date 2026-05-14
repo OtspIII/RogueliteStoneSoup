@@ -1,7 +1,4 @@
-xxxLLLLLLxxx
-xxx......xxx
-xxx......xxx
-xxx..g...xxx
+xxxxxuuxxxxx
 xxx......xxx
 xxx......xxx
 xxx......xxx
@@ -9,4 +6,7 @@ xxx......xxx
 xxx......xxx
 xxx......xxx
 xxx......xxx
-xxxxxddxxxxx
+xxx......xxx
+xxx......xxx
+xxxssssssxxx
+xxxxxxxxxxxx

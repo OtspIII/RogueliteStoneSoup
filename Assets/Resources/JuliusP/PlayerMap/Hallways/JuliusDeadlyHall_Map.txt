@@ -1,12 +1,12 @@
 xxxx.u..xxxx
-xxx......xxx
-xxx......xxx
-xxx......xxx
-xxx..F...xxx
-xxx......xxx
-xx ......xxx
-xxx...... xx
-xxx......xxx
-xxx......xxx
-xxx......xxx
-xxxxxddxxxxx
+Lxx......xLx
+xLx......Lxx
+xxL......Lxx
+xLx..F...xLx
+xxL......xLx
+xxL......Lxx
+xLx......Lxx
+Lxx......xLx
+xLx......xLx
+xxL......Lxx
+xLxLLddxxxxx

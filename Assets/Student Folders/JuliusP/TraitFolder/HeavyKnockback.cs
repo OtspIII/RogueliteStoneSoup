@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public class HeavyKnockback : Trait
 {
     public HeavyKnockback()
@@ -20,13 +18,11 @@ public class HeavyKnockback : Trait
                 ThingInfo target = col.Other.Info;
                 if (target == null) return;
 
-                ThingInfo projectile = i.Who;
-
                
-                ThingInfo owner = projectile.GetOwner();
+                if (target == i.Who) return;
 
-                // PUSH TARGET AWAY FROM OWNER
-                target.Thing.TakeKnockback(target, 30f);
+                // CAUSE KNOCKBACK AWAY FROM TARGET//
+                target.Thing.TakeKnockback(i.Who, 10f);
 
                 break;
             }

@@ -170,7 +170,7 @@ public class GiveItem_Lv2 : ActionScript
         Who.Destruct(Who);
 
         //MARK AS COMPLETE//
-        Complete();
+         End();
     }
 
     public override Actions NextAction()

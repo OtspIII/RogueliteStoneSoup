@@ -70,6 +70,7 @@ public static class Parser
         TraitDict.Add(Traits.RedLight, new RedGreen());
         TraitDict.Add(Traits.SpawnWall_JuliusP, new SpawnWall());
         TraitDict.Add(Traits.AddTraitByScore_JuliusP, new AddTraitByScore());
+        TraitDict.Add(Traits.Lv2RedLight_JuliusP,new Lv2RedLight());
 
 
     
@@ -337,6 +338,7 @@ public enum Traits
     RedLight = 4019,
     SpawnWall_JuliusP = 4020,
     AddTraitByScore_JuliusP = 4021,
+    Lv2RedLight_JuliusP = 4022,
 
 
 
