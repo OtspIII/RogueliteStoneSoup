@@ -197,6 +197,9 @@ public static class Parser
             // WesleyP=90,
             // YuChen=95,
             case Actions.spinAction_Yu: return new SpinAction_Yuchen(who, e);
+            case Actions.TeleportSwingAction_Yu: return new TeleportSwingAction_Yu(who, e);
+            case Actions.SwingThenShootAction_Yu: return new Swingthenshoot_yu(who, e);
+
         }
         God.LogError("UNCAUGHT ACTION: " + act);
         return new IdleAction(who,e);
@@ -496,4 +499,6 @@ public enum Actions
     //YuChen        =95##,
     YuChen1         =9501,
     spinAction_Yu = 9502,
+    TeleportSwingAction_Yu = 9503,
+    SwingThenShootAction_Yu = 9504
 }

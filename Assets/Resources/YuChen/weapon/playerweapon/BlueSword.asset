@@ -50,9 +50,9 @@ MonoBehaviour:
       MaxCost: 0
       Where: {x: 0, y: 0, z: 0}
     Builder: []
-  DefaultAttack: 101
+  DefaultAttack: 9504
   ToSpawn:
-    Fixed: {fileID: 0}
+    Fixed: {fileID: 11400000, guid: 21f2f00ddb5360c409b072461865b27f, type: 2}
     Mandatory: []
     Any: []
     Level: 0
