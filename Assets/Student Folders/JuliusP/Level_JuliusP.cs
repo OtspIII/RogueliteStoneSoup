@@ -247,7 +247,7 @@ public override void BuildMainPath()
     if (g.Path == GeoTile.GeoTileTypes.Boss)
         t = GameTags.Boss;
 
-    
+
    //  HALL -> BETWEEN 1 AND 4//
     if (g.Y == 1 && g.X >= 1 && g.X <= 4)
     {   
@@ -263,7 +263,9 @@ public override void BuildMainPath()
 
 
     //AT (6,1), SPAWN THE FIRE ROOM//
-    if(g.Y == 1 && g.X == 6)
+
+  
+    if(g.Y == 1 && g.X == 6 && Level == 1)
     {
             
         
@@ -285,7 +287,7 @@ public override void BuildMainPath()
 
 
     //SPAWN THE LOOT ROOM//
-    if(g.Y == 0 && g.X == 6)
+    if(g.Y == 0 && g.X == 6 && Level == 1)
      {
             
         return o.HasTag("Loot") ? 999 : 0;
@@ -296,7 +298,6 @@ public override void BuildMainPath()
 
 
     //FROM -1 TO -2 ON THE X//
-
 
     if (g.X >= -2 && g.X <= -1 && g.Y == -1)
     {
@@ -327,7 +328,7 @@ public override void BuildMainPath()
     //BOSS ROOM AT -3,-1//
 
 
-     if (g.X == -3 && g.Y == -1)
+     if (g.X == -3 && g.Y == -1 && Level == 1)
     {
             
         return o.HasTag("Boss") ? 999 : 0;
@@ -341,7 +342,7 @@ public override void BuildMainPath()
 
 
 
-     if (g.X == -3 && g.Y == 0)
+     if (g.X == -3 && g.Y == 0 && Level == 1)
     {
             
         return o.HasTag("LootBoss") ? 999 : 0;
@@ -454,7 +455,54 @@ public override void BuildMainPath()
         }
 
 
-        
+       
+    
+       
+         
+        //FIRE ROOM// 
+        if(g.X == 6 && g.Y == 1)
+        {
+                
+            return o.HasTag("Fire") ? 999 : 0;
+
+
+
+        }
+
+        //FIRE ROOM// 
+        if(g.X == 6 && g.Y == 0)
+        {
+                
+            return o.HasTag("LootRoom2") ? 999 : 0;
+
+
+
+        }
+
+
+        //BOSS ROOM LEVEL 2//
+        if(g.X == -3 && g.Y == 0)
+        {
+                
+            return o.HasTag("Loot2") ? 999 : 0;
+
+
+
+        }
+
+    
+
+    
+
+
+
+
+
+
+    }
+ 
+
+ 
         //LEVEL LAYOUT FOR LEVEL 3//
 
         if(g.X == 4 && g.Y == 3)
@@ -466,17 +514,6 @@ public override void BuildMainPath()
 
         }
 
-
-
-        
-
-
-
-
-
-
-    }
- 
 
   
     return o.HasTag(t.ToString()) ? 1 : 0;

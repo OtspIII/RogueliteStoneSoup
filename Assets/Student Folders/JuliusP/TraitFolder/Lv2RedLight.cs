@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-public class RedGreen : Trait
+public class Lv2RedLight : Trait
 {
     bool canStart = false;
     bool isRed = false;
@@ -11,13 +11,14 @@ public class RedGreen : Trait
 
     Dictionary<SpriteRenderer, Color> originalColors = new Dictionary<SpriteRenderer, Color>();
 
-    public RedGreen()
+    public Lv2RedLight()
     {
-        Type = Traits.RedLight;
+        Type = Traits.Lv2RedLight_JuliusP;
 
         AddListen(EventTypes.Update);
         AddListen(EventTypes.Death); 
         AddListen(EventTypes.Setup);
+        AddListen(EventTypes.OnTouch);
     }
 
     public override void TakeEvent(TraitInfo i, EventInfo e)
@@ -140,11 +141,46 @@ public class RedGreen : Trait
                  }
 
 
+                //ADD THE DAMAGE RESIST TRAIT//
+
+                i.Who.AddTrait(Traits.IgnoreDamage_JuliusP);
+
                 break;
 
 
-
+                
             }
+            
+            case EventTypes.OnTouch:
+            {
+    
+             //IF TOUCHING LAVA//
+
+            if (i == null || i.Who == null || i.Who.Thing == null)
+            return;
+
+            GameCollision col = e.Collision;
+
+            if (col == null || col.Other == null)
+             return;
+
+            ThingInfo other = col.Other.Info;
+
+            if (other == null || other.Thing == null)
+            return;
+
+            if (other.Thing.name.Contains("Lava"))
+            {
+                Debug.Log("Touched Lava!");
+
+                if (i.Who.Has(Traits.IgnoreDamage_JuliusP))
+                {
+                     i.Who.RemoveTrait(Traits.IgnoreDamage_JuliusP);
+                }
+            }
+
+            break;
+        }
         }
     }
 

@@ -20,7 +20,9 @@
         {"K":"N","V":"NoStun"}, 
         {"K":"F","V":"Bull"},
         {"K":"S","V":"RedLight"},
-        {"K":"K","V":"Key"}
+        {"K":"K","V":"Key"},
+        {"K":"s","V":"Speed"},
+        {"K":"g","V":"RedLight2"}
         
     ]
 }
