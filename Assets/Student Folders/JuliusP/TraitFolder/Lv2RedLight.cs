@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System.Collections;
 
 public class Lv2RedLight : Trait
 {
@@ -118,7 +119,6 @@ public class Lv2RedLight : Trait
 
                 God.GM.SetUI("PlayMessage", null , 2);
 
-                i.Who.RemoveTrait(Traits.RedLight);
                 break;
             }
 
@@ -135,7 +135,7 @@ public class Lv2RedLight : Trait
                 if(Player != null && !i.Who.Has(Traits.RedLight))
                 {
                         
-                    i.Who.AddTrait(Traits.RedLight);
+                    i.Who.AddTrait(Traits.Lv2RedLight_JuliusP);
 
 
                  }
@@ -175,7 +175,7 @@ public class Lv2RedLight : Trait
 
                 if (i.Who.Has(Traits.IgnoreDamage_JuliusP))
                 {
-                     i.Who.RemoveTrait(Traits.IgnoreDamage_JuliusP);
+                 God.C(RemoveIgnoreDamage(i.Who));
                 }
             }
 
@@ -220,4 +220,15 @@ public class Lv2RedLight : Trait
 
         originalColors.Clear();
     }
+
+
+ IEnumerator RemoveIgnoreDamage(ThingInfo who)
+{
+    yield return new WaitForSeconds(0.1f);
+
+    if (who != null)
+    {
+        who.RemoveTrait(Traits.IgnoreDamage_JuliusP);
+    }
+}
 }

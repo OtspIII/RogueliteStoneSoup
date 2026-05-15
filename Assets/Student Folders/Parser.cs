@@ -165,6 +165,9 @@ public static class Parser
             case Actions.GiveItemLv2_JuliusP:return new GiveItem_Lv2(who,e);
             case Actions.EvasiveJuke_JuliusP:return new EvasiveJuke(who, e);
             case Actions.BleakWatcher_JuliusP: return new BleakWatcher(who, e);
+            case Actions.Scan_JuliusP: return new Scan(who, e);
+            
+
          
           
             
@@ -456,6 +459,8 @@ public enum Actions
     EvasiveJuke_JuliusP = 4011,
     BleakWatcher_JuliusP = 4012,
     slowingproj_JuliusP = 4013,
+    Berserker_JuliusP = 4014,
+    Scan_JuliusP = 4015,
 
 
    

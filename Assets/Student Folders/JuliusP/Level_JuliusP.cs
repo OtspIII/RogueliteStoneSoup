@@ -455,6 +455,18 @@ public override void BuildMainPath()
         }
 
 
+        if(g.X == 0 && g.Y == 4)
+        {
+                
+            return o.HasTag("Above") ? 999 : 0;
+
+
+
+        }
+
+
+
+
        
     
        
@@ -483,8 +495,26 @@ public override void BuildMainPath()
         //BOSS ROOM LEVEL 2//
         if(g.X == -3 && g.Y == 0)
         {
+   
                 
             return o.HasTag("Loot2") ? 999 : 0;
+
+            
+
+
+
+        }
+
+
+
+         //BOSS ROOM LEVEL 2, CHANGE SIZE TEMPORARILY///
+        if(g.X == -3 && g.Y == -1)
+        {
+   
+                
+            return o.HasTag("Lv2.Boss") ? 999 : 0;
+
+            
 
 
 

@@ -22,7 +22,10 @@
         {"K":"S","V":"RedLight"},
         {"K":"K","V":"Key"},
         {"K":"s","V":"Speed"},
-        {"K":"g","V":"RedLight2"}
+        {"K":"g","V":"RedLight2"},
+        {"K":"v","V":"Scanner"},
+        {"K":"T","V":"Shooter"},
+        {"K":"c","V":"Coins"}
         
     ]
 }
