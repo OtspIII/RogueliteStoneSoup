@@ -39,6 +39,7 @@ public static class Parser
         // AdamD Traits
         TraitDict.Add(Traits.statusEffectOnProjectile, new StatusEffectOnProjectileTrait_AdamD("stuff", 5));
         TraitDict.Add(Traits.StatusResist, new StatusResist());
+        TraitDict.Add(Traits.UpgradeTrait, new UpgradeTrait());
         // AlejandroM Traits
         TraitDict.Add(Traits.ShieldPotion_AlejandroM, new ShieldPotion_AlejandroM());
         TraitDict.Add(Traits.SpeedPotion_AlejandroM, new SpeedPotion_AlejandroM());
@@ -301,7 +302,8 @@ public enum Traits
     //AdamD         =20##,
     AdamD1          =2001,
     statusEffectOnProjectile=2002,
-    StatusResist=2003, 
+    StatusResist=2003,
+    UpgradeTrait=2004,
     //AlejandroM    =25##,
     AlejandroM1     =2501,
     ShieldPotion_AlejandroM = 2502,
