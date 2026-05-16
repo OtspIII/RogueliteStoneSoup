@@ -5,6 +5,7 @@ public class StatusResist : Trait
     public StatusResist()
     {
         Type = Traits.StatusResist;
+        //AddListen(EventTypes.Update); idk if this is needed
     }
     public override void TakeEvent(TraitInfo i, EventInfo e)
     {

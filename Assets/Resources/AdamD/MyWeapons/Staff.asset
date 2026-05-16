@@ -14,19 +14,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Staff
   Author: 20
-  Team: 1
-  Body: {fileID: 629948465317790645, guid: b4fa405680f33044abe2c4567ecf147f, type: 3}
-  Art: {fileID: 4982956992057361663, guid: a4c9277b3f4c0234eb54ee3b0dd7a9e2, type: 3}
-  Color: {r: 1, g: 1, b: 1, a: 1}
-  Size: 1
   Tags:
-  - Common: 202
+  - Common: 201
     Custom: 
     W: 1
     Cost: 3
+  Team: 1
+  Body: {fileID: 629948465317790645, guid: b4fa405680f33044abe2c4567ecf147f, type: 3}
+  Art: {fileID: -1613646886922424301, guid: e8b0d6397381afe42b307356b06c650c, type: 3}
+  Color: {r: 1, g: 1, b: 1, a: 1}
+  Size: 1
   LevelRange: {x: 0, y: 0}
   Trait:
-  - Trait: 0
+  - Trait: 2004
     Numbers: []
     Prefabs: []
     Acts: []
@@ -38,6 +38,7 @@ MonoBehaviour:
       Level: 0
       Author: 0
       MaxCost: 0
+      Where: {x: 999, y: 999, z: 999}
     Builder:
     - Type: 0
       NumType: 1
@@ -66,6 +67,7 @@ MonoBehaviour:
     Level: 0
     Author: 0
     MaxCost: 0
+    Where: {x: 999, y: 999, z: 999}
   FloorBody: {fileID: 0}
   FloorArt: {fileID: 0}
   Damage: 3
