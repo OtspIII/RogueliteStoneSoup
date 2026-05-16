@@ -520,6 +520,23 @@ public override void BuildMainPath()
 
         }
 
+
+
+
+        //POTION ROOM AFTER KILLING RED LIGHT//
+        if(g.X == 7 && g.Y == 5)
+        {
+   
+                
+            return o.HasTag("PotionRoom") ? 999 : 0;
+
+            
+
+
+
+        }
+
+
     
 
     

@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Dodge_invis : Trait
@@ -21,9 +22,9 @@ public class Dodge_invis : Trait
         {
             case EventTypes.Update:
             {
-                ThingInfo me = i.Who;
+                ThingInfo ThingWTrait = i.Who;
 
-
+                // START INVIS
                 if (Input.GetKeyDown(KeyCode.Space) && canUse)
                 {
                     active = true;
@@ -33,31 +34,38 @@ public class Dodge_invis : Trait
                     cooldownTimer = 0f;
 
                     // APPLY EFFECTS
-                    me.AddTrait(Traits.GainInvis_JuliusP);
-                    me.AddTrait(Traits.Dash);
+                    if (!ThingWTrait.Has(Traits.GainInvis_JuliusP))
+                    {
+                        ThingWTrait.AddTrait(Traits.GainInvis_JuliusP);
+                    }
+
+                    if (!ThingWTrait.Has(Traits.Dash))
+                    {
+                        ThingWTrait.AddTrait(Traits.Dash);
+                    }
 
                     // CLEAR CURRENT TARGET
-                    me.SetTarget(null);
+                    ThingWTrait.SetTarget(null);
 
-                    // THIS SETS THE TARGET TO NOT SEE YOU//s
+                    // CLEAR ENEMY TARGETS
                     foreach (ThingController t in God.GM.Things)
                     {
-                        if (t.Info.Target == me)
+                        if (t != null && t.Info != null && t.Info.Target == ThingWTrait)
                         {
                             t.Info.SetTarget(null);
                         }
                     }
                 }
 
-              
+                // ACTIVE INVIS
                 if (active)
                 {
                     activeTimer += Time.deltaTime;
 
-                    // KEEP ENEMIES FROM RETARGETING YOU
+                    // KEEP ENEMIES FROM TARGETING YOU
                     foreach (ThingController t in God.GM.Things)
                     {
-                        if (t.Info.Target == me)
+                        if (t != null && t.Info != null && t.Info.Target == ThingWTrait)
                         {
                             t.Info.SetTarget(null);
                         }
@@ -66,13 +74,14 @@ public class Dodge_invis : Trait
                     // END INVIS
                     if (activeTimer >= 5f)
                     {
-                        me.RemoveTrait(Traits.GainInvis_JuliusP);
-                        me.RemoveTrait(Traits.Dash);
-
                         active = false;
+
+                        // REMOVE TRAITS SAFELY
+                        God.C(RemoveEffects(ThingWTrait));
                     }
                 }
 
+                // COOLDOWN
                 else if (!canUse)
                 {
                     cooldownTimer += Time.deltaTime;
@@ -84,6 +93,26 @@ public class Dodge_invis : Trait
                 }
 
                 break;
+            }
+        }
+    }
+
+    private IEnumerator RemoveEffects(ThingInfo thing)
+    {
+        // WAIT ONE FRAME
+        // prevents modifying traits during TakeEvent loop
+        yield return null;
+
+        if (thing != null)
+        {
+            if (thing.Has(Traits.GainInvis_JuliusP))
+            {
+                thing.RemoveTrait(Traits.GainInvis_JuliusP);
+            }
+
+            if (thing.Has(Traits.Dash))
+            {
+                thing.RemoveTrait(Traits.Dash);
             }
         }
     }
