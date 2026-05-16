@@ -72,12 +72,14 @@ public static class Parser
         TraitDict.Add(Traits.SpawnWall_JuliusP, new SpawnWall());
         TraitDict.Add(Traits.AddTraitByScore_JuliusP, new AddTraitByScore());
         TraitDict.Add(Traits.Lv2RedLight_JuliusP,new Lv2RedLight());
+        TraitDict.Add(Traits.TempInvis_JuliusP, new InvisPotion_JuliusP());
+
+       
 
 
     
 
 
-      
         // MazK Traits
         // MichaelT Traits
         TraitDict.Add(Traits.Bleed_MichaelT, new BleedTrait_MichaelT());
@@ -305,7 +307,7 @@ public enum Traits
     //AdamD         =20##,
     AdamD1          =2001,
     statusEffectOnProjectile=2002,
-    StatusResist=2003,
+    StatusResist=2003, 
     UpgradeTrait=2004,
     //AlejandroM    =25##,
     AlejandroM1     =2501,
@@ -344,6 +346,7 @@ public enum Traits
     SpawnWall_JuliusP = 4020,
     AddTraitByScore_JuliusP = 4021,
     Lv2RedLight_JuliusP = 4022,
+    TempInvis_JuliusP = 4023,
 
 
 

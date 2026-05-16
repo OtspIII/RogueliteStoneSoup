@@ -75,7 +75,7 @@ MonoBehaviour:
       Trait: 0
   DefaultAttack: 103
   ToSpawn:
-    Fixed: {fileID: 11400000, guid: d05ac0ab76244cd46895ee8edc134d12, type: 2}
+    Fixed: {fileID: 11400000, guid: 01536af2242f44c0dacd1a89f1543212, type: 2}
     Mandatory: []
     Any: []
     Level: 0

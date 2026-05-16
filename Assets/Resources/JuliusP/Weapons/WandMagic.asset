@@ -10,19 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 666e3856c5664c242bde2f0f953b72bc, type: 3}
-  m_Name: WolfBaneArrows
+  m_Name: WandMagic
   m_EditorClassIdentifier: Assembly-CSharp::ProjectileOption
-  Name: WolfBaneArrow
+  Name: arrow
   Author: 40
   Tags: []
   Team: 1
   Body: {fileID: 629948465317790645, guid: 9edb53243ae32704ead177294fe49d22, type: 3}
-  Art: {fileID: -6888756438569675735, guid: 2d7b3e95b12eb454f8c167f1037858ca, type: 3}
+  Art: {fileID: 3702275605149977432, guid: bf3860391b0ae7f45a3b63521bfbe71f, type: 3}
   Color: {r: 1, g: 1, b: 1, a: 1}
   Size: 0.7
   LevelRange: {x: 0, y: 0}
   Trait:
-  - Trait: 4017
+  - Trait: 4014
     Numbers: []
     Prefabs: []
     Acts: []
@@ -36,5 +36,5 @@ MonoBehaviour:
       MaxCost: 0
       Where: {x: 0, y: 0, z: 0}
     Builder: []
-  Damage: 0
+  Damage: 1
   Speed: 18

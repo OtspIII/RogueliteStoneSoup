@@ -25,7 +25,11 @@
         {"K":"g","V":"RedLight2"},
         {"K":"v","V":"Scanner"},
         {"K":"T","V":"Shooter"},
-        {"K":"c","V":"Coins"}
+        {"K":"c","V":"Coins"},
+        {"K":"Q","V":"Invisible"},
+        {"K":"b","V":"Lv2Boss"},
+        {"K":"w","V":"Lv2.Wolf"}
+        
         
     ]
 }

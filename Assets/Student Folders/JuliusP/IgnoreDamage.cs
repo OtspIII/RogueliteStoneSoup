@@ -122,4 +122,52 @@ public class TemporaryDamageResist : Trait
 
 }
 
+public class InvisPotion_JuliusP : Trait
+{
+    public float InvisDuration = 5f;
+
+    public InvisPotion_JuliusP()
+    {
+        Type = Traits.TempInvis_JuliusP;
+
+        AddListen(EventTypes.OnUse);
+    }
+
+    public override void TakeEvent(TraitInfo i, EventInfo e)
+    {
+        switch(e.Type)
+        {
+            case EventTypes.OnUse:
+            {
+                ThingInfo player = God.Session.Player;
+
+                // ADD INVIS TRAIT
+                player.AddTrait(Traits.DodgeInvis_JuliusP);
+
+               // Debug.Log("Invis Activated");
+
+                // START TIMER
+                God.C(RemoveInvis(player));
+
+                break;
+            }
+        }
+    }
+
+    private IEnumerator RemoveInvis(ThingInfo player)
+    {
+        yield return new WaitForSeconds(InvisDuration);
+
+        if(player.Has(Traits.DodgeInvis_JuliusP))
+        {
+            player.RemoveTrait(Traits.DodgeInvis_JuliusP);
+
+            player.RemoveTrait(Traits.Dash);
+
+            player.RemoveTrait(Traits.GainInvis_JuliusP);
+
+        }
+    }
+}
+
 

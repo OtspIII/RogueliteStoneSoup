@@ -3,8 +3,8 @@ xxx......xxx
 xxx......xxx
 xxx..g...xxx
 xxx......xxx
-xxx......xxx
-xxx......xxx
+xxx......rrr
+xxx......rrr
 xxx......xxx
 xxx......xxx
 xxx......xxx

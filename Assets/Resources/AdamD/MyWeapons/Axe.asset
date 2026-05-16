@@ -54,7 +54,7 @@ MonoBehaviour:
       MaxCost: 0
       Where: {x: 999, y: 999, z: 999}
     Builder: []
-  - Trait: 4017
+  - Trait: 2004
     Numbers: []
     Prefabs: []
     Acts: []

@@ -20,60 +20,68 @@ public class Level_SabahE : LevelBuilder
 
     public override void BuildGeoMap()
     {
-        AddGeo(new GeoTile(1, 0, this));
-        AddGeo(new GeoTile(1, 1, this));
-        AddGeo(new GeoTile(1, 2, this));
-        AddGeo(new GeoTile(2, 2, this));
+        AddGeo(new GeoTile(3, 1, this));
         AddGeo(new GeoTile(3, 2, this));
-        AddGeo(new GeoTile(3, 3, this));
-        AddGeo(new GeoTile(4, 3, this));
-        AddGeo(new GeoTile(4, 4, this));
-        AddGeo(new GeoTile(3, 4, this));
 
-        AddGeo(new GeoTile(0, 2, this));
-        AddGeo(new GeoTile(0, 3, this));
-        AddGeo(new GeoTile(1, 3, this));
+        AddGeo(new GeoTile(3, 3, this));
+
+        AddGeo(new GeoTile(3, 4, this));
+        AddGeo(new GeoTile(3, 5, this));
+
         AddGeo(new GeoTile(2, 3, this));
+        AddGeo(new GeoTile(1, 3, this));
+        AddGeo(new GeoTile(1, 4, this));
         AddGeo(new GeoTile(2, 4, this));
+        AddGeo(new GeoTile(2, 5, this));
+
+        AddGeo(new GeoTile(4, 3, this));
+        AddGeo(new GeoTile(5, 3, this));
+        AddGeo(new GeoTile(5, 4, this));
+        AddGeo(new GeoTile(4, 5, this));
     }
 
     public override void BuildMainPath()
     {
-        PlayerSpawn = GetGeo(1, 0);
+        PlayerSpawn = GetGeo(3, 1);
         PlayerSpawn.SetPath(GeoTile.GeoTileTypes.PlayerStart);
 
-        Exit = GetGeo(3, 4);
+        Exit = GetGeo(3, 5);
         Exit.SetPath(GeoTile.GeoTileTypes.Exit);
 
-        LinkRooms(1, 0, Directions.Up);
-        LinkRooms(1, 1, Directions.Up);
-        LinkRooms(1, 2, Directions.Right);
-        LinkRooms(2, 2, Directions.Right);
+        LinkRooms(3, 1, Directions.Up);
         LinkRooms(3, 2, Directions.Up);
+
+        LinkRooms(3, 3, Directions.Up);
+        LinkRooms(3, 4, Directions.Up);
+
+        LinkRooms(3, 3, Directions.Left);
+        LinkRooms(2, 3, Directions.Left);
+        LinkRooms(1, 3, Directions.Up);
+        LinkRooms(1, 4, Directions.Right);
+        LinkRooms(2, 4, Directions.Up);
+        LinkRooms(2, 5, Directions.Right);
+
         LinkRooms(3, 3, Directions.Right);
-        LinkRooms(4, 3, Directions.Up);
-        LinkRooms(4, 4, Directions.Left);
+        LinkRooms(4, 3, Directions.Right);
+        LinkRooms(5, 3, Directions.Up);
 
-        LinkRooms(1, 2, Directions.Left);
-        LinkRooms(0, 2, Directions.Up);
-        LinkRooms(0, 3, Directions.Right);
-        LinkRooms(1, 3, Directions.Right);
-        LinkRooms(2, 3, Directions.Up);
-        LinkRooms(2, 4, Directions.Right);
+        LinkRooms(5, 4, Directions.Left);
+        LinkRooms(4, 5, Directions.Left);
 
-        MarkMainPath(1, 1);
-        MarkMainPath(1, 2);
-        MarkMainPath(2, 2);
         MarkMainPath(3, 2);
         MarkMainPath(3, 3);
-        MarkMainPath(4, 3);
-        MarkMainPath(4, 4);
+        MarkMainPath(3, 4);
 
-        MarkConnected(0, 2);
-        MarkConnected(0, 3);
-        MarkConnected(1, 3);
         MarkConnected(2, 3);
+        MarkConnected(1, 3);
+        MarkConnected(1, 4);
         MarkConnected(2, 4);
+        MarkConnected(2, 5);
+
+        MarkConnected(4, 3);
+        MarkConnected(5, 3);
+        MarkConnected(5, 4);
+        MarkConnected(4, 5);
     }
 
     private void LinkRooms(int x, int y, Directions dir)

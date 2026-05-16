@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 666e3856c5664c242bde2f0f953b72bc, type: 3}
-  m_Name: WolfBaneArrows
+  m_Name: Lv2.WolfBaneArrows
   m_EditorClassIdentifier: Assembly-CSharp::ProjectileOption
   Name: WolfBaneArrow
   Author: 40

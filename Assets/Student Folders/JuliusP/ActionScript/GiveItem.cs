@@ -164,6 +164,7 @@ public class GiveItem : ActionScript
         Who.Destruct(Who);
 
         //MARK AS COMPLETE//
+        //GET AN ERROR HERE//
         Complete();
     }
 
