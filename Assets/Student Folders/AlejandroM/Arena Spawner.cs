@@ -6,15 +6,15 @@ using System.Linq;
 public class ArenaSpawner : MonoBehaviour
 {
     public static bool OnBeat = false;
-    float bpm = 98f;
+    float bpm = 145f;
     float beatOffset = 0.15f;
     int lastBeatNumber = -1;
 
-    float beatInterval = 60f / 98f;
-    float beatWindow = 0.25f; // Timing 
+    float beatInterval;
+    float beatWindow = 0.90f; // Timing 
 
     float spawnDistance = 9f; // The distance the enemies spawn away from the player
-    float meleeHitRange = 3f; // how close the player is 
+    float meleeHitRange = 4f; // how close the player is 
 
     AudioSource musicSource; // Audio source used to play the level 
 
@@ -85,8 +85,9 @@ public class ArenaSpawner : MonoBehaviour
             {
                 yield break;
             }
+
             yield return StartCoroutine(WaitForNextBeat());
-            
+
             if (God.Session == null || God.Session.Player == null || God.Session.Player.Thing == null)
             {
                 yield break;
@@ -94,58 +95,24 @@ public class ArenaSpawner : MonoBehaviour
 
             Vector2 playerPos = God.Session.Player.Thing.transform.position;
 
-            int beat = lastBeatNumber;
+            for (int i = 0; i < beatChart.Count; i++)
+            {
+                if (spawnedBeatIndexes.Contains(i))
+                    continue;
 
-            // First pattern: top, right, top, right
-            if (currentLevel <= 3)
-            {
-                if (beat % 2 == 0)
+                if (lastBeatNumber >= beatChart[i].beat)
                 {
-                    SpawnEnemy(playerPos + new Vector2(0, spawnDistance)); // top
-                }
-                else
-                {
-                    SpawnEnemy(playerPos + new Vector2(spawnDistance, 0)); // right
+                    Vector2 spawnDirection = beatChart[i].direction;
+                    Vector2 spawnPosition = playerPos + (spawnDirection * spawnDistance);
+
+                    SpawnEnemy(spawnPosition);
+
+                    spawnedBeatIndexes.Add(i);
                 }
             }
-            // Second pattern: top, right, left
-            else if (currentLevel <= 6)
-            {
-                if (beat % 3 == 0)
-                {
-                    SpawnEnemy(playerPos + new Vector2(0, spawnDistance)); // top
-                }
-                else if (beat % 3 == 1)
-                {
-                    SpawnEnemy(playerPos + new Vector2(spawnDistance, 0)); // right
-                }
-                else
-                {
-                    SpawnEnemy(playerPos + new Vector2(-spawnDistance, 0)); // left
-                }
-            }
-            // Third pattern: top, right, left, bottom
-            else
-            {
-                if (beat % 4 == 0)
-                {
-                    SpawnEnemy(playerPos + new Vector2(0, spawnDistance)); // top
-                }
-                else if (beat % 4 == 1)
-                {
-                    SpawnEnemy(playerPos + new Vector2(spawnDistance, 0)); // right
-                }
-                else if (beat % 4 == 2)
-                {
-                    SpawnEnemy(playerPos + new Vector2(-spawnDistance, 0)); // left
-                }
-                else
-                {
-                    SpawnEnemy(playerPos + new Vector2(0, -spawnDistance)); // bottom
-                }
-            }
+
             spawnedEnemies.RemoveAll(e => e == null || e.Destroyed || e.Thing == null);
-            // Increase level based on score instead of clearing waves
+
             currentLevel = 1 + (score / 5);
             God.Session.Level = currentLevel;
             UpdateRhythmUI();
@@ -346,10 +313,11 @@ public class ArenaSpawner : MonoBehaviour
 
             float distance = Vector2.Distance(playerPos, thing.transform.position);
 
-            if (distance <= 0.8f)
+            // Enemy disappears before it is close enough to push or stun the player
+            if (distance <= 1f)
             {
                 thing.Info.Destruct(God.Session.Player);
-                Debug.Log("Enemy hit player and disappeared");
+                Debug.Log("Enemy reached player and disappeared");
             }
         }
     }
@@ -362,4 +330,136 @@ public class ArenaSpawner : MonoBehaviour
             yield return null;
         }
     }
+
+    class BeatSpawn
+    {
+        public float beat;
+        public Vector2 direction;
+
+        public BeatSpawn(float beat, Vector2 direction)
+        {
+            this.beat = beat;
+            this.direction = direction;
+        }
+    }
+
+    List<BeatSpawn> beatChart = new List<BeatSpawn>()
+{
+
+ new BeatSpawn(0.13f, Vector2.up),
+new BeatSpawn(1.13f, Vector2.right),
+new BeatSpawn(2.13f, Vector2.up),
+new BeatSpawn(4.13f, Vector2.right),
+new BeatSpawn(5.13f, Vector2.up),
+new BeatSpawn(6.13f, Vector2.up),
+new BeatSpawn(8.13f, Vector2.right),
+new BeatSpawn(9.13f, Vector2.right),
+new BeatSpawn(11.13f, Vector2.up),
+new BeatSpawn(12.13f, Vector2.up),
+new BeatSpawn(13.13f, Vector2.right),
+new BeatSpawn(16.13f, Vector2.right),
+new BeatSpawn(17.13f, Vector2.right),
+new BeatSpawn(18.13f, Vector2.up),
+new BeatSpawn(19.13f, Vector2.up),
+new BeatSpawn(20.13f, Vector2.right),
+new BeatSpawn(21.13f, Vector2.right),
+new BeatSpawn(22.13f, Vector2.right),
+new BeatSpawn(24.13f, Vector2.right),
+new BeatSpawn(25.13f, Vector2.right),
+new BeatSpawn(26.13f, Vector2.right),
+new BeatSpawn(27.13f, Vector2.up),
+new BeatSpawn(28.13f, Vector2.up),
+new BeatSpawn(29.13f, Vector2.up),
+new BeatSpawn(30.13f, Vector2.right),
+new BeatSpawn(32.13f, Vector2.right),
+new BeatSpawn(33.13f, Vector2.right),
+new BeatSpawn(34.13f, Vector2.left),
+new BeatSpawn(35.13f, Vector2.left),
+new BeatSpawn(36.13f, Vector2.left),
+new BeatSpawn(37.13f, Vector2.right),
+new BeatSpawn(38.13f, Vector2.up),
+new BeatSpawn(39.13f, Vector2.left),
+new BeatSpawn(40.13f, Vector2.right),
+new BeatSpawn(41.13f, Vector2.up),
+new BeatSpawn(42.13f, Vector2.left),
+new BeatSpawn(43.13f, Vector2.up),
+new BeatSpawn(44.13f, Vector2.left),
+new BeatSpawn(45.13f, Vector2.right),
+new BeatSpawn(46.13f, Vector2.right),
+new BeatSpawn(47.13f, Vector2.left),
+new BeatSpawn(48.13f, Vector2.right),
+new BeatSpawn(49.13f, Vector2.left),
+new BeatSpawn(50.13f, Vector2.right),
+new BeatSpawn(51.13f, Vector2.left),
+new BeatSpawn(52.13f, Vector2.down),
+new BeatSpawn(53.13f, Vector2.down),
+new BeatSpawn(54.13f, Vector2.down),
+new BeatSpawn(55.13f, Vector2.down),
+new BeatSpawn(56.13f, Vector2.down),
+new BeatSpawn(57.13f, Vector2.up),
+new BeatSpawn(58.13f, Vector2.up),
+new BeatSpawn(59.13f, Vector2.up),
+new BeatSpawn(60.13f, Vector2.up),
+new BeatSpawn(61.13f, Vector2.up),
+new BeatSpawn(62.13f, Vector2.down),
+new BeatSpawn(63.13f, Vector2.left),
+new BeatSpawn(64.13f, Vector2.down),
+new BeatSpawn(65.13f, Vector2.left),
+new BeatSpawn(66.13f, Vector2.down),
+new BeatSpawn(67.13f, Vector2.left),
+new BeatSpawn(68.13f, Vector2.down),
+new BeatSpawn(69.13f, Vector2.left),
+new BeatSpawn(70.13f, Vector2.up),
+new BeatSpawn(71.13f, Vector2.down),
+new BeatSpawn(72.13f, Vector2.up),
+new BeatSpawn(73.13f, Vector2.down),
+new BeatSpawn(74.13f, Vector2.up),
+new BeatSpawn(75.13f, Vector2.down),
+new BeatSpawn(76.13f, Vector2.up),
+new BeatSpawn(77.13f, Vector2.down),
+new BeatSpawn(78.13f, Vector2.left),
+new BeatSpawn(79.13f, Vector2.left),
+new BeatSpawn(80.13f, Vector2.left),
+new BeatSpawn(81.13f, Vector2.left),
+new BeatSpawn(82.13f, Vector2.up),
+new BeatSpawn(83.13f, Vector2.left),
+new BeatSpawn(84.13f, Vector2.right),
+new BeatSpawn(85.13f, Vector2.right),
+new BeatSpawn(86.13f, Vector2.right),
+new BeatSpawn(87.13f, Vector2.right),
+new BeatSpawn(88.13f, Vector2.up),
+new BeatSpawn(89.13f, Vector2.left),
+new BeatSpawn(90.13f, Vector2.up),
+new BeatSpawn(91.13f, Vector2.left),
+new BeatSpawn(92.13f, Vector2.left),
+new BeatSpawn(93.13f, Vector2.up),
+new BeatSpawn(94.13f, Vector2.up),
+new BeatSpawn(95.13f, Vector2.up),
+new BeatSpawn(96.13f, Vector2.left),
+new BeatSpawn(99.13f, Vector2.left),
+new BeatSpawn(100.13f, Vector2.left),
+new BeatSpawn(101.13f, Vector2.down),
+new BeatSpawn(102.13f, Vector2.left),
+new BeatSpawn(103.13f, Vector2.down),
+new BeatSpawn(104.13f, Vector2.left),
+new BeatSpawn(106.13f, Vector2.down),
+new BeatSpawn(107.13f, Vector2.left),
+new BeatSpawn(108.13f, Vector2.down),
+new BeatSpawn(109.13f, Vector2.right),
+new BeatSpawn(110.13f, Vector2.right),
+new BeatSpawn(111.13f, Vector2.right),
+new BeatSpawn(112.13f, Vector2.right),
+new BeatSpawn(114.13f, Vector2.right),
+
+    };
+
+    List<int> spawnedBeatIndexes = new List<int>();
+
+
+
+
+
+
+
 }
+
