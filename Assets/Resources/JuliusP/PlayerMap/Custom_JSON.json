@@ -29,7 +29,11 @@
         {"K":"Q","V":"Invisible"},
         {"K":"b","V":"Lv2Boss"},
         {"K":"w","V":"Lv2.Wolf"},
-        {"K":"a","V":"Prisoner"}
+        {"K":"a","V":"Prisoner"},
+        {"K":"h","V":"Health"}, 
+        {"K":"n","V":"ShieldEnem"},
+        {"K":"O","V":"CoinBrl"},
+        {"K":"e","V":"Shield"}
 
         
         

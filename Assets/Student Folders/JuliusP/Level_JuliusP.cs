@@ -40,7 +40,26 @@ public class Level_JuliusP : LevelBuilder
        
         Size = new Vector2Int(width,height);
         LinkOdds = 1f;
+    
+
+        
+
+        //IF LEVEL IS 3, CHANGE ROOM SIZE//
+        if(l == 3)
+        {
+            
+         RoomSize = new Vector2Int(17, 20);  
+
+
+        }
+
+        else
+        {
+            
         RoomSize = new Vector2Int(12, 12);
+
+
+        }
 
 
        
@@ -73,14 +92,8 @@ public override void BuildGeoMap()
 
     else if(CurrentLevel == 3)
     {
-            
-       
-
         BuildLevel3(centerX, centerY, leftsideY); 
-
-
-
-     }
+    }
 }
 
     
@@ -114,21 +127,21 @@ public override void BuildMainPath()
 
         GeoTile Prev = PlayerSpawn;
 
-        for (int x = centerX + 1; x <= 8; x++)
+        for (int y = centerY + 1; y <= 8; y++)
         {
-            GeoTile next = GetGeo(x, centerY);
+            GeoTile next = GetGeo(centerX, y);
 
             if (next == null) continue;
 
-            prev.Links.Add(Directions.Right);
-            next.Links.Add(Directions.Left);
+            prev.Links.Add(Directions.Up);
+            next.Links.Add(Directions.Down);
 
             next.SetPath(GeoTile.GeoTileTypes.MainPath);
 
             prev = next;
         }
 
-        Exit = GetGeo(8, 3);
+        Exit = GetGeo(centerX, 8);
         Exit.SetPath(GeoTile.GeoTileTypes.Exit);
 
         return;
@@ -549,31 +562,39 @@ public override void BuildMainPath()
         }
 
 
-    
-
-    
-
-
-
-
-
-
     }
  
 
  
         //LEVEL LAYOUT FOR LEVEL 3//
 
-        if(g.X == 4 && g.Y == 3)
+
+        if(Level == 3)
+        {
+            
+        if(g.X == 3 && g.Y == 3)
         {
                 
 
+     
+            return o.HasTag("Lv3.PlayerRoom") ? 999 : 0;
 
 
 
         }
 
+         if(g.X == 3 && g.Y == 4)
+        {
+                
 
+     
+            return o.HasTag("Lv3.Generic") ? 999 : 0;
+
+
+
+        }
+
+        }
   
     return o.HasTag(t.ToString()) ? 1 : 0;
 }
@@ -707,13 +728,19 @@ void BuildLevel2(int centerX, int centerY, int leftsideY)
 
 void BuildLevel3(int centerX, int centerY, int leftsideY)
 {
+    
+
     // START TILE
     AddGeo(new GeoTile(centerX, centerY, this));
 
-    // GO RIGHT FROM (3,3)
+    // GO UP FROM (3,3)
     for(int i = 1; i < 6; i++)
     {
-        AddGeo(new GeoTile(centerX + i, centerY, this));
+        AddGeo(new GeoTile(centerX, centerY + i, this));
     }
+
+    // OPTIONAL SIDE BRANCHES (kept minimal)
+    AddGeo(new GeoTile(centerX - 1, centerY + 2, this));
+    AddGeo(new GeoTile(centerX + 1, centerY + 4, this));
 }
 }

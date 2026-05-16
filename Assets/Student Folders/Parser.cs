@@ -347,6 +347,7 @@ public enum Traits
     AddTraitByScore_JuliusP = 4021,
     Lv2RedLight_JuliusP = 4022,
     TempInvis_JuliusP = 4023,
+    ShieldTrait_JuliusP = 4024,
 
 
 
