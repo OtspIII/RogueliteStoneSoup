@@ -119,6 +119,11 @@ public class Lv2RedLight : Trait
 
                 God.GM.SetUI("PlayMessage", null , 2);
 
+                
+                 var level = God.LB as Level_JuliusP;
+
+                 level.Lv2RedLightKilled = true;
+
                 break;
             }
 

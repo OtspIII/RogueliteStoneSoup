@@ -28,7 +28,9 @@
         {"K":"c","V":"Coins"},
         {"K":"Q","V":"Invisible"},
         {"K":"b","V":"Lv2Boss"},
-        {"K":"w","V":"Lv2.Wolf"}
+        {"K":"w","V":"Lv2.Wolf"},
+        {"K":"a","V":"Prisoner"}
+
         
         
     ]
