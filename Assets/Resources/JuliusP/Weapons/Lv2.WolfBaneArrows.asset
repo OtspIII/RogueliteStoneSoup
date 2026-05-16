@@ -36,5 +36,19 @@ MonoBehaviour:
       MaxCost: 0
       Where: {x: 0, y: 0, z: 0}
     Builder: []
+  - Trait: 4014
+    Numbers: []
+    Prefabs: []
+    Acts: []
+    OtherTrait: 0
+    SpawnReq:
+      Fixed: {fileID: 0}
+      Mandatory: []
+      Any: []
+      Level: 0
+      Author: 0
+      MaxCost: 0
+      Where: {x: 0, y: 0, z: 0}
+    Builder: []
   Damage: 0
   Speed: 18

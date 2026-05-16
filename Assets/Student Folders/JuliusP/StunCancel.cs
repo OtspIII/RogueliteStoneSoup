@@ -159,16 +159,19 @@ public class TemporaryDashAbility : Trait
 
 
 
-//THIS TRAIT IS FOR LV2 BOSS//
+//THIS TRAIT IS FOR LV2 BOSS
 
 public class FullStunNegation : Trait
 {
+
+    public bool IsDead;
     public FullStunNegation()
     {
         Type = Traits.NoTimerStunNegation_JuliusP;
 
         AddPreListen(EventTypes.StartAction);
         AddListen(EventTypes.OnTouch);
+        AddListen(EventTypes.Death);
     }
 
     public override void PreEvent(TraitInfo i, EventInfo e)
@@ -239,11 +242,24 @@ public class FullStunNegation : Trait
 
                     i.Who.AddTrait(Traits.IgnoreDamage_JuliusP);
 
+
+                   
+    Vector3 pos = i.Who.Thing.transform.position + Vector3.up * 1.5f;
+
+    GameObject textObj = GameObject.Instantiate(Resources.Load<GameObject>("ImmuneText"), pos, Quaternion.identity);
+
+    if (textObj != null)
+    {
+        var tmp = textObj.GetComponentInChildren<TMPro.TextMeshPro>();
+        if (tmp != null)
+            tmp.text = "IMMUNE";
+    }
+
                     break;
                 }
 
                 //CHECK FOR WOLFBANE ARROW//
-                if (weaponName != null && (weaponName.Contains("bow") || hitName.Contains("WolfBaneArrow")))
+                if (weaponName != null && (weaponName.Contains("Wolf Bane Bow") || hitName.Contains("WolfBaneArrow")))
                 {
                     Debug.Log("Bow/Arrow knockback allowed");
 
@@ -252,6 +268,16 @@ public class FullStunNegation : Trait
                 }
 
                 break;
+            }
+
+            case EventTypes.Death:
+            {
+                    
+             var level = God.LB as Level_JuliusP;
+
+             level.Lv2BossKilled = true;
+
+             break;
             }
         }
     }
