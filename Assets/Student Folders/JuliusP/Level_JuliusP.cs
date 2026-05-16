@@ -7,6 +7,18 @@ public class Level_JuliusP : LevelBuilder
 
     public bool CanLinkToLootRoom = false;
 
+
+
+    //LVEL 2 BOOLS//
+    public bool Lv2BossKilled = false;
+
+    public bool Lv2AllyFound = false;
+
+    public bool Lv2RedLightKilled = false;
+
+
+    
+
     public float SpecialRoomChance = 0.3f;
 
     public Level_JuliusP()
