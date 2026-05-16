@@ -15,13 +15,16 @@ public class GeoTile
     public RoomOption RoomType;  //A link to the room type that will spawn in my slot
     public RoomScript Room;  //A link to the actual room that spawned in my slot
     public string DebugColor = "";
+    public string Tag;
     
     ///Constructor, at first all I know is where I am and in what level
-    public GeoTile(int x, int y, LevelBuilder b)
+    public GeoTile(int x, int y, LevelBuilder b,string tag="")
     {
         Builder = b;
         X = x;
         Y = y;
+        if (tag != "")
+            Tag = tag;
     }
 
     ///Returns a list of all directions I might be able to connect to--ie, that don't lead off the edge of the map

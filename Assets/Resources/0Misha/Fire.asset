@@ -17,7 +17,7 @@ MonoBehaviour:
   Tags:
   - Common: 0
     Custom: Fire
-    W: 0
+    W: 1
     Cost: 0
   Team: 1
   Body: {fileID: 629948465317790645, guid: 7bfc7e89c5111624a9658fd0a5a7c71e, type: 3}

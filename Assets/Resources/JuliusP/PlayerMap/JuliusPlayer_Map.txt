@@ -1,11 +1,12 @@
-xxxxxuxxxxx
-x         x
-x         x
-x         x
-l         r
-l    P    r
-l         r
-x         x
-x         x
-x         x
-xxxxdddxxxx
+xxxxuuuuxxxx
+x          x
+x          x
+x          x
+x          x
+x          x
+l          x
+l          x
+x          x
+x          x
+x     P    x
+xxxxddddxxxx

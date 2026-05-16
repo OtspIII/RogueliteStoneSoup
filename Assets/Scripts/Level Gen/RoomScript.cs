@@ -32,7 +32,7 @@ public class RoomScript : MonoBehaviour
                     case "Up": tag = g.Links.Contains(Directions.Up) ? "Floor" : "Wall"; break;
                     case "Down": tag = g.Links.Contains(Directions.Down) ? "Floor" : "Wall"; break;
                 }
-
+        
                 if (tag == "Empty")
                 {
                     continue;

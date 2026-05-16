@@ -1,0 +1,37 @@
+{
+    "Pairs": [{"K":"x","V":"Wall"},
+        {"K":" ","V":"Floor"},
+        {"K":".","V":""},
+        {"K":"P","V":"Player"},
+        {"K":"C","V":"Centerpiece"},
+        {"K":"E","V":"Exit"},
+        {"K":"B","V":"Boss"},
+        {"K":"l","V":"Left"},
+        {"K":"r","V":"Right"},
+        {"K":"u","V":"Up"},
+        {"K":"d","V":"Down"},
+        {"K":",","V":"Empty"},
+        {"K":"H","V":"Heal"},
+        {"K":"L","V":"Lava"},
+        {"K":"A","V":"Ally"},
+        {"K":"M","V":"Resist"},
+        {"K":"G","V":"GreenLight"},
+        {"K":"W","V":"Lv1Bow"},
+        {"K":"N","V":"NoStun"}, 
+        {"K":"F","V":"Bull"},
+        {"K":"S","V":"RedLight"},
+        {"K":"K","V":"Key"},
+        {"K":"s","V":"Speed"},
+        {"K":"g","V":"RedLight2"},
+        {"K":"v","V":"Scanner"},
+        {"K":"T","V":"Shooter"},
+        {"K":"c","V":"Coins"},
+        {"K":"Q","V":"Invisible"},
+        {"K":"b","V":"Lv2Boss"},
+        {"K":"w","V":"Lv2.Wolf"},
+        {"K":"a","V":"Prisoner"}
+
+        
+        
+    ]
+}

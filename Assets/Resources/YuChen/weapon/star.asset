@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ItemOption
   Name: 
   Author: 95
+  Tags: []
   Team: 1
   Body: {fileID: 629948465317790645, guid: ef672722d780ecf4e9d868d0ce938dec, type: 3}
   Art: {fileID: 502171404882056347, guid: 11a1181458f428442a7695f156662e22, type: 3}
   Color: {r: 1, g: 1, b: 1, a: 1}
   Size: 0.8
-  Tags: []
   LevelRange: {x: 0, y: 0}
   Trait: []
   DefaultAttack: 103
@@ -29,9 +29,11 @@ MonoBehaviour:
     Any: []
     Level: 0
     Author: 95
+    MaxCost: 0
+    Where: {x: 999, y: 999, z: 999}
   FloorBody: {fileID: 0}
   FloorArt: {fileID: 0}
-  Damage: 5
+  Damage: 4
   IdealRange: 1.5
   SpeedMult: 1
   ActDuration: 0

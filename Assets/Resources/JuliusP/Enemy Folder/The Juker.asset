@@ -14,17 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CharacterOption
   Name: Juker
   Author: 40
+  Tags:
+  - Common: 102
+    Custom: Shield
+    W: 1
+    Cost: 1
   Team: 3
   Body: {fileID: 629948465317790645, guid: c5227d51ccfec934db9e0058624b573e, type: 3}
   Art: {fileID: 9183382434615233273, guid: ce7ae796c54402f41bf8753d6ec49110, type: 3}
   Color: {r: 1, g: 1, b: 1, a: 1}
   Size: 1.06
-  Tags:
-  - Common: 102
-    Custom: 
-    W: 1
-    Cost: 1
-  LevelRange: {x: 0, y: 0}
+  LevelRange: {x: 0, y: 2}
   Trait:
   - Trait: 3
     Numbers: []
@@ -38,6 +38,7 @@ MonoBehaviour:
       Level: 0
       Author: 0
       MaxCost: 0
+      Where: {x: 999, y: 999, z: 999}
     Builder:
     - Type: 4
       NumType: 0
@@ -62,5 +63,5 @@ MonoBehaviour:
   Speed: 5
   VisionRange: 4
   Held: {fileID: 11400000, guid: 26769a297c5f041b7941964fcdd12a47, type: 2}
-  DefaultAction: 4005
+  DefaultAction: 1001
   DefaultChaseAction: 202
