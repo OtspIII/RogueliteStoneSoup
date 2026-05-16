@@ -155,71 +155,104 @@ public class TemporaryDashAbility : Trait
 }
 
 
-public class FullStunNegation:Trait
+
+
+
+
+//THIS TRAIT IS FOR LV2 BOSS//
+
+public class FullStunNegation : Trait
 {
-
-
-    
     public FullStunNegation()
     {
         Type = Traits.NoTimerStunNegation_JuliusP;
-        AddPreListen(EventTypes.StartAction);
-        AddListen(EventTypes.Damage);
 
+        AddPreListen(EventTypes.StartAction);
+        AddListen(EventTypes.OnTouch);
     }
-  
 
     public override void PreEvent(TraitInfo i, EventInfo e)
     {
         switch (e.Type)
         {
-   
-           
-            //IF ITS A STARTACTION EVENT
             case EventTypes.StartAction:
             {
-                // CHECK IF THE ACTION IS A STUN ACTION//
-                if (e.Get(ActionInfo.Action) == Actions.Stun && i.Who != null && i.Who.Thing != null)
+                if (e.Get(ActionInfo.Action) == Actions.Stun && i.Who != null &&i.Who.Thing != null)
                 {
-                    ThingInfo Player = God.Session.Player;
-                    //CANCEL THE STUN ACTION FROM HAPPENING
                     e.Abort = true;
-
-                    //TAKE NO KNOCKBACK//
-                    i.Who.Thing.TakeKnockback(Player, 0f);
                     Debug.Log("NO STUN");
                 }
                 break;
-                
             }
+        }
+    }
 
+    public override void TakeEvent(TraitInfo i, EventInfo e)
+    {
+        switch (e.Type)
+        {
+            case EventTypes.OnTouch:
+            {
+                GameCollision col = e.Collision;
+
+                if (col == null || col.Other == null)
+                    break;
+
+                ThingInfo other = col.Other.Info;
+
+                if (other == null)
+                    break;
+
+                // attacker = thing that hit us
+                ThingInfo attacker = other;
+
+                // weapon from attacker
+                ThingInfo weapon = attacker.CurrentHeld;
+
+               
+                if (weapon == null && attacker.ChildOf != null)
+                {
+                    weapon = attacker.ChildOf.CurrentHeld;
+                }
+
+                string weaponName = weapon?.GetName(true)?.ToLower();
+
+                string hitName =  other.Name?.ToLower();
 
           
+                //CHECK FOR SWORD NAME//
+                if (weaponName != null && weaponName.Contains("sword"))
+                {
+                   
+                   
+
+                    i.Who.DesiredMove = Vector2.zero;
+                    i.Who.Thing.ActualMove = Vector2.zero;
+
+                    Rigidbody2D rb = i.Who.Thing.gameObject.GetComponent<Rigidbody2D>();
+
+                    if (rb != null)
+                    {
+                        rb.linearVelocity = Vector2.zero;
+                        rb.angularVelocity = 0f;
+                    }
+
+                    i.Who.AddTrait(Traits.IgnoreDamage_JuliusP);
+
+                    break;
+                }
+
+                //CHECK FOR WOLFBANE ARROW//
+                if (weaponName != null && (weaponName.Contains("bow") || hitName.Contains("WolfBaneArrow")))
+                {
+                    Debug.Log("Bow/Arrow knockback allowed");
+
+
+                    i.Who.RemoveTrait(Traits.IgnoreDamage_JuliusP);
+                }
+
+                break;
+            }
         }
-
-       
     }
-
-public override void TakeEvent(TraitInfo i, EventInfo e)
-{
-    switch (e.Type)
-    {
-        case EventTypes.Damage:
-        {
-            if (i?.Who?.Thing == null)
-                return;
-
-            ThingInfo player = God.Session.Player;
-
-            if (player == null)
-                return;
-
-            //i.Who.Thing.TakeKnockback(player, 55f);
-
-            Debug.Log("Damage");
-
-            break;
-        }
-    }
-}
 }

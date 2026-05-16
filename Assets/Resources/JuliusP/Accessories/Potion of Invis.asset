@@ -10,23 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a47d2194617e47469e601e558e7b8b4, type: 3}
-  m_Name: Lv1. Wand
-  m_EditorClassIdentifier: Assembly-CSharp::ItemOption
-  Name: Acidic Wand
+  m_Name: Potion of Invis
+  m_EditorClassIdentifier: 
+  Name: Invis Potion
   Author: 40
   Tags:
-  - Common: 201
+  - Common: 202
     Custom: 
     W: 1
-    Cost: 1
+    Cost: 0
   Team: 1
-  Body: {fileID: 629948465317790645, guid: b4fa405680f33044abe2c4567ecf147f, type: 3}
-  Art: {fileID: 8979405933268748967, guid: ebcd813270bda67479948ef3dd290963, type: 3}
-  Color: {r: 1, g: 1, b: 1, a: 1}
+  Body: {fileID: 629948465317790645, guid: 7ef37acb0fdeb5849995b35a7fdca6ba, type: 3}
+  Art: {fileID: -2880734798192188640, guid: f77ef968c74f7a64c86e3247520c36ec, type: 3}
+  Color: {r: 1, g: 0.50181097, b: 0, a: 1}
   Size: 1
-  LevelRange: {x: 0, y: 2}
+  LevelRange: {x: 3, y: 10}
   Trait:
-  - Trait: 301
+  - Trait: 4023
     Numbers: []
     Prefabs: []
     Acts: []
@@ -40,7 +40,7 @@ MonoBehaviour:
       MaxCost: 0
       Where: {x: 999, y: 999, z: 999}
     Builder: []
-  - Trait: 312
+  - Trait: 313
     Numbers: []
     Prefabs: []
     Acts: []
@@ -56,7 +56,7 @@ MonoBehaviour:
     Builder:
     - Type: 0
       NumType: 0
-      Num: 15
+      Num: 1
       StrType: 0
       Str: 
       ActType: 0
@@ -73,18 +73,34 @@ MonoBehaviour:
       Any: 
       AnyW: 0
       Trait: 0
-  DefaultAttack: 103
+  - Trait: 312
+    Numbers:
+    - Type: 1
+      Value: 1
+    Prefabs: []
+    Acts: []
+    OtherTrait: 0
+    SpawnReq:
+      Fixed: {fileID: 0}
+      Mandatory: []
+      Any: []
+      Level: 0
+      Author: 0
+      MaxCost: 0
+      Where: {x: 999, y: 999, z: 999}
+    Builder: []
+  DefaultAttack: 5
   ToSpawn:
-    Fixed: {fileID: 11400000, guid: 01536af2242f44c0dacd1a89f1543212, type: 2}
+    Fixed: {fileID: 0}
     Mandatory: []
     Any: []
     Level: 0
     Author: 40
     MaxCost: 0
     Where: {x: 999, y: 999, z: 999}
-  FloorBody: {fileID: 0}
+  FloorBody: {fileID: 629948465317790645, guid: 0f8734e4b4d2c3a449506fe0c78c1110, type: 3}
   FloorArt: {fileID: 0}
-  Damage: 1
-  IdealRange: 0.11
-  SpeedMult: 1.77
+  Damage: 0
+  IdealRange: 1.5
+  SpeedMult: 1
   ActDuration: 0

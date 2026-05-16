@@ -22,7 +22,7 @@ public class HeavyKnockback : Trait
                 if (target == i.Who) return;
 
                 // CAUSE KNOCKBACK AWAY FROM TARGET//
-                target.Thing.TakeKnockback(i.Who, 10f);
+                target.Thing.TakeKnockback(i.Who, 17f);
 
                 break;
             }

@@ -31,17 +31,18 @@ public class Scan : ActionScript
     if (player == null || player.Thing == null)
         return;
 
+    
+    if (player.Has(Traits.GainInvis_JuliusP))
+        return;
+
     float dist = Who.Thing.Distance(player);
 
     if (dist > ViewDistance)
         return;
 
-    Vector2 toPlayer =
-        (player.Thing.transform.position -
-         Who.Thing.transform.position).normalized;
+    Vector2 toPlayer =(player.Thing.transform.position - Who.Thing.transform.position).normalized;
 
-    Vector2 forward =
-        Who.Thing.transform.right.normalized;
+    Vector2 forward = Who.Thing.transform.right.normalized;
 
     float dot = Vector2.Dot(forward, toPlayer);
 
@@ -54,7 +55,7 @@ public class Scan : ActionScript
 
     fireCooldown = 0.5f; // fire every 0.8 seconds
 
-    Debug.Log("FIRING FIREBALL");
+    //Debug.Log("FIRING FIREBALL");
 
     // SET TARGET
     Who.SetTarget(player);
@@ -64,12 +65,12 @@ public class Scan : ActionScript
 
     if (fireOpt == null)
     {
-        God.LogError("No EnemyFire found in library");
+       // God.LogError("No EnemyFire found in library");
         return;
     }
 
-    Vector2 spawnPos =
-        Who.Thing.transform.position + (Vector3)(Who.Thing.transform.right * 0.5f + (Who.Thing.transform.up * 0.11f));
+    //OFFSET POS FOR THE FIREBALL//
+    Vector2 spawnPos =  Who.Thing.transform.position + (Vector3)(Who.Thing.transform.right * 0.5f + (Who.Thing.transform.up * 0.11f));
 
     ThingInfo fireball = fireOpt.Create();
     fireball.Spawn(spawnPos);
@@ -78,7 +79,7 @@ public class Scan : ActionScript
 
     if (tc == null)
     {
-        God.LogError("Fireball has no ThingController");
+       // God.LogError("Fireball has no ThingController");
         return;
     }
 

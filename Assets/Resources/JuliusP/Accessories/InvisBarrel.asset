@@ -10,23 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 037523bd7ae983240ad1b7cc3ff106cd, type: 3}
-  m_Name: Acid Pool
+  m_Name: InvisBarrel
   m_EditorClassIdentifier: Assembly-CSharp::ThingOption
-  Name: Acid Pool
+  Name: BarrrierShield
   Author: 40
   Tags:
-  - Common: 400
-    Custom: 
+  - Common: 102
+    Custom: Invisible
     W: 1
     Cost: 1
-  Team: 1
-  Body: {fileID: 629948465317790645, guid: a818902a553ccfa49ba9ef5810b226ca, type: 3}
-  Art: {fileID: 21300000, guid: 3e9a18ec3cf9bf247a86f7408211fd5a, type: 3}
-  Color: {r: 0, g: 1, b: 0.14015651, a: 1}
-  Size: 3.32
-  LevelRange: {x: 1, y: 1}
+  Team: 3
+  Body: {fileID: 629948465317790645, guid: 37c4754857b78e24995335d45e308e0b, type: 3}
+  Art: {fileID: -1362058913294850930, guid: f7ed4d06ee2bd2f4c97d3e34fa915bd9, type: 3}
+  Color: {r: 1, g: 1, b: 1, a: 1}
+  Size: 1.25
+  LevelRange: {x: 0, y: 2}
   Trait:
-  - Trait: 201
+  - Trait: 2
     Numbers: []
     Prefabs: []
     Acts: []
@@ -42,7 +42,7 @@ MonoBehaviour:
     Builder:
     - Type: 0
       NumType: 1
-      Num: 1
+      Num: 2
       StrType: 0
       Str: 
       ActType: 0
@@ -59,7 +59,7 @@ MonoBehaviour:
       Any: 
       AnyW: 0
       Trait: 0
-  - Trait: 4014
+  - Trait: 3
     Numbers: []
     Prefabs: []
     Acts: []
@@ -73,9 +73,9 @@ MonoBehaviour:
       MaxCost: 0
       Where: {x: 999, y: 999, z: 999}
     Builder:
-    - Type: 0
+    - Type: 4
       NumType: 1
-      Num: 1
+      Num: 2
       StrType: 0
       Str: 
       ActType: 0
@@ -83,7 +83,7 @@ MonoBehaviour:
       BoolType: 0
       Bool: 0
       OptionType: 0
-      Option: {fileID: 0}
+      Option: {fileID: 11400000, guid: 5aa4cc291d95547c4a7b320cc4387f03, type: 2}
       VectorType: 0
       Vector: {x: 0, y: 0}
       Fixed: {fileID: 0}
