@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 037523bd7ae983240ad1b7cc3ff106cd, type: 3}
-  m_Name: Potion Barrel
+  m_Name: Coin Barrel
   m_EditorClassIdentifier: Assembly-CSharp::ThingOption
-  Name: Health Barrel
+  Name: BarrrierShield
   Author: 40
   Tags:
   - Common: 102
-    Custom: Health
+    Custom: Resist
     W: 1
     Cost: 1
   Team: 3
@@ -24,7 +24,7 @@ MonoBehaviour:
   Art: {fileID: -1362058913294850930, guid: f7ed4d06ee2bd2f4c97d3e34fa915bd9, type: 3}
   Color: {r: 1, g: 1, b: 1, a: 1}
   Size: 1.25
-  LevelRange: {x: 3, y: 3}
+  LevelRange: {x: 0, y: 2}
   Trait:
   - Trait: 2
     Numbers: []
@@ -83,7 +83,7 @@ MonoBehaviour:
       BoolType: 0
       Bool: 0
       OptionType: 0
-      Option: {fileID: 11400000, guid: 6ea52f9f0d1d35e48b91b53e436681ad, type: 2}
+      Option: {fileID: 11400000, guid: 84b7a2577bce6408b871f39cfd701bb5, type: 2}
       VectorType: 0
       Vector: {x: 0, y: 0}
       Fixed: {fileID: 0}
