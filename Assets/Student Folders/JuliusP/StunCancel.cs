@@ -243,7 +243,6 @@ public class FullStunNegation : Trait
                     i.Who.AddTrait(Traits.IgnoreDamage_JuliusP);
 
 
- 
                     break;
                 }
 

@@ -1,0 +1,19 @@
+xxxxxxxuuuxxxxxxx
+x   x   x   x   x
+x x x x x x x x x
+x   x   x   x   x
+xxx xxx x xxx xxx
+x   x   x   x   x
+x x x       x x x
+x x   x   x   x x
+x x           x x
+x   x         x x
+xxx     3     xxx
+x   x         x x
+x x           x x
+x x   x   x   x x
+x x x       x x x
+x   x xxx xxx   x
+x   x   x   x   x
+x       d       x
+xxxxxxxdddxxxxxxx

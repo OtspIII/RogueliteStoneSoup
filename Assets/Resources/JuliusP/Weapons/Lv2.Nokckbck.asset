@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 666e3856c5664c242bde2f0f953b72bc, type: 3}
-  m_Name: Lv2.WolfBaneArrows
+  m_Name: Lv2.Nokckbck
   m_EditorClassIdentifier: Assembly-CSharp::ProjectileOption
-  Name: Lv2.WolfBaneArrows
+  Name: NoKnockback
   Author: 40
   Tags: []
   Team: 1
@@ -22,7 +22,7 @@ MonoBehaviour:
   Size: 0.7
   LevelRange: {x: 3, y: 3}
   Trait:
-  - Trait: 4017
+  - Trait: 0
     Numbers: []
     Prefabs: []
     Acts: []
@@ -50,5 +50,5 @@ MonoBehaviour:
       MaxCost: 0
       Where: {x: 0, y: 0, z: 0}
     Builder: []
-  Damage: 0
-  Speed: 18
+  Damage: 1
+  Speed: 7.13

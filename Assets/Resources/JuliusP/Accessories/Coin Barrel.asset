@@ -16,7 +16,7 @@ MonoBehaviour:
   Author: 40
   Tags:
   - Common: 102
-    Custom: Resist
+    Custom: CoinBrl
     W: 1
     Cost: 1
   Team: 3
@@ -24,7 +24,7 @@ MonoBehaviour:
   Art: {fileID: -1362058913294850930, guid: f7ed4d06ee2bd2f4c97d3e34fa915bd9, type: 3}
   Color: {r: 1, g: 1, b: 1, a: 1}
   Size: 1.25
-  LevelRange: {x: 0, y: 2}
+  LevelRange: {x: 0, y: 3}
   Trait:
   - Trait: 2
     Numbers: []
@@ -83,7 +83,7 @@ MonoBehaviour:
       BoolType: 0
       Bool: 0
       OptionType: 0
-      Option: {fileID: 11400000, guid: 84b7a2577bce6408b871f39cfd701bb5, type: 2}
+      Option: {fileID: 11400000, guid: 15b7d2f294be14884ad32f2fd2c61e84, type: 2}
       VectorType: 0
       Vector: {x: 0, y: 0}
       Fixed: {fileID: 0}

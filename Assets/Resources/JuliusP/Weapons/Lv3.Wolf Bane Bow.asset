@@ -10,34 +10,34 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a47d2194617e47469e601e558e7b8b4, type: 3}
-  m_Name: Lv2.Sword
-  m_EditorClassIdentifier: 
-  Name: Lv2.Sword
+  m_Name: Lv3.Wolf Bane Bow
+  m_EditorClassIdentifier: Assembly-CSharp::ItemOption
+  Name: 'Lv2. Wolf Bane Bow '
   Author: 40
   Tags:
   - Common: 201
-    Custom: Lv2.Sword
+    Custom: Lv2.Wolf
     W: 1
     Cost: 1
   Team: 1
   Body: {fileID: 629948465317790645, guid: b4fa405680f33044abe2c4567ecf147f, type: 3}
-  Art: {fileID: 21300000, guid: 6c7f9cbfcc8f8d145913c8ae22c5bd51, type: 3}
+  Art: {fileID: -2510476293373519475, guid: 785f0d2aa379e9c469629106cdce1fa8, type: 3}
   Color: {r: 1, g: 1, b: 1, a: 1}
-  Size: 1
-  LevelRange: {x: 3, y: 6}
+  Size: 0.61
+  LevelRange: {x: 0, y: 2}
   Trait: []
-  DefaultAttack: 101
+  DefaultAttack: 103
   ToSpawn:
-    Fixed: {fileID: 0}
+    Fixed: {fileID: 11400000, guid: 91140c16cfb034d3b95c300b8f1a3a00, type: 2}
     Mandatory: []
     Any: []
-    Level: 2
+    Level: 0
     Author: 40
     MaxCost: 0
     Where: {x: 999, y: 999, z: 999}
   FloorBody: {fileID: 0}
   FloorArt: {fileID: 0}
-  Damage: 2
+  Damage: 1
   IdealRange: 1.5
-  SpeedMult: 1
+  SpeedMult: 0.91
   ActDuration: 0

@@ -583,12 +583,24 @@ public override void BuildMainPath()
 
         }
 
-         if(g.X == 3 && g.Y == 4)
+        if(g.X == 3 && g.Y == 4)
         {
                 
 
      
             return o.HasTag("Lv3.Generic") ? 999 : 0;
+
+
+
+        }
+
+
+        if(g.X == 3 && g.Y == 5)
+        {
+                
+
+     
+            return o.HasTag("Lv3.Generic 2") ? 999 : 0;
 
 
 

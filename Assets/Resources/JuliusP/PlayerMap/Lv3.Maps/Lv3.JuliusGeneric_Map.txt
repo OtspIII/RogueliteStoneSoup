@@ -1,20 +1,20 @@
-xxxxxxxxxxxxxxxxx
-x   x     x     x
-x xxx xxxxx xxx x
-x x   x   x   x x
-x x xxx x xxx x x
-x x   x x   x x x
-x xxx xxxxx x x x
-x     x     x   x
-xxxxx x xxxxxxxxx
-l     x   x     x
-l xxxxx x x xxx x
-l     x x x x   x
-xxxxx x x x x xxx
-x   x x x x x   x
-x x x x x x xxx x
-x x   x   x     x
-x xxxxxxxxxxxxx x
-x   x     x     x
-x   x     x     x
-xxxxxxxxxxxxxxxxx
+xxxxxxxuuuxxxxxxx
+x               x
+x       G       x
+x     xxxxx     x
+x     x   x     x
+x     x e x     x
+x     xxxxx     x
+x               x
+x               x
+xxx           xxx
+x               x
+x               x
+x   1           x
+x               x
+x   xxx   xxx   x
+x   x       x   x
+x   x       x   x
+x               x
+x               x
+xxxxxxxdddxxxxxxx

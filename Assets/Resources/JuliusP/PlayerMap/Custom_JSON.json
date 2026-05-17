@@ -33,7 +33,10 @@
         {"K":"h","V":"Health"}, 
         {"K":"n","V":"ShieldEnem"},
         {"K":"O","V":"CoinBrl"},
-        {"K":"e","V":"Shield"}
+        {"K":"e","V":"Shield"},
+        {"K":"2","V":"Lv2.Sword"},
+        {"K":"3","V":"Archer"}
+
 
         
         

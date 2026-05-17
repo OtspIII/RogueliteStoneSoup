@@ -73,6 +73,8 @@ public static class Parser
         TraitDict.Add(Traits.AddTraitByScore_JuliusP, new AddTraitByScore());
         TraitDict.Add(Traits.Lv2RedLight_JuliusP,new Lv2RedLight());
         TraitDict.Add(Traits.TempInvis_JuliusP, new InvisPotion_JuliusP());
+        TraitDict.Add(Traits.ShieldTrait_JuliusP, new ShieldTrait());
+
 
        
 

@@ -16,5 +16,5 @@ xxxxxxx   xxxxxxx
 xHHHxxx   xxxhhhx
 x   xxx   xxx   x
 x               x
-x       P       x
+x2      P       x
 xxxxxxxxxxxxxxxxx
