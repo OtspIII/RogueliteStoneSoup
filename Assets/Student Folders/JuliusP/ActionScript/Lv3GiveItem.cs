@@ -4,7 +4,7 @@ using System.Collections;
 using UnityEngine;
 using System.Collections;
 
-public class GiveItem_Lv2 : ActionScript
+public class GiveItem_Lv3 : ActionScript
 {
     bool canFollow = false;
 
@@ -16,9 +16,9 @@ public class GiveItem_Lv2 : ActionScript
 
     ThingInfo ExitRef;
 
-    public GiveItem_Lv2(ThingInfo who, EventInfo e = null)
+    public GiveItem_Lv3(ThingInfo who, EventInfo e = null)
     {
-        Setup(Actions.GiveItem_JuliusP, who, true);
+        Setup(Actions.GiveItem_Lv3_JuliusP, who, true);
         HaltMomentum = false;
         MoveMult = 0.2f;
         Duration = Mathf.Infinity;
@@ -44,7 +44,7 @@ public class GiveItem_Lv2 : ActionScript
         // STORE EXIT 
         ExitRef = God.GM.Exit;
 
-        // REMOVE EXIT TRAIT
+        // REMOVE EXIT TRAIT 
         if (ExitRef != null && ExitRef.Has(Traits.Exit))
         {
             ExitRef.RemoveTrait(Traits.Exit);
@@ -170,6 +170,8 @@ public class GiveItem_Lv2 : ActionScript
             God.C(RestoreExit());
         }
 
+         //ADD SCORE//
+         player.TakeEvent(God.E(EventTypes.AddScore).Set(10));
       
 
         Complete();

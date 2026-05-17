@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a47d2194617e47469e601e558e7b8b4, type: 3}
   m_Name: Lv3.Wolf Bane Bow
   m_EditorClassIdentifier: Assembly-CSharp::ItemOption
-  Name: 'Lv2. Wolf Bane Bow '
+  Name: Lv3.Wolf Bane
   Author: 40
   Tags:
   - Common: 201
-    Custom: Lv2.Wolf
+    Custom: Lv3.Wolf
     W: 1
     Cost: 1
   Team: 1

@@ -1,20 +1,20 @@
 xxxxxxxuuuxxxxxxx
-x               x
-x       G       x
-x     xxxxx     x
-x     x   x     x
-x     x e x     x
-x     xxxxx     x
-x               x
-x               x
-xxx           xxx
-x               x
-x               x
-x   1           x
-x               x
-x   xxx   xxx   x
-x   x       x   x
-x   x       x   x
-x               x
-x               x
+x...............x
+x...............x
+x.....xxxxx.....x
+x..G..x...x.....x
+x.....x.e.x.....x
+x.....xxxxx.....x
+x...............x
+x...............x
+xxx...........xxx
+x...............x
+x...............x
+x...............x
+x...............x
+x...xxx...xxx...x
+x...x.......x...x
+x...x.......x...x
+x...............x
+x...............x
 xxxxxxxdddxxxxxxx

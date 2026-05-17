@@ -3,7 +3,10 @@ using UnityEngine;
 public class Slowed : Trait
 {
     float timer;
+    float originalSpeed;
+
     bool applied;
+    bool hasOriginal;
 
     public Slowed()
     {
@@ -24,14 +27,24 @@ public class Slowed : Trait
             case EventTypes.Setup:
             {
                 applied = false;
+                hasOriginal = false;
                 timer = 0f;
                 break;
             }
 
             case EventTypes.OnTouch:
             {
-                applied = true;
+            
+                if (applied) return;
+
+                originalSpeed = thing.CurrentSpeed;
+                hasOriginal = true;
+
+                thing.CurrentSpeed = 0f;
+
                 timer = 1.9f;
+                applied = true;
+
                 break;
             }
 
@@ -41,12 +54,14 @@ public class Slowed : Trait
 
                 timer -= Time.deltaTime;
 
-                // 🔥 SAFE SLOW: only modify behavior, not core speed
-                thing.DesiredMove = Vector2.zero;
-
                 if (timer <= 0f)
                 {
+                    if (hasOriginal)
+                        thing.CurrentSpeed = originalSpeed;
+
                     applied = false;
+                    hasOriginal = false;
+
                     thing.RemoveTrait(Traits.Slowed_JuliusP);
                 }
 

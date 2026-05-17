@@ -606,6 +606,18 @@ public override void BuildMainPath()
 
         }
 
+
+        if(g.X == 3 && g.Y == 6)
+        {
+                
+
+     
+            return o.HasTag("Lv3.Generic 3") ? 999 : 0;
+
+
+
+        }
+
         }
   
     return o.HasTag(t.ToString()) ? 1 : 0;

@@ -1,19 +1,19 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-public class RedGreen : Trait
+public class Lv3RedLight : Trait
 {
     bool canStart = false;
     bool isRed = false;
 
-    float distance = 20f;
+    float distance = 8f;
     float timer = 0f;
 
     Dictionary<SpriteRenderer, Color> originalColors = new Dictionary<SpriteRenderer, Color>();
 
-    public RedGreen()
+    public Lv3RedLight()
     {
-        Type = Traits.RedLight;
+        Type = Traits.Lv3RedLight_JuliusP;
 
         AddListen(EventTypes.Update);
         AddListen(EventTypes.Death); 
@@ -117,7 +117,7 @@ public class RedGreen : Trait
 
                 God.GM.SetUI("PlayMessage", null , 2);
 
-                i.Who.RemoveTrait(Traits.RedLight);
+                i.Who.RemoveTrait(Traits.Lv3RedLight_JuliusP);
                 break;
             }
 
@@ -131,11 +131,10 @@ public class RedGreen : Trait
                 ThingInfo Player = God.Session.Player;
 
 
-                if(Player != null && !i.Who.Has(Traits.RedLight))
+                if(Player != null && !i.Who.Has(Traits.Lv3RedLight_JuliusP))
                 {
                         
-                    i.Who.AddTrait(Traits.RedLight);
-
+                    i.Who.AddTrait(Traits.Lv3RedLight_JuliusP);
 
                  }
 

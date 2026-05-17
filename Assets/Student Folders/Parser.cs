@@ -74,6 +74,8 @@ public static class Parser
         TraitDict.Add(Traits.Lv2RedLight_JuliusP,new Lv2RedLight());
         TraitDict.Add(Traits.TempInvis_JuliusP, new InvisPotion_JuliusP());
         TraitDict.Add(Traits.ShieldTrait_JuliusP, new ShieldTrait());
+        TraitDict.Add(Traits.Lv3RedLight_JuliusP, new Lv3RedLight());
+       
 
 
        
@@ -170,6 +172,9 @@ public static class Parser
             case Actions.EvasiveJuke_JuliusP:return new EvasiveJuke(who, e);
             case Actions.BleakWatcher_JuliusP: return new BleakWatcher(who, e);
             case Actions.Scan_JuliusP: return new Scan(who, e);
+            case Actions.BarrierShieldType2_JuliusP: return new Lv1BarrierShieldType2_JuliusP(who, e);
+            case Actions.GiveItem_Lv3_JuliusP: return new GiveItem_Lv3(who, e);
+
             
 
          
@@ -350,6 +355,7 @@ public enum Traits
     Lv2RedLight_JuliusP = 4022,
     TempInvis_JuliusP = 4023,
     ShieldTrait_JuliusP = 4024,
+    Lv3RedLight_JuliusP = 4025,
 
 
 
@@ -467,6 +473,9 @@ public enum Actions
     slowingproj_JuliusP = 4013,
     Berserker_JuliusP = 4014,
     Scan_JuliusP = 4015,
+    BarrierShieldType2_JuliusP = 4016,
+    GiveItem_Lv3_JuliusP = 4017,
+
 
 
    
