@@ -14,15 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ItemOption
   Name: 'Magic wand '
   Author: 25
+  Tags: []
   Team: 1
   Body: {fileID: 629948465317790645, guid: b4fa405680f33044abe2c4567ecf147f, type: 3}
   Art: {fileID: 8979405933268748967, guid: ebcd813270bda67479948ef3dd290963, type: 3}
   Color: {r: 1, g: 1, b: 1, a: 1}
   Size: 1
-  Tags: []
   LevelRange: {x: 0, y: 10}
   Trait: []
-  DefaultAttack: 103
+  DefaultAttack: 101
   ToSpawn:
     Fixed: {fileID: 11400000, guid: 659e7001c98a30e4d8bd0a102ba43328, type: 2}
     Mandatory: []
@@ -30,9 +30,10 @@ MonoBehaviour:
     Level: 0
     Author: 25
     MaxCost: 0
+    Where: {x: 999, y: 999, z: 999}
   FloorBody: {fileID: 0}
   FloorArt: {fileID: 0}
-  Damage: 5
+  Damage: 2
   IdealRange: 1.5
   SpeedMult: 1
   ActDuration: 0
