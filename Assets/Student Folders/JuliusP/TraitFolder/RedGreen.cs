@@ -11,6 +11,9 @@ public class RedGreen : Trait
 
     Dictionary<SpriteRenderer, Color> originalColors = new Dictionary<SpriteRenderer, Color>();
 
+
+    Level_JuliusP LJP;
+
     public RedGreen()
     {
         Type = Traits.RedLight;
@@ -105,6 +108,15 @@ public class RedGreen : Trait
                 }
 
                 break;
+
+
+
+              
+
+
+
+
+
             }
 
             //SETS COLOR OF FLOOR BACK ON DEATH//
@@ -118,6 +130,20 @@ public class RedGreen : Trait
                 God.GM.SetUI("PlayMessage", null , 2);
 
                 i.Who.RemoveTrait(Traits.RedLight);
+
+                int Level = God.Session.Level;
+                
+                if(Level == 3)
+                {
+                    
+                 LJP.Lv3FirstRedLightKilled = true;       
+                
+
+
+                }
+
+
+
                 break;
             }
 
@@ -139,6 +165,12 @@ public class RedGreen : Trait
 
                  }
 
+
+                //LEVEL 3 LOGIC//
+
+                LJP = God.LB as Level_JuliusP;
+
+               
 
                 break;
 

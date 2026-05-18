@@ -1,0 +1,20 @@
+xxxxxxxxxxxxxxxxx
+xxxxxfffffffxxxxx
+x   xfffffffx   x
+x e xfffffffx   x
+x   xfffffffx   x
+x   xfffEfffx   x
+xxxxxfffffffxxxxx
+x   xfffffffx   x
+x   xfffffffx   x
+x   xfffffffx   x
+xxxxxfffffffxxxxx
+xOOOxfffffffxMMMx
+x   xfffffffx   x
+xfffffffffffffffx
+xxxxxxxfffxxxxxxx
+xfffxxxfffxxxxxxx
+xfffxxxfffxxxfffx
+xfffffffffffffffx
+xfffffffffffffffx
+xxxxxxxdddxxxxxxx

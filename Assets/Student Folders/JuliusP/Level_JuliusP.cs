@@ -17,6 +17,21 @@ public class Level_JuliusP : LevelBuilder
     public bool Lv2RedLightKilled = false;
 
 
+    //LVEL 3 BOOLS//
+
+    public bool Lv3FirstRedLightKilled = false;
+
+    public bool Lv3FirstLevel2ShieldEnemyKilled = false;
+
+    
+    public bool Lv3RedLight3Killed = false;
+
+    public bool Lv3FinalShieldEnemKilled = false;
+
+
+    public bool Lv3FinalDoorCanOpen = false;
+
+
     
 
     public float SpecialRoomChance = 0.3f;
@@ -127,7 +142,7 @@ public override void BuildMainPath()
 
         GeoTile Prev = PlayerSpawn;
 
-        for (int y = centerY + 1; y <= 8; y++)
+        for (int y = centerY + 1; y <= 5; y++)
         {
             GeoTile next = GetGeo(centerX, y);
 
@@ -141,7 +156,7 @@ public override void BuildMainPath()
             prev = next;
         }
 
-        Exit = GetGeo(centerX, 8);
+        Exit = GetGeo(centerX, 7);
         Exit.SetPath(GeoTile.GeoTileTypes.Exit);
 
         return;
@@ -618,6 +633,21 @@ public override void BuildMainPath()
 
         }
 
+
+        //EXIT ROOM//
+        if(g.X == 3 && g.Y == 7)
+        {
+                
+
+     
+            return o.HasTag("Lv3.Exit") ? 999 : 0;
+
+
+
+        }
+
+
+
         }
   
     return o.HasTag(t.ToString()) ? 1 : 0;
@@ -758,13 +788,13 @@ void BuildLevel3(int centerX, int centerY, int leftsideY)
     AddGeo(new GeoTile(centerX, centerY, this));
 
     // GO UP FROM (3,3)
-    for(int i = 1; i < 6; i++)
+    for(int i = 1; i < 5; i++)
     {
         AddGeo(new GeoTile(centerX, centerY + i, this));
     }
 
-    // OPTIONAL SIDE BRANCHES (kept minimal)
-    AddGeo(new GeoTile(centerX - 1, centerY + 2, this));
-    AddGeo(new GeoTile(centerX + 1, centerY + 4, this));
+    
+
+  
 }
 }

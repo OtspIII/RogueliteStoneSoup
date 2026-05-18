@@ -17,6 +17,8 @@ public class BarrierShieldAction_JuliusP : ActionScript
     bool ended = false;
     bool locked = false;
 
+
+
     public BarrierShieldAction_JuliusP(ThingInfo who, EventInfo e = null)
     {
         Setup(Actions.BarrierShield_JuliusP, who, true);
@@ -259,6 +261,8 @@ public class Lv1BarrierShieldType2_JuliusP : ActionScript
     {
         base.End();
 
+        int Level = God.Session.Level;
+        
         if (Who.Has(Traits.IgnoreDamage_JuliusP))
             Who.RemoveTrait(Traits.IgnoreDamage_JuliusP);
 
@@ -275,6 +279,10 @@ public class Lv1BarrierShieldType2_JuliusP : ActionScript
         Actions next = NextAction();
         if (next != null && Who.Thing != null)
             Who.Thing.DoAction(next);
+
+
+        
+
     }
 
     void SpawnShields()
@@ -341,6 +349,10 @@ public class Lv2_BarrierShield_JuliusP : ActionScript
     private Rigidbody2D EnemyRb;
     float RotateSpeed = 120f;
 
+
+    Level_JuliusP LJP;
+
+
     public Lv2_BarrierShield_JuliusP(ThingInfo who, EventInfo e = null)
     {
         Setup(Actions.Lv2_BarrierShield_JuliusP, who);
@@ -361,6 +373,9 @@ public class Lv2_BarrierShield_JuliusP : ActionScript
         EnemyRb = Who.Thing?.GetComponent<Rigidbody2D>();
         if (EnemyRb != null)
             EnemyRb.simulated = true;
+
+     LJP = God.LB as Level_JuliusP;
+            
     }
 
     public override void OnRun()
@@ -450,6 +465,8 @@ public class Lv2_BarrierShield_JuliusP : ActionScript
     {
         base.End();
 
+        int Level = God.Session.Level;
+        
         if (Who.Has(Traits.IgnoreDamage_JuliusP))
             Who.RemoveTrait(Traits.IgnoreDamage_JuliusP);
 
@@ -466,7 +483,32 @@ public class Lv2_BarrierShield_JuliusP : ActionScript
         Actions next = NextAction();
         if (next != null && Who.Thing != null)
             Who.Thing.DoAction(next);
-    }
+
+
+
+     
+        if(Level == 3)
+        {
+                    
+         //LJP.Lv3FirstLevel2ShieldEnemyKilled = true;       
+            
+
+        }
+
+      
+        if(Level == 3 && LJP.Lv3FirstLevel2ShieldEnemyKilled && LJP.Lv3FirstRedLightKilled && LJP.Lv3RedLight3Killed)
+        {
+                    
+           // LJP.Lv3FinalShieldEnemKilled = true;  
+            
+
+        }
+   
+
+
+
+        }
+    
 
     void SpawnShields()
     {

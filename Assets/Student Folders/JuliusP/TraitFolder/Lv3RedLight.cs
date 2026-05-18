@@ -11,6 +11,10 @@ public class Lv3RedLight : Trait
 
     Dictionary<SpriteRenderer, Color> originalColors = new Dictionary<SpriteRenderer, Color>();
 
+
+    Level_JuliusP LJP;
+
+
     public Lv3RedLight()
     {
         Type = Traits.Lv3RedLight_JuliusP;
@@ -118,6 +122,22 @@ public class Lv3RedLight : Trait
                 God.GM.SetUI("PlayMessage", null , 2);
 
                 i.Who.RemoveTrait(Traits.Lv3RedLight_JuliusP);
+
+
+                int Level = God.Session.Level;
+                
+                if(Level == 3 && LJP.Lv3FirstLevel2ShieldEnemyKilled && LJP.Lv3FirstRedLightKilled)
+                {
+                    
+                 LJP.Lv3RedLight3Killed = true;   
+
+                 Debug.Log("killed");    
+                
+
+
+                }
+
+
                 break;
             }
 
@@ -136,7 +156,13 @@ public class Lv3RedLight : Trait
                         
                     i.Who.AddTrait(Traits.Lv3RedLight_JuliusP);
 
-                 }
+                }
+
+
+
+                //LEVEL 3 LOGIC//
+
+                LJP = God.LB as Level_JuliusP;
 
 
                 break;

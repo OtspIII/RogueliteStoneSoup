@@ -10,23 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 037523bd7ae983240ad1b7cc3ff106cd, type: 3}
-  m_Name: HealthPool
+  m_Name: Exit
   m_EditorClassIdentifier: 
-  Name: Health Pool
+  Name: JuliusExit
   Author: 40
   Tags:
-  - Common: 0
-    Custom: Heal
+  - Common: 401
+    Custom: Exit
     W: 1
     Cost: 1
   Team: 1
   Body: {fileID: 629948465317790645, guid: 073ebe890d72bac48bacd0748bd84afc, type: 3}
   Art: {fileID: 0}
-  Color: {r: 0.017205596, g: 1, b: 0, a: 1}
-  Size: 1.05
-  LevelRange: {x: 0, y: 4}
+  Color: {r: 0.4203055, g: 1, b: 0, a: 1}
+  Size: 1
+  LevelRange: {x: 0, y: 3}
   Trait:
-  - Trait: 7004
+  - Trait: 200
     Numbers: []
     Prefabs: []
     Acts: []
@@ -39,23 +39,4 @@ MonoBehaviour:
       Author: 0
       MaxCost: 0
       Where: {x: 999, y: 999, z: 999}
-    Builder:
-    - Type: 0
-      NumType: 1
-      Num: 1
-      StrType: 0
-      Str: 
-      ActType: 0
-      Act: 0
-      BoolType: 0
-      Bool: 0
-      OptionType: 0
-      Option: {fileID: 0}
-      VectorType: 0
-      Vector: {x: 0, y: 0}
-      Fixed: {fileID: 0}
-      Mandatory: 
-      MandatoryW: 0
-      Any: 
-      AnyW: 0
-      Trait: 0
+    Builder: []

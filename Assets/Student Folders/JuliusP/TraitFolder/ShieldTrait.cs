@@ -40,7 +40,7 @@ public class ShieldTrait : Trait
                 // ONLY BOW / ARROW CHECK
                 if ((weaponName != null && weaponName.Contains("wolfbane bow")) || (hitName != null && hitName.Contains("lv2.wolfbanearrows")))
                 {
-                    Debug.Log("Wolfbane arrow hit shield");
+                   // Debug.Log("Wolfbane arrow hit shield");
 
                     i.Who.Destruct(i.Who);
                     break;
@@ -49,7 +49,7 @@ public class ShieldTrait : Trait
                 // SWORD CASE → GIVE IMMUNITY
                 if (weaponName != null && weaponName.Contains("sword"))
                 {
-                    Debug.Log("Sword hit shield → ignoring damage");
+                    //Debug.Log("Sword hit shield → ignoring damage");
 
                     i.Who.AddTrait(Traits.IgnoreDamage_JuliusP);
                     break;

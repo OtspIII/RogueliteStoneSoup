@@ -1,12 +1,10 @@
 using UnityEngine;
 using System.Collections;
 
-using UnityEngine;
-using System.Collections;
-
 public class GiveItem_Lv3 : ActionScript
 {
     bool canFollow = false;
+    bool isEnded = false;
 
     private ThingInfo itemToGive;
 
@@ -18,7 +16,8 @@ public class GiveItem_Lv3 : ActionScript
 
     public GiveItem_Lv3(ThingInfo who, EventInfo e = null)
     {
-        Setup(Actions.GiveItem_Lv3_JuliusP, who, true);
+        Setup(Actions.GiveItem_JuliusP, who, true);
+
         HaltMomentum = false;
         MoveMult = 0.2f;
         Duration = Mathf.Infinity;
@@ -41,22 +40,26 @@ public class GiveItem_Lv3 : ActionScript
         Who.AddTrait(Traits.IgnoreDamage_JuliusP);
         Who.AddTrait(Traits.NoTimerStunNegation_JuliusP);
 
-        // STORE EXIT 
-        ExitRef = God.GM.Exit;
+        // STORE EXIT
+        ExitRef = God.GM != null ? God.GM.Exit : null;
 
-        // REMOVE EXIT TRAIT 
-        if (ExitRef != null && ExitRef.Has(Traits.Exit))
+        // REMOVE EXIT TRAIT
+        if (ExitRef != null && ExitRef.Thing != null)
         {
             ExitRef.RemoveTrait(Traits.Exit);
+            Debug.Log("Removed Exit Trait");
         }
 
-        God.C(GiveItemLogic());
-
         LJP = God.LB as Level_JuliusP;
+
+        God.C(GiveItemLogic());
     }
 
     public override void OnRun()
     {
+        if (isEnded)
+            return;
+
         if (canFollow &&
             Who != null &&
             Who.Thing != null &&
@@ -70,18 +73,20 @@ public class GiveItem_Lv3 : ActionScript
             Who.Thing.transform.position = (Vector2)p.transform.position + offset;
             Who.Thing.transform.rotation = p.transform.rotation;
         }
+
+        if (Who != null && !Who.Has(Traits.IgnoreDamage_JuliusP))
+            Who.AddTrait(Traits.IgnoreDamage_JuliusP);
     }
 
     private IEnumerator GiveItemLogic()
     {
         ThingInfo player = God.Session.Player;
-        ThingInfo Exit = God.GM.Exit;
-
-        if (Exit != null && Exit.Has(Traits.Exit))
-            Exit.RemoveTrait(Traits.Exit);
 
         while (!canFollow)
         {
+            if (isEnded)
+                yield break;
+
             if (Who == null || Who.Thing == null ||
                 player == null || player.Thing == null)
             {
@@ -98,31 +103,41 @@ public class GiveItem_Lv3 : ActionScript
 
                 yield return new WaitForSeconds(1.5f);
 
-                if (player != null)
-                    player.CurrentSpeed = spd;
+                if (isEnded) yield break;
 
+                player.CurrentSpeed = spd;
                 God.GM.SetUI("TradeMessage", null, 2);
 
                 canFollow = true;
 
-                if (LJP != null)
-                    LJP.Lv2AllyFound = true;
+                if (LJP != null && LJP.Lv3FirstRedLightKilled && LJP.Lv3FirstLevel2ShieldEnemyKilled && LJP.Lv3RedLight3Killed && LJP.Lv3FinalShieldEnemKilled)
+                {
+                    
+                    LJP.Lv3FinalDoorCanOpen = true;
+
+
+                }
+                   
             }
 
             yield return null;
         }
 
+        ThingInfo exit = ExitRef;
+
         while (true)
         {
+            if (isEnded) yield break;
+
             if (Who == null || Who.Thing == null ||
                 player == null || player.Thing == null ||
-                Exit == null || Exit.Thing == null)
+                exit == null || exit.Thing == null)
             {
                 yield return null;
                 continue;
             }
 
-            if (player.Thing.Distance(Exit.Thing) < 1f)
+            if (player.Thing.Distance(exit.Thing) < 2.6f)
                 break;
 
             yield return null;
@@ -138,17 +153,21 @@ public class GiveItem_Lv3 : ActionScript
         originalPlayerSpeed = player.CurrentSpeed;
         player.CurrentSpeed = 0f;
 
-        if (Who != null && Who.Thing != null &&
-            player != null && player.Thing != null)
+        ThingController whoThing = Who != null ? Who.Thing : null;
+        ThingController playerThing = player != null ? player.Thing : null;
+
+        if (whoThing != null && playerThing != null)
         {
-            Who.Thing.LookAt(player.Thing, 0f);
+            whoThing.LookAt(playerThing, 0f);
         }
 
         God.GM.SetUI("TradeMessage", "Thank you... please take this!", 2);
 
         yield return new WaitForSeconds(1.2f);
 
-        if (Who != null && itemToGive != null)
+        if (isEnded) yield break;
+
+        if (itemToGive != null && Who != null)
             Who.DropHeld(false);
 
         yield return new WaitForSeconds(0.5f);
@@ -158,40 +177,39 @@ public class GiveItem_Lv3 : ActionScript
         if (player != null)
             player.CurrentSpeed = originalPlayerSpeed;
 
-        if (Who != null)
+        // RESTORE EXIT TRAIT (SAFE CHECK FIXED)
+        if (ExitRef != null && ExitRef.Thing != null)
         {
+            ExitRef.AddTrait(Traits.Exit);
+            Debug.Log("Restored Exit Trait");
+        }
+
+        if (Who != null && Who.Has(Traits.IgnoreDamage_JuliusP))
             Who.RemoveTrait(Traits.IgnoreDamage_JuliusP);
+
+        if (Who != null && Who.Has(Traits.NoTimerStunNegation_JuliusP))
             Who.RemoveTrait(Traits.NoTimerStunNegation_JuliusP);
-        }
 
-   
-        if (ExitRef != null)
-        {
-            God.C(RestoreExit());
-        }
+        isEnded = true;
 
-         //ADD SCORE//
-         player.TakeEvent(God.E(EventTypes.AddScore).Set(10));
-      
+        if (Who != null && Who.Thing != null)
+            God.C(DestroyAfterEnd());
 
         Complete();
+    }
+
+    private IEnumerator DestroyAfterEnd()
+    {
+        yield return null;
 
         if (Who != null)
             Who.Destruct(Who);
     }
 
-    private IEnumerator RestoreExit()
+    public override void End()
     {
-        yield return null; 
-
-        if (ExitRef != null)
-        {
-            if (!ExitRef.Has(Traits.Exit))
-            {
-                ExitRef.AddTrait(Traits.Exit);
-                Debug.Log("Exit trait restored successfully (delayed safe)");
-            }
-        }
+        isEnded = true;
+        base.End();
     }
 
     public override Actions NextAction()

@@ -75,6 +75,7 @@ public static class Parser
         TraitDict.Add(Traits.TempInvis_JuliusP, new InvisPotion_JuliusP());
         TraitDict.Add(Traits.ShieldTrait_JuliusP, new ShieldTrait());
         TraitDict.Add(Traits.Lv3RedLight_JuliusP, new Lv3RedLight());
+        TraitDict.Add(Traits.DetectDeath_JuliusP, new DetectDeath());
        
 
 
@@ -356,6 +357,7 @@ public enum Traits
     TempInvis_JuliusP = 4023,
     ShieldTrait_JuliusP = 4024,
     Lv3RedLight_JuliusP = 4025,
+    DetectDeath_JuliusP = 4026,
 
 
 
