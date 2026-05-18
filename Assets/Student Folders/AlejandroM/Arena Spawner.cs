@@ -11,7 +11,7 @@ public class ArenaSpawner : MonoBehaviour
     int lastBeatNumber = -1;
 
     float beatInterval;
-    float beatWindow = 0.90f; // Timing 
+    float beatWindow = 0.90f; // Timing window for when you press arrow keys 
 
     float spawnDistance = 9f; // The distance the enemies spawn away from the player
     float meleeHitRange = 4f; // how close the player is 
@@ -20,7 +20,7 @@ public class ArenaSpawner : MonoBehaviour
 
     int currentLevel;
     int score = 0;
-    int currentSong = 2;
+    int currentSong = 1;
     bool switchedToSong2 = false;
 
     List<ThingInfo> spawnedEnemies = new List<ThingInfo>(); // list of all currently spawned enemies 
@@ -30,28 +30,28 @@ public class ArenaSpawner : MonoBehaviour
     {
         yield return new WaitForSeconds(0.5f);
 
-        RemoveWalls();
-        PlayMusic();
-        StartCoroutine(BeatPulse());
+        RemoveWalls(); 
+        PlayMusic(); 
+        StartCoroutine(BeatPulse()); // checkes the song beats 
         beatInterval = 60f / bpm;
 
-        currentLevel = Mathf.Max(1, God.Session.Level);
+        currentLevel = Mathf.Max(1, God.Session.Level); // Game starts at level 1
         UpdateRhythmUI();
 
         yield return new WaitForSeconds(2f);
 
-        StartCoroutine(LevelWaveLoop());
+        StartCoroutine(LevelWaveLoop()); //Starts the enemies wave
     }
 
 
     // Runs frames and attack inputs 
-    // When the players click the arrows at a 
+    
     void Update()
     {
         CheckDefeatedEnemies();
         RemoveEnemiesTouchingPlayer();
         CheckSongSwitch();
-
+        // arrow controls 
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
             TryDirectionAttack(Vector2.up);
@@ -76,7 +76,7 @@ public class ArenaSpawner : MonoBehaviour
             if (musicSource == null)
                 return;
 
-            // When Song 1 finishes, switch to Song 2
+            // When Song 1 finishes switches to Song 2
             if (currentSong == 1 && !switchedToSong2 && musicSource.time >= musicSource.clip.length - 0.1f)
             {
                 switchedToSong2 = true;
@@ -87,7 +87,7 @@ public class ArenaSpawner : MonoBehaviour
                 lastBeatNumber = -1;
                 spawnedBeatIndexes.Clear();
 
-                // Set Song 2 timing here
+                // Song 2 settings 
                 bpm = 145f;
                 beatInterval = 60f / bpm;
                 beatOffset = 0.15f;
@@ -148,11 +148,11 @@ public class ArenaSpawner : MonoBehaviour
 
                     if (currentChart[i].allowRandomEnemy && isDiagonal)
                     {
-                        SpawnRandomEnemy(spawnPosition); // Wizard or Robin Hood only
+                        SpawnRandomEnemy(spawnPosition); // Wizard or Robin Hood enemy spawn
                     }
                     else
                     {
-                        SpawnEnemy(spawnPosition); // Hater only
+                        SpawnEnemy(spawnPosition); // Hater  enemy spawn 
                     }
 
                     spawnedBeatIndexes.Add(i);
