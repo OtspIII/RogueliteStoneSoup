@@ -10,19 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 037523bd7ae983240ad1b7cc3ff106cd, type: 3}
-  m_Name: Generic Floor 4
+  m_Name: Generic Floor 5
   m_EditorClassIdentifier: Assembly-CSharp::ThingOption
   Name: Lv4.Floor
   Author: 40
   Tags:
   - Common: 601
-    Custom: Lv4.Floor
+    Custom: Lv4.Floor 2
     W: 100
     Cost: 0
   Team: 1
   Body: {fileID: -7003572734060779326, guid: b70c9929269440041a75e729dc544a99, type: 3}
   Art: {fileID: 0}
-  Color: {r: 0.5377358, g: 0.063412234, b: 0.063412234, a: 1}
+  Color: {r: 0, g: 0, b: 0, a: 1}
   Size: 1
-  LevelRange: {x: 0, y: 4}
+  LevelRange: {x: 3, y: 4}
   Trait: []

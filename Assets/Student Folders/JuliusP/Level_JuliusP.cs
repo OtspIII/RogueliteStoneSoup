@@ -60,7 +60,7 @@ public class Level_JuliusP : LevelBuilder
         
 
         //IF LEVEL IS 3, CHANGE ROOM SIZE//
-        if(l == 3)
+        if(l == 3 || l == 4)
         {
             
          RoomSize = new Vector2Int(17, 20);  
@@ -108,6 +108,11 @@ public override void BuildGeoMap()
     else if(CurrentLevel == 3)
     {
         BuildLevel3(centerX, centerY, leftsideY); 
+    }
+
+    else if(CurrentLevel == 4)
+    {
+        BuildLevel4(centerX, centerY, leftsideY); 
     }
 }
 
@@ -157,6 +162,34 @@ public override void BuildMainPath()
         }
 
         Exit = GetGeo(centerX, 7);
+        Exit.SetPath(GeoTile.GeoTileTypes.Exit);
+
+        return;
+    }
+
+    // LEVEL 4 SPECIAL PATH
+    if (God.Session.Level == 4)
+    {
+        PlayerSpawn = GetGeo(centerX, centerY);
+        PlayerSpawn.SetPath(GeoTile.GeoTileTypes.PlayerStart);
+
+        GeoTile prev4 = PlayerSpawn;
+
+        for (int y = centerY + 1; y <= 5; y++)
+        {
+            GeoTile next = GetGeo(centerX, y);
+
+            if (next == null) continue;
+
+            prev4.Links.Add(Directions.Up);
+            next.Links.Add(Directions.Down);
+
+            next.SetPath(GeoTile.GeoTileTypes.MainPath);
+
+            prev4 = next;
+        }
+
+        Exit = GetGeo(centerX, 5);
         Exit.SetPath(GeoTile.GeoTileTypes.Exit);
 
         return;
@@ -649,6 +682,26 @@ public override void BuildMainPath()
 
 
         }
+
+
+        //LEVEL 4 LAYOUT (ADDED)
+        if(Level == 4)
+        {
+            if(g.X == 3 && g.Y == 3)
+            {
+                return o.HasTag("Lv4.PlayerRoom") ? 999 : 0;
+            }
+
+            if(g.X == 3 && g.Y == 4)
+            {
+                return o.HasTag("Lv4.Generic") ? 999 : 0;
+            }
+
+            if(g.X == 3 && g.Y == 5)
+            {
+                return o.HasTag("Lv4.Exit") ? 999 : 0;
+            }
+        }
   
     return o.HasTag(t.ToString()) ? 1 : 0;
 }
@@ -792,9 +845,27 @@ void BuildLevel3(int centerX, int centerY, int leftsideY)
     {
         AddGeo(new GeoTile(centerX, centerY + i, this));
     }
-
-    
-
   
 }
+
+
+
+//LEVEL 4//
+
+
+void BuildLevel4(int centerX, int centerY, int leftsideY)
+{
+    
+
+    // START TILE
+    AddGeo(new GeoTile(centerX, centerY, this));
+
+    // GO UP FROM (3,3)
+    for(int i = 1; i < 3; i++)
+    {
+        AddGeo(new GeoTile(centerX, centerY + i, this));
+    }
+  
+}
+
 }

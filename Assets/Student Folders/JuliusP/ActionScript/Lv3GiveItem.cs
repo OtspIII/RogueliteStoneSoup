@@ -14,9 +14,12 @@ public class GiveItem_Lv3 : ActionScript
 
     ThingInfo ExitRef;
 
+    bool exitRemoved = false;
+    bool followDialoguePlayed = false;
+
     public GiveItem_Lv3(ThingInfo who, EventInfo e = null)
     {
-        Setup(Actions.GiveItem_JuliusP, who, true);
+        Setup(Actions.GiveItem_Lv3_JuliusP, who, true);
 
         HaltMomentum = false;
         MoveMult = 0.2f;
@@ -40,17 +43,11 @@ public class GiveItem_Lv3 : ActionScript
         Who.AddTrait(Traits.IgnoreDamage_JuliusP);
         Who.AddTrait(Traits.NoTimerStunNegation_JuliusP);
 
-        // STORE EXIT
-        ExitRef = God.GM != null ? God.GM.Exit : null;
-
-        // REMOVE EXIT TRAIT
-        if (ExitRef != null && ExitRef.Thing != null)
-        {
-            ExitRef.RemoveTrait(Traits.Exit);
-            Debug.Log("Removed Exit Trait");
-        }
-
         LJP = God.LB as Level_JuliusP;
+
+        exitRemoved = false;
+        followDialoguePlayed = false;
+        ExitRef = null;
 
         God.C(GiveItemLogic());
     }
@@ -59,6 +56,17 @@ public class GiveItem_Lv3 : ActionScript
     {
         if (isEnded)
             return;
+
+        // ONLY RUN ONCE
+        if (!exitRemoved)
+        {
+            ExitRef = God.GM != null ? God.GM.Exit : null;
+
+            if (ExitRef != null)
+                ExitRef.RemoveTrait(Traits.Exit);
+
+            exitRemoved = true;
+        }
 
         if (canFollow &&
             Who != null &&
@@ -82,13 +90,13 @@ public class GiveItem_Lv3 : ActionScript
     {
         ThingInfo player = God.Session.Player;
 
+      
         while (!canFollow)
         {
             if (isEnded)
                 yield break;
 
-            if (Who == null || Who.Thing == null ||
-                player == null || player.Thing == null)
+            if (Who == null || Who.Thing == null || player == null || player.Thing == null)
             {
                 yield return null;
                 continue;
@@ -99,35 +107,38 @@ public class GiveItem_Lv3 : ActionScript
                 float spd = player.CurrentSpeed;
                 player.CurrentSpeed = 0f;
 
-                God.GM.SetUI("TradeMessage", "Can you help me reach the exit?", 2);
+                if (!followDialoguePlayed)
+                {
+                    God.GM.SetUI("TradeMessage", "Let's get out of here!", 2);
+                    followDialoguePlayed = true;
+                }
 
                 yield return new WaitForSeconds(1.5f);
 
-                if (isEnded) yield break;
+                if (isEnded)
+                    yield break;
 
-                player.CurrentSpeed = spd;
+                if (player != null)
+                    player.CurrentSpeed = spd;
+
                 God.GM.SetUI("TradeMessage", null, 2);
 
                 canFollow = true;
 
-                if (LJP != null && LJP.Lv3FirstRedLightKilled && LJP.Lv3FirstLevel2ShieldEnemyKilled && LJP.Lv3RedLight3Killed && LJP.Lv3FinalShieldEnemKilled)
-                {
-                    
+                if (LJP != null && LJP.Lv3FirstRedLightKilled && LJP.Lv3FirstLevel2ShieldEnemyKilled && LJP.Lv3RedLight3Killed &&  LJP.Lv3FinalShieldEnemKilled)
                     LJP.Lv3FinalDoorCanOpen = true;
-
-
-                }
-                   
             }
 
             yield return null;
         }
 
-        ThingInfo exit = ExitRef;
-
+        
         while (true)
         {
-            if (isEnded) yield break;
+            if (isEnded)
+                yield break;
+
+            ThingInfo exit = God.GM != null ? God.GM.Exit : null;
 
             if (Who == null || Who.Thing == null ||
                 player == null || player.Thing == null ||
@@ -143,8 +154,10 @@ public class GiveItem_Lv3 : ActionScript
             yield return null;
         }
 
-        if (Who == null || Who.Thing == null ||
-            player == null || player.Thing == null)
+        if (isEnded)
+            yield break;
+
+        if (Who == null || Who.Thing == null || player == null || player.Thing == null)
         {
             Complete();
             yield break;
@@ -161,28 +174,27 @@ public class GiveItem_Lv3 : ActionScript
             whoThing.LookAt(playerThing, 0f);
         }
 
-        God.GM.SetUI("TradeMessage", "Thank you... please take this!", 2);
+        God.GM.SetUI("TradeMessage", "Be careful with this!", 2);
 
         yield return new WaitForSeconds(1.2f);
 
-        if (isEnded) yield break;
+        if (isEnded)
+            yield break;
 
         if (itemToGive != null && Who != null)
+        {
             Who.DropHeld(false);
+        }
 
         yield return new WaitForSeconds(0.5f);
+
+        if (isEnded)
+            yield break;
 
         God.GM.SetUI("TradeMessage", null, 2);
 
         if (player != null)
             player.CurrentSpeed = originalPlayerSpeed;
-
-        // RESTORE EXIT TRAIT (SAFE CHECK FIXED)
-        if (ExitRef != null && ExitRef.Thing != null)
-        {
-            ExitRef.AddTrait(Traits.Exit);
-            Debug.Log("Restored Exit Trait");
-        }
 
         if (Who != null && Who.Has(Traits.IgnoreDamage_JuliusP))
             Who.RemoveTrait(Traits.IgnoreDamage_JuliusP);
@@ -193,14 +205,26 @@ public class GiveItem_Lv3 : ActionScript
         isEnded = true;
 
         if (Who != null && Who.Thing != null)
+        {
             God.C(DestroyAfterEnd());
+        }
 
         Complete();
     }
 
     private IEnumerator DestroyAfterEnd()
     {
-        yield return null;
+        yield return new WaitForSeconds(0.5f);
+
+        ThingInfo exit = God.GM != null ? God.GM.Exit : null;
+
+        if (exit != null && !exit.Has(Traits.Exit))
+        {
+            exit.AddTrait(Traits.Exit);
+            Debug.Log("Exit trait restored");
+        }
+
+        yield return new WaitForSeconds(0.5f);
 
         if (Who != null)
             Who.Destruct(Who);
