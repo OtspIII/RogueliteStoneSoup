@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 666e3856c5664c242bde2f0f953b72bc, type: 3}
   m_Name: Lv2.WolfBaneArrows DMG
   m_EditorClassIdentifier: Assembly-CSharp::ProjectileOption
-  Name: Lv2.WolfBaneArrows
+  Name: Lv3.WolfBaneArrows
   Author: 40
   Tags: []
   Team: 1
@@ -36,7 +36,7 @@ MonoBehaviour:
       MaxCost: 0
       Where: {x: 0, y: 0, z: 0}
     Builder: []
-  - Trait: 4014
+  - Trait: 4028
     Numbers: []
     Prefabs: []
     Acts: []

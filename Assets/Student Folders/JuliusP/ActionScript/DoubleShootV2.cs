@@ -6,7 +6,7 @@ public class DoubleShootV2 : ActionScript
     {
         Setup(Actions.Shoot, who);
 
-        Duration = 0.02f;
+        Duration = 0.01f;
         CanRotate = true;
         MoveMult = 0.5f;
         Anim = "Shoot";
@@ -45,7 +45,7 @@ public class DoubleShootV2 : ActionScript
         Quaternion originalRot = Who.Thing.transform.rotation;
 
         // LEFT PROJECTILE (45 DEGREES)
-        Who.Thing.transform.rotation = originalRot * Quaternion.Euler(0, 0, 3);
+        Who.Thing.transform.rotation = originalRot * Quaternion.Euler(0, 0, 5);
         Who.Thing.Shoot(proj);
 
         // CENTER PROJECTILE
@@ -53,7 +53,7 @@ public class DoubleShootV2 : ActionScript
         Who.Thing.Shoot(proj);
 
         // RIGHT PROJECTILE (-45 DEGREES)
-        Who.Thing.transform.rotation = originalRot * Quaternion.Euler(0, 0, -3);
+        Who.Thing.transform.rotation = originalRot * Quaternion.Euler(0, 0, -5);
         Who.Thing.Shoot(proj);
 
         // RESET ROTATION BACK TO NORMAL

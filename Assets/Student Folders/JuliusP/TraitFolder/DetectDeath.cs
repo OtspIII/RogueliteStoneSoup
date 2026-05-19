@@ -56,7 +56,7 @@ public class DetectDeath : Trait
                 //FOURTH LEVEL//
                 if(Level == 4)
                 {
-                    Debug.Log("sup");
+                   // Debug.Log("sup");
 
                     WeapontoDrop = i.Who.CurrentHeld;
 
