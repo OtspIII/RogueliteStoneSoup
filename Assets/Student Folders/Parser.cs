@@ -200,7 +200,9 @@ public static class Parser
             case Actions.spinAction_Yu: return new SpinAction_Yuchen(who, e);
             case Actions.TeleportSwingAction_Yu: return new TeleportSwingAction_Yu(who, e);
             case Actions.SwingThenShootAction_Yu: return new Swingthenshoot_yu(who, e);
-
+            case Actions.LungeandTeleportAction_yu: return new LungeandTeleportAction_yu(who, e);
+            case Actions.DoubleShootAction_yu: return new DoubleShootAction_yu(who, e);
+                
         }
         God.LogError("UNCAUGHT ACTION: " + act);
         return new IdleAction(who,e);
@@ -502,5 +504,7 @@ public enum Actions
     YuChen1         =9501,
     spinAction_Yu = 9502,
     TeleportSwingAction_Yu = 9503,
-    SwingThenShootAction_Yu = 9504
+    SwingThenShootAction_Yu = 9504,
+    LungeandTeleportAction_yu = 9505,
+    DoubleShootAction_yu = 9506
 }
