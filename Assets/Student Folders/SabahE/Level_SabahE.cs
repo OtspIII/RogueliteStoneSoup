@@ -8,13 +8,22 @@ public class Level_SabahE : LevelBuilder
         Author = Authors.SabahE;
     }
 
+    public enum LevelStyle
+    {
+        FirelinkShrine,
+        LongCorridor,
+        OpenArena,
+        Maze,
+        SplitPath
+    }
+
+    public LevelStyle Style;
+
     public override void Customize()
     {
         SpawnPlayer();
-
         Size = new Vector2Int(6, 6);
         LinkOdds = 0f;
-
         Boss = God.Library.GetThing(new SpawnRequest(GameTags.Boss), this, false);
     }
 
@@ -22,18 +31,14 @@ public class Level_SabahE : LevelBuilder
     {
         AddGeo(new GeoTile(3, 1, this));
         AddGeo(new GeoTile(3, 2, this));
-
         AddGeo(new GeoTile(3, 3, this));
-
         AddGeo(new GeoTile(3, 4, this));
         AddGeo(new GeoTile(3, 5, this));
-
         AddGeo(new GeoTile(2, 3, this));
         AddGeo(new GeoTile(1, 3, this));
         AddGeo(new GeoTile(1, 4, this));
         AddGeo(new GeoTile(2, 4, this));
         AddGeo(new GeoTile(2, 5, this));
-
         AddGeo(new GeoTile(4, 3, this));
         AddGeo(new GeoTile(5, 3, this));
         AddGeo(new GeoTile(5, 4, this));
@@ -113,5 +118,47 @@ public class Level_SabahE : LevelBuilder
         GeoTile g = GetGeo(x, y);
         if (g != null)
             g.SetPath(GeoTile.GeoTileTypes.Connected);
+    }
+
+    public override void Build()
+    {
+        Style = (LevelStyle)(God.Session.Level % 5);
+        base.Build();
+    }
+
+    public override void FindQuotas()
+    {
+        base.FindQuotas();
+
+        if (Style == LevelStyle.FirelinkShrine)
+        {
+            AddQuota(GameTags.Consumable, 2);
+            AddQuota(GameTags.ScoreThing, 2);
+        }
+
+        if (Style == LevelStyle.LongCorridor)
+        {
+            AddQuota(GameTags.NPC, 3);
+            AddQuota(GameTags.Consumable, 1);
+        }
+
+        if (Style == LevelStyle.OpenArena)
+        {
+            AddQuota(GameTags.NPC, 5);
+            AddQuota(GameTags.Weapon, 1);
+        }
+
+        if (Style == LevelStyle.Maze)
+        {
+            AddQuota(GameTags.ScoreThing, 5);
+            AddQuota(GameTags.Consumable, 2);
+        }
+
+        if (Style == LevelStyle.SplitPath)
+        {
+            AddQuota(GameTags.NPC, 2);
+            AddQuota(GameTags.Weapon, 1);
+            AddQuota(GameTags.ScoreThing, 3);
+        }
     }
 }

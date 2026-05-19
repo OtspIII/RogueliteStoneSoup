@@ -22,5 +22,5 @@ MonoBehaviour:
   Size: 1
   LevelRange: {x: 0, y: 0}
   Trait: []
-  Damage: 4
+  Damage: 3
   Speed: 8

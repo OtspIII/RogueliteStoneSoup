@@ -44,7 +44,7 @@ public class GiveItem_Lv2 : ActionScript
         // STORE EXIT 
         ExitRef = God.GM.Exit;
 
-        // REMOVE EXIT TRAIT (quest lock)
+        // REMOVE EXIT TRAIT
         if (ExitRef != null && ExitRef.Has(Traits.Exit))
         {
             ExitRef.RemoveTrait(Traits.Exit);
@@ -180,7 +180,7 @@ public class GiveItem_Lv2 : ActionScript
 
     private IEnumerator RestoreExit()
     {
-        yield return null; // wait 1 frame so other systems stop overriding
+        yield return null; 
 
         if (ExitRef != null)
         {

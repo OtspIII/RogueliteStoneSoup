@@ -11,7 +11,7 @@ public class ArenaSpawner : MonoBehaviour
     int lastBeatNumber = -1;
 
     float beatInterval;
-    float beatWindow = 0.90f; // Timing 
+    float beatWindow = 0.90f; // Timing window for when you press arrow keys 
 
     float spawnDistance = 9f; // The distance the enemies spawn away from the player
     float meleeHitRange = 4f; // how close the player is 
@@ -30,28 +30,28 @@ public class ArenaSpawner : MonoBehaviour
     {
         yield return new WaitForSeconds(0.5f);
 
-        RemoveWalls();
-        PlayMusic();
-        StartCoroutine(BeatPulse());
+        RemoveWalls(); 
+        PlayMusic(); 
+        StartCoroutine(BeatPulse()); // checkes the song beats 
         beatInterval = 60f / bpm;
 
-        currentLevel = Mathf.Max(1, God.Session.Level);
+        currentLevel = Mathf.Max(1, God.Session.Level); // Game starts at level 1
         UpdateRhythmUI();
 
         yield return new WaitForSeconds(2f);
 
-        StartCoroutine(LevelWaveLoop());
+        StartCoroutine(LevelWaveLoop()); //Starts the enemies wave
     }
 
 
     // Runs frames and attack inputs 
-    // When the players click the arrows at a 
+    
     void Update()
     {
         CheckDefeatedEnemies();
         RemoveEnemiesTouchingPlayer();
         CheckSongSwitch();
-
+        // arrow controls 
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
             TryDirectionAttack(Vector2.up);
@@ -76,7 +76,7 @@ public class ArenaSpawner : MonoBehaviour
             if (musicSource == null)
                 return;
 
-            // When Song 1 finishes, switch to Song 2
+            // When Song 1 finishes switches to Song 2
             if (currentSong == 1 && !switchedToSong2 && musicSource.time >= musicSource.clip.length - 0.1f)
             {
                 switchedToSong2 = true;
@@ -87,7 +87,7 @@ public class ArenaSpawner : MonoBehaviour
                 lastBeatNumber = -1;
                 spawnedBeatIndexes.Clear();
 
-                // Set Song 2 timing here
+                // Song 2 settings 
                 bpm = 145f;
                 beatInterval = 60f / bpm;
                 beatOffset = 0.15f;
@@ -142,13 +142,17 @@ public class ArenaSpawner : MonoBehaviour
                     Vector2 spawnDirection = currentChart[i].direction;
                     Vector2 spawnPosition = playerPos + (spawnDirection * spawnDistance);
 
-                    if (currentChart[i].allowRandomEnemy)
+                    bool isDiagonal =
+                        spawnDirection.x != 0 &&
+                        spawnDirection.y != 0;
+
+                    if (currentChart[i].allowRandomEnemy && isDiagonal)
                     {
-                        SpawnRandomEnemy(spawnPosition);
+                        SpawnRandomEnemy(spawnPosition); // Wizard or Robin Hood enemy spawn
                     }
                     else
                     {
-                        SpawnEnemy(spawnPosition);
+                        SpawnEnemy(spawnPosition); // Hater  enemy spawn 
                     }
 
                     spawnedBeatIndexes.Add(i);
@@ -191,6 +195,9 @@ public class ArenaSpawner : MonoBehaviour
             return;
 
         Vector2 playerPos = God.Session.Player.Thing.transform.position;
+        
+
+        
 
         ThingInfo bestEnemy = null;
         float closestDistance = 999f;
@@ -202,6 +209,13 @@ public class ArenaSpawner : MonoBehaviour
 
             Vector2 enemyPos = enemy.Thing.transform.position;
             Vector2 toEnemy = (enemyPos - playerPos).normalized;
+
+            bool enemyIsDiagonal =
+                Mathf.Abs(toEnemy.x) > 0.4f &&
+                Mathf.Abs(toEnemy.y) > 0.4f;
+
+            if (enemyIsDiagonal)
+                continue;
 
             float directionCheck = Vector2.Dot(direction, toEnemy);
             float distance = Vector2.Distance(playerPos, enemyPos);
@@ -249,9 +263,8 @@ public class ArenaSpawner : MonoBehaviour
     {
         string[] possibleEnemies =
         {
-        "Hater",
         "WizardEnemy",
-        "Robin Hood"
+        "RedHood",
     };
 
         string chosenEnemy =
@@ -308,7 +321,14 @@ public class ArenaSpawner : MonoBehaviour
     // Playes the music thats in the resource folder
     void PlayMusic()
     {
-        PlaySong("AlejandroM/Songs/Song1");
+        if (currentSong == 1)
+        {
+            PlaySong("AlejandroM/Songs/Song1");
+        }
+        else
+        {
+            PlaySong("AlejandroM/Songs/Song2");
+        }
     }
 
     void PlaySong(string songPath)
@@ -604,12 +624,203 @@ new BeatSpawn(193.13f, Vector2.right),
 
 
     List<BeatSpawn> song2BeatChart = new List<BeatSpawn>()
-{
-    new BeatSpawn(2f, new Vector2(1, 1).normalized, true), // UR
-    new BeatSpawn(4f, new Vector2(-1, 1).normalized, true), // UL
-    new BeatSpawn(6f, new Vector2(1, -1).normalized, true), // DR
-    new BeatSpawn(8f, new Vector2(-1, -1).normalized, true), // DL
-};
+    {
+new BeatSpawn(1.6f, Vector2.up),
+new BeatSpawn(2.6f, Vector2.up),
+new BeatSpawn(3.6f, Vector2.right),
+new BeatSpawn(4.6f, Vector2.left),
+new BeatSpawn(5.6f, Vector2.left),
+new BeatSpawn(6.6f, Vector2.down),
+new BeatSpawn(7.6f, Vector2.up),
+new BeatSpawn(8.6f, Vector2.up),
+new BeatSpawn(9.6f, Vector2.right),
+new BeatSpawn(10.6f, Vector2.right),
+new BeatSpawn(11.6f, Vector2.left),
+new BeatSpawn(12.6f, Vector2.left),
+new BeatSpawn(13.6f, Vector2.down),
+new BeatSpawn(14.6f, Vector2.down),
+new BeatSpawn(15.6f, Vector2.down),
+new BeatSpawn(16.6f, new Vector2(1, 1).normalized, true),
+new BeatSpawn(18.6f, new Vector2(-1, 1).normalized, true),
+new BeatSpawn(19.6f, new Vector2(-1, -1).normalized, true),
+new BeatSpawn(20.6f, new Vector2(1, -1).normalized, true),
+new BeatSpawn(21.6f, Vector2.left),
+new BeatSpawn(22.6f, new Vector2(-1, -1).normalized, true),
+new BeatSpawn(23.6f, Vector2.left),
+new BeatSpawn(24.6f, new Vector2(-1, 1).normalized, true),
+new BeatSpawn(26.6f, Vector2.right),
+new BeatSpawn(28.6f, Vector2.right),
+new BeatSpawn(29.6f, Vector2.left),
+new BeatSpawn(30.6f, Vector2.left),
+new BeatSpawn(31.6f, Vector2.down),
+new BeatSpawn(32.6f, Vector2.down),
+new BeatSpawn(33.6f, Vector2.right),
+new BeatSpawn(34.6f, Vector2.up),
+new BeatSpawn(35.6f, Vector2.down),
+new BeatSpawn(36.6f, Vector2.down),
+new BeatSpawn(37.6f, new Vector2(1, 1).normalized, true),
+new BeatSpawn(38.6f, new Vector2(-1, 1).normalized, true),
+new BeatSpawn(39.6f, Vector2.up),
+new BeatSpawn(40.6f, Vector2.up),
+new BeatSpawn(41.6f, Vector2.right),
+new BeatSpawn(42.6f, Vector2.right),
+new BeatSpawn(43.6f, new Vector2(1, -1).normalized, true),
+new BeatSpawn(44.6f, new Vector2(1, -1).normalized, true),
+new BeatSpawn(45.6f, Vector2.left),
+new BeatSpawn(46.6f, new Vector2(-1, -1).normalized, true),
+new BeatSpawn(47.6f, new Vector2(1, -1).normalized, true),
+new BeatSpawn(48.6f, Vector2.up),
+new BeatSpawn(49.6f, Vector2.left),
+new BeatSpawn(50.6f, Vector2.left),
+new BeatSpawn(51.6f, Vector2.left),
+new BeatSpawn(52.6f, Vector2.down),
+new BeatSpawn(53.6f, Vector2.down),
+new BeatSpawn(54.6f, Vector2.down),
+new BeatSpawn(56.6f, Vector2.right),
+new BeatSpawn(57.6f, Vector2.left),
+new BeatSpawn(58.6f, Vector2.up),
+new BeatSpawn(59.6f, Vector2.right),
+new BeatSpawn(60.6f, Vector2.left),
+new BeatSpawn(61.6f, Vector2.down),
+new BeatSpawn(62.6f, Vector2.up),
+new BeatSpawn(63.6f, Vector2.left),
+new BeatSpawn(64.6f, Vector2.right),
+new BeatSpawn(65.6f, Vector2.down),
+new BeatSpawn(66.6f, Vector2.down),
+new BeatSpawn(67.6f, Vector2.up),
+new BeatSpawn(68.6f, Vector2.left),
+new BeatSpawn(69.6f, new Vector2(1, 1).normalized, true),
+new BeatSpawn(70.6f, new Vector2(-1, 1).normalized, true),
+new BeatSpawn(71.6f, new Vector2(1, -1).normalized, true),
+new BeatSpawn(72.6f, Vector2.right),
+new BeatSpawn(73.6f, new Vector2(-1, -1).normalized, true),
+new BeatSpawn(74.6f, Vector2.left),
+new BeatSpawn(75.6f, new Vector2(1, -1).normalized, true),
+new BeatSpawn(76.6f, Vector2.right),
+new BeatSpawn(77.6f, Vector2.right),
+new BeatSpawn(79.6f, Vector2.left),
+new BeatSpawn(80.6f, Vector2.left),
+new BeatSpawn(81.6f, new Vector2(1, 1).normalized, true),
+new BeatSpawn(82.6f, new Vector2(-1, 1).normalized, true),
+new BeatSpawn(84.6f, Vector2.up),
+new BeatSpawn(86.6f, Vector2.down),
+new BeatSpawn(87.6f, Vector2.down),
+new BeatSpawn(88.6f, Vector2.down),
+new BeatSpawn(89.6f, Vector2.left),
+new BeatSpawn(90.6f, Vector2.up),
+new BeatSpawn(91.6f, Vector2.down),
+new BeatSpawn(92.6f, Vector2.up),
+new BeatSpawn(93.6f, Vector2.right),
+new BeatSpawn(94.6f, Vector2.right),
+new BeatSpawn(95.6f, Vector2.right),
+new BeatSpawn(96.6f, Vector2.down),
+new BeatSpawn(97.6f, Vector2.right),
+new BeatSpawn(98.6f, Vector2.down),
+new BeatSpawn(99.6f, Vector2.right),
+new BeatSpawn(100.6f, Vector2.left),
+new BeatSpawn(102.6f, Vector2.left),
+new BeatSpawn(103.6f, new Vector2(1, 1).normalized, true),
+new BeatSpawn(104.6f, new Vector2(-1, -1).normalized, true),
+new BeatSpawn(106.6f, Vector2.left),
+new BeatSpawn(107.6f, Vector2.right),
+new BeatSpawn(108.6f, Vector2.up),
+new BeatSpawn(109.6f, Vector2.down),
+new BeatSpawn(110.6f, Vector2.left),
+new BeatSpawn(111.6f, Vector2.right),
+new BeatSpawn(112.6f, Vector2.up),
+new BeatSpawn(113.6f, new Vector2(1, 1).normalized, true),
+new BeatSpawn(114.6f, new Vector2(1, -1).normalized, true),
+new BeatSpawn(115.6f, Vector2.up),
+new BeatSpawn(116.6f, Vector2.right),
+new BeatSpawn(117.6f, Vector2.left),
+new BeatSpawn(118.6f, Vector2.down),
+new BeatSpawn(119.6f, Vector2.right),
+new BeatSpawn(120.6f, Vector2.right),
+new BeatSpawn(121.6f, Vector2.down),
+new BeatSpawn(122.6f, new Vector2(1, -1).normalized, true),
+new BeatSpawn(123.6f, Vector2.left),
+new BeatSpawn(124.6f, Vector2.right),
+new BeatSpawn(125.6f, Vector2.left),
+new BeatSpawn(126.6f, Vector2.right),
+new BeatSpawn(127.6f, Vector2.down),
+new BeatSpawn(128.6f, Vector2.up),
+new BeatSpawn(129.6f, Vector2.left),
+new BeatSpawn(130.6f, Vector2.right),
+new BeatSpawn(131.6f, Vector2.left),
+new BeatSpawn(132.6f, Vector2.right),
+new BeatSpawn(133.6f, Vector2.up),
+new BeatSpawn(134.6f, Vector2.down),
+new BeatSpawn(135.6f, Vector2.right),
+new BeatSpawn(136.6f, Vector2.down),
+new BeatSpawn(137.6f, Vector2.left),
+new BeatSpawn(138.6f, Vector2.up),
+new BeatSpawn(139.6f, Vector2.down),
+new BeatSpawn(140.6f, Vector2.right),
+new BeatSpawn(141.6f, Vector2.up),
+new BeatSpawn(142.6f, Vector2.left),
+new BeatSpawn(143.6f, Vector2.left),
+new BeatSpawn(144.6f, Vector2.left),
+new BeatSpawn(145.6f, Vector2.down),
+new BeatSpawn(146.6f, Vector2.down),
+new BeatSpawn(147.6f, Vector2.up),
+new BeatSpawn(148.6f, Vector2.up),
+new BeatSpawn(149.6f, Vector2.right),
+new BeatSpawn(150.6f, Vector2.up),
+new BeatSpawn(151.6f, Vector2.left),
+new BeatSpawn(152.6f, Vector2.down),
+new BeatSpawn(153.6f, Vector2.down),
+new BeatSpawn(154.6f, Vector2.left),
+new BeatSpawn(155.6f, Vector2.right),
+new BeatSpawn(156.6f, Vector2.up),
+new BeatSpawn(157.6f, Vector2.left),
+new BeatSpawn(158.6f, Vector2.down),
+new BeatSpawn(159.6f, Vector2.up),
+new BeatSpawn(160.6f, Vector2.left),
+new BeatSpawn(161.6f, Vector2.down),
+new BeatSpawn(162.6f, Vector2.down),
+new BeatSpawn(163.6f, Vector2.right),
+new BeatSpawn(164.6f, new Vector2(1, -1).normalized, true),
+new BeatSpawn(165.6f, new Vector2(-1, 1).normalized, true),
+new BeatSpawn(166.6f, new Vector2(-1, 1).normalized, true),
+new BeatSpawn(167.6f, Vector2.right),
+new BeatSpawn(168.6f, new Vector2(1, -1).normalized, true),
+new BeatSpawn(169.6f, new Vector2(-1, 1).normalized, true),
+new BeatSpawn(170.6f, Vector2.left),
+new BeatSpawn(171.6f, Vector2.right),
+new BeatSpawn(172.6f, Vector2.right),
+new BeatSpawn(173.6f, Vector2.right),
+new BeatSpawn(174.6f, Vector2.right),
+new BeatSpawn(175.6f, Vector2.right),
+new BeatSpawn(176.6f, Vector2.up),
+new BeatSpawn(177.6f, Vector2.left),
+new BeatSpawn(178.6f, Vector2.down),
+new BeatSpawn(179.6f, Vector2.down),
+new BeatSpawn(180.6f, Vector2.left),
+new BeatSpawn(181.6f, new Vector2(1, 1).normalized, true),
+new BeatSpawn(182.6f, Vector2.left),
+new BeatSpawn(183.6f, new Vector2(1, -1).normalized, true),
+new BeatSpawn(184.6f, new Vector2(-1, -1).normalized, true),
+new BeatSpawn(185.6f, Vector2.right),
+new BeatSpawn(186.6f, Vector2.right),
+new BeatSpawn(187.6f, Vector2.right),
+new BeatSpawn(188.6f, Vector2.left),
+new BeatSpawn(189.6f, Vector2.left),
+new BeatSpawn(190.6f, Vector2.left),
+new BeatSpawn(191.6f, Vector2.up),
+new BeatSpawn(192.6f, Vector2.up),
+new BeatSpawn(193.6f, Vector2.down),
+new BeatSpawn(194.6f, Vector2.down),
+new BeatSpawn(195.6f, Vector2.down),
+new BeatSpawn(196.6f, Vector2.up),
+new BeatSpawn(197.6f, Vector2.down),
+new BeatSpawn(198.6f, Vector2.down),
+new BeatSpawn(199.6f, Vector2.right),
+new BeatSpawn(200.6f, new Vector2(1, 1).normalized, true),
+new BeatSpawn(201.6f, Vector2.down),
+new BeatSpawn(202.6f, Vector2.up),
+new BeatSpawn(203.6f, Vector2.right),
+new BeatSpawn(204.6f, Vector2.left),
+    };
 
 
 

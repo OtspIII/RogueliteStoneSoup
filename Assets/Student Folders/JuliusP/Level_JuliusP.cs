@@ -5,16 +5,25 @@ public class Level_JuliusP : LevelBuilder
 {
     public Vector2Int OriginalLvlSize;
 
+    //LEVEL 1 BOOL//
     public bool CanLinkToLootRoom = false;
-
-
 
     //LVEL 2 BOOLS//
     public bool Lv2BossKilled = false;
-
     public bool Lv2AllyFound = false;
-
     public bool Lv2RedLightKilled = false;
+
+    //LVEL 3 BOOLS//
+    public bool Lv3FirstRedLightKilled = false;
+    public bool Lv3FirstLevel2ShieldEnemyKilled = false;
+    public bool Lv3RedLight3Killed = false;
+    public bool Lv3FinalShieldEnemKilled = false;
+    public bool Lv3FinalDoorCanOpen = false;
+
+
+    //lVL 4 BOOLS//
+
+    public bool Lv4DestroyedLvl3Enem = false;
 
 
     
@@ -40,7 +49,27 @@ public class Level_JuliusP : LevelBuilder
        
         Size = new Vector2Int(width,height);
         LinkOdds = 1f;
+    
+
+        
+
+        //IF LEVEL IS 3, CHANGE ROOM SIZE//
+        if(l == 3 || l == 4 || l == 5)
+        {
+            
+         RoomSize = new Vector2Int(17, 20);  
+
+
+        }
+        
+
+        else
+        {
+            
         RoomSize = new Vector2Int(12, 12);
+
+
+        }
 
 
        
@@ -73,14 +102,19 @@ public override void BuildGeoMap()
 
     else if(CurrentLevel == 3)
     {
-            
-       
-
         BuildLevel3(centerX, centerY, leftsideY); 
+    }
 
+    else if(CurrentLevel == 4)
+    {
+        BuildLevel4(centerX, centerY, leftsideY); 
+    }
 
-
-     }
+    
+    else if(CurrentLevel == 5)
+    {
+        BuildLevel5(centerX, centerY, leftsideY); 
+    }
 }
 
     
@@ -100,7 +134,6 @@ public override void BuildMainPath()
     int centerX = 3;
     int centerY = 3;
 
-    // START AT (3,3)
     PlayerSpawn = GetGeo(centerX, centerY);
     PlayerSpawn.SetPath(GeoTile.GeoTileTypes.PlayerStart);
 
@@ -109,32 +142,68 @@ public override void BuildMainPath()
     // LEVEL 3 SPECIAL PATH
     if (God.Session.Level == 3)
     {
-        PlayerSpawn = GetGeo(centerX, centerY);
-        PlayerSpawn.SetPath(GeoTile.GeoTileTypes.PlayerStart);
-
-        GeoTile Prev = PlayerSpawn;
-
-        for (int x = centerX + 1; x <= 8; x++)
+        for (int y = centerY + 1; y <= 5; y++)
         {
-            GeoTile next = GetGeo(x, centerY);
-
+            GeoTile next = GetGeo(centerX, y);
             if (next == null) continue;
 
-            prev.Links.Add(Directions.Right);
-            next.Links.Add(Directions.Left);
+            prev.Links.Add(Directions.Up);
+            next.Links.Add(Directions.Down);
 
             next.SetPath(GeoTile.GeoTileTypes.MainPath);
 
             prev = next;
         }
 
-        Exit = GetGeo(8, 3);
+        Exit = GetGeo(centerX, 7);
+        Exit.SetPath(GeoTile.GeoTileTypes.Exit);
+        return;
+    }
+
+    // LEVEL 4 SPECIAL PATH
+    if (God.Session.Level == 4)
+    {
+        for (int y = centerY + 1; y <= 5; y++)
+        {
+            GeoTile next = GetGeo(centerX, y);
+            if (next == null) continue;
+
+            prev.Links.Add(Directions.Up);
+            next.Links.Add(Directions.Down);
+
+            next.SetPath(GeoTile.GeoTileTypes.MainPath);
+
+            prev = next;
+        }
+
+        Exit = GetGeo(centerX, 5);
+        Exit.SetPath(GeoTile.GeoTileTypes.Exit);
+        return;
+    }
+
+    // LEVEL 5 SPECIAL PATH (FIXED → GOES TO 3,6)
+    if (God.Session.Level == 5)
+    {
+        for (int y = centerY + 1; y <= 6; y++)
+        {
+            GeoTile next = GetGeo(centerX, y);
+            if (next == null) continue;
+
+            prev.Links.Add(Directions.Up);
+            next.Links.Add(Directions.Down);
+
+            next.SetPath(GeoTile.GeoTileTypes.MainPath);
+
+            prev = next;
+        }
+
+        Exit = GetGeo(centerX, 6);
         Exit.SetPath(GeoTile.GeoTileTypes.Exit);
 
         return;
     }
 
-    // THIS MOVES UP FROM (3,3) TO (3,6)
+    // DEFAULT MAIN PATH (UP TO 3,6)
     for (int y = centerY + 1; y <= 6; y++)
     {
         GeoTile next = GetGeo(centerX, y);
@@ -147,12 +216,12 @@ public override void BuildMainPath()
         prev = next;
     }
 
-    // SET THE EXIT AT (3,6)
     Exit = GetGeo(centerX, 6);
     Exit.SetPath(GeoTile.GeoTileTypes.Exit);
 
-    // THIS MOVES DOWN FROM (3,3) TO (3,1) 
+    // DOWN BRANCH (3 → 1)
     prev = PlayerSpawn;
+
     for (int y = centerY - 1; y >= 1; y--)
     {
         GeoTile next = GetGeo(centerX, y);
@@ -165,9 +234,10 @@ public override void BuildMainPath()
         prev = next;
     }
 
-    // THIS MOVES RIGHT FROM (3,1) TO (5,1) 
+    // RIGHT BRANCH
     GeoTile RightTile = GetGeo(centerX, 1);
     prev = RightTile;
+
     for (int x = centerX + 1; x <= 5; x++)
     {
         GeoTile next = GetGeo(x, 1);
@@ -180,8 +250,9 @@ public override void BuildMainPath()
         prev = next;
     }
 
-    // THIS MOVES LEFT FROM (3,1) TO (0,1)
+    // LEFT BRANCH
     prev = RightTile;
+
     for (int x = centerX - 1; x >= 0; x--)
     {
         GeoTile next = GetGeo(x, 1);
@@ -194,7 +265,7 @@ public override void BuildMainPath()
         prev = next;
     }
 
-    // THIS MOVES DOWN FROM (0,1) TO (0,-2)
+    // DOWN TO BOTTOM
     prev = GetGeo(0, 1);
 
     for (int y = 0; y >= -2; y--)
@@ -209,13 +280,12 @@ public override void BuildMainPath()
         prev = next;
     }
 
-    // THIS MOVES LEFT FROM (0,-1) TO (-3,-1) 
+    // LEFT BOTTOM BRANCH
     prev = GetGeo(0, -1);
 
     for (int x = -1; x >= -3; x--)
     {
         GeoTile next = GetGeo(x, -1);
-
         if (next == null) continue;
 
         prev.Links.Add(Directions.Left);
@@ -225,7 +295,7 @@ public override void BuildMainPath()
         prev = next;
     }
 
-    // THIS CONNECTS (6,0) DOWN TO (6,1)
+    // RIGHT SIDE LINK (6,0 → 6,1)
     GeoTile a = GetGeo(6, 0);
     GeoTile b = GetGeo(6, 1);
 
@@ -234,9 +304,6 @@ public override void BuildMainPath()
         a.Links.Add(Directions.Down);
         b.Links.Add(Directions.Up);
     }
-
-
-     
 }
 
  public override float JudgeRoom(GeoTile g, RoomOption o, bool backup = false)
@@ -549,31 +616,134 @@ public override void BuildMainPath()
         }
 
 
-    
-
-    
-
-
-
-
-
-
     }
  
 
  
         //LEVEL LAYOUT FOR LEVEL 3//
 
-        if(g.X == 4 && g.Y == 3)
+
+        if(Level == 3)
+        {
+            
+        if(g.X == 3 && g.Y == 3)
         {
                 
 
+     
+            return o.HasTag("Lv3.PlayerRoom") ? 999 : 0;
+
+
+
+        }
+
+        if(g.X == 3 && g.Y == 4)
+        {
+                
+
+     
+            return o.HasTag("Lv3.Generic") ? 999 : 0;
 
 
 
         }
 
 
+        if(g.X == 3 && g.Y == 5)
+        {
+                
+
+     
+            return o.HasTag("Lv3.Generic 2") ? 999 : 0;
+
+
+
+        }
+
+
+        if(g.X == 3 && g.Y == 6)
+        {
+                
+
+     
+            return o.HasTag("Lv3.Generic 3") ? 999 : 0;
+
+
+
+        }
+
+
+        //EXIT ROOM//
+        if(g.X == 3 && g.Y == 7)
+        {
+                
+
+     
+            return o.HasTag("Lv3.Exit") ? 999 : 0;
+
+
+
+        }
+
+
+
+        }
+
+
+        //LEVEL 4 LAYOUT (ADDED)
+        if(Level == 4)
+        {
+            if(g.X == 3 && g.Y == 3)
+            {
+                return o.HasTag("Lv4.PlayerRoom") ? 999 : 0;
+            }
+
+            if(g.X == 3 && g.Y == 4)
+            {
+                return o.HasTag("Lv4.Generic") ? 999 : 0;
+            }
+
+            if(g.X == 3 && g.Y == 5)
+            {
+                return o.HasTag("Lv4.Exit") ? 999 : 0;
+            }
+        }
+
+
+        //LVEL 5 (FINAL ROOM)//
+
+
+
+        if(Level == 5)
+        {
+            
+
+            if(g.X == 3 && g.Y == 3)
+            {
+                return o.HasTag("Lv5.PlayerRoom") ? 999 : 0;
+            } 
+
+
+            if(g.X == 3 && g.Y == 4)
+            {
+                return o.HasTag("Lv5.Generic") ? 999 : 0;
+            } 
+
+
+            if(g.X == 3 && g.Y == 5)
+            {
+                return o.HasTag("Lv5.Boss") ? 999 : 0;
+            } 
+
+
+            if(g.X == 3 && g.Y == 6)
+            {
+                return o.HasTag("Lv5.Exit") ? 999 : 0;
+            } 
+
+
+
+        }
   
     return o.HasTag(t.ToString()) ? 1 : 0;
 }
@@ -707,13 +877,54 @@ void BuildLevel2(int centerX, int centerY, int leftsideY)
 
 void BuildLevel3(int centerX, int centerY, int leftsideY)
 {
+    
+
     // START TILE
     AddGeo(new GeoTile(centerX, centerY, this));
 
-    // GO RIGHT FROM (3,3)
-    for(int i = 1; i < 6; i++)
+    // GO UP FROM (3,3)
+    for(int i = 1; i < 5; i++)
     {
-        AddGeo(new GeoTile(centerX + i, centerY, this));
+        AddGeo(new GeoTile(centerX, centerY + i, this));
     }
+  
 }
+
+
+
+//LEVEL 4//
+
+
+void BuildLevel4(int centerX, int centerY, int leftsideY)
+{
+    
+
+    // START TILE
+    AddGeo(new GeoTile(centerX, centerY, this));
+
+    // GO UP FROM (3,3)
+    for(int i = 1; i < 3; i++)
+    {
+        AddGeo(new GeoTile(centerX, centerY + i, this));
+    }
+  
+}
+
+
+
+void BuildLevel5(int centerX, int centerY, int leftsideY)
+{
+    
+
+    // START TILE
+    AddGeo(new GeoTile(centerX, centerY, this));
+
+    // GO UP FROM (3,3)
+    for(int i = 1; i < 4; i++)
+    {
+        AddGeo(new GeoTile(centerX, centerY + i, this));
+    }
+  
+}
+
 }

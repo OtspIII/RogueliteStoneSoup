@@ -18,7 +18,7 @@ public class BleakWatcher : ActionScript
 
     public override void OnRun()
     {
-        Debug.Log("BleakWatcher OnRun called");
+       // Debug.Log("BleakWatcher OnRun called");
 
         base.OnRun();
         if (Input.GetKeyDown(KeyCode.B) && !CanOnlyspawnOne)
@@ -30,7 +30,7 @@ public class BleakWatcher : ActionScript
 
     public override void HitBegin(GameCollision col)
     {
-        Debug.Log("Hi!!!!");
+       // Debug.Log("Hi!!!!");
     }
     
     void SpawnBleakWatcherTurret()

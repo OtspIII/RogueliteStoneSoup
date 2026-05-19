@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TeleportSwingAction_Yu : AttackAction
 {
-    public float TeleDistance = 2f;
+    public float TeleDistance = 1f;
 
 
     public TeleportSwingAction_Yu(ThingInfo who, EventInfo e = null)
@@ -15,8 +15,10 @@ public class TeleportSwingAction_Yu : AttackAction
 
     public override void End()
     {
+        
         base.End();
         TelePlayer();
+
     }
 
     void TelePlayer()

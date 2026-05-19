@@ -243,18 +243,6 @@ public class FullStunNegation : Trait
                     i.Who.AddTrait(Traits.IgnoreDamage_JuliusP);
 
 
-                   
-    Vector3 pos = i.Who.Thing.transform.position + Vector3.up * 1.5f;
-
-    GameObject textObj = GameObject.Instantiate(Resources.Load<GameObject>("ImmuneText"), pos, Quaternion.identity);
-
-    if (textObj != null)
-    {
-        var tmp = textObj.GetComponentInChildren<TMPro.TextMeshPro>();
-        if (tmp != null)
-            tmp.text = "IMMUNE";
-    }
-
                     break;
                 }
 

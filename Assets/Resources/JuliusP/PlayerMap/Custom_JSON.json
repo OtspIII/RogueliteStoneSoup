@@ -29,7 +29,30 @@
         {"K":"Q","V":"Invisible"},
         {"K":"b","V":"Lv2Boss"},
         {"K":"w","V":"Lv2.Wolf"},
-        {"K":"a","V":"Prisoner"}
+        {"K":"a","V":"Prisoner"},
+        {"K":"h","V":"Health"}, 
+        {"K":"n","V":"ShieldEnem"},
+        {"K":"O","V":"CoinBrl"},
+        {"K":"e","V":"Shield"},
+        {"K":"2","V":"Lv2.Sword"},
+        {"K":"3","V":"Archer"},
+        {"K":"4","V":"RedLight3"},
+        {"K":"5","V":"Agressor"},
+        {"K":"Z","V":"BetterAlly"},
+        {"K":"f","V":"Lv4.Floor"},
+        {"K":"Y","V":"Lv4.Floor 2"},
+        {"K":"8","V":"Tough"},
+        {"K":"6","V":"Gold"},
+        {"K":"7","V":"Lunge"},
+        {"K":"J","V":"Lv3.Wolf"},
+        {"K":"1","V":"Lv5.Floor"},
+        {"K":"t","V":"RedLight4"},
+        {"K":"9","V":"Trick"},
+        {"K":"X","V":"Tougher"}
+
+
+
+
 
         
         

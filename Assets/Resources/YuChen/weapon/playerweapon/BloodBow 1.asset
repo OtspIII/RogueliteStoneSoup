@@ -26,7 +26,7 @@ MonoBehaviour:
   Size: 1
   LevelRange: {x: 0, y: 0}
   Trait: []
-  DefaultAttack: 103
+  DefaultAttack: 9506
   ToSpawn:
     Fixed: {fileID: 11400000, guid: 21f2f00ddb5360c409b072461865b27f, type: 2}
     Mandatory: []
@@ -37,7 +37,7 @@ MonoBehaviour:
     Where: {x: 999, y: 999, z: 999}
   FloorBody: {fileID: 0}
   FloorArt: {fileID: 0}
-  Damage: 15
+  Damage: 8
   IdealRange: 1.5
   SpeedMult: 1
   ActDuration: 0
