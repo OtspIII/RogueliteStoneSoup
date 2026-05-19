@@ -179,6 +179,7 @@ public static class Parser
             case Actions.BarrierShieldType2_JuliusP: return new Lv1BarrierShieldType2_JuliusP(who, e);
             case Actions.GiveItem_Lv3_JuliusP: return new GiveItem_Lv3(who, e);
             case Actions.DoubleShootV2_JuliusP: return new DoubleShootV2(who, e);
+            case Actions.Lv4_BarrierShield_JuliusP: return new Lv4_BarrierShield_JuliusP(who,e);
 
 
             
@@ -489,6 +490,7 @@ public enum Actions
     BarrierShieldType2_JuliusP = 4016,
     GiveItem_Lv3_JuliusP = 4017,
     DoubleShootV2_JuliusP = 4018,
+    Lv4_BarrierShield_JuliusP = 4019,
 
 
 

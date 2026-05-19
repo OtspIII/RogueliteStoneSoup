@@ -20,6 +20,11 @@ public class SpawnWall : Trait
 
     ThingInfo Level4Wall;
 
+
+    //LEVEL 5 WALLS//
+
+    ThingInfo Level5Wall;
+
     Level_JuliusP LJP;
 
     public SpawnWall()
@@ -100,6 +105,17 @@ public class SpawnWall : Trait
 
                     //DOOR TO MINIBOSS//
                     Level4Wall = SpawnWallAt(new Vector2(63f, 84.94f));
+
+
+
+                }
+
+
+                if(Level == 5)
+                {
+
+                    //DOOR TO MINIBOSS//
+                    Level5Wall = SpawnWallAt(new Vector2(63f, 103.89f));
 
 
 

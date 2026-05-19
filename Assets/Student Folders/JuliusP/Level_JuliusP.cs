@@ -732,7 +732,7 @@ public override void BuildMainPath()
 
             if(g.X == 3 && g.Y == 5)
             {
-                return o.HasTag("Lv5.Generic") ? 999 : 0;
+                return o.HasTag("Lv5.Boss") ? 999 : 0;
             } 
 
 
