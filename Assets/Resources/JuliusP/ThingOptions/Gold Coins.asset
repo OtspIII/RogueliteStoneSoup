@@ -13,30 +13,64 @@ MonoBehaviour:
   m_Name: Gold Coins
   m_EditorClassIdentifier: 
   Name: Gold Coins
+  Author: 0
+  Tags:
+  - Common: 203
+    Custom: Gold
+    W: 1
+    Cost: 1
   Team: 1
   Body: {fileID: 629948465317790645, guid: 0f8734e4b4d2c3a449506fe0c78c1110, type: 3}
   Art: {fileID: -2322180950842035098, guid: 38af7f6f611a7064b87743a25c742649, type: 3}
   Color: {r: 1, g: 1, b: 1, a: 1}
-  Tags:
-  - Common: 203
-    Custom: 
+  Size: 1
+  LevelRange: {x: 0, y: 0}
   Trait:
   - Trait: 311
-    Numbers:
-    - Type: 1
-      Value: 1
+    Numbers: []
     Prefabs: []
     Acts: []
+    OtherTrait: 0
     SpawnReq:
       Fixed: {fileID: 0}
+      Mandatory: []
+      Any: []
+      Level: 0
+      Author: 0
+      MaxCost: 0
+      Where: {x: 999, y: 999, z: 999}
+    Builder:
+    - Type: 0
+      NumType: 1
+      Num: 1
+      StrType: 0
+      Str: 
+      ActType: 0
+      Act: 0
+      BoolType: 0
+      Bool: 0
+      OptionType: 0
+      Option: {fileID: 0}
+      VectorType: 0
+      Vector: {x: 0, y: 0}
+      Fixed: {fileID: 0}
       Mandatory: 
+      MandatoryW: 0
       Any: 
-  Size: 1
+      AnyW: 0
+      Trait: 0
+  DefaultAttack: 0
+  ToSpawn:
+    Fixed: {fileID: 0}
+    Mandatory: []
+    Any: []
+    Level: 0
+    Author: 0
+    MaxCost: 0
+    Where: {x: 999, y: 999, z: 999}
+  FloorBody: {fileID: 0}
+  FloorArt: {fileID: 0}
   Damage: 0
   IdealRange: 1.5
   SpeedMult: 1
   ActDuration: 0
-  DefaultAttack: 0
-  Projectile: {fileID: 0}
-  FloorBody: {fileID: 0}
-  FloorArt: {fileID: 0}

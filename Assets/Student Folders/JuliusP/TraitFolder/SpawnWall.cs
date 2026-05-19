@@ -14,6 +14,12 @@ public class SpawnWall : Trait
      
     ThingInfo level3SecondRoomDoor, level3SecondRoomDoorToThird, level3ThirdRoomTop, Level3FinalDoor, Level3DoorToNPC;
 
+
+
+    //LEVEL 4 WALLS//
+
+    ThingInfo Level4Wall;
+
     Level_JuliusP LJP;
 
     public SpawnWall()
@@ -84,6 +90,16 @@ public class SpawnWall : Trait
 
                     Level3DoorToNPC = SpawnWallAt(new Vector2(63f, 112.03f));
 
+
+                }
+
+
+
+                if(Level == 4)
+                {
+
+                    //DOOR TO MINIBOSS//
+                    Level4Wall = SpawnWallAt(new Vector2(63f, 84.94f));
 
 
 
@@ -179,6 +195,18 @@ public class SpawnWall : Trait
                     Level3FinalDoor = null;
                 }
 
+
+
+                //LEVEL 4 WALLS//
+
+                if(Level4Wall != null && LJP != null && LJP.Lv4DestroyedLvl3Enem)
+                {
+                        
+                    Level4Wall.Destruct();
+                    Level4Wall = null;
+
+
+                }
 
 
 

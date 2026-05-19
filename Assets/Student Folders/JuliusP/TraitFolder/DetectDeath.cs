@@ -61,6 +61,8 @@ public class DetectDeath : Trait
                     WeapontoDrop = i.Who.CurrentHeld;
 
                     i.Who.DropHeld(false);
+
+                    LJP.Lv4DestroyedLvl3Enem = true;
                 }   
 
                 }

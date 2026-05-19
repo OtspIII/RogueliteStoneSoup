@@ -5,31 +5,25 @@ public class Level_JuliusP : LevelBuilder
 {
     public Vector2Int OriginalLvlSize;
 
+    //LEVEL 1 BOOL//
     public bool CanLinkToLootRoom = false;
-
-
 
     //LVEL 2 BOOLS//
     public bool Lv2BossKilled = false;
-
     public bool Lv2AllyFound = false;
-
     public bool Lv2RedLightKilled = false;
 
-
     //LVEL 3 BOOLS//
-
     public bool Lv3FirstRedLightKilled = false;
-
     public bool Lv3FirstLevel2ShieldEnemyKilled = false;
-
-    
     public bool Lv3RedLight3Killed = false;
-
     public bool Lv3FinalShieldEnemKilled = false;
-
-
     public bool Lv3FinalDoorCanOpen = false;
+
+
+    //lVL 4 BOOLS//
+
+    public bool Lv4DestroyedLvl3Enem = false;
 
 
     

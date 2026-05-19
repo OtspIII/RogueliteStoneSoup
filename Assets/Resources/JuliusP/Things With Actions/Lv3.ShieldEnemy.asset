@@ -73,9 +73,9 @@ MonoBehaviour:
       MaxCost: 0
       Where: {x: 999, y: 999, z: 999}
     Builder: []
-  HP: 10
-  Speed: 4
-  VisionRange: 10.6
-  Held: {fileID: 11400000, guid: d8cefd9293a7140d48bf05fdd910e6fe, type: 2}
+  HP: 5
+  Speed: 8.25
+  VisionRange: 5.4
+  Held: {fileID: 11400000, guid: 1e2abc0e3d9f543998c0df504c399cfc, type: 2}
   DefaultAction: 4004
   DefaultChaseAction: 103

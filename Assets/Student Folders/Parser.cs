@@ -178,6 +178,8 @@ public static class Parser
             case Actions.Scan_JuliusP: return new Scan(who, e);
             case Actions.BarrierShieldType2_JuliusP: return new Lv1BarrierShieldType2_JuliusP(who, e);
             case Actions.GiveItem_Lv3_JuliusP: return new GiveItem_Lv3(who, e);
+            case Actions.DoubleShootV2_JuliusP: return new DoubleShootV2(who, e);
+
 
             
 
@@ -369,6 +371,7 @@ public enum Traits
 
 
 
+
    
     
     
@@ -485,6 +488,7 @@ public enum Actions
     Scan_JuliusP = 4015,
     BarrierShieldType2_JuliusP = 4016,
     GiveItem_Lv3_JuliusP = 4017,
+    DoubleShootV2_JuliusP = 4018,
 
 
 

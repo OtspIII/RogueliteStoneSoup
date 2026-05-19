@@ -41,7 +41,9 @@
         {"K":"Z","V":"BetterAlly"},
         {"K":"f","V":"Lv4.Floor"},
         {"K":"Y","V":"Lv4.Floor 2"},
-        {"K":"8","V":"Tough"}
+        {"K":"8","V":"Tough"},
+        {"K":"6","V":"Gold"},
+        {"K":"5","V":"Lunge"}
 
 
 
