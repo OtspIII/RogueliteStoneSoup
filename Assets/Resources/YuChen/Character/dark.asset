@@ -10,20 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4679cc75b2c8be74e8b047318fa062ea, type: 3}
-  m_Name: dark
+  m_Name: Dark
   m_EditorClassIdentifier: Assembly-CSharp::CharacterOption
   Name: Dark
   Author: 95
-  Team: 2
-  Body: {fileID: 629948465317790645, guid: 0a2102bf84264a44e9e01c5e7dea2058, type: 3}
-  Art: {fileID: -2510476293373519475, guid: e3d9843f4660b7b4dad7fc7c263bb814, type: 3}
-  Color: {r: 1, g: 1, b: 1, a: 1}
-  Size: 0.4
   Tags:
   - Common: 1
     Custom: 
     W: 0
     Cost: 1
+  Team: 2
+  Body: {fileID: 629948465317790645, guid: acf0e760b28c7b046ad7d511fb87a1d3, type: 3}
+  Art: {fileID: -2510476293373519475, guid: e3d9843f4660b7b4dad7fc7c263bb814, type: 3}
+  Color: {r: 1, g: 1, b: 1, a: 1}
+  Size: 0.4
   LevelRange: {x: 0, y: 0}
   Trait:
   - Trait: 100
@@ -38,8 +38,9 @@ MonoBehaviour:
       Level: 0
       Author: 0
       MaxCost: 0
+      Where: {x: 999, y: 999, z: 999}
     Builder: []
-  - Trait: 7003
+  - Trait: 9502
     Numbers: []
     Prefabs: []
     Acts: []
@@ -51,10 +52,25 @@ MonoBehaviour:
       Level: 0
       Author: 0
       MaxCost: 0
+      Where: {x: 999, y: 999, z: 999}
+    Builder: []
+  - Trait: 9503
+    Numbers: []
+    Prefabs: []
+    Acts: []
+    OtherTrait: 0
+    SpawnReq:
+      Fixed: {fileID: 0}
+      Mandatory: []
+      Any: []
+      Level: 0
+      Author: 0
+      MaxCost: 0
+      Where: {x: 999, y: 999, z: 999}
     Builder: []
   HP: 20
-  Speed: 10
+  Speed: 4
   VisionRange: 4
-  Held: {fileID: 11400000, guid: 280bda14946abdc46b9ae424e5140422, type: 2}
+  Held: {fileID: 11400000, guid: d40e38f212f8b9c40ab3d55061d5f8dd, type: 2}
   DefaultAction: 1
   DefaultChaseAction: 1

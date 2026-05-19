@@ -24,7 +24,7 @@ MonoBehaviour:
   Art: {fileID: -517894308114096243, guid: 686df7d4d5faf074eb3b4867fc9296a4, type: 3}
   Color: {r: 1, g: 1, b: 1, a: 1}
   Size: 0.9
-  LevelRange: {x: 2, y: 0}
+  LevelRange: {x: 2, y: 5}
   Trait: []
   HP: 2
   Speed: 6

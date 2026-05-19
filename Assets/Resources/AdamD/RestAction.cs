@@ -15,13 +15,12 @@ public class RestAction : ActionScript
     public override void OnRun()
     {
         base.OnRun();
-        healInterval-= Time.deltaTime;
-        if (healInterval < 0) 
+        healInterval -= Time.deltaTime;
+        if (healInterval < 0)
         {
             Who.TakeEvent(God.E(EventTypes.Damage).Set(-1).Set(Who)); //should heal once it is active
             healInterval = 1;
         }
-
     }
     public override void Begin()
     {
@@ -40,4 +39,14 @@ public class RestAction : ActionScript
             Who.TakeEvent(God.E(EventTypes.LoseTrait).Set(Traits.Barrier)); //removes this
         }
     }
+    public void Regeneration (ThingInfo who)
+    {
+        healInterval-= Time.deltaTime;
+        if (healInterval < 0) 
+        {
+            Who.TakeEvent(God.E(EventTypes.Damage).Set(-1).Set(Who)); //should heal once it is active
+            healInterval = 1;
+        }
+    }
+
 }

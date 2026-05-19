@@ -39,5 +39,5 @@ MonoBehaviour:
   FloorArt: {fileID: 0}
   Damage: 1
   IdealRange: 1.5
-  SpeedMult: 2.95
+  SpeedMult: 0.91
   ActDuration: 0

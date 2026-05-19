@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public class HeavyKnockback : Trait
 {
     public HeavyKnockback()
@@ -14,20 +12,18 @@ public class HeavyKnockback : Trait
         {
             case EventTypes.OnTouch:
             {
-                GameCollision col = e.Collision;
-                if (col == null) return;
+             GameCollision col = e.Collision;
+            
+             if (col == null) return;
 
-                ThingInfo target = col.Other.Info;
-                if (target == null) return;
+             ThingController target = col.Other;
+            
+             if (target == null) return;
 
-                ThingInfo projectile = i.Who;
+             if (target.Info == i.Who) return;
 
-                // 🔥 GET THE REAL SOURCE (PLAYER WHO FIRED)
-                ThingInfo owner = projectile.GetOwner();
-
-                // PUSH TARGET AWAY FROM OWNER
-                target.Thing.TakeKnockback(owner, 30f);
-
+              target.TakeKnockback(i.Who, 17f);
+                
                 break;
             }
         }

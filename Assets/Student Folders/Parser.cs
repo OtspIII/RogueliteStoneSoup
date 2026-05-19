@@ -39,6 +39,7 @@ public static class Parser
         // AdamD Traits
         TraitDict.Add(Traits.statusEffectOnProjectile, new StatusEffectOnProjectileTrait_AdamD("stuff", 5));
         TraitDict.Add(Traits.StatusResist, new StatusResist());
+        TraitDict.Add(Traits.UpgradeTrait, new UpgradeTrait());
         // AlejandroM Traits
         TraitDict.Add(Traits.ShieldPotion_AlejandroM, new ShieldPotion_AlejandroM());
         TraitDict.Add(Traits.SpeedPotion_AlejandroM, new SpeedPotion_AlejandroM());
@@ -70,12 +71,23 @@ public static class Parser
         TraitDict.Add(Traits.RedLight, new RedGreen());
         TraitDict.Add(Traits.SpawnWall_JuliusP, new SpawnWall());
         TraitDict.Add(Traits.AddTraitByScore_JuliusP, new AddTraitByScore());
+        TraitDict.Add(Traits.Lv2RedLight_JuliusP,new Lv2RedLight());
+        TraitDict.Add(Traits.TempInvis_JuliusP, new InvisPotion_JuliusP());
+        TraitDict.Add(Traits.ShieldTrait_JuliusP, new ShieldTrait());
+        TraitDict.Add(Traits.Lv3RedLight_JuliusP, new Lv3RedLight());
+        TraitDict.Add(Traits.DetectDeath_JuliusP, new DetectDeath());
+        TraitDict.Add(Traits.Lv3Homing_JuliusP, new Lv3Homing());
+        TraitDict.Add(Traits.SelfDestruct2_JuliusP, new SelfDestructV2());
+
+       
+
+
+       
 
 
     
 
 
-      
         // MazK Traits
         // MichaelT Traits
         TraitDict.Add(Traits.Bleed_MichaelT, new BleedTrait_MichaelT());
@@ -121,6 +133,8 @@ public static class Parser
         TraitDict.Add(Traits.HealingAlly_WesleyP1, new HealingAllyTrait_Wesley());
         // YuChen Traits
         TraitDict.Add(Traits.Criticaldamage, new CriticaldamageTrait());
+        TraitDict.Add(Traits.SpeedIncrease_yu, new SpeedIncrease_yuTrait());
+        
 
     }
     
@@ -161,6 +175,15 @@ public static class Parser
             case Actions.GiveItemLv2_JuliusP:return new GiveItem_Lv2(who,e);
             case Actions.EvasiveJuke_JuliusP:return new EvasiveJuke(who, e);
             case Actions.BleakWatcher_JuliusP: return new BleakWatcher(who, e);
+            case Actions.Scan_JuliusP: return new Scan(who, e);
+            case Actions.BarrierShieldType2_JuliusP: return new Lv1BarrierShieldType2_JuliusP(who, e);
+            case Actions.GiveItem_Lv3_JuliusP: return new GiveItem_Lv3(who, e);
+            case Actions.DoubleShootV2_JuliusP: return new DoubleShootV2(who, e);
+            case Actions.Lv4_BarrierShield_JuliusP: return new Lv4_BarrierShield_JuliusP(who,e);
+
+
+            
+
          
           
             
@@ -196,6 +219,11 @@ public static class Parser
            
             // YuChen=95,
             case Actions.spinAction_Yu: return new SpinAction_Yuchen(who, e);
+            case Actions.TeleportSwingAction_Yu: return new TeleportSwingAction_Yu(who, e);
+            case Actions.SwingThenShootAction_Yu: return new Swingthenshoot_yu(who, e);
+            case Actions.LungeandTeleportAction_yu: return new LungeandTeleportAction_yu(who, e);
+            case Actions.DoubleShootAction_yu: return new DoubleShootAction_yu(who, e);
+                
         }
         God.LogError("UNCAUGHT ACTION: " + act);
         return new IdleAction(who,e);
@@ -297,6 +325,7 @@ public enum Traits
     AdamD1          =2001,
     statusEffectOnProjectile=2002,
     StatusResist=2003, 
+    UpgradeTrait=2004,
     //AlejandroM    =25##,
     AlejandroM1     =2501,
     ShieldPotion_AlejandroM = 2502,
@@ -333,6 +362,15 @@ public enum Traits
     RedLight = 4019,
     SpawnWall_JuliusP = 4020,
     AddTraitByScore_JuliusP = 4021,
+    Lv2RedLight_JuliusP = 4022,
+    TempInvis_JuliusP = 4023,
+    ShieldTrait_JuliusP = 4024,
+    Lv3RedLight_JuliusP = 4025,
+    DetectDeath_JuliusP = 4026,
+    Lv3Homing_JuliusP = 4027,
+    SelfDestruct2_JuliusP = 4028,
+
+
 
 
 
@@ -395,6 +433,7 @@ public enum Traits
     //YuChen        =95##,
     YuChen1         =9501,
     Criticaldamage=9502,
+    SpeedIncrease_yu = 9503
 }
 
 public enum Actions
@@ -447,6 +486,13 @@ public enum Actions
     EvasiveJuke_JuliusP = 4011,
     BleakWatcher_JuliusP = 4012,
     slowingproj_JuliusP = 4013,
+    Berserker_JuliusP = 4014,
+    Scan_JuliusP = 4015,
+    BarrierShieldType2_JuliusP = 4016,
+    GiveItem_Lv3_JuliusP = 4017,
+    DoubleShootV2_JuliusP = 4018,
+    Lv4_BarrierShield_JuliusP = 4019,
+
 
 
    
@@ -496,4 +542,8 @@ public enum Actions
     //YuChen        =95##,
     YuChen1         =9501,
     spinAction_Yu = 9502,
+    TeleportSwingAction_Yu = 9503,
+    SwingThenShootAction_Yu = 9504,
+    LungeandTeleportAction_yu = 9505,
+    DoubleShootAction_yu = 9506
 }

@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: star
   Author: 95
+  Tags: []
   Team: 1
   Body: {fileID: 629948465317790645, guid: 9edb53243ae32704ead177294fe49d22, type: 3}
   Art: {fileID: 502171404882056347, guid: 11a1181458f428442a7695f156662e22, type: 3}
   Color: {r: 1, g: 1, b: 1, a: 1}
   Size: 1
-  Tags: []
   LevelRange: {x: 0, y: 0}
   Trait: []
-  Damage: 5
+  Damage: 3
   Speed: 8

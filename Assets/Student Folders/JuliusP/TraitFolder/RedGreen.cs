@@ -11,12 +11,16 @@ public class RedGreen : Trait
 
     Dictionary<SpriteRenderer, Color> originalColors = new Dictionary<SpriteRenderer, Color>();
 
+
+    Level_JuliusP LJP;
+
     public RedGreen()
     {
         Type = Traits.RedLight;
 
         AddListen(EventTypes.Update);
         AddListen(EventTypes.Death); 
+        AddListen(EventTypes.Setup);
     }
 
     public override void TakeEvent(TraitInfo i, EventInfo e)
@@ -28,12 +32,21 @@ public class RedGreen : Trait
                 ThingInfo self = i.Who;
                 ThingInfo player = God.Session.Player;
 
-                
+                int Level = God.Session.Level;
+               
                 if (self == null || self.Thing == null)
                     return;
 
-                
-                if (player == null || player.Thing == null)
+              
+                if (God.Session == null || player == null || player.Thing == null)
+                {
+                    ResetFloors();
+                    canStart = false;
+                    return;
+                }
+
+              
+                if (self.Thing == null || player.Thing == null)
                 {
                     ResetFloors();
                     canStart = false;
@@ -41,6 +54,7 @@ public class RedGreen : Trait
                 }
 
                 //GET SQR DIST/
+                //GET NULL REFERENCE HERE//
                 float sqrDist = (self.Thing.transform.position - player.Thing.transform.position).sqrMagnitude;
 
 
@@ -67,8 +81,8 @@ public class RedGreen : Trait
                 if (!canStart)
                     return;
 
-                    // ADD THIS
-                    timer += Time.deltaTime;
+                    
+                timer += Time.deltaTime;
 
     
 
@@ -94,6 +108,15 @@ public class RedGreen : Trait
                 }
 
                 break;
+
+
+
+              
+
+
+
+
+
             }
 
             //SETS COLOR OF FLOOR BACK ON DEATH//
@@ -105,7 +128,54 @@ public class RedGreen : Trait
                 timer = 0f;
 
                 God.GM.SetUI("PlayMessage", null , 2);
+
+                i.Who.RemoveTrait(Traits.RedLight);
+
+                int Level = God.Session.Level;
+                
+                if(Level == 3)
+                {
+                    
+                 LJP.Lv3FirstRedLightKilled = true;       
+                
+
+
+                }
+
+
+
                 break;
+            }
+
+
+           case EventTypes.Setup:
+            {
+                canStart = false;
+                isRed = false;
+                timer = 0f;
+                    
+                ThingInfo Player = God.Session.Player;
+
+
+                if(Player != null && !i.Who.Has(Traits.RedLight))
+                {
+                        
+                    i.Who.AddTrait(Traits.RedLight);
+
+
+                 }
+
+
+                //LEVEL 3 LOGIC//
+
+                LJP = God.LB as Level_JuliusP;
+
+               
+
+                break;
+
+
+
             }
         }
     }
