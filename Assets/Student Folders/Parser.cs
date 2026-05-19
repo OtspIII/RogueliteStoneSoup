@@ -46,6 +46,9 @@ public static class Parser
         // ElioR Traits
         TraitDict.Add(Traits.Barrier, new BarrierTrait_ElioR());
         TraitDict.Add(Traits.ParryTrait_ElioR, new ParryTrait());
+        TraitDict.Add(Traits.Blight_ElioR, new Blight_ElioR());
+        TraitDict.Add(Traits.BlightGiver_ElioR, new BlightGiver_ElioR());
+        TraitDict.Add(Traits.LifeSteal_ElioR, new LifeSteal_ElioR());
         // JaidenB Traits
         TraitDict.Add(Traits.InvertControls, new InvertControlsTrait());
         TraitDict.Add(Traits.Freeze, new FreezeTrait());
@@ -334,6 +337,8 @@ public enum Traits
     Barrier         =3002, //this will negate one instance of taken damage taken.
     ParryTrait_ElioR = 3003,
     LifeSteal_ElioR=3004,
+    Blight_ElioR = 3005,
+    BlightGiver_ElioR = 3006,
     //JaidenB       =35##,
     JaidenB1        =3501,
     InvertControls  =3502,
