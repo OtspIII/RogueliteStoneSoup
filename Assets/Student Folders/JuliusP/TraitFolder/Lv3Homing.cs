@@ -1,126 +1,10 @@
 using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
 
-public class BleakWatcher : ActionScript
+public class Lv3Homing : Trait
 {
-    
-    bool CanOnlyspawnOne = false;
-
-    bool DetectedHit = false;
-
-    public BleakWatcher(ThingInfo who, EventInfo e = null)
+    public Lv3Homing()
     {
-        Setup(Actions.BleakWatcher_JuliusP, who, true);
-        HaltMomentum = true;
-        Duration = Mathf.Infinity;
-    }
-
-    public override void OnRun()
-    {
-       // Debug.Log("BleakWatcher OnRun called");
-
-        base.OnRun();
-        if (Input.GetKeyDown(KeyCode.B) && !CanOnlyspawnOne)
-        {
-            SpawnBleakWatcherTurret();
-            CanOnlyspawnOne = true;
-        }
-    }
-
-    public override void HitBegin(GameCollision col)
-    {
-       // Debug.Log("Hi!!!!");
-    }
-    
-    void SpawnBleakWatcherTurret()
-    {
-        //LOAD THE TURRET FORM THE FOLDER//
-        ThingOption Turret = Resources.Load<ThingOption>("JuliusP/ThingOptions/Bleak Turret");
-
-        ThingInfo Turretinfo = Turret.Create();
-
-        //SPAWN POS OF TURRET//
-        Vector3 SpawnPos = Who.Thing.transform.position + Who.Thing.transform.up * 1.5f;
-
-        ThingController TurretController = Turretinfo.Spawn(SpawnPos);
-
-        //ADD A RIGIDBODY TO IT FOR THROWING//
-        TurretController.AddRB();
-
-        //THROW FORCE//
-        float ThrowForce = 3f;
-
-        TurretController.TakeKnockback(Who.Thing, ThrowForce);
-
-        // SHOT AFTER LANDING//
-        God.C(TurretShoot(TurretController));
-
-        // TURRET LASTS FOR 10 SECONDS//
-        God.C(DestroyTurret(Turretinfo, 9f));
-    }
-
-    IEnumerator TurretShoot(ThingController turret)
-    {
-        // WAIT BEFORE FIRST SHOT
-        yield return new WaitForSeconds(1f); // change 1f to whatever delay you want
-
-        ThingOption projectile = Resources.Load<ThingOption>("JuliusP/ThingOptions/Crystals");
-
-        while (turret != null) // keep shooting while turret exists
-        {
-            // Shoot 3 projectiles in a burst
-            for (int i = 0; i < 3; i++)
-            {
-                // SAFETY CHECK TO AVOID NULL REFERENCE
-                if (turret == null || turret.transform == null) yield break;
-
-                Vector3 spawnPos = turret.transform.position + turret.transform.up * 1f;
-
-                ThingInfo projectileInfo = projectile.Create();
-
-                ThingController projController = projectileInfo.Spawn(spawnPos);
-
-                //SLOWS ON HIT//
-                projectileInfo.AddTrait(Traits.SlowOnhit_JuliusP);
-
-                //PROJECTILE LASTS FOR 2 SECONDS//
-                God.C(DestroyTurret(projectileInfo, 2f));
-
-                // ADD RIGIDBODY TO STASIS PROJECTILE//
-                projController.AddRB();
-
-                yield return new WaitForSeconds(0.98f); // wait 2 seconds before next projectile
-            }
-
-            // Optional: pause before next burst
-            yield return new WaitForSeconds(0.9f);
-        }
-    }
-
-    //Coroutine to destroy a projectile safely
-    // Safely destroys a ThingInfo after a duration
-    IEnumerator DestroyTurret(ThingInfo thing, float duration)
-    {
-        yield return new WaitForSeconds(duration);
-
-        if (thing != null && thing.Thing != null)
-        {
-            thing.DestroyForm(); // destroys the GameObject and clears reference
-        }
-    }
-
-    public override Actions NextAction()
-    {
-        return Actions.DefaultAttack;
-    }
-}
-
-public class SlowingProjectileTrait : Trait
-{
-    public SlowingProjectileTrait()
-    {
-        Type = Traits.SlowOnhit_JuliusP;
+        Type = Traits.Lv3Homing_JuliusP;
 
         AddListen(EventTypes.OnTouch);
         AddListen(EventTypes.Update); 
@@ -142,13 +26,13 @@ public class SlowingProjectileTrait : Trait
                 if (projController == null || projController.transform == null) return;
 
                 // DETECTION RADIUS//
-                float range = 10f;
+                float range = 2f;
 
                 // SPEED OF THE PROJECTILE//
                 float speed = 5f;
 
                 // SETS HOW FAST THE CYSTAL CAN TRACK OR TURN//
-                float turnSpeed = 5f;
+                float turnSpeed = 20f;
 
                 // GET ALL THINGINFOS IN THE RADIUS OF THE STASIS PROJECTILE//
                 var hits = God.GM.CollideCircle(projController.transform.position, range);
@@ -211,12 +95,57 @@ public class SlowingProjectileTrait : Trait
 
                 if (target != null && !target.Has(Traits.Slowed_JuliusP))
                 {
-                    target.AddTrait(Traits.Slowed_JuliusP);
+                    // target.AddTrait(Traits.Slowed_JuliusP);
                     //Debug.Log("Slowed applied to: " + target);
                 }
 
 
                 i.Who.Destruct(i.Who);
+                break;
+            }
+        }
+    }
+}
+
+//CAN BE USED FOR ARROW OR PROJECTILE LIFETIME//
+
+
+public class SelfDestructV2 : Trait
+{
+    public SelfDestructV2()
+    {
+        Type = Traits.SelfDestruct2_JuliusP;
+        AddListen(EventTypes.Update);
+    }
+
+    public override void TakeEvent(TraitInfo i, EventInfo e)
+    {
+        switch (e.Type)
+        {
+            case EventTypes.Update:
+            {
+                if (i.Who == null || i.Who.Thing == null) return;
+
+                // GET TIMER (NO Has CHECK)
+                float time = i.Get(NumInfo.Default);
+
+                // IF NOT INITIALIZED, SET IT
+                if (time <= 0f)
+                {
+                    time = 3.4f;
+                }
+
+                // COUNTDOWN
+                time -= Time.deltaTime;
+                i.Set(NumInfo.Default, time);
+
+                // DESTROY WHEN DONE
+                if (time <= 0f)
+                {
+                    i.Who.Destruct(i.Who);
+                    return;
+                }
+
                 break;
             }
         }

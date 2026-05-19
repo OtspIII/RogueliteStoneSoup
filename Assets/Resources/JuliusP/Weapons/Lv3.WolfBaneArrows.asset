@@ -22,7 +22,7 @@ MonoBehaviour:
   Size: 0.7
   LevelRange: {x: 3, y: 3}
   Trait:
-  - Trait: 4017
+  - Trait: 4027
     Numbers: []
     Prefabs: []
     Acts: []
@@ -36,19 +36,5 @@ MonoBehaviour:
       MaxCost: 0
       Where: {x: 0, y: 0, z: 0}
     Builder: []
-  - Trait: 4014
-    Numbers: []
-    Prefabs: []
-    Acts: []
-    OtherTrait: 0
-    SpawnReq:
-      Fixed: {fileID: 0}
-      Mandatory: []
-      Any: []
-      Level: 0
-      Author: 0
-      MaxCost: 0
-      Where: {x: 0, y: 0, z: 0}
-    Builder: []
-  Damage: 0
-  Speed: 18
+  Damage: 1
+  Speed: 12
