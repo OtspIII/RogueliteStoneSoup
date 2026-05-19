@@ -1,5 +1,5 @@
 xxxxxuuxxxxx
-xxxxxW.xxxxx
+xxxxxw.xxxxx
 xxx......xxx
 xxx......xxx
 xxx......xxx
@@ -8,5 +8,5 @@ xxx...H..xxx
 xxx......xxx
 xxx......xxx
 xxx......xxx
-xxxx....xxxx
-xxxxxdddxxxx
+xxx......xxx
+xxxxxddxxxxx

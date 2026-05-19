@@ -3,275 +3,198 @@ using System.Collections.Generic;
 
 public class Lv3BarrierShield : ActionScript
 {
-    // SET BASE ORBIT DISTANCE FOR SHIELDS
     float Offset = 1.4f;
 
-    // LIST TO TRACK ALL SPAWNED SHIELDS
     List<ThingInfo> Lv3_spawnedShields = new List<ThingInfo>();
-
-    // LIST TO TRACK ONLY RED (VULNERABLE) SHIELDS
     List<ThingInfo> redShields = new List<ThingInfo>();
 
-    // REFERENCE TO THE ENEMY RIGIDBODY
     private Rigidbody2D EnemyRb;
-
-    // ROTATION SPEED OF ORBITING SHIELDS
     float RotateSpeed = 120f;
 
-    // CONSTRUCTOR FOR THE BARRIER SHIELD ACTION
+
+    private ThingInfo itemToGive;
+
+
     public Lv3BarrierShield(ThingInfo who, EventInfo e = null)
     {
-        // SETUP THE ACTION WITH CORRECT PARAMETERS
         Setup(Actions.Lv3_BarrierShield_JuliusP, who);
     }
 
-    // RUN WHEN ACTION STARTS
     public override void Begin()
     {
         base.Begin();
 
-        // ADD IMMUNITY TRAIT TO THE ENEMY IF IT DOESN'T HAVE IT
         if (!Who.Has(Traits.IgnoreDamage_JuliusP))
-        {
             Who.AddTrait(Traits.IgnoreDamage_JuliusP);
-        }
 
-        // GET RIGIDBODY COMPONENT OF ENEMY FOR MOVEMENT
-        EnemyRb = Who.Thing.GetComponent<Rigidbody2D>();
-        if (EnemyRb != null)
-        {
-            EnemyRb.simulated = true;
-        }
+        if (!Who.Has(Traits.NoTimerStunNegation_JuliusP))
+            Who.AddTrait(Traits.NoTimerStunNegation_JuliusP);
 
-        // SPAWN THE SHIELDS AROUND THE ENEMY
         SpawnShields();
+
+        EnemyRb = Who.Thing?.GetComponent<Rigidbody2D>();
+        if (EnemyRb != null)
+            EnemyRb.simulated = true;
     }
 
-    // RUN EVERY FRAME WHILE ACTION IS ACTIVE
     public override void OnRun()
     {
         base.OnRun();
 
-        // REMOVE DESTROYED SHIELDS FROM TRACKING LISTS
+        if (Who?.Thing == null || God.Session.Player?.Thing == null)
+            return;
+
+        // CLEAN UP DEAD SHIELDS
         for (int i = Lv3_spawnedShields.Count - 1; i >= 0; i--)
         {
             ThingInfo shield = Lv3_spawnedShields[i];
-            if (shield == null || shield.Get(Traits.Health)?.GetN() <= 0)
+
+            if (shield == null || shield.Thing == null)
             {
                 Lv3_spawnedShields.RemoveAt(i);
                 redShields.Remove(shield);
             }
         }
 
-        // GET PLAYER'S CURRENT WEAPON
-        ThingInfo currentWeapon = God.Session.Player.CurrentHeld;
+        // CHECK RED SHIELDS ALIVE
+        bool anyRedAlive = false;
 
-        // DYNAMICALLY UPDATE RED SHIELDS HEALTH
-        foreach (ThingInfo shield in redShields)
+        for (int i = 0; i < redShields.Count; i++)
         {
-            if (shield != null)
+            ThingInfo shield = redShields[i];
+            if (shield != null && shield.Thing != null)
             {
-
-                //STORES THE HEALTH TRAIT IN THE EVENT//
-                EventInfo healthEvent = shield.Get(Traits.Health);
-                
-                if (healthEvent != null)
-                {
-                    if (currentWeapon != null && currentWeapon.GetName(true).Contains("Lv1.Bow"))
-                    {
-                        // VULNERABLE TO BOW
-                        healthEvent.Set(NumInfo.Default, 1f);
-                    }
-                    else
-                    {
-                        // IMMUNE TO OTHER WEAPONS LIKE SWORD DAMAGE//
-                        healthEvent.Set(NumInfo.Default, Mathf.Infinity);
-                    }
-                }
+                anyRedAlive = true;
+                break;
             }
         }
 
-        // COUNT ALIVE RED SHIELDS
-        int redShieldRemaining = 0;
-        foreach (ThingInfo shield in redShields)
-        {
-            if (shield != null && shield.Get(Traits.Health)?.GetN() > 0)
-            {
-               redShieldRemaining++;
-            }
-        }
-
-        // IF BOTH RED SHIELDS ARE DESTROYED, DESTROY ALL SHIELDS AND END ACTION
-        if (redShieldRemaining == 0)
+        // END WHEN ALL RED SHIELDS ARE GONE
+        if (!anyRedAlive)
         {
             foreach (ThingInfo shield in Lv3_spawnedShields)
-            {
                 if (shield != null)
-                {
                     shield.Destruct(shield);
-                }
-            }
 
             Lv3_spawnedShields.Clear();
             redShields.Clear();
+
             End();
             return;
         }
 
-        // GET NUMBER OF SHIELDS TO ORBIT
+        // ORBIT (SAME AS LV2)
         int shieldCount = Lv3_spawnedShields.Count;
 
-        // ORBIT AND PULSE SHIELDS AROUND ENEMY
         if (shieldCount > 0)
         {
-            // CALCULATE ANGLE DISTANCE BETWEEN SHIELDS
             float angleStep = 360f / shieldCount;
 
-            // THIS IS FOR THE PULSING EFFECT
-            float pulse = Mathf.Sin(Time.time * 2f) * 0.5f + Offset;
-
-            // LOOP THROUGH ALL SHIELDS AND SET THEIR POSITION
             for (int i = 0; i < shieldCount; i++)
             {
                 ThingInfo shield = Lv3_spawnedShields[i];
                 if (shield == null || shield.Thing == null)
-                {
                     continue;
-                }
 
-                // CALCULATE CURRENT ANGLE FOR THIS SHIELD
                 float angle = (i * angleStep + Time.time * RotateSpeed) * Mathf.Deg2Rad;
+                Vector3 offset = new Vector3(Mathf.Cos(angle), Mathf.Sin(angle), 0) * Offset;
 
-                // CALCULATE POSITION OFFSET USING COS AND SIN
-                Vector3 ShieldOffset = new Vector3(Mathf.Cos(angle), Mathf.Sin(angle), 0) * pulse;
-
-                // SET SHIELD POSITION RELATIVE TO ENEMY
-                shield.Thing.transform.position = Who.Thing.transform.position + ShieldOffset;
+                shield.Thing.transform.position =
+                    Who.Thing.transform.position + offset;
             }
         }
 
-        // MAKES THE THING CHASE THE PLAYER SLOWLY//
-         ThingInfo targ = God.Session.Player;
+        // CHASE PLAYER (same Lv2 style)
+        ThingInfo targ = God.Session.Player;
 
         if (targ != null && targ.Thing != null)
         {
             Vector3 dir = (targ.Thing.transform.position - Who.Thing.transform.position).normalized;
+            float speed = 1.8f;
 
-            float speed = 13f;
-
-           
             if (EnemyRb != null)
-            {
-             EnemyRb.MovePosition(Who.Thing.transform.position + dir * speed * Time.deltaTime);
-            }
-           
+                EnemyRb.MovePosition(Who.Thing.transform.position + dir * speed * Time.deltaTime);
             else
-            {
-             Who.Thing.transform.position += dir * speed * Time.deltaTime;
-            }
+                Who.Thing.transform.position += dir * speed * Time.deltaTime;
 
-            
-             Who.Thing.LookAt(targ);
-        
+            Who.Thing.LookAt(targ);
         }
     }
 
-    // RUN WHEN ACTION ENDS
     public override void End()
     {
         base.End();
 
-        // REMOVES IMMUNITY TRAIT, IF THE THING HAS IT
         if (Who.Has(Traits.IgnoreDamage_JuliusP))
-        {
             Who.RemoveTrait(Traits.IgnoreDamage_JuliusP);
-        }
 
-        // DESTROY ALL REMAINING SHIELDS
+        if (Who.Has(Traits.NoTimerStunNegation_JuliusP))
+            Who.RemoveTrait(Traits.NoTimerStunNegation_JuliusP);
+
         foreach (ThingInfo shield in Lv3_spawnedShields)
-        {
             if (shield != null)
-            {
                 shield.Destruct(shield);
-            }
-        }
 
-        // CLEAR SHIELD LISTS
         Lv3_spawnedShields.Clear();
         redShields.Clear();
 
-        // START NEXT ACTION
         Actions next = NextAction();
-        Who.Thing.DoAction(next);
+        if (next != null && Who.Thing != null)
+            Who.Thing.DoAction(next);
     }
 
-    // FUNCTION TO SPAWN SHIELDS
     void SpawnShields()
     {
-        // LOAD THE SHIELD THINGOPTION IN THE FOLDER IT'S IN//
-        ThingOption Shield = Resources.Load<ThingOption>("JuliusP/Things With Actions/BarrierShield");
+        ThingOption Shield =
+            Resources.Load<ThingOption>("JuliusP/Things With Actions/BarrierShield");
 
-        // GET THE PLAYER THINGINFO//
-        ThingInfo Player = God.Session.Player;
+        if (Shield == null) return;
 
-        // THE NUMBER OF SHILEDS THAT SURROND THE THING//
         int numberOfShields = 8;
 
-        // PICK TWO RANDOM SHIELDS TO BE RED
-        int randomIndexOne = Random.Range(0, numberOfShields);
-        int randomIndexTwo;
-        int randomIndexThree;
-        do
-        {
-            // MAKES SURE THE SAME SHIELD ISN'T CHOSEN
-            randomIndexTwo = Random.Range(0, numberOfShields);
-            randomIndexThree = Random.Range(0, numberOfShields);
-        } while (randomIndexTwo == randomIndexOne || randomIndexThree == randomIndexTwo || randomIndexThree == randomIndexOne);
-
-
-        //EACH SHIELD WILL BE PLACED 45 DEGREES APART
         float angleStep = 360f / numberOfShields;
-        // SPAWN ALL SHIELDS
+
+        // ✅ LV3 CHANGE: 3 RED SHIELDS INSTEAD OF 2
+        int redCount = 3;
+        List<int> redIndexes = new List<int>();
+
+        while (redIndexes.Count < redCount)
+        {
+            int r = Random.Range(0, numberOfShields);
+            if (!redIndexes.Contains(r))
+                redIndexes.Add(r);
+        }
+
         for (int i = 0; i < numberOfShields; i++)
         {
-            // CALCULATE THE OFFSET FOR THE SHIELDS//
             float angle = i * angleStep * Mathf.Deg2Rad;
-            Vector3 ShieldOffset = new Vector3(Mathf.Cos(angle), Mathf.Sin(angle), 0) * Offset;
-            Vector3 spawnPos = Who.Thing.transform.position + ShieldOffset;
+            Vector3 offset = new Vector3(Mathf.Cos(angle), Mathf.Sin(angle), 0) * Offset;
 
-            // CREATE THE SHIELD OBJECT
             ThingInfo shieldInfo = Shield.Create();
-            ThingController shieldController = shieldInfo.Spawn(spawnPos);
+            ThingController shieldController =
+                shieldInfo.Spawn(Who.Thing.transform.position + offset);
+
             shieldController.transform.parent = null;
 
-            // CREATE HEALTH EVENT
-            EventInfo hp = new EventInfo();
-
-            // CHECK IF THIS SHIELD IS RED
-            if (i == randomIndexOne || i == randomIndexTwo || i == randomIndexThree)
+            if (redIndexes.Contains(i))
             {
-
-                //SET HEALTH TO BE 1 ONLY FOR THE RED SHIELDS//
-                hp.Set(NumInfo.Default, 1f); 
                 redShields.Add(shieldInfo);
 
-                // SET COLOR TO RED FOR THE ONES CHOSEN TO BE THE RED SHIELD//
-                SpriteRenderer sr = shieldController.GetComponentInChildren<SpriteRenderer>();
+                SpriteRenderer sr =
+                    shieldController.GetComponentInChildren<SpriteRenderer>();
+
                 if (sr != null)
-                {
                     sr.color = Color.red;
-                }
+
+                shieldInfo.AddTrait(Traits.ShieldTrait_JuliusP);
             }
             else
             {
-                // NORMAL SHIELDS ARE IMMUNE AND TAKE NO DAMAGE//
-                hp.Set(NumInfo.Default, Mathf.Infinity);
+                EventInfo hp = new EventInfo();
+                hp.Set(NumInfo.Default, 2f);
+                shieldInfo.AddTrait(Traits.Health, hp);
             }
 
-            // APPLY HEALTH TRAIT
-            shieldInfo.AddTrait(Traits.Health, hp);
-
-            // ADD THE SHIELDS TO SPAWNED SHIELDS LIST
             Lv3_spawnedShields.Add(shieldInfo);
         }
     }

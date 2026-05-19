@@ -16,7 +16,7 @@ MonoBehaviour:
   Author: 40
   Tags:
   - Common: 102
-    Custom: 
+    Custom: Agressor
     W: 1
     Cost: 1
   Team: 3
@@ -24,7 +24,7 @@ MonoBehaviour:
   Art: {fileID: -7515636971119528225, guid: 8d93e9f3167202648ad2cd2374e1a252, type: 3}
   Color: {r: 1, g: 1, b: 1, a: 1}
   Size: 1.58
-  LevelRange: {x: 0, y: 0}
+  LevelRange: {x: 0, y: 3}
   Trait:
   - Trait: 3
     Numbers: []
