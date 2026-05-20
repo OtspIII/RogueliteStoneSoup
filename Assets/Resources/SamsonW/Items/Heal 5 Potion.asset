@@ -10,20 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a47d2194617e47469e601e558e7b8b4, type: 3}
-  m_Name: Heal 3 Potion
+  m_Name: Heal 5 Potion
   m_EditorClassIdentifier: 
-  Name: Health Potion
+  Name: Heal 5 Potion
   Author: 70
-  Team: 1
-  Body: {fileID: 629948465317790645, guid: 7ef37acb0fdeb5849995b35a7fdca6ba, type: 3}
-  Art: {fileID: -2880734798192188640, guid: f77ef968c74f7a64c86e3247520c36ec, type: 3}
-  Color: {r: 1, g: 1, b: 1, a: 1}
-  Size: 0.75
   Tags:
   - Common: 202
     Custom: 
     W: 1
     Cost: 1
+  Team: 1
+  Body: {fileID: 629948465317790645, guid: 7ef37acb0fdeb5849995b35a7fdca6ba, type: 3}
+  Art: {fileID: -2880734798192188640, guid: f77ef968c74f7a64c86e3247520c36ec, type: 3}
+  Color: {r: 1, g: 1, b: 1, a: 1}
+  Size: 0.75
   LevelRange: {x: 0, y: 0}
   Trait:
   - Trait: 310
@@ -38,10 +38,11 @@ MonoBehaviour:
       Level: 0
       Author: 0
       MaxCost: 0
+      Where: {x: 999, y: 999, z: 999}
     Builder:
     - Type: 0
       NumType: 1
-      Num: 3
+      Num: 5
       StrType: 0
       Str: 
       ActType: 0
@@ -70,6 +71,7 @@ MonoBehaviour:
       Level: 0
       Author: 0
       MaxCost: 0
+      Where: {x: 999, y: 999, z: 999}
     Builder:
     - Type: 0
       NumType: 0
@@ -104,6 +106,7 @@ MonoBehaviour:
       Level: 0
       Author: 0
       MaxCost: 0
+      Where: {x: 999, y: 999, z: 999}
     Builder: []
   DefaultAttack: 5
   ToSpawn:
@@ -113,6 +116,7 @@ MonoBehaviour:
     Level: 0
     Author: 0
     MaxCost: 0
+    Where: {x: 999, y: 999, z: 999}
   FloorBody: {fileID: 629948465317790645, guid: 0f8734e4b4d2c3a449506fe0c78c1110, type: 3}
   FloorArt: {fileID: 0}
   Damage: 0

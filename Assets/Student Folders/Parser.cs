@@ -419,7 +419,7 @@ public enum Traits
     StackableDagger =7006, //Buffs dagger for each stack equipped
     GrappleHook     =7007, //Triggers grappling action on collision
     ComboBreak      =7008, //After getting stunned for X secs in a row, become immune to CC for Y secs
-    CrowdControlNegation =7009, //CC negation trait - blocks stuns and knockback for configured duration
+    CrowdControlNegation =7009, //CC negation trait blocks stuns and knockback for configured duration
     //SarahS        =75##,
     ProximityExplodeSarahS  =7501,
     SlowMoSarahS    =7502,
