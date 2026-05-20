@@ -19,6 +19,12 @@ public class GrappleAction : ActionScript
         Vector3 startPosition = Who.Thing.transform.position;
         for (float t = 0f; t < Duration; t += Time.fixedDeltaTime)
         {
+            if (Who.Thing == null)
+            {
+                End();
+                yield break;
+            }
+            
             float parameter = t / Duration;
             float easedParameter = 1 - Mathf.Pow(1 - parameter, 3); // Eased out cubic
             Who.Thing.transform.position = Vector3.Lerp(startPosition, targetPosition, easedParameter);

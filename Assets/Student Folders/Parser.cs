@@ -118,6 +118,13 @@ public static class Parser
         TraitDict.Add(Traits.GrappleHook,new GrappleHookTrait());
         TraitDict.Add(Traits.StackableDagger,new StackableDaggerTrait());
         TraitDict.Add(Traits.DelayedActionAfterStartingAction,new DelayedActionAfterStartingActionTrait());
+        TraitDict.Add(Traits.ComboBreak,new ComboBreakTrait());
+        TraitDict.Add(Traits.CrowdControlNegation,new CrowdControlNegation());
+        TraitDict.Add(Traits.BarrierItem,new BarrierItemTrait());
+        TraitDict.Add(Traits.PermBarrier,new PermBarrierTrait());
+        TraitDict.Add(Traits.LifestealItem,new LifestealItemTrait());
+        TraitDict.Add(Traits.TempLifesteal,new TempLifestealTrait());
+        TraitDict.Add(Traits.StartWithItem, new StartWithItemTrait());
         // SarahS Traits
         TraitDict.Add(Traits.ProximityExplodeSarahS,new ProximityExplode_SarahS());
         TraitDict.Add(Traits.SlowMoSarahS,new SlowMo_SarahS());
@@ -432,6 +439,13 @@ public enum Traits
     DelayedActionAfterStartingAction=7005, //Switches action after X secs after entering an action
     StackableDagger =7006, //Buffs dagger for each stack equipped
     GrappleHook     =7007, //Triggers grappling action on collision
+    ComboBreak      =7008, //After getting stunned for X secs in a row, become immune to CC for Y secs
+    CrowdControlNegation =7009, //CC negation trait blocks stuns and knockback for configured duration
+    BarrierItem     =7010, //On use, grants a permanent barrier shield trait
+    PermBarrier     =7011, //Permanent barrier shield that blocks damage while it has charge
+    LifestealItem   =7012, //On use, grants temporary lifesteal
+    TempLifesteal   =7013, //Heals for damage dealt while active
+    StartWithItem = 7016, //Gives a ThingOption (item) to the Thing on spawn
     //SarahS        =75##,
     ProximityExplodeSarahS  =7501,
     SlowMoSarahS    =7502,
