@@ -10,20 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a47d2194617e47469e601e558e7b8b4, type: 3}
-  m_Name: Heal 3 Potion
+  m_Name: BittenApple
   m_EditorClassIdentifier: 
-  Name: Health Potion
-  Author: 70
+  Name: Bitten Apple
+  Author: 90
   Tags:
   - Common: 202
     Custom: 
-    W: 1
+    W: 3
     Cost: 1
   Team: 1
   Body: {fileID: 629948465317790645, guid: 7ef37acb0fdeb5849995b35a7fdca6ba, type: 3}
-  Art: {fileID: -2880734798192188640, guid: f77ef968c74f7a64c86e3247520c36ec, type: 3}
+  Art: {fileID: 8621175409208223273, guid: 07c8a100a60580e42b84f4a8101aac27, type: 3}
   Color: {r: 1, g: 1, b: 1, a: 1}
-  Size: 0.75
+  Size: 0.5
   LevelRange: {x: 0, y: 0}
   Trait:
   - Trait: 310
@@ -42,39 +42,6 @@ MonoBehaviour:
     Builder:
     - Type: 0
       NumType: 1
-      Num: 3
-      StrType: 0
-      Str: 
-      ActType: 0
-      Act: 0
-      BoolType: 0
-      Bool: 0
-      OptionType: 0
-      Option: {fileID: 0}
-      VectorType: 0
-      Vector: {x: 0, y: 0}
-      Fixed: {fileID: 0}
-      Mandatory: 
-      MandatoryW: 0
-      Any: 
-      AnyW: 0
-      Trait: 0
-  - Trait: 313
-    Numbers: []
-    Prefabs: []
-    Acts: []
-    OtherTrait: 0
-    SpawnReq:
-      Fixed: {fileID: 0}
-      Mandatory: []
-      Any: []
-      Level: 0
-      Author: 0
-      MaxCost: 0
-      Where: {x: 999, y: 999, z: 999}
-    Builder:
-    - Type: 0
-      NumType: 0
       Num: 1
       StrType: 0
       Str: 
@@ -93,9 +60,7 @@ MonoBehaviour:
       AnyW: 0
       Trait: 0
   - Trait: 312
-    Numbers:
-    - Type: 1
-      Value: 1
+    Numbers: []
     Prefabs: []
     Acts: []
     OtherTrait: 0
@@ -107,7 +72,26 @@ MonoBehaviour:
       Author: 0
       MaxCost: 0
       Where: {x: 999, y: 999, z: 999}
-    Builder: []
+    Builder:
+    - Type: 0
+      NumType: 1
+      Num: 1
+      StrType: 0
+      Str: 
+      ActType: 0
+      Act: 0
+      BoolType: 0
+      Bool: 0
+      OptionType: 0
+      Option: {fileID: 0}
+      VectorType: 0
+      Vector: {x: 0, y: 0}
+      Fixed: {fileID: 0}
+      Mandatory: 
+      MandatoryW: 0
+      Any: 
+      AnyW: 0
+      Trait: 0
   DefaultAttack: 5
   ToSpawn:
     Fixed: {fileID: 0}
