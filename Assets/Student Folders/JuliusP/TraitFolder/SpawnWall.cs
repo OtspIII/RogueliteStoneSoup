@@ -147,10 +147,12 @@ public class SpawnWall : Trait
                 }
 
                 // DESTROY MAIN WALL WHEN BOSS DIES
-                if (level2Wall != null && LJP != null && LJP.Lv2BossKilled)
+                if (level2Wall != null && level != null && level.Lv2BossKilled)
                 {
                     level2Wall.Destruct();
                     level2Wall = null;
+
+                   // Debug.Log("ill");
                 }
 
                 // DESTROY ALLY WALL
@@ -158,6 +160,8 @@ public class SpawnWall : Trait
                 {
                     Level2WallNearAlly.Destruct();
                     Level2WallNearAlly = null;
+
+                    
                 }
 
                 // DESTROY RED LIGHT WALL
@@ -347,9 +351,11 @@ public class RemoveExit : Trait
                if(shieldEnemy != null && shieldEnemy.Thing == null && !FinalBossDead)
                 {
                 
-                Debug.Log("Shield Enemy is dead");
+              //  Debug.Log("Shield Enemy is dead");
 
                 LJP.Lv5FinalBossKilled = true;
+
+                Exit.AddTrait(Traits.Exit);
 
                 FinalBossDead = true;
                 }
@@ -376,13 +382,13 @@ public class RemoveExit : Trait
             if (t?.Info == null)
                 continue;
 
-            // WARNING: name check is fragile
+         
             if (t.gameObject.name.Contains("Lv4.Shield Enemy"))
             {
                 shieldEnemy = t.Info;
                 FoundEnemy = true;
 
-                Debug.Log("Shield Enemy cached");
+            
                 break;
             }
         }

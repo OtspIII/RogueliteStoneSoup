@@ -131,7 +131,7 @@ public class Lv3RedLight : Trait
                     
                  LJP.Lv3RedLight3Killed = true;   
 
-                 Debug.Log("killed");    
+                 //Debug.Log("killed");    
                 
 
 

@@ -266,7 +266,7 @@ public class TraeHp : ActionScript
             yield return null; 
         }
 
-        Debug.Log("Enemy has died!");
+       // Debug.Log("Enemy has died!");
        
 
         //GET THINGINFO OF THE EXIT//
