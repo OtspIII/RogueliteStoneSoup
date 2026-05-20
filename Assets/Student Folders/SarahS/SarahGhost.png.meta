@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: a56f571556faa40309fd28d270caadc8
+guid: 728ad056c59dd406a855d66c90ad01a3
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8465975155184538089
-    second: "\u2014Pngtree\u2014horror ghost_6045851_0"
+      213: 5116550972330844371
+    second: SarahGhost_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "\u2014Pngtree\u2014horror ghost_6045851_0"
+      name: SarahGhost_0
       rect:
         serializedVersion: 2
-        x: 122
-        y: 202
-        width: 984
-        height: 780
+        x: 461
+        y: 117
+        width: 1031
+        height: 1432
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 71e61f57370d28a80800000000000000
-      internalID: -8465975155184538089
+      spriteID: 3d0a5fc2004a10740800000000000000
+      internalID: 5116550972330844371
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      "\u2014Pngtree\u2014horror ghost_6045851_0": -8465975155184538089
+      SarahGhost_0: 5116550972330844371
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

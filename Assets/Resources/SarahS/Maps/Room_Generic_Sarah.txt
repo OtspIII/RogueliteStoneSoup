@@ -1,17 +1,11 @@
-xxxxxxuuuuxxxxxxx
-x               x
-x xx       xx  x
-x xx       xx  x
-x               x
-x               x
-llll         rrrr
-llll   xxx   rrrr
-x      xxx       x
-x               x
-x               x
-x xx       xx  x
-x xx       xx  x
-x               x
-x               x
-x               x
-xxxxxxxddddxxxxx x
+xxxxuuuxxxx 
+x         x 
+x xx   xx x 
+x         x 
+l         r 
+l   xxx   r 
+l         r 
+x         x 
+x xx   xx x 
+x         x 
+xxxxdddxxxx 

@@ -1,10 +1,16 @@
 fileFormatVersion: 2
-guid: a56f571556faa40309fd28d270caadc8
+guid: a2c2cc16b1e644560917466e8e1d268d
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8465975155184538089
-    second: "\u2014Pngtree\u2014horror ghost_6045851_0"
+      213: -7482177786666212508
+    second: Monster_0
+  - first:
+      213: -7783437513647718680
+    second: Monster_1
+  - first:
+      213: -724056971925584315
+    second: Monster_2
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -51,7 +57,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 1100
+  spritePixelsToUnits: 800
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -113,13 +119,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "\u2014Pngtree\u2014horror ghost_6045851_0"
+      name: Monster_0
       rect:
         serializedVersion: 2
-        x: 122
-        y: 202
-        width: 984
-        height: 780
+        x: 15
+        y: 915
+        width: 28
+        height: 26
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +134,52 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 71e61f57370d28a80800000000000000
-      internalID: -8465975155184538089
+      spriteID: 463217ff1f6f92890800000000000000
+      internalID: -7482177786666212508
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Monster_1
+      rect:
+        serializedVersion: 2
+        x: 115
+        y: 87
+        width: 785
+        height: 940
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8eef39bd1dcabf390800000000000000
+      internalID: -7783437513647718680
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Monster_2
+      rect:
+        serializedVersion: 2
+        x: 459
+        y: 86
+        width: 14
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5460b3f2502a3f5f0800000000000000
+      internalID: -724056971925584315
       vertices: []
       indices: 
       edges: []
@@ -148,7 +198,9 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      "\u2014Pngtree\u2014horror ghost_6045851_0": -8465975155184538089
+      Monster_0: -7482177786666212508
+      Monster_1: -7783437513647718680
+      Monster_2: -724056971925584315
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

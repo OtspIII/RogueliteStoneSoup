@@ -127,6 +127,7 @@ public static class Parser
         TraitDict.Add(Traits.ProtectionSpellSarahS,new ProtectionSpell_SarahS());
         TraitDict.Add(Traits.DamageFlashSarahS,new DamageFlash_SarahS());
         TraitDict.Add(Traits.FleeSarahS,new Flee_SarahS());
+        TraitDict.Add(Traits.ContactDamageSarahS,new ContactDamage_SarahS());
         // TracyH Traits
         TraitDict.Add(Traits.Teleport_TracyH, new TeleportTrait_TracyH());
         TraitDict.Add(Traits.Freeze_TracyH, new FreezeTrait_TracyH());
@@ -440,6 +441,7 @@ public enum Traits
     ProtectionSpellSarahS =7506,
     DamageFlashSarahS =7507,
     FleeSarahS    =7508,
+    ContactDamageSarahS =7509,
     //TracyH        =80##,
     TracyH1 = 8001,
     Teleport_TracyH = 8002, //Teleport player between radius or nearby room(Zone)

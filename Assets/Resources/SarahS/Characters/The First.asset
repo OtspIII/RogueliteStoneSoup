@@ -12,18 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4679cc75b2c8be74e8b047318fa062ea, type: 3}
   m_Name: The First
   m_EditorClassIdentifier: Assembly-CSharp::CharacterOption
-  Name: The Harbinger
+  Name: The First
   Author: 75
-  Team: 1
-  Body: {fileID: 629948465317790645, guid: acf0e760b28c7b046ad7d511fb87a1d3, type: 3}
-  Art: {fileID: 21300000, guid: a41abc3f9ad2941cbadb5c44500a96a5, type: 3}
-  Color: {r: 1, g: 1, b: 1, a: 1}
-  Size: 1
   Tags:
   - Common: 102
     Custom: 
     W: 0
     Cost: 0
+  Team: 1
+  Body: {fileID: 629948465317790645, guid: acf0e760b28c7b046ad7d511fb87a1d3, type: 3}
+  Art: {fileID: 21300000, guid: a41abc3f9ad2941cbadb5c44500a96a5, type: 3}
+  Color: {r: 1, g: 1, b: 1, a: 1}
+  Size: 1
   LevelRange: {x: 0, y: 0}
   Trait: []
   HP: 10

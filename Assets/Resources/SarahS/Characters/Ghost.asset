@@ -10,23 +10,27 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4679cc75b2c8be74e8b047318fa062ea, type: 3}
-  m_Name: The Final Girl
+  m_Name: Ghost
   m_EditorClassIdentifier: Assembly-CSharp::CharacterOption
-  Name: The Final Girl
+  Name: Ghost
   Author: 75
   Tags:
-  - Common: 1
-    Custom: 
-    W: 1
+  - Common: 0
+    Custom: Ghost
+    W: 0
     Cost: 0
-  Team: 2
+  - Common: 102
+    Custom: 
+    W: 0
+    Cost: 0
+  Team: 3
   Body: {fileID: 629948465317790645, guid: acf0e760b28c7b046ad7d511fb87a1d3, type: 3}
-  Art: {fileID: 21300000, guid: 216db4b92d45c4c7f804ee3642861b7e, type: 3}
+  Art: {fileID: 21300000, guid: 728ad056c59dd406a855d66c90ad01a3, type: 3}
   Color: {r: 1, g: 1, b: 1, a: 1}
-  Size: 0.8
+  Size: 1
   LevelRange: {x: 0, y: 0}
   Trait:
-  - Trait: 1
+  - Trait: 101
     Numbers: []
     Prefabs: []
     Acts: []
@@ -38,9 +42,9 @@ MonoBehaviour:
       Level: 0
       Author: 0
       MaxCost: 0
-      Where: {x: 999, y: 999, z: 999}
+      Where: {x: 0, y: 0, z: 0}
     Builder: []
-  - Trait: 100
+  - Trait: 7509
     Numbers: []
     Prefabs: []
     Acts: []
@@ -52,25 +56,11 @@ MonoBehaviour:
       Level: 0
       Author: 0
       MaxCost: 0
-      Where: {x: 999, y: 999, z: 999}
-    Builder: []
-  - Trait: 7507
-    Numbers: []
-    Prefabs: []
-    Acts: []
-    OtherTrait: 0
-    SpawnReq:
-      Fixed: {fileID: 0}
-      Mandatory: []
-      Any: []
-      Level: 0
-      Author: 0
-      MaxCost: 0
-      Where: {x: 999, y: 999, z: 999}
+      Where: {x: 0, y: 0, z: 0}
     Builder: []
   HP: 5
-  Speed: 3
-  VisionRange: 4
+  Speed: 2
+  VisionRange: 2
   Held: {fileID: 0}
-  DefaultAction: 1
-  DefaultChaseAction: 202
+  DefaultAction: 7508
+  DefaultChaseAction: 7507
