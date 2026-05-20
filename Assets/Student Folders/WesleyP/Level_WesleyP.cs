@@ -1,35 +1,133 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Level_WesleyP : LevelBuilder
 {
+    public bool LvL2AllyFound { get; set; }
+
     public Level_WesleyP()
     {
         Author = Authors.WesleyP;
     }
-     public override void Customize()
+
+    public override void Customize()
     {
-        //If we haven't created a player yet for this playthrough, make one.
+        //If we haven't created a player yet for this play through, make one.
         SpawnPlayer();
-        Size = new Vector2Int(4, 4); //forces the grid to be a certain size
+        Size = new Vector2Int(2, 3); //forces the grid to be a certain size
     }
 
     public override void BuildGeoMap()
     {
-        AddGeo(new GeoTile(1, 1, this));
-        AddGeo(new GeoTile(1, 2, this));
-        AddGeo(new GeoTile(1, 3, this));
-        AddGeo(new GeoTile(1, 4, this));
-        AddGeo(new GeoTile(2, 4, this));
+        //AddGeo(new GeoTile(0, 0, this));
+        // AddGeo(new GeoTile(0, 1, this));
+        // AddGeo(new GeoTile(1, 1, this));
+        // AddGeo(new GeoTile(1, 2, this));
+        //AddGeo(new GeoTile(1, 3, this));
+        // AddGeo(new GeoTile(1, 4, this));
+        // AddGeo(new GeoTile(2, 4, this));
+        // AddGeo(new GeoTile(0, 4, this));
+        //Two nested for loops lets us build a grid of room slots at our desired size
+        int RandomY = Random.Range(4, 8);
 
-        AddGeo(new GeoTile(0, 4, this));
+        GeoTile DefaultRooms = new GeoTile(0, 0, this);
+        DefaultRooms.Tag = "BasicRoom";
+
+        for (int x = 0; x < Size.x; x++)
+            for (int y = 0; y < RandomY; y++)
+            {
+                //Spawn a blank room slot into the position 
+                AddGeo(new GeoTile(x, y, this, "BasicRoom"));
+            }
     }
 
-    public override void BuildMainPath()
+    public override void BuildMainPath() //you must define where the player exit and start is
     {
-
-        Exit = GetGeo(1, 1 + 1);
-        Exit = GetGeo(2, 1 + 2);
+        //base.BuildMainPath();
+        //Make a safe path leading to the exit
+        //Pick the column the player spawns in (at the bottom of the level)
+        int start = Random.Range(0, Size.x);
+        //For each row. . .
+        for (int y = 0; y < Size.y; y++)
+        {
+            //Pick a slot to move the path towards before moving up a row
+            int end = Random.Range(0, Size.x);
+            if (end == start) end = Random.Range(0, Size.x);
+            int x = start;
+            //If this is the bottom row. . .
+            if (y == 0)
+            {
+                //Then our start column is the player start point
+                PlayerSpawn = GetGeo(x, 0);
+                PlayerSpawn.SetPath(GeoTile.GeoTileTypes.PlayerStart);
+            }
+            //While we haven't reached our destination. . .
+            while (x != end)
+            {
+                int old = x;
+                //Take a step towards the destination
+                x = (int)Mathf.MoveTowards(x, end, 1); //MoveTowards similar to lerp
+                //Open up a connection between the tile we came from and the one we're at now
+                GeoTile a = GetGeo(old, y);
+                GeoTile b = GetGeo(x, y);
+                //And make sure it's marked as being on the main path (does nothing for now)
+                b.SetPath(GeoTile.GeoTileTypes.MainPath);
+                if (start > end) //gives an opening between a and b
+                {
+                    a.Links.Add(Directions.Left);
+                    b.Links.Add(Directions.Right);
+                }
+                else //so we don't get dead ends with a door opening to a wall
+                {
+                    a.Links.Add(Directions.Right);
+                    b.Links.Add(Directions.Left);
+                }
+            }
+            //Mark our end point as the start of the path on the next row
+            start = end;
+            //Move up row up and repeat, linking to the slot below
+            //If I'm on the top row. . .
+            if (y == Size.y - 1)
+            {
+                //If we picked a boss, we need to make them a room
+                if (Boss != null)
+                {
+                    //Make a new tile above the current exit
+                    GeoTile g = new GeoTile(start, y + 1, this);
+                    AddGeo(g);
+                    //And move the exit to that new tile
+                    Exit = GetGeo(start, y + 1);
+                    Exit.SetPath(GeoTile.GeoTileTypes.Exit);
+                    //Then take the current tile and make it the boss tile
+                    GeoTile boss = GetGeo(start, y);
+                    boss.SetPath(GeoTile.GeoTileTypes.Boss);
+                    //Link the boss and exit rooms
+                    boss.Links.Add(Directions.Up);
+                    Exit.Links.Add(Directions.Down);
+                }
+                else
+                {
+                    //But if we're at the top of the map, mark our ultimate position as the exit spawn location
+                    Exit = GetGeo(start, y);
+                    Exit.SetPath(GeoTile.GeoTileTypes.Exit);
+                }
+            }
+            else //If I'm not on the top row. . .
+            {
+                GeoTile a = GetGeo(start, y);
+                GeoTile b = GetGeo(start, y + 1);
+                a.Links.Add(Directions.Up);
+                b.Links.Add(Directions.Down);
+                b.SetPath(GeoTile.GeoTileTypes.MainPath);
+            }
+        }
+        PlayerSpawn = GetGeo(0, 0);
+    }
+   
+    
+   
+    public override void ConnectAllGeos()
+    {
+        base.ConnectAllGeos();
     }
 }
-
-
