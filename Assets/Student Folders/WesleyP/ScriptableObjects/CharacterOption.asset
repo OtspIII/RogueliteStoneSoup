@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: CharacterOption
   m_EditorClassIdentifier: Assembly-CSharp::CharacterOption
   Name: 
-  Author: 0
+  Author: 90
   Tags: []
   Team: 1
   Body: {fileID: 0}
   Art: {fileID: 0}
   Color: {r: 1, g: 1, b: 1, a: 1}
   Size: 1
-  LevelRange: {x: 0, y: 0}
+  LevelRange: {x: 1, y: 2}
   Trait: []
   HP: 0
   Speed: 5
