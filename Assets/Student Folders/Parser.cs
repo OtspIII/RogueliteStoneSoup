@@ -53,6 +53,7 @@ public static class Parser
         TraitDict.Add(Traits.InvertControls, new InvertControlsTrait());
         TraitDict.Add(Traits.Freeze, new FreezeTrait());
         TraitDict.Add(Traits.MoneyDrop, new MoneyDropTrait());
+        TraitDict.Add(Traits.Lava, new LavaTrait());
         // Julius Traits
         TraitDict.Add(Traits.Rage, new RageTrait());
         TraitDict.Add(Traits.LowHealthWarrior_JuliusP, new UltimateRage());
@@ -345,6 +346,7 @@ public enum Traits
     InvertControls  =3502,
     Freeze          =3503,
     MoneyDrop       =3504,
+    Lava            =3505,
     //JuliusP       =40##,
     JuliusP1        =4001,
     Rage            =4002, 
