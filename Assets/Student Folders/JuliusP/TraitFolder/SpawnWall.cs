@@ -295,12 +295,11 @@ public class SpawnWall : Trait
 
 
 
+
 public class RemoveExit : Trait
 {
-    ThingInfo Exit;
     ThingInfo shieldEnemy;
 
-    bool exitRemoved = false;
     bool FoundEnemy = false;
     bool FinalBossDead = false;
 
@@ -311,78 +310,73 @@ public class RemoveExit : Trait
         Type = Traits.RemoveExit_JuliusP;
 
         AddListen(EventTypes.Update);
-        
         AddListen(EventTypes.OnSpawn);
-
-      
     }
 
     public override void TakeEvent(TraitInfo i, EventInfo e)
     {
         switch (e.Type)
         {
-            case EventTypes.Update:
+            case EventTypes.OnSpawn:
             {
-                int Level = God.Session.Level;
+                LJP = God.LB as Level_JuliusP;
 
-                // SAFELY GET EXIT
-                if (Exit == null)
-                    Exit = God.GM.Exit;
+                shieldEnemy = null;
 
-                // REMOVE EXIT ON LEVEL 5
-                if (Level == 5 && !exitRemoved && Exit != null && Exit.Has(Traits.Exit))
-                {
-                    Exit.RemoveTrait(Traits.Exit);
-                    exitRemoved = true;
-                }
+                FoundEnemy = false;
 
-                // CACHE ENEMY (WAIT UNTIL IT EXISTS)
-                if (!FoundEnemy)
-                {
-                    CacheShieldEnemy();
-                }
-
-
-
-               if(shieldEnemy != null && shieldEnemy.Thing == null && !FinalBossDead)
-                {
-                
-                Debug.Log("Shield Enemy is dead");
-
-                LJP.Lv5FinalBossKilled = true;
-
-                FinalBossDead = true;
-                }
+                FinalBossDead = false;
 
                 break;
             }
 
-
-
-            case EventTypes.OnSpawn:
+            case EventTypes.Update:
             {
-                    
-             LJP = God.LB as Level_JuliusP;
+                int Level = God.Session.Level;
 
-             break;
+                if (Level != 5)
+                    break;
+
+                LJP = God.LB as Level_JuliusP;
+
+                // FIND THE SHIELD ENEMY
+                if (!FoundEnemy)
+                {
+                    FindShieldEnemy();
+                }
+
+                // CHECK IF DEAD
+                if (FoundEnemy && (shieldEnemy == null || shieldEnemy.Thing == null) && !FinalBossDead)
+                {
+                    //Debug.Log("Shield Enemy is dead");
+
+                    LJP.Lv5FinalBossKilled = true;
+
+                    FinalBossDead = true;
+                }
+
+                break;
             }
         }
     }
 
-    void CacheShieldEnemy()
+    void FindShieldEnemy()
     {
         foreach (ThingController t in God.GM.Things)
         {
             if (t?.Info == null)
                 continue;
 
-            // WARNING: name check is fragile
+            //Debug.Log(t.gameObject.name);
+
             if (t.gameObject.name.Contains("Lv4.Shield Enemy"))
             {
                 shieldEnemy = t.Info;
+
                 FoundEnemy = true;
 
-                Debug.Log("Shield Enemy cached");
+                //Debug.Log("Shield Enemy cached");
+
                 break;
             }
         }
