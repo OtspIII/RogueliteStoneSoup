@@ -23,8 +23,8 @@ MonoBehaviour:
   Body: {fileID: 629948465317790645, guid: 073ebe890d72bac48bacd0748bd84afc, type: 3}
   Art: {fileID: 0}
   Color: {r: 0.017205596, g: 1, b: 0, a: 1}
-  Size: 2
-  LevelRange: {x: 0, y: 2}
+  Size: 1.05
+  LevelRange: {x: 0, y: 4}
   Trait:
   - Trait: 7004
     Numbers: []

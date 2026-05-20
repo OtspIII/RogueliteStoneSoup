@@ -1,0 +1,20 @@
+xxxxxxxuuuxxxxxxx
+x     x N x     x
+x              xx
+xx      F      xx
+xx             xx
+x  3            x
+x               x
+xxxxxxx   xxxxxxx
+xxxxxxx   xxxxxxx
+xxxxxxx   xxxxxxx
+xx555xx   xx555xx
+xx55555   55555xx
+x555555   555555x
+x555555   555555x
+xxxxxxx   xxxxxxx
+xxxxxxx   xxxxxxx
+xxxxxxx   xxxxxxx
+xxxxxxx   xxxxxxx
+xxxxxxx   xxxxxxx
+xxxxxxxdddxxxxxxx

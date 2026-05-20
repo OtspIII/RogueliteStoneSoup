@@ -13,24 +13,20 @@ MonoBehaviour:
   m_Name: CR1
   m_EditorClassIdentifier: Assembly-CSharp::CharacterOption
   Name: CR1
-  Author: 1
-  Team: 2
-  Body: {fileID: 629948465317790645, guid: acf0e760b28c7b046ad7d511fb87a1d3, type: 3}
-  Art: {fileID: -183446788379000519, guid: 8d93e9f3167202648ad2cd2374e1a252, type: 3}
-  Color: {r: 1, g: 1, b: 1, a: 1}
-  Size: 1
+  Author: 90
   Tags:
   - Common: 1
     Custom: 
     W: 1
-    Cost: 1
-  - Common: 1
-    Custom: 
-    W: 1
     Cost: 0
+  Team: 2
+  Body: {fileID: 629948465317790645, guid: acf0e760b28c7b046ad7d511fb87a1d3, type: 3}
+  Art: {fileID: 7019294268675060027, guid: 8d93e9f3167202648ad2cd2374e1a252, type: 3}
+  Color: {r: 1, g: 1, b: 1, a: 1}
+  Size: 1
   LevelRange: {x: 0, y: 0}
   Trait:
-  - Trait: 100
+  - Trait: 9003
     Numbers: []
     Prefabs: []
     Acts: []
@@ -42,10 +38,30 @@ MonoBehaviour:
       Level: 0
       Author: 0
       MaxCost: 0
-    Builder: []
+      Where: {x: 999, y: 999, z: 999}
+    Builder:
+    - Type: 2
+      NumType: 0
+      Num: 0
+      StrType: 0
+      Str: 
+      ActType: 7
+      Act: 9002
+      BoolType: 0
+      Bool: 0
+      OptionType: 0
+      Option: {fileID: 0}
+      VectorType: 0
+      Vector: {x: 0, y: 0}
+      Fixed: {fileID: 0}
+      Mandatory: 
+      MandatoryW: 0
+      Any: 
+      AnyW: 0
+      Trait: 0
   HP: 10
   Speed: 2
   VisionRange: 10
-  Held: {fileID: 11400000, guid: d8535ae3107c2184ab8fc49f1318f904, type: 2}
-  DefaultAction: 1
-  DefaultChaseAction: 1
+  Held: {fileID: 11400000, guid: 9791046b50fadd14f93ef80fd2e77a56, type: 2}
+  DefaultAction: 202
+  DefaultChaseAction: 9003

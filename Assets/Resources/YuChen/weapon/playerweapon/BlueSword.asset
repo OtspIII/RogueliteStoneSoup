@@ -20,7 +20,7 @@ MonoBehaviour:
   Art: {fileID: -1613646886922424301, guid: e8b0d6397381afe42b307356b06c650c, type: 3}
   Color: {r: 1, g: 1, b: 1, a: 1}
   Size: 2
-  LevelRange: {x: 0, y: 0}
+  LevelRange: {x: 2, y: 4}
   Trait:
   - Trait: 9502
     Numbers: []
@@ -50,7 +50,7 @@ MonoBehaviour:
       MaxCost: 0
       Where: {x: 0, y: 0, z: 0}
     Builder: []
-  DefaultAttack: 9504
+  DefaultAttack: 101
   ToSpawn:
     Fixed: {fileID: 11400000, guid: 21f2f00ddb5360c409b072461865b27f, type: 2}
     Mandatory: []

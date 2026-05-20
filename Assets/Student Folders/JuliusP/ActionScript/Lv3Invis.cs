@@ -37,7 +37,7 @@ public class Lv3Invis : ActionScript
         // NULL CHECK TO AVOID CRASH
         if (player == null || player.Thing == null)
         {
-            Debug.LogWarning("Player or Player.Thing is null, skipping look at.");
+            //Debug.LogWarning("Player or Player.Thing is null, skipping look at.");
             return; // exit OnRun safely
         }
 
@@ -57,7 +57,7 @@ public class Lv3Invis : ActionScript
 
     public override void HitBegin(GameCollision Col)
     {
-        Debug.Log("Hit");
+        //Debug.Log("Hit");
         DetectedHit = true;
     }
 
@@ -70,7 +70,7 @@ public class Lv3Invis : ActionScript
         // NULL CHECK TO AVOID ERRORS//
         if (Player == null || Player.Thing == null)
         {
-            Debug.LogWarning("Player or Player.Thing is null, cannot teleport behind player.");
+           // Debug.LogWarning("Player or Player.Thing is null, cannot teleport behind player.");
             return;
         }
 
@@ -84,7 +84,7 @@ public class Lv3Invis : ActionScript
         if(Distance < 3f && !CanGainTrait)
         {
             //DEBUGGING DISTANCE//
-            Debug.Log("Close");
+           // Debug.Log("Close");
 
             //ADD THE INVISIBILITY TRAIT TO THE THING//
             Who.AddTrait(Traits.GainInvis_JuliusP);

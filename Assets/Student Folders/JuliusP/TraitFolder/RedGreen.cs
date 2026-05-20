@@ -11,6 +11,9 @@ public class RedGreen : Trait
 
     Dictionary<SpriteRenderer, Color> originalColors = new Dictionary<SpriteRenderer, Color>();
 
+
+    Level_JuliusP LJP;
+
     public RedGreen()
     {
         Type = Traits.RedLight;
@@ -34,7 +37,7 @@ public class RedGreen : Trait
                 if (self == null || self.Thing == null)
                     return;
 
-                // FIX: prevent session transition null frame
+              
                 if (God.Session == null || player == null || player.Thing == null)
                 {
                     ResetFloors();
@@ -42,7 +45,7 @@ public class RedGreen : Trait
                     return;
                 }
 
-                // FIX: extra safety for level transition frames
+              
                 if (self.Thing == null || player.Thing == null)
                 {
                     ResetFloors();
@@ -82,17 +85,15 @@ public class RedGreen : Trait
                 timer += Time.deltaTime;
 
     
-
                 if (timer >= 2f)
                 {
-                    timer = 0f;
-                    isRed = !isRed;
+                     timer = 0f;
+                     isRed = !isRed;
 
-                    SetFloors(isRed ? Color.red : Color.green);
+                     SetFloors(isRed ? Color.red : Color.green);
 
-                    God.GM.SetUI("PlayMessage", isRed ? "Red Light!" : "Green Light!", 2);
+                     God.GM.SetUI("PlayMessage", isRed ? "Red Light!" : "Green Light!", 2);
                 }
-
                
                 //CHECK IF THE PLAYER IS MOVING DURING RED//
                 Rigidbody2D rb = player.Thing.GetComponentInChildren<Rigidbody2D>();
@@ -105,6 +106,15 @@ public class RedGreen : Trait
                 }
 
                 break;
+
+
+
+              
+
+
+
+
+
             }
 
             //SETS COLOR OF FLOOR BACK ON DEATH//
@@ -118,6 +128,20 @@ public class RedGreen : Trait
                 God.GM.SetUI("PlayMessage", null , 2);
 
                 i.Who.RemoveTrait(Traits.RedLight);
+
+                int Level = God.Session.Level;
+                
+                if(Level == 3)
+                {
+                    
+                 LJP.Lv3FirstRedLightKilled = true;       
+                
+
+
+                }
+
+
+
                 break;
             }
 
@@ -139,6 +163,12 @@ public class RedGreen : Trait
 
                  }
 
+
+                //LEVEL 3 LOGIC//
+
+                LJP = God.LB as Level_JuliusP;
+
+               
 
                 break;
 

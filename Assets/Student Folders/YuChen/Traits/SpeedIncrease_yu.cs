@@ -23,7 +23,7 @@ public class SpeedIncrease_yuTrait : Trait
                 if (attacker == null) return;
 
 
-                if (Random.value < 0.35f)
+                if (Random.value < 0.25f)
                 {
                     TraitInfo actor = attacker.Get(Traits.Actor);
                     if (actor == null) 

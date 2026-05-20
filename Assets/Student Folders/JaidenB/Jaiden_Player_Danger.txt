@@ -1,0 +1,11 @@
+xxxxxuxxxxx
+l      x  r
+x      x  x
+xxxx      r
+l  x      r
+l     xxxxx
+x         x
+xxxxxxx   x
+l    xx   r
+l         r
+xxxxdddxxxx

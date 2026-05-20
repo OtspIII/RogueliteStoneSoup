@@ -26,7 +26,7 @@ public class StatusEffectOnProjectileTrait_AdamD : Trait //Should make this "scr
                     Traits t = i.GetTrait();
                     float n = i.GetFloat();
                     e.Collision.Other.Info.AddTrait(t,i /*new EventInfo().Set(n).Set(NumInfo.Time,5)*/);// right now sets people on fire. use multiple .Set() to add multiple parameters
-                    //if  the num type isn't set, this would work; if the num is set to time, make sure to add "time" into the get float
+                    //if the num type isn't set, this would work; if the num is set to time, make sure to add "time" into the get float
                     //will eventually be able to add different kinds of traits
                     //use numinfo/boolinfo/stringinfo/thinginfo to set different kinds of parameters
                     //Maybe add different stacks of the status effect as a parameter?

@@ -1,0 +1,71 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a47d2194617e47469e601e558e7b8b4, type: 3}
+  m_Name: red blade
+  m_EditorClassIdentifier: Assembly-CSharp::ItemOption
+  Name: signature weapon
+  Author: 95
+  Tags:
+  - Common: 201
+    Custom: 
+    W: 1
+    Cost: 1
+  Team: 1
+  Body: {fileID: 629948465317790645, guid: b4fa405680f33044abe2c4567ecf147f, type: 3}
+  Art: {fileID: 2421832292718417748, guid: 89e1bacd475d71745ba673484bc2e903, type: 3}
+  Color: {r: 1, g: 0.12864909, b: 0, a: 1}
+  Size: 0.8
+  LevelRange: {x: 4, y: 10}
+  Trait:
+  - Trait: 9502
+    Numbers: []
+    Prefabs: []
+    Acts: []
+    OtherTrait: 0
+    SpawnReq:
+      Fixed: {fileID: 0}
+      Mandatory: []
+      Any: []
+      Level: 0
+      Author: 0
+      MaxCost: 0
+      Where: {x: 0, y: 0, z: 0}
+    Builder: []
+  - Trait: 9503
+    Numbers: []
+    Prefabs: []
+    Acts: []
+    OtherTrait: 0
+    SpawnReq:
+      Fixed: {fileID: 0}
+      Mandatory: []
+      Any: []
+      Level: 0
+      Author: 0
+      MaxCost: 0
+      Where: {x: 0, y: 0, z: 0}
+    Builder: []
+  DefaultAttack: 9504
+  ToSpawn:
+    Fixed: {fileID: 11400000, guid: 21f2f00ddb5360c409b072461865b27f, type: 2}
+    Mandatory: []
+    Any: []
+    Level: 0
+    Author: 0
+    MaxCost: 0
+    Where: {x: 999, y: 999, z: 999}
+  FloorBody: {fileID: 0}
+  FloorArt: {fileID: 0}
+  Damage: 10
+  IdealRange: 4
+  SpeedMult: 2
+  ActDuration: 0

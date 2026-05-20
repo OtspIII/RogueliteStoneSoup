@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 666e3856c5664c242bde2f0f953b72bc, type: 3}
   m_Name: WolfBaneArrows
   m_EditorClassIdentifier: Assembly-CSharp::ProjectileOption
-  Name: arrow
+  Name: WolfBaneArrow
   Author: 40
   Tags: []
   Team: 1
@@ -23,20 +23,6 @@ MonoBehaviour:
   LevelRange: {x: 0, y: 0}
   Trait:
   - Trait: 4017
-    Numbers: []
-    Prefabs: []
-    Acts: []
-    OtherTrait: 0
-    SpawnReq:
-      Fixed: {fileID: 0}
-      Mandatory: []
-      Any: []
-      Level: 0
-      Author: 0
-      MaxCost: 0
-      Where: {x: 0, y: 0, z: 0}
-    Builder: []
-  - Trait: 4013
     Numbers: []
     Prefabs: []
     Acts: []

@@ -13,15 +13,52 @@ MonoBehaviour:
   m_Name: C 1
   m_EditorClassIdentifier: Assembly-CSharp::ThingOption
   Name: Cr1
-  Author: 1
+  Author: 90
+  Tags:
+  - Common: 102
+    Custom: 
+    W: 2
+    Cost: 1
   Team: 2
   Body: {fileID: 0}
   Art: {fileID: -8335318719858845397, guid: 8d93e9f3167202648ad2cd2374e1a252, type: 3}
   Color: {r: 1, g: 1, b: 1, a: 1}
   Size: 1
-  Tags: []
   LevelRange: {x: 0, y: 0}
   Trait:
+  - Trait: 2
+    Numbers: []
+    Prefabs: []
+    Acts: []
+    OtherTrait: 0
+    SpawnReq:
+      Fixed: {fileID: 0}
+      Mandatory: []
+      Any: []
+      Level: 0
+      Author: 0
+      MaxCost: 0
+      Where: {x: 999, y: 999, z: 999}
+    Builder:
+    - Type: 2
+      NumType: 0
+      Num: 0
+      StrType: 0
+      Str: 
+      ActType: 7
+      Act: 9002
+      BoolType: 0
+      Bool: 0
+      OptionType: 0
+      Option: {fileID: 0}
+      VectorType: 0
+      Vector: {x: 0, y: 0}
+      Fixed: {fileID: 0}
+      Mandatory: 
+      MandatoryW: 0
+      Any: 
+      AnyW: 0
+      Trait: 0
   - Trait: 0
     Numbers: []
     Prefabs: []
@@ -34,4 +71,5 @@ MonoBehaviour:
       Level: 0
       Author: 0
       MaxCost: 0
+      Where: {x: 999, y: 999, z: 999}
     Builder: []

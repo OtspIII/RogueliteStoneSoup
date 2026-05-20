@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: CR2
   m_EditorClassIdentifier: Assembly-CSharp::CharacterOption
   Name: AllyKat
-  Author: 1
+  Author: 90
+  Tags: []
   Team: 2
   Body: {fileID: 629948465317790645, guid: acf0e760b28c7b046ad7d511fb87a1d3, type: 3}
   Art: {fileID: 21300000, guid: 9831dbe312cc7d14d9af6795d0a672a3, type: 2}
   Color: {r: 1, g: 1, b: 1, a: 1}
   Size: 1
-  Tags: []
-  LevelRange: {x: 0, y: 0}
+  LevelRange: {x: 1, y: 6}
   Trait: []
   HP: 10
   Speed: 5

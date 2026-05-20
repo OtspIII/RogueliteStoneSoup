@@ -14,16 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ThingOption
   Name: Acid Pool
   Author: 40
-  Team: 1
-  Body: {fileID: 629948465317790645, guid: a818902a553ccfa49ba9ef5810b226ca, type: 3}
-  Art: {fileID: 21300000, guid: 3e9a18ec3cf9bf247a86f7408211fd5a, type: 3}
-  Color: {r: 0, g: 1, b: 0.14015651, a: 1}
-  Size: 3.32
   Tags:
   - Common: 400
     Custom: 
     W: 1
     Cost: 1
+  Team: 1
+  Body: {fileID: 629948465317790645, guid: a818902a553ccfa49ba9ef5810b226ca, type: 3}
+  Art: {fileID: 21300000, guid: 3e9a18ec3cf9bf247a86f7408211fd5a, type: 3}
+  Color: {r: 0, g: 1, b: 0.14015651, a: 1}
+  Size: 3.32
   LevelRange: {x: 1, y: 1}
   Trait:
   - Trait: 201
@@ -38,6 +38,40 @@ MonoBehaviour:
       Level: 0
       Author: 0
       MaxCost: 0
+      Where: {x: 999, y: 999, z: 999}
+    Builder:
+    - Type: 0
+      NumType: 1
+      Num: 1
+      StrType: 0
+      Str: 
+      ActType: 0
+      Act: 0
+      BoolType: 0
+      Bool: 0
+      OptionType: 0
+      Option: {fileID: 0}
+      VectorType: 0
+      Vector: {x: 0, y: 0}
+      Fixed: {fileID: 0}
+      Mandatory: 
+      MandatoryW: 0
+      Any: 
+      AnyW: 0
+      Trait: 0
+  - Trait: 4014
+    Numbers: []
+    Prefabs: []
+    Acts: []
+    OtherTrait: 0
+    SpawnReq:
+      Fixed: {fileID: 0}
+      Mandatory: []
+      Any: []
+      Level: 0
+      Author: 0
+      MaxCost: 0
+      Where: {x: 999, y: 999, z: 999}
     Builder:
     - Type: 0
       NumType: 1

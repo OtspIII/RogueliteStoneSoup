@@ -1,0 +1,20 @@
+xxxxxxxuuuxxxxxxx
+x111111   111111x
+x1             1x
+x1  x      x   1x
+x1  x      x   1x
+x1  xxx    xxx 1x
+x1  x      x   1x
+x1  x      x   1x
+x1v     X      1x
+x1             1x
+x1             1x
+x1  xx    xx   1x
+x1  x      x   1x
+x1  x      x   1x
+x1             1x
+x1             1x
+x1v            1x
+x1xxxxxxxxxxx x1x
+x111111   111111x
+xxxxxxxdddxxxxxxx

@@ -6,4 +6,12 @@ public class Level_MichaelT : LevelBuilder
     {
         Author = Authors.MichaelT;
     }
+    
+    public override void Customize()
+    {
+        SpawnPlayer(); 
+        Size = new Vector2Int(4,4); 
+        LinkOdds = 1; 
+    }
+    
 }

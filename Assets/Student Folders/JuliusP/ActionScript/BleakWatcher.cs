@@ -18,7 +18,7 @@ public class BleakWatcher : ActionScript
 
     public override void OnRun()
     {
-        Debug.Log("BleakWatcher OnRun called");
+       // Debug.Log("BleakWatcher OnRun called");
 
         base.OnRun();
         if (Input.GetKeyDown(KeyCode.B) && !CanOnlyspawnOne)
@@ -30,7 +30,7 @@ public class BleakWatcher : ActionScript
 
     public override void HitBegin(GameCollision col)
     {
-        Debug.Log("Hi!!!!");
+       // Debug.Log("Hi!!!!");
     }
     
     void SpawnBleakWatcherTurret()
@@ -171,6 +171,9 @@ public class SlowingProjectileTrait : Trait
                     // IGNORE TEAMMATES / ALLIES
                     if (t.Team == projectile.Team) continue;
 
+                    // ONLY TARGET ENEMIES (must have health / be valid combat target)
+                    if (t.Has(Traits.Health) == false) continue;
+
                     // CALCULATE DISTANCE FROM THE PROJECTILE TO THIS THING
                     float dist = Vector2.Distance(projController.transform.position, t.Thing.transform.position);
 
@@ -192,7 +195,6 @@ public class SlowingProjectileTrait : Trait
                     Vector2 dir = (closest.Thing.transform.position - projController.transform.position).normalized;
 
                     // SMOOTHLY ADJUST THE PROJECTILE'S VELOCITY TOWARD THE TARGET
-                    // THIS LERP CAUSES THE PROJECTILE TO CURVE TOWARD THE TARGET
                     projController.ActualMove = Vector2.Lerp(projController.ActualMove, dir * speed, Time.deltaTime * turnSpeed);
 
                     // ROTATE THE PROJECTILE TO FACE THE DIRECTION IT IS MOVING
@@ -212,6 +214,7 @@ public class SlowingProjectileTrait : Trait
                     target.AddTrait(Traits.Slowed_JuliusP);
                     //Debug.Log("Slowed applied to: " + target);
                 }
+
 
                 i.Who.Destruct(i.Who);
                 break;

@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ProjectileOption
   Name: arrow
   Author: 95
+  Tags: []
   Team: 1
   Body: {fileID: 629948465317790645, guid: 9edb53243ae32704ead177294fe49d22, type: 3}
   Art: {fileID: -6888756438569675735, guid: 2d7b3e95b12eb454f8c167f1037858ca, type: 3}
   Color: {r: 1, g: 1, b: 1, a: 1}
   Size: 0.7
-  Tags: []
   LevelRange: {x: 0, y: 0}
   Trait: []
-  Damage: 15
+  Damage: 10
   Speed: 18

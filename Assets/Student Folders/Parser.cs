@@ -46,10 +46,14 @@ public static class Parser
         // ElioR Traits
         TraitDict.Add(Traits.Barrier, new BarrierTrait_ElioR());
         TraitDict.Add(Traits.ParryTrait_ElioR, new ParryTrait());
+        TraitDict.Add(Traits.Blight_ElioR, new Blight_ElioR());
+        TraitDict.Add(Traits.BlightGiver_ElioR, new BlightGiver_ElioR());
+        TraitDict.Add(Traits.LifeSteal_ElioR, new LifeSteal_ElioR());
         // JaidenB Traits
         TraitDict.Add(Traits.InvertControls, new InvertControlsTrait());
         TraitDict.Add(Traits.Freeze, new FreezeTrait());
         TraitDict.Add(Traits.MoneyDrop, new MoneyDropTrait());
+        TraitDict.Add(Traits.Lava, new LavaTrait());
         // Julius Traits
         TraitDict.Add(Traits.Rage, new RageTrait());
         TraitDict.Add(Traits.LowHealthWarrior_JuliusP, new UltimateRage());
@@ -72,12 +76,23 @@ public static class Parser
         TraitDict.Add(Traits.SpawnWall_JuliusP, new SpawnWall());
         TraitDict.Add(Traits.AddTraitByScore_JuliusP, new AddTraitByScore());
         TraitDict.Add(Traits.Lv2RedLight_JuliusP,new Lv2RedLight());
+        TraitDict.Add(Traits.TempInvis_JuliusP, new InvisPotion_JuliusP());
+        TraitDict.Add(Traits.ShieldTrait_JuliusP, new ShieldTrait());
+        TraitDict.Add(Traits.Lv3RedLight_JuliusP, new Lv3RedLight());
+        TraitDict.Add(Traits.DetectDeath_JuliusP, new DetectDeath());
+        TraitDict.Add(Traits.Lv3Homing_JuliusP, new Lv3Homing());
+        TraitDict.Add(Traits.SelfDestruct2_JuliusP, new SelfDestructV2());
+        TraitDict.Add(Traits.RemoveExit_JuliusP, new RemoveExit());
+
+       
+
+
+       
 
 
     
 
 
-      
         // MazK Traits
         // MichaelT Traits
         TraitDict.Add(Traits.Bleed_MichaelT, new BleedTrait_MichaelT());
@@ -91,6 +106,7 @@ public static class Parser
         TraitDict.Add(Traits.BasicHeal_RaphaelC,new BasicHeal_RaphaelC());
         TraitDict.Add(Traits.KillSpeedBoost,new KillSpeedBoost());
         TraitDict.Add(Traits.WhirlPool_RaphaelC,new WhirlPool_RaphaelC());
+        TraitDict.Add(Traits.BossDeath_RaphaelC,new BossDeath_RaphaelC());
         // SabahE Traits
         TraitDict.Add(Traits.SpeedUpSabahE, new SpeedUpTrait_SabahE());
         TraitDict.Add(Traits.RallySabahE, new RallyTrait_SabahE());
@@ -163,11 +179,17 @@ public static class Parser
             case Actions.Lv2_Cloak_JuliusP: return new Lv2Invis(who, e);
             case Actions.Lv3_Cloak_JuliusP: return new Lv3Invis(who, e);
             case Actions.TradeHp_JuliusP:return new TradeHp(who, e);
-            case Actions.GiveItem_JuliusP:return new GiveItem(who,e);
+            case Actions.GiveItem_JuliusP:return new GiveItemv1(who,e);
             case Actions.GiveItemLv2_JuliusP:return new GiveItem_Lv2(who,e);
             case Actions.EvasiveJuke_JuliusP:return new EvasiveJuke(who, e);
             case Actions.BleakWatcher_JuliusP: return new BleakWatcher(who, e);
             case Actions.Scan_JuliusP: return new Scan(who, e);
+            case Actions.BarrierShieldType2_JuliusP: return new Lv1BarrierShieldType2_JuliusP(who, e);
+            case Actions.GiveItem_Lv3_JuliusP: return new GiveItem_Lv3(who, e);
+            case Actions.DoubleShootV2_JuliusP: return new DoubleShootV2(who, e);
+            case Actions.Lv4_BarrierShield_JuliusP: return new Lv4_BarrierShield_JuliusP(who,e);
+
+
             
 
          
@@ -176,6 +198,7 @@ public static class Parser
         
             // MichaelT=50,
             case Actions.BleedAttack_MichaelT: return new BleedAttackAction_MichaelT(who, e);
+            case Actions.DoMoreDamageAttack_MichaelT: return new DoMoreDamageAction_MichaelT(who,e);
             // QixiangD=55,
             case Actions.Sidestep_qixiangdong: return new Sidestep_qixiangdong(who,e);
             case Actions.Charging_qixiangdong: return new Charging_qixiangdong(who,e);
@@ -206,11 +229,16 @@ public static class Parser
             // TracyH=80,
             case Actions.Charge_TracyH: return new ChargeAction_TracyH(who, e);
             // WesleyP=90,
+            case Actions.TradeHp_WesleyP: return new TraeHp(who, e);
+            case Actions.GiveItem_WesleyP: return new GiveItemLv1(who, e);
+            case Actions.GiveItemLv2_WesleyP: return new GiveItem_LvL2(who, e);
             // YuChen=95,
             case Actions.spinAction_Yu: return new SpinAction_Yuchen(who, e);
             case Actions.TeleportSwingAction_Yu: return new TeleportSwingAction_Yu(who, e);
             case Actions.SwingThenShootAction_Yu: return new Swingthenshoot_yu(who, e);
-
+            case Actions.LungeandTeleportAction_yu: return new LungeandTeleportAction_yu(who, e);
+            case Actions.DoubleShootAction_yu: return new DoubleShootAction_yu(who, e);
+                
         }
         God.LogError("UNCAUGHT ACTION: " + act);
         return new IdleAction(who,e);
@@ -311,7 +339,7 @@ public enum Traits
     //AdamD         =20##,
     AdamD1          =2001,
     statusEffectOnProjectile=2002,
-    StatusResist=2003,
+    StatusResist=2003, 
     UpgradeTrait=2004,
     //AlejandroM    =25##,
     AlejandroM1     =2501,
@@ -322,11 +350,14 @@ public enum Traits
     Barrier         =3002, //this will negate one instance of taken damage taken.
     ParryTrait_ElioR = 3003,
     LifeSteal_ElioR=3004,
+    Blight_ElioR = 3005,
+    BlightGiver_ElioR = 3006,
     //JaidenB       =35##,
     JaidenB1        =3501,
     InvertControls  =3502,
     Freeze          =3503,
     MoneyDrop       =3504,
+    Lava            =3505,
     //JuliusP       =40##,
     JuliusP1        =4001,
     Rage            =4002, 
@@ -350,6 +381,15 @@ public enum Traits
     SpawnWall_JuliusP = 4020,
     AddTraitByScore_JuliusP = 4021,
     Lv2RedLight_JuliusP = 4022,
+    TempInvis_JuliusP = 4023,
+    ShieldTrait_JuliusP = 4024,
+    Lv3RedLight_JuliusP = 4025,
+    DetectDeath_JuliusP = 4026,
+    Lv3Homing_JuliusP = 4027,
+    SelfDestruct2_JuliusP = 4028,
+    RemoveExit_JuliusP = 4029,
+
+
 
 
 
@@ -376,6 +416,7 @@ public enum Traits
     BasicHeal_RaphaelC  =6003,
     KillSpeedBoost =6004,
     WhirlPool_RaphaelC=6005,
+    BossDeath_RaphaelC =6006,
     //SabahE        =65##,
     SabahE1         =6501,
     SpeedUpSabahE   =6502, //Speedup for 10s when you get hit
@@ -411,10 +452,12 @@ public enum Traits
     Knockback_WesleyP1=9002,
     CharacterSwap_WesleyP1  =9003,
     HealingAlly_WesleyP1=9004,
+    MoneysDrop_WesleyP1 = 9005, //Spawns money on death
     //YuChen        =95##,
     YuChen1         =9501,
     Criticaldamage=9502,
-    SpeedIncrease_yu = 9503
+    SpeedIncrease_yu = 9503,
+    
 }
 
 public enum Actions
@@ -469,6 +512,11 @@ public enum Actions
     slowingproj_JuliusP = 4013,
     Berserker_JuliusP = 4014,
     Scan_JuliusP = 4015,
+    BarrierShieldType2_JuliusP = 4016,
+    GiveItem_Lv3_JuliusP = 4017,
+    DoubleShootV2_JuliusP = 4018,
+    Lv4_BarrierShield_JuliusP = 4019,
+
 
 
    
@@ -483,6 +531,7 @@ public enum Actions
     //MichaelT      =50##,
     MichaelT1       =5001,
     BleedAttack_MichaelT = 5003, //Applies Bleed Trait to Target on Hit
+    DoMoreDamageAttack_MichaelT = 5004,
     //QixiangD      =55##,
     Sidestep_qixiangdong = 5501,
     Charging_qixiangdong = 5502,
@@ -516,10 +565,17 @@ public enum Actions
     TracyH1         =8001,
     Charge_TracyH   =8002,
     //WesleyP       =90##,
-    NewPlayerAlly_WesleyP =9001, 
+    WesleyP1        =9001,
+    CharacterSwap_WesleyP =9002, 
+    HealingAlly_WesleyP =9003,
+    TradeHp_WesleyP = 9004,
+    GiveItem_WesleyP = 9005,
+    GiveItemLv2_WesleyP = 9006,
     //YuChen        =95##,
     YuChen1         =9501,
     spinAction_Yu = 9502,
     TeleportSwingAction_Yu = 9503,
-    SwingThenShootAction_Yu = 9504
+    SwingThenShootAction_Yu = 9504,
+    LungeandTeleportAction_yu = 9505,
+    DoubleShootAction_yu = 9506
 }
