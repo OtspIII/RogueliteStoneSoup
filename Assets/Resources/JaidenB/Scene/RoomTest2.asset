@@ -12,12 +12,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a173895f2109b44097a501cb76e88f5, type: 3}
   m_Name: RoomTest2
   m_EditorClassIdentifier: Assembly-CSharp::TextRoomOption
-  Name: 
+  Name: Room2
   Author: 35
-  Tags: []
+  Tags:
+  - Common: 700
+    Custom: 
+    W: 0
+    Cost: 0
   Prefab: {fileID: 0}
-  Audited: 0
+  Audited: 1
   MapSize: {x: 11, y: 11}
   Map: {fileID: 4900000, guid: 0e60fb467025f164ea348928317bae4b, type: 3}
   JSON: {fileID: 4900000, guid: 11248826f4f9e3a45a71c512534d4cbd, type: 3}
-  MapText: []
+  MapText:
+  - "xxxxuuuxxxx\r"
+  - "x         x\r"
+  - "x         x\r"
+  - "xxxxxxx   r\r"
+  - "l         r\r"
+  - "l   xxxxxxx\r"
+  - "x         x\r"
+  - "xxxxxxx   x\r"
+  - "l         r\r"
+  - "l         r\r"
+  - xxxxdddxxxx

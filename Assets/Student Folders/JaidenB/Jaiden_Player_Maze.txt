@@ -1,5 +1,5 @@
 xxxxuuuxxxx
-x         x
+l         r
 x         x
 xxxxxxx   r
 l         r

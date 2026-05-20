@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1a173895f2109b44097a501cb76e88f5, type: 3}
-  m_Name: RoomTest
+  m_Name: RoomTest4
   m_EditorClassIdentifier: Assembly-CSharp::TextRoomOption
-  Name: Room1
+  Name: Room3
   Author: 35
   Tags:
   - Common: 700
@@ -22,17 +22,17 @@ MonoBehaviour:
   Prefab: {fileID: 0}
   Audited: 1
   MapSize: {x: 11, y: 11}
-  Map: {fileID: 4900000, guid: c91a8ce2c0fb1ce4f9f109ca05965867, type: 3}
+  Map: {fileID: 4900000, guid: d96d8a2b51438014280af57b4a5b90e8, type: 3}
   JSON: {fileID: 4900000, guid: 11248826f4f9e3a45a71c512534d4cbd, type: 3}
   MapText:
-  - "xuuuuuuuuux\r"
+  - "xxxxuuuxxxx\r"
   - "x         x\r"
-  - "x x     x x\r"
-  - "x x     x x\r"
-  - "x    x    x\r"
-  - "x    x    x\r"
-  - "x    x    x\r"
-  - "x x     x x\r"
-  - "x x     x x\r"
-  - "x         x\r"
-  - xdddddddddx
+  - "x  x    x x\r"
+  - "x  x    x x\r"
+  - "l         r\r"
+  - "l         r\r"
+  - "l         r\r"
+  - "x  x    x x\r"
+  - "x  x    x x\r"
+  - "x     P   x\r"
+  - xxxxdddxxxx
