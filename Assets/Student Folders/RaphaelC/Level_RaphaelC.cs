@@ -50,10 +50,6 @@ public class Level_RaphaelC : LevelBuilder
         {
             ToSpawn.Add(Boss);
         }
-        else
-        {
-            God.LogWarning("LevelBuilder Warning: No boss asset was found in the library to spawn!");
-        }
 
     }
     public override float JudgeRoom(GeoTile g, RoomOption o, bool backup = false)
@@ -61,22 +57,18 @@ public class Level_RaphaelC : LevelBuilder
         o.Audit();
         if (o.Author != Authors.RaphaelC) return 0f;
 
-        // Strict size requirement
         if (RoomSize != o.MapSize) return 0;
 
-        // If a tile is flagged as PlayerStart (like our mutated boss tile!), it gets the open room
         if (g.Path == GeoTile.GeoTileTypes.PlayerStart)
         {
             return o.HasTag("Player") ? 1f : 0f;
         }
 
-        // If a tile is flagged as Boss, it gets the locked arena
         if (g.Path == GeoTile.GeoTileTypes.Boss)
         {
             return o.HasTag("Boss") ? 1f : 0f;
         }
 
-        // If a tile is flagged as Exit, it gets the victory room
         if (g.Path == GeoTile.GeoTileTypes.Exit)
         {
             return o.HasTag("Exit") ? 1f : 0f;

@@ -408,7 +408,7 @@ public enum Traits
     BasicHeal_RaphaelC  =6003,
     KillSpeedBoost =6004,
     WhirlPool_RaphaelC=6005,
-    BossDeath_RaphaelC=6006,
+    BossDeath_RaphaelC =6006,
     //SabahE        =65##,
     SabahE1         =6501,
     SpeedUpSabahE   =6502, //Speedup for 10s when you get hit

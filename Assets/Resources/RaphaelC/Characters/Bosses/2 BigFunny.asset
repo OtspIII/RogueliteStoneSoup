@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4679cc75b2c8be74e8b047318fa062ea, type: 3}
   m_Name: 2 BigFunny
   m_EditorClassIdentifier: Assembly-CSharp::CharacterOption
-  Name: FunnyGuy
+  Name: Big Funny Guy
   Author: 60
   Tags:
   - Common: 500

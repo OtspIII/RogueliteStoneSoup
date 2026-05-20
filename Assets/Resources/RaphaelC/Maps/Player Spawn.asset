@@ -10,29 +10,29 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1a173895f2109b44097a501cb76e88f5, type: 3}
-  m_Name: Boss Room
+  m_Name: Player Spawn
   m_EditorClassIdentifier: Assembly-CSharp::TextRoomOption
-  Name: Boss Room
+  Name: Player Spawn
   Author: 60
   Tags:
-  - Common: 500
-    Custom: Boss
+  - Common: 1
+    Custom: Player
     W: 0
     Cost: 0
   Prefab: {fileID: 0}
-  Audited: 1
+  Audited: 0
   MapSize: {x: 11, y: 11}
-  Map: {fileID: 4900000, guid: 8ec21c8e6403adc49814cddc0bcaecea, type: 3}
-  JSON: {fileID: 4900000, guid: 471782bf8172b804cbd68b3f87864b2a, type: 3}
+  Map: {fileID: 4900000, guid: cd2bd2cbdf27211478a631c51a103f3c, type: 3}
+  JSON: {fileID: 0}
   MapText:
-  - "xxxxxxxxxxx\r"
-  - "x         x\r"
-  - "x  x   x  x\r"
+  - "xxxxuuuxxxx\r"
   - "x         x\r"
   - "x         x\r"
-  - "x x  B  x x\r"
-  - "x         x\r"
-  - "x    x    x\r"
   - "x         x\r"
   - "x         x\r"
-  - xxxxdddxxxx
+  - "x    P    x\r"
+  - "x         x\r"
+  - "x         x\r"
+  - "x         x\r"
+  - "x         x\r"
+  - xxxxxxxxxxx
