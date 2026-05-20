@@ -14,22 +14,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: CrazyBow
   Author: 60
+  Tags: []
   Team: 1
   Body: {fileID: 629948465317790645, guid: b4fa405680f33044abe2c4567ecf147f, type: 3}
   Art: {fileID: 21300000, guid: cb8312002cf474c4688fa76c7caea0a3, type: 3}
   Color: {r: 1, g: 1, b: 1, a: 1}
   Size: 2
-  Tags: []
   LevelRange: {x: 0, y: 0}
   Trait: []
   DefaultAttack: 103
   ToSpawn:
-    Fixed: {fileID: 11400000, guid: d05ac0ab76244cd46895ee8edc134d12, type: 2}
+    Fixed: {fileID: 11400000, guid: cfbdc5edcb18a494ab06251d8a11bad7, type: 2}
     Mandatory: []
     Any: []
     Level: 0
     Author: 60
     MaxCost: 0
+    Where: {x: 999, y: 999, z: 999}
   FloorBody: {fileID: 0}
   FloorArt: {fileID: 0}
   Damage: 1

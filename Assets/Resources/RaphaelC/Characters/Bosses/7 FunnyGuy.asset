@@ -10,21 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4679cc75b2c8be74e8b047318fa062ea, type: 3}
-  m_Name: BossEnemy
+  m_Name: 7 FunnyGuy
   m_EditorClassIdentifier: Assembly-CSharp::CharacterOption
-  Name: Boss Enemy
-  Author: 0
+  Name: FunnyGuy
+  Author: 60
   Tags:
-  - Common: 102
+  - Common: 500
     Custom: 
     W: 1
     Cost: 1
   Team: 3
-  Body: {fileID: 629948465317790645, guid: 3a911470639b05145a8f3d2c90f6a562, type: 3}
-  Art: {fileID: 6104950300687878253, guid: f14f728d45b6cbd46bba5b5ddca586dd, type: 3}
+  Body: {fileID: 629948465317790645, guid: c5227d51ccfec934db9e0058624b573e, type: 3}
+  Art: {fileID: -2043683151485635411, guid: 4635bc6e724f8564b83cba6eccc4e319, type: 3}
   Color: {r: 1, g: 1, b: 1, a: 1}
   Size: 1
-  LevelRange: {x: 6, y: 6}
+  LevelRange: {x: 7, y: 7}
   Trait:
   - Trait: 6006
     Numbers: []
@@ -40,9 +40,9 @@ MonoBehaviour:
       MaxCost: 0
       Where: {x: 0, y: 0, z: 0}
     Builder: []
-  HP: 10
-  Speed: 0.5
-  VisionRange: 10
-  Held: {fileID: 11400000, guid: 66a5047cf84e58a4c8a50f0bd299d1a6, type: 2}
+  HP: 4
+  Speed: 2
+  VisionRange: 4
+  Held: {fileID: 11400000, guid: 7eef3b2d1786b6349b779d64bdad2c6e, type: 2}
   DefaultAction: 201
-  DefaultChaseAction: 6004
+  DefaultChaseAction: 9505

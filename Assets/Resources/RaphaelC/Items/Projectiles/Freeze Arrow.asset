@@ -10,19 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 666e3856c5664c242bde2f0f953b72bc, type: 3}
-  m_Name: DonutProjectile
+  m_Name: Freeze Arrow
   m_EditorClassIdentifier: 
-  Name: Fireball
-  Author: 60
+  Name: Freeze Arrow
+  Author: 0
   Tags: []
   Team: 1
   Body: {fileID: 629948465317790645, guid: 9edb53243ae32704ead177294fe49d22, type: 3}
-  Art: {fileID: 6761164967045977113, guid: cf251f49e93dbc1448d1cc819af13e16, type: 3}
+  Art: {fileID: 21300000, guid: 91099c32a364bc84d962247bfb6da4d8, type: 3}
   Color: {r: 1, g: 1, b: 1, a: 1}
   Size: 1
   LevelRange: {x: 0, y: 0}
   Trait:
-  - Trait: 3
+  - Trait: 8004
     Numbers: []
     Prefabs: []
     Acts: []
@@ -34,11 +34,11 @@ MonoBehaviour:
       Level: 0
       Author: 0
       MaxCost: 0
-      Where: {x: 999, y: 999, z: 999}
+      Where: {x: 0, y: 0, z: 0}
     Builder:
     - Type: 0
-      NumType: 2
-      Num: 3
+      NumType: 1
+      Num: 0.5
       StrType: 0
       Str: 
       ActType: 0
@@ -55,28 +55,23 @@ MonoBehaviour:
       Any: 
       AnyW: 0
       Trait: 0
-    - Type: 4
-      NumType: 0
-      Num: 0
-      StrType: 0
-      Str: 
-      ActType: 0
-      Act: 0
-      BoolType: 0
-      Bool: 0
-      OptionType: 1
-      Option: {fileID: 11400000, guid: 9e8461597291fa949b88ead0a9b492f2, type: 2}
-      VectorType: 0
-      Vector: {x: 0, y: 0}
+  - Trait: 8003
+    Numbers: []
+    Prefabs: []
+    Acts: []
+    OtherTrait: 0
+    SpawnReq:
       Fixed: {fileID: 0}
-      Mandatory: 
-      MandatoryW: 0
-      Any: 
-      AnyW: 0
-      Trait: 0
-    - Type: 6
-      NumType: 0
-      Num: 0
+      Mandatory: []
+      Any: []
+      Level: 0
+      Author: 0
+      MaxCost: 0
+      Where: {x: 0, y: 0, z: 0}
+    Builder:
+    - Type: 0
+      NumType: 1
+      Num: 0.5
       StrType: 0
       Str: 
       ActType: 0
@@ -87,11 +82,11 @@ MonoBehaviour:
       Option: {fileID: 0}
       VectorType: 0
       Vector: {x: 0, y: 0}
-      Fixed: {fileID: 11400000, guid: 9e8461597291fa949b88ead0a9b492f2, type: 2}
+      Fixed: {fileID: 0}
       Mandatory: 
       MandatoryW: 0
       Any: 
       AnyW: 0
       Trait: 0
   Damage: 1
-  Speed: 5
+  Speed: 3.5

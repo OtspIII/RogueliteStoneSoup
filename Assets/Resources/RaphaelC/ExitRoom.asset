@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a173895f2109b44097a501cb76e88f5, type: 3}
+  m_Name: ExitRoom
+  m_EditorClassIdentifier: Assembly-CSharp::TextRoomOption
+  Name: Exit Room
+  Author: 60
+  Tags:
+  - Common: 401
+    Custom: Exit
+    W: 0
+    Cost: 0
+  Prefab: {fileID: 0}
+  Audited: 1
+  MapSize: {x: 11, y: 11}
+  Map: {fileID: 4900000, guid: e531217bfd19a1049b953625acc13960, type: 3}
+  JSON: {fileID: 4900000, guid: 471782bf8172b804cbd68b3f87864b2a, type: 3}
+  MapText:
+  - "xxxxxxxxxxx\r"
+  - "x         x\r"
+  - "x         x\r"
+  - "x         x\r"
+  - "x         x\r"
+  - "x    E    x\r"
+  - "x         x\r"
+  - "x         x\r"
+  - "x         x\r"
+  - "x         x\r"
+  - xxxxdddxxxx
