@@ -84,6 +84,8 @@ public static class Parser
         // QixiangD Traits
         TraitDict.Add(Traits.Sneaky_qixiangdong, new Sneaky_qixiangdong());
         TraitDict.Add(Traits.Thrill_qixiangdong, new Thrill_qixiangdong());
+        TraitDict.Add(Traits.BulletHell_qixiangdong, new BulletHell_qixiangdong());
+        TraitDict.Add(Traits.LockedExit_qixiangdong, new LockedExit_qixiangdong());
         // RaphaelC Traits
         TraitDict.Add(Traits.Lighting_RaphaelC,new Lighting_RaphaelC());
         TraitDict.Add(Traits.BasicHeal_RaphaelC,new BasicHeal_RaphaelC());
@@ -177,6 +179,10 @@ public static class Parser
             // QixiangD=55,
             case Actions.Sidestep_qixiangdong: return new Sidestep_qixiangdong(who,e);
             case Actions.Charging_qixiangdong: return new Charging_qixiangdong(who,e);
+            case Actions.BulletSpawner_qixiangdong: return new BulletSpawner_qixiangdong(who,e);
+            case Actions.SpinShoot_qixiangdong: return new SpinShoot_qixiangdong(who,e);
+            case Actions.BurstShoot_qixiangdong: return new BurstShoot_qixiangdong(who,e);
+
             // RaphaelC=60,
             case Actions.CurveChase_RaphaelC:return new CurveChaseAction_RaphaelC(who,e);
             case Actions.Invisible_RaphaelC:return new Invisible_RaphaelC(who,e);
@@ -362,6 +368,8 @@ public enum Traits
     QixiangD1       =5501,
     Sneaky_qixiangdong = 5502,
     Thrill_qixiangdong = 5503,
+    BulletHell_qixiangdong = 5504,
+    LockedExit_qixiangdong = 5505,
     //RaphaelC      =60##,
     Lighting_RaphaelC       =6001,
     Trait2_RaphaelC         =6002,
@@ -478,6 +486,10 @@ public enum Actions
     //QixiangD      =55##,
     Sidestep_qixiangdong = 5501,
     Charging_qixiangdong = 5502,
+    BulletSpawner_qixiangdong = 5503,
+    ConeAttack_qixiangdong = 5504,
+    SpinShoot_qixiangdong = 5505,
+    BurstShoot_qixiangdong = 5506,
     //RaphaelC      =60##,
     RaphaelC1       =6001,
     CurveChase_RaphaelC = 6002,

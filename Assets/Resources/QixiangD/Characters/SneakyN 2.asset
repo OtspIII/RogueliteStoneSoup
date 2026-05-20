@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4679cc75b2c8be74e8b047318fa062ea, type: 3}
-  m_Name: SneakyN
+  m_Name: SneakyN 2
   m_EditorClassIdentifier: Assembly-CSharp::CharacterOption
   Name: Sneaky Ninja
   Author: 55
   Tags:
   - Common: 0
-    Custom: SneakyNinja
+    Custom: SpinNinja
     W: 1
     Cost: 0
   Team: 3
@@ -38,11 +38,11 @@ MonoBehaviour:
       Level: 0
       Author: 0
       MaxCost: 0
-      Where: {x: 999, y: 999, z: 999}
+      Where: {x: 0, y: 0, z: 0}
     Builder: []
   HP: 1
   Speed: 5
   VisionRange: 30
   Held: {fileID: 11400000, guid: 00296ea537f877848a6ed623f263e157, type: 2}
-  DefaultAction: 201
-  DefaultChaseAction: 202
+  DefaultAction: 5505
+  DefaultChaseAction: 5505
