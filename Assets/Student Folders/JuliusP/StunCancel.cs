@@ -227,7 +227,7 @@ public class FullStunNegation : Trait
                 if (weaponName != null && weaponName.Contains("sword"))
                 {
                    
-                   
+                    
 
                     i.Who.DesiredMove = Vector2.zero;
                     i.Who.Thing.ActualMove = Vector2.zero;
@@ -239,7 +239,8 @@ public class FullStunNegation : Trait
                         rb.linearVelocity = Vector2.zero;
                         rb.angularVelocity = 0f;
                     }
-
+                    
+                    
                     i.Who.AddTrait(Traits.IgnoreDamage_JuliusP);
 
 
@@ -254,6 +255,20 @@ public class FullStunNegation : Trait
 
                     i.Who.RemoveTrait(Traits.IgnoreDamage_JuliusP);
                 }
+
+
+
+
+            if (other.Thing.name.Contains("Lava"))
+            {
+              //  Debug.Log("Touched Lava!");
+
+                if (i.Who.Has(Traits.IgnoreDamage_JuliusP))
+                {
+             
+                    i.Who.RemoveTrait(Traits.IgnoreDamage_JuliusP);
+                }
+            }
 
                 break;
             }
@@ -276,6 +291,8 @@ public class FullStunNegation : Trait
 
          break;
             }
+
+
 
 }
 }
