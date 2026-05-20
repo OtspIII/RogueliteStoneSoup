@@ -140,9 +140,40 @@ public override void BuildMainPath()
     int centerY = 3;
 
     PlayerSpawn = GetGeo(centerX, centerY);
+
+    if (PlayerSpawn == null)
+    {
+       // Debug.LogError("PlayerSpawn is null at (3,3). Check BuildLevel1 geo map.");
+        return;
+    }
+
     PlayerSpawn.SetPath(GeoTile.GeoTileTypes.PlayerStart);
 
     GeoTile prev = PlayerSpawn;
+
+  
+    if (God.Session.Level == 1)
+    {
+        // UP PATH (main progression)
+        for (int y = centerY + 1; y <= 3; y++)
+        {
+            GeoTile next = GetGeo(centerX, y);
+            if (next == null) continue;
+
+            prev.Links.Add(Directions.Up);
+            next.Links.Add(Directions.Down);
+
+            next.SetPath(GeoTile.GeoTileTypes.MainPath);
+            prev = next;
+        }
+
+        Exit = GetGeo(centerX, 3);
+
+        if (Exit != null)
+            Exit.SetPath(GeoTile.GeoTileTypes.Exit);
+
+        return;
+    }
 
     // LEVEL 3 SPECIAL PATH
     if (God.Session.Level == 3)
@@ -186,7 +217,7 @@ public override void BuildMainPath()
         return;
     }
 
-    // LEVEL 5 SPECIAL PATH (FIXED → GOES TO 3,6)
+    // LEVEL 5 SPECIAL PATH
     if (God.Session.Level == 5)
     {
         for (int y = centerY + 1; y <= 6; y++)
@@ -208,7 +239,7 @@ public override void BuildMainPath()
         return;
     }
 
-    // DEFAULT MAIN PATH (UP TO 3,6)
+    // DEFAULT MAIN PATH
     for (int y = centerY + 1; y <= 6; y++)
     {
         GeoTile next = GetGeo(centerX, y);
@@ -300,7 +331,7 @@ public override void BuildMainPath()
         prev = next;
     }
 
-    // RIGHT SIDE LINK (6,0 → 6,1)
+    // RIGHT SIDE LINK
     GeoTile a = GetGeo(6, 0);
     GeoTile b = GetGeo(6, 1);
 
@@ -309,6 +340,7 @@ public override void BuildMainPath()
         a.Links.Add(Directions.Down);
         b.Links.Add(Directions.Up);
     }
+
 }
 
  public override float JudgeRoom(GeoTile g, RoomOption o, bool backup = false)
@@ -754,46 +786,6 @@ public override void BuildMainPath()
 }
 
 
-//THIS FUNCTION CONTROLS ADD DENSITY//
- public virtual void FindQuotas()
-{
-    if (God.Session.Level == -1) return;
-
-
-    // We're going to add a bunch of SpawnRequests to our queue
-
-    float rms = AllGeo.Count - 2;
-
-    int level = Mathf.Clamp(God.Session.Level, 1, 5);
-
-    // base scaling: 10 → 22 enemies across 5 levels
-    int mons = 3 + (level - 1) * 3;
-
-    
-    mons += Mathf.RoundToInt(rms * 0.1f);
-
-    
-    mons = Mathf.Max(mons, 1);
-
-   
-    Quotas.Add(new Tag(GameTags.NPC, 1, mons));
-    
-    // We'll have 1 weapon drop per level, plus maybe a second (odds increase with depth)
-    float wpn = God.RoundRand(1 + (rms * 0.05f));
-    Quotas.Add(new Tag(GameTags.Weapon, 1, wpn));
-
-    // One consumable per four rooms
-    float con = God.RoundRand(rms * 0.25f);
-    Quotas.Add(new Tag(GameTags.Consumable, 1, con));
-
-    // As many piles of coins as our level number
-    float scr = level;
-    Quotas.Add(new Tag(GameTags.ScoreThing, 1, scr));
-
-    // Actually make a list of all the ThingOptions we want to spawn somewhere
-    FindThings();
-}
-
 
 void BuildLevel1(int centerX, int centerY, int leftsideY)
 {
@@ -943,6 +935,47 @@ void BuildLevel5(int centerX, int centerY, int leftsideY)
         AddGeo(new GeoTile(centerX, centerY + i, this));
     }
   
+}
+
+public override void FindQuotas()
+{
+    float rms = AllGeo.Count - 2;
+    int level = God.Session.Level;
+
+    float mons;
+
+    // ENEMY SCALING BY LEVEL (1 → 5)
+    if (level == 1)
+    {
+        mons = 2;
+    }
+    else if (level == 2)
+    {
+        mons = 4;
+    }
+    else if (level == 3)
+    {
+        mons = rms * 0.5f;
+    }
+    else if (level == 4)
+    {
+        mons = rms * 0.8f;
+    }
+    else 
+    {
+        mons = rms * 1.2f;
+    }
+
+  
+    mons = Mathf.Max(0, mons);
+
+    Quotas.Add(new Tag(GameTags.NPC, 1, mons));
+
+    Quotas.Add(new Tag(GameTags.Weapon, 1, 2));
+    Quotas.Add(new Tag(GameTags.Consumable, 1, rms * 0.2f));
+    Quotas.Add(new Tag(GameTags.ScoreThing, 1, level));
+
+    FindThings();
 }
 
 
