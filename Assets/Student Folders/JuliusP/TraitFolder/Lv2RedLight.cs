@@ -176,7 +176,7 @@ public class Lv2RedLight : Trait
 
             if (other.Thing.name.Contains("Lava"))
             {
-                Debug.Log("Touched Lava!");
+               // Debug.Log("Touched Lava!");
 
                 if (i.Who.Has(Traits.IgnoreDamage_JuliusP))
                 {

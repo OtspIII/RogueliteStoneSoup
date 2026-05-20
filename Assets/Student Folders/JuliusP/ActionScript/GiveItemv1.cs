@@ -211,7 +211,7 @@ public class GiveItemv1 : ActionScript
         {
             ExitRef.AddTrait(Traits.Exit);
 
-            Debug.Log("Exit trait restored");
+            //Debug.Log("Exit trait restored");
         }
 
        yield return new WaitForSeconds(0.5f);

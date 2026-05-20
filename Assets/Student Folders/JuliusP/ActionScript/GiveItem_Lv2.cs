@@ -187,7 +187,7 @@ public class GiveItem_Lv2 : ActionScript
             if (!ExitRef.Has(Traits.Exit))
             {
                 ExitRef.AddTrait(Traits.Exit);
-                Debug.Log("Exit trait restored successfully (delayed safe)");
+               // Debug.Log("Exit trait restored successfully (delayed safe)");
             }
         }
     }

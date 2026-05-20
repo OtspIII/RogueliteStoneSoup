@@ -730,31 +730,8 @@ public class Lv4_BarrierShield_JuliusP : ActionScript
             data.shield.Thing.transform.Rotate(0, 0, 360f * Time.deltaTime);
         }
 
-        // CHASE PLAYER
-        ThingInfo targ = God.Session.Player;
-
-        if (targ != null && targ.Thing != null)
-        {
-            Vector3 dir =
-                (targ.Thing.transform.position -
-                Who.Thing.transform.position).normalized;
-
-            float speed = 1.8f;
-
-            if (EnemyRb != null)
-            {
-                EnemyRb.MovePosition(
-                    Who.Thing.transform.position +
-                    dir * speed * Time.deltaTime);
-            }
-            else
-            {
-                Who.Thing.transform.position +=
-                    dir * speed * Time.deltaTime;
-            }
-
-            Who.Thing.LookAt(targ);
-        }
+  
+   
     }
 
     public override void End()
