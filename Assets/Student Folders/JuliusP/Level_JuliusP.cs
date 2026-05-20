@@ -758,29 +758,43 @@ public override void BuildMainPath()
 public override void FindQuotas()
 {
     float rms = AllGeo.Count - 2;
+    int level = God.Session.Level;
 
     float mons;
 
-    // IF LEVEL IS 2 → SPAWN FEW ENEMIES
-    if (God.Session.Level == 2)
+    // ENEMY SCALING BY LEVEL (1 → 5)
+    if (level == 1)
     {
-        mons = 5; // small number
+        mons = 2;
     }
-    else
+    else if (level == 2)
     {
-        mons = rms * 0.7f; // normal scaling
+        mons = 4;
+    }
+   
+    else if (level == 3)
+    {
+        mons = rms * 0.5f;
+    }
+   
+    else if (level == 4)
+    {
+        mons = rms * 0.8f;
+    }
+   
+    else 
+    {
+        mons = rms * 1.2f;
     }
 
     Quotas.Add(new Tag(GameTags.NPC, 1, mons));
 
     Quotas.Add(new Tag(GameTags.Weapon, 1, 2));
     Quotas.Add(new Tag(GameTags.Consumable, 1, rms * 0.2f));
-    Quotas.Add(new Tag(GameTags.ScoreThing, 1, God.Session.Level));
+    Quotas.Add(new Tag(GameTags.ScoreThing, 1, level));
 
     FindThings();
 }
-
-
 
 void BuildLevel1(int centerX, int centerY, int leftsideY)
 {

@@ -65,7 +65,7 @@ public class TemporaryDamageResist : Trait
             
             Player.AddTrait(Traits.IgnoreDamage_JuliusP);      
             
-            Debug.Log("Used");
+           // Debug.Log("Used");
 
             God.C(DmgResistTimer(Player));
 
@@ -109,7 +109,7 @@ public class TemporaryDamageResist : Trait
             
             Player.RemoveTrait(Traits.IgnoreDamage_JuliusP);
 
-            Debug.Log("Trait removed");
+         //   Debug.Log("Trait removed");
 
 
         }

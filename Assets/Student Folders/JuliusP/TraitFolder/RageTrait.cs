@@ -56,7 +56,7 @@ public class RageTrait : Trait
                         if (tool != null && storedOriginalDamage > 0)
                         {
                             tool.Set(storedOriginalDamage);
-                            Debug.Log("Rage ended, damage reset");
+                            //Debug.Log("Rage ended, damage reset");
                         }
                     }
 
@@ -69,7 +69,7 @@ public class RageTrait : Trait
                 // APPLY RAGE WHEN BELOW 50%
                 if (current / max <= 0.5f && !rageActive)
                 {
-                    Debug.Log("Health is below 50%");
+                   // Debug.Log("Health is below 50%");
 
                     if (weapon == null) break;
 
@@ -83,7 +83,7 @@ public class RageTrait : Trait
 
                     rageActive = true;
 
-                    Debug.Log("Rage damage boost applied!");
+                   // Debug.Log("Rage damage boost applied!");
                 }
 
                 break;

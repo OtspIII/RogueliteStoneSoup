@@ -85,17 +85,15 @@ public class RedGreen : Trait
                 timer += Time.deltaTime;
 
     
-
                 if (timer >= 2f)
                 {
-                    timer = 0f;
-                    isRed = !isRed;
+                     timer = 0f;
+                     isRed = !isRed;
 
-                    SetFloors(isRed ? Color.red : Color.green);
+                     SetFloors(isRed ? Color.red : Color.green);
 
-                    God.GM.SetUI("PlayMessage", isRed ? "Red Light!" : "Green Light!", 2);
+                     God.GM.SetUI("PlayMessage", isRed ? "Red Light!" : "Green Light!", 2);
                 }
-
                
                 //CHECK IF THE PLAYER IS MOVING DURING RED//
                 Rigidbody2D rb = player.Thing.GetComponentInChildren<Rigidbody2D>();
