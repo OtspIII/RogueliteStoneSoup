@@ -187,14 +187,14 @@ public class ArenaSpawner : MonoBehaviour
     {
         if (!OnBeat)
         {
-            Debug.Log("Missed beat!");
+            Debug.Log("Missed beat!");   // if player misses a beat
             return;
         }
-
+        // checks that player exists 
         if (God.Session == null || God.Session.Player == null || God.Session.Player.Thing == null)
             return;
 
-        Vector2 playerPos = God.Session.Player.Thing.transform.position;
+        Vector2 playerPos = God.Session.Player.Thing.transform.position; // curent player position
         
 
         
@@ -209,12 +209,12 @@ public class ArenaSpawner : MonoBehaviour
 
             Vector2 enemyPos = enemy.Thing.transform.position;
             Vector2 toEnemy = (enemyPos - playerPos).normalized;
-
+            // Sees if the enemy is gonna go diagnol on beat
             bool enemyIsDiagonal =
                 Mathf.Abs(toEnemy.x) > 0.4f &&
                 Mathf.Abs(toEnemy.y) > 0.4f;
 
-            if (enemyIsDiagonal)
+            if (enemyIsDiagonal)   // arrow keys should not affect diagnol enemies
                 continue;
 
             float directionCheck = Vector2.Dot(direction, toEnemy);
@@ -433,12 +433,12 @@ public class ArenaSpawner : MonoBehaviour
             yield return null;
         }
     }
-
+    //Information on enemies based on the beats
     class BeatSpawn
     {
-        public float beat;
-        public Vector2 direction;
-        public bool allowRandomEnemy;
+        public float beat;  // beats when the enemy should spawn 
+        public Vector2 direction;   // direction of enemies incoming
+        public bool allowRandomEnemy;   // spawns enemy randomly only for diagnol ones 
 
         public BeatSpawn(float beat, Vector2 direction, bool allowRandomEnemy = false)
         {
