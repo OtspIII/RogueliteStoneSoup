@@ -37,6 +37,7 @@ public class HealthTrait : Trait
             {
                 int amt = God.RoundRand(e.GetN()); //How much damage does the event say to take? If a fraction, round in a semi-random direction
                 if (amt == 0) return;    //If 0, then don't do anything
+                ThingInfo source = e.GetThing();
                 if (i.Who.Thing != null) //If I still exist, spray blood
                 {
                     Vector2 where = i.Who.Thing.transform.position;
@@ -44,6 +45,8 @@ public class HealthTrait : Trait
                     God.Library.GetGnome("Blood").Spawn(where, amt * 3);
                 }
                 float hp = i.Change(-amt); //Lower my health by the amount
+                if (source != null)
+                    source.TakeEvent(God.E(EventTypes.DamageDealt).Set(amt).Set(i.Who));
                 if (hp <= 0)               //If that takes me to 0, send myself a Death message
                     i.Who.TakeEvent(God.E(EventTypes.Death).Set(e.GetThing()));
                 break;

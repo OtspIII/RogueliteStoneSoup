@@ -23,6 +23,7 @@ public enum EventTypes{
     Healing         =1002,
     Death           =1003,
     Knockback       =1004,
+    DamageDealt     =1005,
     GainTrait       =1100,
     LoseTrait       =1101,
     OnSee           =1201,

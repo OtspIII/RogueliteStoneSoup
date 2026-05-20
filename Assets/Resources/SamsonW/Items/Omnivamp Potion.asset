@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a47d2194617e47469e601e558e7b8b4, type: 3}
-  m_Name: Barrier 5 Potion
+  m_Name: Omnivamp Potion
   m_EditorClassIdentifier: 
-  Name: Barrier 5 Potion
+  Name: Omnivamp Potion
   Author: 70
   Tags:
   - Common: 202
@@ -22,11 +22,11 @@ MonoBehaviour:
   Team: 1
   Body: {fileID: 629948465317790645, guid: 7ef37acb0fdeb5849995b35a7fdca6ba, type: 3}
   Art: {fileID: -2880734798192188640, guid: f77ef968c74f7a64c86e3247520c36ec, type: 3}
-  Color: {r: 0.8426008, g: 1, b: 0, a: 1}
+  Color: {r: 0.6608963, g: 0, b: 1, a: 1}
   Size: 0.75
   LevelRange: {x: 0, y: 0}
   Trait:
-  - Trait: 7010
+  - Trait: 7012
     Numbers: []
     Prefabs: []
     Acts: []
@@ -41,7 +41,7 @@ MonoBehaviour:
       Where: {x: 999, y: 999, z: 999}
     Builder:
     - Type: 0
-      NumType: 1
+      NumType: 8
       Num: 5
       StrType: 0
       Str: 

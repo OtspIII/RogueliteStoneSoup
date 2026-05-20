@@ -118,6 +118,8 @@ public static class Parser
         TraitDict.Add(Traits.CrowdControlNegation,new CrowdControlNegation());
         TraitDict.Add(Traits.BarrierItem,new BarrierItemTrait());
         TraitDict.Add(Traits.PermBarrier,new PermBarrierTrait());
+        TraitDict.Add(Traits.LifestealItem,new LifestealItemTrait());
+        TraitDict.Add(Traits.TempLifesteal,new TempLifestealTrait());
         // SarahS Traits
         TraitDict.Add(Traits.ProximityExplodeSarahS,new ProximityExplode_SarahS());
         TraitDict.Add(Traits.SlowMoSarahS,new SlowMo_SarahS());
@@ -424,6 +426,8 @@ public enum Traits
     CrowdControlNegation =7009, //CC negation trait blocks stuns and knockback for configured duration
     BarrierItem     =7010, //On use, grants a permanent barrier shield trait
     PermBarrier     =7011, //Permanent barrier shield that blocks damage while it has charge
+    LifestealItem   =7012, //On use, grants temporary lifesteal
+    TempLifesteal   =7013, //Heals for damage dealt while active
     //SarahS        =75##,
     ProximityExplodeSarahS  =7501,
     SlowMoSarahS    =7502,
