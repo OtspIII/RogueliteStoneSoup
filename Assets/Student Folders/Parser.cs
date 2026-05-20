@@ -114,6 +114,8 @@ public static class Parser
         TraitDict.Add(Traits.GrappleHook,new GrappleHookTrait());
         TraitDict.Add(Traits.StackableDagger,new StackableDaggerTrait());
         TraitDict.Add(Traits.DelayedActionAfterStartingAction,new DelayedActionAfterStartingActionTrait());
+        TraitDict.Add(Traits.ComboBreak,new ComboBreakTrait());
+        TraitDict.Add(Traits.CrowdControlNegation,new CrowdControlNegation());
         // SarahS Traits
         TraitDict.Add(Traits.ProximityExplodeSarahS,new ProximityExplode_SarahS());
         TraitDict.Add(Traits.SlowMoSarahS,new SlowMo_SarahS());
@@ -416,6 +418,8 @@ public enum Traits
     DelayedActionAfterStartingAction=7005, //Switches action after X secs after entering an action
     StackableDagger =7006, //Buffs dagger for each stack equipped
     GrappleHook     =7007, //Triggers grappling action on collision
+    ComboBreak      =7008, //After getting stunned for X secs in a row, become immune to CC for Y secs
+    CrowdControlNegation =7009, //CC negation trait - blocks stuns and knockback for configured duration
     //SarahS        =75##,
     ProximityExplodeSarahS  =7501,
     SlowMoSarahS    =7502,

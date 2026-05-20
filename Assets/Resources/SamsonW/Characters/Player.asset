@@ -14,16 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CharacterOption
   Name: Player
   Author: 70
-  Team: 2
-  Body: {fileID: 629948465317790645, guid: acf0e760b28c7b046ad7d511fb87a1d3, type: 3}
-  Art: {fileID: -7132172409892320828, guid: 507719f271182eb4baded25bf73a29da, type: 3}
-  Color: {r: 0.5294118, g: 0.8223716, b: 0.85882354, a: 1}
-  Size: 1
   Tags:
   - Common: 1
     Custom: 
     W: 1
     Cost: 1
+  Team: 2
+  Body: {fileID: 629948465317790645, guid: acf0e760b28c7b046ad7d511fb87a1d3, type: 3}
+  Art: {fileID: -7132172409892320828, guid: 507719f271182eb4baded25bf73a29da, type: 3}
+  Color: {r: 0.5294118, g: 0.8223716, b: 0.85882354, a: 1}
+  Size: 1
   LevelRange: {x: 0, y: 0}
   Trait:
   - Trait: 100
@@ -38,8 +38,118 @@ MonoBehaviour:
       Level: 0
       Author: 0
       MaxCost: 0
+      Where: {x: 999, y: 999, z: 999}
     Builder: []
-  HP: 10
+  - Trait: 7008
+    Numbers: []
+    Prefabs: []
+    Acts: []
+    OtherTrait: 0
+    SpawnReq:
+      Fixed: {fileID: 0}
+      Mandatory: []
+      Any: []
+      Level: 0
+      Author: 0
+      MaxCost: 0
+      Where: {x: 999, y: 999, z: 999}
+    Builder:
+    - Type: 0
+      NumType: 8
+      Num: 3
+      StrType: 0
+      Str: 
+      ActType: 0
+      Act: 0
+      BoolType: 0
+      Bool: 0
+      OptionType: 0
+      Option: {fileID: 0}
+      VectorType: 0
+      Vector: {x: 0, y: 0}
+      Fixed: {fileID: 0}
+      Mandatory: 
+      MandatoryW: 0
+      Any: 
+      AnyW: 0
+      Trait: 0
+    - Type: 0
+      NumType: 2
+      Num: 6
+      StrType: 0
+      Str: 
+      ActType: 0
+      Act: 0
+      BoolType: 0
+      Bool: 0
+      OptionType: 0
+      Option: {fileID: 0}
+      VectorType: 0
+      Vector: {x: 0, y: 0}
+      Fixed: {fileID: 0}
+      Mandatory: 
+      MandatoryW: 0
+      Any: 
+      AnyW: 0
+      Trait: 0
+    - Type: 0
+      NumType: 4
+      Num: 1
+      StrType: 0
+      Str: 
+      ActType: 0
+      Act: 0
+      BoolType: 0
+      Bool: 0
+      OptionType: 0
+      Option: {fileID: 0}
+      VectorType: 0
+      Vector: {x: 0, y: 0}
+      Fixed: {fileID: 0}
+      Mandatory: 
+      MandatoryW: 0
+      Any: 
+      AnyW: 0
+      Trait: 0
+    - Type: 0
+      NumType: 1
+      Num: 4
+      StrType: 0
+      Str: 
+      ActType: 0
+      Act: 0
+      BoolType: 0
+      Bool: 0
+      OptionType: 0
+      Option: {fileID: 0}
+      VectorType: 0
+      Vector: {x: 0, y: 0}
+      Fixed: {fileID: 0}
+      Mandatory: 
+      MandatoryW: 0
+      Any: 
+      AnyW: 0
+      Trait: 0
+    - Type: 3
+      NumType: 1
+      Num: 4
+      StrType: 0
+      Str: 
+      ActType: 0
+      Act: 0
+      BoolType: 1
+      Bool: 1
+      OptionType: 0
+      Option: {fileID: 0}
+      VectorType: 0
+      Vector: {x: 0, y: 0}
+      Fixed: {fileID: 0}
+      Mandatory: 
+      MandatoryW: 0
+      Any: 
+      AnyW: 0
+      Trait: 0
+  HP: 10000
   Speed: 5
   VisionRange: 4
   Held: {fileID: 11400000, guid: bd1d3b73b8fa8ae43b99cd32a508630e, type: 2}
