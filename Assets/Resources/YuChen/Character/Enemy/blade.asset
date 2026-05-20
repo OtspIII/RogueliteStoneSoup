@@ -25,10 +25,24 @@ MonoBehaviour:
   Color: {r: 1, g: 1, b: 1, a: 1}
   Size: 0.6
   LevelRange: {x: 0, y: 2}
-  Trait: []
-  HP: 10
-  Speed: 5
-  VisionRange: 6
+  Trait:
+  - Trait: 9502
+    Numbers: []
+    Prefabs: []
+    Acts: []
+    OtherTrait: 0
+    SpawnReq:
+      Fixed: {fileID: 0}
+      Mandatory: []
+      Any: []
+      Level: 0
+      Author: 0
+      MaxCost: 0
+      Where: {x: 0, y: 0, z: 0}
+    Builder: []
+  HP: 8
+  Speed: 3
+  VisionRange: 3
   Held: {fileID: 11400000, guid: 59f7501c89f69784298aafca930286de, type: 2}
   DefaultAction: 201
   DefaultChaseAction: 202

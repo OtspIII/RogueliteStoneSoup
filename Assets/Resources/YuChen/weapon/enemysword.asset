@@ -51,7 +51,7 @@ MonoBehaviour:
     Where: {x: 999, y: 999, z: 999}
   FloorBody: {fileID: 0}
   FloorArt: {fileID: 0}
-  Damage: 3
+  Damage: 2
   IdealRange: 4
   SpeedMult: 1
   ActDuration: 0

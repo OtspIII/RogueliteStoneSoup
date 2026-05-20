@@ -52,7 +52,7 @@ MonoBehaviour:
     Builder: []
   DefaultAttack: 101
   ToSpawn:
-    Fixed: {fileID: 0}
+    Fixed: {fileID: 11400000, guid: 076143b0eff4e9e498a110c595a21c58, type: 2}
     Mandatory: []
     Any: []
     Level: 0
@@ -61,7 +61,7 @@ MonoBehaviour:
     Where: {x: 999, y: 999, z: 999}
   FloorBody: {fileID: 0}
   FloorArt: {fileID: 0}
-  Damage: 15
+  Damage: 20
   IdealRange: 4
   SpeedMult: 2
   ActDuration: 0
