@@ -148,7 +148,7 @@ public class MonadoPower : Trait
         if (SpeedOnCooldwn)
         {
             
-            //Debug.Log("Speed on Cdw");
+            Debug.Log("Speed on Cdw");
             yield break;
 
 
@@ -165,7 +165,7 @@ public class MonadoPower : Trait
         //INCREASE SPEED//
         Player.CurrentSpeed = 9f;                
         
-        //Debug.Log("Speed Art ON");
+        Debug.Log("Speed Art ON");
 
 
         // SPAWN PARTICLE AURA
@@ -200,7 +200,7 @@ public class MonadoPower : Trait
        
         //SPEED BACK TO NORMAL//
         Player.CurrentSpeed = originalSpeed;      
-        //Debug.Log("Speed Art DEACTIVATED");
+        Debug.Log("Speed Art DEACTIVATED");
 
        
         // START COOLDOWN
@@ -224,7 +224,7 @@ public class MonadoPower : Trait
 
     if (BusterOnCooldwn)
     {
-       // Debug.Log("Buster not active yet");
+        Debug.Log("Buster not active yet");
 
         yield break;
 
@@ -280,7 +280,7 @@ public class MonadoPower : Trait
 
     // BUFF THE DAMAGE (DOUBLE DAMAGE)//
     tool.Set(originalDamageMult * 2f);
-   // Debug.Log($"Buster Art ON: {Weapon.Type.Name} damage multiplier set to {tool.GetFloat()}");
+    Debug.Log($"Buster Art ON: {Weapon.Type.Name} damage multiplier set to {tool.GetFloat()}");
 
     BusterisActive = true;
 
@@ -290,7 +290,7 @@ public class MonadoPower : Trait
     // REVERT THE DAMAGE BACK TO THE ORIGINAL VALUE//
     tool.Set(originalDamageMult);
     BusterisActive = false;
-    //Debug.Log($"Buster Art OFF: {Weapon.Type.Name} damage multiplier reverted to {tool.GetFloat()}");
+    Debug.Log($"Buster Art OFF: {Weapon.Type.Name} damage multiplier reverted to {tool.GetFloat()}");
 
     
     // MAKES PARTICLES DISAPPEEAR//
@@ -314,7 +314,7 @@ public class MonadoPower : Trait
 
 
    
-    //Debug.Log("Buster Art ready again!");
+    Debug.Log("Buster Art ready again!");
 
  }
 
@@ -329,7 +329,7 @@ IEnumerator Shield()
        if (ShieldOnCooldwn)
         {
             
-            //Debug.Log("Shield on Cdw");
+            Debug.Log("Shield on Cdw");
             yield break;
 
 

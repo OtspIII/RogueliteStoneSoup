@@ -40,7 +40,7 @@ public class StunCancel : Trait
                 i.Who.Thing.Knockback = Vector2.zero; // clear knockback vector
             }
 
-            //Debug.Log("Stun canceled and knockback prevented!");
+            Debug.Log("Stun canceled and knockback prevented!");
         }
 
         break;
@@ -71,7 +71,7 @@ public class StunCancel : Trait
             {
                 i.Who.RemoveTrait(Traits.StunNegation_JuliusP);
 
-               // Debug.Log("Hello");
+                Debug.Log("Hello");
             
             
             
@@ -124,7 +124,7 @@ public class TemporaryDashAbility : Trait
                     //ALLOWS TO USE/START COROUTINES
                     God.C(RemoveDashAfterDelay(Player));
                     
-                    //Debug.Log("DashTrait added from potion");
+                    Debug.Log("DashTrait added from potion");
                 }
                 break;
 
@@ -147,7 +147,7 @@ public class TemporaryDashAbility : Trait
         if (player.Has(Traits.Dash))
         {
             player.RemoveTrait(Traits.Dash);
-            //Debug.Log("DashTrait removed");
+            Debug.Log("DashTrait removed");
         }
     }
 
@@ -183,7 +183,7 @@ public class FullStunNegation : Trait
                 if (e.Get(ActionInfo.Action) == Actions.Stun && i.Who != null &&i.Who.Thing != null)
                 {
                     e.Abort = true;
-                   // Debug.Log("NO STUN");
+                    Debug.Log("NO STUN");
                 }
                 break;
             }
@@ -249,7 +249,7 @@ public class FullStunNegation : Trait
                 //CHECK FOR WOLFBANE ARROW//
                 if (weaponName != null && (weaponName.Contains("Wolf Bane Bow") || hitName.Contains("WolfBaneArrow")))
                 {
-                    //Debug.Log("Bow/Arrow knockback allowed");
+                    Debug.Log("Bow/Arrow knockback allowed");
 
 
                     i.Who.RemoveTrait(Traits.IgnoreDamage_JuliusP);

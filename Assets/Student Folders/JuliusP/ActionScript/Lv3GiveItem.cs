@@ -221,7 +221,7 @@ public class GiveItem_Lv3 : ActionScript
         if (exit != null && !exit.Has(Traits.Exit))
         {
             exit.AddTrait(Traits.Exit);
-            //Debug.Log("Exit trait restored");
+            Debug.Log("Exit trait restored");
         }
 
         yield return new WaitForSeconds(0.5f);

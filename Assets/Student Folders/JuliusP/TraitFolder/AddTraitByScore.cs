@@ -21,7 +21,7 @@ public class AddTraitByScore : Trait
                 //FOR EVERY 10 SCORE, INCREASE HEALTH BY 1//
                 if (score % 10 == 0)
                 {
-                 //   Debug.Log("Score reached 3 → +1 max HP and full heal");
+                    Debug.Log("Score reached 3 → +1 max HP and full heal");
 
                     // GET HEALTH TRAIT//
                     TraitInfo health = i.Who.Get(Traits.Health);
