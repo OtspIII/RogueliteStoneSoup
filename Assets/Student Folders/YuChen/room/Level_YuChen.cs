@@ -18,7 +18,7 @@ public class Level_YuChen : LevelBuilder
         
         int w = 11 + Mathf.FloorToInt(l / 2);
         
-        int h = 10 + Mathf.FloorToInt(l / 2);
+        int h = 11 + Mathf.FloorToInt(l / 2);
   
         //Set the size we calculated
         Size = new Vector2Int(w, h);
@@ -78,7 +78,7 @@ public class Level_YuChen : LevelBuilder
         }
         if (CurrentLevel == 5)
         {
-            Exit = GetGeo(6, 7);
+            Exit = GetGeo(6, 6);
             Exit.SetPath(GeoTile.GeoTileTypes.Exit);
         }
         if (CurrentLevel == 6)

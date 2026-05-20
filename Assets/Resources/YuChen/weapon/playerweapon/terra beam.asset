@@ -10,17 +10,31 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 666e3856c5664c242bde2f0f953b72bc, type: 3}
-  m_Name: arrow
+  m_Name: terra beam
   m_EditorClassIdentifier: Assembly-CSharp::ProjectileOption
-  Name: arrow
+  Name: terra beam
   Author: 95
   Tags: []
   Team: 1
   Body: {fileID: 629948465317790645, guid: 9edb53243ae32704ead177294fe49d22, type: 3}
-  Art: {fileID: -6888756438569675735, guid: 2d7b3e95b12eb454f8c167f1037858ca, type: 3}
-  Color: {r: 1, g: 1, b: 1, a: 1}
-  Size: 0.7
+  Art: {fileID: -3431956186470392026, guid: e518c885e6f81f7489b6c70dd873e1a9, type: 3}
+  Color: {r: 0, g: 1, b: 0.0030903816, a: 1}
+  Size: 0.2
   LevelRange: {x: 0, y: 0}
-  Trait: []
-  Damage: 10
-  Speed: 18
+  Trait:
+  - Trait: 9502
+    Numbers: []
+    Prefabs: []
+    Acts: []
+    OtherTrait: 0
+    SpawnReq:
+      Fixed: {fileID: 0}
+      Mandatory: []
+      Any: []
+      Level: 0
+      Author: 0
+      MaxCost: 0
+      Where: {x: 0, y: 0, z: 0}
+    Builder: []
+  Damage: 8
+  Speed: 10

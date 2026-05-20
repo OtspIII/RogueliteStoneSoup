@@ -14,16 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: summon
   Author: 95
+  Tags:
+  - Common: 202
+    Custom: 
+    W: 1
+    Cost: 1
   Team: 1
   Body: {fileID: 629948465317790645, guid: b4fa405680f33044abe2c4567ecf147f, type: 3}
   Art: {fileID: -3685760008999291469, guid: 7796f6884a3110e479979dbdd41412df, type: 3}
   Color: {r: 1, g: 1, b: 1, a: 1}
   Size: 0.6
-  Tags:
-  - Common: 202
-    Custom: 
-    W: 1
-  LevelRange: {x: 3, y: 0}
+  LevelRange: {x: 3, y: 5}
   Trait:
   - Trait: 312
     Numbers: []
@@ -36,6 +37,8 @@ MonoBehaviour:
       Any: []
       Level: 0
       Author: 0
+      MaxCost: 0
+      Where: {x: 999, y: 999, z: 999}
     Builder:
     - Type: 0
       NumType: 1
@@ -63,9 +66,12 @@ MonoBehaviour:
     - Common: 0
       Custom: Wand_Minion
       W: 1
+      Cost: 1
     Any: []
     Level: 0
     Author: 95
+    MaxCost: 0
+    Where: {x: 999, y: 999, z: 999}
   FloorBody: {fileID: 0}
   FloorArt: {fileID: 0}
   Damage: 5

@@ -37,7 +37,7 @@ public class DoubleShootAction_yu : AttackAction
             Who.Thing.MoveTowards(Who.Target, Who.AttackRange);
         }
 
-        if (!doubleshoot && time >= 2f )
+        if (!doubleshoot && time >= 0.5f )
         {
             DoubleS();
             doubleshoot = true;
