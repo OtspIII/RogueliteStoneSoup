@@ -12,7 +12,6 @@ public class Lv3BarrierShield : ActionScript
     float RotateSpeed = 120f;
 
 
-    private ThingInfo itemToGive;
 
 
     public Lv3BarrierShield(ThingInfo who, EventInfo e = null)
@@ -23,6 +22,9 @@ public class Lv3BarrierShield : ActionScript
     public override void Begin()
     {
         base.Begin();
+
+
+
 
         if (!Who.Has(Traits.IgnoreDamage_JuliusP))
             Who.AddTrait(Traits.IgnoreDamage_JuliusP);
@@ -43,6 +45,8 @@ public class Lv3BarrierShield : ActionScript
 
         if (Who?.Thing == null || God.Session.Player?.Thing == null)
             return;
+
+
 
         // CLEAN UP DEAD SHIELDS
         for (int i = Lv3_spawnedShields.Count - 1; i >= 0; i--)
@@ -154,7 +158,7 @@ public class Lv3BarrierShield : ActionScript
 
         float angleStep = 360f / numberOfShields;
 
-        // ✅ LV3 CHANGE: 3 RED SHIELDS INSTEAD OF 2
+       
         int redCount = 3;
         List<int> redIndexes = new List<int>();
 

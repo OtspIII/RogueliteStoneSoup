@@ -38,7 +38,7 @@ public class ShieldTrait : Trait
                     hitName = hitName.ToLower();
 
                 // ONLY BOW / ARROW CHECK
-                if ((weaponName != null && weaponName.Contains("wolfbane bow")) || (hitName != null && hitName.Contains("lv2.wolfbanearrows")))
+                if ((weaponName != null && weaponName.Contains("wolfbane bow")) || (hitName != null && hitName.Contains("lv2.wolfbanearrows")) || (hitName != null && hitName.Contains("lv3.wolfbanearrows")) )
                 {
                    // Debug.Log("Wolfbane arrow hit shield");
 

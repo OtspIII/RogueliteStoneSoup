@@ -24,7 +24,7 @@ MonoBehaviour:
   Art: {fileID: 4652590142891508640, guid: f37a2d799dd01504faa074166101387a, type: 3}
   Color: {r: 1, g: 1, b: 1, a: 1}
   Size: 0.23
-  LevelRange: {x: 0, y: 0}
+  LevelRange: {x: 9, y: 9}
   Trait:
   - Trait: 100
     Numbers: []

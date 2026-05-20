@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NewPlayerAlly_Wesley : Trait
+public class NewPlayerAlly_WesleyP : Trait
 {
-    public NewPlayerAlly_Wesley()
+    public NewPlayerAlly_WesleyP()
     {
         Type = Traits.Hostile;
         AddListen(EventTypes.OnSee);

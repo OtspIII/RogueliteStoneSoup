@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class GiveItem : ActionScript
+public class GiveItemLv1 : ActionScript
 {
     bool canFollow = false;
     bool isEnded = false;
@@ -10,13 +10,13 @@ public class GiveItem : ActionScript
 
     float originalPlayerSpeed;
 
-    Level_JuliusP LJP;
+    Level_WesleyP LJP;
 
     ThingInfo ExitRef;
 
-    public GiveItem(ThingInfo who, EventInfo e = null)
+    public GiveItemLv1(ThingInfo who, EventInfo e = null)
     {
-        Setup(Actions.GiveItem_JuliusP, who, true);
+        Setup(Actions.GiveItem_WesleyP, who, true);
 
         HaltMomentum = false;
         MoveMult = 0.2f;
@@ -45,7 +45,7 @@ public class GiveItem : ActionScript
         if (ExitRef != null)
             ExitRef.RemoveTrait(Traits.Exit);
 
-        LJP = God.LB as Level_JuliusP;
+        LJP = God.LB as Level_WesleyP;
 
         God.C(GiveItemLogic());
     }
@@ -108,16 +108,13 @@ public class GiveItem : ActionScript
                 God.GM.SetUI("TradeMessage", null, 2);
 
                 canFollow = true;
-
-                if (LJP != null)
-                    LJP.CanLinkToLootRoom = true;
             }
 
             yield return null;
         }
 
         while (true)
-        {
+        {   
             if (isEnded)
                 yield break;
 

@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Level_ElioR : LevelBuilder
@@ -14,9 +15,9 @@ public class Level_ElioR : LevelBuilder
         //As you go deeper the map gets bigger
         int l = God.Session.Level;
         //Width starts at 2, and every third level grows by 1
-        int w = 4;//2 + Mathf.FloorToInt(l/3);
+        int w = 4 + Mathf.FloorToInt(l/3);
         //Height starts at 2, and every other level grows by 1
-        int h = 4;//2 + Mathf.FloorToInt(l/2);
+        int h = 4 + Mathf.FloorToInt(l/2);
         //If this is a test level, make it just be 1x2 so the exit touches the start point
         if (l == -1)
         {
@@ -30,7 +31,26 @@ public class Level_ElioR : LevelBuilder
     }
     public override void BuildGeoMap()
     {
-        AddGeo(new GeoTile(0,0,this));
-        
+        for(int x =0; x < Size.x; x++)
+        for(int y = 0; y < Size.y; y++)
+            {
+                GeoTile g = new GeoTile(x,y,this);
+                AddGeo(g);
+            }
+    }
+
+    public override void BuildMainPath()
+    {
+        base.BuildMainPath();
+    }
+
+    public override void ConnectAllGeos()
+    {
+        base.ConnectAllGeos();
+    }
+
+    public override void PickRooms()
+    {
+        base.PickRooms();
     }
 }

@@ -14,6 +14,17 @@ public class SpawnWall : Trait
      
     ThingInfo level3SecondRoomDoor, level3SecondRoomDoorToThird, level3ThirdRoomTop, Level3FinalDoor, Level3DoorToNPC;
 
+
+
+    //LEVEL 4 WALLS//
+
+    ThingInfo Level4Wall;
+
+
+    //LEVEL 5 WALLS//
+
+    ThingInfo BeginningLv5Wall, Lv5FinalBossDoor;
+
     Level_JuliusP LJP;
 
     public SpawnWall()
@@ -83,6 +94,35 @@ public class SpawnWall : Trait
                     //DOOR TO NPC//
 
                     Level3DoorToNPC = SpawnWallAt(new Vector2(63f, 112.03f));
+
+
+                }
+
+
+
+                if(Level == 4)
+                {
+
+                    //DOOR TO MINIBOSS//
+                    Level4Wall = SpawnWallAt(new Vector2(63f, 84.94f));
+
+
+
+                }
+
+
+                if(Level == 5)
+                {
+
+                  
+
+                    //BEGINNNING DOOR IN LV5 ROOM//
+                     BeginningLv5Wall = SpawnWallAt(new Vector2(63f, 83.89f));
+
+
+                     //FINAL BOSS DOOR//
+
+                     Lv5FinalBossDoor = SpawnWallAt(new Vector2(63f, 102.65f));
 
 
 
@@ -181,6 +221,48 @@ public class SpawnWall : Trait
 
 
 
+                //LEVEL 4 WALLS//
+
+                if(Level4Wall != null && LJP != null && LJP.Lv4DestroyedLvl3Enem)
+                {
+                        
+                    Level4Wall.Destruct();
+                    Level4Wall = null;
+
+
+                }
+
+
+
+
+                //LEVEL 5 WALLS//
+
+
+                //BEGINNING WALL/DOOR
+                if(BeginningLv5Wall != null && LJP != null && LJP.Lv5MiniBossKilled)
+                {
+                        
+                    BeginningLv5Wall.Destruct();
+                    BeginningLv5Wall = null;
+
+
+                }
+
+
+                //FINAL BOSS DOOR//
+                if(Lv5FinalBossDoor!= null && LJP != null && LJP.Lv5FinalBossKilled)
+                {
+                        
+                    Lv5FinalBossDoor.Destruct();
+                    Lv5FinalBossDoor = null;
+
+
+                }
+
+
+
+
+
 
 
 
@@ -208,5 +290,101 @@ public class SpawnWall : Trait
         wall.Spawn(pos);
 
         return wall;
+    }
+}
+
+
+
+public class RemoveExit : Trait
+{
+    ThingInfo Exit;
+    ThingInfo shieldEnemy;
+
+    bool exitRemoved = false;
+    bool FoundEnemy = false;
+    bool FinalBossDead = false;
+
+    Level_JuliusP LJP;
+
+    public RemoveExit()
+    {
+        Type = Traits.RemoveExit_JuliusP;
+
+        AddListen(EventTypes.Update);
+        
+        AddListen(EventTypes.OnSpawn);
+
+      
+    }
+
+    public override void TakeEvent(TraitInfo i, EventInfo e)
+    {
+        switch (e.Type)
+        {
+            case EventTypes.Update:
+            {
+                int Level = God.Session.Level;
+
+                // SAFELY GET EXIT
+                if (Exit == null)
+                    Exit = God.GM.Exit;
+
+                // REMOVE EXIT ON LEVEL 5
+                if (Level == 5 && !exitRemoved && Exit != null && Exit.Has(Traits.Exit))
+                {
+                    Exit.RemoveTrait(Traits.Exit);
+                    exitRemoved = true;
+                }
+
+                // CACHE ENEMY (WAIT UNTIL IT EXISTS)
+                if (!FoundEnemy)
+                {
+                    CacheShieldEnemy();
+                }
+
+
+
+               if(shieldEnemy != null && shieldEnemy.Thing == null && !FinalBossDead)
+                {
+                
+                Debug.Log("Shield Enemy is dead");
+
+                LJP.Lv5FinalBossKilled = true;
+
+                FinalBossDead = true;
+                }
+
+                break;
+            }
+
+
+
+            case EventTypes.OnSpawn:
+            {
+                    
+             LJP = God.LB as Level_JuliusP;
+
+             break;
+            }
+        }
+    }
+
+    void CacheShieldEnemy()
+    {
+        foreach (ThingController t in God.GM.Things)
+        {
+            if (t?.Info == null)
+                continue;
+
+            // WARNING: name check is fragile
+            if (t.gameObject.name.Contains("Lv4.Shield Enemy"))
+            {
+                shieldEnemy = t.Info;
+                FoundEnemy = true;
+
+                Debug.Log("Shield Enemy cached");
+                break;
+            }
+        }
     }
 }

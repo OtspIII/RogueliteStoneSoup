@@ -21,9 +21,9 @@ MonoBehaviour:
     Cost: 1
   Team: 1
   Body: {fileID: 629948465317790645, guid: b4fa405680f33044abe2c4567ecf147f, type: 3}
-  Art: {fileID: -1613646886922424301, guid: e8b0d6397381afe42b307356b06c650c, type: 3}
+  Art: {fileID: -3685760008999291469, guid: 7796f6884a3110e479979dbdd41412df, type: 3}
   Color: {r: 1, g: 1, b: 1, a: 1}
-  Size: 1.06
+  Size: 0.71
   LevelRange: {x: 6, y: 9}
   Trait:
   - Trait: 4002

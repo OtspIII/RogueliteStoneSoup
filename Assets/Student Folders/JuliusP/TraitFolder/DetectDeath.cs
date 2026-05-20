@@ -5,6 +5,9 @@ public class DetectDeath : Trait
 
     Level_JuliusP LJP;
 
+    private ThingInfo WeapontoDrop;
+
+
     //THIS TRAIT IS ONLY FOR CHECKING IF A THING DIES TO OPEN A PATHWAY//
    
     public DetectDeath()
@@ -37,12 +40,7 @@ public class DetectDeath : Trait
                 //FIRST CONDITION//
                 if (LJP.Lv3FirstRedLightKilled && Level == 3)
                 {
-                        
-
                      LJP.Lv3FirstLevel2ShieldEnemyKilled = true;     
-
-
-
                 }
 
 
@@ -50,15 +48,45 @@ public class DetectDeath : Trait
                 //SECOND CONDITION//
                 if(Level == 3 && LJP.Lv3FirstLevel2ShieldEnemyKilled && LJP.Lv3FirstRedLightKilled && LJP.Lv3RedLight3Killed)
                 {
-                    
                      LJP.Lv3FinalShieldEnemKilled = true;  
-            
+                }
+
+
+
+                //FOURTH LEVEL//
+                if(Level == 4)
+                {
+                   // Debug.Log("sup");
+
+                    WeapontoDrop = i.Who.CurrentHeld;
+
+                    i.Who.DropHeld(false);
+
+                    LJP.Lv4DestroyedLvl3Enem = true;
+                }   
+
+                
+
+
+
+                //FINAL LEVEL (LV.5)..
+
+                if(Level == 5)
+                {
+
+                    LJP.Lv5MiniBossKilled = true;
+
+                    
+
+
+
 
                 }
-   
 
-                     break;
-                }
+
+
+                break;
+            }
             
 
             case EventTypes.OnSpawn:
@@ -67,18 +95,7 @@ public class DetectDeath : Trait
                 LJP = God.LB as Level_JuliusP;     
 
                 break;
-
-
             }
-
-
-
-
-
-
         }
-
-
-}
-
+    }
 }

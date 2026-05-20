@@ -16,7 +16,7 @@ MonoBehaviour:
   Author: 40
   Tags:
   - Common: 102
-    Custom: 
+    Custom: Trick
     W: 1
     Cost: 1
   Team: 3
@@ -50,7 +50,7 @@ MonoBehaviour:
       BoolType: 0
       Bool: 0
       OptionType: 0
-      Option: {fileID: 11400000, guid: 16ba755a064eb44a69334ebaa2302f10, type: 2}
+      Option: {fileID: 11400000, guid: 758fc03d0dc1ea241b67ae8d6a5c8ca5, type: 2}
       VectorType: 0
       Vector: {x: 0, y: 0}
       Fixed: {fileID: 0}

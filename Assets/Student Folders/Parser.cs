@@ -46,6 +46,9 @@ public static class Parser
         // ElioR Traits
         TraitDict.Add(Traits.Barrier, new BarrierTrait_ElioR());
         TraitDict.Add(Traits.ParryTrait_ElioR, new ParryTrait());
+        TraitDict.Add(Traits.Blight_ElioR, new Blight_ElioR());
+        TraitDict.Add(Traits.BlightGiver_ElioR, new BlightGiver_ElioR());
+        TraitDict.Add(Traits.LifeSteal_ElioR, new LifeSteal_ElioR());
         // JaidenB Traits
         TraitDict.Add(Traits.InvertControls, new InvertControlsTrait());
         TraitDict.Add(Traits.Freeze, new FreezeTrait());
@@ -76,6 +79,10 @@ public static class Parser
         TraitDict.Add(Traits.ShieldTrait_JuliusP, new ShieldTrait());
         TraitDict.Add(Traits.Lv3RedLight_JuliusP, new Lv3RedLight());
         TraitDict.Add(Traits.DetectDeath_JuliusP, new DetectDeath());
+        TraitDict.Add(Traits.Lv3Homing_JuliusP, new Lv3Homing());
+        TraitDict.Add(Traits.SelfDestruct2_JuliusP, new SelfDestructV2());
+        TraitDict.Add(Traits.RemoveExit_JuliusP, new RemoveExit());
+
        
 
 
@@ -168,13 +175,16 @@ public static class Parser
             case Actions.Lv2_Cloak_JuliusP: return new Lv2Invis(who, e);
             case Actions.Lv3_Cloak_JuliusP: return new Lv3Invis(who, e);
             case Actions.TradeHp_JuliusP:return new TradeHp(who, e);
-            case Actions.GiveItem_JuliusP:return new GiveItem(who,e);
+            case Actions.GiveItem_JuliusP:return new GiveItemv1(who,e);
             case Actions.GiveItemLv2_JuliusP:return new GiveItem_Lv2(who,e);
             case Actions.EvasiveJuke_JuliusP:return new EvasiveJuke(who, e);
             case Actions.BleakWatcher_JuliusP: return new BleakWatcher(who, e);
             case Actions.Scan_JuliusP: return new Scan(who, e);
             case Actions.BarrierShieldType2_JuliusP: return new Lv1BarrierShieldType2_JuliusP(who, e);
             case Actions.GiveItem_Lv3_JuliusP: return new GiveItem_Lv3(who, e);
+            case Actions.DoubleShootV2_JuliusP: return new DoubleShootV2(who, e);
+            case Actions.Lv4_BarrierShield_JuliusP: return new Lv4_BarrierShield_JuliusP(who,e);
+
 
             
 
@@ -210,6 +220,9 @@ public static class Parser
             // TracyH=80,
             case Actions.Charge_TracyH: return new ChargeAction_TracyH(who, e);
             // WesleyP=90,
+            case Actions.TradeHp_WesleyP: return new TraeHp(who, e);
+            case Actions.GiveItem_WesleyP: return new GiveItemLv1(who, e);
+            case Actions.GiveItemLv2_WesleyP: return new GiveItem_LvL2(who, e);
             // YuChen=95,
             case Actions.spinAction_Yu: return new SpinAction_Yuchen(who, e);
             case Actions.TeleportSwingAction_Yu: return new TeleportSwingAction_Yu(who, e);
@@ -328,6 +341,8 @@ public enum Traits
     Barrier         =3002, //this will negate one instance of taken damage taken.
     ParryTrait_ElioR = 3003,
     LifeSteal_ElioR=3004,
+    Blight_ElioR = 3005,
+    BlightGiver_ElioR = 3006,
     //JaidenB       =35##,
     JaidenB1        =3501,
     InvertControls  =3502,
@@ -360,6 +375,11 @@ public enum Traits
     ShieldTrait_JuliusP = 4024,
     Lv3RedLight_JuliusP = 4025,
     DetectDeath_JuliusP = 4026,
+    Lv3Homing_JuliusP = 4027,
+    SelfDestruct2_JuliusP = 4028,
+    RemoveExit_JuliusP = 4029,
+
+
 
 
 
@@ -419,10 +439,12 @@ public enum Traits
     Knockback_WesleyP1=9002,
     CharacterSwap_WesleyP1  =9003,
     HealingAlly_WesleyP1=9004,
+    MoneysDrop_WesleyP1 = 9005, //Spawns money on death
     //YuChen        =95##,
     YuChen1         =9501,
     Criticaldamage=9502,
-    SpeedIncrease_yu = 9503
+    SpeedIncrease_yu = 9503,
+    
 }
 
 public enum Actions
@@ -479,6 +501,8 @@ public enum Actions
     Scan_JuliusP = 4015,
     BarrierShieldType2_JuliusP = 4016,
     GiveItem_Lv3_JuliusP = 4017,
+    DoubleShootV2_JuliusP = 4018,
+    Lv4_BarrierShield_JuliusP = 4019,
 
 
 
@@ -523,7 +547,12 @@ public enum Actions
     TracyH1         =8001,
     Charge_TracyH   =8002,
     //WesleyP       =90##,
-    NewPlayerAlly_WesleyP =9001, 
+    WesleyP1        =9001,
+    CharacterSwap_WesleyP =9002, 
+    HealingAlly_WesleyP =9003,
+    TradeHp_WesleyP = 9004,
+    GiveItem_WesleyP = 9005,
+    GiveItemLv2_WesleyP = 9006,
     //YuChen        =95##,
     YuChen1         =9501,
     spinAction_Yu = 9502,
