@@ -15,18 +15,18 @@ MonoBehaviour:
   Name: Healing
   Author: 90
   Tags:
-  - Common: 102
+  - Common: 0
     Custom: 
-    W: 4
-    Cost: 1
-  Team: 3
+    W: 0
+    Cost: 0
+  Team: 1
   Body: {fileID: 629948465317790645, guid: ae7dd3a7dbbce0f40a9a302d345782af, type: 3}
   Art: {fileID: 21300000, guid: 9ae1bb6e18904534aa40cb1751d7f392, type: 2}
   Color: {r: 1, g: 1, b: 1, a: 1}
   Size: 1
   LevelRange: {x: 0, y: 0}
   Trait:
-  - Trait: 2
+  - Trait: 310
     Numbers: []
     Prefabs: []
     Acts: []
