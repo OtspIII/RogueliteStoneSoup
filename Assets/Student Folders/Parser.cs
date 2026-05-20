@@ -116,6 +116,8 @@ public static class Parser
         TraitDict.Add(Traits.DelayedActionAfterStartingAction,new DelayedActionAfterStartingActionTrait());
         TraitDict.Add(Traits.ComboBreak,new ComboBreakTrait());
         TraitDict.Add(Traits.CrowdControlNegation,new CrowdControlNegation());
+        TraitDict.Add(Traits.BarrierItem,new BarrierItemTrait());
+        TraitDict.Add(Traits.PermBarrier,new PermBarrierTrait());
         // SarahS Traits
         TraitDict.Add(Traits.ProximityExplodeSarahS,new ProximityExplode_SarahS());
         TraitDict.Add(Traits.SlowMoSarahS,new SlowMo_SarahS());
@@ -420,6 +422,8 @@ public enum Traits
     GrappleHook     =7007, //Triggers grappling action on collision
     ComboBreak      =7008, //After getting stunned for X secs in a row, become immune to CC for Y secs
     CrowdControlNegation =7009, //CC negation trait blocks stuns and knockback for configured duration
+    BarrierItem     =7010, //On use, grants a permanent barrier shield trait
+    PermBarrier     =7011, //Permanent barrier shield that blocks damage while it has charge
     //SarahS        =75##,
     ProximityExplodeSarahS  =7501,
     SlowMoSarahS    =7502,
