@@ -10,23 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 037523bd7ae983240ad1b7cc3ff106cd, type: 3}
-  m_Name: C
-  m_EditorClassIdentifier: Assembly-CSharp::ThingOption
-  Name: Healing
+  m_Name: HealthPool
+  m_EditorClassIdentifier: 
+  Name: HealthPool
   Author: 90
   Tags:
-  - Common: 102
+  - Common: 400
     Custom: 
-    W: 4
+    W: 1
     Cost: 1
-  Team: 3
-  Body: {fileID: 629948465317790645, guid: ae7dd3a7dbbce0f40a9a302d345782af, type: 3}
+  Team: 0
+  Body: {fileID: 629948465317790645, guid: 7bfc7e89c5111624a9658fd0a5a7c71e, type: 3}
   Art: {fileID: 21300000, guid: 9ae1bb6e18904534aa40cb1751d7f392, type: 2}
-  Color: {r: 1, g: 1, b: 1, a: 1}
-  Size: 1
-  LevelRange: {x: 0, y: 0}
+  Color: {r: 0.31372374, g: 0.83977795, b: 0.8867924, a: 1}
+  Size: 2
+  LevelRange: {x: 5, y: 10}
   Trait:
-  - Trait: 2
+  - Trait: 7004
     Numbers: []
     Prefabs: []
     Acts: []
@@ -40,9 +40,9 @@ MonoBehaviour:
       MaxCost: 0
       Where: {x: 999, y: 999, z: 999}
     Builder:
-    - Type: 7
-      NumType: 0
-      Num: 0
+    - Type: 0
+      NumType: 1
+      Num: 1
       StrType: 0
       Str: 
       ActType: 0
@@ -58,4 +58,4 @@ MonoBehaviour:
       MandatoryW: 0
       Any: 
       AnyW: 0
-      Trait: 310
+      Trait: 0
