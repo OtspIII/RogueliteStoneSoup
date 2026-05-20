@@ -613,6 +613,7 @@ public class Lv4_BarrierShield_JuliusP : ActionScript
             EnemyRb.simulated = true;
 
         LJP = God.LB as Level_JuliusP;
+
     }
 
     public override void OnRun()

@@ -65,10 +65,28 @@ public class DetectDeath : Trait
                     LJP.Lv4DestroyedLvl3Enem = true;
                 }   
 
+                
+
+
+
+                //FINAL LEVEL (LV.5)..
+
+                if(Level == 5)
+                {
+
+                    LJP.Lv5MiniBossKilled = true;
+
+                    
+
+
+
+
                 }
 
+
+
                 break;
-            
+            }
             
 
             case EventTypes.OnSpawn:

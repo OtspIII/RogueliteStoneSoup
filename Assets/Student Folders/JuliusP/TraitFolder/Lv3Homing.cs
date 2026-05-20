@@ -32,7 +32,7 @@ public class Lv3Homing : Trait
                 float speed = 5f;
 
                 // SETS HOW FAST THE CYSTAL CAN TRACK OR TURN//
-                float turnSpeed = 11.3f;
+                float turnSpeed = 24f;
 
                 // GET ALL THINGINFOS IN THE RADIUS OF THE STASIS PROJECTILE//
                 var hits = God.GM.CollideCircle(projController.transform.position, range);

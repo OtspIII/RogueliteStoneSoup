@@ -1,9 +1,9 @@
 xxxxxxxuuuxxxxxxx
-x     x   x     x
-x  n         n xx
+x     x N x     x
+x              xx
 xx      F      xx
 xx             xx
-x  n         n  x
+x  3            x
 x               x
 xxxxxxx   xxxxxxx
 xxxxxxx   xxxxxxx

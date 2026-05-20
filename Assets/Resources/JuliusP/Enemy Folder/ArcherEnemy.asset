@@ -24,8 +24,22 @@ MonoBehaviour:
   Art: {fileID: -7132172409892320828, guid: 507719f271182eb4baded25bf73a29da, type: 3}
   Color: {r: 1, g: 0, b: 0, a: 1}
   Size: 1.39
-  LevelRange: {x: 3, y: 3}
-  Trait: []
+  LevelRange: {x: 5, y: 5}
+  Trait:
+  - Trait: 4026
+    Numbers: []
+    Prefabs: []
+    Acts: []
+    OtherTrait: 0
+    SpawnReq:
+      Fixed: {fileID: 0}
+      Mandatory: []
+      Any: []
+      Level: 0
+      Author: 0
+      MaxCost: 0
+      Where: {x: 0, y: 0, z: 0}
+    Builder: []
   HP: 5
   Speed: 2.82
   VisionRange: 21.2

@@ -81,6 +81,7 @@ public static class Parser
         TraitDict.Add(Traits.DetectDeath_JuliusP, new DetectDeath());
         TraitDict.Add(Traits.Lv3Homing_JuliusP, new Lv3Homing());
         TraitDict.Add(Traits.SelfDestruct2_JuliusP, new SelfDestructV2());
+        TraitDict.Add(Traits.RemoveExit_JuliusP, new RemoveExit());
 
        
 
@@ -373,6 +374,7 @@ public enum Traits
     DetectDeath_JuliusP = 4026,
     Lv3Homing_JuliusP = 4027,
     SelfDestruct2_JuliusP = 4028,
+    RemoveExit_JuliusP = 4029,
 
 
 

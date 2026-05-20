@@ -24,7 +24,7 @@ MonoBehaviour:
   Art: {fileID: -2722426370401279469, guid: 8d93e9f3167202648ad2cd2374e1a252, type: 3}
   Color: {r: 1, g: 1, b: 1, a: 1}
   Size: 1
-  LevelRange: {x: 4, y: 5}
+  LevelRange: {x: 5, y: 5}
   Trait:
   - Trait: 3
     Numbers: []
@@ -73,8 +73,8 @@ MonoBehaviour:
       MaxCost: 0
       Where: {x: 999, y: 999, z: 999}
     Builder: []
-  HP: 20
-  Speed: 8.25
+  HP: 1
+  Speed: 6.5
   VisionRange: 5.4
   Held: {fileID: 11400000, guid: 1e2abc0e3d9f543998c0df504c399cfc, type: 2}
   DefaultAction: 4019

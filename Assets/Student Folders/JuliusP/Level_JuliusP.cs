@@ -26,6 +26,11 @@ public class Level_JuliusP : LevelBuilder
     public bool Lv4DestroyedLvl3Enem = false;
 
 
+    //LV5.BOOLS//
+
+    public bool Lv5MiniBossKilled = false;
+
+    public bool Lv5FinalBossKilled = false;
     
 
     public float SpecialRoomChance = 0.3f;
