@@ -40,7 +40,7 @@ public class StunCancel : Trait
                 i.Who.Thing.Knockback = Vector2.zero; // clear knockback vector
             }
 
-            Debug.Log("Stun canceled and knockback prevented!");
+           // Debug.Log("Stun canceled and knockback prevented!");
         }
 
         break;
@@ -71,7 +71,7 @@ public class StunCancel : Trait
             {
                 i.Who.RemoveTrait(Traits.StunNegation_JuliusP);
 
-                Debug.Log("Hello");
+               // Debug.Log("Hello");
             
             
             
@@ -124,7 +124,7 @@ public class TemporaryDashAbility : Trait
                     //ALLOWS TO USE/START COROUTINES
                     God.C(RemoveDashAfterDelay(Player));
                     
-                    Debug.Log("DashTrait added from potion");
+                    //Debug.Log("DashTrait added from potion");
                 }
                 break;
 
@@ -147,7 +147,7 @@ public class TemporaryDashAbility : Trait
         if (player.Has(Traits.Dash))
         {
             player.RemoveTrait(Traits.Dash);
-            Debug.Log("DashTrait removed");
+            //Debug.Log("DashTrait removed");
         }
     }
 
@@ -183,7 +183,7 @@ public class FullStunNegation : Trait
                 if (e.Get(ActionInfo.Action) == Actions.Stun && i.Who != null &&i.Who.Thing != null)
                 {
                     e.Abort = true;
-                    Debug.Log("NO STUN");
+                    //("NO STUN");
                 }
                 break;
             }
@@ -227,7 +227,7 @@ public class FullStunNegation : Trait
                 if (weaponName != null && weaponName.Contains("sword"))
                 {
                    
-                   
+                    
 
                     i.Who.DesiredMove = Vector2.zero;
                     i.Who.Thing.ActualMove = Vector2.zero;
@@ -239,7 +239,8 @@ public class FullStunNegation : Trait
                         rb.linearVelocity = Vector2.zero;
                         rb.angularVelocity = 0f;
                     }
-
+                    
+                    
                     i.Who.AddTrait(Traits.IgnoreDamage_JuliusP);
 
 
@@ -249,24 +250,50 @@ public class FullStunNegation : Trait
                 //CHECK FOR WOLFBANE ARROW//
                 if (weaponName != null && (weaponName.Contains("Wolf Bane Bow") || hitName.Contains("WolfBaneArrow")))
                 {
-                    Debug.Log("Bow/Arrow knockback allowed");
+                   // Debug.Log("Bow/Arrow knockback allowed");
 
 
                     i.Who.RemoveTrait(Traits.IgnoreDamage_JuliusP);
                 }
+
+
+
+
+            if (other.Thing.name.Contains("Lava"))
+            {
+              //  Debug.Log("Touched Lava!");
+
+                if (i.Who.Has(Traits.IgnoreDamage_JuliusP))
+                {
+             
+                    i.Who.RemoveTrait(Traits.IgnoreDamage_JuliusP);
+                }
+            }
 
                 break;
             }
 
             case EventTypes.Death:
             {
-                    
-             var level = God.LB as Level_JuliusP;
+              var level = God.LB as Level_JuliusP;
+              if (level == null)
+              break;
 
-             level.Lv2BossKilled = true;
+            ThingInfo deadThing = i.Who;
 
-             break;
+            if (deadThing == null || deadThing.Thing == null)
+            break;
+
+            if (deadThing.Thing.name.Contains("Lv2.Boss"))
+            {
+            level.Lv2BossKilled = true;
             }
-        }
-    }
+
+         break;
+            }
+
+
+
+}
+}
 }

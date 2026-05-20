@@ -53,6 +53,7 @@ public static class Parser
         TraitDict.Add(Traits.InvertControls, new InvertControlsTrait());
         TraitDict.Add(Traits.Freeze, new FreezeTrait());
         TraitDict.Add(Traits.MoneyDrop, new MoneyDropTrait());
+        TraitDict.Add(Traits.Lava, new LavaTrait());
         // Julius Traits
         TraitDict.Add(Traits.Rage, new RageTrait());
         TraitDict.Add(Traits.LowHealthWarrior_JuliusP, new UltimateRage());
@@ -98,11 +99,14 @@ public static class Parser
         // QixiangD Traits
         TraitDict.Add(Traits.Sneaky_qixiangdong, new Sneaky_qixiangdong());
         TraitDict.Add(Traits.Thrill_qixiangdong, new Thrill_qixiangdong());
+        TraitDict.Add(Traits.BulletHell_qixiangdong, new BulletHell_qixiangdong());
+        TraitDict.Add(Traits.LockedExit_qixiangdong, new LockedExit_qixiangdong());
         // RaphaelC Traits
         TraitDict.Add(Traits.Lighting_RaphaelC,new Lighting_RaphaelC());
         TraitDict.Add(Traits.BasicHeal_RaphaelC,new BasicHeal_RaphaelC());
         TraitDict.Add(Traits.KillSpeedBoost,new KillSpeedBoost());
         TraitDict.Add(Traits.WhirlPool_RaphaelC,new WhirlPool_RaphaelC());
+        TraitDict.Add(Traits.BossDeath_RaphaelC,new BossDeath_RaphaelC());
         // SabahE Traits
         TraitDict.Add(Traits.SpeedUpSabahE, new SpeedUpTrait_SabahE());
         TraitDict.Add(Traits.RallySabahE, new RallyTrait_SabahE());
@@ -130,6 +134,7 @@ public static class Parser
         TraitDict.Add(Traits.ProtectionSpellSarahS,new ProtectionSpell_SarahS());
         TraitDict.Add(Traits.DamageFlashSarahS,new DamageFlash_SarahS());
         TraitDict.Add(Traits.FleeSarahS,new Flee_SarahS());
+        TraitDict.Add(Traits.ContactDamageSarahS,new ContactDamage_SarahS());
         // TracyH Traits
         TraitDict.Add(Traits.Teleport_TracyH, new TeleportTrait_TracyH());
         TraitDict.Add(Traits.Freeze_TracyH, new FreezeTrait_TracyH());
@@ -201,9 +206,14 @@ public static class Parser
         
             // MichaelT=50,
             case Actions.BleedAttack_MichaelT: return new BleedAttackAction_MichaelT(who, e);
+            case Actions.DoMoreDamageAttack_MichaelT: return new DoMoreDamageAction_MichaelT(who,e);
             // QixiangD=55,
             case Actions.Sidestep_qixiangdong: return new Sidestep_qixiangdong(who,e);
             case Actions.Charging_qixiangdong: return new Charging_qixiangdong(who,e);
+            case Actions.BulletSpawner_qixiangdong: return new BulletSpawner_qixiangdong(who,e);
+            case Actions.SpinShoot_qixiangdong: return new SpinShoot_qixiangdong(who,e);
+            case Actions.BurstShoot_qixiangdong: return new BurstShoot_qixiangdong(who,e);
+
             // RaphaelC=60,
             case Actions.CurveChase_RaphaelC:return new CurveChaseAction_RaphaelC(who,e);
             case Actions.Invisible_RaphaelC:return new Invisible_RaphaelC(who,e);
@@ -224,6 +234,8 @@ public static class Parser
             case Actions.PanicRunSarahS: return new PanicRun_SarahS(who, e);
             case Actions.HopSarahS: return new Hop_SarahS(who, e);
             case Actions.RepelSarahS: return new Repel_SarahS(who, e);
+            case Actions.RhythmChaseSarahS: return new RhythmChase_SarahS(who, e);
+            case Actions.RhythmPatrolSarahS: return new RhythmPatrol_SarahS(who,e);
             // TracyH=80,
             case Actions.Charge_TracyH: return new ChargeAction_TracyH(who, e);
             // WesleyP=90,
@@ -355,6 +367,7 @@ public enum Traits
     InvertControls  =3502,
     Freeze          =3503,
     MoneyDrop       =3504,
+    Lava            =3505,
     //JuliusP       =40##,
     JuliusP1        =4001,
     Rage            =4002, 
@@ -405,12 +418,15 @@ public enum Traits
     QixiangD1       =5501,
     Sneaky_qixiangdong = 5502,
     Thrill_qixiangdong = 5503,
+    BulletHell_qixiangdong = 5504,
+    LockedExit_qixiangdong = 5505,
     //RaphaelC      =60##,
     Lighting_RaphaelC       =6001,
     Trait2_RaphaelC         =6002,
     BasicHeal_RaphaelC  =6003,
     KillSpeedBoost =6004,
     WhirlPool_RaphaelC=6005,
+    BossDeath_RaphaelC =6006,
     //SabahE        =65##,
     SabahE1         =6501,
     SpeedUpSabahE   =6502, //Speedup for 10s when you get hit
@@ -439,6 +455,7 @@ public enum Traits
     ProtectionSpellSarahS =7506,
     DamageFlashSarahS =7507,
     FleeSarahS    =7508,
+    ContactDamageSarahS =7509,
     //TracyH        =80##,
     TracyH1 = 8001,
     Teleport_TracyH = 8002, //Teleport player between radius or nearby room(Zone)
@@ -532,9 +549,14 @@ public enum Actions
     //MichaelT      =50##,
     MichaelT1       =5001,
     BleedAttack_MichaelT = 5003, //Applies Bleed Trait to Target on Hit
+    DoMoreDamageAttack_MichaelT = 5004,
     //QixiangD      =55##,
     Sidestep_qixiangdong = 5501,
     Charging_qixiangdong = 5502,
+    BulletSpawner_qixiangdong = 5503,
+    ConeAttack_qixiangdong = 5504,
+    SpinShoot_qixiangdong = 5505,
+    BurstShoot_qixiangdong = 5506,
     //RaphaelC      =60##,
     RaphaelC1       =6001,
     CurveChase_RaphaelC = 6002,
@@ -557,6 +579,8 @@ public enum Actions
     PanicRunSarahS  =7504,
     HopSarahS     =7505,
     RepelSarahS     =7506,
+    RhythmChaseSarahS =7507,
+    RhythmPatrolSarahS =7508,
     //TracyH        =80##,
     TracyH1         =8001,
     Charge_TracyH   =8002,

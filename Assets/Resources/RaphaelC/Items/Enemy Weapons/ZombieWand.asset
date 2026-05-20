@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ItemOption
   Name: Weird Wand
   Author: 60
+  Tags: []
   Team: 1
   Body: {fileID: 629948465317790645, guid: 7ef37acb0fdeb5849995b35a7fdca6ba, type: 3}
   Art: {fileID: -4421300922047078791, guid: 4bf70cedee363fb4b9048f89e88c9ddc, type: 3}
   Color: {r: 0.6415094, g: 0.6415094, b: 0.6415094, a: 1}
   Size: 1
-  Tags: []
   LevelRange: {x: 0, y: 0}
   Trait: []
   DefaultAttack: 103
@@ -29,9 +29,11 @@ MonoBehaviour:
     Any: []
     Level: 0
     Author: 60
+    MaxCost: 0
+    Where: {x: 999, y: 999, z: 999}
   FloorBody: {fileID: 0}
   FloorArt: {fileID: 0}
   Damage: 1
-  IdealRange: 7
-  SpeedMult: 0.1
-  ActDuration: 3.5
+  IdealRange: 5
+  SpeedMult: 1
+  ActDuration: 1.4

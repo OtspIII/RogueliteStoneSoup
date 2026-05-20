@@ -19,9 +19,9 @@ public class AddTraitByScore : Trait
                 God.GM.SetUI("Score", "Score: " + score, 2);
 
                 //FOR EVERY 10 SCORE, INCREASE HEALTH BY 1//
-                if (score % 10 == 0)
+                if (score % 30 == 0)
                 {
-                    Debug.Log("Score reached 3 → +1 max HP and full heal");
+                   // Debug.Log("Score reached 3 → +1 max HP and full heal");
 
                     // GET HEALTH TRAIT//
                     TraitInfo health = i.Who.Get(Traits.Health);

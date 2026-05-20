@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Lunge
   Author: 60
+  Tags: []
   Team: 1
   Body: {fileID: 629948465317790645, guid: 0dbb6610376380d4393be62d6ec50ffc, type: 3}
   Art: {fileID: 0}
   Color: {r: 1, g: 1, b: 1, a: 1}
   Size: 1
-  Tags: []
   LevelRange: {x: 0, y: 0}
   Trait: []
   DefaultAttack: 102
@@ -30,9 +30,10 @@ MonoBehaviour:
     Level: 0
     Author: 60
     MaxCost: 0
+    Where: {x: 999, y: 999, z: 999}
   FloorBody: {fileID: 0}
   FloorArt: {fileID: 0}
   Damage: 1
-  IdealRange: 4
+  IdealRange: 3
   SpeedMult: 0.5
-  ActDuration: 0
+  ActDuration: 3

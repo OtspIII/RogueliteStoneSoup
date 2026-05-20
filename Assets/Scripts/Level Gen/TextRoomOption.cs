@@ -21,9 +21,12 @@ public class TextRoomOption : RoomOption
     {
         if (Audited) return;
         Audited = true;
-        MapText = Map.text.Split("\n");
-        MapSize = new Vector2Int(0, MapText.Length);
-        foreach (string s in MapText) MapSize.x = Mathf.Max(MapSize.x, s.Length-1);
+        if (Map != null)
+        {
+            MapText = Map.text.Split("\n");
+            MapSize = new Vector2Int(0, MapText.Length);
+            foreach (string s in MapText) MapSize.x = Mathf.Max(MapSize.x, s.Length - 1);
+        }
     }
 }
 

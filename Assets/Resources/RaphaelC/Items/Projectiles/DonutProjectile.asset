@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Fireball
   Author: 60
+  Tags: []
   Team: 1
   Body: {fileID: 629948465317790645, guid: 9edb53243ae32704ead177294fe49d22, type: 3}
   Art: {fileID: 6761164967045977113, guid: cf251f49e93dbc1448d1cc819af13e16, type: 3}
   Color: {r: 1, g: 1, b: 1, a: 1}
   Size: 1
-  Tags: []
   LevelRange: {x: 0, y: 0}
   Trait:
   - Trait: 3
@@ -34,6 +34,7 @@ MonoBehaviour:
       Level: 0
       Author: 0
       MaxCost: 0
+      Where: {x: 999, y: 999, z: 999}
     Builder:
     - Type: 0
       NumType: 2
@@ -92,5 +93,5 @@ MonoBehaviour:
       Any: 
       AnyW: 0
       Trait: 0
-  Damage: 4
-  Speed: 8
+  Damage: 1
+  Speed: 5

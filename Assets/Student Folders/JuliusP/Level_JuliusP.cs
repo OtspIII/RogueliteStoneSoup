@@ -135,22 +135,35 @@ public override void BuildGeoMap()
 
 public override void BuildMainPath()
 {
-    // PLAYER START
     int centerX = 3;
     int centerY = 3;
+    int leftsideY = -2;
 
-    PlayerSpawn = GetGeo(centerX, centerY);
-    PlayerSpawn.SetPath(GeoTile.GeoTileTypes.PlayerStart);
+    int level = God.Session.Level;
 
-    GeoTile prev = PlayerSpawn;
-
-    // LEVEL 3 SPECIAL PATH
-    if (God.Session.Level == 3)
+    //
+    // LEVEL 1
+    //
+    if (level == 1)
     {
-        for (int y = centerY + 1; y <= 5; y++)
+        // PLAYER START
+        PlayerSpawn = GetGeo(centerX, centerY);
+
+        if (PlayerSpawn != null)
+            PlayerSpawn.SetPath(GeoTile.GeoTileTypes.PlayerStart);
+
+        GeoTile prev = PlayerSpawn;
+
+        //
+        // MAIN VERTICAL PATH
+        // (3,3) -> (3,6)
+        //
+        for (int y = centerY + 1; y <= centerY + 3; y++)
         {
             GeoTile next = GetGeo(centerX, y);
-            if (next == null) continue;
+
+            if (next == null)
+                continue;
 
             prev.Links.Add(Directions.Up);
             next.Links.Add(Directions.Down);
@@ -160,18 +173,161 @@ public override void BuildMainPath()
             prev = next;
         }
 
-        Exit = GetGeo(centerX, 7);
-        Exit.SetPath(GeoTile.GeoTileTypes.Exit);
+        // EXIT
+        Exit = GetGeo(centerX, centerY + 3);
+
+        if (Exit != null)
+            Exit.SetPath(GeoTile.GeoTileTypes.Exit);
+
+        //
+        // CONNECT LOWER VERTICAL
+        //
+        for (int y = centerY; y > centerY - 2; y--)
+        {
+            GeoTile a = GetGeo(centerX, y);
+            GeoTile b = GetGeo(centerX, y - 1);
+
+            if (a == null || b == null)
+                continue;
+
+            a.Links.Add(Directions.Down);
+            b.Links.Add(Directions.Up);
+
+            b.SetPath(GeoTile.GeoTileTypes.Connected);
+        }
+
+        //
+        // HORIZONTAL ROW AT Y = 1
+        //
+
+        // RIGHT SIDE
+        for (int x = centerX; x < centerX + 3; x++)
+        {
+            GeoTile a = GetGeo(x, 1);
+            GeoTile b = GetGeo(x + 1, 1);
+
+            if (a == null || b == null)
+                continue;
+
+            a.Links.Add(Directions.Right);
+            b.Links.Add(Directions.Left);
+
+            b.SetPath(GeoTile.GeoTileTypes.Connected);
+        }
+
+        // LEFT SIDE
+        for (int x = centerX; x > centerX - 3; x--)
+        {
+            GeoTile a = GetGeo(x, 1);
+            GeoTile b = GetGeo(x - 1, 1);
+
+            if (a == null || b == null)
+                continue;
+
+            a.Links.Add(Directions.Left);
+            b.Links.Add(Directions.Right);
+
+            b.SetPath(GeoTile.GeoTileTypes.Connected);
+        }
+
+        //
+        // CONNECT (6,1) -> (6,0)
+        //
+        GeoTile rightTop = GetGeo(6, 1);
+        GeoTile rightBottom = GetGeo(6, 0);
+
+        if (rightTop != null && rightBottom != null)
+        {
+            rightTop.Links.Add(Directions.Down);
+            rightBottom.Links.Add(Directions.Up);
+
+            rightBottom.SetPath(GeoTile.GeoTileTypes.Connected);
+        }
+
+        //
+        // CONNECT (0,1) -> (0,0)
+        //
+        GeoTile leftTop = GetGeo(0, 1);
+        GeoTile leftMid = GetGeo(0, 0);
+
+        if (leftTop != null && leftMid != null)
+        {
+            leftTop.Links.Add(Directions.Down);
+            leftMid.Links.Add(Directions.Up);
+
+            leftMid.SetPath(GeoTile.GeoTileTypes.Connected);
+        }
+
+        //
+        // CONNECT (0,0) -> (-1,-1)
+        //
+        GeoTile zero = GetGeo(0, 0);
+        GeoTile neg1 = GetGeo(-1, -1);
+
+        if (zero != null && neg1 != null)
+        {
+            zero.Links.Add(Directions.Left);
+            neg1.Links.Add(Directions.Right);
+
+            neg1.SetPath(GeoTile.GeoTileTypes.Connected);
+        }
+
+        //
+        // CONNECT LEFT BRANCH
+        // (-1,-1) -> (-2,-1) -> (-3,-1)
+        //
+        for (int x = -1; x > -3; x--)
+        {
+            GeoTile a = GetGeo(x, -1);
+            GeoTile b = GetGeo(x - 1, -1);
+
+            if (a == null || b == null)
+                continue;
+
+            a.Links.Add(Directions.Left);
+            b.Links.Add(Directions.Right);
+
+            b.SetPath(GeoTile.GeoTileTypes.Connected);
+        }
+
+        //
+        // CONNECT (-3,-1) -> (-3,0)
+        //
+        GeoTile branchBottom = GetGeo(-3, -1);
+        GeoTile branchTop = GetGeo(-3, 0);
+
+        if (branchBottom != null && branchTop != null)
+        {
+            branchBottom.Links.Add(Directions.Up);
+            branchTop.Links.Add(Directions.Down);
+
+            branchTop.SetPath(GeoTile.GeoTileTypes.Connected);
+        }
+
         return;
     }
 
-    // LEVEL 4 SPECIAL PATH
-    if (God.Session.Level == 4)
+    //
+    // LEVEL 2
+    //
+    if (level == 2)
     {
+        PlayerSpawn = GetGeo(centerX, centerY);
+
+        if (PlayerSpawn != null)
+            PlayerSpawn.SetPath(GeoTile.GeoTileTypes.PlayerStart);
+
+        GeoTile prev = PlayerSpawn;
+
+        //
+        // MAIN PATH UP
+        //
         for (int y = centerY + 1; y <= 5; y++)
         {
             GeoTile next = GetGeo(centerX, y);
-            if (next == null) continue;
+
+            if (next == null)
+                continue;
 
             prev.Links.Add(Directions.Up);
             next.Links.Add(Directions.Down);
@@ -182,17 +338,111 @@ public override void BuildMainPath()
         }
 
         Exit = GetGeo(centerX, 5);
-        Exit.SetPath(GeoTile.GeoTileTypes.Exit);
+
+        if (Exit != null)
+            Exit.SetPath(GeoTile.GeoTileTypes.Exit);
+
+        //
+        // LEFT BRANCH
+        //
+        for (int x = centerX; x > 0; x--)
+        {
+            GeoTile a = GetGeo(x, 3);
+            GeoTile b = GetGeo(x - 1, 3);
+
+            if (a == null || b == null)
+                continue;
+
+            a.Links.Add(Directions.Left);
+            b.Links.Add(Directions.Right);
+
+            b.SetPath(GeoTile.GeoTileTypes.Connected);
+        }
+
+        //
+        // RIGHT BRANCH
+        //
+        for (int x = centerX; x < 6; x++)
+        {
+            GeoTile a = GetGeo(x, 3);
+            GeoTile b = GetGeo(x + 1, 3);
+
+            if (a == null || b == null)
+                continue;
+
+            a.Links.Add(Directions.Right);
+            b.Links.Add(Directions.Left);
+
+            b.SetPath(GeoTile.GeoTileTypes.Connected);
+        }
+
+        //
+        // RIGHT UPPER BRANCH
+        // (6,3) -> (6,4) -> (6,5)
+        //
+        for (int y = 3; y < 5; y++)
+        {
+            GeoTile a = GetGeo(6, y);
+            GeoTile b = GetGeo(6, y + 1);
+
+            if (a == null || b == null)
+                continue;
+
+            a.Links.Add(Directions.Up);
+            b.Links.Add(Directions.Down);
+
+            b.SetPath(GeoTile.GeoTileTypes.Connected);
+        }
+
+        //
+        // CONNECT (6,5) -> (7,5)
+        //
+        GeoTile sixFive = GetGeo(6, 5);
+        GeoTile sevenFive = GetGeo(7, 5);
+
+        if (sixFive != null && sevenFive != null)
+        {
+            sixFive.Links.Add(Directions.Right);
+            sevenFive.Links.Add(Directions.Left);
+
+            sevenFive.SetPath(GeoTile.GeoTileTypes.Connected);
+        }
+
+        //
+        // CONNECT (0,3) -> (0,4)
+        //
+        GeoTile zeroThree = GetGeo(0, 3);
+        GeoTile zeroFour = GetGeo(0, 4);
+
+        if (zeroThree != null && zeroFour != null)
+        {
+            zeroThree.Links.Add(Directions.Up);
+            zeroFour.Links.Add(Directions.Down);
+
+            zeroFour.SetPath(GeoTile.GeoTileTypes.Connected);
+        }
+
         return;
     }
 
-    // LEVEL 5 SPECIAL PATH (FIXED → GOES TO 3,6)
-    if (God.Session.Level == 5)
+    //
+    // LEVEL 3
+    //
+    if (level == 3)
     {
-        for (int y = centerY + 1; y <= 6; y++)
+        PlayerSpawn = GetGeo(centerX, centerY);
+
+        if (PlayerSpawn != null)
+            PlayerSpawn.SetPath(GeoTile.GeoTileTypes.PlayerStart);
+
+        GeoTile prev = PlayerSpawn;
+
+        for (int y = centerY + 1; y <= centerY + 4; y++)
         {
             GeoTile next = GetGeo(centerX, y);
-            if (next == null) continue;
+
+            if (next == null)
+                continue;
 
             prev.Links.Add(Directions.Up);
             next.Links.Add(Directions.Down);
@@ -202,115 +452,84 @@ public override void BuildMainPath()
             prev = next;
         }
 
-        Exit = GetGeo(centerX, 6);
-        Exit.SetPath(GeoTile.GeoTileTypes.Exit);
+        Exit = GetGeo(centerX, centerY + 4);
+
+        if (Exit != null)
+            Exit.SetPath(GeoTile.GeoTileTypes.Exit);
 
         return;
     }
 
-    // DEFAULT MAIN PATH (UP TO 3,6)
-    for (int y = centerY + 1; y <= 6; y++)
+    //
+    // LEVEL 4
+    //
+    if (level == 4)
     {
-        GeoTile next = GetGeo(centerX, y);
-        if (next == null) continue;
+        PlayerSpawn = GetGeo(centerX, centerY);
 
-        prev.Links.Add(Directions.Up);
-        next.Links.Add(Directions.Down);
+        if (PlayerSpawn != null)
+            PlayerSpawn.SetPath(GeoTile.GeoTileTypes.PlayerStart);
 
-        next.SetPath(GeoTile.GeoTileTypes.MainPath);
-        prev = next;
+        GeoTile prev = PlayerSpawn;
+
+        for (int y = centerY + 1; y <= centerY + 2; y++)
+        {
+            GeoTile next = GetGeo(centerX, y);
+
+            if (next == null)
+                continue;
+
+            prev.Links.Add(Directions.Up);
+            next.Links.Add(Directions.Down);
+
+            next.SetPath(GeoTile.GeoTileTypes.MainPath);
+
+            prev = next;
+        }
+
+        Exit = GetGeo(centerX, centerY + 2);
+
+        if (Exit != null)
+            Exit.SetPath(GeoTile.GeoTileTypes.Exit);
+
+        return;
     }
 
-    Exit = GetGeo(centerX, 6);
-    Exit.SetPath(GeoTile.GeoTileTypes.Exit);
-
-    // DOWN BRANCH (3 → 1)
-    prev = PlayerSpawn;
-
-    for (int y = centerY - 1; y >= 1; y--)
+    //
+    // LEVEL 5
+    //
+    if (level == 5)
     {
-        GeoTile next = GetGeo(centerX, y);
-        if (next == null) continue;
+        PlayerSpawn = GetGeo(centerX, centerY);
 
-        prev.Links.Add(Directions.Down);
-        next.Links.Add(Directions.Up);
+        if (PlayerSpawn != null)
+            PlayerSpawn.SetPath(GeoTile.GeoTileTypes.PlayerStart);
 
-        next.SetPath(GeoTile.GeoTileTypes.MainPath);
-        prev = next;
-    }
+        GeoTile prev = PlayerSpawn;
 
-    // RIGHT BRANCH
-    GeoTile RightTile = GetGeo(centerX, 1);
-    prev = RightTile;
+        for (int y = centerY + 1; y <= centerY + 3; y++)
+        {
+            GeoTile next = GetGeo(centerX, y);
 
-    for (int x = centerX + 1; x <= 5; x++)
-    {
-        GeoTile next = GetGeo(x, 1);
-        if (next == null) continue;
+            if (next == null)
+                continue;
 
-        prev.Links.Add(Directions.Right);
-        next.Links.Add(Directions.Left);
+            prev.Links.Add(Directions.Up);
+            next.Links.Add(Directions.Down);
 
-        next.SetPath(GeoTile.GeoTileTypes.MainPath);
-        prev = next;
-    }
+            next.SetPath(GeoTile.GeoTileTypes.MainPath);
 
-    // LEFT BRANCH
-    prev = RightTile;
+            prev = next;
+        }
 
-    for (int x = centerX - 1; x >= 0; x--)
-    {
-        GeoTile next = GetGeo(x, 1);
-        if (next == null) continue;
+        Exit = GetGeo(centerX, centerY + 3);
 
-        prev.Links.Add(Directions.Left);
-        next.Links.Add(Directions.Right);
+        if (Exit != null)
+            Exit.SetPath(GeoTile.GeoTileTypes.Exit);
 
-        next.SetPath(GeoTile.GeoTileTypes.MainPath);
-        prev = next;
-    }
-
-    // DOWN TO BOTTOM
-    prev = GetGeo(0, 1);
-
-    for (int y = 0; y >= -2; y--)
-    {
-        GeoTile next = GetGeo(0, y);
-        if (next == null) continue;
-
-        prev.Links.Add(Directions.Down);
-        next.Links.Add(Directions.Up);
-
-        next.SetPath(GeoTile.GeoTileTypes.MainPath);
-        prev = next;
-    }
-
-    // LEFT BOTTOM BRANCH
-    prev = GetGeo(0, -1);
-
-    for (int x = -1; x >= -3; x--)
-    {
-        GeoTile next = GetGeo(x, -1);
-        if (next == null) continue;
-
-        prev.Links.Add(Directions.Left);
-        next.Links.Add(Directions.Right);
-
-        next.SetPath(GeoTile.GeoTileTypes.MainPath);
-        prev = next;
-    }
-
-    // RIGHT SIDE LINK (6,0 → 6,1)
-    GeoTile a = GetGeo(6, 0);
-    GeoTile b = GetGeo(6, 1);
-
-    if (a != null && b != null)
-    {
-        a.Links.Add(Directions.Down);
-        b.Links.Add(Directions.Up);
+        return;
     }
 }
-
  public override float JudgeRoom(GeoTile g, RoomOption o, bool backup = false)
 {
     o.Audit();
@@ -754,33 +973,6 @@ public override void BuildMainPath()
 }
 
 
-//THIS FUNCTION CONTROLS ADD DENSITY//
-public override void FindQuotas()
-{
-    float rms = AllGeo.Count - 2;
-
-    float mons;
-
-    // IF LEVEL IS 2 → SPAWN FEW ENEMIES
-    if (God.Session.Level == 2)
-    {
-        mons = 5; // small number
-    }
-    else
-    {
-        mons = rms * 0.7f; // normal scaling
-    }
-
-    Quotas.Add(new Tag(GameTags.NPC, 1, mons));
-
-    Quotas.Add(new Tag(GameTags.Weapon, 1, 2));
-    Quotas.Add(new Tag(GameTags.Consumable, 1, rms * 0.2f));
-    Quotas.Add(new Tag(GameTags.ScoreThing, 1, God.Session.Level));
-
-    FindThings();
-}
-
-
 
 void BuildLevel1(int centerX, int centerY, int leftsideY)
 {
@@ -930,6 +1122,48 @@ void BuildLevel5(int centerX, int centerY, int leftsideY)
         AddGeo(new GeoTile(centerX, centerY + i, this));
     }
   
+}
+
+public override void FindQuotas()
+{
+    float rms = AllGeo.Count - 2;
+    int level = God.Session.Level;
+
+    float mons;
+
+    // ENEMY SCALING BY LEVEL
+    if (level == 1 || level == 0)
+    {
+        mons = 0;
+    }
+    else if (level == 2)
+    {
+        mons = 4;
+    }
+    else if (level == 3)
+    {
+        mons = God.RoundRand(rms * 0.5f);
+    }
+    else if (level == 4)
+    {
+        mons = God.RoundRand(rms * 0.8f);
+    }
+    else
+    {
+        mons = God.RoundRand(rms * 1.2f);
+    }
+
+   // mons = Mathf.Max(0, mons);
+
+    // NPC quota
+   // Quotas.Add(new Tag(GameTags.NPC, 1, mons));
+
+    // Other quotas
+    Quotas.Add(new Tag(GameTags.Weapon, 1, 7));
+    Quotas.Add(new Tag(GameTags.Consumable, 1, rms * 0.2f));
+    Quotas.Add(new Tag(GameTags.ScoreThing, 1, level));
+
+    FindThings();
 }
 
 }

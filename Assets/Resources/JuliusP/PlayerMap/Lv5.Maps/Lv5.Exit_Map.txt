@@ -1,20 +1,20 @@
 xxxxxxxuuuxxxxxxx
-xMMMMMxfEfxMQhhhx
-x66666xfffx66666x
-x66666xxfxx66666x
-x66666.fff.66666x
-xhhhhhxfffxhhhhhx
-xxxxxxxfffxxxxxxx
-x66666xfffx66666x
-x66666xfffx66666x
-x666666fff666666x
-x666666fff666666x
-x66666xfffx66666x
-xxxxxxxfffxxxxxxx
-x66666xfffx66666x
-x66666xfffx66666x
-x666666fff666666x
-x666666fff666666x
-x66666xfffx66666x
-xxxxxxxfffxxxxxxx
+x     x1E1x     x
+x     x111x     x
+x     x111x     x
+x      111      x
+x     x111x     x
+xxxxxxx111xxxxxxx
+x     x111x     x
+x     x111x     x
+x      111      x
+x      111      x
+      x111x     x
+xxxxxxx111xxxxxxx
+x     x111x     x
+x     x111x     x
+x      111      x
+x      111      x
+x     x111x     x
+xxxxxxx111xxxxxxx
 xxxxxxxdddxxxxxxx

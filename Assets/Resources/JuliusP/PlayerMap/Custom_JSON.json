@@ -48,7 +48,8 @@
         {"K":"1","V":"Lv5.Floor"},
         {"K":"t","V":"RedLight4"},
         {"K":"9","V":"Trick"},
-        {"K":"X","V":"Tougher"}
+        {"K":"X","V":"Tougher"},
+        {"K":"i","V":"CanStun"}
 
 
 

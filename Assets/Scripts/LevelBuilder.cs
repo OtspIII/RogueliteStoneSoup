@@ -522,7 +522,7 @@ public class LevelBuilder
         if (g.Path == GeoTile.GeoTileTypes.Boss) t = GameTags.Boss;
         //If it has the tag we picked above, it's good to go
         //Note that if you returned a bigger number, it would be more likely to be picked
-        if (g.Tag != "" && !backup)
+        if (!string.IsNullOrEmpty(g.Tag) && !backup)
         {
             if(o.HasTag(g.Tag)) return 1;
             God.LogWarning("NO ROOM WITH TAG: " + g.Tag);

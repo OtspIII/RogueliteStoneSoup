@@ -14,17 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ProjectileOption
   Name: Slime
   Author: 75
-  Team: 3
-  Body: {fileID: 629948465317790645, guid: 9edb53243ae32704ead177294fe49d22, type: 3}
-  Art: {fileID: 21300000, guid: 759a967b8356f4120bbcf541c06c0f2b, type: 3}
-  Color: {r: 1, g: 1, b: 1, a: 1}
-  Size: 1
   Tags:
   - Common: 300
     Custom: 
     W: 0
     Cost: 0
-  LevelRange: {x: 8, y: 10}
+  Team: 3
+  Body: {fileID: 629948465317790645, guid: 9edb53243ae32704ead177294fe49d22, type: 3}
+  Art: {fileID: 21300000, guid: 759a967b8356f4120bbcf541c06c0f2b, type: 3}
+  Color: {r: 1, g: 1, b: 1, a: 1}
+  Size: 1
+  LevelRange: {x: 0, y: 0}
   Trait:
   - Trait: 400
     Numbers: []
@@ -38,6 +38,7 @@ MonoBehaviour:
       Level: 0
       Author: 0
       MaxCost: 0
+      Where: {x: 999, y: 999, z: 999}
     Builder: []
   Damage: 1
   Speed: 0.2

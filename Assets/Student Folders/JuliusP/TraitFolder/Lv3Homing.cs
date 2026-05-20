@@ -55,6 +55,9 @@ public class Lv3Homing : Trait
                     // IGNORE TEAMMATES / ALLIES
                     if (t.Team == projectile.Team) continue;
 
+                    //IGNORE NEUTRAL TEAM//
+                    if (t.Team == GameTeams.Neutral) continue;
+
                     // ONLY TARGET ENEMIES (must have health / be valid combat target)
                     if (t.Has(Traits.Health) == false) continue;
 

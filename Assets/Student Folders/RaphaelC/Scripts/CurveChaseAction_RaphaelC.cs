@@ -136,7 +136,7 @@ public class Invisible_RaphaelC : ActionScript
             Vector3 B = Who.Target.Thing.transform.position;
 
             radius = Vector3.Distance(A,B)/2;
-            Vector3 Center = (A + B)/2;
+            Vector3 Center = B;
 
             float Cx = Center.x;
             float Cy = Center.y;
@@ -149,9 +149,13 @@ public class Invisible_RaphaelC : ActionScript
 
             Who.Thing.ActualMove = MoveMult * dir;
             Who.Thing.LookAt(Who.Target,0.5f);
-            
-            if((Who.AttackRange <= 0.5f || Who.Thing.Distance(Who.Target) <= Who.AttackRange) && Who.Thing.IsFacing(Who.Target,5))
-                Who.TakeEvent(God.E(EventTypes.StartAction).Set(ActionInfo.Action,Actions.DefaultAttack));
+
+            float actualRange = Who.AttackRange <= 0f ? 1.0f : Who.AttackRange;
+
+            if (Who.Thing.Distance(Who.Target) <= actualRange && Who.Thing.IsFacing(Who.Target, 5))
+            {
+                Who.TakeEvent(God.E(EventTypes.StartAction).Set(ActionInfo.Action, Actions.DefaultAttack));
+            }
         }
     }    
     public override void HandleMove()

@@ -71,7 +71,7 @@ public class GameLibrary : MonoBehaviour
             //If it has any chance, add it to the dictionary
             if(w > 0) opts.Add(rs,w);
         }
-        Debug.Log(opts.Keys.Count + " / " + backup);
+        
         if (opts.Keys.Count == 0 && backup)
         {
             Debug.Log("BACKUP TRY" + g);

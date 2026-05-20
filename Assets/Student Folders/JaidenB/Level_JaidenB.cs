@@ -42,8 +42,9 @@ public class Level_JaidenB : LevelBuilder
     public override void BuildMainPath()
     {
         int Start = Random.Range(0, Size.x);
+        int randomY = Random.Range(3, Size.y);
 
-        Exit = GetGeo(1, 2);
+        Exit = GetGeo(Start, randomY);
         Exit.SetPath(GeoTile.GeoTileTypes.Exit);
 
         for (int y = 0; y < Size.y; y++) 

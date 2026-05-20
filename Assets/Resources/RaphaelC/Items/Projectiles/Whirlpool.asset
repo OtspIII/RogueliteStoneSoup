@@ -14,11 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: WhirlPool
   Author: 60
-  Team: 1
-  Body: {fileID: 629948465317790645, guid: a818902a553ccfa49ba9ef5810b226ca, type: 3}
-  Art: {fileID: -68751727340038015, guid: cf251f49e93dbc1448d1cc819af13e16, type: 3}
-  Color: {r: 0.3056603, g: 0.3056603, b: 0.3056603, a: 1}
-  Size: 3
   Tags:
   - Common: 400
     Custom: 
@@ -28,9 +23,14 @@ MonoBehaviour:
     Custom: 
     W: 1
     Cost: 1
+  Team: 1
+  Body: {fileID: 629948465317790645, guid: a818902a553ccfa49ba9ef5810b226ca, type: 3}
+  Art: {fileID: -68751727340038015, guid: cf251f49e93dbc1448d1cc819af13e16, type: 3}
+  Color: {r: 0.3056603, g: 0.3056603, b: 0.3056603, a: 1}
+  Size: 3
   LevelRange: {x: 0, y: 0}
   Trait:
-  - Trait: 6004
+  - Trait: 6005
     Numbers: []
     Prefabs: []
     Acts: []
@@ -42,10 +42,11 @@ MonoBehaviour:
       Level: 0
       Author: 0
       MaxCost: 0
+      Where: {x: 999, y: 999, z: 999}
     Builder:
     - Type: 0
       NumType: 1
-      Num: 3
+      Num: 0.5
       StrType: 0
       Str: 
       ActType: 0

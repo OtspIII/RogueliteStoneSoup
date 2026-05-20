@@ -14,19 +14,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CharacterOption
   Name: Gremlin
   Author: 75
+  Tags:
+  - Common: 0
+    Custom: 
+    W: 0
+    Cost: 0
   Team: 1
   Body: {fileID: 629948465317790645, guid: acf0e760b28c7b046ad7d511fb87a1d3, type: 3}
   Art: {fileID: 21300000, guid: 7c3b0767e3281437d9cf721565d7c538, type: 3}
   Color: {r: 1, g: 1, b: 1, a: 1}
   Size: 1
-  Tags:
-  - Common: 203
-    Custom: 
-    W: 0
-    Cost: 0
   LevelRange: {x: 0, y: 0}
   Trait:
-  - Trait: 7508
+  - Trait: 311
     Numbers: []
     Prefabs: []
     Acts: []
@@ -38,10 +38,11 @@ MonoBehaviour:
       Level: 0
       Author: 0
       MaxCost: 0
+      Where: {x: 999, y: 999, z: 999}
     Builder: []
   HP: 0
-  Speed: 1.5
+  Speed: 0
   VisionRange: 4
   Held: {fileID: 0}
   DefaultAction: 1
-  DefaultChaseAction: 202
+  DefaultChaseAction: 1

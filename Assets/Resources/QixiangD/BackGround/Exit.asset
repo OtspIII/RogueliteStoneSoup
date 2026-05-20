@@ -14,11 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ThingOption
   Name: Exit
   Author: 55
-  Team: 1
-  Body: {fileID: 629948465317790645, guid: 073ebe890d72bac48bacd0748bd84afc, type: 3}
-  Art: {fileID: -7886095280468031780, guid: 63d76ff2e460fd24293d95322c27e3ae, type: 3}
-  Color: {r: 1, g: 1, b: 1, a: 1}
-  Size: 0.5
   Tags:
   - Common: 401
     Custom: 
@@ -28,6 +23,11 @@ MonoBehaviour:
     Custom: 
     W: 0
     Cost: 0
+  Team: 1
+  Body: {fileID: 629948465317790645, guid: 073ebe890d72bac48bacd0748bd84afc, type: 3}
+  Art: {fileID: -7886095280468031780, guid: 63d76ff2e460fd24293d95322c27e3ae, type: 3}
+  Color: {r: 1, g: 1, b: 1, a: 1}
+  Size: 0.5
   LevelRange: {x: 0, y: 0}
   Trait:
   - Trait: 200
@@ -42,4 +42,19 @@ MonoBehaviour:
       Level: 0
       Author: 0
       MaxCost: 0
+      Where: {x: 999, y: 999, z: 999}
+    Builder: []
+  - Trait: 5505
+    Numbers: []
+    Prefabs: []
+    Acts: []
+    OtherTrait: 0
+    SpawnReq:
+      Fixed: {fileID: 0}
+      Mandatory: []
+      Any: []
+      Level: 0
+      Author: 0
+      MaxCost: 0
+      Where: {x: 999, y: 999, z: 999}
     Builder: []
