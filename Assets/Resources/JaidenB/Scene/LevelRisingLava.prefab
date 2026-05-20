@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1614587136754571350}
   - component: {fileID: -6797498600093760026}
   m_Layer: 7
-  m_Name: Lava
+  m_Name: LevelRisingLava
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
