@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
@@ -63,6 +64,11 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         if (God.Session != null) God.Session.Duration += Time.deltaTime;
+        if (Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.R))
+        {
+            God.Session = null;
+            SceneManager.LoadScene("Gameplay");
+        }
     }
     
     ///Fades the screen in or out. Just a wrapper for a coroutine

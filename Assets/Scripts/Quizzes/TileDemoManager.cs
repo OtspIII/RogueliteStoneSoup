@@ -21,6 +21,7 @@ public class TileDemoManager : MonoBehaviour
 
     public IEnumerator Pause(float time=0)
     {
+        time = 0.5f; //For the show to keep this moving automatically
         if (Input.GetKey(KeyCode.Z)) time = 0.2f;
         foreach(GeoDemoScript g in Tiles) g.Setup();
         if (time == 0)

@@ -24,6 +24,7 @@ public class GameSession
         //If that didn't work or if I want it random, make it a random one 
         if (a == Authors.None || a == Authors.Random)
         {
+            // List<Authors> auth = new List<Authors>(){Authors.AlejandroM,Authors.JuliusP,Authors.QixiangD,Authors.RaphaelC,Authors.SamsonW,Authors.SarahS,Authors.TracyH}
             a = Parser.AllAuthors[Random.Range(0,Parser.AllAuthors.Count)];
         }
         Author = a;

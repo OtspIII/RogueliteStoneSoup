@@ -15,7 +15,7 @@ public static class Parser
         Setup = true;
         foreach (Authors a in Enum.GetValues(typeof(Authors)))
         {
-            if((int)a < 20) continue;
+            if((int)a < 20 || (int)a > 99) continue;
             AllAuthors.Add(a);
         }
         TraitDict.Add(Traits.Health,new HealthTrait());
