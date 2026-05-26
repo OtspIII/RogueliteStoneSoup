@@ -4,7 +4,7 @@ public class SpinShoot_qixiangdong : ActionScript
 {
     private float spinSpeed = 180f;
     private float shootTimer = 0f;
-    private float shootInterval = 0.2f;
+    private float shootInterval = 0.6f;
 
     public SpinShoot_qixiangdong(ThingInfo who, EventInfo e = null)
     {

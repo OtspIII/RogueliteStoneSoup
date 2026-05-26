@@ -4,8 +4,8 @@ public class BurstShoot_qixiangdong : ActionScript
     private float spinSpeed = 180f;
     private float shootTimer = 0f;
     private float burstTimer = 0f;
-    private float shootInterval = 0.1f;
-    private float burstInterval = 2f;
+    private float shootInterval = 0.15f;
+    private float burstInterval = 3f;
     private int burstCount = 0;
     private int burstMax = 3;
     private bool isBursting = false;

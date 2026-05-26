@@ -53,14 +53,7 @@ public class Level_QixiangD : LevelBuilder
             new Vector2(44f, -4f),
             new Vector2(37f, -4f),
             new Vector2(44f, 4f),
-            new Vector2(40.5f, 8f),
-            new Vector2(40.5f, -8f),
-            new Vector2(32f, 0.5f),
-            new Vector2(49f, 0.5f),
-            new Vector2(34f, 6f),
-            new Vector2(47f, -6f),
-            new Vector2(34f, -6f),
-            new Vector2(47f, 6f),
+            
             };
         }
         else if (level >= 2)
@@ -75,10 +68,7 @@ public class Level_QixiangD : LevelBuilder
             new Vector2(44f, -4f),
             new Vector2(37f, -4f),
             new Vector2(44f, 4f),
-            new Vector2(40.5f, 8f),
-            new Vector2(40.5f, -8f),
-            new Vector2(32f, 0.5f),
-            new Vector2(49f, 0.5f),
+           
             };
         }
         else
@@ -89,10 +79,7 @@ public class Level_QixiangD : LevelBuilder
             new Vector2(40.5f, -5f),
             new Vector2(35f, 0.5f),
             new Vector2(46f, 0.5f),
-            new Vector2(37f, 4f),
-            new Vector2(44f, -4f),
-            new Vector2(37f, -4f),
-            new Vector2(44f, 4f),
+            
             };
         }
 
