@@ -32,6 +32,8 @@ public class GameLibrary : MonoBehaviour
     public static Dictionary<TextAsset, Dictionary<char, string>> JSON =
         new Dictionary<TextAsset, Dictionary<char, string>>();
 
+    public Traits WhoUses;
+
     private void Awake()
     {
         //Register myself to a static variable for easy finding
@@ -41,7 +43,11 @@ public class GameLibrary : MonoBehaviour
         Setup = true;
         //Read the Resources folder to find all the Options we've crafted for it to use when generating levels
         foreach (ThingOption o in Resources.LoadAll<ThingOption>("/"))
+        {
             ThingOptions.Add(o);
+            foreach(TraitBuilder t in o.Trait)
+                if(t.Trait == WhoUses) Debug.Log("TRAIT: " + WhoUses + " ON " + o.Name + " (" + o.Author+")");
+        }
         foreach (RoomOption o in Resources.LoadAll<RoomOption>("/"))
         {
             o.Audited = false;

@@ -504,11 +504,11 @@ public class LevelBuilder
     {
         if (!backup)
         {
-            Authors sra = o.Author == Authors.None ? God.Session.Author : o.Author;
+            Authors sra = o.Author == Authors.None ? o.Author : God.Session.Author;
             //Make sure it's the right author. If either the option or the game is universal, it's okay
             if (sra != Authors.Universal && o.Author != Authors.Universal && sra != Authors.None && o.Author != sra) return 0;
         }
-        else if (o.Author != Authors.None) return 0;
+        else if (o.Author != Authors.None && o.Author != God.Session.Author && o.Author != Authors.Universal) return 0;
         //Let the option calculate how big it is/etc
         o.Audit();
         //The map should only build rooms that are the same size as the level wants
@@ -540,9 +540,12 @@ public class LevelBuilder
         {
             //If the spawn request set a specific author, we use that. Otherwise we use this session's author.
             Authors sra = sr.Author == Authors.None ? God.Session.Author : sr.Author;
+            if(sra == Authors.Universal) Debug.Log("UNIVERSAL: " + sr);
+            if (o.Author == Authors.Universal) Debug.Log("U THING: " + o);
             //Make sure it's the right author. If either the option or the game is universal, it's okay
             if (sra != Authors.Universal && o.Author != Authors.Universal && sra != Authors.None && o.Author != sra) return 0;
         }
+        else if (o.Author != Authors.None && o.Author != God.Session.Author && o.Author != Authors.Universal) return 0;
         //If the level is set to -1 or the option's level range is unset then anything is okay
         if (sr.Level >= 0 && o.LevelRange != Vector2Int.zero)
         {

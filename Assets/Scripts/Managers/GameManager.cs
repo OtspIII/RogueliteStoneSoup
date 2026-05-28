@@ -58,6 +58,7 @@ public class GameManager : MonoBehaviour
         LevelHolder = new GameObject("Level").transform;
         //Create a new LevelBuilder and tell it to build a level for us
         God.LB = Parser.GetLB(God.Session.Author);
+        if (LevelOverride == -1) God.LB = Parser.GetLB(Authors.None);
         God.LB.Build();
     }
 
